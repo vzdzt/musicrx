@@ -558,60 +558,40 @@ window.addEventListener('scroll', enforceFlatCards);
 // Apply a single event handler to manage all glass cards
 function setupAllGlassCards() {
     document.querySelectorAll('.glass-card').forEach(card => {
-        // Force complete removal of all transform styles for all cards
-        card.style.cssText += `
-            transform: none !important;
-            transform-style: flat !important;
-            perspective: none !important;
-            transition: box-shadow 0.3s ease, opacity 0.3s ease !important;
-            rotate: 0deg !important;
-            position: relative !important;
-            backface-visibility: hidden !important;
-            will-change: auto !important;
-            transform-box: border-box !important;
-        `;
-
-        // Force flat transform on all children
-        card.querySelectorAll('*').forEach(child => {
-            child.style.cssText += `
-                transform: none !important;
-                transform-style: flat !important;
-                transition: none !important;
-                perspective: none !important;
-                rotate: 0deg !important;
-            `;
+        // Ensure cards have the overflow:hidden style to contain mirror effect
+        card.style.overflow = 'hidden';
+        
+        // Remove any previous style overrides that might block effects
+        card.style.removeProperty('transform-style');
+        card.style.removeProperty('perspective');
+        
+        // Preserve position and transition for effects
+        card.style.position = 'relative';
+        card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        
+        // Add hover effect listeners
+        card.addEventListener('mouseenter', () => {
+            card.style.boxShadow = '0 0 20px rgba(0, 247, 255, 0.3)';
+            card.style.filter = 'brightness(1.1)';
         });
 
-        // Remove existing listeners by cloning and replacing
-        const newCard = card.cloneNode(true);
-        card.parentNode.replaceChild(newCard, card);
-
-        // Only add simple box-shadow hover effect
-        newCard.addEventListener('mouseenter', () => {
-            newCard.style.boxShadow = '0 0 20px rgba(0, 247, 255, 0.3)';
-            newCard.style.filter = 'brightness(1.1)';
-        });
-
-        newCard.addEventListener('mouseleave', () => {
-            newCard.style.boxShadow = '0 8px 32px rgba(0, 247, 255, 0.1)';
-            newCard.style.filter = 'brightness(1)';
+        card.addEventListener('mouseleave', () => {
+            card.style.boxShadow = '0 8px 32px rgba(0, 247, 255, 0.1)';
+            card.style.filter = 'brightness(1)';
         });
     });
 }
 
-// Cancel all GSAP animations for cards
-gsap.killTweensOf('.glass-card');
-
-// Run the setup initially and on scroll
+// Run the setup initially
 document.addEventListener('DOMContentLoaded', setupAllGlassCards);
-window.addEventListener('scroll', setupAllGlassCards);
 window.addEventListener('resize', setupAllGlassCards);
 
-// Permanently prevent mouse movement effects
+// Don't prevent all mousemove effects, but ensure cards have proper overflow hidden
 document.addEventListener('mousemove', (e) => {
     document.querySelectorAll('.glass-card').forEach(card => {
-        card.style.transform = 'none !important';
-        card.style.rotate = '0deg !important';
+        if (card.style.overflow !== 'hidden') {
+            card.style.overflow = 'hidden';
+        }
     });
 });
 
