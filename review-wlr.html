@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,19 +7,20 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
-        <style>
-                
+<style>
           body {
             background: #0a0a0a !important;
           }
                 .overall-rating h3 {
                 color: #c500a6;
-                    .highlight {
-                        color: #ff0000;
-                        font-weight: bold;
-                    }
-            }
-            .glass-card {
+                }
+                .highlight {
+                    color: #ff0000;
+                    font-weight: bold;
+                }
+
+            /* Scoped class just for WLR page glass cards */
+            .wlr-glass-card {
               background: rgba(255, 255, 255, 0.1);
               backdrop-filter: blur(10px);
               border-radius: 20px;
@@ -33,17 +33,11 @@
               opacity: 1;
               display: block;
               visibility: visible;
-              transform-style: preserve-3d;
-              perspective: 1000px;
               box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
-              transition: box-shadow 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
-              transform-style: flat !important;
-              will-change: auto;
-              transform: none !important;
-              perspective: none !important;
+              overflow: hidden; /* Contain the effect */
             }
 
-            .glass-card::before {
+            .wlr-glass-card::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -59,8 +53,8 @@
                 transition: 0.5s;
             }
 
-            .glass-card:hover {
-                transform: none !important;
+            .wlr-glass-card:hover {
+                transform: scale(1.05) !important; /* Added scaling effect with !important */
                 background: rgba(255, 255, 255, 0.15);
                 border-color: var(--primary);
                 box-shadow: 
@@ -68,7 +62,7 @@
                     0 0 30px rgba(0, 247, 255, 0.4);
             }
 
-            .glass-card:hover::after {
+            .wlr-glass-card:hover::after {
                 content: '';
                 position: absolute;
                 inset: -1px;
@@ -84,16 +78,48 @@
                 animation: borderGlow 2s linear infinite;
             }
 
+            .wlr-glass-card img {
+                transition: transform 0.3s ease; /*Added transition to image*/
+            }
+
+            .wlr-glass-card:hover img {
+                transform: scale(1.05); /* Added scaling effect to image */
+            }
+
             @keyframes borderGlow {
                 0% { opacity: 1; }
                 50% { opacity: 0.5; }
                 100% { opacity: 1; }
             }
 
-            .glass-card:hover::before {
+            .wlr-glass-card:hover::before {
                 left: 100%;
             }
-        </style>
+
+            /* Regular glass card style without the mirror effect */
+            .glass-card {
+              background: rgba(255, 255, 255, 0.1);
+              backdrop-filter: blur(10px);
+              border-radius: 20px;
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              padding: 2rem;
+              margin: 2rem 0;
+              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              cursor: pointer;
+              position: relative;
+            }
+
+            /* Allow the WLR card to transform */
+            .glass-card.wlr-card {
+              transform: none; /* Removed !important to allow hover scaling */
+              perspective: none;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .glass-card.wlr-card:hover {
+              transform: scale(1.05) !important; /* Scale up on hover with !important */
+            }
+</style>
     </head>
 <body>
     <div id="cursor"></div>
@@ -101,11 +127,14 @@
     <canvas id="universe"></canvas>
     <nav>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="reviews.html">Reviews</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#opinions">Opinions</a></li>
-            <li><a href="#interviews">Interviews</a></li>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="interviews.html" class="nav-link">Interviews</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
     </nav>
 
@@ -115,10 +144,9 @@
             <h2>PLAYBOI CARTI - WLR</h2>
             <div class="glass-card wlr-card">
               <img src="wlr.jpeg" alt="Playboi Carti - WLR album image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
-                <br>
-                <br>
-                <p>Hip-hop fans woke up to a chaotic Christmas surprise on <span class="review-wlr-highlight">December 25, 2020</span>, when Playboi Carti dropped his long-awaited sophomore album, <em>Whole Lotta Red</em>. After years of leaks, delays, and sky-high anticipation following 2018’s <em>Die Lit</em>, Carti delivered a project that divided listeners like few others. Here’s a deep dive into this frenzied, vampiric odyssey:</p>
             </div>
+             <br>
+            <p>Hip-hop fans woke up to a chaotic Christmas surprise on <span class="review-wlr-highlight">December 25, 2020</span>, when Playboi Carti dropped his long-awaited sophomore album, <em>Whole Lotta Red</em>. After years of leaks, delays, and sky-high anticipation following 2018’s <em>Die Lit</em>, Carti delivered a project that divided listeners like few others. Here’s a deep dive into this frenzied, vampiric odyssey:</p>
         </div>
         <br>
         <span class="review-wlr-highlight"><h2>Messaging and Theme</h2></span>
@@ -134,19 +162,13 @@
         <p>The album keeps guest appearances minimal but impactful. <span class="review-wlr-highlight">Kanye West</span>’s verse on <span class="review-wlr-highlight">“Go2DaMoon”</span> is a chaotic highlight, his gravelly flow meshing with the track’s eerie minimalism. <span class="review-wlr-highlight">Kid Cudi</span>’s turn on <span class="review-wlr-highlight">“M3tamorphosis”</span> adds a melodic anchor to Carti’s wild vocal contortions, while <span class="review-wlr-highlight">Future</span>’s syrupy croak on <span class="review-wlr-highlight">“Teen X”</span> complements the drugged-out vibe. These features don’t steal the show but enhance Carti’s vision, grounding his experimental leaps with familiar voices.</p>
                                 <br>
         <div class="glass-card">
-            <h1>Tracks to Watch</h1>
-            <br>
+            <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="review-wlr-highlight">“Rockstar Made”</span> - A thunderous opener that sets the tone with its abrasive synths and Carti’s guttural chants.</li>
-                <br>
-                <li><span class="review-wlr-highlight">“Stop Breathing”</span> - A relentless banger with pounding drums and a primal energy that defines the album’s rage.</li>
-                <br>
-                <li><span class="review-wlr-highlight">“Vamp Anthem”</span> - A gothic trap standout, blending classical samples with Carti’s unhinged delivery.</li>
-                <br>
-                <li><span class="review-wlr-highlight">“F33l Lik3 Dyin”</span> - A surprising closer sampling Bon Iver, offering a rare moment of melancholy amidst the chaos.</li>
-                <br>
+                <li><span class="review-wlr-highlight">"Rockstar Made"</span> - A thunderous opener that sets the tone with its abrasive synths and Carti's guttural chants.</li>
+                <li><span class="review-wlr-highlight">"Stop Breathing"</span> - A relentless banger with pounding drums and a primal energy that defines the album's rage.</li>
+                <li><span class="review-wlr-highlight">"Vamp Anthem"</span> - A gothic trap standout, blending classical samples with Carti's unhinged delivery.</li>
+                <li><span class="review-wlr-highlight">"F33l Lik3 Dyin"</span> - A surprising closer sampling Bon Iver, offering a rare moment of melancholy amidst the chaos.</li>
             </ul>
-
         </div>
                                 <br>
         <span class="review-wlr-highlight"><h2>Previous Works</h2></span>
@@ -159,23 +181,14 @@
                                 <br>
 
                                 <div class="glass-card">
-                                    <h1>Ratings</h1>
-                                    <br>
-                            
-                                    <p><span class="review-wlr-highlight">Originality (19/20):</span> Whole Lotta Red breaks new ground with its rage-punk-trap hybrid, though it owes a nod to forebears like Ye’s Yeezus.</p>
-                                    <br>
+                                    <h2>Ratings</h2>
+                                    <p><span class="review-wlr-highlight">Originality (19/20):</span> WLR breaks new ground with its rage-punk-trap hybrid, though it owes a nod to forebears like Ye's Yeezus.</p>
                                     <p><span class="review-wlr-highlight">Production Quality (18/20):</span> The beats are bold and innovative, but the rough mixing and occasional bloat dock a point.</p>
-                                    <br>
                                     <p><span class="review-wlr-highlight">Lyrics and Messaging (13/20):</span> Carti prioritizes mood over meaning—repetitive hooks and ad-libs shine, but depth is scarce.</p>
-                                    <br>
-                                    <p><span class="review-wlr-highlight">Enjoyment Factor (17/20):</span> It’s a thrilling, divisive listen that rewards multiple spins, though its intensity can overwhelm.</p>
-                                    <br>
-                                    <p><span class="review-wlr-highlight">Consistency (15/20):</span> The album’s front half is a cohesive adrenaline rush; the back half wavers with some weaker cuts.</p>
-                                    <br>
-                                    <p>Overall Rating (82/100): 8.2/10</p>
-                                    <br>
-                                        <em><span class ="review-wlr-highlight">Whole Lotta Red</span></em> won’t win over everyone, but it’s a daring pivot that cements Carti as a sonic innovator. It’s messy, loud, and unapologetic—just like the artist himself. Love it or hate it, this album proves Carti’s not here to play it safe; he’s here to rattle cages and redefine trap’s future.</p>
-                                </p>
+                                    <p><span class="review-wlr-highlight">Enjoyment Factor (17/20):</span> It's a thrilling, divisive listen that rewards multiple spins, though its intensity can overwhelm.</p>
+                                    <p><span class="review-wlr-highlight">Consistency (15/20):</span> The album's front half is a cohesive adrenaline rush; the back half wavers with some weaker cuts.</p>
+                                    <p class="overall-rating"><span class="review-wlr-highlight"><h3>Overall Rating (82/100):</span> 8.2/10</h3></p>
+                                    <p><em><span class="review-wlr-highlight">Whole Lotta Red</span></em> won't win over everyone, but it's a daring pivot that cements Carti as a sonic innovator. It's messy, loud, and unapologetic—just like the artist himself. Love it or hate it, this album proves Carti's not here to play it safe; he's here to rattle cages and redefine trap's future.</p>
                                 </div>
         </div>
     </div>
@@ -185,17 +198,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
-        // Ensure all glass cards on this page have no tilt
+        // Ensure all glass cards on this page have no tilt, except for wlr-card
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.wlr-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
+
+            // Special handling for WLR card to allow scaling
+            document.querySelectorAll('.glass-card.wlr-card').forEach(card => {
+                card.style.transform = 'none'; // No !important
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.overflow = 'hidden';
+            });
         });
     </script>
 </body>
 </html>
-
