@@ -9,6 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Specific styling for contact page title */
+        .contact-title {
+            color: #ff00cc;
+            text-shadow: 0 0 10px #ff00cc;
+        }
+        
+        .contact-title::after {
+            text-shadow: -2px 0 #ff00cc !important;
+        }
+        
         .contact-form {
             width: 100%;
             max-width: 600px;
@@ -71,9 +81,9 @@
     </nav>
 
     <div class="container">
-        <h1 class="glitch" data-text="CONTACT">CONTACT</h1>
+        <h1 class="glitch contact-title" data-text="CONTACT">CONTACT</h1>
+        <div class="card-title-container">Get In Touch</div>
         <div class="glass-card">
-            <h2>Get In Touch</h2>
             <p>Have a question, suggestion, or just want to chat about music? Fill out the form below and we'll get back to you.</p>
             <br>
             <div class="contact-form">
@@ -106,4 +116,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

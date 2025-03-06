@@ -1,4 +1,4 @@
-kk<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -860,61 +860,12 @@ kk<!DOCTYPE html>
 
         .nav-links a {
             color: #fff;
-            text-shadow: 
-                0 0 5px #fff,
-                0 0 10px #fff,
-                0 0 20px #fff;
             transition: all 0.1s;
             position: relative;
         }
 
         .nav-links a:hover {
-            animation: neonGlitch 0.2s infinite;
-        }
-
-        @keyframes neonGlitch {
-            0% {
-                text-shadow: 
-                    0 0 10px #fff,
-                    0 0 20px #fff,
-                    0 0 40px #fff,
-                    0 0 80px #fff;
-                transform: translate(0) scale(1);
-                filter: hue-rotate(0deg);
-            }
-            25% {
-                text-shadow: 
-                    -4px 0 10px #f00,
-                    4px 4px 20px #0ff,
-                    -4px -4px 40px #f0f;
-                transform: translate(-4px, 4px) scale(1.2) skew(-5deg);
-                filter: hue-rotate(90deg) brightness(1.5);
-            }
-            50% {
-                text-shadow: 
-                    4px 0 10px 10px #0f0,
-                    -4px -4px 20px #ff0,
-                    4px 4px 40px #f00;
-                transform: translate(4px, -4px) scale(0.8) skew(5deg);
-                filter: hue-rotate(180deg) contrast(1.5);
-            }
-            75% {
-                text-shadow: 
-                    -4px 4px 10px #00f,
-                    4px -4px 20px #f0f,
-                    -4px 4px 40px #0ff;
-                transform: translate(-2px, -2px) scale(1.1) skew(-5deg);
-                filter: hue-rotate(270deg) saturate(1.5);
-            }
-            100% {
-                text-shadow: 
-                    0 0 10px #fff,
-                    0 0 20px #fff,
-                    0 0 40px #fff,
-                    0 0 80px #fff;
-                transform: translate(0) scale(1);
-                filter: hue-rotate(360deg);
-            }
+            color: var(--primary);
         }
 
         .social-button {
@@ -1161,14 +1112,14 @@ kk<!DOCTYPE html>
 
     <nav>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="reviews.html">Reviews</a></li>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="opinions.html">Opinions</a></li>
-            <li><a href="interviews.html">Interviews</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="interviews.html" class="nav-link">Interviews</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
     </nav>
 
@@ -1235,8 +1186,33 @@ kk<!DOCTYPE html>
             <div id="content-news" class="content-details" style="display: flex; flex-direction: column; opacity: 1; background: rgba(0, 0, 0, 0.8); padding: 2rem; border-radius: 15px; margin-top: 2rem; position: relative; z-index: 10; transition: opacity 0.3s ease-in-out;">
                 <h2>News</h2>
                 <div class="news-content">
-                    <h3>Latest Updates</h3>
-                    <p>Coming soon...</p>
+                    <div class="glass-card">
+                        <h3>This Week's Updates</h3>
+                        <p>March 4, 2025</p>
+                        <br>
+                        <p>The music industry is buzzing with news of a potential Kendrick Lamar and J. Cole joint album, after cryptic social media posts from both artists have fans speculating about a long-awaited collaboration project.</p>
+                    </div>
+                    <br>
+                    <div class="glass-card">
+                        <h3>Travis Scott Announces New Album</h3>
+                        <p>February 25, 2025</p>
+                        <br>
+                        <p>Travis Scott has officially announced his next studio album, set to release in Summer 2025. The Houston rapper took to social media to tease the project, which he describes as "a new sonic direction" following the success of "Utopia."</p>
+                    </div>
+                    <br>
+                    <div class="glass-card">
+                        <h3>Playboi Carti Surprise Releases New Single</h3>
+                        <p>February 20, 2025</p>
+                        <br>
+                        <p>Without warning, Playboi Carti dropped a new single titled "OPIUM DREAMS" featuring an unexpected collaboration with a classical orchestra. The track has already accumulated over 5 million streams in its first 24 hours.</p>
+                    </div>
+                    <br>
+                    <div class="glass-card">
+                        <h3>Music Industry Reports Vinyl Sales Surpass Digital Downloads</h3>
+                        <p>February 18, 2025</p>
+                        <br>
+                        <p>In a surprising turn of events, vinyl record sales have officially surpassed digital downloads for the first time since 2005. Industry analysts attribute this to both nostalgia and audiophiles seeking higher fidelity listening experiences.</p>
+                    </div>
                 </div>
             </div>
 
@@ -1245,14 +1221,14 @@ kk<!DOCTYPE html>
                 <div class="trending-content">
                     <h3>Hip Hop Evolution</h3>
 
-                        <h1>Underground Rap Trend Analysis 2025</h1>
+                        <h1>Underground Trend Analysis 2025</h1>
 <br>
                     <!-- Underground Rap Scene Overview -->
-                    <br>
-                        <h3>Overview</h3>
+                    
+
                         <p>In 2025, the underground rap scene is a vibrant space where emerging artists are pushing creative boundaries, contrasting with the polished, pop-driven mainstream hip hop led by artists like Drake and Kendrick Lamar. These underground talents are known for their DIY ethos, often distributing music via platforms like SoundCloud and TikTok, and are free from major label constraints, allowing for authentic expression.</p>
-                  
-                    <br>
+
+                   
                         <!-- Key Points -->
                         <div class="glass-card">
 
@@ -1268,29 +1244,28 @@ kk<!DOCTYPE html>
                                     </ul>
                         </div>
 
-<br>
                                 <!-- Trends and Visuals -->
-                            
+
                                     <h3>Trends and Visuals</h3>
                                     <p>The scene is seeing a rise in dark, moody themes, particularly in music videos, with artists like Dark Glo and eternalvail incorporating surreal, shadow-laden visuals inspired by horrorcore, enhancing the storytelling aspect of their work.</p>
-                                
+
 <br>
                     <h3>Videography and Dark Art</h3>
-            
+
                         <p>Dark art themes are increasingly visible in hip hop visuals, particularly in music videos. Horrorcore, a subgenre focusing on dark, violent themes, influences artists to use moody, occult, and dystopian aesthetics, enhancing the storytelling in their work. Underground rappers like Hardrock, Dark Glo, and eternalvail amplify this trend with their surreal and shadowy video styles.</p>
                 <br>
                     <h3>Use of AI</h3>
-                
+
                         <p>AI is transforming hip hop, with tools generating beats, lyrics, and even simulating artists' voices, as seen in viral songs like "Heart On My Sleeve" by Ghostwriter977. This raises ethical concerns about consent and ownership, with artists like Vritra using AI to experiment with new sounds, while debates continue on its impact on human creativity. Emerging underground artists such as 454 and Project4Play are also exploring AI-driven production techniques.</p>
                <br>     
 
                     <h3>Crossover with Fashion and Art</h3>
                         <p>Hip hop significantly influences fashion, driving trends in streetwear and luxury collaborations, with brands like Supreme and Off-White reflecting this culture. Underground rappers like Southsidesilhouette, Diorvsyou, and Pradabagshawty are shaping the aesthetic with bold, oversized looks. Art and music intersect through album covers and music videos, with artists like Kanye West and xaviersobased embodying this convergence by blending music with visual art and fashion design.</p>
                     <br>
-                    
+
                     <!-- Detailed Tables -->
                                 <div class="glass-card">
-                                   
+
 
                                     <!-- Table 1 -->
                                                        <h2>Key Trends and Examples</h2>
@@ -1422,7 +1397,7 @@ kk<!DOCTYPE html>
                         <img src="ap-drake2.jpeg" alt="Drake ap img">
                         <p>From his early days as Jimmy Brooks on <span class="highlight">Degrassi</span> to becoming one of the most streamed artists of all time, <span class="highlight">Aubrey Drake Graham</span> has redefined what it means to be a hip-hop superstar in the digital age.</p>
                     </div>
-                    
+
                 </div>
                 <br>
                 <h2>Comprehensive Analysis</h2>
@@ -1451,7 +1426,7 @@ kk<!DOCTYPE html>
                             <br>
                           <li>Drake's impact on music and popular culture is undeniable, and he continues to be one of the most popular artists in the world.</li>
                     </ul>
-                
+
 
                     <h3>World and Industry Records</h3>
                     <ul>
@@ -1493,7 +1468,7 @@ kk<!DOCTYPE html>
                 <h2>Legacy</h2>
                 <p>As Drake continues to evolve, his influence on music, language, and pop culture remains undeniable. He's transformed from a child actor to a global superstar whose releases are cultural events. Whether through meme-worthy dance moves or quotable lyrics, Drake has mastered the art of cultural relevance in an ever-changing digital landscape. His legacy as one of hip-hop's most commercially successful and culturally impactful artists is already secured, regardless of where his artistic journey takes him next.</p>
                 <br>
-                
+
                 <div class="glass-card">
                      <h2>By the Numbers</h2>
                     <h3><span class="highlight">Chart Performance</span></h3>
@@ -1548,7 +1523,7 @@ kk<!DOCTYPE html>
                     </table>
                 </div>
             </div>
-            
+
             <div class="glass-card">
                 <h3><span class="highlight">Album Certifications</span></h3>
                 <div class="table-container">
@@ -1590,7 +1565,7 @@ kk<!DOCTYPE html>
                     </table>
                 </div>
             </div>
-            
+
             <div class="glass-card">
                 <h3><span class="highlight">Sources</span></h3>
                 <p>
@@ -1603,7 +1578,7 @@ kk<!DOCTYPE html>
             </div>
             </div>
 
-            
+
             </div>
                 </div>
             </div>
@@ -2108,4 +2083,3 @@ kk<!DOCTYPE html>
 
 </body>
 </html>
-

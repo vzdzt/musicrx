@@ -560,15 +560,15 @@ function setupAllGlassCards() {
     document.querySelectorAll('.glass-card').forEach(card => {
         // Ensure cards have the overflow:hidden style to contain mirror effect
         card.style.overflow = 'hidden';
-        
+
         // Remove any previous style overrides that might block effects
         card.style.removeProperty('transform-style');
         card.style.removeProperty('perspective');
-        
+
         // Preserve position and transition for effects
         card.style.position = 'relative';
         card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-        
+
         // Add hover effect listeners
         card.addEventListener('mouseenter', () => {
             card.style.boxShadow = '0 0 20px rgba(0, 247, 255, 0.3)';

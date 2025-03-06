@@ -40,9 +40,12 @@ nav {
 .nav-links a {
   color: var(--primary);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.85rem;
   transition: all 0.1s;
   position: relative;
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .nav-links a:hover {
@@ -94,6 +97,62 @@ nav {
   }
 }
 
+
+/* Styling for standalone glass cards on news page */
+body > .glass-card {
+    width: 80%;
+    max-width: 800px;
+    margin: 1rem auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+.card-title-container {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto 15px auto;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--primary);
+    padding: 10px 20px;
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+    z-index: 2;
+    text-align: center;
+    display: block;
+}
+
+.card-title {
+    color: var(--primary);
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.glass-card {
+    /* ...rest of the existing styles... */
+}
+
+body .container {
+    margin-bottom: 2rem;
+}
+
+body .container h2 {
+    color: var(--primary);
+    font-family: 'Syncopate', sans-serif;
+    margin-top: 1rem;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -108,6 +167,61 @@ nav {
   text-shadow: 0 0 10px var(--primary);
   font-family: 'Syncopate', sans-serif;
   text-transform: uppercase;
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #00ffea;
+  animation: glitch-1 2s linear infinite reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #ff00f7;
+  animation: glitch-2 3s linear infinite;
+}
+
+@keyframes glitch-1 {
+  0% { transform: none; opacity: 1; }
+  7% { transform: skew(-0.5deg, -0.9deg); opacity: 0.75; }
+  10% { transform: none; opacity: 1; }
+  27% { transform: none; opacity: 1; }
+  30% { transform: skew(0.8deg, -0.1deg); opacity: 0.75; }
+  35% { transform: none; opacity: 1; }
+  52% { transform: none; opacity: 1; }
+  55% { transform: skew(-1deg, 0.2deg); opacity: 0.75; }
+  50% { transform: none; opacity: 1; }
+  72% { transform: none; opacity: 1; }
+  75% { transform: skew(0.4deg, 1deg); opacity: 0.75; }
+  80% { transform: none; opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+
+@keyframes glitch-2 {
+  0% { transform: none; opacity: 0.25; }
+  7% { transform: translate(-2px, -3px); opacity: 0.5; }
+  10% { transform: none; opacity: 0.25; }
+  27% { transform: none; opacity: 0.25; }
+  30% { transform: translate(-5px, -2px); opacity: 0.5; }
+  35% { transform: none; opacity: 0.25; }
+  52% { transform: none; opacity: 0.25; }
+  55% { transform: translate(-5px, -1px); opacity: 0.5; }
+  50% { transform: none; opacity: 0.25; }
+  72% { transform: none; opacity: 0.25; }
+  75% { transform: translate(-2px, -6px); opacity: 0.5; }
+  80% { transform: none; opacity: 0.25; }
+  100% { transform: none; opacity: 0.25; }
 }
 
 .grid {
@@ -485,6 +599,29 @@ nav {
   text-shadow: 0 0 10px #ff0000;
   font-family: 'Syncopate', sans-serif;
   text-transform: uppercase;
+  position: relative;
+}
+
+.review-wlr-glitch::before,
+.review-wlr-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.review-wlr-glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #00ffea;
+  animation: glitch-1 2s linear infinite reverse;
+}
+
+.review-wlr-glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #ff0000;
+  animation: glitch-2 3s linear infinite;
 }
 
 /* WLR glass card styling and zoom effect */
@@ -528,6 +665,29 @@ nav {
   text-shadow: 0 0 10px #ff6e00;
   font-family: 'Syncopate', sans-serif;
   text-transform: uppercase;
+  position: relative;
+}
+
+.review-rodeo-glitch::before,
+.review-rodeo-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.review-rodeo-glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #00ffea;
+  animation: glitch-1 2s linear infinite reverse;
+}
+
+.review-rodeo-glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #ff6e00;
+  animation: glitch-2 3s linear infinite;
 }
 .feature-drake-glitch {
   font-size: 3rem;
@@ -537,4 +697,27 @@ nav {
   text-shadow: 0 0 10px #0088ff;
   font-family: 'Syncopate', sans-serif;
   text-transform: uppercase;
+  position: relative;
+}
+
+.feature-drake-glitch::before,
+.feature-drake-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.feature-drake-glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #00ffea;
+  animation: glitch-1 2s linear infinite reverse;
+}
+
+.feature-drake-glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #0088ff;
+  animation: glitch-2 3s linear infinite;
 }
