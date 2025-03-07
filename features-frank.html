@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Frank Ocean Feature</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+      background: #0a0a0a !important;
+    }
+    .highlight {
+        color: #39FF14;
+        font-weight: bold;
+    }
+    .feature-frank-glitch {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #39FF14; 
+      text-shadow: 0 0 10px #39FF14;
+      font-family: 'Syncopate', sans-serif;
+      text-transform: uppercase;
+      position: relative;
+    }
+    
+    .feature-frank-glitch::before,
+    .feature-frank-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-frank-glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .feature-frank-glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #39FF14;
+      animation: glitch-2 3s linear infinite;
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="interviews.html" class="nav-link">Interviews</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="feature-frank-glitch" data-text="FRANK OCEAN">FRANK OCEAN</h1>
+        <div class="review-content">
+            <h2>The Enigmatic Storyteller</h2>
+            <div class="glass-card">
+                <img src="franko.jpg" alt="Frank Ocean artist image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            </div>
+            <br>
+            <p>From his beginnings as a ghostwriter in Los Angeles to becoming one of music's most revered and elusive artists, <span class="highlight">Christopher Edwin Breaux</span>, known professionally as Frank Ocean, has cultivated a legacy defined by artistic integrity, emotional vulnerability, and genre-transcending innovation.</p>
+        </div>
+        <br>
+        <h2>Rise to Fame</h2>
+        <br>
+        <p>Frank's journey began in New Orleans before he relocated to Los Angeles in 2005 following Hurricane Katrina. Initially working as a songwriter for artists like Justin Bieber and John Legend, he joined the alternative hip-hop collective <span class="highlight">Odd Future</span> in 2010. His self-released mixtape <span class="highlight">Nostalgia, Ultra</span> (2011) garnered critical acclaim for its inventive sampling, introspective lyrics, and unique vocal stylings, leading to a deal with Def Jam Records. The mixtape's standout tracks <span class="highlight">"Novacane"</span> and <span class="highlight">"Swim Good"</span> established Frank as a formidable new voice in R&B.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Career Milestones</h2>
+            <ul>
+                <li><span class="highlight">2012:</span> Released his debut studio album <em>channel ORANGE</em>, which received universal acclaim for its experimental production and storytelling, winning a Grammy for Best Urban Contemporary Album</li>
+                <br>
+                <li><span class="highlight">2012:</span> Published an open letter on Tumblr discussing his attraction to men, a watershed moment for LGBTQ+ representation in contemporary R&B and hip-hop</li>
+                <br>
+                <li><span class="highlight">2016:</span> After a four-year hiatus, released the visual album <em>Endless</em> to fulfill his Def Jam contract, followed by his independently released album <em>Blonde</em>, which debuted at #1 on the Billboard 200</li>
+                <br>
+                <li><span class="highlight">2017:</span> His singles "Chanel" and "Biking" showcased his continued artistic evolution and willingness to explore themes of duality and sexuality</li>
+                <br>
+                <li><span class="highlight">2019-2023:</span> Maintained cultural relevance through sporadic singles, curated events, and the launch of his luxury company Homer, despite minimal public appearances</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Musical Style & Impact</h2>
+        <br>
+        <p>Frank Ocean's music defies categorization, blending elements of R&B, psychedelic soul, electronic, and experimental pop with cinematic storytelling and literary references. His vocal approach ranges from conversational speak-sing passages to soaring falsettos, all delivered with a raw emotional honesty. Albums like <span class="highlight">channel ORANGE</span> and <span class="highlight">Blonde</span> are marked by unconventional song structures, atmospheric production, and narratives that explore unrequited love, class disparity, and existential questioning. His influence extends beyond sound into the business model of artistic independence, with his decision to independently release <span class="highlight">Blonde</span> inspiring a generation of artists to pursue ownership of their work.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Essential Listening</h2>
+            <p><span class="highlight">For Newcomers:</span> "Thinkin Bout You," "Pyramids," "White Ferrari," "Ivy"</p>
+            <p><span class="highlight">For The Dive:</span> "Self Control," "Seigfried," "Nights," "Novacane"</p>
+            <p><span class="highlight">Hidden Gems:</span> "Wither," "Rushes," "Summer Remains," "Memrise"</p>
+        </div>
+        <br>
+        <h2>Legacy</h2>
+        <br>
+        <p>Frank Ocean's impact on contemporary music extends far beyond his commercial achievements. His willingness to disappear from public view for years between releases has created a mythology around his work and established a new model for artists prioritizing quality over quantity. His coming out letter in 2012 represented a pivotal moment in R&B and hip-hop, challenging the genre's historical homophobia and creating space for LGBTQ+ artists. His meticulous approach to craft—whether in music, visual art, or his Homer luxury brand—reflects a Renaissance-like versatility that positions him as not merely a musician but a multidisciplinary artist whose work will continue to be analyzed and celebrated for generations to come.</p>
+        <br>
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Billboard Hot 100(US)</th>
+                        <th>Canadian Hot 100(CAN)</th>
+                        <th>UK Singles Chart(UK)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">"Novacane"</span></td>
+                        <td>2011</td>
+                        <td>82</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Thinkin Bout You"</span></td>
+                        <td>2012</td>
+                        <td>32</td>
+                        <td>63</td>
+                        <td>89</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Pyramids"</span></td>
+                        <td>2012</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>129</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Nikes"</span></td>
+                        <td>2016</td>
+                        <td>79</td>
+                        <td>81</td>
+                        <td>67</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Chanel"</span></td>
+                        <td>2017</td>
+                        <td>46</td>
+                        <td>58</td>
+                        <td>57</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Album Certifications</span></h3>
+        <div class="table-container">
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Album</th>
+                        <th>Certification</th>
+                        <th>Units (Millions)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">Nostalgia, Ultra (Mixtape)</span></td>
+                        <td>Uncertified</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">channel ORANGE</span></td>
+                        <td>Platinum</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Endless</span></td>
+                        <td>Uncertified</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Blonde</span></td>
+                        <td>Platinum</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Singles & Features</span></td>
+                        <td>Multiple Gold/Platinum</td>
+                        <td>N/A</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Sources</span></h3>
+        <p>
+            <a href="https://en.wikipedia.org/wiki/Frank_Ocean_discography">Frank Ocean discography (Wikipedia)</a> | 
+            <a href="https://en.wikipedia.org/wiki/Frank_Ocean">Frank Ocean (Wikipedia)</a> | 
+            <a href="https://www.billboard.com/artist/frank-ocean/">Billboard artist page</a> | 
+            <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+            <a href="https://pitchfork.com/artists/28197-frank-ocean/">Pitchfork artist reviews</a>
+        </p>
+    </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Ensure all glass cards on this page have the right styling
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+        });
+    </script>
+</body>
+</html>

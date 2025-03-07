@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Kendrick Lamar Feature</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+      background: #0a0a0a !important;
+    }
+    .highlight {
+        color: #9900ff;
+        font-weight: bold;
+    }
+    .feature-kendrick-glitch {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #9900ff; 
+      text-shadow: 0 0 10px #9900ff;
+      font-family: 'Syncopate', sans-serif;
+      text-transform: uppercase;
+      position: relative;
+    }
+    
+    .feature-kendrick-glitch::before,
+    .feature-kendrick-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-kendrick-glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .feature-kendrick-glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #9900ff;
+      animation: glitch-2 3s linear infinite;
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="interviews.html" class="nav-link">Interviews</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="feature-kendrick-glitch" data-text="KENDRICK LAMAR">KENDRICK LAMAR</h1>
+        <div class="review-content">
+            <h2>The Conscious Voice of a Generation</h2>
+            <div class="glass-card">
+                <img src="kendrick.jpg" alt="Kendrick Lamar artist image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            </div>
+            <br>
+            <p>From his early days on the Compton streets to becoming one of the most critically acclaimed artists in hip-hop history, <span class="highlight">Kendrick Lamar Duckworth</span> has redefined what it means to use rap as a medium for social commentary and introspection.</p>
+        </div>
+        <br>
+        <h2>Rise to Fame</h2>
+        <br>
+        <p>Kendrick's journey began with his first mixtape <span class="highlight">Youngest Head Nigga in Charge (Hub City Threat: Minor of the Year)</span> in 2004, but it was his 2011 independent album <span class="highlight">Section.80</span> that captured industry attention. The project's thoughtful examination of generational trauma and social issues demonstrated his visionary potential. His major-label debut <span class="highlight">good kid, m.A.A.d city</span> (2012) arrived as a cinematic masterpiece that chronicled his youth in Compton, earning both critical acclaim and commercial success.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Career Milestones</h2>
+            <ul>
+                <li><span class="highlight">2015:</span> Released <em>To Pimp a Butterfly</em>, a genre-defying blend of jazz and hip-hop that addressed race relations in America and won a Grammy for Best Rap Album</li>
+                <br>
+                <li><span class="highlight">2017:</span> <em>DAMN.</em> became his most commercially successful album and made history as the first non-classical, non-jazz album to win a Pulitzer Prize</li>
+                <br>
+                <li><span class="highlight">2018:</span> Curated and produced the <em>Black Panther</em> soundtrack, which topped the Billboard 200 and earned multiple Grammy nominations</li>
+                <br>
+                <li><span class="highlight">2022:</span> Released <em>Mr. Morale & the Big Steppers</em>, a deeply personal double album exploring generational trauma and mental health</li>
+                <br>
+                <li><span class="highlight">2023:</span> His collaboration with Baby Keem, "Family Ties," won the Grammy for Best Rap Performance</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Musical Style & Impact</h2>
+        <br>
+        <p>Kendrick's music stands apart through its layered storytelling, complex themes, and innovative production. His ability to craft conceptual albums that function as cohesive artistic statements—from the jazz-infused experimentation of <span class="highlight">To Pimp a Butterfly</span> to the stripped-back introspection of <span class="highlight">DAMN.</span>—has elevated rap's potential as an art form. His fearless confrontation of topics like systemic racism, mental health, and personal accountability has influenced a generation of artists to approach their craft with greater depth and social awareness.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Essential Listening</h2>
+            <p><span class="highlight">For Newcomers:</span> "HUMBLE.", "Alright", "DNA.", "Swimming Pools (Drank)"</p>
+            <p><span class="highlight">For The Dive:</span> "Sing About Me, I'm Dying of Thirst", "u", "The Blacker the Berry", "Mother I Sober"</p>
+            <p><span class="highlight">Hidden Gems:</span> "Cartoon & Cereal", "The Heart Pt. 3", "Westside, Right On Time", "Black Friday"</p>
+        </div>
+        <br>
+        <h2>Legacy</h2>
+        <br>
+        <p>Kendrick Lamar's impact extends far beyond music into cultural and social realms. His anthem <span class="highlight">"Alright"</span> became a rallying cry for the Black Lives Matter movement, while his unflinching examination of his own flaws and struggles has created space for discussions about vulnerability in hip-hop. As the first rapper to win a Pulitzer Prize, he has shattered barriers for hip-hop's recognition in traditionally exclusive cultural institutions. More than just a rap superstar, Kendrick has established himself as a generational voice whose work will be studied alongside literature and poetry for decades to come.</p>
+        <br>
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Billboard Hot 100(US)</th>
+                        <th>Canadian Hot 100(CAN)</th>
+                        <th>UK Singles Chart(UK)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">"Swimming Pools (Drank)"</span></td>
+                        <td>2012</td>
+                        <td>17</td>
+                        <td>32</td>
+                        <td>63</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Poetic Justice"</span> (feat. Drake)</td>
+                        <td>2013</td>
+                        <td>26</td>
+                        <td>43</td>
+                        <td>85</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Alright"</span></td>
+                        <td>2015</td>
+                        <td>81</td>
+                        <td>N/A</td>
+                        <td>109</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"HUMBLE."</span></td>
+                        <td>2017</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"N95"</span></td>
+                        <td>2022</td>
+                        <td>3</td>
+                        <td>8</td>
+                        <td>20</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Album Certifications</span></h3>
+        <div class="table-container">
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Album</th>
+                        <th>Certification</th>
+                        <th>Units (Millions)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">good kid, m.A.A.d city</span></td>
+                        <td>3× Platinum</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">To Pimp a Butterfly</span></td>
+                        <td>Platinum</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">DAMN.</span></td>
+                        <td>3× Platinum</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Black Panther: The Album</span></td>
+                        <td>Platinum</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Mr. Morale & the Big Steppers</span></td>
+                        <td>Gold</td>
+                        <td>0.5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Sources</span></h3>
+        <p>
+            <a href="https://en.wikipedia.org/wiki/Kendrick_Lamar_discography">Kendrick Lamar discography (Wikipedia)</a> | 
+            <a href="https://en.wikipedia.org/wiki/Kendrick_Lamar">Kendrick Lamar (Wikipedia)</a> | 
+            <a href="https://www.billboard.com/artist/kendrick-lamar/">Billboard artist page</a> | 
+            <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+            <a href="https://www.rollingstone.com/music/music-lists/kendrick-lamar-albums-ranked-1234750100/">Rolling Stone album rankings</a>
+        </p>
+    </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Ensure all glass cards on this page have the right styling
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+        });
+    </script>
+</body>
+</html>

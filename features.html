@@ -11,12 +11,93 @@
       body {
         background: #0a0a0a !important;
       }
+
+      .glass-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        overflow: hidden;
+      }
+
+      .glass-card:hover {
+        transform: translateY(-10px) !important;
+        box-shadow: 0 15px 30px rgba(0, 247, 255, 0.3) !important;
+      }
+
+      .glass-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        transition: transform 0.5s ease;
+      }
+
+      .glass-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .starfield-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .star {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: starTwinkle linear infinite;
+      }
+
+      @keyframes starTwinkle {
+        0% { opacity: 0; }
+        50% { opacity: 1; }
+        100% { opacity: 0; }
+      }
     </style>
 </head>
 <body>
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
     <canvas id="universe"></canvas>
+    <div class="starfield-background" id="starfield"></div>
+    <script>
+        // Create starfield background
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            if (!starfield) return;
+
+            const count = 200;
+
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+
+                // Random size
+                const size = Math.random() * 3;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+
+                // Random animation duration
+                const duration = Math.random() * 3 + 2;
+                star.style.animationDuration = duration + 's';
+
+                // Random delay
+                star.style.animationDelay = Math.random() * 5 + 's';
+
+                starfield.appendChild(star);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', createStarfield);
+    </script>
     <nav>
         <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
@@ -27,40 +108,47 @@
             <li><a href="interviews.html" class="nav-link">Interviews</a></li>
             <li><a href="about.html" class="nav-link">About</a></li>
             <li><a href="contact.html" class="nav-link">Contact</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
         </ul>
     </nav>
 
     <div class="container">
-        <h1 class="glitch" data-text="Features">Features</h1>
+        <h1 class="glitch" data-text="FEATURES">FEATURES</h1>
         <div class="grid">
-            <div class="glass-card" onclick="window.location.href='features-drake.html'"><img src="ap-drake2.jpeg" alt="Drake featured artist image">
+            <div class="glass-card" onclick="window.location.href='features-drake.html'">
+                <img src="ap-drake2.jpeg" alt="Drake featured artist image">
                 <h2>Drake</h2>
                 <p>The journey of hip-hop's global superstar</p>
             </div>
 
-            <div class="glass-card">
+            <div class="glass-card" onclick="window.location.href='features-kendrick.html'">
+                <img src="kendrick.jpg" alt="Kendrick Lamar featured artist image">
                 <h2>Kendrick Lamar</h2>
-                <p>Coming soon...</p>
+                <p>The conscious voice of a generation</p>
             </div>
 
-            <div class="glass-card">
+            <div class="glass-card" onclick="window.location.href='features-frank.html'">
+                <img src="franko.jpg" alt="Frank Ocean featured artist image">
                 <h2>Frank Ocean</h2>
-                <p>Coming soon...</p>
+                <p>The enigmatic storyteller</p>
             </div>
 
-            <div class="glass-card">
+            <div class="glass-card" onclick="window.location.href='features-billie.html'">
+                <img src="billie.jpg" alt="Billie Eilish featured artist image">
                 <h2>Billie Eilish</h2>
-                <p>Coming soon...</p>
+                <p>The voice of Generation Z</p>
             </div>
 
-            <div class="glass-card">
+            <div class="glass-card" onclick="window.location.href='features-weeknd.html'">
+                <img src="weeknd.jpeg" alt="The Weeknd featured artist image">
                 <h2>The Weeknd</h2>
-                <p>Coming soon...</p>
+                <p>From underground enigma to pop domination</p>
             </div>
 
-            <div class="glass-card">
+            <div class="glass-card" onclick="window.location.href='features-tyler.html'">
+                <img src="tyler.jpeg" alt="Tyler, The Creator featured artist image">
                 <h2>Tyler, The Creator</h2>
-                <p>Coming soon...</p>
+                <p>The evolution of a provocateur</p>
             </div>
         </div>
     </div>
@@ -69,23 +157,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
+
     <script>
-        document.querySelectorAll('.glass-card').forEach(card => {
-            // Disable all 3D effects and apply consistent styling
-            card.style.transform = 'none !important';
-            card.style.transformStyle = 'flat !important';
-            card.style.perspective = 'none !important';
-            card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+        // Ensure all glass cards on this page have the correct behavior
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                // Make sure the transform property can be animated for the hover effect
+                card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
 
-            // Only add simple hover effect
-            card.addEventListener('mouseenter', () => {
-                card.style.boxShadow = '0 0 20px rgba(0, 247, 255, 0.3)';
-                card.style.filter = 'brightness(1.1)';
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.boxShadow = '0 8px 32px rgba(0, 247, 255, 0.1)';
-                card.style.filter = 'brightness(1)';
+                // Add click functionality
+                card.addEventListener('click', function() {
+                    if (this.getAttribute('onclick')) {
+                        const href = this.getAttribute('onclick').replace("window.location.href='", "").replace("'", "");
+                        window.location.href = href;
+                    }
+                });
             });
         });
     </script>

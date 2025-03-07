@@ -23,6 +23,29 @@
       text-shadow: 0 0 10px #0088ff;
       font-family: 'Syncopate', sans-serif;
       text-transform: uppercase;
+      position: relative;
+    }
+    
+    .feature-drake-glitch::before,
+    .feature-drake-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-drake-glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .feature-drake-glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #0088ff;
+      animation: glitch-2 3s linear infinite;
     }
 </style>
 </head>
