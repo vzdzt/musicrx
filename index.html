@@ -1087,9 +1087,118 @@
         <source src="https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    <button id="musicToggle" style="position: fixed; bottom: 20px; right: 20px; z-index: 1001; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">
+    <button id="musicToggle" style="position: fixed; bottom: 20px; right: 70px; z-index: 1001; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">
         <i class="fas fa-music"></i>
     </button>
+    
+    <div id="tipIcon" style="position: fixed; bottom: 20px; right: 20px; z-index: 1001; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 10px rgba(0, 247, 255, 0.3); animation: pulse-glow 2s infinite;">
+        <i class="fas fa-donate"></i>
+    </div>
+    
+    <div id="tipPopup" style="position: fixed; bottom: 70px; right: 20px; z-index: 1000; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); border: 1px solid var(--primary); color: white; padding: 15px; border-radius: 10px; width: 250px; display: none; transform-origin: bottom right; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+        <h3 style="color: var(--primary); margin: 0 0 10px 0; font-family: 'Syncopate', sans-serif;">Support MusicRx</h3>
+        <p style="margin: 0 0 15px 0;">Help keep the vibes alive with a tip!</p>
+        <div style="display: flex; justify-content: space-between;">
+            <button class="button" style="margin: 0; padding: 8px 16px; font-size: 0.9em;" onclick="window.location.href='shop.html'">Tip Options</button>
+            <button class="button" id="closeTipPopup" style="margin: 0; padding: 8px 16px; font-size: 0.9em; background: rgba(255, 0, 0, 0.2);">Close</button>
+        </div>
+    </div>
+    
+    <style>
+        @keyframes pulse-glow {
+            0% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 247, 255, 0.3); }
+            50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(0, 247, 255, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 247, 255, 0.3); }
+        }
+        
+        #tipIcon:hover {
+            transform: scale(1.2) rotate(15deg);
+            box-shadow: 0 0 25px rgba(0, 247, 255, 0.7);
+        }
+        
+        #tipIcon::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            background-size: 400% 400%;
+            z-index: -1;
+            filter: blur(5px);
+            animation: gradientMove 8s ease infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        #tipIcon:hover::after {
+            opacity: 1;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tipIcon = document.getElementById('tipIcon');
+            const tipPopup = document.getElementById('tipPopup');
+            const closeTipPopup = document.getElementById('closeTipPopup');
+            
+            if (tipIcon && tipPopup && closeTipPopup) {
+                tipIcon.addEventListener('click', function() {
+                    tipPopup.style.display = 'block';
+                    setTimeout(() => {
+                        tipPopup.style.transform = 'scale(1)';
+                        tipPopup.style.opacity = '1';
+                    }, 10);
+                });
+                
+                closeTipPopup.addEventListener('click', function() {
+                    tipPopup.style.transform = 'scale(0.8)';
+                    tipPopup.style.opacity = '0';
+                    setTimeout(() => {
+                        tipPopup.style.display = 'none';
+                    }, 300);
+                });
+                
+                // Create coin animation when tip icon is clicked
+                tipIcon.addEventListener('click', createCoinAnimation);
+            }
+            
+            function createCoinAnimation() {
+                // Create 5-10 coins
+                const coinCount = Math.floor(Math.random() * 6) + 5;
+                
+                for (let i = 0; i < coinCount; i++) {
+                    const coin = document.createElement('div');
+                    coin.style.position = 'fixed';
+                    coin.style.bottom = '20px';
+                    coin.style.left = '20px';
+                    coin.style.width = '20px';
+                    coin.style.height = '20px';
+                    coin.style.borderRadius = '50%';
+                    coin.style.background = 'linear-gradient(45deg, #FFD700, #FFA500)';
+                    coin.style.boxShadow = '0 0 10px rgba(255, 215, 0, 0.7)';
+                    coin.style.zIndex = '1000';
+                    coin.style.transition = 'all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    
+                    document.body.appendChild(coin);
+                    
+                    // Random horizontal distance
+                    const randomX = Math.random() * 100 - 50;
+                    // Random height
+                    const randomY = Math.random() * 150 + 50;
+                    
+                    setTimeout(() => {
+                        coin.style.transform = `translate(${randomX}px, -${randomY}px) rotate(${Math.random() * 360}deg)`;
+                        coin.style.opacity = '0';
+                    }, 10);
+                    
+                    // Remove the coin after animation
+                    setTimeout(() => {
+                        document.body.removeChild(coin);
+                    }, 1000);
+                }
+            }
+        });
+    </script>
     <div id="preloader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--dark); display: flex; justify-content: center; align-items: center; z-index: 10000; transition: opacity 0.5s;">
         <div style="color: var(--primary); font-size: 2em; text-align: center;">
             <div style="margin-bottom: 1rem;">Loading MusicRx</div>
@@ -1100,7 +1209,7 @@
     </div>
     <div id="landing-page" class="active">
         <div class="landing-content">
-	 <h1 class="landing-title">Welcome</h1>
+   <h1 class="landing-title">Welcome</h1>
             <p class="landing-subtitle" style="font-size: 0.8em;">React to Enter</p>
             <div class="quote-container" style="margin: 2rem auto; background: none;">
                 <p class="quote-text" style="font-family: 'Space Grotesk', sans-serif;"></p>
@@ -1117,9 +1226,10 @@
             <li><a href="features.html" class="nav-link">Features</a></li>
             <li><a href="news.html" class="nav-link">News</a></li>
             <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-<li><a href="interviews.html" class="nav-link">Interviews</a></li>           
- <li><a href="about.html" class="nav-link">About</a></li>
- </ul>
+            <li><a href="interviews.html" class="nav-link">Interviews</a></li>
+            <li><a href="shop.html" class="nav-link">Shop</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
     </nav>
 
     <canvas id="universe"></canvas>
@@ -1146,7 +1256,7 @@
             <a href="https://github.com/vzdzt" class="social-button" target="_blank">
                 <i class="fab fa-github fa-2x"></i>
             </a>
-    
+
             <a href="catchcarti.html" class="social-button" target="_blank">
                 <i class="fas fa-compact-disc fa-2x"></i>
             </a>
@@ -2083,6 +2193,7 @@
         });
     </script>
 <script src="script.js"></script>
+
 
 </body>
 </html>

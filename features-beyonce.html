@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Beyoncé Feature</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+      background: #0a0a0a !important;
+    }
+    .highlight {
+        color: #ffdd00;
+        font-weight: bold;
+    }
+    .feature-beyonce-glitch {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #ffdd00; 
+      text-shadow: 0 0 10px #ffdd00;
+      font-family: 'Syncopate', sans-serif;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .feature-beyonce-glitch::before,
+    .feature-beyonce-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-beyonce-glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .feature-beyonce-glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #ffdd00;
+      animation: glitch-2 3s linear infinite;
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="feature-beyonce-glitch" data-text="BEYONCÉ">BEYONCÉ</h1>
+        <div class="review-content">
+            <h2>The Definitive Cultural Icon of a Generation</h2>
+            <div class="glass-card">
+                <img src="beyy.jpeg" alt="Beyoncé artist image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            </div>
+            <br>
+            <p>Beyoncé Giselle Knowles-Carter, known mononymously as <span class="highlight">Beyoncé</span>, has transcended the category of musical artist to become a cultural institution. With a career spanning over 25 years, she has consistently redefined the possibilities of popular music and entertainment while setting new standards for artistic excellence, visual innovation, and cultural impact.</p>
+        </div>
+        <br>
+        <h2>Rise to Fame</h2>
+        <br>
+        <p>Beyoncé's journey began in Houston, Texas, where she rose to fame as the lead vocalist of <span class="highlight">Destiny's Child</span>, one of the best-selling girl groups of all time. The group's success with hits like <span class="highlight">"Say My Name,"</span> <span class="highlight">"Survivor,"</span> and <span class="highlight">"Bootylicious"</span> established Beyoncé as a powerhouse vocalist and performer. Her transition to solo stardom began with her debut album <span class="highlight">Dangerously in Love</span> (2003), which featured the breakout hit <span class="highlight">"Crazy in Love"</span> featuring Jay-Z. This successful debut was followed by a series of groundbreaking albums: <span class="highlight">B'Day</span> (2006), <span class="highlight">I Am... Sasha Fierce</span> (2008), <span class="highlight">4</span> (2011), the self-titled visual album <span class="highlight">Beyoncé</span> (2013), the cultural phenomenon <span class="highlight">Lemonade</span> (2016), the Afrocentric celebration <span class="highlight">The Lion King: The Gift</span> (2019), and the dance music exploration <span class="highlight">Renaissance</span> (2022). Each release has not only showcased her musical versatility but has often redefined how music is released, marketed, and experienced.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Career Milestones</h2>
+            <ul>
+                <li><span class="highlight">1997-2006:</span> Rose to fame with Destiny's Child, becoming one of the world's best-selling girl groups</li>
+                <br>
+                <li><span class="highlight">2003:</span> Released debut solo album <em>Dangerously in Love</em>, winning five Grammy Awards</li>
+                <br>
+                <li><span class="highlight">2009:</span> Performed "At Last" at President Obama's inaugural ball, a culturally defining moment</li>
+                <br>
+                <li><span class="highlight">2013:</span> Released the surprise visual album <em>Beyoncé</em>, revolutionizing album release strategies</li>
+                <br>
+                <li><span class="highlight">2016:</span> Released <em>Lemonade</em>, a groundbreaking visual album addressing personal and political themes</li>
+                <br>
+                <li><span class="highlight">2018:</span> Delivered historic "Beychella" Coachella performance, celebrating Black culture and education</li>
+                <br>
+                <li><span class="highlight">2020:</span> Released visual album <em>Black Is King</em>, celebrating African diaspora culture</li>
+                <br>
+                <li><span class="highlight">2022:</span> Released <em>Renaissance</em>, honoring Black and LGBTQ+ contributions to dance music</li>
+                <br>
+                <li><span class="highlight">2023:</span> Became the most awarded artist in Grammy history with 32 wins</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Musical Style & Impact</h2>
+        <br>
+        <p>Beyoncé's musical style is remarkably versatile, spanning <span class="highlight">R&B</span>, <span class="highlight">pop</span>, <span class="highlight">hip-hop</span>, <span class="highlight">soul</span>, <span class="highlight">funk</span>, and even elements of <span class="highlight">rock</span>, <span class="highlight">country</span>, and <span class="highlight">electronic music</span>. Her powerful, emotive vocal performances are complemented by her meticulous attention to production details and sonic innovation. Beyond the music itself, Beyoncé has revolutionized how visual elements integrate with music, creating cinematic visual albums that elevate her work into comprehensive artistic statements. Her influence extends far beyond entertainment, addressing themes of race, feminism, politics, and identity in ways that have sparked crucial cultural conversations. She has redefined what it means to be a modern celebrity by maintaining personal privacy while strategically controlling her artistic narrative, creating a blueprint for artistic independence in the digital age.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Essential Listening</h2>
+            <p><span class="highlight">For Newcomers:</span> "Crazy in Love," "Single Ladies (Put a Ring on It)," "Formation," "Break My Soul"</p>
+            <p><span class="highlight">For The Dive:</span> "Love On Top," "Freedom" (feat. Kendrick Lamar), "Partition," "All Night"</p>
+            <p><span class="highlight">Hidden Gems:</span> "Schoolin' Life," "Haunted," "Rocket," "Don't Jealous Me"</p>
+        </div>
+        <br>
+        <h2>Legacy</h2>
+        <br>
+        <p>Beyoncé's legacy transcends music to encompass broader cultural impact. She has redefined standards of excellence, artistic control, and cultural leadership, becoming a symbol of Black excellence, female empowerment, and artistic integrity. Her business ventures—including her <span class="highlight">Ivy Park</span> athleisure line and entertainment company <span class="highlight">Parkwood Entertainment</span>—have established her as a formidable entrepreneur. Her philanthropic efforts through initiatives like <span class="highlight">BeyGOOD</span> have addressed issues from disaster relief to COVID-19 support to educational initiatives. As a performer, her productions have set new standards for live entertainment, combining vocal prowess with intricate choreography and narrative depth. Perhaps most significantly, Beyoncé has skillfully used her platform to elevate critical conversations about race, gender, power, and representation, helping to expand the cultural understanding of these issues while inspiring generations of artists to embrace both artistic ambition and social conscience.</p>
+        <br>
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Billboard Hot 100(US)</th>
+                        <th>UK Singles Chart(UK)</th>
+                        <th>RIAA Certification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">"Crazy in Love"</span> (feat. Jay-Z)</td>
+                        <td>2003</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>3× Platinum</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Single Ladies (Put a Ring on It)"</span></td>
+                        <td>2008</td>
+                        <td>1</td>
+                        <td>7</td>
+                        <td>4× Platinum</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Halo"</span></td>
+                        <td>2009</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>4× Platinum</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Formation"</span></td>
+                        <td>2016</td>
+                        <td>10</td>
+                        <td>31</td>
+                        <td>Platinum</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Break My Soul"</span></td>
+                        <td>2022</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>Platinum</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Album Certifications</span></h3>
+        <div class="table-container">
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Album</th>
+                        <th>Certification (US)</th>
+                        <th>Sales (Worldwide)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">Dangerously in Love</span></td>
+                        <td>4× Platinum</td>
+                        <td>11+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">B'Day</span></td>
+                        <td>3× Platinum</td>
+                        <td>8+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">I Am... Sasha Fierce</span></td>
+                        <td>3× Platinum</td>
+                        <td>9+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">4</span></td>
+                        <td>Platinum</td>
+                        <td>3+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Beyoncé</span></td>
+                        <td>2× Platinum</td>
+                        <td>5+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Lemonade</span></td>
+                        <td>3× Platinum</td>
+                        <td>4+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Renaissance</span></td>
+                        <td>Platinum</td>
+                        <td>2+ million</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Sources</span></h3>
+        <p>
+            <a href="https://en.wikipedia.org/wiki/Beyoncé">Beyoncé (Wikipedia)</a> | 
+            <a href="https://en.wikipedia.org/wiki/Beyoncé_discography">Beyoncé discography (Wikipedia)</a> | 
+            <a href="https://www.billboard.com/artist/beyonce/">Billboard artist page</a> | 
+            <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+            <a href="https://www.grammy.com/artists/beyonce/1513">Grammy.com artist profile</a>
+        </p>
+    </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Ensure all glass cards on this page have the right styling
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+        });
+    </script>
+</body>
+</html>
+

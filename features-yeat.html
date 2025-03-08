@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Yeat Feature</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+      background: #0a0a0a !important;
+    }
+    .highlight {
+        color: #9400D3;
+        font-weight: bold;
+    }
+    .feature-yeat-glitch {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #9400D3; 
+      text-shadow: 0 0 10px #9400D3;
+      font-family: 'Syncopate', sans-serif;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .feature-yeat-glitch::before,
+    .feature-yeat-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-yeat-glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .feature-yeat-glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #9400D3;
+      animation: glitch-2 3s linear infinite;
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="feature-yeat-glitch" data-text="YEAT">YEAT</h1>
+        <div class="review-content">
+            <h2>Rage Rap's Enigmatic Trendsetter</h2>
+            <div class="glass-card">
+                <img src="yeat.jpeg" alt="Yeat artist image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            </div>
+            <br>
+            <p>From SoundCloud obscurity to TikTok ubiquity, <span class="highlight">Noah Olivier Smith</span>, better known as <span class="highlight">Yeat</span>, has emerged as one of the most distinctive voices in contemporary rap, crafting a hazy, psychedelic sound that's become the soundtrack to Gen Z's digital experience.</p>
+        </div>
+        <br>
+        <h2>Rise to Fame</h2>
+        <br>
+        <p>Yeat's ascendancy began with his viral 2021 single <span class="highlight">"Sorry Bout That"</span>, which spread like wildfire across TikTok platforms. The Portland-born rapper's hypnotic melodies, auto-tuned vocals, and surrealist slang quickly carved out a unique sound in the crowded trap landscape. His breakthrough mixtape <span class="highlight">Up 2 Më</span> catapulted him to the forefront of the "rage rap" subgenre, with tracks like <span class="highlight">"Gët Busy"</span> and <span class="highlight">"Monëy So Big"</span> becoming anthems for a new wave of digitally-native rap fans. Signing to Field Trip Recordings, a partnership with Interscope Records, Yeat's rise from internet phenomenon to commercial success has been meteoric.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Career Milestones</h2>
+            <ul>
+                <li><span class="highlight">2021:</span> Released breakthrough mixtape <em>Up 2 Më</em>, which gained immense popularity online</li>
+                <br>
+                <li><span class="highlight">2022:</span> Released <em>2 Alivë</em>, his commercial debut album, which peaked at #6 on the Billboard 200</li>
+                <br>
+                <li><span class="highlight">2022:</span> "Rich Minion" featured in the <em>Minions: The Rise of Gru</em> promotional campaign</li>
+                <br>
+                <li><span class="highlight">2023:</span> <em>AfterLyfe</em> debuted at #4 on the Billboard 200, his highest chart position to date</li>
+                <br>
+                <li><span class="highlight">2024:</span> <em>Lyfë 2</em> continued his commercial success, establishing him as a streaming powerhouse</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Musical Style & Impact</h2>
+        <br>
+        <p>Yeat's music presents a psychedelic take on trap, characterized by distorted bass, ethereal synths, and a unique vocabulary of idiosyncratic slang. Terms like <span class="highlight">"tonka"</span>, <span class="highlight">"twizzy"</span>, and his signature <span class="highlight">"lüh"</span> prefix have become embedded in rap vernacular. His production style, often helmed by producers like <span class="highlight">Trgc</span> and <span class="highlight">Supah</span>, features aggressive, video game-like soundscapes that have defined the "rage" aesthetic. Beyond music, Yeat's influence extends to fashion, with his signature turban becoming an iconic visual element of his brand.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Essential Listening</h2>
+            <p><span class="highlight">For Newcomers:</span> "Monëy So Big," "Sorry Bout That," "Gët Busy," "Poppin"</p>
+            <p><span class="highlight">For The Dive:</span> "Turban," "Still Countin," "Flawless," "Talk"</p>
+            <p><span class="highlight">Hidden Gems:</span> "Kant Changë," "Rokstar," "Lying 4 Fun," "X ta C"</p>
+        </div>
+        <br>
+        <h2>Legacy</h2>
+        <br>
+        <p>Though still in the early stages of his career, Yeat has already left an indelible mark on rap's sonic landscape. His ability to craft addictive melodies wrapped in surrealist production has influenced a generation of emerging artists. As a bridge between the SoundCloud rap era and the TikTok-driven music discovery of today, Yeat represents a new paradigm of artist development in the digital age. With each release expanding his sonic palette while maintaining his distinctive style, Yeat continues to push the boundaries of what trap music can sound like in the 2020s.</p>
+        <br>
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Billboard Hot 100(US)</th>
+                        <th>Streaming Songs(US)</th>
+                        <th>Hot R&B/Hip-Hop Songs(US)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">"Monëy So Big"</span></td>
+                        <td>2021</td>
+                        <td>58</td>
+                        <td>16</td>
+                        <td>27</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Poppin"</span></td>
+                        <td>2022</td>
+                        <td>-</td>
+                        <td>26</td>
+                        <td>48</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Rich Minion"</span></td>
+                        <td>2022</td>
+                        <td>-</td>
+                        <td>20</td>
+                        <td>39</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Shmunk"</span> (with YoungBoy Never Broke Again)</td>
+                        <td>2023</td>
+                        <td>97</td>
+                        <td>23</td>
+                        <td>33</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Nun id Change"</span></td>
+                        <td>2023</td>
+                        <td>82</td>
+                        <td>15</td>
+                        <td>29</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Album Certifications</span></h3>
+        <div class="table-container">
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Album</th>
+                        <th>Certification</th>
+                        <th>Units (Millions)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">Up 2 Më</span></td>
+                        <td>Gold</td>
+                        <td>0.5</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">2 Alivë</span></td>
+                        <td>Gold</td>
+                        <td>0.5</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">AfterLyfe</span></td>
+                        <td>-</td>
+                        <td>0.3 (estimated)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Lyfë</span></td>
+                        <td>-</td>
+                        <td>0.2 (estimated)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Lyfë 2</span></td>
+                        <td>-</td>
+                        <td>0.2 (estimated)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Sources</span></h3>
+        <p>
+            <a href="https://en.wikipedia.org/wiki/Yeat">Yeat (Wikipedia)</a> | 
+            <a href="https://en.wikipedia.org/wiki/Yeat_discography">Yeat discography (Wikipedia)</a> | 
+            <a href="https://www.billboard.com/artist/yeat/">Billboard artist page</a> | 
+            <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+            <a href="https://pitchfork.com/artists/yeat/">Pitchfork artist reviews</a>
+        </p>
+    </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Ensure all glass cards on this page have the right styling
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+        });
+    </script>
+</body>
+</html>
+

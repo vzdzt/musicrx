@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Eminem Feature</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+      background: #0a0a0a !important;
+    }
+    .highlight {
+        color: #ff0000;
+        font-weight: bold;
+    }
+    .feature-eminem-glitch {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #ff0000; 
+      text-shadow: 0 0 10px #ff0000;
+      font-family: 'Syncopate', sans-serif;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .feature-eminem-glitch::before,
+    .feature-eminem-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-eminem-glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .feature-eminem-glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #ff0000;
+      animation: glitch-2 3s linear infinite;
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="feature-eminem-glitch" data-text="EMINEM">EMINEM</h1>
+        <div class="review-content">
+            <h2>The Rap God's Enduring Legacy</h2>
+            <div class="glass-card">
+                <img src="eminem.jpeg" alt="Eminem artist image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            </div>
+            <br>
+            <p>Marshall Bruce Mathers III, known worldwide as <span class="highlight">Eminem</span>, is one of hip-hop's most influential and commercially successful artists. His technical prowess, linguistic dexterity, and controversial persona have not only broken records but also cultural barriers, proving that rap's appeal could transcend racial and geographical boundaries.</p>
+        </div>
+        <br>
+        <h2>Rise to Fame</h2>
+        <br>
+        <p>Growing up in Detroit's working-class neighborhoods, Eminem began rapping as a teenager, eventually releasing his independent debut <span class="highlight">Infinite</span> in 1996. His breakthrough came when he created the alter ego <span class="highlight">Slim Shady</span> and released <span class="highlight">The Slim Shady EP</span> in 1997, which caught the attention of Dr. Dre. Under Dre's mentorship, Eminem released <span class="highlight">The Slim Shady LP</span> (1999), which went triple platinum and won a Grammy for Best Rap Album. His follow-up, <span class="highlight">The Marshall Mathers LP</span> (2000), became the fastest-selling hip-hop album in history at that time, selling 1.76 million copies in its first week. Throughout his career, Eminem has remained a dominant force, with his catalog including classics like <span class="highlight">The Eminem Show</span> (2002), <span class="highlight">Recovery</span> (2010), and <span class="highlight">The Marshall Mathers LP 2</span> (2013).</p>
+        <br>
+        <div class="glass-card">
+            <h2>Career Milestones</h2>
+            <ul>
+                <li><span class="highlight">1999:</span> Released major-label debut <em>The Slim Shady LP</em>, winning Grammy for Best Rap Album</li>
+                <br>
+                <li><span class="highlight">2000:</span> Released <em>The Marshall Mathers LP</em>, breaking records for fastest-selling rap album</li>
+                <br>
+                <li><span class="highlight">2002:</span> Released <em>The Eminem Show</em> and starred in the semi-autobiographical film <em>8 Mile</em></li>
+                <br>
+                <li><span class="highlight">2003:</span> Won Academy Award for "Lose Yourself" from <em>8 Mile</em>, first hip-hop song to win Best Original Song</li>
+                <br>
+                <li><span class="highlight">2009:</span> Released <em>Relapse</em> after a 5-year hiatus following addiction struggles</li>
+                <br>
+                <li><span class="highlight">2010:</span> Released <em>Recovery</em>, becoming the best-selling album of the year worldwide</li>
+                <br>
+                <li><span class="highlight">2017:</span> Released politically charged <em>Revival</em> followed by surprise albums <em>Kamikaze</em> (2018) and <em>Music to Be Murdered By</em> (2020)</li>
+                <br>
+                <li><span class="highlight">2022:</span> Inducted into the Rock and Roll Hall of Fame</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Musical Style & Impact</h2>
+        <br>
+        <p>Eminem's music is defined by his <span class="highlight">technical virtuosity</span>, <span class="highlight">complex rhyme schemes</span>, <span class="highlight">biting humor</span>, and <span class="highlight">emotional honesty</span>. His delivery ranges from rapid-fire verses that showcase his breath control to melodic hooks that demonstrate his versatility. Thematically, his work has covered personal struggles, fame, family relationships, societal issues, and pop culture critique. Through his alter egos—Slim Shady, Marshall Mathers, and Eminem—he's been able to explore different aspects of his personality and creative expression. His impact on hip-hop and popular culture is immeasurable, having proven that rap could achieve mainstream dominance while maintaining artistic integrity. His success also opened doors for a generation of artists and expanded rap's global audience.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Essential Listening</h2>
+            <p><span class="highlight">For Newcomers:</span> "Lose Yourself," "Stan," "Without Me," "Not Afraid"</p>
+            <p><span class="highlight">For The Dive:</span> "The Way I Am," "Sing for the Moment," "Beautiful," "Bad Guy"</p>
+            <p><span class="highlight">Hidden Gems:</span> "Rock Bottom," "Deja Vu," "Yellow Brick Road," "Legacy"</p>
+        </div>
+        <br>
+        <h2>Legacy</h2>
+        <br>
+        <p>Eminem's legacy extends far beyond record sales and accolades. As one of the best-selling artists of all time, he's demonstrated hip-hop's commercial potential while consistently pushing its artistic boundaries. His intricate wordplay and technical innovations have influenced countless rappers, while his candid exploration of personal struggles has helped destigmatize conversations about mental health and addiction. The Eminem Foundation and the Marshall Mathers Foundation have contributed millions to disadvantaged youth in Detroit and beyond. Perhaps most significantly, Eminem challenged preconceptions about who could participate in and excel at hip-hop, creating space for artists from diverse backgrounds. As he continues to evolve as an artist and mentor new talent through his label Shady Records, Eminem's place in music history is secure—not just as a rap icon, but as one of the most significant cultural figures of his generation.</p>
+        <br>
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Billboard Hot 100(US)</th>
+                        <th>UK Singles Chart(UK)</th>
+                        <th>RIAA Certification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">"Lose Yourself"</span></td>
+                        <td>2002</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Diamond</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Love The Way You Lie"</span> (feat. Rihanna)</td>
+                        <td>2010</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>Diamond</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Without Me"</span></td>
+                        <td>2002</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>6× Platinum</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Stan"</span> (feat. Dido)</td>
+                        <td>2000</td>
+                        <td>51</td>
+                        <td>1</td>
+                        <td>3× Platinum</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Not Afraid"</span></td>
+                        <td>2010</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>Diamond</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Album Certifications</span></h3>
+        <div class="table-container">
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Album</th>
+                        <th>Certification (US)</th>
+                        <th>Sales (Worldwide)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">The Slim Shady LP</span></td>
+                        <td>4× Platinum</td>
+                        <td>10+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">The Marshall Mathers LP</span></td>
+                        <td>Diamond</td>
+                        <td>21+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">The Eminem Show</span></td>
+                        <td>Diamond</td>
+                        <td>27+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Encore</span></td>
+                        <td>4× Platinum</td>
+                        <td>11+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Recovery</span></td>
+                        <td>3× Platinum</td>
+                        <td>10+ million</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Sources</span></h3>
+        <p>
+            <a href="https://en.wikipedia.org/wiki/Eminem">Eminem (Wikipedia)</a> | 
+            <a href="https://en.wikipedia.org/wiki/Eminem_discography">Eminem discography (Wikipedia)</a> | 
+            <a href="https://www.billboard.com/artist/eminem/">Billboard artist page</a> | 
+            <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+            <a href="https://www.rollingstone.com/t/eminem/">Rolling Stone coverage</a>
+        </p>
+    </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Ensure all glass cards on this page have the right styling
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+        });
+    </script>
+</body>
+</html>
+

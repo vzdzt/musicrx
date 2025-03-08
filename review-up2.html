@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MusicRx - Up 2 Më Review</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+<style>
+          body {
+            background: #0a0a0a !important;
+          }
+                .overall-rating h3 {
+                color: #c500a6;
+                }
+                .highlight {
+                    color: #00c3ff;
+                    font-weight: bold;
+                }
+
+            /* Scoped class just for Up2Me page glass cards */
+            .up2me-glass-card {
+              background: rgba(255, 255, 255, 0.1);
+              backdrop-filter: blur(10px);
+              border-radius: 20px;
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              padding: 2rem;
+              margin: 2rem 0;
+              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              cursor: pointer;
+              position: relative;
+              opacity: 1;
+              display: block;
+              visibility: visible;
+              box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+              overflow: hidden; /* Contain the effect */
+            }
+
+            .up2me-glass-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent
+                );
+                transition: 0.5s;
+            }
+
+            .up2me-glass-card:hover {
+                transform: scale(1.05) !important; /* Added scaling effect with !important */
+                background: rgba(255, 255, 255, 0.15);
+                border-color: var(--primary);
+                box-shadow: 
+                    0 0 0 2px var(--primary),
+                    0 0 30px rgba(0, 247, 255, 0.4);
+            }
+
+            .up2me-glass-card:hover::after {
+                content: '';
+                position: absolute;
+                inset: -1px;
+                border-radius: 20px;
+                padding: 1px;
+                background: linear-gradient(45deg, var(--primary), var(--secondary));
+                -webkit-mask: 
+                    linear-gradient(#fff 0 0) content-box, 
+                    linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                pointer-events: none;
+                animation: borderGlow 2s linear infinite;
+            }
+
+            .up2me-glass-card img {
+                transition: transform 0.3s ease; /*Added transition to image*/
+            }
+
+            .up2me-glass-card:hover img {
+                transform: scale(1.05); /* Added scaling effect to image */
+            }
+
+            @keyframes borderGlow {
+                0% { opacity: 1; }
+                50% { opacity: 0.5; }
+                100% { opacity: 1; }
+            }
+
+            .up2me-glass-card:hover::before {
+                left: 100%;
+            }
+
+            /* Regular glass card style without the mirror effect */
+            .glass-card {
+              background: rgba(255, 255, 255, 0.1);
+              backdrop-filter: blur(10px);
+              border-radius: 20px;
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              padding: 2rem;
+              margin: 2rem 0;
+              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              cursor: pointer;
+              position: relative;
+            }
+
+            /* Allow the Up2Me card to transform */
+            .glass-card.up2me-card {
+              transform: none; /* Removed !important to allow hover scaling */
+              perspective: none;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .glass-card.up2me-card:hover {
+              transform: scale(1.05) !important; /* Scale up on hover with !important */
+            }
+            
+            .glass-card.up2me-card:hover img {
+              transform: scale(1.05); /* Image zoom effect on hover */
+            }
+
+            /* Custom glitch effect for Up 2 Më title */
+            .review-up2me-glitch {
+                font-size: 3rem;
+                text-align: center;
+                margin-bottom: 2rem;
+                color: #00c3ff; 
+                text-shadow: 0 0 10px #00c3ff;
+                font-family: 'Syncopate', sans-serif;
+                text-transform: uppercase;
+                position: relative;
+            }
+
+            .review-up2me-glitch::before,
+            .review-up2me-glitch::after {
+                content: attr(data-text);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .review-up2me-glitch::before {
+                left: 2px;
+                text-shadow: -2px 0 #00ffea;
+                animation: glitch-1 2s linear infinite reverse;
+            }
+
+            .review-up2me-glitch::after {
+                left: -2px;
+                text-shadow: -2px 0 #00c3ff;
+                animation: glitch-2 3s linear infinite;
+            }
+</style>
+    </head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="review-up2me-glitch" data-text="UP 2 MË">UP 2 MË</h1>
+        <div class="review-content">
+            <h2>Up 2 Më: Yeat's Rage-Fueled Breakthrough</h2>
+            <div class="glass-card up2me-card">
+              <img src="up2.jpeg" alt="Yeat - Up 2 Më album image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease; width: 100%; display: block;">
+            </div>
+             <br>
+            <p>On <span class="highlight">September 10, 2021</span>, Portland rapper Yeat dropped <em>Up 2 Më</em>, a 22-track debut album that stormed the underground with viral fury. Following a string of buzzworthy singles, this project thrust Yeat into the spotlight as a torchbearer of the rage rap wave. Here's a deep dive into this chaotic, adrenaline-pumping triumph:</p>
+        </div>
+        <br>
+        <h2>The Messaging and Theme</h2>
+        <br>
+        <p>The album's cover—a minimalist red and black swirl—hints at its vibe: a whirlwind of excess and emotion. <em>Up 2 Më</em> is Yeat reveling in his ascent, from flexing wealth in <span class="highlight">"Monëy So Big"</span> to taunting foes in <span class="highlight">"Gët Busy."</span> Yet beneath the bravado, tracks like <span class="highlight">"Lët Ya Know"</span> reveal flickers of vulnerability—"This could be my last song, ho"—amid tales of drugs and despair. It's not deep poetry; it's a raw snapshot of a 21-year-old riding fame's high, fueled by lean and Tonkas. This is rage rap distilled—unapologetic, reckless, and defiantly youthful.</p>
+        <br>
+        <h2>Production and Sound</h2>
+        <br>
+        <p>With over 20 producers like <span class="highlight">BNYX</span>, <span class="highlight">F1LTHY</span>, and <span class="highlight">Synthetic</span>, <em>Up 2 Më</em> is a sonic explosion of rage beats—think distorted 808s, glitchy synths, and omnipresent bells. <span class="highlight">"Turban"</span> screeches with warped energy, while <span class="highlight">"Swërved It"</span> pulses with menacing minimalism. <span class="highlight">"Monëy So Big"</span> rides a hypnotic horn loop that went TikTok-viral, and <span class="highlight">"Ya Ya"</span> thumps with bass-heavy euphoria. Yeat's voice—elastic, Auto-Tuned, and layered with ad-libs—morphs into an instrument, bending around the beats without ever feeling forced. It's a fresh twist on <em>Whole Lotta Red</em>'s blueprint, though the sheer volume of tracks risks monotony.</p>
+        <br>
+        <h2>Features</h2>
+        <br>
+        <p><em>Up 2 Më</em> is a solo showcase with one exception: <span class="highlight">SeptembersRich</span> on <span class="highlight">"Trëndy Way."</span> His laid-back flow complements Yeat's intensity, adding a mellow counterpoint to the track's twitchy beat. The scarcity of guests keeps the focus on Yeat, a bold move that pays off—his quirky charisma carries the album. This isn't a collab-heavy affair; it's Yeat's world, and he owns every corner of it.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Tracks to Watch</h2>
+            <ul>
+                <li><span class="highlight">"Gët Busy"</span> - A viral bell-ringing banger that screams Yeat's arrival.</li>
+                <br>
+                <li><span class="highlight">"Monëy So Big"</span> - A hypnotic flex with an earworm synth that took over TikTok.</li>
+                <br>
+                <li><span class="highlight">"Turban"</span> - A wild, screeching standout that pushes Yeat's vocal quirks to the max.</li>
+                <br>
+                <li><span class="highlight">"Swërved It"</span> - A dark, pulsating gem that oozes rage rap menace.</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Previous Works</h2>
+        <br>
+        <p>Yeat's journey kicked off with EPs like <em>Deep Blue Strips</em> (<span class="highlight">2018</span>) and mixtapes like <em>Alivë</em> (<span class="highlight">2021</span>), where he honed his glitchy, melodic trap style. Singles like "Sorry Bout That" and "Mad Bout That" built underground buzz, but <em>Up 2 Më</em> marks his leap forward. Compared to the looser, experimental <em>4L</em> earlier in <span class="highlight">2021</span>, this album sharpens his sound—more cohesive, more explosive, and primed for mainstream ears. It's Yeat graduating from SoundCloud obscurity to a rage rap frontrunner.</p>
+        <br>
+        <h2>Summary</h2>
+        <br>
+        <p><em>Up 2 Më</em> is a <span class="highlight">56-minute adrenaline rush</span>—22 tracks of unrelenting energy and psychedelic trap vibes. It's Yeat at his peak, riding the rage wave with infectious hooks and mind-bending production. The album's length and repetitive beats can wear thin, but its highs—like <span class="highlight">"Gët Busy"</span>—are undeniable. <em>Up 2 Më</em> doesn't aim for lyrical depth; it's a vibe-first triumph that catapults Yeat from Portland's shadows to rap's forefront. This is the sound of a movement taking root, raw and unpolished yet impossibly catchy.</p>
+        <br>
+
+        <div class="glass-card">
+            <h2>Ratings</h2>
+            <p><span class="highlight">Originality (17/20):</span> A standout in rage rap with vocal flair, though it leans on Carti's influence.</p>
+            <p><span class="highlight">Production Quality (18/20):</span> Explosive and innovative, but repetition creeps in.</p>
+            <p><span class="highlight">Lyrics and Messaging (15/20):</span> Fun and quotable, yet light on substance.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> A thrilling, addictive ride that demands replays.</p>
+            <p><span class="highlight">Consistency (16/20):</span> Strong peaks, but bloat dilutes the back half.</p>
+            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (85/100):</span> 8.5/10</h3>
+            <p><em>Up 2 Më</em> isn't a flawless debut—it's too long, too one-note at times—but it's a bold statement from Yeat, a kid who turned TikTok snippets into a cultural moment. It's chaotic, mindless fun elevated by stellar beats and a voice that's impossible to ignore. In the crowded rage rap scene, this stands tall—a neon-lit Tonka truck barreling through the underground, proving Yeat's here to stay.</p>
+        </p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Ensure all glass cards on this page have no tilt, except for up2me-card
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card:not(.up2me-card)').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+
+            // Special handling for UP2ME card to allow scaling
+            document.querySelectorAll('.glass-card.up2me-card').forEach(card => {
+                card.style.transform = 'none'; // No !important
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.overflow = 'hidden';
+            });
+        });
+    </script>
+</body>
+</html>
+

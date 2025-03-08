@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Lil Peep Feature</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+      background: #0a0a0a !important;
+    }
+    .highlight {
+        color: #ff69b4;
+        font-weight: bold;
+    }
+    .feature-peep-glitch {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #ff69b4; 
+      text-shadow: 0 0 10px #ff69b4;
+      font-family: 'Syncopate', sans-serif;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .feature-peep-glitch::before,
+    .feature-peep-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-peep-glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .feature-peep-glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #ff69b4;
+      animation: glitch-2 3s linear infinite;
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="feature-peep-glitch" data-text="LIL PEEP">LIL PEEP</h1>
+        <div class="review-content">
+            <h2>The Emo-Rap Pioneer</h2>
+            <div class="glass-card">
+                <img src="lilpeep.jpeg" alt="Lil Peep artist image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            </div>
+            <br>
+            <p>Gustav Elijah Åhr, known professionally as <span class="highlight">Lil Peep</span>, was a groundbreaking artist who pioneered the emo-rap movement by blending elements of alternative rock, emo, and hip-hop into a distinctive sound that resonated with a generation dealing with mental health struggles and existential anxiety.</p>
+        </div>
+        <br>
+        <h2>Rise to Fame</h2>
+        <br>
+        <p>Lil Peep began his career on <span class="highlight">SoundCloud</span> in 2015, gaining attention with projects like <span class="highlight">Lil Peep Part One</span> and <span class="highlight">Live Forever</span>. His unique sound and aesthetic quickly attracted a dedicated following, with songs like <span class="highlight">"Star Shopping"</span> and <span class="highlight">"BeamerBoy"</span> becoming underground hits. His mixtape <span class="highlight">Crybaby</span> (2016) and EP <span class="highlight">Hellboy</span> (2016) further established his distinctive blend of emo, punk, and trap influences, laying the groundwork for his debut album <span class="highlight">Come Over When You're Sober, Pt. 1</span> (2017).</p>
+        <br>
+        <div class="glass-card">
+            <h2>Career Milestones</h2>
+            <ul>
+                <li><span class="highlight">2015:</span> Released early mixtapes <em>Lil Peep Part One</em> and <em>Live Forever</em> on SoundCloud</li>
+                <br>
+                <li><span class="highlight">2016:</span> Released breakthrough mixtapes <em>Crybaby</em> and <em>Hellboy</em>, gaining substantial underground following</li>
+                <br>
+                <li><span class="highlight">2017:</span> Released debut studio album <em>Come Over When You're Sober, Pt. 1</em> in August</li>
+                <br>
+                <li><span class="highlight">2017:</span> Tragically passed away on November 15, at the age of 21</li>
+                <br>
+                <li><span class="highlight">2018:</span> Posthumous album <em>Come Over When You're Sober, Pt. 2</em> released, debuting at #4 on Billboard 200</li>
+                <br>
+                <li><span class="highlight">2019:</span> Documentary <em>Everybody's Everything</em> released alongside companion soundtrack album</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Musical Style & Impact</h2>
+        <br>
+        <p>Lil Peep's music was characterized by its raw emotional honesty, with lyrics that candidly addressed depression, drug use, heartbreak, and existential angst. His ability to blend <span class="highlight">gothic aesthetics</span> with <span class="highlight">trap production</span> and <span class="highlight">emo vocal stylings</span> created a distinctive sound that helped define the emo-rap genre. His fashion sense, featuring dyed hair, face tattoos, and vintage clothing, also influenced a generation of artists. Though his career was tragically cut short, Peep's impact on music has been profound, inspiring countless artists to embrace vulnerability and genre-blending in their work.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Essential Listening</h2>
+            <p><span class="highlight">For Newcomers:</span> "Star Shopping," "Awful Things," "Benz Truck," "Save That Shit"</p>
+            <p><span class="highlight">For The Dive:</span> "Witchblades," "Gym Class," "Hellboy," "Life is Beautiful"</p>
+            <p><span class="highlight">Hidden Gems:</span> "Belgium," "haunt u," "Moving On," "The Way I See Things"</p>
+        </div>
+        <br>
+        <h2>Legacy</h2>
+        <br>
+        <p>Despite his tragically short career, Lil Peep's influence on music cannot be overstated. He helped legitimize emotional vulnerability in hip-hop, paving the way for a wave of artists exploring similar themes. His blend of alternative rock samples with trap beats has become a blueprint for a generation of SoundCloud rappers. After his death, Peep has achieved even wider recognition, with his music continuing to find new audiences and his artistic vision being celebrated in the documentary <span class="highlight">Everybody's Everything</span>. In just a few years of creating music, Lil Peep managed to leave an indelible mark on modern music, with his legacy living on through both his catalog and the countless artists he's inspired.</p>
+        <br>
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Billboard Hot 100(US)</th>
+                        <th>UK Singles Chart(UK)</th>
+                        <th>Spotify Streams (Millions)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">"Awful Things"</span> (feat. Lil Tracy)</td>
+                        <td>2017</td>
+                        <td>79</td>
+                        <td>67</td>
+                        <td>370+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Falling Down"</span> (with XXXTENTACION)</td>
+                        <td>2018</td>
+                        <td>13</td>
+                        <td>9</td>
+                        <td>500+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Save That Shit"</span></td>
+                        <td>2017</td>
+                        <td>-</td>
+                        <td>89</td>
+                        <td>450+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Star Shopping"</span></td>
+                        <td>2015/2019</td>
+                        <td>-</td>
+                        <td>91</td>
+                        <td>500+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Life is Beautiful"</span></td>
+                        <td>2019</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>200+</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Album Certifications</span></h3>
+        <div class="table-container">
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Album</th>
+                        <th>Certification (US)</th>
+                        <th>Peak Chart Position (US)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">Come Over When You're Sober, Pt. 1</span></td>
+                        <td>Gold</td>
+                        <td>38</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Come Over When You're Sober, Pt. 2</span></td>
+                        <td>Gold</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Everybody's Everything</span></td>
+                        <td>-</td>
+                        <td>49</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Hellboy</span> (Mixtape)</td>
+                        <td>-</td>
+                        <td>8 (Billboard Hip-Hop/R&B)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Crybaby</span> (Mixtape)</td>
+                        <td>-</td>
+                        <td>16 (Billboard Hip-Hop/R&B)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Sources</span></h3>
+        <p>
+            <a href="https://en.wikipedia.org/wiki/Lil_Peep">Lil Peep (Wikipedia)</a> | 
+            <a href="https://en.wikipedia.org/wiki/Lil_Peep_discography">Lil Peep discography (Wikipedia)</a> | 
+            <a href="https://www.billboard.com/artist/lil-peep/">Billboard artist page</a> | 
+            <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+            <a href="https://pitchfork.com/artists/37119-lil-peep/">Pitchfork artist profile</a>
+        </p>
+    </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Ensure all glass cards on this page have the right styling
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+        });
+    </script>
+</body>
+</html>
+

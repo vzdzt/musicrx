@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - 50 Cent Feature</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+      background: #0a0a0a !important;
+    }
+    .highlight {
+        color: #00d4ff;
+        font-weight: bold;
+    }
+    .feature-50-glitch {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #00d4ff; 
+      text-shadow: 0 0 10px #00d4ff;
+      font-family: 'Syncopate', sans-serif;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .feature-50-glitch::before,
+    .feature-50-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-50-glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .feature-50-glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #00d4ff;
+      animation: glitch-2 3s linear infinite;
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="feature-50-glitch" data-text="50 CENT">50 CENT</h1>
+        <div class="review-content">
+            <h2>The Blueprint for Hip-Hop Moguldom</h2>
+            <div class="glass-card">
+                <img src="50.jpeg" alt="50 Cent artist image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            </div>
+            <br>
+            <p>Curtis James Jackson III, known worldwide as <span class="highlight">50 Cent</span>, represents one of hip-hop's most remarkable success stories. Rising from the dangerous streets of South Jamaica, Queens and surviving nine gunshots, 50 transformed himself into not just a multiplatinum rap superstar but a business empire that has become the blueprint for hip-hop entrepreneurship.</p>
+        </div>
+        <br>
+        <h2>Rise to Fame</h2>
+        <br>
+        <p>50 Cent's journey to stardom is the stuff of hip-hop legend. After releasing the underground hit <span class="highlight">"How to Rob"</span> in 1999 and surviving an attempt on his life in 2000, 50 rebuilt his career through a series of mixtapes, most notably <span class="highlight">Guess Who's Back?</span> and <span class="highlight">50 Cent Is the Future</span>. These caught the attention of <span class="highlight">Eminem</span>, who along with <span class="highlight">Dr. Dre</span> signed 50 to Shady/Aftermath. His official debut album <span class="highlight">Get Rich or Die Tryin'</span> (2003) was a cultural phenomenon, selling 872,000 copies in its first week and spawning hits like <span class="highlight">"In da Club,"</span> <span class="highlight">"21 Questions,"</span> and <span class="highlight">"P.I.M.P."</span> His sophomore album <span class="highlight">The Massacre</span> (2005) nearly matched this success, cementing his position as one of rap's dominant forces.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Career Milestones</h2>
+            <ul>
+                <li><span class="highlight">2002:</span> Signed $1 million deal with Eminem's Shady Records and Dr. Dre's Aftermath Entertainment</li>
+                <br>
+                <li><span class="highlight">2003:</span> Released debut album <em>Get Rich or Die Tryin'</em>, which sold over 12 million copies worldwide</li>
+                <br>
+                <li><span class="highlight">2003:</span> Founded G-Unit Records, launching careers of artists like Lloyd Banks, Tony Yayo, and Young Buck</li>
+                <br>
+                <li><span class="highlight">2004:</span> Launched G-Unit Clothing line, which generated over $100 million in revenue</li>
+                <br>
+                <li><span class="highlight">2005:</span> Released second album <em>The Massacre</em>, selling 1.14 million copies in its first week</li>
+                <br>
+                <li><span class="highlight">2007:</span> Made estimated $100 million from Vitamin Water deal when Coca-Cola acquired the company</li>
+                <br>
+                <li><span class="highlight">2014:</span> Left Interscope Records and signed with Caroline/Capitol Music Group</li>
+                <br>
+                <li><span class="highlight">2020:</span> Expanded into television producing with shows like <em>Power</em> and its successful spin-offs</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Musical Style & Impact</h2>
+        <br>
+        <p>50 Cent's musical style combined <span class="highlight">street-hardened narratives</span> with <span class="highlight">infectious melodic hooks</span>, creating an accessible form of gangsta rap that dominated radio while maintaining credibility. His deadpan delivery, often delivered in a distinctive near-whisper, and his ability to craft irresistible hooks made him a commercial powerhouse. 50's impact on hip-hop extends far beyond music; his business ventures, from his early equity stake in <span class="highlight">Vitamin Water</span> to his <span class="highlight">SMS Audio</span> headphones, <span class="highlight">power alcohol brands</span>, and successful <span class="highlight">TV production company</span>, established a blueprint for leveraging hip-hop fame into diversified business empires, influencing generations of artists from Drake to Jay-Z.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Essential Listening</h2>
+            <p><span class="highlight">For Newcomers:</span> "In da Club," "21 Questions," "Candy Shop," "P.I.M.P."</p>
+            <p><span class="highlight">For The Dive:</span> "Many Men (Wish Death)," "Window Shopper," "I Get Money," "Hate It or Love It" (with The Game)</p>
+            <p><span class="highlight">Hidden Gems:</span> "Poor Lil Rich," "Position of Power," "I'm a Hustler," "Flight 187"</p>
+        </div>
+        <br>
+        <h2>Legacy</h2>
+        <br>
+        <p>50 Cent's legacy is multifaceted. As a musician, he dominated the 2000s with a sound that influenced countless artists. As a businessman, he redefined what success could look like for a hip-hop artist, creating a diversified empire spanning music, film, television, fashion, spirits, and more. His transition into television production with hit shows like <span class="highlight">Power</span> and its spin-offs has further cemented his status as an entertainment mogul. Beyond the accolades and business achievements, 50's story—from surviving a near-fatal shooting to becoming one of entertainment's most successful entrepreneurs—stands as a testament to resilience and strategic thinking. Whether through his music, his business moves, or his social media presence, 50 Cent continues to command attention and influence culture nearly two decades after his breakthrough.</p>
+        <br>
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Billboard Hot 100(US)</th>
+                        <th>UK Singles Chart(UK)</th>
+                        <th>RIAA Certification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">"In da Club"</span></td>
+                        <td>2003</td>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>5× Platinum</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"21 Questions"</span> (feat. Nate Dogg)</td>
+                        <td>2003</td>
+                        <td>1</td>
+                        <td>6</td>
+                        <td>Gold</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"P.I.M.P."</span></td>
+                        <td>2003</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>Gold</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Candy Shop"</span> (feat. Olivia)</td>
+                        <td>2005</td>
+                        <td>1</td>
+                        <td>6</td>
+                        <td>4× Platinum</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Just a Lil Bit"</span></td>
+                        <td>2005</td>
+                        <td>3</td>
+                        <td>10</td>
+                        <td>2× Platinum</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Album Certifications</span></h3>
+        <div class="table-container">
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Album</th>
+                        <th>Certification (US)</th>
+                        <th>Sales (Worldwide)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">Get Rich or Die Tryin'</span></td>
+                        <td>6× Platinum</td>
+                        <td>12+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">The Massacre</span></td>
+                        <td>5× Platinum</td>
+                        <td>10+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Curtis</span></td>
+                        <td>Platinum</td>
+                        <td>3+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Before I Self Destruct</span></td>
+                        <td>Gold</td>
+                        <td>1+ million</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Animal Ambition</span></td>
+                        <td>-</td>
+                        <td>200,000+</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Sources</span></h3>
+        <p>
+            <a href="https://en.wikipedia.org/wiki/50_Cent">50 Cent (Wikipedia)</a> | 
+            <a href="https://en.wikipedia.org/wiki/50_Cent_discography">50 Cent discography (Wikipedia)</a> | 
+            <a href="https://www.billboard.com/artist/50-cent/">Billboard artist page</a> | 
+            <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+            <a href="https://www.forbes.com/profile/50-cent/">Forbes profile</a>
+        </p>
+    </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Ensure all glass cards on this page have the right styling
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+        });
+    </script>
+</body>
+</html>
+

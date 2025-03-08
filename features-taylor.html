@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Taylor Swift Feature</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+      background: #0a0a0a !important;
+    }
+    .highlight {
+        color: #ff69b4;
+        font-weight: bold;
+    }
+    .feature-taylor-glitch {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #ff69b4; 
+      text-shadow: 0 0 10px #ff69b4;
+      font-family: 'Syncopate', sans-serif;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .feature-taylor-glitch::before,
+    .feature-taylor-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-taylor-glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .feature-taylor-glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #ff69b4;
+      animation: glitch-2 3s linear infinite;
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="feature-taylor-glitch" data-text="TAYLOR SWIFT">TAYLOR SWIFT</h1>
+        <div class="review-content">
+            <h2>The Mastermind of Musical Reinvention</h2>
+            <div class="glass-card">
+                <img src="taylor.jpeg" alt="Taylor Swift artist image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            </div>
+            <br>
+            <p>From country prodigy to pop icon to indie-folk storyteller, <span class="highlight">Taylor Swift</span> has continuously evolved throughout her career, cementing her status as one of music's most versatile and commercially successful artists of all time, with a gift for narrative songwriting that resonates across generations.</p>
+        </div>
+        <br>
+        <h2>Rise to Fame</h2>
+        <br>
+        <p>Taylor Swift's journey began as a teenage country singer who signed with <span class="highlight">Big Machine Records</span> at just 14 years old. Her self-titled debut album in 2006 established her as a country music prodigy, with singles like <span class="highlight">"Tim McGraw"</span> and <span class="highlight">"Teardrops on My Guitar"</span> showcasing her songwriting prowess. Her sophomore effort <span class="highlight">Fearless</span> (2008) elevated her to superstardom, earning Album of the Year at the Grammys and crossing over to pop audiences. With each subsequent release, Swift gradually transitioned from country to pop, culminating in the pure pop triumph of <span class="highlight">1989</span> (2014), which solidified her status as a global pop phenomenon.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Career Milestones</h2>
+            <ul>
+                <li><span class="highlight">2008:</span> <em>Fearless</em> became the most awarded country album in history and won Album of the Year at the Grammys</li>
+                <br>
+                <li><span class="highlight">2014:</span> <em>1989</em> marked her complete transition to pop music and sold over 10 million copies worldwide</li>
+                <br>
+                <li><span class="highlight">2020:</span> Surprise-released the critically acclaimed indie-folk albums <em>folklore</em> and <em>evermore</em></li>
+                <br>
+                <li><span class="highlight">2021-2023:</span> Embarked on re-recording her first six albums as "Taylor's Versions" to regain ownership of her masters</li>
+                <br>
+                <li><span class="highlight">2023:</span> The record-breaking Eras Tour became the highest-grossing tour of all time, exceeding $1 billion</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Musical Style & Impact</h2>
+        <br>
+        <p>Swift's musical evolution spans multiple genres while maintaining her signature confessional songwriting style. Her narrative lyrics often draw from personal experiences, creating intimate connections with listeners. From the country-pop of <span class="highlight">Fearless</span>, to the synth-pop of <span class="highlight">1989</span>, to the indie-folk of <span class="highlight">folklore</span>, Swift's willingness to reinvent herself has kept her artistically relevant for nearly two decades. Beyond music, her business acumen has revolutionized the industry — from her stand against streaming services regarding artist compensation to reclaiming her musical catalog through re-recordings. Her impact extends to cultural and political spheres, with her documentary <span class="highlight">Miss Americana</span> chronicling her decision to become more politically active.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Essential Listening</h2>
+            <p><span class="highlight">For Newcomers:</span> "Love Story," "Blank Space," "All Too Well," "Cruel Summer"</p>
+            <p><span class="highlight">For The Dive:</span> "August," "Champagne Problems," "All Too Well (10 Minute Version)," "Maroon"</p>
+            <p><span class="highlight">Hidden Gems:</span> "Right Where You Left Me," "The Lakes," "New Romantics," "Ivy"</p>
+        </div>
+        <br>
+        <h2>Legacy</h2>
+        <br>
+        <p>With over 200 million records sold worldwide, Swift stands as one of the best-selling music artists of all time. Her ability to evolve while maintaining artistic integrity has secured her position as a generational talent. As both a songwriter and businesswoman, she has redefined what success looks like in the modern music industry. The "Taylor's Version" project represents an unprecedented move to reclaim artistic autonomy, inspiring other artists to fight for ownership of their work. As she continues to break records and challenge industry norms, Swift's legacy as a musical, cultural, and feminist icon only grows stronger, influencing generations of artists across multiple genres.</p>
+        <br>
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Billboard Hot 100(US)</th>
+                        <th>UK Singles Chart(UK)</th>
+                        <th>Global 200(Global)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">"Love Story"</span></td>
+                        <td>2008</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Shake It Off"</span></td>
+                        <td>2014</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Blank Space"</span></td>
+                        <td>2014</td>
+                        <td>1</td>
+                        <td>4</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Anti-Hero"</span></td>
+                        <td>2022</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">"Cruel Summer"</span></td>
+                        <td>2023</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Album Certifications</span></h3>
+        <div class="table-container">
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Album</th>
+                        <th>Certification (US)</th>
+                        <th>Units (Millions) US</th>
+                        <th>Global Sales (Millions)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">Fearless</span></td>
+                        <td>Diamond</td>
+                        <td>10+</td>
+                        <td>12+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">1989</span></td>
+                        <td>9× Platinum</td>
+                        <td>9+</td>
+                        <td>14+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">reputation</span></td>
+                        <td>4× Platinum</td>
+                        <td>4+</td>
+                        <td>7+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">folklore</span></td>
+                        <td>3× Platinum</td>
+                        <td>3+</td>
+                        <td>5+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Midnights</span></td>
+                        <td>3× Platinum</td>
+                        <td>3+</td>
+                        <td>6+</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="glass-card">
+        <h3><span class="highlight">Sources</span></h3>
+        <p>
+            <a href="https://en.wikipedia.org/wiki/Taylor_Swift">Taylor Swift (Wikipedia)</a> | 
+            <a href="https://en.wikipedia.org/wiki/Taylor_Swift_discography">Taylor Swift discography (Wikipedia)</a> | 
+            <a href="https://www.billboard.com/artist/taylor-swift/">Billboard artist page</a> | 
+            <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+            <a href="https://www.grammy.com/artists/taylor-swift/7260">Grammy.com artist profile</a>
+        </p>
+    </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Ensure all glass cards on this page have the right styling
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+        });
+    </script>
+</body>
+</html>
+

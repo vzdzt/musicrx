@@ -157,6 +157,8 @@ body .container h2 {
   max-width: 1200px;
   margin: 0 auto;
   padding: 6rem 2rem 2rem;
+  position: relative;
+  z-index: 1; /* Ensure content is above background */
 }
 
 .glitch {
@@ -238,14 +240,14 @@ body .container h2 {
   padding: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  opacity: 1;
+  opacity: 1 !important; /* Force visibility as a fallback */
   display: flex;
   flex-direction: column;
   gap: 1rem;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 8px 32px rgba(0, 247, 255, 0.1);
-  overflow: hidden; /* This contains the mirror effect */
+  overflow: hidden;
 }
 
 /* Glass card mirror and RGB effects */
@@ -720,4 +722,58 @@ body .container h2 {
   left: -2px;
   text-shadow: -2px 0 #0088ff;
   animation: glitch-2 3s linear infinite;
+}
+/* Web3 Button Styling */
+.button,
+#connectWallet,
+#tipEth,
+#tipSol {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  padding: 1rem 2rem;
+  font-size: 1.1em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 8px;
+  margin: 1rem 0;
+  box-shadow: 0 4px 15px rgba(0, 247, 255, 0.1);
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.button:hover,
+#connectWallet:hover,
+#tipEth:hover,
+#tipSol:hover {
+  transform: translateY(-5px);
+  color: var(--dark);
+  border-color: transparent;
+  box-shadow: 0 8px 25px rgba(0, 247, 255, 0.2);
+}
+
+.button::before,
+#connectWallet::before,
+#tipEth::before,
+#tipSol::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  transform: translate(-50%, -50%) rotate(45deg) scale(0);
+  transition: transform 0.6s ease;
+  z-index: -1;
+}
+
+.button:hover::before,
+#connectWallet:hover::before,
+#tipEth:hover::before,
+#tipSol:hover::before {
+  transform: translate(-50%, -50%) rotate(45deg) scale(1);
 }
