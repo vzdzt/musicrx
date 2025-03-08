@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Ye Feature</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+      background: #0a0a0a !important;
+    }
+    .highlight {
+        color: #ffda00;
+        font-weight: bold;
+    }
+    .feature-ye-glitch {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #ffda00; 
+      text-shadow: 0 0 10px #ffda00;
+      font-family: 'Syncopate', sans-serif;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .feature-ye-glitch::before,
+    .feature-ye-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-ye-glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .feature-ye-glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #ffda00;
+      animation: glitch-2 3s linear infinite;
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="feature-ye-glitch" data-text="YE">YE</h1>
+        <div class="feature-content">
+            <div class="glass-card">
+                <img src="ye.jpg" alt="Ye (Kanye West) portrait">
+                <h2>The Controversial Genius</h2>
+                <p>Few artists have shaped modern music and culture quite like <span class="highlight">Ye</span> (formerly known as Kanye West). Born in Atlanta and raised in Chicago, Ye has spent over two decades pushing boundaries, challenging conventions, and reinventing himself. From <span class="highlight">producer</span> to <span class="highlight">rapper</span> to <span class="highlight">fashion designer</span> to <span class="highlight">presidential candidate</span>, Ye's journey has been defined by relentless ambition, artistic brilliance, and controversy.</p>
+            </div>
+
+            <div class="glass-card">
+                <h2>Musical Evolution</h2>
+                <p>Ye first made his mark as a producer for <span class="highlight">Roc-A-Fella Records</span>, crafting soulful beats for Jay-Z's landmark album <span class="highlight">The Blueprint (2001)</span>. His signature production style—featuring <span class="highlight">sped-up soul samples</span>, <span class="highlight">orchestral arrangements</span>, and <span class="highlight">innovative percussion</span>—revitalized hip-hop's sonic landscape.</p>
+                <p>When he stepped into the spotlight as a rapper with <span class="highlight">The College Dropout (2004)</span>, Ye challenged hip-hop's gangster image with songs about <span class="highlight">family</span>, <span class="highlight">religion</span>, <span class="highlight">materialism</span>, and <span class="highlight">racial politics</span>. The album's success launched a career defined by reinvention.</p>
+                <p>Each subsequent album marked a new creative direction: <span class="highlight">Late Registration (2005)</span> expanded his orchestral sound; <span class="highlight">Graduation (2007)</span> embraced electronic and stadium anthems; <span class="highlight">808s & Heartbreak (2008)</span> pioneered auto-tuned vulnerability; <span class="highlight">My Beautiful Dark Twisted Fantasy (2010)</span> showcased maximalist hip-hop; <span class="highlight">Yeezus (2013)</span> explored abrasive industrial textures; and <span class="highlight">The Life of Pablo (2016)</span> presented a fragmented, ever-evolving masterpiece.</p>
+                <p>Later works like <span class="highlight">ye (2018)</span>, <span class="highlight">Jesus Is King (2019)</span>, and <span class="highlight">Donda (2021)</span> continued his evolution while reflecting his personal struggles and spiritual journey.</p>
+            </div>
+
+            <div class="glass-card">
+                <h2>Cultural Impact</h2>
+                <p>Beyond music, Ye has revolutionized the intersection of <span class="highlight">hip-hop</span>, <span class="highlight">fashion</span>, and <span class="highlight">art</span>. His <span class="highlight">Yeezy</span> collaboration with Adidas transformed sneaker culture and the fashion industry, generating billions in revenue and influencing design trends worldwide.</p>
+                <p>His <span class="highlight">album releases</span> have become cultural events, from the stadium-filling <span class="highlight">Donda listening parties</span> to the <span class="highlight">Madison Square Garden</span> fashion show/album premiere for The Life of Pablo.</p>
+                <p>Ye's influence extends to music production and artist development, having launched careers through his <span class="highlight">G.O.O.D. Music</span> label and collaborative projects like <span class="highlight">Cruel Summer</span>. As an executive producer, he's shaped albums for artists ranging from <span class="highlight">Pusha T</span> to <span class="highlight">Teyana Taylor</span>.</p>
+            </div>
+
+            <div class="glass-card">
+                <h2>Controversies and Challenges</h2>
+                <p>Ye's career has been marked by controversy, from his <span class="highlight">"George Bush doesn't care about Black people"</span> statement after Hurricane Katrina to interrupting <span class="highlight">Taylor Swift</span> at the 2009 VMAs. More recently, his <span class="highlight">support for Donald Trump</span>, <span class="highlight">antisemitic comments</span>, and erratic public behavior have damaged his reputation and business partnerships.</p>
+                <p>He has been open about his struggles with <span class="highlight">bipolar disorder</span>, which he referenced on the album cover for <span class="highlight">ye</span> with the phrase "I hate being Bi-Polar, it's awesome."</p>
+                <p>Despite the controversies, Ye's musical influence remains undeniable, with each album continuing to push boundaries and inspire new generations of artists.</p>
+            </div>
+
+            <div class="glass-card">
+                <h2>Essential Discography</h2>
+                <ul>
+                    <li><span class="highlight">The College Dropout (2004)</span> - His groundbreaking debut that challenged hip-hop's status quo.</li>
+                    <li><span class="highlight">My Beautiful Dark Twisted Fantasy (2010)</span> - Often cited as Ye's masterpiece, a maximalist exploration of fame and excess.</li>
+                    <li><span class="highlight">Yeezus (2013)</span> - His most experimental work, stripping hip-hop down to its most abrasive elements.</li>
+                    <li><span class="highlight">The Life of Pablo (2016)</span> - A fragmented, constantly updated reflection of Ye's creative process.</li>
+                </ul>
+            </div>
+
+            <div class="glass-card">
+                <h2>Legacy</h2>
+                <p>Despite his controversial public persona, Ye's musical legacy is secure. With <span class="highlight">24 Grammy Awards</span> and over <span class="highlight">160 million records sold</span>, he ranks among hip-hop's most commercially successful and critically acclaimed artists.</p>
+                <p>His willingness to <span class="highlight">challenge conventions</span>, <span class="highlight">embrace vulnerability</span>, and <span class="highlight">blur genre boundaries</span> has expanded the possibilities of hip-hop as an art form. Artists from <span class="highlight">Drake</span> to <span class="highlight">Travis Scott</span> to <span class="highlight">Chance the Rapper</span> have cited him as a primary influence.</p>
+                <p>As a producer, rapper, designer, and cultural provocateur, Ye has continuously redefined what it means to be an artist in the 21st century, for better or worse.</p>
+            </div>
+
+            <div class="glass-card">
+                <h2>References & Further Reading</h2>
+                <p>
+                    <a href="https://en.wikipedia.org/wiki/Kanye_West">Ye (Wikipedia)</a> | 
+                    <a href="https://en.wikipedia.org/wiki/Kanye_West_discography">Ye discography (Wikipedia)</a> | 
+                    <a href="https://www.billboard.com/artist/kanye-west/">Billboard artist page</a> | 
+                    <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+                    <a href="https://pitchfork.com/artists/4639-kanye-west/">Pitchfork artist reviews</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Ensure all glass cards on this page have the right styling
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - A.L.L.A. Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .highlight {
+            color: #008080; /* Teal */
+            font-weight: bold;
+        }
+        
+        /* A.L.L.A specific glitch effect */
+        .review-alla-glitch {
+          font-size: 3rem;
+          text-align: center;
+          margin-bottom: 2rem;
+          color: #008080; /* Teal */
+          text-shadow: 0 0 10px #008080;
+          font-family: 'Syncopate', sans-serif;
+          text-transform: uppercase;
+          position: relative;
+        }
+
+        .review-alla-glitch::before,
+        .review-alla-glitch::after {
+          content: attr(data-text);
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .review-alla-glitch::before {
+          left: 2px;
+          text-shadow: -2px 0 #00ffea;
+          animation: glitch-1 2s linear infinite reverse;
+        }
+
+        .review-alla-glitch::after {
+          left: -2px;
+          text-shadow: -2px 0 #008080;
+          animation: glitch-2 3s linear infinite;
+        }
+        
+        /* A.L.L.A glass card styling and zoom effect */
+        .glass-card.alla-card {
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 10px;
+          padding: 20px;
+          margin: 10px;
+          transition: transform 0.3s ease;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .glass-card.alla-card:hover {
+          transform: scale(1.05);
+        }
+
+        .glass-card.alla-card img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 8px;
+          transition: transform 0.3s ease;
+        }
+
+        .glass-card.alla-card:hover img {
+          transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="review-alla-glitch" data-text="A.L.L.A">A.L.L.A</h1>
+        <div class="review-content">
+            <h2>At Long Last A$AP: Rocky's Psychedelic Ascension</h2>
+            
+            <div class="glass-card alla-card">
+                <img src="asap.jpg" alt="A$AP Rocky - A.L.L.A. album cover">
+            </div>
+            <br>
+
+            <p>On <span class="highlight">May 26, 2015</span>, A$AP Rocky surprise-dropped <em>At Long Last A$AP</em>, an 18-track sophomore album that arrived amid hype and tragedy following A$AP Yams' death. Building on his debut <em>Long. Live. A$AP</em>, this project plunged into a hazy, experimental realm, cementing Rocky's flair for style and sound. Here's a deep dive into this trippy, ambitious odyssey:</p>
+
+            <h2>The Messaging and Theme</h2>
+            <p>The album's cover—a purple-tinted Rocky with Yams' birthmark—sets a tone of tribute and transcendence. <em>A.L.L.A.</em> is a journey through fame's highs and lows, steeped in psychedelic swagger. Tracks like <span class="highlight">"L$D"</span> and <span class="highlight">"Electric Body"</span> revel in drugged-out hedonism, while <span class="highlight">"Jukebox Joints"</span> and <span class="highlight">"Everyday"</span> blend nostalgia with introspection. Dedicated to Yams, it's Rocky grappling with loss, success, and identity—less a cohesive story than a vibe-driven mosaic. It's Harlem's pretty boy proving he's more than a fashion icon, chasing a higher plane.</p>
+
+            <h2>Production and Sound</h2>
+            <p>Co-executive produced by <span class="highlight">Danger Mouse</span> and <span class="highlight">A$AP Yams</span>, with heavy input from <span class="highlight">Hector Delgado</span> and <span class="highlight">Juicy J</span>, <em>A.L.L.A.</em> is a sonic kaleidoscope. The beats fuse trap's thump with psych-rock haze—<span class="highlight">"L$D"</span> drips with woozy guitars, while <span class="highlight">"Holy Ghost"</span> layers gospel soul over eerie synths. <span class="highlight">"Canal St."</span> chops a Bone Thugs sample into a gritty banger, and <span class="highlight">"Fine Whine"</span> floats on dreamy keys. Rocky's flow—smooth yet commanding—rides these waves effortlessly, shifting from brash bars to melodic hums. It's a bold leap from <em>Long. Live</em>'s polished trap, embracing a weirder, more adventurous soundscape.</p>
+
+            <h2>Features</h2>
+            <p>Rocky assembles an eclectic guest list that amplifies the album's boundary-pushing ethos. <span class="highlight">Kanye West</span> brings soulful swagger to "Jukebox Joints," while <span class="highlight">ScHoolboy Q</span> delivers menacing verses on "Electric Body." The <span class="highlight">Rod Stewart</span>, <span class="highlight">Miguel</span>, and <span class="highlight">Mark Ronson</span> collaboration on "Everyday" creates an unlikely earworm, and <span class="highlight">Lil Wayne</span> drops typically eccentric bars on "M'$." Underground icons like <span class="highlight">UGK</span> and <span class="highlight">Mos Def</span> add gravitas, while <span class="highlight">Joe Fox</span>—a street musician Rocky discovered in London—appears throughout, lending raw, bluesy textures. It's a lineup that defies conventional hip-hop featuring strategies, mirroring Rocky's genre-blending vision.</p>
+
+            <h2>Legacy and Impact</h2>
+            <p><em>A.L.L.A.</em> marked Rocky's artistic evolution from trendy hitmaker to experimental auteur. While some fans longed for the accessible bangers of his debut, others embraced his psychedelic direction. The album's influence can be seen in hip-hop's increasing comfort with alternative sounds and drug-influenced aesthetics. Its trippy visuals—particularly the "L$D" video—set new standards for rap's visual language. In Rocky's catalog, it stands as his most personal statement: a tribute to his late mentor, an exploration of his expanding consciousness, and proof that commercial rap could still take creative risks. Six years later, its hazy, genre-fluid approach feels ahead of its time.</p>
+
+            <div class="ratings-box">
+                <h3>Overall Rating: <span class="highlight">8.7/10</span></h3>
+                <p><em>At Long Last A$AP</em> is Rocky at his most experimental and authentic. While occasionally disjointed, its psychedelic ambition and sonic daring makes it one of the decade's most intriguing hip-hop releases. Less concerned with chart success than creative exploration, it's the sound of an artist following his muse into uncharted territory—and bringing his listeners along for the trip.</p>
+            </div>
+            
+            <div class="glass-card">
+                <h2>Tracks to Watch</h2>
+                <ul>
+                    <li><span class="highlight">"L$D"</span> - A dreamy, guitar-driven ode to psychedelics that showcases Rocky's melodic side.</li>
+                    <li><span class="highlight">"Excuse Me"</span> - Smooth, confident flows over a hypnotic beat with one of the album's catchiest hooks.</li>
+                    <li><span class="highlight">"Canal St."</span> - A gritty street anthem that flips Bones' "Dirt" into something wholly original.</li>
+                    <li><span class="highlight">"Everyday"</span> - An unlikely collaboration that somehow melds Rod Stewart with trap drums to perfection.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

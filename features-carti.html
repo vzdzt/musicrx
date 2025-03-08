@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Playboi Carti Feature</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+      background: #0a0a0a !important;
+    }
+    .highlight {
+        color: #FF0000;
+        font-weight: bold;
+    }
+    .feature-carti-glitch {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #FF0000; 
+      text-shadow: 0 0 10px #FF0000;
+      font-family: 'Syncopate', sans-serif;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .feature-carti-glitch::before,
+    .feature-carti-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-carti-glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .feature-carti-glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #FF0000;
+      animation: glitch-2 3s linear infinite;
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="feature-carti-glitch" data-text="PLAYBOI CARTI">PLAYBOI CARTI</h1>
+        <div class="feature-content">
+            <div class="glass-card">
+                <img src="carti.jpg" alt="Playboi Carti portrait">
+                <h2>The Enigmatic Mumble Architect</h2>
+                <p>Jordan Terrell Carter, known professionally as <span class="highlight">Playboi Carti</span>, has emerged as one of hip-hop's most polarizing and influential figures. With his <span class="highlight">minimalist lyrics</span>, <span class="highlight">experimental vocal style</span>, and <span class="highlight">avant-garde fashion sense</span>, Carti has cultivated a cult following while pushing rap's boundaries into psychedelic new territory.</p>
+            </div>
+
+            <div class="glass-card">
+                <h2>Stylistic Evolution</h2>
+                <p>Carti first gained attention through <span class="highlight">SoundCloud</span> in the mid-2010s, with tracks like <span class="highlight">"Broke Boi"</span> and <span class="highlight">"Fetti"</span> showcasing his charismatic flow over ethereal beats. His self-titled debut mixtape in 2017 introduced his signature style to a wider audience, with <span class="highlight">"Magnolia"</span> becoming a breakthrough hit.</p>
+                <p>With <span class="highlight">Die Lit (2018)</span>, his first studio album, Carti refined his minimalist approach, emphasizing <span class="highlight">atmosphere</span> and <span class="highlight">vibe</span> over traditional lyricism. Working primarily with producer <span class="highlight">Pi'erre Bourne</span>, he crafted dreamy, bass-heavy soundscapes that prioritized feeling over meaning.</p>
+                <p>After a two-year hiatus, Carti returned with <span class="highlight">Whole Lotta Red (2020)</span>, a radical sonic departure that embraced <span class="highlight">punk</span> and <span class="highlight">industrial</span> influences alongside his trap foundation. Initially divisive, the album has since been recognized as a forward-thinking masterpiece that anticipated hip-hop's punk revival.</p>
+                <p>His much-anticipated third album, rumored to be titled <span class="highlight">Music</span>, continues his pattern of reinvention with singles like <span class="highlight">"2024"</span> and <span class="highlight">"BACKR00MS"</span> suggesting new artistic directions.</p>
+            </div>
+
+            <div class="glass-card">
+                <h2>Vocal Innovation</h2>
+                <p>Carti's greatest contribution to hip-hop may be his <span class="highlight">unique vocal approach</span>. Using his voice as an instrument, he prioritizes <span class="highlight">sound over semantics</span>, deploying a range of baby voices, squeals, grunts, and ad-libs that function as textural elements rather than conventional rapping.</p>
+                <p>His famous <span class="highlight">ad-libs</span> ("what!", "slatt!", "bee!") have become instantly recognizable signatures, often carrying more weight than his verses. This approach has been widely imitated but rarely matched, cementing Carti as one of contemporary rap's most distinctive stylists.</p>
+                <p>On <span class="highlight">Whole Lotta Red</span>, Carti pushed this approach further, adopting a raspier, more aggressive vocal delivery that drew comparisons to punk vocalists, expanding hip-hop's vocal possibilities in the process.</p>
+            </div>
+
+            <div class="glass-card">
+                <h2>Visual and Cultural Impact</h2>
+                <p>Beyond music, Carti has influenced fashion and visual culture through his <span class="highlight">gender-fluid style</span> and <span class="highlight">vampire aesthetic</span>. His relationships with luxury brands like <span class="highlight">Rick Owens</span> and <span class="highlight">Givenchy</span> have positioned him as a fashion icon, while his album artwork and music videos embrace surrealist and gothic imagery.</p>
+                <p>Carti's elusive public persona—characterized by cryptic social media posts, rare interviews, and last-minute album releases—has created a mystique that amplifies his cultural impact. His fans obsessively analyze his every move, creating a dedicated community that rivals fandoms in other musical genres.</p>
+                <p>His influence extends to a generation of newer artists who have adopted elements of his style, from <span class="highlight">Yeat</span> to <span class="highlight">Ken Carson</span> to <span class="highlight">Destroy Lonely</span>—many of whom are signed to his <span class="highlight">Opium</span> label.</p>
+            </div>
+
+            <div class="glass-card">
+                <h2>Essential Discography</h2>
+                <ul>
+                    <li><span class="highlight">Playboi Carti (2017)</span> - His self-titled debut mixtape featuring the breakout hit "Magnolia."</li>
+                    <li><span class="highlight">Die Lit (2018)</span> - A psychedelic trap masterpiece that elevated atmosphere over conventional structure.</li>
+                    <li><span class="highlight">Whole Lotta Red (2020)</span> - His polarizing, punk-influenced album that has influenced a generation of experimental rappers.</li>
+                </ul>
+            </div>
+
+            <div class="glass-card">
+                <h2>Legacy</h2>
+                <p>Carti's career exemplifies the modern artist's ability to build influence outside traditional systems. Despite limited radio play and mainstream recognition, he has cultivated one of music's most devoted followings through <span class="highlight">streaming platforms</span> and <span class="highlight">social media</span>.</p>
+                <p>His willingness to <span class="highlight">prioritize innovation over accessibility</span> has earned him respect as an artist who refuses to compromise his vision for commercial gain. Each project has pushed boundaries further, establishing him as a true avant-gardist in a genre often criticized for conformity.</p>
+                <p>Love him or hate him, Playboi Carti has changed the sound of contemporary hip-hop, expanding its vocabulary and proving that mainstream success is possible without adhering to conventional notions of what rap music should be.</p>
+            </div>
+
+            <div class="glass-card">
+                <h2>References & Further Reading</h2>
+                <p>
+                    <a href="https://en.wikipedia.org/wiki/Playboi_Carti">Playboi Carti (Wikipedia)</a> | 
+                    <a href="https://en.wikipedia.org/wiki/Playboi_Carti_discography">Playboi Carti discography (Wikipedia)</a> | 
+                    <a href="https://www.billboard.com/artist/playboi-carti/">Billboard artist page</a> | 
+                    <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+                    <a href="https://pitchfork.com/artists/33853-playboi-carti/">Pitchfork artist reviews</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Ensure all glass cards on this page have the right styling
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+        });
+    </script>
+</body>
+</html>
+
