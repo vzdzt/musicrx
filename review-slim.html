@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - The Slim Shady LP Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #0a0a0a !important;
+        }
+        .overall-rating h3 {
+            color: #c500a6;
+        }
+        .highlight {
+            color: #FFFF00; /* Yellow highlights for Slim Shady */
+            font-weight: bold;
+        }
+
+        /* Specific glitch class for Slim Shady LP title */
+        .review-slim-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #FFFF00;
+            text-shadow: 0 0 10px #FFFF00;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+            display: block;
+        }
+
+        .review-slim-glitch::before,
+        .review-slim-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .review-slim-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+
+        .review-slim-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #FFFF00;
+            animation: glitch-2 3s linear infinite;
+        }
+
+        @keyframes glitch-1 {
+            0% { clip: rect(0, 9999px, 0, 0); }
+            5% { clip: rect(20px, 9999px, 40px, 0); }
+            10% { clip: rect(60px, 9999px, 80px, 0); }
+            15% { clip: rect(30px, 9999px, 50px, 0); }
+            20% { clip: rect(90px, 9999px, 110px, 0); }
+            100% { clip: rect(0, 9999px, 0, 0); }
+        }
+
+        @keyframes glitch-2 {
+            0% { clip: rect(0, 9999px, 0, 0); }
+            5% { clip: rect(40px, 9999px, 60px, 0); }
+            10% { clip: rect(80px, 9999px, 100px, 0); }
+            15% { clip: rect(20px, 9999px, 40px, 0); }
+            20% { clip: rect(60px, 9999px, 80px, 0); }
+            100% { clip: rect(0, 9999px, 0, 0); }
+        }
+
+        /* Slim Shady image card with zoom effect matching Graduation */
+        .glass-card.slim-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .glass-card.slim-card:hover {
+            transform: scale(1.05);
+        }
+
+        .glass-card.slim-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card.slim-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Regular glass card style for other sections */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="review-slim-glitch" data-text="The Slim Shady LP">The Slim Shady LP</h1>
+        <div class="review-content">
+            <h2>EMINEM - SSLP</h2>
+            <div class="glass-card slim-card">
+                <img src="slim.jpeg" alt="Eminem - The Slim Shady LP album image">
+            </div>
+            <br>
+            <p>On <span class="highlight">February 23, 1999</span>, Eminem unleashed <em>The Slim Shady LP</em>, a 20-track debut major-label album that stormed the charts, peaking at #2 on the Billboard 200 and eventually going quadruple platinum. Following his underground buzz, this project introduced the world to Slim Shady, a persona that shocked and captivated. Here’s a deep dive into this raw, iconic classic:</p>
+        </div>
+        <br>
+        <span class="highlight"><h2>Messaging and Theme</h2></span>
+        <br>
+        <p>The album’s cover—a shadowy car trunk scene—foreshadows its grim, unhinged vibe. <em>The Slim Shady LP</em> is Eminem channeling his alter ego, a cartoonishly violent trickster born from poverty, anger, and dark humor. Tracks like <span class="highlight">“My Name Is”</span> and <span class="highlight">“Guilty Conscience”</span> revel in provocation, while <span class="highlight">“Rock Bottom”</span> and <span class="highlight">“If I Had”</span> bare his real struggles—broke, desperate, and on the edge. It’s a twisted funhouse mirror of late ‘90s America, blending satire with raw emotion. This is Eminem announcing himself, fearless and feral.</p>
+        <br>
+        <span class="highlight"><h2>Production and Sound</h2></span>
+        <br>
+        <p>Produced primarily by <span class="highlight">Dr. Dre</span> and the <span class="highlight">Bass Brothers</span>, with Eminem’s own beats, <em>The Slim Shady LP</em> is a gritty fusion of West Coast bounce and Midwest edge. The sound is lean and menacing—<span class="highlight">“My Name Is”</span> flips a quirky Labi Siffre sample into a playful banger, while <span class="highlight">“Brain Damage”</span> thumps with eerie bass. <span class="highlight">“Role Model”</span> grooves with dark funk, and <span class="highlight">“Just Don’t Give a Fuck”</span> hits with raw aggression. Eminem’s delivery—rapid-fire, multi-syllabic, and dripping with venom—cuts through the beats like a chainsaw. It’s a stark, unpolished sound that mirrors his chaotic mind.</p>
+        <br>
+        <span class="highlight"><h2>Features</h2></span>
+        <br>
+        <p><em>The Slim Shady LP</em> keeps features minimal, letting Eminem dominate. <span class="highlight">Dr. Dre</span> trades bars on <span class="highlight">“Guilty Conscience,”</span> adding gravitas to the moral tug-of-war. <span class="highlight">Dina Rae</span> croons on <span class="highlight">“Cum on Everybody,”</span> while <span class="highlight">Zoe Winkler</span> and <span class="highlight">Aristotle</span> voice skits like <span class="highlight">“Ken Kaniff.”</span> These guests don’t steal the spotlight—they’re props in Slim Shady’s theater, amplifying his wild narrative without overshadowing his presence.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Tracks to Watch</h2>
+            <ul>
+                <li><span class="highlight">"My Name Is"</span> - A quirky, career-defining hit that introduced Slim Shady.</li>
+                <li><span class="highlight">"Guilty Conscience"</span> - A cinematic morality play with razor-sharp rhymes.</li>
+                <li><span class="highlight">"Rock Bottom"</span> - A raw, gut-wrenching peek into Eminem’s despair.</li>
+                <li><span class="highlight">"Role Model"</span> - A darkly funny banger with relentless flow.</li>
+            </ul>
+        </div>
+        <br>
+        <span class="highlight"><h2>Previous Works</h2></span>
+        <br>
+        <p>Eminem’s indie debut, <em>Infinite</em> (<span class="highlight">1996</span>), showcased his technical skill but flopped commercially. The <em>Slim Shady EP</em> (<span class="highlight">1997</span>) introduced his twisted persona, catching Dr. Dre’s ear. <em>The Slim Shady LP</em> builds on that EP’s foundation, amplifying the shock value and refining the storytelling. Where <em>Infinite</em> was polished but tame, and the EP was a rough sketch, this album is the full explosion—Eminem stepping from Detroit’s underground into rap’s mainstream with a vengeance.</p>
+        <br>
+        <span class="highlight"><h2>Summary</h2></span>
+        <br>
+        <p><em>The Slim Shady LP</em> is a <span class="highlight">60-minute rollercoaster</span>—20 tracks of dark humor, raw rage, and unfiltered talent. It’s Eminem at his hungriest, blending shock rap with personal confessions in a way that’s both repulsive and magnetic. Skits like <span class="highlight">“Paul”</span> and weaker cuts like <span class="highlight">“As the World Turns”</span> pad the runtime, but the highs are seismic. This isn’t just a debut—it’s a cultural Molotov cocktail, launching Eminem as rap’s most polarizing voice. It’s messy, brilliant, and timeless.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Ratings</h2>
+            <p><span class="highlight">Originality (20/20):</span> A groundbreaking persona and style that redefined rap.</p>
+            <p><span class="highlight">Production Quality (18/20):</span> Gritty and effective, though skits disrupt the flow.</p>
+            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Sharp, visceral, and layered, with rare over-the-top moments.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> A thrilling, provocative ride that holds up.</p>
+            <p><span class="highlight">Consistency (17/20):</span> Stellar peaks, but skits and filler dilute the punch.</p>
+            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (93/100):</span> 9.3/10</h3></p>
+            <p><em><span class="highlight">The Slim Shady LP</span></em> isn’t just an album—it’s a detonation, a middle finger to the norm that birthed a legend.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card:not(.slim-card)').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+
+            document.querySelectorAll('.glass-card.slim-card').forEach(card => {
+                card.style.transform = 'none';
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.overflow = 'hidden';
+            });
+        });
+    </script>
+</body>
+</html>
