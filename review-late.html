@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - The Late Registration Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    .highlight {
+        color: #f1c232; /* Fuchsia */
+        font-weight: bold;
+    }
+
+    /* Custom graduation glitch effect */
+    .review-grad-glitch {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #f1c232; /* Fuchsia */
+        text-shadow: 0 0 10px #f1c232;
+        font-family: 'Syncopate', sans-serif;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .review-grad-glitch::before,
+    .review-grad-glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .review-grad-glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 #00ffea;
+        animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .review-grad-glitch::after {
+        left: -2px;
+        text-shadow: -2px 0 #f1c232;
+        animation: glitch-2 3s linear infinite;
+    }
+
+    /* Graduation image card with zoom effect */
+    .glass-card.grad-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        transition: transform 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .glass-card.grad-card:hover {
+        transform: scale(1.05);
+    }
+
+    .glass-card.grad-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .glass-card.grad-card:hover img {
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="review-grad-glitch" data-text="Late Registration">Late Registration</h1>
+        <div class="review-content">
+            <h2>Kanye West - Late Registration</h2>
+            <div class="glass-card grad-card">
+                <img src="latee.jpeg" alt="Kanye West Late Registration album image">
+            </div>
+            <br>
+             <p>On <span class="highlight">August 30, 2005</span>, Kanye West released <em>Late Registration</em>, a 21-track sophomore album that debuted at #1 on the Billboard 200, selling over 860,000 copies in its first week. Following the breakout success of <em>The College Dropout</em>, this project elevated Kanye’s ambition and artistry. Here’s a deep dive into this lush, triumphant classic:</p>
+        </div>
+        <br>
+        <h2>The Messaging and Theme</h2>
+        <p>The album’s cover—a teddy bear peering through college gates—reflects its core: Kanye pushing past his debut’s underdog tale into broader, bolder territory. <em>Late Registration</em> blends swagger with social commentary, from the defiant <span class="highlight">“Heard ’Em Say”</span> to the scathing <span class="highlight">“Diamonds From Sierra Leone.”</span> Tracks like <span class="highlight">“Crack Music”</span> and <span class="highlight">“Roses”</span> tackle systemic issues and personal loss, while <span class="highlight">“Gold Digger”</span> flaunts playful bravado. It’s less a narrative than a mosaic—Kanye as a maturing artist, grappling with fame, race, and legacy, all with a sharper pen and grander vision.</p>
+        <br>
+        <h2>Production and Sound</h2>
+        <p>Co-produced by <span class="highlight">Kanye West</span> and <span class="highlight">Jon Brion</span>, with contributions from <span class="highlight">Just Blaze</span> and <span class="highlight">The Game</span>, <em>Late Registration</em> is a sonic feast of soul samples and orchestral flair. <span class="highlight">“Touch the Sky”</span> soars with Curtis Mayfield’s horns, while <span class="highlight">“Gold Digger”</span> flips Ray Charles into a funky banger. <span class="highlight">“Drive Slow”</span> cruises with jazzy vibes, and <span class="highlight">“Hey Mama”</span> glows with warm strings. Kanye’s delivery—confident, witty, and refined—rides these lush beats, blending hip-hop’s grit with cinematic polish. It’s a step up from <em>Dropout</em>’s rawness, embracing grandeur without losing soul.</p>
+        <br>
+        <h2>Features</h2>
+        <p><em>Late Registration</em> boasts a star-studded cast that amplifies Kanye’s vision. <span class="highlight">Jamie Foxx</span> croons on <span class="highlight">“Gold Digger,”</span> while <span class="highlight">Adam Levine</span> lifts <span class="highlight">“Heard ’Em Say.”</span> <span class="highlight">Lupe Fiasco</span> flows on <span class="highlight">“Touch the Sky,”</span> and <span class="highlight">Nas</span> spars on the <span class="highlight">“Diamonds From Sierra Leone (Remix).”</span> <span class="highlight">Jay-Z</span>, <span class="highlight">Common</span>, and <span class="highlight">Brandy</span> add depth, but Kanye remains the maestro—these guests enhance his symphony without stealing the baton.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Tracks to Watch</h2>
+            <ul>
+                <li><span class="highlight">“Gold Digger”</span> (feat. Jamie Foxx) - A catchy, timeless hit with infectious energy.</li>
+                <br>
+                <li><span class="highlight">“Touch the Sky”</span> (feat. Lupe Fiasco) - A triumphant anthem with soaring horns.</li>
+                <br>
+                <li><span class="highlight">“Heard ’Em Say”</span> (feat. Adam Levine) - A mellow, reflective gem with soulful charm.</li>
+                <br>
+                <li><span class="highlight">“Diamonds From Sierra Leone”</span> - A powerful critique wrapped in lush production.</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Previous Works</h2>
+        <p>Kanye’s debut, <em>The College Dropout</em> (<span class="highlight">2004</span>), introduced his soul-sampling, everyman rap style, building on his production work for Roc-A-Fella. <em>Late Registration</em> expands that blueprint, trading some of <em>Dropout</em>’s scrappy charm for orchestral ambition and sharper commentary. Where <em>Dropout</em> was a personal breakout, this album is a cultural statement—Kanye evolving from underdog to innovator, with a bigger budget and bolder ideas.</p>
+        <br>
+        <h2>Summary</h2>
+         <p><em>Late Registration</em> is a <span class="highlight">70-minute opus</span>—21 tracks of soulful grandeur and fearless artistry. It’s Kanye at his creative peak, weaving personal tales with social critiques into a polished, expansive soundscape. Skits like <span class="highlight">“Broke Phi Broke”</span> and tracks like <span class="highlight">“Addiction”</span> pad the runtime, but the highs—like <span class="highlight">“Touch the Sky”</span>—are monumental. This isn’t just an album—it’s a milestone, proving Kanye’s genius transcends his debut. It’s ambitious, heartfelt, and near-perfect—a registration of rap royalty.</p>
+        <br>
+         <div class="glass-card">
+        <h2>Ratings</h2>
+        <p><span class="highlight">Originality (19/20):</span> A bold evolution of soul-rap with orchestral flair.</p>
+        <p><span class="highlight">Production Quality (20/20):</span> Immaculate—rich, layered, and groundbreaking.</p>
+        <p><span class="highlight">Lyrics and Messaging (19/20):</span> Sharp, insightful, and witty, with minor dips.</p>
+        <p><span class="highlight">Enjoyment Factor (19/20):</span> A vibrant, replayable journey with wide appeal.</p>
+        <p><span class="highlight">Consistency (18/20):</span> Stellar throughout, though skits and a few tracks drag.</p>
+              <p class="overall-rating"><span class="highlight"><h3>Overall Rating (95/100):</span> 9.5/10</h3></p>
+        <p><em><span class="highlight">Late Registration</span></em> isn’t flawless—it’s long, with some filler—but it’s Kanye West at his most inspired, turning soul samples and big ideas into a timeless classic. It’s the sound of an artist hitting his stride, blending hip-hop’s roots with a visionary edge. In Kanye’s discography, this stands as a towering achievement—a late but brilliant registration of his greatness.</p>
+    </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <script src="script.js"></script>
+        <script>
+            // Ensure all glass cards on this page have no tilt, except for grad-card
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+                    card.style.transform = 'none !important';
+                    card.style.perspective = 'none !important';
+                    card.style.transformStyle = 'flat !important';
+                    card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                    card.style.rotate = '0deg !important';
+                });
+
+                // Special handling for graduation card to allow scaling
+                document.querySelectorAll('.glass-card.grad-card').forEach(card => {
+                    card.style.transform = 'none'; // No !important
+                    card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.overflow = 'hidden';
+                });
+            });
+        </script>
+    </body>
+    </html>

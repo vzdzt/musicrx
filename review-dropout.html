@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - The College Dropout Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    .highlight {
+        color: #feb66b; /* Fuchsia */
+        font-weight: bold;
+    }
+
+    /* Custom graduation glitch effect */
+    .review-grad-glitch {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #feb66b; /* Fuchsia */
+        text-shadow: 0 0 10px #feb66b;
+        font-family: 'Syncopate', sans-serif;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .review-grad-glitch::before,
+    .review-grad-glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .review-grad-glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 #00ffea;
+        animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .review-grad-glitch::after {
+        left: -2px;
+        text-shadow: -2px 0 #feb66b;
+        animation: glitch-2 3s linear infinite;
+    }
+
+    /* Graduation image card with zoom effect */
+    .glass-card.grad-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        transition: transform 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .glass-card.grad-card:hover {
+        transform: scale(1.05);
+    }
+
+    .glass-card.grad-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .glass-card.grad-card:hover img {
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1 class="review-grad-glitch" data-text="The College Dropout">The College Dropout</h1>
+        <div class="review-content">
+            <h2>Kanye West - The College Dropout</h2>
+            <div class="glass-card grad-card">
+                <img src="dropoutt.jpeg" alt="Kanye West The College Dropout album image">
+            </div>
+            <br>
+            <p>On <span class="highlight">February 10, 2004</span>, Kanye West unleashed <em>The College Dropout</em>, a 21-track debut that hit #2 on the Billboard 200 and went quadruple platinum. After years as a producer for Roc-A-Fella, this album marked Kanye’s arrival as a rapper with a vision. Here’s a deep dive into this genre-defining classic:</p>
+        </div>
+        <br>
+    <h2>The Messaging and Theme</h2>
+    <p>The album’s cover—a costumed Kanye slumped on bleachers—captures its spirit: an everyman defying expectations. <em>The College Dropout</em> is a rebellion against conformity, blending brash confidence with introspection. Tracks like <span class="highlight">“Through the Wire”</span> and <span class="highlight">“All Falls Down”</span> chronicle Kanye’s journey—car crash survival, self-doubt, and societal critique—while <span class="highlight">“Jesus Walks”</span> grapples with faith. <span class="highlight">“School Spirit”</span> mocks academia’s empty promises. It’s a narrative of hustle and heart—Kanye as the underdog who dropped out to chase dreams, speaking for a generation.</p>
+    <br>
+    <h2>Production and Sound</h2>
+     <p>Helmed by <span class="highlight">Kanye West</span>, with assists from <span class="highlight">Jon Brion</span> and <span class="highlight">Rick Rubin</span>, <em>The College Dropout</em> is a soul-sampling triumph. The beats are warm and lush—<span class="highlight">“Jesus Walks”</span> marches with gospel choirs and booming drums, while <span class="highlight">“Slow Jamz”</span> glides on a sped-up Luther Vandross sample. <span class="highlight">“Last Call”</span> builds from minimal keys to a triumphant swell, and <span class="highlight">“Spaceship”</span> grooves with Marvin Gaye’s soul. Kanye’s delivery—raw, witty, and unpolished—rides these beats, blending hip-hop’s grit with pop accessibility. It’s a fresh, vibrant sound that redefined rap’s mainstream.</p>
+    <br>
+    <h2>Features</h2>
+     <p><em>The College Dropout</em> is packed with guests who elevate Kanye’s vision. <span class="highlight">Jay-Z</span> blesses <span class="highlight">“Never Let Me Down,”</span> while <span class="highlight">Twista</span> and <span class="highlight">Jamie Foxx</span> shine on <span class="highlight">“Slow Jamz.”</span> <span class="highlight">Mos Def</span> adds gravitas to <span class="highlight">“Two Words,”</span> and <span class="highlight">Talib Kweli</span> flows on <span class="highlight">“Get Em High.”</span> <span class="highlight">Ludacris</span>, <span class="highlight">Freeway</span>, and <span class="highlight">Common</span> pop up, but Kanye remains the star—these voices amplify his story without stealing the spotlight.</p>
+    <br>
+    <div class="glass-card">
+        <h2>Tracks to Watch</h2>
+        <ul>
+            <li><span class="highlight">“Jesus Walks”</span> - A soul-stirring anthem of faith and defiance.</li>
+            <br>
+            <li><span class="highlight">“Through the Wire”</span> - A raw, triumphant tale of survival with a Chaka Khan sample.</li>
+            <br>
+            <li><span class="highlight">“All Falls Down”</span> (feat. Syleena Johnson) - A catchy critique of materialism.</li>
+            <br>
+            <li><span class="highlight">“Slow Jamz”</span> (feat. Twista & Jamie Foxx) - A silky, playful ode to romance.</li>
+        </ul>
+    </div>
+    <br>
+    <h2>Previous Works</h2>
+       <p>Before this, Kanye was a producer crafting hits like Jay-Z’s “Izzo (H.O.V.A.)” (<span class="highlight">2001</span>) and <em>The Blueprint</em>. His early mixtapes, like <em>I’m Good</em> (<span class="highlight">2003</span>), hinted at his rapping chops. <em>The College Dropout</em> transforms that potential into a full-fledged debut, building on his soul-sample roots with a rapper’s voice. It’s less a reinvention and more a revelation—Kanye stepping from behind the boards to claim the mic with authority.</p>
+<br>
+        <h2>Summary</h2>
+    <p><em>The College Dropout</em> is a <span class="highlight">76-minute odyssey</span>—21 tracks of soulful beats and fearless storytelling. It’s Kanye at his hungriest, blending humor, heart, and hustle into a debut that’s both timeless and revolutionary. Skits like <span class="highlight">“Lil Jimmy Skit”</span> and tracks like <span class="highlight">“Breathe In Breathe Out”</span> pad the runtime, but the core is flawless. This isn’t just an album—it’s a manifesto, announcing Kanye as rap’s new visionary. It’s bold, messy, and brilliant—a dropout’s diploma of genius.</p>
+        <br>
+    <div class="glass-card">
+        <h2>Ratings</h2>
+         <p><span class="highlight">Originality (20/20):</span> A groundbreaking fusion of soul, rap, and everyman charm.</p>
+        <p><span class="highlight">Production Quality (19/20):</span> Lush and innovative, with skits as the only drag.</p>
+        <p><span class="highlight">Lyrics and Messaging (19/20):</span> Witty, heartfelt, and sharp, with rare lulls.</p>
+        <p><span class="highlight">Enjoyment Factor (19/20):</span> A joyous, replayable ride with broad appeal.</p>
+        <p><span class="highlight">Consistency (18/20):</span>Stellar highs, though skits and a few tracks dilute the flow.</p>
+        <p class="overall-rating"><span class="highlight"><h3>Overall Rating (95/100):</span> 9.5/10</h3></p>
+        <p><em><span class="highlight">The College Dropout</span></em> isn’t perfect—it’s long, with some filler—but it’s Kanye West at his most inspired, turning soul samples and raw rhymes into a cultural juggernaut. It’s the sound of an underdog rewriting rap’s rules, a debut that still resonates decades later. In Kanye’s storied career, this is the spark—a timeless testament to ambition and heart.</p>
+     </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <script src="script.js"></script>
+        <script>
+            // Ensure all glass cards on this page have no tilt, except for grad-card
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+                    card.style.transform = 'none !important';
+                    card.style.perspective = 'none !important';
+                    card.style.transformStyle = 'flat !important';
+                    card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                    card.style.rotate = '0deg !important';
+                });
+
+                // Special handling for graduation card to allow scaling
+                document.querySelectorAll('.glass-card.grad-card').forEach(card => {
+                    card.style.transform = 'none'; // No !important
+                    card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.overflow = 'hidden';
+                });
+            });
+        </script>
+    </body>
+    </html>
+
