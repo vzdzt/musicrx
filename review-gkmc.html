@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - GKMC Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    .highlight {
+        color: #CA9BF7; /* Fuchsia */
+        font-weight: bold;
+    }
+
+    /* Custom graduation glitch effect */
+    .review-grad-glitch {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #CA9BF7; /* Fuchsia */
+        text-shadow: 0 0 10px #CA9BF7;
+        font-family: 'Syncopate', sans-serif;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .review-grad-glitch::before,
+    .review-grad-glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .review-grad-glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 #00ffea;
+        animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .review-grad-glitch::after {
+        left: -2px;
+        text-shadow: -2px 0 #CA9BF7;
+        animation: glitch-2 3s linear infinite;
+    }
+
+    /* Graduation image card with zoom effect */
+    .glass-card.grad-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        transition: transform 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .glass-card.grad-card:hover {
+        transform: scale(1.05);
+    }
+
+    .glass-card.grad-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .glass-card.grad-card:hover img {
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="review-grad-glitch" data-text="good kid, m.A.A.d city">good kid, m.A.A.d city</h1>
+        <div class="review-content">
+            <h2>Kendrick Lamar - GRADgood kid, m.A.A.d cityUATION</h2>
+            <div class="glass-card grad-card">
+                <img src="gkmc2.jpeg" alt="Kendrick Lamar GKMC album image">
+            </div>
+            <br>
+            <p>On <span class="highlight">October 22, 2012</span>, Kendrick Lamar released <em>good kid, m.A.A.d city</em>, a 12-track major-label debut that hit #2 on the Billboard 200 and went triple platinum. Following his indie gem <em>Section.80</em>, this album thrust Kendrick into rap’s elite with a vivid Compton tale. Here’s a deep dive into this modern classic:</p>
+        </div>
+        <br>
+        <span class="highlight"><h2>Messaging and Theme</h2></span>
+        <br>
+        <p>The album’s cover—a faded family photo with Kendrick’s eyes blacked out—sets the stage: a personal, gritty coming-of-age story. Subtitled “A Short Film by Kendrick Lamar,” <em>good kid, m.A.A.d city</em> chronicles a day in young Kendrick’s life, navigating Compton’s chaos. Tracks like <span class="highlight">“Sherane a.k.a Master Splinter’s Daughter”</span> and <span class="highlight">“The Art of Peer Pressure”</span> paint temptation and violence, while <span class="highlight">“Sing About Me, I’m Dying of Thirst”</span> wrestles with mortality and redemption. It’s a cinematic narrative—raw, reflective, and morally complex—showcasing Kendrick as both participant and observer in a “m.A.A.d” (mad) city.</p>
+        <br>
+        <span class="highlight"><h2>Production and Sound</h2></span>
+        <br>
+        <p>Produced by a team including <span class="highlight">Dr. Dre</span>, <span class="highlight">Sounwave</span>, <span class="highlight">Hit-Boy</span>, and <span class="highlight">THC</span>, <em>good kid, m.A.A.d city</em> is a sonic tapestry of West Coast flavor and soulful depth. <span class="highlight">“Bitch, Don’t Kill My Vibe”</span> floats on dreamy guitars, while <span class="highlight">“Money Trees”</span> pulses with hypnotic keys. <span class="highlight">“m.A.A.d city”</span> erupts with frenetic drums and eerie synths, and <span class="highlight">“Swimming Pools (Drank)”</span> blends haunting vocals with booming bass. Kendrick’s delivery—urgent, versatile, and layered—anchors the beats, weaving storytelling with raw emotion. It’s a polished evolution of <em>Section.80</em>, rooted in Compton’s sound yet universally resonant.</p>
+        <br>
+        <span class="highlight"><h2>Features</h2></span>
+        <br>
+        <p><em>good kid, m.A.A.d city</em> keeps features sparse but impactful, serving the narrative. <span class="highlight">Drake</span> adds a slick verse to <span class="highlight">“Poetic Justice,”</span> while <span class="highlight">Jay Rock</span> brings grit to <span class="highlight">“Money Trees.”</span> <span class="highlight">MC Eiht</span> lends Compton cred to <span class="highlight">“m.A.A.d city,”</span> and <span class="highlight">Anna Wise</span> haunts <span class="highlight">“Real.”</span> These guests don’t steal the show—they’re voices in Kendrick’s story, enhancing the album’s cinematic feel without breaking its focus.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Tracks to Watch</h2>
+            <ul>
+                <li><span class="highlight">"Bitch, Don’t Kill My Vibe"</span> - A soulful anthem of self-preservation with timeless appeal.</li>
+                <li><span class="highlight">"Money Trees"</span> - A hypnotic ode to hustle and survival.</li>
+                <li><span class="highlight">"Swimming Pools (Drank)"</span> - A chilling, catchy cautionary tale of excess.</li>
+                <li><span class="highlight">"Sing About Me, I’m Dying of Thirst"</span> - A sprawling, emotional epic of life and death.</li>
+            </ul>
+        </div>
+        <br>
+        <span class="highlight"><h2>Previous Works</h2></span>
+        <br>
+        <p>Kendrick’s early mixtapes like <em>Overly Dedicated</em> (<span class="highlight">2010</span>) and indie debut <em>Section.80</em> (<span class="highlight">2011</span>) showcased his lyrical prowess and social commentary. <em>good kid, m.A.A.d city</em> builds on <em>Section.80</em>’s introspection, trading its loose structure for a tighter, narrative-driven arc. Where <em>Section.80</em> was a raw sketch of Kendrick’s voice, this album is the full portrait—elevating his storytelling and production into a cohesive, cinematic masterpiece.</p>
+        <br>
+        <span class="highlight"><h2>Summary</h2></span>
+        <br>
+        <p><em>good kid, m.A.A.d city</em> is a <span class="highlight">68-minute odyssey</span>—12 tracks (plus bonus cuts) of vivid storytelling and sonic brilliance. It’s Kendrick Lamar at his hungriest, crafting a Compton saga that’s both personal and universal. Every song serves the narrative, though tracks like <span class="highlight">“Compton”</span> feel like an epilogue tacked on. This isn’t just a debut—it’s a statement, blending West Coast roots with literary depth. It’s Kendrick’s arrival as rap’s new torchbearer, a near-flawless journey through a mad city.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Ratings</h2>
+            <p><span class="highlight">Originality (20/20):</span> A groundbreaking narrative rap album with a unique voice.</p>
+            <p><span class="highlight">Production Quality (20/20):</span> Flawless—rich, varied, and perfectly crafted.</p>
+            <p><span class="highlight">Lyrics and Messaging (20/20):</span> Poetic, profound, and impeccably delivered.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> A gripping, replayable ride with rare lulls.</p>
+            <p><span class="highlight">Consistency (19/20):</span> Near-perfect, with only the closer feeling slightly detached.</p>
+            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (98/100):</span> 9.8/10</h3></p>
+            <p><em><span class="highlight">good kid, m.A.A.d city</span></em> isn’t just an album—it’s a film, a novel, a testament to Kendrick Lamar’s genius. It’s as close to perfect as rap gets, weaving Compton’s streets into a timeless tale of struggle and soul.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card:not(.gkmc-card)').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+
+            document.querySelectorAll('.glass-card.gkmc-card').forEach(card => {
+                card.style.transform = 'none';
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.overflow = 'hidden';
+            });
+        });
+    </script>
+</body>
+</html>
