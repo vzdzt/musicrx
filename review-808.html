@@ -1,165 +1,85 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MusicRx - A GREAT CHAOS Review</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - 808s & Heartbreak Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 <style>
-          body {
-            background: #0a0a0a !important;
-          }
-                .overall-rating h3 {
-                color: #8b0000;
-                }
-                .highlight {
-                    color: #8b0000;
-                    font-weight: bold;
-                }
+    .highlight {
+        color: #ff3c00; /* Fuchsia */
+        font-weight: bold;
+    }
 
-            /* Scoped class just for AGC page glass cards */
-            .agc-glass-card {
-              background: rgba(255, 255, 255, 0.1);
-              backdrop-filter: blur(10px);
-              border-radius: 20px;
-              border: 1px solid rgba(255, 255, 255, 0.2);
-              padding: 2rem;
-              margin: 2rem 0;
-              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-              cursor: pointer;
-              position: relative;
-              opacity: 1;
-              display: block;
-              visibility: visible;
-              box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
-              overflow: hidden; /* Contain the effect */
-            }
+    /* Custom graduation glitch effect */
+    .review-grad-glitch {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #ff3c00; /* Fuchsia */
+        text-shadow: 0 0 10px #ff3c00;
+        font-family: 'Syncopate', sans-serif;
+        text-transform: uppercase;
+        position: relative;
+    }
 
-            .agc-glass-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.2),
-                    transparent
-                );
-                transition: 0.5s;
-            }
+    .review-grad-glitch::before,
+    .review-grad-glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-            .agc-glass-card:hover {
-                transform: scale(1.05) !important; /* Added scaling effect with !important */
-                background: rgba(255, 255, 255, 0.15);
-                border-color: var(--primary);
-                box-shadow: 
-                    0 0 0 2px var(--primary),
-                    0 0 30px rgba(0, 247, 255, 0.4);
-            }
+    .review-grad-glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 #00ffea;
+        animation: glitch-1 2s linear infinite reverse;
+    }
 
-            .agc-glass-card:hover::after {
-                content: '';
-                position: absolute;
-                inset: -1px;
-                border-radius: 20px;
-                padding: 1px;
-                background: linear-gradient(45deg, var(--primary), var(--secondary));
-                -webkit-mask: 
-                    linear-gradient(#fff 0 0) content-box, 
-                    linear-gradient(#fff 0 0);
-                -webkit-mask-composite: xor;
-                mask-composite: exclude;
-                pointer-events: none;
-                animation: borderGlow 2s linear infinite;
-            }
+    .review-grad-glitch::after {
+        left: -2px;
+        text-shadow: -2px 0 #d0e0e3;
+        animation: glitch-2 3sff3c00linear infinite;
+    }
 
-            .agc-glass-card img {
-                transition: transform 0.3s ease; /*Added transition to image*/
-            }
+    /* Graduation image card with zoom effect */
+    .glass-card.grad-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        transition: transform 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
 
-            .agc-glass-card:hover img {
-                transform: scale(1.05); /* Added scaling effect to image */
-            }
+    .glass-card.grad-card:hover {
+        transform: scale(1.05);
+    }
 
-            @keyframes borderGlow {
-                0% { opacity: 1; }
-                50% { opacity: 0.5; }
-                100% { opacity: 1; }
-            }
+    .glass-card.grad-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
 
-            .agc-glass-card:hover::before {
-                left: 100%;
-            }
-
-            /* Regular glass card style without the mirror effect */
-            .glass-card {
-              background: rgba(255, 255, 255, 0.1);
-              backdrop-filter: blur(10px);
-              border-radius: 20px;
-              border: 1px solid rgba(255, 255, 255, 0.2);
-              padding: 2rem;
-              margin: 2rem 0;
-              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-              cursor: pointer;
-              position: relative;
-            }
-
-            /* Allow the AGC card to transform */
-            .glass-card.agc-card {
-              transform: none; /* Removed !important to allow hover scaling */
-              perspective: none;
-              transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-
-            .glass-card.agc-card:hover {
-              transform: scale(1.05) !important; /* Scale up on hover with !important */
-            }
-            
-            .glass-card.agc-card:hover img {
-              transform: scale(1.05); /* Image zoom effect on hover */
-            }
-
-            /* Custom glitch effect for A Great Chaos title */
-            .review-agc-glitch {
-              font-size: 3rem;
-              text-align: center;
-              margin-bottom: 2rem;
-              color: #8b0000; 
-              text-shadow: 0 0 10px #8b0000;
-              font-family: 'Syncopate', sans-serif;
-              text-transform: uppercase;
-              position: relative;
-            }
-
-            .review-agc-glitch::before,
-            .review-agc-glitch::after {
-              content: attr(data-text);
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-            }
-
-            .review-agc-glitch::before {
-              left: 2px;
-              text-shadow: -2px 0 #00ffea;
-              animation: glitch-1 2s linear infinite reverse;
-            }
-
-            .review-agc-glitch::after {
-              left: -2px;
-              text-shadow: -2px 0 #8b0000;
-              animation: glitch-2 3s linear infinite;
-            }
+    .glass-card.grad-card:hover img {
+        transform: scale(1.05);
+    }
 </style>
-    </head>
+</head>
 <body>
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
@@ -176,60 +96,61 @@
     </nav>
 
     <div class="container">
-        <h1 class="review-agc-glitch" data-text="A GREAT CHAOS">A GREAT CHAOS</h1>
+        <h1 class="review-grad-glitch" data-text="808s & Heartbreak">808s & Heartbreak</h1>
         <div class="review-content">
-            <h2>Ken Carson - A GREAT CHAOS</h2>
-            <div class="glass-card agc-card">
-              <img src="agc.jpeg" alt="Ken Carson - A Great Chaos album image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            <h2>Kanye West - 808s & Heartbreak</h2>
+            <div class="glass-card grad-card">
+                <img src="808.jpeg" alt="Kanye West 808s & Heartbreak album image">
             </div>
-             <br>
-            <p>On <span class="highlight">October 13, 2023</span>, Ken Carson unleashed <em>A Great Chaos</em>, an 18-track opus that hit the scene with the force of a Friday the 13th storm. As a rising star of Playboi Carti's Opium label, this album marked Carson's boldest step yet, riding the rage rap wave to a Billboard 200 peak at #11. Here's a deep dive into this chaotic, electrifying ride:</p>
-        </div>
-        <br>
-        <h2>The Messaging and Theme</h2>
-        <br>
-        <p>The album's cover—a gritty, low-res shot of Carson flashing a grill—telegraphs its intent: raw, unfiltered, and defiant. <em>A Great Chaos</em> is a plunge into hedonism and havoc, with tracks like <span class="highlight">"Jennifer's Body"</span> and <span class="highlight">"Fighting My Demons"</span> channeling a mosh-pit-ready mix of bravado and turmoil. It's less about storytelling and more about vibe—Carson flexes his newfound fame in <span class="highlight">"Me N My Kup"</span> while hinting at darker edges in <span class="highlight">"Paranoid."</span> The chaos isn't just noise; it's a Gen Z anthem of excess, rebellion, and fleeting introspection, all wrapped in an Opium haze.</p>
-        <br>
-        <h2>Production and Sound</h2>
-        <br>
-        <p>Helmed by a squad including <span class="highlight">F1LTHY</span>, <span class="highlight">Starboy</span>, and <span class="highlight">Outtatown</span>, <em>A Great Chaos</em> is a sonic onslaught of rage rap's finest tricks—distorted bass, glitchy synths, and relentless energy. <span class="highlight">"Lose It"</span> explodes with blown-out low-end, while <span class="highlight">"Singapore"</span> flips Atlanta trap into a futuristic fever dream. <span class="highlight">"Nightcore"</span> speeds up the tempo with hyperpop flair, and <span class="highlight">"Jennifer's Body"</span> stutters like a malfunctioning machine. Carson's voice—mumbled, Auto-Tuned, and dripping with swag—melds into the beats, creating a wall of sound that's both abrasive and addictive. It's a step up from <em>X</em>'s flatness, though the repetition can blur its edges.</p>
-        <br>
-        <h2>Features</h2>
-        <br>
-        <p><em>A Great Chaos</em> keeps features lean but potent, with <span class="highlight">Destroy Lonely</span> and <span class="highlight">Lil Uzi Vert</span> adding Opium flair. Lonely's icy drawl shines on <span class="highlight">"Singapore"</span> and <span class="highlight">"Paranoid,"</span> though his three appearances risk redundancy. Uzi's turn on <span class="highlight">"Like This"</span> brings a burst of eccentricity, but it's understated compared to his usual chaos. These guests don't steal the show—they're seasoning on Carson's dish, amplifying the album's vibe without overshadowing his spotlight.</p>
-        <br>
-        <div class="glass-card">
-            <h2>Tracks to Watch</h2>
-            <ul>
-                <li><span class="highlight">"Jennifer's Body"</span> - A glitchy, mosh-pit banger with a beat that demands attention.</li>
-                <br>
-                <li><span class="highlight">"Fighting My Demons"</span> - A high-octane standout with infectious flows and gritty bass.</li>
-                <br>
-                <li><span class="highlight">"Singapore"</span> (feat. Destroy Lonely) - A cold, cinematic duet that reimagines trap.</li>
-                <br>
-                <li><span class="highlight">"Monëy So Big"</span> - A hypnotic flex with a viral-worthy horn loop.</li>
+            <br>
+     <p>On <span class="highlight">November 24, 2008</span>, Kanye West released <em>808s & Heartbreak</em>, a 12-track sonic shift that peaked at #1 on the Billboard 200, selling over 450,000 copies in its first week. Following the soulful highs of <em>Late Registration</em> and <em>Graduation</em>, this album marked a raw, polarizing pivot. Here’s a deep dive into this haunting, influential masterpiece:</p>
+    </div>
+    <br>
+    <h2>The Messaging and Theme</h2>
+    <p>The album’s cover—a minimalist heart torn apart—mirrors its soul: a stark exploration of grief and isolation. <em>808s & Heartbreak</em> is Kanye baring his wounds after his mother’s death and a broken engagement, stripping away bravado for vulnerability. Tracks like <span class="highlight">“Heartless”</span> and <span class="highlight">“Love Lockdown”</span> mourn lost love, while <span class="highlight">“Welcome to Heartbreak”</span> laments fame’s emptiness. <span class="highlight">“Coldest Winter”</span> is a raw elegy. It’s not a narrative but an emotional purge—Kanye trading swagger for sorrow, crafting a blueprint for rap’s introspective future.</p>
+    <br>
+
+    <h2>Production and Sound</h2>
+    <p>Produced by <span class="highlight">Kanye West</span>, with <span class="highlight">No I.D.</span>, <span class="highlight">Jeff Bhasker</span>, and <span class="highlight">Plain Pat</span>, <em>808s & Heartbreak</em> is a stark, icy soundscape built on Roland TR-808 drums and heavy Auto-Tune. <span class="highlight">“Love Lockdown”</span> pulses with tribal beats and distorted vocals, while <span class="highlight">“Heartless”</span> pairs minimal synths with a chilling hook. <span class="highlight">“Paranoid”</span> sparkles with electro-pop sheen, and <span class="highlight">“RoboCop”</span> layers strings over glitchy production. Kanye’s voice—Auto-Tuned, mournful, and raw—becomes an instrument, ditching rap’s norms for a futuristic, melancholic vibe. It’s a bold departure from <em>Graduation</em>’s maximalism.</p>
+    <br>
+
+    
+    <h2>Features</h2>
+    <p><em>808s & Heartbreak</em> keeps features light, emphasizing Kanye’s solitude. <span class="highlight">Young Jeezy</span> adds grit to <span class="highlight">“Amazing,”</span> while <span class="highlight">Lil Wayne</span> brings swagger to <span class="highlight">“See You in My Nightmares.”</span> <span class="highlight">Kid Cudi</span> haunts <span class="highlight">“Paranoid”</span> and <span class="highlight">“Welcome to Heartbreak,”</span> his hums echoing Kanye’s pain. These guests don’t dominate—they’re shadows in Kanye’s storm, amplifying the album’s emotional weight without breaking its focus.</p>
+    <br>
+    <div class="glass-card">
+        <h2>Tracks to Watch</h2>
+        <ul>
+            <li><span class="highlight">“Heartless”</span> - A chilling, melodic breakup anthem with timeless appeal.</li>
+            <br>
+             <li><span class="highlight">“Love Lockdown”</span> - A bold, percussive cry that redefined Kanye’s sound.</li>
+            <br>
+            <li><span class="highlight">“Welcome to Heartbreak”</span> (feat. Kid Cudi) - A haunting reflection on fame’s toll.</li>
+            <br>
+            <li><span class="highlight">“Amazing”</span> (feat. Young Jeezy) - A brooding, triumphant standout.</li>
             </ul>
-        </div>
-        <br>
-        <h2>Previous Works</h2>
-        <br>
-        <p>Carson's journey began with EPs like <em>Teen X</em> (<span class="highlight">2020</span>) and his debut <em>Project X</em> (<span class="highlight">2021</span>), laying the rage rap groundwork. His sophomore slump, <em>X</em> (<span class="highlight">2022</span>), leaned too hard into monotonous beats and lifeless delivery. <em>A Great Chaos</em> rights those wrongs, sharpening his edge with tighter sequencing and bolder production. Where <em>X</em> felt like a Carti clone on autopilot, this album carves its own lane—still indebted to <em>Whole Lotta Red</em>, but with a newfound swagger and personality.</p>
-        <br>
-        <h2>Summary</h2>
-        <br>
-        <p><em>A Great Chaos</em> is a <span class="highlight">46-minute tempest</span>—18 tracks of unrelenting rage and dark euphoria. It's Ken Carson hitting his stride, funneling hedonism into a sound that's equal parts abrasive and exhilarating. The album's length and occasional sameness—like <span class="highlight">"Hardcore"</span>'s repetitive drone—drag it down, but its peaks are monstrous. <em>A Great Chaos</em> doesn't chase depth; it thrives on visceral impact, cementing Carson as a rage rap contender. It's a creative leap that proves he's more than Carti's shadow—a chaotic king in his own right.</p>
-        <br>
+    </div>
+    <br>
+
+
+    
+    <h2>Previous Works</h2>
+    <p>Kanye's <span class="highlight">2004</span> debut, <em>The College Dropout</em>, introduced his soul-sampling genius and everyman charm, followed by <em>Late Registration</em> in <span class="highlight">2005</span>, which refined that formula with orchestral flair. <em>Graduation</em> completes the trilogy, ditching the classroom for the spotlight. Where <em>Dropout</em> was raw hustle and <em>Late Registration</em> was cinematic ambition, <em>Graduation</em> embraces pop accessibility—less about proving himself and more about claiming his throne. It's Kanye graduating to a new era of influence.</p>
+    <br>
+    <h2>Summary</h2>
+    <p><em>808s & Heartbreak</em> is a <span class="highlight">52-minute lament</span>—12 tracks of stark beauty and raw emotion. It’s Kanye at his most vulnerable, crafting a sound that’s both divisive and prophetic, influencing rap’s melodic turn. Tracks like <span class="highlight">“Pinocchio Story”</span> feel tacked on, but the core—like <span class="highlight">“Heartless”</span>—is unshakable. This isn’t just an album—it’s a pivot, a bold leap that reshaped music. It’s Kanye baring his soul through 808s, a heartbreak that echoes beyond its time.</p>
+    <br>
+    <div class="glass-card">
+        <h2>Ratings</h2>
+            <p><span class="highlight">Originality (20/20):</span> A revolutionary shift that birthed a new rap era.</p>
+            <p><span class="highlight">Production Quality (19/20):</span> Stark, innovative, and cohesive, with minor overreach.</p>
+            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Poignant and raw, though less dense than past works.</p>
+            <p><span class="highlight">Enjoyment Factor (18/20):</span> A gripping, moody listen with broad influence.</p>
+            <p><span class="highlight">Consistency (18/20):</span> Strong throughout, with a few tracks less essential.</p>
+         <p class="overall-rating"><span class="highlight"><h3>Overall Rating (93/100):</span> 9.3/10</h3></p>
         
-        <div class="glass-card">
-            <h2>Ratings</h2>
-            <p><span class="highlight">Originality (17/20):</span> A fresh spin on rage with Atlanta twists, though Carti's influence lingers.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Explosive and textured, with minor lulls in variety.</p>
-            <p><span class="highlight">Lyrics and Messaging (16/20):</span> Catchy and energetic, but light on substance.</p>
-            <p><span class="highlight">Enjoyment Factor (18/20):</span> A thrilling rush for rage fans, if you can handle the intensity.</p>
-            <p><span class="highlight">Consistency (16/20):</span> Strong highs, but mid-tier tracks blur together.</p>
-            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (86/100):</span> 8.6/10</h3></p>
-            <p><em>A Great Chaos</em> is Ken Carson's loudest proclamation yet—a wild, unholy blast of rage rap that's as messy as it is magnetic. It's not perfect, but it doesn't need to be; it's a soundtrack for the mosh pit, a middle finger to convention, and a bold step forward. In the Opium empire, Carson's carving his throne—one distorted beat at a time.</p>
-        </div>
+        <p><em><span class="highlight">808s & Heartbreak</span></em>  isn’t Kanye’s most polished or accessible—it’s his most daring, a raw wound turned into art. It’s not perfect, but its impact is undeniable, paving the way for a generation of emotive rap. In Kanye’s catalog, this stands as a bold, broken-hearted gem—a sonic heartbreak that changed everything.</p>
+    </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -237,9 +158,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
-        // Ensure all glass cards on this page have no tilt, except for agc-card
+        // Ensure all glass cards on this page have no tilt, except for grad-card
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.agc-card)').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
@@ -247,8 +168,8 @@
                 card.style.rotate = '0deg !important';
             });
 
-            // Special handling for AGC card to allow scaling
-            document.querySelectorAll('.glass-card.agc-card').forEach(card => {
+            // Special handling for graduation card to allow scaling
+            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
                 card.style.transform = 'none'; // No !important
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
