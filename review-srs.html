@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Some Rap Songs Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .highlight {
+            color: #cbffb5; /* Fuchsia */
+            font-weight: bold;
+        }
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #cbffb5;
+            text-shadow: 0 0 10px #cbffb5;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #cbffb5;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.grad-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.grad-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.grad-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.grad-card:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="review-grad-glitch" data-text="SOME RAP SONGS">SOME RAP SONGS</h1>
+        <div class="review-content">
+            <h2>Some Rap Songs: Earl Sweatshirt’s Raw Emotional Abyss</h2>
+            <div class="glass-card grad-card">
+                <img src="some_rap_songs.jpg" alt="Earl Sweatshirt Some Rap Songs album image">
+            </div>
+            <br>
+            <p>On <span class="highlight">November 30, 2018</span>, Earl Sweatshirt released <em><span class="highlight">Some Rap Songs</span></em>, his third studio album under Tan Cressida and Columbia Records, a 15-track, 24-minute project largely produced by Earl himself, with contributions from <span class="highlight">Navy Blue</span>, <span class="highlight">Adé Hakim</span>, and <span class="highlight">Standing on the Corner</span>. Born from personal loss and introspection, this lo-fi opus redefined Earl’s artistry. As of <span class="highlight">March 11, 2025</span>, with its Gold certification, it’s a cult classic—let’s explore its haunting brilliance.</p>
+        </div>
+        <br>
+        <h2>The Messaging and Theme</h2>
+        <p>The blurry, toothy cover—a selfie of Earl—mirrors <em><span class="highlight">Some Rap Songs</span></em>’s raw, unfiltered core: grief, depression, and resilience. After losing his father, Keorapetse Kgositsile, Earl channels pain into tracks like <span class="highlight">“Shattered Dreams”</span>—“I spent my whole life depressed”—and <span class="highlight">“Peanut”</span>—“This is not a phase.” <span class="highlight">“The Mint”</span> reflects on mortality with “Only thing on my mind was death,” while <span class="highlight">“Playing Possum”</span> honors his parents’ voices. It’s a fragmented diary of vulnerability.</p>
+        <br>
+        <h2>Production and Sound</h2>
+        <p><span class="highlight">Earl Sweatshirt</span>, <span class="highlight">Navy Blue</span>, <span class="highlight">Adé Hakim</span>, and <span class="highlight">Standing on the Corner</span> craft <em><span class="highlight">Some Rap Songs</span></em>’s sound, blending lo-fi jazz, warped samples, and vinyl crackle. <span class="highlight">“Nowhere2go”</span> stutters with off-kilter loops, <span class="highlight">“Riot!”</span> samples Hugh Masekela’s trumpet, and <span class="highlight">“Azucar”</span> hums with soulful haze. The 24-minute runtime is tight yet chaotic, balancing brevity with emotional weight.</p>
+        <br>
+        <h2>Features</h2>
+        <p><em><span class="highlight">Some Rap Songs</span></em> features <span class="highlight">Navy Blue</span>, <span class="highlight">Standing on the Corner</span>, and sampled voices of <span class="highlight">Cheryl Harris</span> and <span class="highlight">Keorapetse Kgositsile</span>. <span class="highlight">Navy Blue</span>’s monotone on <span class="highlight">“The Mint”</span> complements Earl’s despair, while <span class="highlight">Standing on the Corner</span>’s jazz fusion lifts <span class="highlight">“Ontheway!”</span>. Parental samples on <span class="highlight">“Playing Possum”</span> add intimacy, keeping the focus on Earl’s vision.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Tracks to Watch</h2>
+            <ul>
+                <li><span class="highlight">“Shattered Dreams”</span> - A haunting opener with lo-fi melancholy.</li>
+                <br>
+                <li><span class="highlight">“The Mint”</span> - A reflective gem with a jarring drop.</li>
+                <br>
+                <li><span class="highlight">“Azucar”</span> - Lyrical prowess over hazy jazz vibes.</li>
+                <br>
+                <li><span class="highlight">“Riot!”</span> - A triumphant instrumental nod to family legacy.</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Previous Works</h2>
+        <p>Earl’s journey to <em><span class="highlight">Some Rap Songs</span></em> began with the raw <em><span class="highlight">Earl</span></em> mixtape (2010), matured with <em><span class="highlight">Doris</span></em> (2013), and darkened with <em><span class="highlight">I Don’t Like Shit, I Don’t Go Outside</span></em> (2015). After a three-year hiatus marked by tragedy, <em><span class="highlight">Some Rap Songs</span></em> shifted his sound to abstract lo-fi, paving the way for <em><span class="highlight">Feet of Clay</span></em> (2019).</p>
+        <br>
+        <h2>Summary</h2>
+        <p><em><span class="highlight">Some Rap Songs</span></em> is a <span class="highlight">24-minute plunge</span> into Earl’s psyche, fusing lo-fi innovation with raw emotion. Its brevity and depth captivate, though its abstraction can challenge listeners. As of <span class="highlight">March 11, 2025</span>, its Gold status and critical acclaim (Metacritic 86, Pitchfork 8.8) affirm its cult legacy—an essential, introspective gem.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Ratings</h2>
+            <p><span class="highlight">Originality (19/20):</span> A bold lo-fi reinvention of rap.</p>
+            <p><span class="highlight">Production Quality (18/20):</span> Innovative, though intentionally rough.</p>
+            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Dense and poignant, deeply personal.</p>
+            <p><span class="highlight">Enjoyment Factor (17/20):</span> Rewarding yet challenging.</p>
+            <p><span class="highlight">Consistency (18/20):</span> Cohesive, with slight pacing quirks.</p>
+            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (91/100):</span> 9.1/10</h3></p>
+            <p><em><span class="highlight">Some Rap Songs</span></em> is Earl baring his soul through lo-fi shadows—a fractured, fleeting triumph of grief and grit. It’s not for the faint-hearted, but its raw honesty cuts deep. Turn it low, let the crackle hum, and sink into a world where pain becomes art, a testament to survival’s quiet strength.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
+                card.style.transform = 'none';
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.overflow = 'hidden';
+            });
+        });
+    </script>
+</body>
+</html>
