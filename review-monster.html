@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Monster Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+    .highlight {
+        color: #f5428a; /* Fuchsia */
+        font-weight: bold;
+    }
+
+    /* Custom graduation glitch effect */
+    .review-grad-glitch {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #f5428a; /* Fuchsia */
+        text-shadow: 0 0 10px #f5428a;
+        font-family: 'Syncopate', sans-serif;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .review-grad-glitch::before,
+    .review-grad-glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .review-grad-glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 #00ffea;
+        animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .review-grad-glitch::after {
+        left: -2px;
+        text-shadow: -2px 0 #f5428a;
+        animation: glitch-2 3s linear infinite;
+    }
+
+    /* Graduation image card with zoom effect */
+    .glass-card.grad-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        transition: transform 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .glass-card.grad-card:hover {
+        transform: scale(1.05);
+    }
+
+    .glass-card.grad-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .glass-card.grad-card:hover img {
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="review-grad-glitch" data-text=“Monster”>Monster</h1>
+        <div class="review-content">
+            <h2>Monster: Future’s Dark Triumph Unleashed</h2>
+            <div class="glass-card grad-card">
+                <img src="monster.jpeg” alt="Future Monster album image">
+            </div>
+            <br>
+    <p>On <span class="highlight">October 28, 2014</span>, Future dropped <em>Monster</em>, his ninth mixtape, under Freebandz Entertainment, igniting a legendary run that redefined trap music. Coming off the lukewarm reception to his 2014 album <em>Honest</em>, this 16-track project—executive produced by <span class="highlight">Metro Boomin</span>—marked a gritty pivot, born from heartbreak and hedonism after his split with Ciara. As of <span class="highlight">March 10, 2025</span>, <em>Monster</em> stands as a cornerstone of Future’s discography and a trap classic—let’s dive into its raw, intoxicating abyss.</p>
+</div>
+        <br>
+         <h2>The Messaging and Theme</h2>
+    <p>The cover art—a blood-red silhouette of Future against a black void—sets the tone: this is a descent into darkness. <em>Monster</em> trades the pop-leaning aspirations of <em>Honest</em> for a visceral, drug-fueled diary of rage, sorrow, and defiance. Tracks like <span class="highlight">“Throw Away”</span> and <span class="highlight">“Codeine Crazy”</span> channel personal turmoil—Future’s breakup and struggles with addiction—into a monstrous persona that’s both villain and victim. It’s less about storytelling and more about raw emotion, painting a trap odyssey where excess and despair collide, cementing Future as the genre’s tortured king.</p>
+        <br>
+        <h2>Production and Sound</h2>
+    <p>Helmed by <span class="highlight">Metro Boomin</span>, with beats from <span class="highlight">Southside, TM88, DJ Spinz, and Nard & B</span>, <em>Monster</em> is a masterclass in dark, atmospheric trap. The production is thick with booming 808s, eerie synths, and haunting melodies—<span class="highlight">“Monster”</span> snarls with menacing energy, while <span class="highlight">“Codeine Crazy”</span> drips with melancholic lean-soaked vibes, sampling Lana Del Rey’s “Summertime Sadness.” Future’s auto-tuned croons and snarls blend into the beats, creating a hypnotic, otherworldly soundscape that’s as menacing as it is addictive, laying the blueprint for trap’s evolution.</p>
+    <br>
+    <h2>Features</h2>
+    <p><em>Monster</em> is light on guests, letting Future carry the weight. The sole feature, <span class="highlight">Lil Wayne</span>, drops a slick verse on <span class="highlight">“After That”</span>, adding a touch of YMCMB flair with lines like “I’ma get that pussy wet, her other nigga just dampen that.” It’s not Wayne’s finest, but it complements Future’s relentless energy without stealing the spotlight. This minimal approach keeps the focus on Future’s unfiltered vision, proving he doesn’t need crutches to dominate—a rare feat in a genre often reliant on star power.</p>
+        <br>
+        <div class="glass-card">
+                <h2>Tracks to Watch</h2>
+    <ul>
+        <li><span class="highlight">“Monster”</span> - A snarling title track with aggressive flows and a beat that hits like a freight train.</li>
+<br>
+        <li><span class="highlight">“Throw Away”</span> - A two-part epic, swinging from braggadocio to heartbreak with a seismic beat switch.</li>
+<br>
+        <li><span class="highlight">“Codeine Crazy”</span> - The crown jewel, a soul-baring ode to addiction with a haunting, timeless vibe.</li>
+<br>
+        <li><span class="highlight">“My Savages”</span> - A gritty salute to his crew, pulsing with thunderous percussion.</li>
+    </ul>
+        </div>
+        <br>
+           <h2>Previous Works</h2>
+    <p>Before <em>Monster</em>, Future built his name with mixtapes like <em>Dirty Sprite</em> (2011) and <em>Astronaut Status</em> (2012), showcasing his melodic trap flair, and his 2013 album <em>Honest</em> aimed for mainstream appeal with mixed results. <em>Monster</em> marks a hard reset—ditching pop polish for the street grit of his early days, amplified by Metro Boomin’s dark genius. It kicked off a trilogy with <em>Beast Mode</em> and <em>56 Nights</em>, cementing Future’s shift from radio hopeful to trap icon, a pivot that would peak with 2015’s <em>DS2</em>.</p>
+        <br>
+        <h2>Summary</h2>
+    <p><em>Monster</em> is a <span class="highlight">56-minute plunge</span> into Future’s psyche—unpolished, unapologetic, and unrelenting. It’s a mixtape that thrives on its rawness, blending street anthems with moments of startling vulnerability. While some tracks like <span class="highlight">“2 Pac”</span> lean on familiar tropes, the highs—especially “Codeine Crazy” and “Throw Away”—are genre-defining. As of <span class="highlight">March 10, 2025</span>, <em>Monster</em> remains a fan-favorite milestone, the spark of Future’s imperial phase, proving he’s at his best when he’s broken, bold, and unbothered by convention.</p>
+        <br>
+        <div class="glass-card">
+        <h2>Ratings</h2>
+        <p><span class="highlight">Originality (17/20):</span> A fresh, dark twist on trap, though it builds on Future’s prior sound.</p>
+        <p><span class="highlight">Production Quality (19/20):</span> Metro and co. deliver stellar, moody beats that carry the tape.</p>
+        <p><span class="highlight">Lyrics and Messaging (16/20):</span> Raw and emotional, but repetition and bravado limit depth.</p>
+        <p><span class="highlight">Enjoyment Factor (18/20):</span> A banger-packed ride, though its intensity can wear on casual listeners.</p>
+        <p><span class="highlight">Consistency (17/20):</span> Strong throughout, with minor dips in the back half.</p>
+        <p class="overall-rating"><span class="highlight">Overall Rating (87/100):</span> 8.7/10</p>
+               <p><em><span class=“highlight”>Monster</span></em> isn’t Future’s most polished work, but it’s one of his most vital—a snarling, lean-drenched testament to his resilience. It’s the sound of an artist reclaiming his throne, flaws and all, and setting the stage for trap’s dominance. Turn it up, sip slow, and let the darkness wash over—this is Future at his monstrous peak.</p>
+</body>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Ensure all glass cards on this page have no tilt, except for grad-card
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+
+            // Special handling for graduation card to allow scaling
+            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
+                card.style.transform = 'none'; // No !important
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.overflow = 'hidden';
+            });
+        });
+    </script>
+</body>
+</html>
+
