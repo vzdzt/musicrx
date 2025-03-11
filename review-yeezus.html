@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Yeezus Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .highlight {
+            color: #ab0202; /* Fuchsia */
+            font-weight: bold;
+        }
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ab0202;
+            text-shadow: 0 0 10px #ab0202;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #ab0202;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.grad-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.grad-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.grad-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.grad-card:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="review-grad-glitch" data-text="YEEZUS">YEEZUS</h1>
+        <div class="review-content">
+            <h2>Yeezus: Kanye West’s Abrasive Experimental Triumph</h2>
+            <div class="glass-card grad-card">
+                <img src="yeezus.jpeg" alt="Kanye West Yeezus album image">
+            </div>
+            <br>
+            <p>On <span class="highlight">June 18, 2013</span>, Kanye West released <em><span class="highlight">Yeezus</span></em>, his sixth studio album under Def Jam Recordings and Roc-A-Fella Records, a 10-track, 40-minute project produced by <span class="highlight">Kanye West</span>, <span class="highlight">Rick Rubin</span>, <span class="highlight">Mike Dean</span>, and others. Following the opulence of <em><span class="highlight">Watch the Throne</span></em>, this album marked a stark, industrial shift. As of <span class="highlight">March 11, 2025</span>, with its 2x platinum status, it’s a polarizing masterpiece—let’s dive into its chaotic brilliance.</p>
+        </div>
+        <br>
+        <h2>The Messaging and Theme</h2>
+        <p>The cover—a minimalist clear CD case with a red sticker, designed by <span class="highlight">Kanye West</span> and <span class="highlight">Virgil Abloh</span>—reflects <em><span class="highlight">Yeezus</span></em>’s raw, anti-commercial ethos: rebellion, ego, and societal critique. Tracks like <span class="highlight">“Black Skinhead”</span> and <span class="highlight">“New Slaves”</span> confront racial injustice, while <span class="highlight">“I Am a God”</span> and <span class="highlight">“Blood on the Leaves”</span> explore self-deification and heartbreak with Nina Simone’s “Strange Fruit” sample. It’s visceral and bold, yet abrasive to some.</p>
+        <br>
+        <h2>Production and Sound</h2>
+        <p><span class="highlight">Kanye West</span>, <span class="highlight">Rick Rubin</span>, <span class="highlight">Mike Dean</span>, and producers like <span class="highlight">Daft Punk</span>, <span class="highlight">Hudson Mohawke</span>, and <span class="highlight">Arca</span> craft <em><span class="highlight">Yeezus</span></em>’s sound, blending industrial, electronic, and trap elements. <span class="highlight">“On Sight”</span> opens with distorted synths, <span class="highlight">“Bound 2”</span> samples The Ponderosa Twins with soul, and <span class="highlight">“Black Skinhead”</span> pounds with Marilyn Manson-inspired drums. The production’s raw energy stands out, though its jarring shifts spark debate.</p>
+        <br>
+        <h2>Features</h2>
+        <p><em><span class="highlight">Yeezus</span></em> features <span class="highlight">Frank Ocean</span>, <span class="highlight">Chief Keef</span>, <span class="highlight">Justin Vernon</span>, <span class="highlight">Kid Cudi</span>, and <span class="highlight">Assassin</span>. <span class="highlight">Frank Ocean</span>’s outro on <span class="highlight">“New Slaves”</span> haunts, <span class="highlight">Chief Keef</span>’s ad-libs on <span class="highlight">“Hold My Liquor”</span> add drill edge, and <span class="highlight">Kid Cudi</span> softens <span class="highlight">“Guilt Trip”</span>. The features enhance diversity, though some feel underutilized, keeping Kanye’s vision dominant.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Tracks to Watch</h2>
+            <ul>
+                <li><span class="highlight">“Black Skinhead”</span> - A pounding industrial anthem with fierce energy.</li>
+                <br>
+                <li><span class="highlight">“New Slaves”</span> - A searing critique with a haunting outro.</li>
+                <br>
+                <li><span class="highlight">“Blood on the Leaves”</span> - A haunting blend of Nina Simone and heartbreak.</li>
+                <br>
+                <li><span class="highlight">“Bound 2”</span> - A soulful closer with a Ponderosa Twins sample.</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Previous Works</h2>
+        <p>Kanye’s path to <em><span class="highlight">Yeezus</span></em> began with <em><span class="highlight">The College Dropout</span></em> (2004), evolved with <em><span class="highlight">808s & Heartbreak</span></em> (2008), and peaked with <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> (2010) and <em><span class="highlight">Watch the Throne</span></em> (2011). <em><span class="highlight">Yeezus</span></em> strips down to raw experimentation, paving the way for <em><span class="highlight">The Life of Pablo</span></em> (2016).</p>
+        <br>
+        <h2>Summary</h2>
+        <p><em><span class="highlight">Yeezus</span></em> is a <span class="highlight">40-minute explosion</span> of experimental hip-hop, blending Kanye’s fury with industrial innovation. Its abrasive production and bold lyricism shine, though its jarring shifts divide fans. As of <span class="highlight">March 11, 2025</span>, its 2x platinum status and Metacritic score of 84 affirm its legacy—a must-hear for innovators.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Ratings</h2>
+            <p><span class="highlight">Originality (19/20):</span> A groundbreaking shift to industrial hip-hop.</p>
+            <p><span class="highlight">Production Quality (18/20):</span> Raw and innovative, with jarring transitions.</p>
+            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Bold and provocative, but abrasive at times.</p>
+            <p><span class="highlight">Enjoyment Factor (16/20):</span> Thrilling for fans, challenging for casuals.</p>
+            <p><span class="highlight">Consistency (15/20):</span> Strong highs, but disjointed in flow.</p>
+            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (85/100):</span> 8.5/10</h3></p>
+            <p><em><span class="highlight">Yeezus</span></em> is Kanye’s unapologetic rebellion, a jagged masterpiece of industrial chaos and defiance. It’s not his smoothest ride, but its daring spirit electrifies. Blast it loud, embrace the distortion, and revel in an album that shatters norms, proving genius thrives in the rough edges of a visionary unbound.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
+                card.style.transform = 'none';
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.overflow = 'hidden';
+            });
+        });
+    </script>
+</body>
+</html>
