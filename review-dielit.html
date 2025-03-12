@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,82 +7,85 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    .highlight {
-        color: #00ff41;
-        font-weight: bold;
-    }
-
-    .review-dielit-glitch {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #00ff41; 
-      text-shadow: 0 0 10px #00ff41;
-      font-family: 'Syncopate', sans-serif;
-      text-transform: uppercase;
-      position: relative;
-    }
-
-    .review-dielit-glitch::before,
-    .review-dielit-glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .review-dielit-glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 #00ffea;
-      animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .review-dielit-glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 #00ff41;
-      animation: glitch-2 3s linear infinite;
-    }
-
-    /* DIE LIT glass card styling and zoom effect */
-    .glass-card.dielit-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-      padding: 20px;
-      margin: 10px;
-      transition: transform 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .glass-card.dielit-card:hover {
-      transform: scale(1.05);
-    }
-
-    .glass-card.dielit-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-      width: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .glass-card.dielit-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .overall-rating h3 {
-        color: #00ff41;
-    }
-</style>
+    <style>
+        .highlight {
+            color: #00ff41; /* Neon Green */
+            font-weight: bold;
+        }
+        .review-grad-glitch { /* Standardized class name */
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ff41;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.dielit-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.dielit-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.dielit-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            width: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .glass-card.dielit-card:hover img {
+            transform: scale(1.05);
+        }
+        .overall-rating h3 {
+            color: #00ff41;
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -101,65 +103,53 @@
     </nav>
 
     <div class="container">
-        <h1 class="review-dielit-glitch" data-text="DIE LIT">DIE LIT</h1>
+        <h1 class="review-grad-glitch" data-text="DIE LIT">DIE LIT</h1>
         <div class="review-content">
             <h2>Playboi Carti - DIE LIT</h2>
             <div class="glass-card dielit-card">
                 <img src="diee.jpg" alt="Playboi Carti - Die Lit album image">
             </div>
             <br>
-            <p>Hip-hop fans received a wild, chaotic gift on <span class="highlight">May 11, 2018</span>, when Playboi Carti surprise-dropped his debut studio album, <em>Die Lit</em>. Following the success of his 2017 self-titled mixtape, this project cemented Carti as a trailblazer in the SoundCloud rap era. Here's a deep dive into this frenetic, genre-defying masterpiece:</p>
+            <p>Hip-hop fans received a wild, chaotic gift on <span class="highlight">May 11, 2018</span>, when Playboi Carti surprise-dropped his debut studio album, <em><span class="highlight">Die Lit</span></em>. Following the success of his 2017 self-titled mixtape, this project cemented Carti as a trailblazer in the SoundCloud rap era. Here’s a deep dive into this frenetic, genre-defying masterpiece:</p>
         </div>
         <br>
-
         <h2>The Messaging and Theme</h2>
+        <p>The album’s cover art—a grainy, black-and-white photo of Carti stage-diving into a crowd—sets the tone perfectly: reckless abandon, youthful energy, and a middle finger to convention. <em><span class="highlight">Die Lit</span></em> isn’t about introspection or storytelling; it’s a sonic embodiment of living fast and free. Tracks like <span class="highlight">“R.I.P.”</span> and <span class="highlight">“Lean 4 Real”</span> exude a hedonistic vibe, with Carti reveling in excess, fame, and the thrill of the moment. There’s no grand narrative here—just a raw, unfiltered snapshot of Carti’s world, where ad-libs reign supreme and vibes trump verses. It’s a celebration of the underground trap scene breaking into the mainstream, unapologetically itself.</p>
         <br>
-        <p>The album's cover art—a grainy, black-and-white photo of Carti stage-diving into a crowd—sets the tone perfectly: reckless abandon, youthful energy, and a middle finger to convention. <em>Die Lit</em> isn't about introspection or storytelling; it's a sonic embodiment of living fast and free. Tracks like <span class="highlight">"R.I.P."</span> and <span class="highlight">"Lean 4 Real"</span> exude a hedonistic vibe, with Carti reveling in excess, fame, and the thrill of the moment. There's no grand narrative here—just a raw, unfiltered snapshot of Carti's world, where ad-libs reign supreme and vibes trump verses. It's a celebration of the underground trap scene breaking into the mainstream, unapologetically itself.</p>
-        <br>
-
         <h2>Production and Sound</h2>
+        <p><em><span class="highlight">Die Lit</span></em> is a production tour de force, largely helmed by <span class="highlight">Pi’erre Bourne</span>, who crafts 15 of the album’s 19 tracks. The sound is a hypnotic blend of minimalist trap, cloud rap, and video game-inspired synths. From the ethereal, soaring intro of <span class="highlight">“Long Time”</span> to the menacing, bass-heavy <span class="highlight">“R.I.P.,”</span> the beats are both skeletal and lush, creating an otherworldly atmosphere. Tracks like <span class="highlight">“Shoota”</span> feature triumphant pianos, while <span class="highlight">“Fell In Luv”</span> leans into dreamy, spaced-out vibes. It’s a sugar rush of sound—disorienting, infectious, and unlike anything else in hip-hop at the time. Carti’s voice, often pitch-shifted or layered with ad-libs, becomes an instrument in itself, perfectly complementing Bourne’s innovative production.</p>
         <br>
-        <p><em>Die Lit</em> is a production tour de force, largely helmed by <span class="highlight">Pi'erre Bourne</span>, who crafts 15 of the album's 19 tracks. The sound is a hypnotic blend of minimalist trap, cloud rap, and video game-inspired synths. From the ethereal, soaring intro of <span class="highlight">"Long Time"</span> to the menacing, bass-heavy <span class="highlight">"R.I.P.,"</span> the beats are both skeletal and lush, creating an otherworldly atmosphere. Tracks like <span class="highlight">"Shoota"</span> feature triumphant pianos, while <span class="highlight">"Fell In Luv"</span> leans into dreamy, spaced-out vibes. It's a sugar rush of sound—disorienting, infectious, and unlike anything else in hip-hop at the time. Carti's voice, often pitch-shifted or layered with ad-libs, becomes an instrument in itself, perfectly complementing Bourne's innovative production.</p>
-        <br>
-
         <h2>Features</h2>
+        <p><em><span class="highlight">Die Lit</span></em> boasts an eclectic roster of guest artists, each adding their own flavor to Carti’s chaotic canvas. <span class="highlight">Lil Uzi Vert</span> shines on <span class="highlight">“Shoota,”</span> delivering a melodic counterpoint to Carti’s raw energy. <span class="highlight">Skepta</span>’s sharp, grime-infused verse on <span class="highlight">“Lean 4 Real”</span> cuts through the haze, while <span class="highlight">Chief Keef</span>’s playful turn on <span class="highlight">“Mileage”</span> nods to Carti’s drill influences. Even unexpected collaborators like <span class="highlight">Bryson Tiller</span> (<span class="highlight">“Fell In Luv”</span>) and <span class="highlight">Nicki Minaj</span> (<span class="highlight">“Poke It Out”</span>) adapt to Carti’s world, though some features—like <span class="highlight">Young Thug</span> on <span class="highlight">“Choppa Won’t Miss”</span>—feel less essential. The sheer variety keeps the album unpredictable, amplifying its wild, party-ready appeal.</p>
         <br>
-        <p>The album boasts an eclectic roster of guest artists, each adding their own flavor to Carti's chaotic canvas. <span class="highlight">Lil Uzi Vert</span> shines on <span class="highlight">"Shoota,"</span> delivering a melodic counterpoint to Carti's raw energy. <span class="highlight">Skepta</span>'s sharp, grime-infused verse on <span class="highlight">"Lean 4 Real"</span> cuts through the haze, while <span class="highlight">Chief Keef</span>'s playful turn on <span class="highlight">"Mileage"</span> nods to Carti's drill influences. Even unexpected collaborators like <span class="highlight">Bryson Tiller</span> (<span class="highlight">"Fell In Luv"</span>) and <span class="highlight">Nicki Minaj</span> (<span class="highlight">"Poke It Out"</span>) adapt to Carti's world, though some features—like <span class="highlight">Young Thug</span> on <span class="highlight">"Choppa Won't Miss"</span>—feel less essential. The sheer variety keeps the album unpredictable, amplifying its wild, party-ready appeal.</p>
-        <br>
-
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">"Long Time (Intro)"</span> - A hypnotic opener with its celestial synths and Carti's triumphant delivery, setting the stage for the madness to come.</li>
+                <li><span class="highlight">“Long Time (Intro)”</span> - A mesmerizing portal into Carti’s world, with celestial synths and a triumphant vocal swell that hooks you like a siren’s call into the chaos.</li>
                 <br>
-                <li><span class="highlight">"R.I.P."</span> - A menacing banger with explosive 808s and a Jodeci sample, showcasing Carti at his most aggressive.</li>
+                <li><span class="highlight">“R.I.P.”</span> - A ferocious, bass-drenched banger that twists a Jodeci sample into a mosh-pit anthem, with Carti’s snarling flow hitting like a freight train.</li>
                 <br>
-                <li><span class="highlight">"Shoota"</span> (feat. Lil Uzi Vert) - A standout collaboration with radio-ready appeal and a euphoric vibe.</li>
+                <li><span class="highlight">“Shoota”</span> (feat. Lil Uzi Vert) - A euphoric, piano-laced gem where Uzi’s melody dances with Carti’s raw edge, crafting a trap hit that’s both chaotic and catchy.</li>
                 <br>
-                <li><span class="highlight">"Fell In Luv"</span> (feat. Bryson Tiller) - A trippy, romantic detour that blends trap with R&B smoothness.</li>
+                <li><span class="highlight">“Fell In Luv”</span> (feat. Bryson Tiller) - A dreamy, starlit detour that melds Carti’s hazy trap with Tiller’s R&B sheen, offering a rare glimpse of romance amid the madness.</li>
             </ul>
         </div>
         <br>
-
         <h2>Previous Works</h2>
+        <p>Carti’s self-titled mixtape in <span class="highlight">2017</span> introduced his post-verbal, ad-lib-heavy style with hits like <span class="highlight">“Magnolia,”</span> laying the groundwork for <em><span class="highlight">Die Lit</span></em>. That project, also heavily produced by <span class="highlight">Pi’erre Bourne</span>, leaned on catchy hooks and gummy beats to propel Carti from SoundCloud obscurity to mainstream recognition. <em>Die Lit</em> takes that formula and amplifies it, doubling down on eccentricity and experimentation. It’s less a follow-up and more a bold leap forward, refining Carti’s strengths—his ear for production and knack for infectious vibes—while pushing boundaries further than before.</p>
         <br>
-        <p>Carti's self-titled mixtape in <span class="highlight">2017</span> introduced his post-verbal, ad-lib-heavy style with hits like <span class="highlight">"Magnolia,"</span> laying the groundwork for <em>Die Lit</em>. That project, also heavily produced by <span class="highlight">Pi'erre Bourne</span>, leaned on catchy hooks and gummy beats to propel Carti from SoundCloud obscurity to mainstream recognition. <em>Die Lit</em> takes that formula and amplifies it, doubling down on eccentricity and experimentation. It's less a follow-up and more a bold leap forward, refining Carti's strengths—his ear for production and knack for infectious vibes—while pushing boundaries further than before.</p>
-        <br>
-
         <h2>Summary</h2>
+        <p><em><span class="highlight">Die Lit</span></em> is a <span class="highlight">57-minute thrill ride</span> that doesn’t let up. With 19 tracks of relentless energy, it’s both a product of its time—the peak of the SoundCloud rap wave—and a timeless artifact of youthful rebellion. Carti and Bourne, alongside a star-studded cast, craft an album that’s equal parts chaotic and cohesive, prioritizing mood over meaning. It’s not here to win over purists or deliver profound lyrics; it’s here to make you move, to soundtrack late-night drives and rowdy parties. <em>Die Lit</em> proves that Carti doesn’t need to evolve conventionally—he’s carving his own lane, and it’s a damn fun one.</p>
         <br>
-        <p><em>Die Lit</em> is a <span class="highlight">57-minute thrill ride</span> that doesn't let up. With 19 tracks of relentless energy, it's both a product of its time—the peak of the SoundCloud rap wave—and a timeless artifact of youthful rebellion. Carti and Bourne, alongside a star-studded cast, craft an album that's equal parts chaotic and cohesive, prioritizing mood over meaning. It's not here to win over purists or deliver profound lyrics; it's here to make you move, to soundtrack late-night drives and rowdy parties. <em>Die Lit</em> proves that Carti doesn't need to evolve conventionally—he's carving his own lane, and it's a damn fun one.</p>
-        <br>
-
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> Die Lit redefined trap with its minimalist yet inventive sound, though it builds on foundations laid by Carti's earlier work and peers like Chief Keef.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Pi'erre Bourne's beats are the album's backbone—vibrant, layered, and groundbreaking. A slight dip for occasional repetition.</p>
-            <p><span class="highlight">Lyrics and Messaging (14/20):</span> Lyrics take a backseat to vibe, with Carti's ad-libs and delivery carrying the weight. Depth isn't the goal, and that's fine.</p>
-            <p><span class="highlight">Enjoyment Factor (20/20):</span> Pure, unadulterated fun from start to finish—an addictive listen that demands repeat plays.</p>
-            <p><span class="highlight">Consistency (17/20):</span> The album maintains its high-energy ethos, though its length and some weaker features slightly dilute the impact.</p>
+            <p><span class="highlight">Originality (18/20):</span> A trailblazing fusion of trap and cloud rap that redefined the genre’s edges, though it leans on the groundwork of Carti’s mixtape and peers like Uzi and Keef.</p>
+            <p><span class="highlight">Production Quality (19/20):</span> Pi’erre Bourne’s beats are a sonic playground—lush, minimal, and electrifying, with only a whisper of repetition keeping it from perfection.</p>
+            <p><span class="highlight">Lyrics and Messaging (14/20):</span> Carti’s ad-libs and delivery ignite the vibe, but lyrics are a secondary spark—mood rules here, not meaning, and that’s by design.</p>
+            <p><span class="highlight">Enjoyment Factor (20/20):</span> An unrelenting, addictive rush that’s pure adrenaline—every spin feels like a party you don’t want to leave.</p>
+            <p><span class="highlight">Consistency (17/20):</span> A cohesive blast of energy that rarely falters, though its length and a few underwhelming features nudge it just shy of flawless flow.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (88/100):</span> 8.8/10</h3></p>
-            <p><em>Die Lit</em> isn't a flawless album, but it's a near-perfect execution of Carti's vision. It's a middle finger to expectations, a love letter to trap's fringes, and a testament to the power of vibe-driven music. In a genre often bogged down by formula, Carti and Bourne deliver something raw, radical, and undeniably lit. This album proves that sometimes, the best way to stand out is to strip everything back, turn up the bass, and let the chaos reign.</p>
+            <p><em><span class="highlight">Die Lit</span></em> isn’t a flawless album, but it’s a near-perfect execution of Carti’s vision. It’s a middle finger to expectations, a love letter to trap’s fringes, and a testament to the power of vibe-driven music. In a genre often bogged down by formula, Carti and Bourne deliver something raw, radical, and undeniably lit. This album proves that sometimes, the best way to stand out is to strip everything back, turn up the bass, and let the chaos reign.</p>
         </div>
     </div>
 
@@ -168,7 +158,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
-        // Ensure all glass cards on this page have no tilt, except for dielit-card
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.glass-card:not(.dielit-card)').forEach(card => {
                 card.style.transform = 'none !important';
@@ -177,10 +166,8 @@
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
-            // Special handling for Die Lit card to allow scaling
             document.querySelectorAll('.glass-card.dielit-card').forEach(card => {
-                card.style.transform = 'none'; // No !important
+                card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
             });
@@ -188,4 +175,3 @@
     </script>
 </body>
 </html>
-
