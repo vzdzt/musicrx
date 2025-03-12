@@ -53,7 +53,7 @@
             10% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card.grad-card {
+        .glass-card.pinkprint-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -67,16 +67,16 @@
             align-items: center;
             overflow: hidden;
         }
-        .glass-card.grad-card:hover {
+        .glass-card.pinkprint-card:hover {
             transform: scale(1.05);
         }
-        .glass-card.grad-card img {
+        .glass-card.pinkprint-card img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             transition: transform 0.3s ease;
         }
-        .glass-card.grad-card:hover img {
+        .glass-card.pinkprint-card:hover img {
             transform: scale(1.05);
         }
     </style>
@@ -100,7 +100,7 @@
         <h1 class="review-grad-glitch" data-text="THE PINKPRINT">THE PINKPRINT</h1>
         <div class="review-content">
             <h2>The Pinkprint: Nicki Minaj’s Personal Evolution Triumph</h2>
-            <div class="glass-card grad-card">
+            <div class="glass-card pinkprint-card">
                 <img src="pink.jpeg" alt="Nicki Minaj The Pinkprint album image">
             </div>
             <br>
@@ -119,13 +119,13 @@
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">“Anaconda”</span> - A twerk anthem with bold energy.</li>
+                <li><span class="highlight">“Anaconda”</span> - A seismic twerk anthem that flips Sir Mix-a-Lot’s classic into a bold, booty-shaking declaration of Nicki’s unapologetic reign.</li>
                 <br>
-                <li><span class="highlight">“Pills N Potions”</span> - A moody pop-rap hit with depth.</li>
+                <li><span class="highlight">“Pills N Potions”</span> - A haunting pop-rap hybrid, its moody synths and raw lyrics weaving a tale of love, betrayal, and forgiveness.</li>
                 <br>
-                <li><span class="highlight">“Feeling Myself”</span> - A confident banger with Beyoncé.</li>
+                <li><span class="highlight">“Feeling Myself”</span> - A sleek, confident banger with Beyoncé’s regal swagger amplifying Nicki’s queenly strut over a minimalist beat.</li>
                 <br>
-                <li><span class="highlight">“All Things Go”</span> - A vulnerable opener about her past.</li>
+                <li><span class="highlight">“All Things Go”</span> - A soul-baring opener, its tender keys and candid verses unpacking Nicki’s grief and growth with piercing clarity.</li>
             </ul>
         </div>
         <br>
@@ -137,11 +137,11 @@
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (16/20):</span> A return to rap with personal flair.</p>
-            <p><span class="highlight">Production Quality (17/20):</span> Versatile and polished, with pacing issues.</p>
-            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Honest and bold, but uneven in tone.</p>
-            <p><span class="highlight">Enjoyment Factor (16/20):</span> Engaging for fans, bloated for casuals.</p>
-            <p><span class="highlight">Consistency (15/20):</span> Strong hits, but overlong with filler.</p>
+            <p><span class="highlight">Originality (16/20):</span> A daring pivot back to rap roots with a personal twist, though it treads familiar pop-rap waters at times.</p>
+            <p><span class="highlight">Production Quality (17/20):</span> A vibrant, polished tapestry of trap and pop, slightly marred by pacing and overextension.</p>
+            <p><span class="highlight">Lyrics and Messaging (17/20):</span> A bold mix of raw confession and brash flexes, with some tonal shifts feeling jarring.</p>
+            <p><span class="highlight">Enjoyment Factor (16/20):</span> A thrilling ride for fans, its sprawl and filler testing casual listeners’ patience.</p>
+            <p><span class="highlight">Consistency (15/20):</span> Packed with standout hits, yet weighed down by length and uneven energy across its 23 tracks.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (81/100):</span> 8.1/10</h3></p>
             <p><em><span class="highlight">The Pinkprint</span></em> is Nicki’s raw reinvention, a sprawling testament to her duality as queen and survivor. It’s not her tightest work, but its heart bleeds through. Blast it loud, feel the beats pulse, and witness a star baring her soul amid the glitter—a bold chapter in a legacy forged in pink.</p>
         </div>
@@ -153,14 +153,14 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.pinkprint-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
+            document.querySelectorAll('.glass-card.pinkprint-card').forEach(card => {
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
