@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - The Pinkprint Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .highlight {
+            color: #e848db; /* Fuchsia */
+            font-weight: bold;
+        }
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #e848db;
+            text-shadow: 0 0 10px #e848db;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #e848db;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.grad-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.grad-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.grad-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.grad-card:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="review-grad-glitch" data-text="THE PINKPRINT">THE PINKPRINT</h1>
+        <div class="review-content">
+            <h2>The Pinkprint: Nicki Minaj’s Personal Evolution Triumph</h2>
+            <div class="glass-card grad-card">
+                <img src="pink.jpeg" alt="Nicki Minaj The Pinkprint album image">
+            </div>
+            <br>
+            <p>On <span class="highlight">December 15, 2014</span>, Nicki Minaj released <em><span class="highlight">The Pinkprint</span></em>, her third studio album under Young Money, Cash Money, and Republic Records, a 23-track, 68-minute project produced by <span class="highlight">Dr. Luke</span>, <span class="highlight">Boi-1da</span>, <span class="highlight">Detail</span>, and others. Following <em><span class="highlight">Pink Friday</span></em>, this album blends rap roots with personal revelations. As of <span class="highlight">March 11, 2025</span>, with its 2x platinum status, it’s a pivotal work—let’s explore its legacy.</p>
+        </div>
+        <br>
+        <h2>The Messaging and Theme</h2>
+        <p>The cover—a bold pink-and-black portrait designed by <span class="highlight">Brett Ratner</span>—exudes empowerment, mirroring <em><span class="highlight">The Pinkprint</span></em>’s themes of vulnerability and resilience. Tracks like <span class="highlight">“All Things Go”</span> and <span class="highlight">“I Lied”</span> reveal pain from her abortion and relationships, while <span class="highlight">“Anaconda”</span> and <span class="highlight">“Only”</span> reclaim pop dominance. It’s multifaceted, balancing bravado with honesty.</p>
+        <br>
+        <h2>Production and Sound</h2>
+        <p><span class="highlight">Dr. Luke</span>, <span class="highlight">Boi-1da</span>, <span class="highlight">Detail</span>, <span class="highlight">Hit-Boy</span>, and <span class="highlight">Zaytoven</span> craft <em><span class="highlight">The Pinkprint</span></em>’s sound, blending trap, pop, and hip-hop. <span class="highlight">“Anaconda”</span> flips “Baby Got Back” with a twerk-ready beat, <span class="highlight">“Pills N Potions”</span> layers moody synths, and <span class="highlight">“Feeling Myself”</span> rides a minimalist groove. The versatility shines, though its length can feel overstuffed.</p>
+        <br>
+        <h2>Features</h2>
+        <p><em><span class="highlight">The Pinkprint</span></em> features <span class="highlight">Beyoncé</span>, <span class="highlight">Drake</span>, <span class="highlight">Lil Wayne</span>, <span class="highlight">Chris Brown</span>, <span class="highlight">Meek Mill</span>, and <span class="highlight">Ariana Grande</span>. <span class="highlight">Beyoncé</span> elevates <span class="highlight">“Feeling Myself,”</span> <span class="highlight">Drake</span> shines on <span class="highlight">“Only,”</span> and <span class="highlight">Meek Mill</span> adds depth to <span class="highlight">“Buy a Heart.”</span> The features boost appeal, though some feel they overshadow Nicki’s presence.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Tracks to Watch</h2>
+            <ul>
+                <li><span class="highlight">“Anaconda”</span> - A twerk anthem with bold energy.</li>
+                <br>
+                <li><span class="highlight">“Pills N Potions”</span> - A moody pop-rap hit with depth.</li>
+                <br>
+                <li><span class="highlight">“Feeling Myself”</span> - A confident banger with Beyoncé.</li>
+                <br>
+                <li><span class="highlight">“All Things Go”</span> - A vulnerable opener about her past.</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Previous Works</h2>
+        <p>Nicki’s path to <em><span class="highlight">The Pinkprint</span></em> began with 2009’s <em><span class="highlight">Beam Me Up Scotty</span></em>, followed by 2010’s <em><span class="highlight">Pink Friday</span></em> with <span class="highlight">“Super Bass”</span> and 2012’s <em><span class="highlight">Roman Reloaded</span></em> with <span class="highlight">“Starships.”</span> Early tracks like <span class="highlight">“I Get Crazy”</span> built buzz. <em><span class="highlight">The Pinkprint</span></em> refines her versatility, paving the way for <em><span class="highlight">Queen</span></em> (2018).</p>
+        <br>
+        <h2>Summary</h2>
+        <p><em><span class="highlight">The Pinkprint</span></em> is a <span class="highlight">68-minute odyssey</span> of evolution, blending Nicki’s rap prowess with pop vulnerability. Its production and lyrics shine, though its length divides fans. As of <span class="highlight">March 11, 2025</span>, its 2x platinum status and Metacritic score of 76 affirm its legacy—a must-hear for versatile listeners.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Ratings</h2>
+            <p><span class="highlight">Originality (16/20):</span> A return to rap with personal flair.</p>
+            <p><span class="highlight">Production Quality (17/20):</span> Versatile and polished, with pacing issues.</p>
+            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Honest and bold, but uneven in tone.</p>
+            <p><span class="highlight">Enjoyment Factor (16/20):</span> Engaging for fans, bloated for casuals.</p>
+            <p><span class="highlight">Consistency (15/20):</span> Strong hits, but overlong with filler.</p>
+            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (81/100):</span> 8.1/10</h3></p>
+            <p><em><span class="highlight">The Pinkprint</span></em> is Nicki’s raw reinvention, a sprawling testament to her duality as queen and survivor. It’s not her tightest work, but its heart bleeds through. Blast it loud, feel the beats pulse, and witness a star baring her soul amid the glitter—a bold chapter in a legacy forged in pink.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
+                card.style.transform = 'none';
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.overflow = 'hidden';
+            });
+        });
+    </script>
+</body>
+</html>
