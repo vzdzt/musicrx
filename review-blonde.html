@@ -1,126 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MusicRx - Blonde review</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Blonde Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 <style>
-          body {
-            background: #39ff14 !important;
-          }
-                .overall-rating h3 {
-                color: #c500a6;
-                }
-                .highlight {
-                    color: #39ff14;
-                    font-weight: bold;
-                }
+    .highlight {
+        color: #39ff14; /* Fuchsia */
+        font-weight: bold;
+    }
 
-            /* Scoped class just for WLR page glass cards */
-            .wlr-glass-card {
-              background: rgba(255, 255, 255, 0.1);
-              backdrop-filter: blur(10px);
-              border-radius: 20px;
-              border: 1px solid rgba(255, 255, 255, 0.2);
-              padding: 2rem;
-              margin: 2rem 0;
-              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-              cursor: pointer;
-              position: relative;
-              opacity: 1;
-              display: block;
-              visibility: visible;
-              box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
-              overflow: hidden; /* Contain the effect */
-            }
+    /* Custom graduation glitch effect */
+    .review-grad-glitch {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #39ff14; /* Fuchsia */
+        text-shadow: 0 0 10px #39ff14;
+        font-family: 'Syncopate', sans-serif;
+        text-transform: uppercase;
+        position: relative;
+    }
 
-            .wlr-glass-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.2),
-                    transparent
-                );
-                transition: 0.5s;
-            }
+    .review-grad-glitch::before,
+    .review-grad-glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-            .wlr-glass-card:hover {
-                transform: scale(1.05) !important; /* Added scaling effect with !important */
-                background: rgba(255, 255, 255, 0.15);
-                border-color: var(--primary);
-                box-shadow: 
-                    0 0 0 2px var(--primary),
-                    0 0 30px rgba(0, 247, 255, 0.4);
-            }
+    .review-grad-glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 #00ffea;
+        animation: glitch-1 2s linear infinite reverse;
+    }
 
-            .wlr-glass-card:hover::after {
-                content: '';
-                position: absolute;
-                inset: -1px;
-                border-radius: 20px;
-                padding: 1px;
-                background: linear-gradient(45deg, var(--primary), var(--secondary));
-                -webkit-mask: 
-                    linear-gradient(#fff 0 0) content-box, 
-                    linear-gradient(#fff 0 0);
-                -webkit-mask-composite: xor;
-                mask-composite: exclude;
-                pointer-events: none;
-                animation: borderGlow 2s linear infinite;
-            }
+    .review-grad-glitch::after {
+        left: -2px;
+        text-shadow: -2px 0 #39ff14;
+        animation: glitch-2 3s linear infinite;
+    }
 
-            .wlr-glass-card img {
-                transition: transform 0.3s ease; /*Added transition to image*/
-            }
+    /* Graduation image card with zoom effect */
+    .glass-card.grad-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        transition: transform 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
 
-            .wlr-glass-card:hover img {
-                transform: scale(1.05); /* Added scaling effect to image */
-            }
+    .glass-card.grad-card:hover {
+        transform: scale(1.05);
+    }
 
-            @keyframes borderGlow {
-                0% { opacity: 1; }
-                50% { opacity: 0.5; }
-                100% { opacity: 1; }
-            }
+    .glass-card.grad-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
 
-            .wlr-glass-card:hover::before {
-                left: 100%;
-            }
-
-            /* Regular glass card style without the mirror effect */
-            .glass-card {
-              background: rgba(255, 255, 255, 0.1);
-              backdrop-filter: blur(10px);
-              border-radius: 20px;
-              border: 1px solid rgba(255, 255, 255, 0.2);
-              padding: 2rem;
-              margin: 2rem 0;
-              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-              cursor: pointer;
-              position: relative;
-            }
-
-            /* Allow the WLR card to transform */
-            .glass-card.wlr-card {
-              transform: none; /* Removed !important to allow hover scaling */
-              perspective: none;
-              transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-
-            .glass-card.wlr-card:hover {
-              transform: scale(1.05) !important; /* Scale up on hover with !important */
-            }
+    .glass-card.grad-card:hover img {
+        transform: scale(1.05);
+    }
 </style>
-    </head>
+</head>
 <body>
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
@@ -137,13 +95,13 @@
     </nav>
 
     <div class="container">
-        <h1 class="review-wlr-glitch" data-text="WHOLE LOTTA RED">WHOLE LOTTA RED</h1>
+        <h1 class="review-grad-glitch" data-text="Blonde">Blonde</h1>
         <div class="review-content">
-            <h2>Frank Ocean - Blonde</h2>
-            <div class="glass-card wlr-card">
-              <img src=“blonde.jpeg alt="Frank Ocean - Blonde album image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            <h2>Blonde: Frank Ocean’s Intimate Masterpiece Unveiled</h2>
+ <div class="glass-card wlr-card">
+                <img src="blonde.jpeg" alt="Frank Ocean Blonde album image">
             </div>
-             <br>
+            <br>
     <p>On <span class="highlight">August 20, 2016</span>, Frank Ocean emerged from a four-year silence to drop <em>Blonde</em>, his second studio album, independently released after fulfilling his Def Jam contract with the visual project <em>Endless</em>. Following the critical acclaim of 2012’s <em>Channel Orange</em>, <em>Blonde</em> arrived with seismic anticipation, delivering a 17-track tapestry of raw emotion, sonic experimentation, and elusive genius. As of <span class="highlight">March 10, 2025</span>, it stands as a timeless benchmark in alternative R&B—let’s peel back its layers.</p>
 </div>
         <br>
@@ -186,7 +144,8 @@
                 <p><em><span class="highlight">Blonde</span></em> isn’t just an album—it’s an experience, a fragile window into Frank Ocean’s soul. It’s not for everyone, but for those who connect with its wavelength, it’s a near-perfect exploration of love, memory, and sound. Ocean doesn’t compromise, and that’s his genius—<em>Blonde</em> is a quiet revolution that lingers long after the final note fades.</p>
         </div>
     </div>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
@@ -211,8 +170,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
