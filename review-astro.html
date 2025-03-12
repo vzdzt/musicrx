@@ -1,84 +1,85 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - Graduation Review</title>
+    <title>MusicRx - Astroworld Review</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    .highlight {
-        color: #90EE90; /* Fuchsia */
-        font-weight: bold;
-    }
-
-    /* Custom graduation glitch effect */
-    .review-grad-glitch {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        color: #90EE90; /* Fuchsia */
-        text-shadow: 0 0 10px #90EE90;
-        font-family: 'Syncopate', sans-serif;
-        text-transform: uppercase;
-        position: relative;
-    }
-
-    .review-grad-glitch::before,
-    .review-grad-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .review-grad-glitch::before {
-        left: 2px;
-        text-shadow: -2px 0 #00ffea;
-        animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .review-grad-glitch::after {
-        left: -2px;
-        text-shadow: -2px 0 #90EE90;
-        animation: glitch-2 3s linear infinite;
-    }
-
-    /* Graduation image card with zoom effect */
-    .glass-card.grad-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        transition: transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .glass-card.grad-card:hover {
-        transform: scale(1.05);
-    }
-
-    .glass-card.grad-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .glass-card.grad-card:hover img {
-        transform: scale(1.05);
-    }
-</style>
+    <style>
+        .highlight {
+            color: #90EE90; /* Light Green */
+            font-weight: bold;
+        }
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #90EE90;
+            text-shadow: 0 0 10px #90EE90;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #90EE90;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.astro-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.astro-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.astro-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.astro-card:hover img {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -96,55 +97,53 @@
     </nav>
 
     <div class="container">
-        <h1 class="review-astro-glitch" data-text="Astroworld">Astroworld</h1>
+        <h1 class="review-grad-glitch" data-text="ASTROWORLD">ASTROWORLD</h1>
         <div class="review-content">
-            <h2>Travis Scott - Astroworld</h2>
-            <div class="glass-card grad-card">
+            <h2>ASTROWORLD: TRAVIS' PSYCHEDELIC THRILL RIDE</h2>
+            <div class="glass-card astro-card">
                 <img src="astro.jpeg" alt="Travis Scott Astroworld album image">
             </div>
             <br>
-            <p>On <span class="highlight">August 3, 2018</span>, Travis Scott unleashed <em>Astroworld</em>, a 17-track sonic rollercoaster that hit #1 on the Billboard 200. Named after a shuttered Houston amusement park, this album followed the raw energy of <em>Rodeo</em> and <em>Birds in the Trap Sing McKnight</em> with a grand, immersive vision. Here’s a deep dive into this trap masterpiece:</p>
+            <p>On <span class="highlight">August 3, 2018</span>, Travis Scott unleashed <em><span class="highlight">Astroworld</span></em>, a 17-track sonic rollercoaster that hit #1 on the Billboard 200. Named after a shuttered Houston amusement park, this album followed the raw energy of <em>Rodeo</em> and <em>Birds in the Trap Sing McKnight</em> with a grand, immersive vision. Here’s a deep dive into this trap masterpiece:</p>
         </div>
         <br>
-        <span class="highlight"><h2>Messaging and Theme</h2></span>
+        <h2>Messaging and Theme</h2>
+        <p>The album’s cover—gaudy, surreal amusement park imagery by David LaChapelle—sets the stage: a wild, neon-lit escape. <em><span class="highlight">Astroworld</span></em> is Travis curating a drug-fueled fantasy, blending hedonism with nostalgia. Tracks like <span class="highlight">“Stargazing”</span> and <span class="highlight">“Sicko Mode”</span> revel in excess, while <span class="highlight">“Stop Trying to Be God”</span> and <span class="highlight">“Coffee Bean”</span> wrestle with fame’s toll and personal ties. It’s not a linear tale but a vibe-driven ride—Scott as the ringleader of a chaotic carnival, inviting us into his twisted wonderland. This is his peak, balancing chaos with curation.</p>
         <br>
-        <p>The album’s cover—gaudy, surreal amusement park imagery by David LaChapelle—sets the stage: a wild, neon-lit escape. <em>Astroworld</em> is Travis curating a drug-fueled fantasy, blending hedonism with nostalgia. Tracks like <span class="highlight">“Stargazing”</span> and <span class="highlight">“Sicko Mode”</span> revel in excess, while <span class="highlight">“Stop Trying to Be God”</span> and <span class="highlight">“Coffee Bean”</span> wrestle with fame’s toll and personal ties. It’s not a linear tale but a vibe-driven ride—Scott as the ringleader of a chaotic carnival, inviting us into his twisted wonderland. This is his peak, balancing chaos with curation.</p>
+        <h2>Production and Sound</h2>
+        <p>Co-produced by <span class="highlight">Travis Scott</span> with heavy hitters like <span class="highlight">Mike Dean</span>, <span class="highlight">Frank Dukes</span>, and <span class="highlight">Hit-Boy</span>, <em><span class="highlight">Astroworld</span></em> is a sonic spectacle. The beats are cinematic—<span class="highlight">“Stargazing”</span> shifts from dreamy synths to pounding trap, while <span class="highlight">“Sicko Mode”</span> morphs through three phases of madness. <span class="highlight">“No Bystanders”</span> roars with distorted bass, and <span class="highlight">“Butterfly Effect”</span> floats on hazy keys. Scott’s voice—Auto-Tuned, layered, and dripping with effects—blends into the production, creating a seamless, psychedelic flow. It’s a leap from <em>Birds</em>’s minimalism, offering a trap symphony that’s both ambitious and intoxicating.</p>
         <br>
-        <span class="highlight"><h2>Production and Sound</h2></span>
-        <br>
-        <p>Co-produced by <span class="highlight">Travis Scott</span> with heavy hitters like <span class="highlight">Mike Dean</span>, <span class="highlight">Frank Dukes</span>, and <span class="highlight">Hit-Boy</span>, <em>Astroworld</em> is a sonic spectacle. The beats are cinematic—<span class="highlight">“Stargazing”</span> shifts from dreamy synths to pounding trap, while <span class="highlight">“Sicko Mode”</span> morphs through three phases of madness. <span class="highlight">“No Bystanders”</span> roars with distorted bass, and <span class="highlight">“Butterfly Effect”</span> floats on hazy keys. Scott’s voice—Auto-Tuned, layered, and dripping with effects—blends into the production, creating a seamless, psychedelic flow. It’s a leap from <em>Birds</em>’s minimalism, offering a trap symphony that’s both ambitious and intoxicating.</p>
-        <br>
-        <span class="highlight"><h2>Features</h2></span>
-        <br>
-        <p><em>Astroworld</em> is a star-packed affair, with guests amplifying Travis’s vision. <span class="highlight">Drake</span> steals the show on <span class="highlight">“Sicko Mode,”</span> while <span class="highlight">Kid Cudi</span> hums hauntingly on <span class="highlight">“Stop Trying to Be God.”</span> <span class="highlight">The Weeknd</span> glides over <span class="highlight">“Skeletons”</span> and <span class="highlight">“Wake Up,”</span> and <span class="highlight">21 Savage</span> snarls on <span class="highlight">“NC-17.”</span> <span class="highlight">Frank Ocean</span>, <span class="highlight">Quavo</span>, and even <span class="highlight">Stevie Wonder</span> (on harmonica) add texture. These features don’t overshadow Scott—they’re rides in his park, enhancing the album’s kaleidoscopic energy.</p>
+        <h2>Features</h2>
+        <p><em><span class="highlight">Astroworld</span></em> is a star-packed affair, with guests amplifying Travis’s vision. <span class="highlight">Drake</span> steals the show on <span class="highlight">“Sicko Mode,”</span> while <span class="highlight">Kid Cudi</span> hums hauntingly on <span class="highlight">“Stop Trying to Be God.”</span> <span class="highlight">The Weeknd</span> glides over <span class="highlight">“Skeletons”</span> and <span class="highlight">“Wake Up,”</span> and <span class="highlight">21 Savage</span> snarls on <span class="highlight">“NC-17.”</span> <span class="highlight">Frank Ocean</span>, <span class="highlight">Quavo</span>, and even <span class="highlight">Stevie Wonder</span> (on harmonica) add texture. These features don’t overshadow Scott—they’re rides in his park, enhancing the album’s kaleidoscopic energy.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">"Sicko Mode"</span> - A shape-shifting banger that redefined trap anthems.</li>
-                <li><span class="highlight">"Stargazing"</span> - A psychedelic opener that swings from bliss to chaos.</li>
-                <li><span class="highlight">"Stop Trying to Be God"</span> - A brooding meditation with cinematic flair.</li>
-                <li><span class="highlight">"Butterfly Effect"</span> - A dreamy, hypnotic standout that oozes replay value.</li>
+                <li><span class="highlight">“Sicko Mode”</span> - A genre-defying, shape-shifting juggernaut that fuses Drake’s slick bars with Travis’s frenetic trap chaos, rewriting the anthem playbook.</li>
+                <br>
+                <li><span class="highlight">“Stargazing”</span> - A psychedelic opener that catapults from ethereal synths to earth-shaking 808s, setting the tone for Travis’s wild ride.</li>
+                <br>
+                <li><span class="highlight">“Stop Trying to Be God”</span> - A brooding, cinematic meditation on fame, laced with Kid Cudi’s ghostly hums and Stevie Wonder’s harmonica wail.</li>
+                <br>
+                <li><span class="highlight">“Butterfly Effect”</span> - A hazy, hypnotic gem that drifts on lush keys and Travis’s melodic croon, oozing effortless replay allure.</li>
             </ul>
         </div>
         <br>
-        <span class="highlight"><h2>Previous Works</h2></span>
+        <h2>Previous Works</h2>
+        <p>Travis’s journey began with <em><span class="highlight">Owl Pharaoh</span></em> (<span class="highlight">2013</span>), a raw mixtape, followed by the explosive <em><span class="highlight">Rodeo</span></em> (<span class="highlight">2015</span>), which fused trap with dark psychedelia. <em><span class="highlight">Birds in the Trap Sing McKnight</span></em> (<span class="highlight">2016</span>) honed his melodic side. <em><span class="highlight">Astroworld</span></em> builds on these, amplifying <em>Rodeo</em>’s ambition and <em>Birds</em>’s polish into a grander vision. Where <em>Rodeo</em> was a gritty debut and <em>Birds</em> a tighter experiment, <em>Astroworld</em> is the full theme park—bigger, bolder, and more immersive.</p>
         <br>
-        <p>Travis’s journey began with <em>Owl Pharaoh</em> (<span class="highlight">2013</span>), a raw mixtape, followed by the explosive <em>Rodeo</em> (<span class="highlight">2015</span>), which fused trap with dark psychedelia. <em>Birds in the Trap Sing McKnight</em> (<span class="highlight">2016</span>) honed his melodic side. <em>Astroworld</em> builds on these, amplifying <em>Rodeo</em>’s ambition and <em>Birds</em>’s polish into a grander vision. Where <em>Rodeo</em> was a gritty debut and <em>Birds</em> a tighter experiment, <em>Astroworld</em> is the full theme park—bigger, bolder, and more immersive.</p>
-        <br>
-        <span class="highlight"><h2>Summary</h2></span>
-        <br>
-        <p><em>Astroworld</em> is a <span class="highlight">58-minute thrill ride</span>—17 tracks of trap opulence and psychedelic twists. It’s Travis Scott at his peak, crafting a cohesive, larger-than-life experience that balances chaos with control. A few tracks—like <span class="highlight">“Who? What!”</span>—feel like filler, but the highs are untouchable. <em>Astroworld</em> doesn’t just play; it transports, turning Houston’s lost park into a sonic universe. This is Scott’s magnum opus, a testament to his knack for turning hype into art.</p>
+        <h2>Summary</h2>
+        <p><em><span class="highlight">Astroworld</span></em> is a <span class="highlight">58-minute thrill ride</span>—17 tracks of trap opulence and psychedelic twists. It’s Travis Scott at his peak, crafting a cohesive, larger-than-life experience that balances chaos with control. A few tracks—like <span class="highlight">“Who? What!”</span>—feel like filler, but the highs are untouchable. <em><span class="highlight">Astroworld</span></em> doesn’t just play; it transports, turning Houston’s lost park into a sonic universe. This is Scott’s magnum opus, a testament to his knack for turning hype into art.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (19/20):</span> A bold trap evolution with psychedelic flair, rooted in Scott’s style.</p>
-            <p><span class="highlight">Production Quality (20/20):</span> Flawless—lush, dynamic, and perfectly curated.</p>
-            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Atmospheric and vibe-heavy, with depth in spots.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> A wild, addictive ride with rare dips.</p>
-            <p><span class="highlight">Consistency (18/20):</span> Near-perfect flow, though a few tracks lag.</p>
+            <p><span class="highlight">Originality (19/20):</span> A daring trap evolution infused with psychedelic flair, distinctly Travis yet pushing boundaries beyond his peers.</p>
+            <p><span class="highlight">Production Quality (20/20):</span> A flawless tapestry of lush soundscapes and dynamic shifts, meticulously curated for maximum impact.</p>
+            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Rich with atmosphere and fleeting depth, prioritizing vibe over dense storytelling—potent but not profound.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> A wild, intoxicating ride that hooks hard, with only rare moments of respite amid the thrills.</p>
+            <p><span class="highlight">Consistency (18/20):</span> A near-seamless flow of highs, slightly scuffed by a handful of less essential cuts.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (93/100):</span> 9.3/10</h3></p>
-            <p><em><span class="highlight">Astroworld</span></em> isn’t just an album—it’s an event, a neon-soaked testament to Travis Scott’s vision.</p>
+            <p><em><span class="highlight">Astroworld</span></em> isn’t just an album—it’s an event, a neon-soaked testament to Travis Scott’s vision. It’s a trap odyssey that captures the euphoria and excess of his world, cementing his legacy as a sonic architect.</p>
         </div>
     </div>
 
@@ -161,7 +160,6 @@
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
             document.querySelectorAll('.glass-card.astro-card').forEach(card => {
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
