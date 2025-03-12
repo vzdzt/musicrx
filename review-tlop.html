@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - The Life of Pablo Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .highlight {
+            color: #f78c58; /* Fuchsia */
+            font-weight: bold;
+        }
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #f78c58;
+            text-shadow: 0 0 10px #f78c58;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #f78c58;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.grad-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.grad-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.grad-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.grad-card:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+            <li><a href="features.html" class="nav-link">Features</a></li>
+            <li><a href="news.html" class="nav-link">News</a></li>
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="review-grad-glitch" data-text="THE LIFE OF PABLO">THE LIFE OF PABLO</h1>
+        <div class="review-content">
+            <h2>The Life of Pablo: Kanye West’s Sprawling Gospel Chaos</h2>
+            <div class="glass-card grad-card">
+                <img src="tlop.jpeg" alt="Kanye West The Life of Pablo album image">
+            </div>
+            <br>
+            <p>On <span class="highlight">February 14, 2016</span>, Kanye West released <em><span class="highlight">The Life of Pablo</span></em>, his seventh studio album under G.O.O.D. Music and Def Jam, an 18-track, 66-minute project produced by Kanye with <span class="highlight">Mike Dean</span>, <span class="highlight">Rick Rubin</span>, <span class="highlight">Madlib</span>, and others. Debuted at Madison Square Garden, this eclectic work blends faith and frenzy. As of <span class="highlight">March 11, 2025</span>, with its Platinum status, it’s a chaotic masterpiece—let’s dive in.</p>
+        </div>
+        <br>
+        <h2>The Messaging and Theme</h2>
+        <p>The cover—an orange collage with “Which one?” text—reflects <em><span class="highlight">The Life of Pablo</span></em>’s split soul: sacred and profane. Kanye wrestles with God and ego, from <span class="highlight">“Ultralight Beam”</span>’s prayer to <span class="highlight">“Famous”</span>’s brashness. <span class="highlight">“Father Stretch My Hands, Pt. 1”</span> mixes gospel with hedonism, while <span class="highlight">“Waves”</span> chases transcendence. It’s a sprawling, ambitious self-portrait.</p>
+        <br>
+        <h2>Production and Sound</h2>
+        <p><span class="highlight">Kanye West</span>, <span class="highlight">Mike Dean</span>, <span class="highlight">Rick Rubin</span>, and <span class="highlight">Madlib</span> craft <em><span class="highlight">The Life of Pablo</span></em>’s sound, fusing gospel, trap, and warped samples. <span class="highlight">“Ultralight Beam”</span> glows with horns, <span class="highlight">“Fade”</span> chops house classics, and <span class="highlight">“Real Friends”</span> hums with lo-fi melancholy. The expansive production dazzles, though some tracks feel rough.</p>
+        <br>
+        <h2>Features</h2>
+        <p><em><span class="highlight">The Life of Pablo</span></em> features <span class="highlight">Chance the Rapper</span>, <span class="highlight">Kid Cudi</span>, <span class="highlight">The Weeknd</span>, and <span class="highlight">Rihanna</span>. <span class="highlight">Chance</span> shines on <span class="highlight">“Ultralight Beam,”</span> <span class="highlight">Cudi</span> hums on <span class="highlight">“Father Stretch My Hands, Pt. 1,”</span> and <span class="highlight">Rihanna</span> hooks <span class="highlight">“Famous.”</span> <span class="highlight">Frank Ocean</span> closes <span class="highlight">“Wolves.”</span> The star power enriches Kanye’s vision.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Tracks to Watch</h2>
+            <ul>
+                <li><span class="highlight">“Ultralight Beam”</span> - A gospel-soaked opener.</li>
+                <br>
+                <li><span class="highlight">“Father Stretch My Hands, Pt. 1”</span> - A chaotic faith banger.</li>
+                <br>
+                <li><span class="highlight">“Famous”</span> - Bold and controversial.</li>
+                <br>
+                <li><span class="highlight">“Real Friends”</span> - A raw, introspective gem.</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Previous Works</h2>
+        <p>Kanye’s path to <em><span class="highlight">The Life of Pablo</span></em> began with <em><span class="highlight">The College Dropout</span></em> (2004), soared with <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> (2010), and sharpened with <em><span class="highlight">Yeezus</span></em> (2013). After *Yeezus*, <em><span class="highlight">The Life of Pablo</span></em> returned to maximalism, hitting No. 1 and paving the way for <em><span class="highlight">Ye</span></em> (2018).</p>
+        <br>
+        <h2>Summary</h2>
+        <p><em><span class="highlight">The Life of Pablo</span></em> is a <span class="highlight">66-minute whirlwind</span> of Kanye’s genius, blending gospel grandeur with raw energy. Its highs are iconic, its sprawl divisive. As of <span class="highlight">March 11, 2025</span>, its Platinum status (2017) and Metacritic score of 75 affirm its chaotic legacy—a must for Kanye fans.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Ratings</h2>
+            <p><span class="highlight">Originality (19/20):</span> Eclectic and groundbreaking.</p>
+            <p><span class="highlight">Production Quality (18/20):</span> Rich but uneven.</p>
+            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Bold yet scattered.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> Thrilling and replayable.</p>
+            <p><span class="highlight">Consistency (16/20):</span> Ambitious but patchy.</p>
+            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (89/100):</span> 8.9/10</h3></p>
+            <p><em><span class="highlight">The Life of Pablo</span></em> is Kanye’s fractured gospel epic, a wild dance of divinity and defiance. It’s not his smoothest ride, but its soul burns bright. Blast it loud, let the choirs soar, and revel in a mosaic where faith meets frenzy—a raw, unfiltered glimpse into a genius teetering on the edge.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
+                card.style.transform = 'none';
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.overflow = 'hidden';
+            });
+        });
+    </script>
+</body>
+</html>
