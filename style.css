@@ -97,6 +97,7 @@ nav {
   }
 }
 
+
 /* Styling for standalone glass cards on news page */
 body > .glass-card {
     width: 80%;
@@ -138,6 +139,10 @@ body > .glass-card {
     letter-spacing: 0.05em;
 }
 
+.glass-card {
+    /* ...rest of the existing styles... */
+}
+
 body .container {
     margin-bottom: 2rem;
 }
@@ -153,7 +158,7 @@ body .container h2 {
   margin: 0 auto;
   padding: 6rem 2rem 2rem;
   position: relative;
-  z-index: 1;
+  z-index: 1; /* Ensure content is above background */
 }
 
 .glitch {
@@ -228,7 +233,6 @@ body .container h2 {
   margin-top: 2rem;
 }
 
-/* Base glass card styling */
 .glass-card {
   background: var(--glass);
   backdrop-filter: blur(10px);
@@ -236,10 +240,12 @@ body .container h2 {
   padding: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
+  opacity: 1 !important; /* Force visibility as a fallback */
   display: flex;
   flex-direction: column;
   gap: 1rem;
   position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 8px 32px rgba(0, 247, 255, 0.1);
   overflow: hidden;
 }
@@ -265,6 +271,10 @@ body .container h2 {
 .glass-card:hover {
   background: rgba(255, 255, 255, 0.15);
   border-color: var(--primary);
+  box-shadow: 
+    0 0 0 2px var(--primary),
+    0 0 30px rgba(0, 247, 255, 0.4);
+  animation: rgbBorderPulse 3s linear infinite;
 }
 
 .glass-card:hover::after {
@@ -301,10 +311,10 @@ body .container h2 {
   100% { background-position: 0% 50%; }
 }
 
-@keyframes borderGlow {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
+.glass-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
 }
 
 .glass-card h2 {
@@ -315,39 +325,6 @@ body .container h2 {
 .glass-card p {
   color: white;
   line-height: 1.5;
-}
-
-/* Reusable glass card with scope effect */
-.glass-card--scope {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 2rem;
-  margin: 2rem 0;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-card--scope:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.15);
-  border-color: var(--primary);
-  box-shadow: 
-    0 0 0 2px var(--primary),
-    0 0 30px rgba(0, 247, 255, 0.4);
-}
-
-.glass-card--scope img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-}
-
-.glass-card--scope:hover img {
-  transform: scale(1.05);
 }
 
 .rating {
@@ -435,7 +412,7 @@ body .container h2 {
   border-radius: 15px;
 }
 
-/* Specific glass card variants */
+/* New styles for rodeo-rc.jpg glass card - Added [Current Date] */
 .glass-card.rodeo-card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -464,7 +441,7 @@ body .container h2 {
 .glass-card.rodeo-card:hover img[src="rodeo-rc2.jpeg"] {
   transform: scale(1.05);
 }
-
+/* New styles for ap-drake2.jpeg glass card - Added [Current Date] */
 .glass-card.drake-card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -503,11 +480,10 @@ body .container h2 {
 .glass-card.drake-card:hover img[src="ap-drake2.jpeg"] {
   transform: none;
 }
-
 /* Styling for glass-card inside content-opinions */
 #content-opinions .glass-card {
-  max-width: 300px;
-  margin: 0 auto;
+  max-width: 300px; /* Matches grid cards’ minimum width */
+  margin: 0 auto; /* Centers it within content-details */
 }
 
 /* Table Card Styles */
@@ -585,7 +561,8 @@ body .container h2 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Disable tilt effect for specific content */
+
+/* Disable tilt effect from trending content cards, and specific glass cards */
 #content-trending .glass-card,
 .glass-card:has(h2:contains("Key Points")),
 #content-artists .glass-card,
@@ -605,18 +582,17 @@ body .container h2 {
   box-shadow: 0 0 20px rgba(0, 247, 255, 0.3) !important;
 }
 
+/* Disable parallax for specific content */
 #content-trending .glass-card > *,
 .glass-card:has(h2:contains("Key Points")) > *,
 #content-artists .glass-card > *,
 .glass-card:has(h2:contains("Featured Artists")) > * {
   transform: none !important;
 }
-
 .review-wlr-highlight {
   color: #ff0000;
   font-weight: bold;
 }
-
 .review-wlr-glitch {
   font-size: 3rem;
   text-align: center;
@@ -650,8 +626,39 @@ body .container h2 {
   animation: glitch-2 3s linear infinite;
 }
 
-/* Removed .glass-card.wlr-card since it's replaced by .glass-card--scope */
+/* WLR glass card styling and zoom effect */
+.glass-card.wlr-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.glass-card.wlr-card:hover {
+  transform: scale(1.05);
+}
+
+.glass-card.wlr-card img[src="wlr.jpeg"] {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.glass-card.wlr-card:hover img[src="wlr.jpeg"] {
+  transform: scale(1.05);
+}
+
+.glass-card:hover > * {
+  color: #00f7ff; /* Light blue color */
+}
 .review-rodeo-glitch {
   font-size: 3rem;
   text-align: center;
@@ -684,7 +691,6 @@ body .container h2 {
   text-shadow: -2px 0 #ff6e00;
   animation: glitch-2 3s linear infinite;
 }
-
 .feature-drake-glitch {
   font-size: 3rem;
   text-align: center;
@@ -717,7 +723,6 @@ body .container h2 {
   text-shadow: -2px 0 #0088ff;
   animation: glitch-2 3s linear infinite;
 }
-
 /* Web3 Button Styling */
 .button,
 #connectWallet,
@@ -772,13 +777,12 @@ body .container h2 {
 #tipSol:hover::before {
   transform: translate(-50%, -50%) rotate(45deg) scale(1);
 }
-
-/* Specific glitch classes for other reviews */
+/* Specific glitch class for Astroworld */
 .review-astro-glitch {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 2rem;
-    color: #90EE90;
+    color: #90EE90; /* Light green from your Astroworld review */
     text-shadow: 0 0 10px #90EE90;
     font-family: 'Syncopate', sans-serif;
     text-transform: uppercase;
@@ -798,21 +802,39 @@ body .container h2 {
 
 .review-astro-glitch::before {
     left: 2px;
-    text-shadow: -2px 0 #00ffea;
+    text-shadow: -2px 0 #00ffea; /* Cyan shadow for contrast */
     animation: glitch-1 2s linear infinite reverse;
 }
 
 .review-astro-glitch::after {
     left: -2px;
-    text-shadow: -2px 0 #90EE90;
+    text-shadow: -2px 0 #90EE90; /* Matches light green */
     animation: glitch-2 3s linear infinite;
 }
 
+@keyframes glitch-1 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(20px, 9999px, 40px, 0); }
+    10% { clip: rect(60px, 9999px, 80px, 0); }
+    15% { clip: rect(30px, 9999px, 50px, 0); }
+    20% { clip: rect(90px, 9999px, 110px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+@keyframes glitch-2 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(40px, 9999px, 60px, 0); }
+    10% { clip: rect(80px, 9999px, 100px, 0); }
+    15% { clip: rect(20px, 9999px, 40px, 0); }
+    20% { clip: rect(60px, 9999px, 80px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+/* Specific glitch class for MBDTF */
 .review-mbdtf-glitch {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 2rem;
-    color: #AB2330;
+    color: #AB2330; /* Pink from your MBDTF review */
     text-shadow: 0 0 10px #AB2330;
     font-family: 'Syncopate', sans-serif;
     text-transform: uppercase;
@@ -832,21 +854,41 @@ body .container h2 {
 
 .review-mbdtf-glitch::before {
     left: 2px;
-    text-shadow: -2px 0 #00ffea;
+    text-shadow: -2px 0 #00ffea; /* Cyan shadow for contrast */
     animation: glitch-1 2s linear infinite reverse;
 }
 
 .review-mbdtf-glitch::after {
     left: -2px;
-    text-shadow: -2px 0 #fffff2;
+    text-shadow: -2px 0 #fffff2; /* Matches pink */
     animation: glitch-2 3s linear infinite;
 }
 
+@keyframes glitch-1 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(20px, 9999px, 40px, 0); }
+    10% { clip: rect(60px, 9999px, 80px, 0); }
+    15% { clip: rect(30px, 9999px, 50px, 0); }
+    20% { clip: rect(90px, 9999px, 110px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+@keyframes glitch-2 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(40px, 9999px, 60px, 0); }
+    10% { clip: rect(80px, 9999px, 100px, 0); }
+    15% { clip: rect(20px, 9999px, 40px, 0); }
+    20% { clip: rect(60px, 9999px, 80px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+
+/* Specific glitch class for GKMC */
 .review-gkmc-glitch {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 2rem;
-    color: #8e7cc3;
+    color: #8e7cc3; /* Puple from your gkmc review */
     text-shadow: 0 0 10px #8e7cc3;
     font-family: 'Syncopate', sans-serif;
     text-transform: uppercase;
@@ -866,21 +908,39 @@ body .container h2 {
 
 .review-gkmc-glitch::before {
     left: 2px;
-    text-shadow: -2px 0 #00ffea;
+    text-shadow: -2px 0 #00ffea; /* Cyan fshadow for contrast */
     animation: glitch-1 2s linear infinite reverse;
 }
 
 .review-gkmc-glitch::after {
     left: -2px;
-    text-shadow: -2px 0 #fffff2;
+    text-shadow: -2px 0 #fffff2; /* contrast offwhite */
     animation: glitch-2 3s linear infinite;
 }
 
+@keyframes glitch-1 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(20px, 9999px, 40px, 0); }
+    10% { clip: rect(60px, 9999px, 80px, 0); }
+    15% { clip: rect(30px, 9999px, 50px, 0); }
+    20% { clip: rect(90px, 9999px, 110px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+@keyframes glitch-2 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(40px, 9999px, 60px, 0); }
+    10% { clip: rect(80px, 9999px, 100px, 0); }
+    15% { clip: rect(20px, 9999px, 40px, 0); }
+    20% { clip: rect(60px, 9999px, 80px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+/* Specific glitch class for NWTS */
 .review-nwts-glitch {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 2rem;
-    color: #1588f0;
+    color: #1588f0; /* blue from your nwts review */
     text-shadow: 0 0 10px #1588f0;
     font-family: 'Syncopate', sans-serif;
     text-transform: uppercase;
@@ -900,12 +960,82 @@ body .container h2 {
 
 .review-nwts-glitch::before {
     left: 2px;
-    text-shadow: -2px 0 #00ffea;
+    text-shadow: -2px 0 #00ffea; /* Cyan fshadow for contrast */
     animation: glitch-1 2s linear infinite reverse;
 }
 
 .review-nwts-glitch::after {
     left: -2px;
-    text-shadow: -2px 0 #fffff2;
+    text-shadow: -2px 0 #fffff2; /* contrast offwhite */
     animation: glitch-2 3s linear infinite;
+}
+
+@keyframes glitch-1 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(20px, 9999px, 40px, 0); }
+    10% { clip: rect(60px, 9999px, 80px, 0); }
+    15% { clip: rect(30px, 9999px, 50px, 0); }
+    20% { clip: rect(90px, 9999px, 110px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+@keyframes glitch-2 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(40px, 9999px, 60px, 0); }
+    10% { clip: rect(80px, 9999px, 100px, 0); }
+    15% { clip: rect(20px, 9999px, 40px, 0); }
+    20% { clip: rect(60px, 9999px, 80px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+/* Specific glitch class for NWTS */
+.review-nwts-glitch {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #1588f0; /* blue from your nwts review */
+    text-shadow: 0 0 10px #1588f0;
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    display: block;
+}
+
+.review-nwts-glitch::before,
+.review-nwts-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.review-nwts-glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #00ffea; /* Cyan fshadow for contrast */
+    animation: glitch-1 2s linear infinite reverse;
+}
+
+.review-nwts-glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #fffff2; /* contrast offwhite */
+    animation: glitch-2 3s linear infinite;
+}
+
+@keyframes glitch-1 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(20px, 9999px, 40px, 0); }
+    10% { clip: rect(60px, 9999px, 80px, 0); }
+    15% { clip: rect(30px, 9999px, 50px, 0); }
+    20% { clip: rect(90px, 9999px, 110px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+@keyframes glitch-2 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(40px, 9999px, 60px, 0); }
+    10% { clip: rect(80px, 9999px, 100px, 0); }
+    15% { clip: rect(20px, 9999px, 40px, 0); }
+    20% { clip: rect(60px, 9999px, 80px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
 }

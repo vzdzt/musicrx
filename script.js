@@ -1,4 +1,3 @@
-
 // Three.js setup - only initialize if not already initialized
 let scene, camera, renderer;
 
@@ -168,7 +167,7 @@ function updateSupernovas() {
             positions[j + 1] += supernova.velocities[j/3].y;
             positions[j + 2] += supernova.velocities[j/3].z;
 
-            const alpha = 1 - (supnova.age / supernova.maxAge);
+            const alpha = 1 - (supernova.age / supernova.maxAge);
             colors[j] *= alpha;
             colors[j + 1] *= alpha;
             colors[j + 2] *= alpha;
@@ -216,31 +215,171 @@ function animate() {
 // Initialize
 animate();
 
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const universeCanvas = document.getElementById('universe');
+    if (universeCanvas) {
+        universeCanvas.addEventListener('click', (event) => {
+            const rect = renderer.domElement.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+            const vector = new THREE.Vector3(x * 1000, y * 1000, 0);
+            const supernova = createSupernova(vector.x, vector.y, vector.z);
+            supernovas.push({ 
+                ...supernova, 
+                age: 0,
+                maxAge: 100 
+            });
+        });
+    }
+
+    // Handle music toggle
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+
+    if (bgMusic && musicToggle) {
+        bgMusic.volume = 0.5;
+
+        musicToggle.addEventListener('click', async () => {
+            try {
+                if (bgMusic.paused) {
+                    await bgMusic.play();
+                    musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    bgMusic.pause();
+                    musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+                }
+            } catch (err) {
+                console.error('Audio playback error:', err);
+            }
+        });
+    }
+
+    const cursor = document.getElementById('cursor');
+    const cursorBlur = document.getElementById('cursor-blur');
+
+    if (cursor && cursorBlur) {
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+            cursorBlur.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+        });
+    }
+
+    // Landing page handler
+    const landingPage = document.getElementById('landing-page');
+    if (landingPage) {
+        landingPage.addEventListener('click', () => {
+            landingPage.classList.add('fade-out');
+            setTimeout(() => {
+                initializeQuotes();
+            }, 100);
+        });
+    }
+
+    // Initialize preloader
+    const preloader = document.getElementById('preloader');
+    let width = 0;
+    const interval = setInterval(() => {
+        width += 2;
+        const progressBar = document.getElementById('progress-bar');
+        if (progressBar) {
+            progressBar.style.width = width + '%';
+        }
+        if (width >= 100) {
+            clearInterval(interval);
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }
+        }
+    }, 20);
+
+
+    // Initialize content display
+    document.querySelectorAll('.content-details').forEach(content => {
+        // Set initial style to avoid flicker
+        content.style.opacity = '0';
+        content.style.display = 'none';
+    });
+
+    // Make sure trending content is properly styled
+    const trendingContent = document.getElementById('content-trending');
+    if (trendingContent) {
+        trendingContent.style.display = 'flex';
+        trendingContent.style.flexDirection = 'column';
+        trendingContent.style.width = '100%';
+        trendingContent.style.opacity = '1'; // Set to visible since we're placing it below News
+    }
+
+    // Add hover sound effects with error handling
+    function playRandomSound() {
+        try {
+            const sounds = [
+                document.getElementById('hover-sound-1'),
+                document.getElementById('hover-sound-2'),
+                document.getElementById('hover-sound-3')
+            ];
+
+            // Filter out null elements
+            const validSounds = sounds.filter(sound => sound !== null);
+
+            if (validSounds.length > 0) {
+                const sound = validSounds[Math.floor(Math.random() * validSounds.length)];
+                if (sound && typeof sound.play === 'function') {
+                    sound.currentTime = 0;
+                    sound.volume = 0.2;
+                    sound.play().catch(e => console.log("Audio play prevented:", e));
+                }
+            }
+        } catch (err) {
+            console.log("Audio system error:", err);
+            // Silently fail if audio can't be played
+        }
+    }
+
+    document.querySelectorAll('.nav-links a, .social-button, .glass-card, .button').forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            playRandomSound();
+        });
+    });
+});
+
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+
 // Quotes system
 const quotes = [
-    { text: "One good thing about music, when it hits you, you feel no pain.", author: "Bob Marley" },
-    { text: "Music is the universal language of mankind.", author: "Henry Wadsworth Longfellow" },
-    { text: "Where words fail, music speaks.", author: "Hans Christian Andersen" },
-    { text: "Without music, life would be a mistake.", author: "Friedrich Nietzsche" },
-    { text: "Music is the strongest form of magic.", author: "Marilyn Manson" },
-    { text: "Music produces a kind of pleasure which human nature cannot do without.", author: "Confucius" },
-    { text: "When something is important enough, you do it even if the odds are not in your favor.", author: "Elon Musk" },
-    { text: "Persistence is very important. You should not give up unless you are forced to give up.", author: "Elon Musk" },
-    { text: "I rather be optimistic and wrong than pessimistic and right.", author: "Elon Musk" },
-    { text: "Sometimes life hits you in the head with a brick. Don't lose faith.", author: "Steve Jobs" },
-    { text: "Stay hungry, stay foolish.", author: "Steve Jobs" },
-    { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
-    { text: "Wherever you go, go with all your heart.", author: "Confucius" },
-    { text: "Real knowledge is to know the extent of one's ignorance.", author: "Confucius" },
-    { text: "The bamboo that bends is stronger than the oak that resists.", author: "Japanese Proverb" },
-    { text: "Failure is an option here. If things are not failing, you are not innovating enough.", author: "Elon Musk" },
-    { text: "I think it is possible for ordinary people to choose to be extraordinary.", author: "Elon Musk" },
-    { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
-    { text: "It always seems impossible until it's done.", author: "Nelson Mandela" },
-    { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
-    { text: "You miss 100% of the shots you don't take.", author: "Wayne Gretzky" },
-    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-    { text: "Success is not final, failure is not fatal: It is the courage to continue that counts.", author: "Winston Churchill" }
+            { text: "One good thing about music, when it hits you, you feel no pain.", author: "Bob Marley" },
+            { text: "Music is the universal language of mankind.", author: "Henry Wadsworth Longfellow" },
+            { text: "Where words fail, music speaks.", author: "Hans Christian Andersen" },
+            { text: "Without music, life would be a mistake.", author: "Friedrich Nietzsche" },
+            { text: "Music is the strongest form of magic.", author: "Marilyn Manson" },
+            { text: "Music produces a kind of pleasure which human nature cannot do without.", author: "Confucius" },
+            { text: "When something is important enough, you do it even if the odds are not in your favor.", author: "Elon Musk" },
+            { text: "Persistence is very important. You should not give up unless you are forced to give up.", author: "Elon Musk" },
+            { text: "I rather be optimistic and wrong than pessimistic and right.", author: "Elon Musk" },
+            { text: "Sometimes life hits you in the head with a brick. Don't lose faith.", author: "Steve Jobs" },
+            { text: "Stay hungry, stay foolish.", author: "Steve Jobs" },
+            { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
+            { text: "Wherever you go, go with all your heart.", author: "Confucius" },
+            { text: "Real knowledge is to know the extent of one's ignorance.", author: "Confucius" },
+            { text: "The bamboo that bends is stronger than the oak that resists.", author: "Japanese Proverb" },
+            { text: "Failure is an option here. If things are not failing, you are not innovating enough.", author: "Elon Musk" },
+            { text: "I think it is possible for ordinary people to choose to be extraordinary.", author: "Elon Musk" },
+            { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+            { text: "It always seems impossible until it's done.", author: "Nelson Mandela" },
+            { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+            { text: "You miss 100% of the shots you don't take.", author: "Wayne Gretzky" },
+            { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+            { text: "Success is not final, failure is not fatal: It is the courage to continue that counts.", author: "Winston Churchill" }
 ];
 
 function getNewQuote() {
@@ -276,6 +415,7 @@ function showContent(contentType) {
 
     const selectedContent = document.getElementById(`content-${contentType}`);
     if (selectedContent) {
+        // Special handling for trending content
         if (contentType === 'trending') {
             selectedContent.style.display = 'flex';
             selectedContent.style.flexDirection = 'column';
@@ -295,168 +435,32 @@ function showContent(contentType) {
     }
 }
 
-// Function to manage glass card behavior
-function setupGlassCards() {
-    // Regular glass cards (no scope effect)
-    document.querySelectorAll('.glass-card:not(.glass-card--scope)').forEach(card => {
-        card.style.transform = 'none !important';
-        card.style.perspective = 'none !important';
-        card.style.transformStyle = 'flat !important';
-        card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-        card.style.rotate = '0deg !important';
-        card.style.overflow = 'hidden';
+// Disable 3D tilt effect for all cards
+document.querySelectorAll('.glass-card').forEach(card => {
+    // Apply inline styles to ensure flat cards
+    card.style.transform = 'none !important';
+    card.style.perspective = 'none !important';
+    card.style.transformStyle = 'flat !important';
+    card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+    card.style.rotate = '0deg !important';
 
-        // Hover effects for regular cards
-        card.addEventListener('mouseenter', () => {
-            card.style.boxShadow = '0 0 20px rgba(0, 247, 255, 0.3)';
-            card.style.filter = 'brightness(1.1)';
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.boxShadow = '0 8px 32px rgba(0, 247, 255, 0.1)';
-            card.style.filter = 'brightness(1)';
-        });
+    // Remove any listeners that might be causing transforms
+    const newCard = card.cloneNode(true);
+    card.parentNode.replaceChild(newCard, card);
+
+    // Add only hover effect for box shadow
+    newCard.addEventListener('mouseenter', () => {
+        newCard.style.boxShadow = '0 0 20px rgba(0, 247, 255, 0.3)';
     });
 
-    // Scope glass cards (with zoom effect)
-    document.querySelectorAll('.glass-card--scope').forEach(card => {
-        card.style.transform = 'none'; // Initial state, no !important so hover can override
-        card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-        card.style.overflow = 'hidden';
-        card.style.position = 'relative';
+    newCard.addEventListener('mouseleave', () => {
+        newCard.style.boxShadow = '0 8px 32px rgba(0, 247, 255, 0.1)';
     });
-}
-
-// Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
-    const universeCanvas = document.getElementById('universe');
-    if (universeCanvas) {
-        universeCanvas.addEventListener('click', (event) => {
-            const rect = renderer.domElement.getBoundingClientRect();
-            const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-            const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-            const vector = new THREE.Vector3(x * 1000, y * 1000, 0);
-            const supernova = createSupernova(vector.x, vector.y, vector.z);
-            supernovas.push({ 
-                ...supernova, 
-                age: 0,
-                maxAge: 100 
-            });
-        });
-    }
-
-    // Handle music toggle
-    const bgMusic = document.getElementById('bgMusic');
-    const musicToggle = document.getElementById('musicToggle');
-    if (bgMusic && musicToggle) {
-        bgMusic.volume = 0.5;
-        musicToggle.addEventListener('click', async () => {
-            try {
-                if (bgMusic.paused) {
-                    await bgMusic.play();
-                    musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
-                } else {
-                    bgMusic.pause();
-                    musicToggle.innerHTML = '<i class="fas fa-music"></i>';
-                }
-            } catch (err) {
-                console.error('Audio playback error:', err);
-            }
-        });
-    }
-
-    // Cursor movement
-    const cursor = document.getElementById('cursor');
-    const cursorBlur = document.getElementById('cursor-blur');
-    if (cursor && cursorBlur) {
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-            cursorBlur.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-        });
-    }
-
-    // Landing page handler
-    const landingPage = document.getElementById('landing-page');
-    if (landingPage) {
-        landingPage.addEventListener('click', () => {
-            landingPage.classList.add('fade-out');
-            setTimeout(() => {
-                initializeQuotes();
-            }, 100);
-        });
-    }
-
-    // Initialize preloader
-    const preloader = document.getElementById('preloader');
-    let width = 0;
-    const interval = setInterval(() => {
-        width += 2;
-        const progressBar = document.getElementById('progress-bar');
-        if (progressBar) {
-            progressBar.style.width = width + '%';
-        }
-        if (width >= 100) {
-            clearInterval(interval);
-            if (preloader) {
-                preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500);
-            }
-        }
-    }, 20);
-
-    // Initialize content display
-    document.querySelectorAll('.content-details').forEach(content => {
-        content.style.opacity = '0';
-        content.style.display = 'none';
-    });
-
-    // Make sure trending content is properly styled
-    const trendingContent = document.getElementById('content-trending');
-    if (trendingContent) {
-        trendingContent.style.display = 'flex';
-        trendingContent.style.flexDirection = 'column';
-        trendingContent.style.width = '100%';
-        trendingContent.style.opacity = '1';
-    }
-
-    // Add hover sound effects with error handling
-    function playRandomSound() {
-        try {
-            const sounds = [
-                document.getElementById('hover-sound-1'),
-                document.getElementById('hover-sound-2'),
-                document.getElementById('hover-sound-3')
-            ];
-            const validSounds = sounds.filter(sound => sound !== null);
-            if (validSounds.length > 0) {
-                const sound = validSounds[Math.floor(Math.random() * validSounds.length)];
-                if (sound && typeof sound.play === 'function') {
-                    sound.currentTime = 0;
-                    sound.volume = 0.2;
-                    sound.play().catch(e => console.log("Audio play prevented:", e));
-                }
-            }
-        } catch (err) {
-            console.log("Audio system error:", err);
-        }
-    }
-
-    document.querySelectorAll('.nav-links a, .social-button, .glass-card, .button').forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            playRandomSound();
-        });
-    });
-
-    // Setup glass cards
-    setupGlassCards();
 });
 
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    setupGlassCards();
+// Reinitialize quotes when landing page is clicked
+document.getElementById('landing-page').addEventListener('click', () => {
+    setTimeout(initializeQuotes, 100);
 });
 
 // Smooth scroll
@@ -472,7 +476,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// GSAP animations - only keep hero animation
+// GSAP animations - only keep hero animation, disable all card animations
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.to('.hero', {
@@ -486,5 +490,109 @@ gsap.to('.hero', {
     }
 });
 
-// Quotes initialization
+// Completely remove parallax effects for cards
+document.querySelectorAll('.glass-card').forEach(card => {
+    gsap.killTweensOf(card); // Kill any GSAP animations on cards
+
+    // Reset to flat style
+    card.style.transform = 'none !important';
+    card.style.transformStyle = 'flat !important';
+    card.style.perspective = 'none !important';
+    card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+});
+
+// Completely remove mouse movement effects on cards
+document.addEventListener('mousemove', (e) => {
+    const cards = document.querySelectorAll('.glass-card');
+    cards.forEach(card => {
+        card.style.transform = 'none';
+    });
+});
+
+// Replace with flat animation with no rotation
+gsap.from('.glass-card', {
+    duration: 1.2,
+    y: 100,
+    opacity: 0,
+    rotation: 0, // Removed rotation
+    stagger: 0.2,
+    ease: 'power2.out', // Changed from elastic to prevent any bouncing
+    scrollTrigger: {
+        trigger: '.grid',
+        start: 'top center+=100',
+        toggleActions: 'play none none reverse'
+    }
+});
+
+
+// Function to enforce flat cards throughout the page
+function enforceFlatCards() {
+    document.querySelectorAll('.glass-card').forEach(card => {
+        // Apply inline styles to override any external animations
+        card.style.cssText += `
+            transform: none !important;
+            perspective: none !important;
+            transform-style: flat !important;
+            rotate: 0deg !important;
+            transition: box-shadow 0.3s ease, opacity 0.3s ease !important;
+            transform-origin: center center !important;
+        `;
+
+        // Apply to all children as well
+        card.querySelectorAll('*').forEach(child => {
+            child.style.cssText += `
+                transform: none !important;
+                perspective: none !important;
+                transform-style: flat !important;
+            `;
+        });
+    });
+}
+
+// Run on load
+document.addEventListener('DOMContentLoaded', enforceFlatCards);
+
+// Run on scroll to continuously enforce flat cards
+window.addEventListener('scroll', enforceFlatCards);
+
+// Apply a single event handler to manage all glass cards
+function setupAllGlassCards() {
+    document.querySelectorAll('.glass-card').forEach(card => {
+        // Ensure cards have the overflow:hidden style to contain mirror effect
+        card.style.overflow = 'hidden';
+
+        // Remove any previous style overrides that might block effects
+        card.style.removeProperty('transform-style');
+        card.style.removeProperty('perspective');
+
+        // Preserve position and transition for effects
+        card.style.position = 'relative';
+        card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+
+        // Add hover effect listeners
+        card.addEventListener('mouseenter', () => {
+            card.style.boxShadow = '0 0 20px rgba(0, 247, 255, 0.3)';
+            card.style.filter = 'brightness(1.1)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.boxShadow = '0 8px 32px rgba(0, 247, 255, 0.1)';
+            card.style.filter = 'brightness(1)';
+        });
+    });
+}
+
+// Run the setup initially
+document.addEventListener('DOMContentLoaded', setupAllGlassCards);
+window.addEventListener('resize', setupAllGlassCards);
+
+// Don't prevent all mousemove effects, but ensure cards have proper overflow hidden
+document.addEventListener('mousemove', (e) => {
+    document.querySelectorAll('.glass-card').forEach(card => {
+        if (card.style.overflow !== 'hidden') {
+            card.style.overflow = 'hidden';
+        }
+    });
+});
+
 document.addEventListener('DOMContentLoaded', initializeQuotes);
