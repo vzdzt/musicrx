@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,73 +7,79 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-
-    /* Custom graduation glitch effect */
-    .review-grad-glitch {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        color: #89CFF0; /* Fuchsia */
-        text-shadow: 0 0 10px #89CFF0;
-        font-family: 'Syncopate', sans-serif;
-        text-transform: uppercase;
-        position: relative;
-    }
-
-    .review-grad-glitch::before,
-    .review-grad-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .review-grad-glitch::before {
-        left: 2px;
-        text-shadow: -2px 0 #00ffea;
-        animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .review-grad-glitch::after {
-        left: -2px;
-        text-shadow: -2px 0 #89CFF0;
-        animation: glitch-2 3s linear infinite;
-    }
-
-    /* Graduation image card with zoom effect */
-    .glass-card.grad-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        transition: transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .glass-card.grad-card:hover {
-        transform: scale(1.05);
-    }
-
-    .glass-card.grad-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .glass-card.grad-card:hover img {
-        transform: scale(1.05);
-    }
-</style>
+    <style>
+        .highlight {
+            color: #89CFF0; /* Baby Blue */
+            font-weight: bold;
+        }
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #89CFF0;
+            text-shadow: 0 0 10px #89CFF0;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #89CFF0;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.nwts-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.nwts-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.nwts-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.nwts-card:hover img {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -94,53 +99,51 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="NOTHING WAS THE SAME">NOTHING WAS THE SAME</h1>
         <div class="review-content">
-            <h2>DRAKE - NWTS</h2>
-            <div class="glass-card grad-card">
-                <img src="nwts.jpeg" alt="Drake Nwts album image">
+            <h2>NWTS: DRAKE’S GOLDEN REIGN BEGINS</h2>
+            <div class="glass-card nwts-card">
+                <img src="nwts.jpeg" alt="Drake Nothing Was the Same album image">
             </div>
             <br>
-            <p>On <span class="highlight">September 24, 2013</span>, Drake released <em>Nothing Was the Same</em>, a 13-track masterpiece that debuted at #1 on the Billboard 200, selling nearly 700,000 copies in its first week. Following the breakout success of <em>Take Care</em>, this album solidified Drake as rap’s emotional kingpin. Here’s a deep dive into this moody, polished classic:</p>
+            <p>On <span class="highlight">September 24, 2013</span>, Drake released <em><span class="highlight">Nothing Was the Same</span></em>, a 13-track masterpiece that debuted at #1 on the Billboard 200, selling nearly 700,000 copies in its first week. Following the breakout success of <em>Take Care</em>, this album solidified Drake as rap’s emotional kingpin. Here’s a deep dive into this moody, polished classic:</p>
         </div>
         <br>
-        <span class="highlight"><h2>Messaging and Theme</h2></span>
+        <h2>Messaging and Theme</h2>
+        <p>The album’s cover—a child Drake staring at his adult self—sets the tone: a reflective journey through fame, love, and identity. <em><span class="highlight">Nothing Was the Same</span></em> is Drake at his most introspective, balancing braggadocio with vulnerability. Tracks like <span class="highlight">“Tuscan Leather”</span> and <span class="highlight">“Started From the Bottom”</span> flex his rise, while <span class="highlight">“From Time”</span> and <span class="highlight">“Too Much”</span> peel back layers of regret and family strain. It’s not a narrative like Kendrick’s work but a vibe-driven memoir—Drake wrestling with success, relationships, and Toronto’s ghosts. This is his crown, worn with both pride and melancholy.</p>
         <br>
-        <p>The album’s cover—a child Drake staring at his adult self—sets the tone: a reflective journey through fame, love, and identity. <em>Nothing Was the Same</em> is Drake at his most introspective, balancing braggadocio with vulnerability. Tracks like <span class="highlight">“Tuscan Leather”</span> and <span class="highlight">“Started From the Bottom”</span> flex his rise, while <span class="highlight">“From Time”</span> and <span class="highlight">“Too Much”</span> peel back layers of regret and family strain. It’s not a narrative like Kendrick’s work but a vibe-driven memoir—Drake wrestling with success, relationships, and Toronto’s ghosts. This is his crown, worn with both pride and melancholy.</p>
+        <h2>Production and Sound</h2>
+        <p>Led by <span class="highlight">Noah “40” Shebib</span>, with contributions from <span class="highlight">Boi-1da</span>, <span class="highlight">Mike Zombie</span>, and <span class="highlight">Nineteen85</span>, <em><span class="highlight">Nothing Was the Same</span></em> is a sonic haze of lush beats and icy ambiance. <span class="highlight">“Hold On, We’re Going Home”</span> glides with ‘80s synth-pop sheen, while <span class="highlight">“Worst Behavior”</span> bangs with menacing trap energy. <span class="highlight">“Tuscan Leather”</span> weaves a three-part suite with Whitney Houston samples, and <span class="highlight">“Furthest Thing”</span> drifts on dreamy keys. Drake’s voice—smooth, melodic, and occasionally sharp—floats over these soundscapes, blending rap with R&B in a way that’s both cinematic and intimate. It’s a refined evolution of <em>Take Care</em>’s sprawl.</p>
         <br>
-        <span class="highlight"><h2>Production and Sound</h2></span>
-        <br>
-        <p>Led by <span class="highlight">Noah “40” Shebib</span>, with contributions from <span class="highlight">Boi-1da</span>, <span class="highlight">Mike Zombie</span>, and <span class="highlight">Nineteen85</span>, <em>Nothing Was the Same</em> is a sonic haze of lush beats and icy ambiance. <span class="highlight">“Hold On, We’re Going Home”</span> glides with ‘80s synth-pop sheen, while <span class="highlight">“Worst Behavior”</span> bangs with menacing trap energy. <span class="highlight">“Tuscan Leather”</span> weaves a three-part suite with Whitney Houston samples, and <span class="highlight">“Furthest Thing”</span> drifts on dreamy keys. Drake’s voice—smooth, melodic, and occasionally sharp—floats over these soundscapes, blending rap with R&B in a way that’s both cinematic and intimate. It’s a refined evolution of <em>Take Care</em>’s sprawl.</p>
-        <br>
-        <span class="highlight"><h2>Features</h2></span>
-        <br>
-        <p><em>Nothing Was the Same</em> keeps features lean, letting Drake shine. <span class="highlight">Jhené Aiko</span> adds soulful depth to <span class="highlight">“From Time,”</span> while <span class="highlight">Majid Jordan</span> co-stars on <span class="highlight">“Hold On, We’re Going Home.”</span> <span class="highlight">Jay-Z</span> brings gravitas to <span class="highlight">“Pound Cake/Paris Morton Music 2,”</span> and <span class="highlight">Sampha</span> haunts <span class="highlight">“Too Much.”</span> These guests don’t dominate—they’re accents to Drake’s vision, enhancing the album’s emotional palette without breaking its focus.</p>
+        <h2>Features</h2>
+        <p><em><span class="highlight">Nothing Was the Same</span></em> keeps features lean, letting Drake shine. <span class="highlight">Jhené Aiko</span> adds soulful depth to <span class="highlight">“From Time,”</span> while <span class="highlight">Majid Jordan</span> co-stars on <span class="highlight">“Hold On, We’re Going Home.”</span> <span class="highlight">Jay-Z</span> brings gravitas to <span class="highlight">“Pound Cake/Paris Morton Music 2,”</span> and <span class="highlight">Sampha</span> haunts <span class="highlight">“Too Much.”</span> These guests don’t dominate—they’re accents to Drake’s vision, enhancing the album’s emotional palette without breaking its focus.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">"Tuscan Leather"</span> - A sprawling, confident opener that sets the tone.</li>
-                <li><span class="highlight">"Started From the Bottom"</span> - A gritty, anthemic flex of Drake’s journey.</li>
-                <li><span class="highlight">"Hold On, We’re Going Home"</span> - A timeless, silky love song.</li>
-                <li><span class="highlight">"From Time"</span> - A tender, reflective gem with raw emotion.</li>
+                <li><span class="highlight">“Tuscan Leather”</span> - A sprawling, six-minute odyssey of confidence and introspection, layered with Whitney Houston’s ghostly echo, setting the album’s ambitious tone.</li>
+                <br>
+                <li><span class="highlight">“Started From the Bottom”</span> - A gritty, triumphant anthem that pulses with Drake’s journey from underdog to icon, its hook a cultural battering ram.</li>
+                <br>
+                <li><span class="highlight">“Hold On, We’re Going Home”</span> - A silky, ‘80s-inspired love song that glides with timeless charm, proving Drake’s pop mastery.</li>
+                <br>
+                <li><span class="highlight">“From Time”</span> - A tender, piano-laced confessional with Jhené Aiko’s ethereal touch, peeling back Drake’s heart in quiet revelation.</li>
             </ul>
         </div>
         <br>
-        <span class="highlight"><h2>Previous Works</h2></span>
+        <h2>Previous Works</h2>
+        <p>Drake’s ascent began with <em><span class="highlight">So Far Gone</span></em> (<span class="highlight">2009</span>), followed by <em><span class="highlight">Thank Me Later</span></em> (<span class="highlight">2010</span>), which introduced his rap-R&B blend. <em><span class="highlight">Take Care</span></em> (<span class="highlight">2011</span>) perfected that formula with moody sprawl. <em><span class="highlight">Nothing Was the Same</span></em> tightens <em>Take Care</em>’s loose ends, trading some of its experimentation for focus and polish. Where <em>Take Care</em> was a breakthrough, this album is a refinement—Drake honing his sound into a sleek, introspective statement.</p>
         <br>
-        <p>Drake’s ascent began with <em>So Far Gone</em> (<span class="highlight">2009</span>), followed by <em>Thank Me Later</em> (<span class="highlight">2010</span>), which introduced his rap-R&B blend. <em>Take Care</em> (<span class="highlight">2011</span>) perfected that formula with moody sprawl. <em>Nothing Was the Same</em> tightens <em>Take Care</em>’s loose ends, trading some of its experimentation for focus and polish. Where <em>Take Care</em> was a breakthrough, this album is a refinement—Drake honing his sound into a sleek, introspective statement.</p>
-        <br>
-        <span class="highlight"><h2>Summary</h2></span>
-        <br>
-        <p><em>Nothing Was the Same</em> is a <span class="highlight">59-minute mood piece</span>—13 tracks of lush production and raw introspection. It’s Drake at his peak, crafting a cohesive, emotionally charged opus that balances hits with depth. Tracks like <span class="highlight">“Connect”</span> can feel understated, but the highs—like <span class="highlight">“Tuscan Leather”</span>—are towering. This isn’t just an album—it’s a milestone, cementing Drake’s reign as rap’s introspective titan. It’s sleek, soulful, and timeless, a testament to his evolution.</p>
+        <h2>Summary</h2>
+        <p><em><span class="highlight">Nothing Was the Same</span></em> is a <span class="highlight">59-minute mood piece</span>—13 tracks of lush production and raw introspection. It’s Drake at his peak, crafting a cohesive, emotionally charged opus that balances hits with depth. Tracks like <span class="highlight">“Connect”</span> can feel understated, but the highs—like <span class="highlight">“Tuscan Leather”</span>—are towering. This isn’t just an album—it’s a milestone, cementing Drake’s reign as rap’s introspective titan. It’s sleek, soulful, and timeless, a testament to his evolution.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> A refined take on Drake’s sound, though it builds on past work.</p>
-            <p><span class="highlight">Production Quality (20/20):</span> Immaculate—lush, cohesive, and perfectly crafted.</p>
-            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Poignant and clever, with rare dips in depth.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> A captivating, replayable journey with broad appeal.</p>
-            <p><span class="highlight">Consistency (18/20):</span> Near-flawless, with a few tracks less gripping.</p>
+            <p><span class="highlight">Originality (18/20):</span> A polished evolution of Drake’s signature sound, refining his rap-R&B fusion with fresh swagger, though it leans on familiar foundations.</p>
+            <p><span class="highlight">Production Quality (20/20):</span> A sonic masterpiece—lush, icy, and meticulously crafted, every beat a perfect frame for Drake’s voice.</p>
+            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Sharp, poignant, and emotionally rich, blending flexes with vulnerability, with only rare moments of shallowness.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> A captivating, replayable journey that hooks with its mood and melodies—broad appeal with a touch of introspection.</p>
+            <p><span class="highlight">Consistency (18/20):</span> A near-flawless flow, with a few quieter tracks slightly dimming the shine but never breaking the spell.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (94/100):</span> 9.4/10</h3></p>
-            <p><em><span class="highlight">Nothing Was the Same</span></em> isn’t Drake’s most experimental or raw—it’s his most polished, a snapshot of an artist in command.</p>
+            <p><em><span class="highlight">Nothing Was the Same</span></em> isn’t Drake’s most experimental or raw—it’s his most polished, a snapshot of an artist in command. It’s a moody, masterful balance of heart and hustle, a crown jewel in his catalog that still resonates a decade later.</p>
         </div>
     </div>
 
@@ -157,7 +160,6 @@
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
             document.querySelectorAll('.glass-card.nwts-card').forEach(card => {
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
