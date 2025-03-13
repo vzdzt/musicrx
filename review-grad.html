@@ -8,77 +8,114 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    .highlight {
-        color: #FF00FF; /* Fuchsia */
-        font-weight: bold;
-    }
-
-    /* Custom graduation glitch effect */
-    .review-grad-glitch {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        color: #FF00FF; /* Fuchsia */
-        text-shadow: 0 0 10px #FF00FF;
-        font-family: 'Syncopate', sans-serif;
-        text-transform: uppercase;
-        position: relative;
-    }
-
-    .review-grad-glitch::before,
-    .review-grad-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .review-grad-glitch::before {
-        left: 2px;
-        text-shadow: -2px 0 #00ffea;
-        animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .review-grad-glitch::after {
-        left: -2px;
-        text-shadow: -2px 0 #FF00FF;
-        animation: glitch-2 3s linear infinite;
-    }
-
-    /* Graduation image card with zoom effect */
-    .glass-card.grad-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        transition: transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .glass-card.grad-card:hover {
-        transform: scale(1.05);
-    }
-
-    .glass-card.grad-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .glass-card.grad-card:hover img {
-        transform: scale(1.05);
-    }
-</style>
+    <style>
+        .highlight {
+            color: #FF00FF; /* Fuchsia */
+            font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #FF00FF; /* Matching fuchsia for overall rating */
+        }
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #FF00FF;
+            text-shadow: 0 0 10px #FF00FF;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #FF00FF;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .grad-glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .grad-glass-card:hover {
+            transform: scale(1.05) !important;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #FF00FF;
+            box-shadow: 0 0 0 2px #FF00FF, 0 0 30px rgba(255, 0, 255, 0.4);
+        }
+        .grad-glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        .grad-glass-card:hover::before {
+            left: 100%;
+        }
+        .grad-glass-card img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            width: 100%;
+            display: block;
+        }
+        .grad-glass-card:hover img {
+            transform: scale(1.05);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -96,58 +133,58 @@
     </nav>
 
     <div class="container">
-        <h1 class="review-grad-glitch" data-text="GRADUATION">GRADUATION</h1>
+        <h1 class="review-grad-glitch" data-text="Graduation">Graduation</h1>
         <div class="review-content">
-            <h2>Kanye West - GRADUATION</h2>
-            <div class="glass-card grad-card">
-                <img src="graduation.jpg" alt="Kanye West Graduation album image">
+            <h2>Graduation: Kanye West’s Neon Triumph Over Doubt and Destiny</h2>
+            <div class="grad-glass-card">
+                <img src="graduation.jpg" alt="Kanye West - Graduation album image">
             </div>
             <br>
-            <p>On <span class="highlight">September 11, 2007</span>, Kanye West released <em>Graduation</em>, his third studio album, a 13-track celebration that capped his college-themed trilogy. Dropping the same day as 50 Cent's <em>Curtis</em> in a historic sales showdown, this project showcased Kanye's ascent to superstardom. Here's a deep dive into this triumphant, genre-defying classic:</p>
+            <p>On <span class="highlight">September 11, 2007</span>, Kanye West dropped <em><span class="highlight">Graduation</span></em>, a 13-track capstone to his college trilogy via Roc-A-Fella and Def Jam, outselling 50 Cent’s <em>Curtis</em> in a legendary showdown with 957,000 first-week sales. Certified 6x Platinum by 2022, it marked Kanye’s leap from underdog to global titan. As of <span class="highlight">March 14, 2025</span>, it’s a radiant testament to his ambition—let’s unpack its glowing legacy.</p>
         </div>
         <br>
         <h2>The Messaging and Theme</h2>
         <br>
-        <p>The album's cover—Takashi Murakami's vibrant, anime-style bear soaring into space—mirrors its ethos: ambition, growth, and unabashed confidence. <em>Graduation</em> is Kanye shedding his backpack roots for stadium-sized swagger, as heard in <span class="highlight">"Stronger"</span> and <span class="highlight">"Good Life."</span> Yet it's not all bravado—<span class="highlight">"Everything I Am"</span> reflects on self-doubt, and <span class="highlight">"Big Brother"</span> pays homage to Jay-Z with vulnerability. It's a commencement speech in album form: Kanye graduating from underdog to icon, balancing ego with introspection in a victory lap for the ages.</p>
+        <p>Takashi Murakami’s cover—a bear blasting into a neon cosmos—sets the tone: bold ascent, unshackled dreams. <em><span class="highlight">Graduation</span></em> captures Kanye shedding his chipmunk-soul past for a swaggering, stadium-ready present, with <span class="highlight">“Stronger”</span> and <span class="highlight">“Good Life”</span> radiating victory. Beneath the sheen, shadows linger—<span class="highlight">“Everything I Am”</span> wrestles with identity and scrutiny, while <span class="highlight">“Big Brother”</span> offers a tender nod to Jay-Z’s mentorship amid subtle tension. It’s Kanye’s diploma of duality: a brash celebration of success laced with quiet doubts, a portrait of an artist teetering between ego and evolution.</p>
         <br>
         <h2>Production and Sound</h2>
         <br>
-        <p>Largely helmed by <span class="highlight">Kanye West</span>, with contributions from <span class="highlight">Mike Dean</span> and <span class="highlight">Jon Brion</span>, <em>Graduation</em> is a sonic evolution. It trades soul samples for synth-driven anthems—<span class="highlight">"Stronger"</span> flips Daft Punk into a robotic banger, while <span class="highlight">"Flashing Lights"</span> pulses with icy keys and strings. <span class="highlight">"I Wonder"</span> soars with dreamy pianos, and <span class="highlight">"Good Morning"</span> kicks off with a crisp, minimalist beat. Kanye's voice—polished and commanding—rides these futuristic soundscapes, marking a shift from <em>Late Registration</em>'s orchestral warmth to a bolder, pop-infused palette.</p>
+        <p>Guided by <span class="highlight">Kanye West</span>, with <span class="highlight">Mike Dean</span> and <span class="highlight">Jon Brion</span> adding finesse, <em><span class="highlight">Graduation</span></em> pivots to a glossy, synth-soaked soundscape. <span class="highlight">“Stronger”</span> transforms Daft Punk’s pulse into a robotic juggernaut, <span class="highlight">“Flashing Lights”</span> glimmers with crystalline keys and mournful strings. <span class="highlight">“I Wonder”</span> lifts off with orchestral pianos, while <span class="highlight">“Good Morning”</span> opens with a taut, futuristic thud. Kanye’s delivery—crisp, assured, occasionally wistful—anchors this shift from <em><span class="highlight">Late Registration</span></em>’s lush warmth to a sleek, pop-leaning frontier, foreshadowing his genre-blurring future.</p>
         <br>
         <h2>Features</h2>
         <br>
-        <p><em>Graduation</em> keeps guests minimal but impactful, spotlighting Kanye's vision. <span class="highlight">T-Pain</span> brings Auto-Tune sheen to <span class="highlight">"Good Life,"</span> while <span class="highlight">Lil Wayne</span> flexes on <span class="highlight">"Barry Bonds."</span> <span class="highlight">Dwele</span> adds soulful depth to <span class="highlight">"Flashing Lights,"</span> and <span class="highlight">Mos Def</span> hums on <span class="highlight">"Drunk and Hot Girls."</span> <span class="highlight">Chris Martin</span> of Coldplay lends a tender hook to <span class="highlight">"Homecoming,"</span> tying Kanye's Chicago roots to his global ascent. These features enhance without overpowering, letting Kanye's star shine brightest.</p>
+        <p><em><span class="highlight">Graduation</span></em> deploys a lean, potent guest list, each voice amplifying Kanye’s vision. <span class="highlight">T-Pain</span> coats <span class="highlight">“Good Life”</span> in Auto-Tune euphoria, <span class="highlight">Lil Wayne</span> struts through <span class="highlight">“Barry Bonds”</span> with playful grit. <span class="highlight">Dwele</span> infuses <span class="highlight">“Flashing Lights”</span> with soulful longing, <span class="highlight">Mos Def</span> hums a hazy edge to <span class="highlight">“Drunk and Hot Girls,”</span> and <span class="highlight">Chris Martin</span> crafts a bittersweet ode in <span class="highlight">“Homecoming.”</span> These cameos don’t dominate—they’re brushstrokes on Kanye’s canvas, painting his rise from Chicago dreamer to world-stage maestro.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">"Stronger"</span> - A synth-charged anthem that redefined hip-hop's mainstream reach.</li>
+                <li><span class="highlight">“Stronger”</span> - Pulsating synths fuel this titan, Kanye’s grit meeting robotic glory.</li>
                 <br>
-                <li><span class="highlight">"Good Life"</span> (feat. T-Pain) - A jubilant ode to success with irresistible bounce.</li>
+                <li><span class="highlight">“Good Life”</span> (feat. T-Pain) - Joyous vibes burst forth, a champagne-soaked victory cry.</li>
                 <br>
-                <li><span class="highlight">"Flashing Lights"</span> (feat. Dwele) - A hypnotic gem blending melancholy and swagger.</li>
+                <li><span class="highlight">“Flashing Lights”</span> (feat. Dwele) - Shimmering melancholy haunts this gem, a bittersweet peak.</li>
                 <br>
-                <li><span class="highlight">"I Wonder"</span> - A soaring meditation on dreams with lush production.</li>
+                <li><span class="highlight">“I Wonder”</span> - Dreamy keys soar skyward, introspection wrapped in grandeur.</li>
             </ul>
         </div>
         <br>
         <h2>Previous Works</h2>
         <br>
-        <p>Kanye's <span class="highlight">2004</span> debut, <em>The College Dropout</em>, introduced his soul-sampling genius and everyman charm, followed by <em>Late Registration</em> in <span class="highlight">2005</span>, which refined that formula with orchestral flair. <em>Graduation</em> completes the trilogy, ditching the classroom for the spotlight. Where <em>Dropout</em> was raw hustle and <em>Late Registration</em> was cinematic ambition, <em>Graduation</em> embraces pop accessibility—less about proving himself and more about claiming his throne. It's Kanye graduating to a new era of influence.</p>
+        <p>Kanye’s arc began with <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>), a soul-drenched debut of raw hustle, followed by <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>), which swelled with orchestral ambition and polish. <em><span class="highlight">Graduation</span></em> seals the trilogy, trading classrooms for arenas—less about struggle, more about conquest. It strips away <em><span class="highlight">Dropout</span></em>’s scrappy charm and <em><span class="highlight">Late Registration</span></em>’s baroque layers for a streamlined, neon-lit strut, paving the way for the stark reinvention of <em><span class="highlight">808s & Heartbreak</span></em> (2008).</p>
         <br>
         <h2>Summary</h2>
         <br>
-        <p><em>Graduation</em> is a <span class="highlight">51-minute triumph</span>—13 tracks of polished bravado and heartfelt reflection. It's Kanye at his most confident, blending hip-hop's roots with electronic flair to craft a sound that's both timeless and forward-looking. The album's brevity is its strength, though its lighter moments—like <span class="highlight">"Drunk and Hot Girls"</span>—feel out of place. <em>Graduation</em> doesn't reinvent the wheel; it perfects it, cementing Kanye as a cultural force. It's a diploma of dominance, proving he could conquer rap and beyond.</p>
+        <p><em><span class="highlight">Graduation</span></em> clocks in at a tight <span class="highlight">51 minutes</span>—13 tracks of polished swagger and hidden heart. Kanye stands at his commercial zenith, fusing hip-hop’s soul with electronic sheen in a sound that’s both era-defining and prophetic. Its brevity sharpens its punch, though outliers like <span class="highlight">“Drunk and Hot Girls”</span> stumble amid the brilliance. As of <span class="highlight">March 14, 2025</span>, its 6x Platinum status and Grammy wins (Best Rap Album, 2008) affirm its stature—a radiant bridge between Kanye’s past and his boundless future, a snapshot of a visionary claiming his crown.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> A bold shift to synth-pop rap, though it builds on Kanye's prior sound.</p>
-            <p><span class="highlight">Production Quality (20/20):</span> Immaculate—crisp, innovative, and stadium-ready.</p>
-            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Sharp and personal, with occasional leans on flash over depth.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> A joyous, replayable ride with rare missteps.</p>
-            <p><span class="highlight">Consistency (17/20):</span> Mostly airtight, but a few tracks disrupt the flow.</p>
+            <p><span class="highlight">Originality (18/20):</span> Synth-driven daring reshapes rap, tethered to Kanye’s roots.</p>
+            <p><span class="highlight">Production Quality (20/20):</span> Flawless craft shines bright, every beat a polished gem.</p>
+            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Witty bars clash with introspection, flash sometimes outpacing soul.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> Electric thrills ignite every spin, rare stumbles aside.</p>
+            <p><span class="highlight">Consistency (17/20):</span> Tight focus holds firm, with a few cracks in the glow.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (92/100):</span> 9.2/10</h3></p>
-            <p><em><span class="highlight">Graduation</span></em> isn't just an album—it's a milestone, a snapshot of Kanye at his peak before the chaos of fame took hold. It's bold, bright, and unapologetic, balancing ego with heart. In a discography of classics, this stands tall—a victory lap that still echoes, proving Kanye could graduate from rapper to legend.</p>
+            <p><em><span class="highlight">Graduation</span></em> is Kanye’s neon pinnacle—a bold, flawed masterpiece of triumph and tension. It’s his last dance before fame’s shadows deepened, a radiant farewell to the trilogy that launched him skyward. Turn it up, let the synths hum, and witness a legend graduate into eternity.</p>
         </div>
     </div>
 
@@ -156,19 +193,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
-        // Ensure all glass cards on this page have no tilt, except for grad-card
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.grad-glass-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
-            // Special handling for graduation card to allow scaling
-            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
-                card.style.transform = 'none'; // No !important
+            document.querySelectorAll('.grad-glass-card').forEach(card => {
+                card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
             });
@@ -176,4 +210,3 @@
     </script>
 </body>
 </html>
-
