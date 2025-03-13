@@ -18,8 +18,6 @@
             color: #FFFF00; /* Yellow highlights for Slim Shady */
             font-weight: bold;
         }
-
-        /* Specific glitch class for Slim Shady LP title */
         .review-slim-glitch {
             font-size: 3rem;
             text-align: center;
@@ -31,7 +29,6 @@
             position: relative;
             display: block;
         }
-
         .review-slim-glitch::before,
         .review-slim-glitch::after {
             content: attr(data-text);
@@ -41,38 +38,32 @@
             width: 100%;
             height: 100%;
         }
-
         .review-slim-glitch::before {
             left: 2px;
             text-shadow: -2px 0 #00ffea;
             animation: glitch-1 2s linear infinite reverse;
         }
-
         .review-slim-glitch::after {
             left: -2px;
             text-shadow: -2px 0 #FFFF00;
             animation: glitch-2 3s linear infinite;
         }
-
         @keyframes glitch-1 {
-            0% { clip: rect(0, 9999px, 0, 0); }
-            5% { clip: rect(20px, 9999px, 40px, 0); }
-            10% { clip: rect(60px, 9999px, 80px, 0); }
-            15% { clip: rect(30px, 9999px, 50px, 0); }
-            20% { clip: rect(90px, 9999px, 110px, 0); }
-            100% { clip: rect(0, 9999px, 0, 0); }
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
         }
-
         @keyframes glitch-2 {
-            0% { clip: rect(0, 9999px, 0, 0); }
-            5% { clip: rect(40px, 9999px, 60px, 0); }
-            10% { clip: rect(80px, 9999px, 100px, 0); }
-            15% { clip: rect(20px, 9999px, 40px, 0); }
-            20% { clip: rect(60px, 9999px, 80px, 0); }
-            100% { clip: rect(0, 9999px, 0, 0); }
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
         }
-
-        /* Slim Shady image card with zoom effect matching Graduation */
         .glass-card.slim-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -87,23 +78,18 @@
             align-items: center;
             overflow: hidden;
         }
-
         .glass-card.slim-card:hover {
             transform: scale(1.05);
         }
-
         .glass-card.slim-card img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             transition: transform 0.3s ease;
         }
-
         .glass-card.slim-card:hover img {
             transform: scale(1.05);
         }
-
-        /* Regular glass card style for other sections */
         .glass-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -135,53 +121,56 @@
     <div class="container">
         <h1 class="review-slim-glitch" data-text="The Slim Shady LP">The Slim Shady LP</h1>
         <div class="review-content">
-            <h2>EMINEM - SSLP</h2>
+            <h2>The Slim Shady LP: Eminem’s Unhinged Genius Unleashed</h2>
             <div class="glass-card slim-card">
                 <img src="slim.jpeg" alt="Eminem - The Slim Shady LP album image">
             </div>
             <br>
-            <p>On <span class="highlight">February 23, 1999</span>, Eminem unleashed <em>The Slim Shady LP</em>, a 20-track debut major-label album that stormed the charts, peaking at #2 on the Billboard 200 and eventually going quadruple platinum. Following his underground buzz, this project introduced the world to Slim Shady, a persona that shocked and captivated. Here’s a deep dive into this raw, iconic classic:</p>
+            <p>On <span class="highlight">February 23, 1999</span>, Eminem unleashed <em><span class="highlight">The Slim Shady LP</span></em>, a 20-track debut major-label album that stormed the charts, peaking at #2 on the Billboard 200 and eventually going quadruple platinum. Following his underground buzz, this project introduced the world to Slim Shady, a persona that shocked and captivated. Here’s a deep dive into this raw, iconic classic:</p>
         </div>
         <br>
-        <span class="highlight"><h2>Messaging and Theme</h2></span>
+        <h2>Messaging and Theme</h2>
         <br>
-        <p>The album’s cover—a shadowy car trunk scene—foreshadows its grim, unhinged vibe. <em>The Slim Shady LP</em> is Eminem channeling his alter ego, a cartoonishly violent trickster born from poverty, anger, and dark humor. Tracks like <span class="highlight">“My Name Is”</span> and <span class="highlight">“Guilty Conscience”</span> revel in provocation, while <span class="highlight">“Rock Bottom”</span> and <span class="highlight">“If I Had”</span> bare his real struggles—broke, desperate, and on the edge. It’s a twisted funhouse mirror of late ‘90s America, blending satire with raw emotion. This is Eminem announcing himself, fearless and feral.</p>
+        <p>The album’s cover—a shadowy car trunk scene—foreshadows its grim, unhinged vibe. <em><span class="highlight">The Slim Shady LP</span></em> is Eminem channeling his alter ego, a cartoonishly violent trickster born from poverty, anger, and dark humor. Tracks like <span class="highlight">“My Name Is”</span> and <span class="highlight">“Guilty Conscience”</span> revel in provocation, while <span class="highlight">“Rock Bottom”</span> and <span class="highlight">“If I Had”</span> bare his real struggles—broke, desperate, and on the edge. It’s a twisted funhouse mirror of late ‘90s America, blending satire with raw emotion. This is Eminem announcing himself, fearless and feral.</p>
         <br>
-        <span class="highlight"><h2>Production and Sound</h2></span>
+        <h2>Production and Sound</h2>
         <br>
-        <p>Produced primarily by <span class="highlight">Dr. Dre</span> and the <span class="highlight">Bass Brothers</span>, with Eminem’s own beats, <em>The Slim Shady LP</em> is a gritty fusion of West Coast bounce and Midwest edge. The sound is lean and menacing—<span class="highlight">“My Name Is”</span> flips a quirky Labi Siffre sample into a playful banger, while <span class="highlight">“Brain Damage”</span> thumps with eerie bass. <span class="highlight">“Role Model”</span> grooves with dark funk, and <span class="highlight">“Just Don’t Give a Fuck”</span> hits with raw aggression. Eminem’s delivery—rapid-fire, multi-syllabic, and dripping with venom—cuts through the beats like a chainsaw. It’s a stark, unpolished sound that mirrors his chaotic mind.</p>
+        <p>Produced primarily by <span class="highlight">Dr. Dre</span> and the <span class="highlight">Bass Brothers</span>, with Eminem’s own beats, <em><span class="highlight">The Slim Shady LP</span></em> is a gritty fusion of West Coast bounce and Midwest edge. The sound is lean and menacing—<span class="highlight">“My Name Is”</span> flips a quirky Labi Siffre sample into a playful banger, while <span class="highlight">“Brain Damage”</span> thumps with eerie bass. <span class="highlight">“Role Model”</span> grooves with dark funk, and <span class="highlight">“Just Don’t Give a Fuck”</span> hits with raw aggression. Eminem’s delivery—rapid-fire, multi-syllabic, and dripping with venom—cuts through the beats like a chainsaw. It’s a stark, unpolished sound that mirrors his chaotic mind.</p>
         <br>
-        <span class="highlight"><h2>Features</h2></span>
+        <h2>Features</h2>
         <br>
-        <p><em>The Slim Shady LP</em> keeps features minimal, letting Eminem dominate. <span class="highlight">Dr. Dre</span> trades bars on <span class="highlight">“Guilty Conscience,”</span> adding gravitas to the moral tug-of-war. <span class="highlight">Dina Rae</span> croons on <span class="highlight">“Cum on Everybody,”</span> while <span class="highlight">Zoe Winkler</span> and <span class="highlight">Aristotle</span> voice skits like <span class="highlight">“Ken Kaniff.”</span> These guests don’t steal the spotlight—they’re props in Slim Shady’s theater, amplifying his wild narrative without overshadowing his presence.</p>
+        <p><em><span class="highlight">The Slim Shady LP</span></em> keeps features minimal, letting Eminem dominate. <span class="highlight">Dr. Dre</span> trades bars on <span class="highlight">“Guilty Conscience,”</span> adding gravitas to the moral tug-of-war. <span class="highlight">Dina Rae</span> croons on <span class="highlight">“Cum on Everybody,”</span> while <span class="highlight">Zoe Winkler</span> and <span class="highlight">Aristotle</span> voice skits like <span class="highlight">“Ken Kaniff.”</span> These guests don’t steal the spotlight—they’re props in Slim Shady’s theater, amplifying his wild narrative without overshadowing his presence.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">"My Name Is"</span> - A quirky, career-defining hit that introduced Slim Shady.</li>
-                <li><span class="highlight">"Guilty Conscience"</span> - A cinematic morality play with razor-sharp rhymes.</li>
-                <li><span class="highlight">"Rock Bottom"</span> - A raw, gut-wrenching peek into Eminem’s despair.</li>
-                <li><span class="highlight">"Role Model"</span> - A darkly funny banger with relentless flow.</li>
+                <li><span class="highlight">“My Name Is”</span> - A mischievous, sample-driven anthem that catapults Slim Shady into the mainstream with razor-sharp wit and infectious chaos.</li>
+                <br>
+                <li><span class="highlight">“Guilty Conscience”</span> - A cinematic showdown of morality, weaving Dre’s stern warnings with Eminem’s devilish provocations over a haunting beat.</li>
+                <br>
+                <li><span class="highlight">“Rock Bottom”</span> - A bleak, soul-baring descent into despair, its stark production amplifying Eminem’s rawest confessions.</li>
+                <br>
+                <li><span class="highlight">“Role Model”</span> - A sinister, funk-laced banger that drips with dark humor and relentless, tongue-twisting flows.</li>
             </ul>
         </div>
         <br>
-        <span class="highlight"><h2>Previous Works</h2></span>
+        <h2>Previous Works</h2>
         <br>
-        <p>Eminem’s indie debut, <em>Infinite</em> (<span class="highlight">1996</span>), showcased his technical skill but flopped commercially. The <em>Slim Shady EP</em> (<span class="highlight">1997</span>) introduced his twisted persona, catching Dr. Dre’s ear. <em>The Slim Shady LP</em> builds on that EP’s foundation, amplifying the shock value and refining the storytelling. Where <em>Infinite</em> was polished but tame, and the EP was a rough sketch, this album is the full explosion—Eminem stepping from Detroit’s underground into rap’s mainstream with a vengeance.</p>
+        <p>Eminem’s indie debut, <em><span class="highlight">Infinite</span></em> (<span class="highlight">1996</span>), showcased his technical skill but flopped commercially. The <em><span class="highlight">Slim Shady EP</span></em> (<span class="highlight">1997</span>) introduced his twisted persona, catching Dr. Dre’s ear. <em><span class="highlight">The Slim Shady LP</span></em> builds on that EP’s foundation, amplifying the shock value and refining the storytelling. Where <em>Infinite</em> was polished but tame, and the EP was a rough sketch, this album is the full explosion—Eminem stepping from Detroit’s underground into rap’s mainstream with a vengeance.</p>
         <br>
-        <span class="highlight"><h2>Summary</h2></span>
+        <h2>Summary</h2>
         <br>
-        <p><em>The Slim Shady LP</em> is a <span class="highlight">60-minute rollercoaster</span>—20 tracks of dark humor, raw rage, and unfiltered talent. It’s Eminem at his hungriest, blending shock rap with personal confessions in a way that’s both repulsive and magnetic. Skits like <span class="highlight">“Paul”</span> and weaker cuts like <span class="highlight">“As the World Turns”</span> pad the runtime, but the highs are seismic. This isn’t just a debut—it’s a cultural Molotov cocktail, launching Eminem as rap’s most polarizing voice. It’s messy, brilliant, and timeless.</p>
+        <p><em><span class="highlight">The Slim Shady LP</span></em> is a <span class="highlight">60-minute rollercoaster</span>—20 tracks of dark humor, raw rage, and unfiltered talent. It’s Eminem at his hungriest, blending shock rap with personal confessions in a way that’s both repulsive and magnetic. Skits like <span class="highlight">“Paul”</span> and weaker cuts like <span class="highlight">“As the World Turns”</span> pad the runtime, but the highs are seismic. This isn’t just a debut—it’s a cultural Molotov cocktail, launching Eminem as rap’s most polarizing voice. It’s messy, brilliant, and timeless.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (20/20):</span> A groundbreaking persona and style that redefined rap.</p>
-            <p><span class="highlight">Production Quality (18/20):</span> Gritty and effective, though skits disrupt the flow.</p>
-            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Sharp, visceral, and layered, with rare over-the-top moments.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> A thrilling, provocative ride that holds up.</p>
-            <p><span class="highlight">Consistency (17/20):</span> Stellar peaks, but skits and filler dilute the punch.</p>
+            <p><span class="highlight">Originality (20/20):</span> A revolutionary persona and lyrical approach that shattered rap’s conventions, birthing an inimitable icon.</p>
+            <p><span class="highlight">Production Quality (18/20):</span> A lean, menacing soundscape that perfectly frames Eminem’s chaos, though skits occasionally fracture the momentum.</p>
+            <p><span class="highlight">Lyrics and Messaging (19/20):</span> A masterful blend of razor-sharp wordplay, visceral emotion, and provocative satire, with only fleeting excesses.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> A gripping, adrenaline-fueled ride that balances shock and substance, rarely letting up in its wild allure.</p>
+            <p><span class="highlight">Consistency (17/20):</span> Packed with genre-defining peaks, yet weighed down slightly by skits and a handful of less essential tracks.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (93/100):</span> 9.3/10</h3></p>
-            <p><em><span class="highlight">The Slim Shady LP</span></em> isn’t just an album—it’s a detonation, a middle finger to the norm that birthed a legend.</p>
+            <p><em><span class="highlight">The Slim Shady LP</span></em> isn’t just an album—it’s a detonation, a middle finger to the norm that birthed a legend. It’s Eminem’s unhinged brilliance laid bare, a raw, unapologetic classic that still echoes decades later.</p>
         </div>
     </div>
 
@@ -198,7 +187,6 @@
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
             document.querySelectorAll('.glass-card.slim-card').forEach(card => {
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
