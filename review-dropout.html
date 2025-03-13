@@ -64,7 +64,7 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid #feb66b; /* Amber highlight applied to outer border */
             padding: 2rem;
             margin: 2rem 0;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -75,8 +75,7 @@
         .dropout-glass-card:hover {
             transform: scale(1.05) !important;
             background: rgba(255, 255, 255, 0.15);
-            border-color: #feb66b;
-            box-shadow: 0 0 0 2px #feb66b, 0 0 30px rgba(254, 182, 107, 0.4);
+            box-shadow: 0 0 0 2px #feb66b, 0 0 30px rgba(254, 182, 107, 0.4); /* Amber glow on hover */
         }
         .dropout-glass-card::before {
             content: '';
@@ -91,7 +90,23 @@
         .dropout-glass-card:hover::before {
             left: 100%;
         }
-        .dropout-glass-card img {
+        .dropout-glass-card .album-image-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .dropout-glass-card .album-image-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px red, 0 0 20px green, 0 0 30px blue; /* RGB effect restored */
+        }
+        .dropout-glass-card .album-image-card img {
             max-width: 100%;
             height: auto;
             object-fit: cover;
@@ -100,7 +115,7 @@
             width: 100%;
             display: block;
         }
-        .dropout-glass-card:hover img {
+        .dropout-glass-card .album-image-card:hover img {
             transform: scale(1.05);
         }
         .glass-card {
@@ -136,7 +151,9 @@
         <div class="review-content">
             <h2>The College Dropout: Kanye West’s Soulful Defiance of the System</h2>
             <div class="dropout-glass-card">
-                <img src="dropoutt.jpeg" alt="Kanye West - The College Dropout album image">
+                <div class="album-image-card">
+                    <img src="dropoutt.jpeg" alt="Kanye West - The College Dropout album image">
+                </div>
             </div>
             <br>
             <p>On <span class="highlight">February 10, 2004</span>, Kanye West launched <em><span class="highlight">The College Dropout</span></em>, a 21-track debut via Roc-A-Fella and Def Jam that peaked at #2 on the Billboard 200, selling 441,000 copies in its first week. Certified 4x Platinum by 2018, this album—born from a near-fatal car crash and years as a producer—heralded Kanye’s rise as rap’s everyman visionary. As of <span class="highlight">March 15, 2025</span>, it’s a soul-drenched cornerstone—let’s dig into its raw brilliance.</p>
