@@ -19,7 +19,7 @@
             font-size: 3rem;
             text-align: center;
             margin-bottom: 2rem;
-            color: #feb66b; /* Amber */
+            color: #feb66b;
             text-shadow: 0 0 10px #feb66b;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
@@ -66,7 +66,7 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 10px;
-            padding: 20px;
+            padding: 0; /* Remove padding to allow image to touch edges */
             margin: 10px;
             transition: transform 0.3s ease;
             display: flex;
@@ -78,13 +78,15 @@
             transform: scale(1.05);
         }
         .glass-card.grad-card img {
-            max-width: 100%;
+            width: 100%; /* Force image to take full width */
             height: auto;
+            object-fit: cover; /* Ensure image fills container, cropping if needed */
+            object-position: center; /* Center the image when cropped */
             border-radius: 8px;
             transition: transform 0.3s ease;
         }
         .glass-card.grad-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1); /* Slightly larger zoom for image */
         }
     </style>
 </head>
@@ -176,6 +178,19 @@
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            // Add hover effect for image zoom
+            document.querySelectorAll('.grad-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
