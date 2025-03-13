@@ -1,84 +1,120 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - Carter III Review</title>
+    <title>MusicRx - Tha Carter III Review</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    .highlight {
-        color: #f44336; /* Fuchsia */
-        font-weight: bold;
-    }
-
-    /* Custom graduation glitch effect */
-    .review-grad-glitch {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        color: #f44336; /* Fuchsia */
-        text-shadow: 0 0 10px #f44336;
-        font-family: 'Syncopate', sans-serif;
-        text-transform: uppercase;
-        position: relative;
-    }
-
-    .review-grad-glitch::before,
-    .review-grad-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .review-grad-glitch::before {
-        left: 2px;
-        text-shadow: -2px 0 #00ffea;
-        animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .review-grad-glitch::after {
-        left: -2px;
-        text-shadow: -2px 0 #f44336;
-        animation: glitch-2 3s linear infinite;
-    }
-
-    /* Graduation image card with zoom effect */
-    .glass-card.grad-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        transition: transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .glass-card.grad-card:hover {
-        transform: scale(1.05);
-    }
-
-    .glass-card.grad-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .glass-card.grad-card:hover img {
-        transform: scale(1.05);
-    }
-</style>
+    <style>
+        .highlight {
+            color: #f44336; /* Fuchsia */
+            font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #f44336; /* Matching fuchsia for overall rating */
+        }
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #f44336;
+            text-shadow: 0 0 10px #f44336;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #f44336;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .carter-glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .carter-glass-card:hover {
+            transform: scale(1.05) !important;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #f44336;
+            box-shadow: 0 0 0 2px #f44336, 0 0 30px rgba(244, 67, 54, 0.4);
+        }
+        .carter-glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        .carter-glass-card:hover::before {
+            left: 100%;
+        }
+        .carter-glass-card img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            width: 100%;
+            display: block;
+        }
+        .carter-glass-card:hover img {
+            transform: scale(1.05);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -96,58 +132,58 @@
     </nav>
 
     <div class="container">
-        <h1 class="review-grad-glitch" data-text="The Carter III">The Carter III</h1>
+        <h1 class="review-grad-glitch" data-text="Tha Carter III">Tha Carter III</h1>
         <div class="review-content">
-            <h2>Lil Wayne - The Carter III</h2>
-            <div class="glass-card grad-card">
-                <img src="carter.jpeg" alt="Lil Wayne The Carter III album image">
+            <h2>Tha Carter III: Lil Wayne’s Swaggering Throne of Southern Rap</h2>
+            <div class="carter-glass-card">
+                <img src="carter.jpeg" alt="Lil Wayne - Tha Carter III album image">
             </div>
             <br>
-            <p>On <span class="highlight">June 10, 2008</span>, Lil Wayne dropped <em>Tha Carter III</em>, a 16-track juggernaut that debuted at #1 on the Billboard 200, selling over a million copies in its first week. After years of mixtape dominance, this album cemented Wayne as rap’s king at his peak. Here’s a deep dive into this Southern rap classic:</p>
+            <p>On <span class="highlight">June 10, 2008</span>, Lil Wayne unleashed <em><span class="highlight">Tha Carter III</span></em>, a 16-track titan via Young Money, Cash Money, and Universal Motown, debuting at #1 on the Billboard 200 with over a million first-week sales. After years of mixtape supremacy, this album—certified 8x Platinum by 2023—crowned Wayne rap’s king at his peak. As of <span class="highlight">March 13, 2025</span>, it’s a Southern rap monument—let’s dissect its royal reign.</p>
         </div>
         <br>
         <h2>The Messaging and Theme</h2>
         <br>
-        <p>The album’s cover—a baby Wayne with tattoos and a crown—signals its intent: a coronation of rap royalty. <em>Tha Carter III</em> is Wayne reveling in his prime, blending braggadocio with surreal wordplay. Tracks like <span class="highlight">“A Milli”</span> and <span class="highlight">“Mr. Carter”</span> flex his untouchable status, while <span class="highlight">“Tie My Hands”</span> mourns post-Katrina New Orleans. <span class="highlight">“Mrs. Officer”</span> adds playful swagger, and <span class="highlight">“Comfortable”</span> dips into romance. It’s not a concept album but a showcase—Wayne’s charisma, quirks, and confidence on full display, proving he’s the best rapper alive.</p>
+        <p>The cover—a baby Wayne with tattoos and a crown—declares its mission: a coronation of rap’s wildest sovereign. <em><span class="highlight">Tha Carter III</span></em> is Wayne basking in his prime, fusing braggadocio with surreal bars. <span class="highlight">“A Milli”</span> and <span class="highlight">“Mr. Carter”</span> flaunt his invincible flow, while <span class="highlight">“Tie My Hands”</span> grieves post-Katrina New Orleans. <span class="highlight">“Mrs. Officer”</span> struts with playful charm, and <span class="highlight">“Comfortable”</span> dips into love’s glow. It’s not a deep narrative but a flex-fest—Wayne’s wit, weirdness, and charisma proving he’s rap’s top dog in ‘08.</p>
         <br>
         <h2>Production and Sound</h2>
         <br>
-        <p>Produced by a dream team including <span class="highlight">Kanye West</span>, <span class="highlight">Bangladesh</span>, <span class="highlight">Swizz Beatz</span>, and <span class="highlight">The Alchemist</span>, <em>Tha Carter III</em> is a sonic buffet of Southern rap and pop sheen. <span class="highlight">“A Milli”</span> bangs with a relentless loop, while <span class="highlight">“Lollipop”</span> glides on Auto-Tuned gloss. <span class="highlight">“Got Money”</span> pops with T-Pain’s bounce, and <span class="highlight">“Dr. Carter”</span> layers eerie keys over crisp drums. Wayne’s voice—raspy, elastic, and dripping with punchlines—rides these beats effortlessly, shifting from gritty flows to melodic hooks. It’s a polished leap from <em>Tha Carter II</em>, balancing street grit with mainstream appeal.</p>
+        <p>Crafted by heavyweights like <span class="highlight">Kanye West</span>, <span class="highlight">Bangladesh</span>, <span class="highlight">Swizz Beatz</span>, and <span class="highlight">The Alchemist</span>, <em><span class="highlight">Tha Carter III</span></em> blends Southern grit with pop polish. <span class="highlight">“A Milli”</span> thumps with a hypnotic loop, <span class="highlight">“Lollipop”</span> shines with Auto-Tuned gloss. <span class="highlight">“Got Money”</span> bounces with T-Pain’s flair, and <span class="highlight">“Dr. Carter”</span> weaves eerie keys over tight drums. Wayne’s voice—gruff, stretchy, and packed with punchlines—commands every beat, flipping from raw rhymes to catchy hooks. It’s a slick evolution from <em><span class="highlight">Tha Carter II</span></em>, marrying street roots with radio gold.</p>
         <br>
         <h2>Features</h2>
         <br>
-        <p><em>Tha Carter III</em> is stacked with guests who amplify Wayne’s throne. <span class="highlight">Jay-Z</span> trades regal bars on <span class="highlight">“Mr. Carter,”</span> while <span class="highlight">T-Pain</span> brings Auto-Tune magic to <span class="highlight">“Got Money.”</span> <span class="highlight">Babyface</span> croons on <span class="highlight">“Comfortable,”</span> and <span class="highlight">Robin Thicke</span> elevates <span class="highlight">“Tie My Hands.”</span> <span class="highlight">Bobby Valentino</span>, <span class="highlight">Busta Rhymes</span>, and <span class="highlight">Fabolous</span> add flair, but Wayne remains the star—guests are garnish, not the main course.</p>
+        <p><em><span class="highlight">Tha Carter III</span></em> boasts a royal court of guests, each boosting Wayne’s reign. <span class="highlight">Jay-Z</span> trades kingly bars on <span class="highlight">“Mr. Carter,”</span> <span class="highlight">T-Pain</span> electrifies <span class="highlight">“Got Money,”</span> and <span class="highlight">Babyface</span> smooths out <span class="highlight">“Comfortable.”</span> <span class="highlight">Robin Thicke</span> haunts <span class="highlight">“Tie My Hands,”</span> while <span class="highlight">Bobby Valentino</span>, <span class="highlight">Busta Rhymes</span>, and <span class="highlight">Fabolous</span> sprinkle extra spice. They shine but never steal—Wayne’s the sun, guests just orbit.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">“A Milli”</span> - A relentless, iconic banger with Wayne at his lyrical peak.</li>
+                <li><span class="highlight">“A Milli”</span> - Relentless bars hammer this classic, Wayne’s flow a lyrical storm.</li>
                 <br>
-                <li><span class="highlight">“Lollipop”</span> (feat. Static Major) - A sticky, chart-topping anthem of hedonism.</li>
+                <li><span class="highlight">“Lollipop”</span> (feat. Static Major) - Sugary hooks drip over this hit, a hedonistic earworm.</li>
                 <br>
-                <li><span class="highlight">“Mr. Carter”</span> (feat. Jay-Z) - A passing-of-the-torch moment with regal swagger.</li>
+                <li><span class="highlight">“Mr. Carter”</span> (feat. Jay-Z) - Regal flexes crown this track, a torch-passing triumph.</li>
                 <br>
-                <li><span class="highlight">“Tie My Hands”</span> (feat. Robin Thicke) - A soulful, poignant reflection on Katrina.</li>
+                <li><span class="highlight">“Tie My Hands”</span> (feat. Robin Thicke) - Soulful weight anchors this lament, Katrina’s scars laid bare.</li>
             </ul>
         </div>
         <br>
         <h2>Previous Works</h2>
         <br>
-        <p>Wayne’s journey began with <em>Tha Block Is Hot</em> (<span class="highlight">1999</span>), evolving through <em>Tha Carter</em> (<span class="highlight">2004</span>) and <em>Tha Carter II</em> (<span class="highlight">2005</span>), where he honed his Southern flair. Mixtapes like <em>Da Drought 3</em> (<span class="highlight">2007</span>) built his legend. <em>Tha Carter III</em> is the culmination—sharper than <em>Tha Carter II</em>’s raw edge, more focused than his mixtape sprawl. It’s Wayne ascending from Hot Boy to rap god, blending street cred with pop mastery.</p>
+        <p>Wayne’s ascent kicked off with <em><span class="highlight">Tha Block Is Hot</span></em> (<span class="highlight">1999</span>), sharpened through <em><span class="highlight">Tha Carter</span></em> (<span class="highlight">2004</span>) and <em><span class="highlight">Tha Carter II</span></em> (<span class="highlight">2005</span>), and exploded with mixtapes like <em><span class="highlight">Da Drought 3</span></em> (<span class="highlight">2007</span>). <em><span class="highlight">Tha Carter III</span></em> is the peak—tighter than <em><span class="highlight">Tha Carter II</span></em>’s rough edge, more polished than his mixtape chaos. It’s Wayne rising from Hot Boy to rap deity, blending Southern fire with crossover clout, setting the stage for <em><span class="highlight">Tha Carter IV</span></em> (2011).</p>
         <br>
         <h2>Summary</h2>
         <br>
-        <p><em>Tha Carter III</em> is a <span class="highlight">77-minute victory lap</span>—16 tracks of swagger, wit, and Southern soul. It’s Lil Wayne at his zenith, delivering a hit parade that’s both timeless and of its era. Tracks like <span class="highlight">“You Ain’t Got Nuthin”</span> drag the back half, but the highs—like <span class="highlight">“A Milli”</span>—are untouchable. This isn’t just an album—it’s a coronation, proving Wayne’s reign in 2008 was absolute. It’s bold, brash, and brilliant, a crown jewel in rap’s canon.</p>
+        <p><em><span class="highlight">Tha Carter III</span></em> is a <span class="highlight">77-minute coronation</span>—16 tracks of swagger, genius, and Southern heat. Wayne’s at his zenith, dropping a hit-stacked masterpiece that defines 2008 rap. Tracks like <span class="highlight">“You Ain’t Got Nuthin”</span> lag, but the highs—<span class="highlight">“A Milli”</span>—reign supreme. As of <span class="highlight">March 13, 2025</span>, its 8x Platinum status and Grammy wins (Best Rap Album, 2009) mark it as Wayne’s magnum opus—a throne built on bars and bravado.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> A fresh Southern twist on rap’s mainstream, rooted in Wayne’s style.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Diverse and pristine, with minor bloat.</p>
-            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Punchy, clever, and iconic, with occasional fluff.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> A joyous, replayable romp with rare lulls.</p>
-            <p><span class="highlight">Consistency (17/20):</span> Stellar front half, but the back dips slightly.</p>
+            <p><span class="highlight">Originality (18/20):</span> Fresh swagger redefines the South, Wayne’s quirks setting the tone.</p>
+            <p><span class="highlight">Production Quality (19/20):</span> Crisp beats dazzle, with slight fluff in the tail.</p>
+            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Clever wordplay rules, a few lines lean light.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> Wild energy grips you tight, its length rarely drags.</p>
+            <p><span class="highlight">Consistency (17/20):</span> Strong hits dominate, back-end dips just shy.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (92/100):</span> 9.2/10</h3></p>
-            <p><em>Tha Carter III</em> isn’t perfect—it’s long, with a few missteps—but it’s Lil Wayne at his most commanding, a king claiming his throne with swagger and soul. It’s a time capsule of 2008’s rap dominance, a testament to Wayne’s reign as the best rapper alive. In his sprawling discography, this shines brightest—a Southern classic that still bangs.</p>
+            <p><em><span class="highlight">Tha Carter III</span></em> is Wayne’s kingdom—flawed, sprawling, and undeniably regal. It’s a Southern rap titan, a 2008 time capsule, and proof he was the best alive. Crank the volume, let the punchlines fly, and bow to rap’s wildest king.</p>
         </div>
     </div>
 
@@ -157,15 +193,14 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.carter-card)').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.carter-glass-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
-            document.querySelectorAll('.glass-card.carter-card').forEach(card => {
+            document.querySelectorAll('.carter-glass-card').forEach(card => {
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
