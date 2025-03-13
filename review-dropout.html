@@ -7,129 +7,77 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .highlight {
-            color: #feb66b; /* Amber */
-            font-weight: bold;
-        }
-        .overall-rating h3 {
-            color: #feb66b; /* Matching amber for overall rating */
-        }
-        .review-grad-glitch {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #feb66b;
-            text-shadow: 0 0 10px #feb66b;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            position: relative;
-        }
-        .review-grad-glitch::before,
-        .review-grad-glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .review-grad-glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #00ffea;
-            animation: glitch-1 2s linear infinite reverse;
-        }
-        .review-grad-glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #feb66b;
-            animation: glitch-2 3s linear infinite;
-        }
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); }
-            5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); }
-            15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); }
-            100% { clip-path: inset(0 0 90% 0); }
-        }
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); }
-            5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); }
-            15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
-        }
-        .dropout-glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid #feb66b; /* Amber highlight applied to outer border */
-            padding: 2rem;
-            margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        .dropout-glass-card:hover {
-            transform: scale(1.05) !important;
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 0 2px #feb66b, 0 0 30px rgba(254, 182, 107, 0.4); /* Amber glow on hover */
-        }
-        .dropout-glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-        .dropout-glass-card:hover::before {
-            left: 100%;
-        }
-        .dropout-glass-card .album-image-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 20px;
-            transition: transform 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        .dropout-glass-card .album-image-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 10px red, 0 0 20px green, 0 0 30px blue; /* RGB effect restored */
-        }
-        .dropout-glass-card .album-image-card img {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            width: 100%;
-            display: block;
-        }
-        .dropout-glass-card .album-image-card:hover img {
-            transform: scale(1.05);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-        }
-    </style>
+<style>
+    .highlight {
+        color: #feb66b; /* Fuchsia */
+        font-weight: bold;
+    }
+
+    /* Custom graduation glitch effect */
+    .review-grad-glitch {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #feb66b; /* Fuchsia */
+        text-shadow: 0 0 10px #ffeb66b;
+        font-family: 'Syncopate', sans-serif;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .review-grad-glitch::before,
+    .review-grad-glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .review-grad-glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 #00ffea;
+        animation: glitch-1 2s linear infinite reverse;
+    }
+
+    .review-grad-glitch::after {
+        left: -2px;
+        text-shadow: -2px 0 #f1c232;
+        animation: glitch-2 3s linear infinite;
+    }
+
+    /* Graduation image card with zoom effect */
+    .glass-card.grad-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        transition: transform 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .glass-card.grad-card:hover {
+        transform: scale(1.05);
+    }
+
+    .glass-card.grad-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .glass-card.grad-card:hover img {
+        transform: scale(1.05);
+    }
+</style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -147,13 +95,11 @@
     </nav>
 
     <div class="container">
-        <h1 class="review-grad-glitch" data-text="The College Dropout">The College Dropout</h1>
+        <h1 class="review-grad-glitch" data-text="Late Registration">Late Registration</h1>
         <div class="review-content">
-            <h2>The College Dropout: Kanye West’s Soulful Defiance of the System</h2>
-            <div class="dropout-glass-card">
-                <div class="album-image-card">
-                    <img src="dropoutt.jpeg" alt="Kanye West - The College Dropout album image">
-                </div>
+            <h2>Kanye West - Late Registration</h2>
+            <div class="glass-card grad-card">
+                <img src="dropoutt.jpeg" alt="Kanye West The College Dropout album image">
             </div>
             <br>
             <p>On <span class="highlight">February 10, 2004</span>, Kanye West launched <em><span class="highlight">The College Dropout</span></em>, a 21-track debut via Roc-A-Fella and Def Jam that peaked at #2 on the Billboard 200, selling 441,000 copies in its first week. Certified 4x Platinum by 2018, this album—born from a near-fatal car crash and years as a producer—heralded Kanye’s rise as rap’s everyman visionary. As of <span class="highlight">March 15, 2025</span>, it’s a soul-drenched cornerstone—let’s dig into its raw brilliance.</p>
