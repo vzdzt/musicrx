@@ -9,8 +9,11 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .highlight {
-            color: #37573b; /* Fuchsia */
+            color: #37573b; /* Dark Green */
             font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #37573b; /* Matching dark green for overall rating */
         }
         .review-grad-glitch {
             font-size: 3rem;
@@ -45,12 +48,16 @@
             0% { clip-path: inset(0 0 90% 0); }
             5% { clip-path: inset(10% 0 70% 0); }
             10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
             100% { clip-path: inset(0 0 90% 0); }
         }
         @keyframes glitch-2 {
             0% { clip-path: inset(50% 0 0 0); }
             5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(90% 0 0 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
         .glass-card.grad-card {
@@ -79,6 +86,17 @@
         .glass-card.grad-card:hover img {
             transform: scale(1.05);
         }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -99,7 +117,7 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?">WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?</h1>
         <div class="review-content">
-            <h2>When We All Fall Asleep, Where Do We Go?: Billie Eilish’s Haunting Pop Breakthrough</h2>
+            <h2>When We All Fall Asleep, Where Do We Go?: Billie Eilish’s Shadowed Reverie Unleashed</h2>
             <div class="glass-card grad-card">
                 <img src="wwaf.jpeg" alt="Billie Eilish When We All Fall Asleep, Where Do We Go? album image">
             </div>
@@ -119,13 +137,13 @@
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">“bad guy”</span> - A viral hit with distorted bass and swagger.</li>
+                <li><span class="highlight">“bad guy”</span> - A taunting whisper that crescendos into a jagged bass growl, flipping innocence into menace with a smirk.</li>
                 <br>
-                <li><span class="highlight">“bury a friend”</span> - A chilling track with unsettling design.</li>
+                <li><span class="highlight">“bury a friend”</span> - A fractured nightmare stitched with glitchy stabs, its pulse thudding like footsteps in a darkened hall.</li>
                 <br>
-                <li><span class="highlight">“when the party’s over”</span> - A haunting ballad with raw piano.</li>
+                <li><span class="highlight">“when the party’s over”</span> - A fragile elegy carried by stark piano, Billie’s voice trembling like a candle flickering out.</li>
                 <br>
-                <li><span class="highlight">“all the good girls go to hell”</span> - A dark anthem with a catchy hook.</li>
+                <li><span class="highlight">“all the good girls go to hell”</span> - A sinister march through a twisted Eden, its hook slinking with devilish glee.</li>
             </ul>
         </div>
         <br>
@@ -137,11 +155,11 @@
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> A fresh, eerie take on modern pop.</p>
-            <p><span class="highlight">Production Quality (17/20):</span> Intimate and innovative, with minor unevenness.</p>
-            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Raw and relatable, but slightly repetitive.</p>
-            <p><span class="highlight">Enjoyment Factor (16/20):</span> Captivating for fans, moody for casuals.</p>
-            <p><span class="highlight">Consistency (16/20):</span> Strong cohesion, but brief with underdeveloped tracks.</p>
+            <p><span class="highlight">Originality (18/20):</span> A spectral reimagining of pop, threading teenage dread through an uncharted sonic veil.</p>
+            <p><span class="highlight">Production Quality (17/20):</span> A meticulous, homegrown haunt, its ingenuity shadowed only by a few fleeting seams.</p>
+            <p><span class="highlight">Lyrics and Messaging (17/20):</span> A piercing glimpse into a restless mind, potent yet tethered by occasional echoes.</p>
+            <p><span class="highlight">Enjoyment Factor (16/20):</span> A hypnotic plunge for the attuned, its gloom a quiet barrier to the uninitiated.</p>
+            <p><span class="highlight">Consistency (16/20):</span> A taut, otherworldly thread, unbroken but stretched thin by its compact frame.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (84/100):</span> 8.4/10</h3></p>
             <p><em><span class="highlight">When We All Fall Asleep, Where Do We Go?</span></em> is Billie’s whisper-turned-roar, a dark pop gem that dances between nightmares and defiance. It’s not flawless, but its eerie charm captivates. Crank it up, let the bass thump, and drift into a world where teenage angst meets sonic art, leaving echoes of a star’s bold ascent.</p>
         </div>

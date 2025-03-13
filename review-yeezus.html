@@ -9,8 +9,11 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .highlight {
-            color: #ab0202; /* Fuchsia */
+            color: #ab0202; /* Red */
             font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #ab0202; /* Matching red for overall rating */
         }
         .review-grad-glitch {
             font-size: 3rem;
@@ -45,12 +48,16 @@
             0% { clip-path: inset(0 0 90% 0); }
             5% { clip-path: inset(10% 0 70% 0); }
             10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
             100% { clip-path: inset(0 0 90% 0); }
         }
         @keyframes glitch-2 {
             0% { clip-path: inset(50% 0 0 0); }
             5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(90% 0 0 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
         .glass-card.grad-card {
@@ -79,6 +86,17 @@
         .glass-card.grad-card:hover img {
             transform: scale(1.05);
         }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -99,7 +117,7 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="YEEZUS">YEEZUS</h1>
         <div class="review-content">
-            <h2>Yeezus: Kanye West’s Abrasive Experimental Triumph</h2>
+            <h2>Yeezus: Kanye West’s Industrial Fury Unleashed</h2>
             <div class="glass-card grad-card">
                 <img src="yeezus.jpeg" alt="Kanye West Yeezus album image">
             </div>
@@ -119,13 +137,13 @@
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">“Black Skinhead”</span> - A pounding industrial anthem with fierce energy.</li>
+                <li><span class="highlight">“Black Skinhead”</span> - A relentless war drum assault, its jagged rhythm roaring with primal defiance.</li>
                 <br>
-                <li><span class="highlight">“New Slaves”</span> - A searing critique with a haunting outro.</li>
+                <li><span class="highlight">“New Slaves”</span> - A molten tirade that scorches through silence, Ocean’s outro lingering like smoke over ruins.</li>
                 <br>
-                <li><span class="highlight">“Blood on the Leaves”</span> - A haunting blend of Nina Simone and heartbreak.</li>
+                <li><span class="highlight">“Blood on the Leaves”</span> - A gut-wrenching fusion of Simone’s lament and Kanye’s anguish, horns wailing like a storm’s edge.</li>
                 <br>
-                <li><span class="highlight">“Bound 2”</span> - A soulful closer with a Ponderosa Twins sample.</li>
+                <li><span class="highlight">“Bound 2”</span> - A warped soul sermon, its retro sample clashing with distortion in a bittersweet embrace.</li>
             </ul>
         </div>
         <br>
@@ -137,11 +155,11 @@
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (19/20):</span> A groundbreaking shift to industrial hip-hop.</p>
-            <p><span class="highlight">Production Quality (18/20):</span> Raw and innovative, with jarring transitions.</p>
-            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Bold and provocative, but abrasive at times.</p>
-            <p><span class="highlight">Enjoyment Factor (16/20):</span> Thrilling for fans, challenging for casuals.</p>
-            <p><span class="highlight">Consistency (15/20):</span> Strong highs, but disjointed in flow.</p>
+            <p><span class="highlight">Originality (19/20):</span> A radical sonic rupture, carving a jagged path through hip-hop’s fabric.</p>
+            <p><span class="highlight">Production Quality (18/20):</span> A stark, electrifying forge, its rough edges a testament to fearless craft.</p>
+            <p><span class="highlight">Lyrics and Messaging (17/20):</span> A fiery manifesto of rage and revelation, potent yet occasionally eclipsed by its own noise.</p>
+            <p><span class="highlight">Enjoyment Factor (16/20):</span> A visceral jolt for the daring, its abrasiveness a gauntlet for the faint-hearted.</p>
+            <p><span class="highlight">Consistency (15/20):</span> A jagged mosaic of brilliance, its fractures both its strength and its stumble.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (85/100):</span> 8.5/10</h3></p>
             <p><em><span class="highlight">Yeezus</span></em> is Kanye’s unapologetic rebellion, a jagged masterpiece of industrial chaos and defiance. It’s not his smoothest ride, but its daring spirit electrifies. Blast it loud, embrace the distortion, and revel in an album that shatters norms, proving genius thrives in the rough edges of a visionary unbound.</p>
         </div>
