@@ -66,7 +66,7 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 10px;
-            padding: 20px;
+            padding: 0; /* Remove padding to allow image to touch edges */
             margin: 10px;
             transition: transform 0.3s ease;
             display: flex;
@@ -78,13 +78,15 @@
             transform: scale(1.05);
         }
         .glass-card.grad-card img {
-            max-width: 100%;
+            width: 100%; /* Force image to take full width */
             height: auto;
+            object-fit: cover; /* Ensure image fills container, cropping if needed */
+            object-position: center; /* Center the image when cropped */
             border-radius: 8px;
             transition: transform 0.3s ease;
         }
         .glass-card.grad-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1); /* Slightly larger zoom for image */
         }
     </style>
 </head>
@@ -106,56 +108,51 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="Graduation">Graduation</h1>
         <div class="review-content">
-            <h2>Graduation: Kanye West’s Electric Ascent Beyond Mortal Limits</h2>
+            <h2>Graduation: Kanye West’s Neon-Charged Leap to Iconic Heights</h2>
             <div class="glass-card grad-card">
                 <img src="graduation.jpg" alt="Kanye West - <em><span class='highlight'>Graduation</span></em> album image">
             </div>
             <br>
-            <p>On <span class="highlight">September 11, 2007</span>, Kanye West unleashed <em><span class="highlight">Graduation</span></em>, a 13-track finale to his college trilogy via Roc-A-Fella and Def Jam, triumphing over 50 Cent’s <em><span class="highlight">Curtis</span></em> with 957,000 first-week sales in a historic clash. Certified 6x Platinum by 2022, it catapulted Kanye from underdog to global icon. As of <span class="highlight">March 14, 2025</span>, this neon-lit masterpiece beckons—let’s explore its electrifying legacy.</p>
+            <p>On <span class="highlight">September 11, 2007</span>, Kanye West unleashed <em><span class="highlight">Graduation</span></em>, a 13-track finale to his college trilogy via Roc-A-Fella and Def Jam, triumphing over 50 Cent’s <em><span class="highlight">Curtis</span></em> with 957,000 first-week sales in a historic clash. Certified 6x Platinum by 2022, it catapulted Kanye from underdog to global icon. As of <span class="highlight">March 16, 2025</span>, this neon-lit masterpiece beckons—let’s explore its electrifying legacy.</p>
         </div>
         <br>
         <h2>The Messaging and Theme</h2>
-        <br>
-        <p>Takashi Murakami’s cover—a bear soaring into a neon cosmos—ignites a narrative of ambition unbound. <em><span class="highlight">Graduation</span></em> marks Kanye’s evolution from soulful roots to a bold, arena-commanding force, with <span class="highlight">“Stronger”</span> and <span class="highlight">“Good Life”</span> pulsing with triumph. Yet, beneath the gloss, unease brews—<span class="highlight">“Everything I Am”</span> grapples with identity under scrutiny, while <span class="highlight">“Big Brother”</span> offers a heartfelt tribute to Jay-Z tinged with rivalry. It’s a dual portrait: brash victory shadowed by introspection, a visionary balancing ego and growth.</p>
+        <p>Takashi Murakami’s cover—a bear soaring into a neon cosmos—sets the stage for ambition unbound. <em><span class="highlight">Graduation</span></em> marks Kanye’s evolution from soulful roots to an arena-commanding force, with <span class="highlight">“Stronger”</span> and <span class="highlight">“Good Life”</span> pulsing with triumph. Yet, beneath the gloss, unease brews—<span class="highlight">“Everything I Am”</span> grapples with identity under scrutiny, while <span class="highlight">“Big Brother”</span> offers a heartfelt tribute to Jay-Z tinged with rivalry. It’s a dual portrait: brash victory shadowed by introspection, a visionary balancing ego and growth.</p>
         <br>
         <h2>Production and Sound</h2>
-        <br>
-        <p>Orchestrated by <span class="highlight">Kanye West</span>, with <span class="highlight">Mike Dean</span> and <span class="highlight">Jon Brion</span> refining the edges, <em><span class="highlight">Graduation</span></em> embraces a sleek, synth-drenched palette. <span class="highlight">“Stronger”</span> morphs Daft Punk’s rhythm into a mechanical colossus, <span class="highlight">“Flashing Lights”</span> shimmers with ethereal keys and haunting strings. <span class="highlight">“I Wonder”</span> ascends on sweeping pianos, while <span class="highlight">“Good Morning”</span> kicks off with a crisp, futuristic pulse. Kanye’s flow—sharp, confident, with fleeting melancholy—bridges <em><span class="highlight">Late Registration</span></em>’s richness to a pop-infused frontier, hinting at his genre-defying evolution.</p>
+        <p>Orchestrated by <span class="highlight">Kanye West</span>, with <span class="highlight">Mike Dean</span> and <span class="highlight">Jon Brion</span> refining the edges, <em><span class="highlight">Graduation</span></em> embraces a sleek, synth-drenched palette. <span class="highlight">“Stronger”</span> morphs Daft Punk’s rhythm into a mechanical colossus, while <span class="highlight">“Flashing Lights”</span> shimmers with ethereal keys and haunting strings. <span class="highlight">“I Wonder”</span> ascends on sweeping pianos, and <span class="highlight">“Good Morning”</span> kicks off with a crisp, futuristic pulse. Kanye’s flow—sharp, confident, with fleeting melancholy—bridges <em><span class="highlight">Late Registration</span></em>’s richness to a pop-infused frontier, hinting at his genre-defying evolution.</p>
         <br>
         <h2>Features</h2>
-        <br>
-        <p><em><span class="highlight">Graduation</span></em> curates a tight, impactful roster, each guest enhancing Kanye’s vision. <span class="highlight">T-Pain</span> drenches <span class="highlight">“Good Life”</span> in Auto-Tune bliss, <span class="highlight">Lil Wayne</span> struts through <span class="highlight">“Barry Bonds”</span> with swaggering flair. <span class="highlight">Dwele</span> adds soulful depth to <span class="highlight">“Flashing Lights,”</span> <span class="highlight">Mos Def</span> lends a smoky vibe to <span class="highlight">“Drunk and Hot Girls,”</span> and <span class="highlight">Chris Martin</span> weaves a tender melody in <span class="highlight">“Homecoming.”</span> These voices complement, not overshadow—strokes on Kanye’s canvas of ascent from Chicago streets to global stages.</p>
+        <p><em><span class="highlight">Graduation</span></em> curates a tight, impactful roster, each guest enhancing Kanye’s vision. <span class="highlight">T-Pain</span> drenches <span class="highlight">“Good Life”</span> in Auto-Tune bliss, while <span class="highlight">Lil Wayne</span> struts through <span class="highlight">“Barry Bonds”</span> with swaggering flair. <span class="highlight">Dwele</span> adds soulful depth to <span class="highlight">“Flashing Lights,”</span> <span class="highlight">Mos Def</span> lends a smoky vibe to <span class="highlight">“Drunk and Hot Girls,”</span> and <span class="highlight">Chris Martin</span> weaves a tender melody in <span class="highlight">“Homecoming.”</span> These voices complement rather than overshadow—strokes on Kanye’s canvas of ascent from Chicago streets to global stages.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">“Stronger”</span> - Throbbing beats ignite this cybernetic anthem, resilience fused with machine precision.</li>
+                <li><span class="highlight">“Stronger”</span> - Throbbing synths drive this cybernetic anthem, Kanye’s resilience pulsing with machine-like precision.</li>
                 <br>
-                <li><span class="highlight">“Good Life”</span> (feat. T-Pain) - Euphoric waves crash in, a celebratory toast to newfound glory.</li>
+                <li><span class="highlight">“Good Life”</span> (feat. T-Pain) - Euphoric beats surge with celebration, T-Pain’s Auto-Tune ushering in newfound glory.</li>
                 <br>
-                <li><span class="highlight">“Flashing Lights”</span> (feat. Dwele) - Glistening tones pierce the darkness, melancholy weaving a hypnotic spell.</li>
+                <li><span class="highlight">“Flashing Lights”</span> (feat. Dwele) - Ethereal keys cast a hypnotic glow, melancholy and elegance intertwining seamlessly.</li>
                 <br>
-                <li><span class="highlight">“I Wonder”</span> - Soaring melodies lift this introspective journey, ambition cloaked in elegance.</li>
+                <li><span class="highlight">“I Wonder”</span> - Sweeping pianos lift this introspective gem, ambition soaring through shimmering melodies.</li>
             </ul>
         </div>
         <br>
         <h2>Previous Works</h2>
-        <br>
-        <p>Kanye’s journey kicked off with <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>), a raw soulful debut, followed by <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>), which layered orchestral grandeur. <em><span class="highlight">Graduation</span></em> crowns the trilogy, swapping struggle for supremacy—shedding <em><span class="highlight">Dropout</span></em>’s grit and <em><span class="highlight">Late Registration</span></em>’s opulence for a neon-charged stride. This pivot sets the stage for the stark reinvention of <em><span class="highlight">808s & Heartbreak</span></em> (2008).</p>
+        <p>Kanye’s journey began with <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>), a raw, soulful debut, followed by <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>), which layered orchestral grandeur. <em><span class="highlight">Graduation</span></em> crowns the trilogy, trading struggle for supremacy—shedding <em><span class="highlight">Dropout</span></em>’s grit and <em><span class="highlight">Late Registration</span></em>’s opulence for a neon-charged stride. This pivot sets the stage for the stark reinvention of <em><span class="highlight">808s & Heartbreak</span></em> (<span class="highlight">2008</span>).</p>
         <br>
         <h2>Summary</h2>
-        <br>
-        <p><em><span class="highlight">Graduation</span></em> spans a crisp <span class="highlight">51 minutes</span>—13 tracks of polished bravado and veiled emotion. Kanye hits his commercial peak, blending hip-hop’s essence with electronic flair in a sound that’s both timeless and visionary. Its concise runtime heightens its impact, though missteps like <span class="highlight">“Drunk and Hot Girls”</span> dim the shine. As of <span class="highlight">March 14, 2025</span>, its 6x Platinum status and Grammy triumph (Best Rap Album, 2008) solidify its place—a luminous link between Kanye’s roots and his infinite horizon, a moment of a genius seizing his throne.</p>
+        <p><em><span class="highlight">Graduation</span></em> unfolds across a crisp <span class="highlight">51 minutes</span>—13 tracks of polished bravado and veiled emotion. Kanye hits his commercial peak, blending hip-hop’s essence with electronic flair in a sound that’s both timeless and visionary. Its concise runtime heightens impact, though missteps like <span class="highlight">“Drunk and Hot Girls”</span> dim the shine. As of <span class="highlight">March 16, 2025</span>, its 6x Platinum status and Grammy triumph (<span class="highlight">Best Rap Album, 2008</span>) solidify its place—a luminous bridge between Kanye’s roots and his infinite horizon.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> Synth-infused boldness redefines rap, anchored in Kanye’s heritage.</p>
-            <p><span class="highlight">Production Quality (20/20):</span> Impeccable polish radiates, each track a flawless jewel.</p>
-            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Clever lines spar with deep reflection, style occasionally overshadows substance.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> Dynamic pulses electrify every listen, minor flaws linger.</p>
-            <p><span class="highlight">Consistency (17/20):</span> Strong cohesion prevails, a few fissures mar the brilliance.</p>
+            <p><span class="highlight">Originality (18/20):</span> Synth-driven innovation reshapes rap, rooted in Kanye’s evolving sound with a futuristic edge.</p>
+            <p><span class="highlight">Production Quality (20/20):</span> Flawless polish radiates through every beat, crafting a sonic jewel of unparalleled clarity.</p>
+            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Sharp bars blend bravado with introspection, though style occasionally outshines depth.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> Electric energy captivates across every track, with minor flaws barely dimming the glow.</p>
+            <p><span class="highlight">Consistency (17/20):</span> Cohesive brilliance dominates, though a few cracks disrupt the seamless ascent.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (92/100):</span> 9.2/10</h3></p>
-            <p><em><span class="highlight">Graduation</span></em> stands as Kanye’s neon zenith—a daring, imperfect triumph of ambition and vulnerability. It’s his final bow before fame’s complexities, a glowing send-off to the trilogy that propelled him to stardom. Crank the volume, feel the surge, and watch a legend ascend into immortality.</p>
+            <p><em><span class="highlight">Graduation</span></em> stands as Kanye’s neon zenith—a daring, imperfect triumph of ambition and vulnerability. It’s his final bow before fame’s complexities, a glowing send-off to the trilogy that propelled him to stardom. Crank the volume, feel the surge, and witness a legend ascend into immortality.</p>
         </div>
     </div>
 
@@ -176,6 +173,19 @@
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            // Add hover effect for image zoom
+            document.querySelectorAll('.grad-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
