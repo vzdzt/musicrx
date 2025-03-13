@@ -8,15 +8,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        body {
+            background: #0a0a0a !important;
+        }
         .highlight {
-            color: #AB2330; /* Your red shade */
+            color: #AB2330; /* Dark red */
             font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #AB2330; /* Matching dark red for overall rating */
         }
         .review-grad-glitch {
             font-size: 3rem;
             text-align: center;
             margin-bottom: 2rem;
-            color: #fd183e; /* Your brighter red */
+            color: #fd183e; /* Brighter red */
             text-shadow: 0 0 10px #FF00FF;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
@@ -53,13 +59,24 @@
             10% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
         .glass-card.grad-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 10px;
-            padding: 20px;
+            padding: 0; /* Remove padding for image to touch edges */
             margin: 10px;
             transition: transform 0.3s ease;
             display: flex;
@@ -71,13 +88,15 @@
             transform: scale(1.05);
         }
         .glass-card.grad-card img {
-            max-width: 100%;
+            width: 100%; /* Force image to take full width */
             height: auto;
+            object-fit: cover; /* Ensure image fills container, cropping if needed */
+            object-position: center; /* Center the image when cropped */
             border-radius: 8px;
             transition: transform 0.3s ease;
         }
         .glass-card.grad-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1); /* Slightly larger zoom for image */
         }
     </style>
 </head>
@@ -99,49 +118,49 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="My Beautiful Dark Twisted Fantasy">My Beautiful Dark Twisted Fantasy</h1>
         <div class="review-content">
-            <h2>MBDTF: KANYE’S EPIC DREAM UNFOLDS</h2>
+            <h2>MBDTF: Kanye’s Cinematic Plunge into a Twisted Dreamscape</h2>
             <div class="glass-card grad-card">
-                <img src="mbdtff.jpeg" alt="Kanye West MBDTF album image">
+                <img src="mbdtff.jpeg" alt="Kanye West - <em><span class='highlight'>My Beautiful Dark Twisted Fantasy</span></em> album image">
             </div>
             <br>
-            <p>Fans were hit with a seismic shock on <span class="highlight">November 22, 2010</span>, when Kanye West dropped <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em>, a 13-track epic that stormed to #1 on the Billboard 200, selling over 496,000 copies in its first week. After the divisive <em><span class="highlight">808s & Heartbreak</span></em> and a wave of public backlash, Kanye roared back with a masterpiece. Here’s a deep dive into this sprawling, visionary odyssey:</p>
+            <p>Fans were hit with a seismic shock on <span class="highlight">November 22, 2010</span>, when Kanye West dropped <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em>, a 13-track epic that stormed to #1 on the Billboard 200, selling over 496,000 copies in its first week. After the divisive <em><span class="highlight">808s & Heartbreak</span></em> and a wave of public backlash, Kanye roared back with a masterpiece. As of <span class="highlight">March 16, 2025</span>, let’s dive into this sprawling, visionary odyssey.</p>
         </div>
         <br>
         <h2>Messaging and Theme</h2>
-        <p>The album’s cover—a censored, provocative painting—sets the tone: a chaotic clash of excess and artistry. <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> is Kanye wrestling with his demons—fame’s highs and lows, ego and insecurity. Tracks like <span class="highlight">“Power”</span> and <span class="highlight">“Monster”</span> flex godlike bravado, while <span class="highlight">“Runaway”</span> and <span class="highlight">“Blame Game”</span> peel back layers of heartbreak and self-doubt. <span class="highlight">“Lost in the World”</span> chases redemption. It’s a fever dream of decadence and reflection—Kanye as both villain and hero, weaving a fantasy that’s as dark as it is dazzling.</p>
+        <p>The album’s cover—a censored, provocative painting—sets the tone: a chaotic clash of excess and artistry. <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> captures Kanye wrestling with his demons—fame’s highs and lows, ego and insecurity. Tracks like <span class="highlight">“Power”</span> and <span class="highlight">“Monster”</span> flex godlike bravado, while <span class="highlight">“Runaway”</span> and <span class="highlight">“Blame Game”</span> peel back layers of heartbreak and self-doubt. <span class="highlight">“Lost in the World”</span> chases redemption. It’s a fever dream of decadence and reflection—Kanye as both villain and hero, weaving a fantasy that’s as dark as it is dazzling.</p>
         <br>
         <h2>Production and Sound</h2>
-        <p>Helmed by <span class="highlight">Kanye West</span>, with <span class="highlight">RZA</span>, <span class="highlight">No I.D.</span>, <span class="highlight">Mike Dean</span>, and <span class="highlight">Jeff Bhasker</span>, <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> is a sonic titan. <span class="highlight">“Dark Fantasy”</span> kicks off with choral grandeur, <span class="highlight">“All of the Lights”</span> crafts a symphony of horns and drums, and <span class="highlight">“Runaway”</span> layers haunting pianos over warped beats. <span class="highlight">“Devil in a New Dress”</span> oozes soulful guitars. Kanye’s voice—bold, Auto-Tuned, commanding—anchors this maximalist blend of hip-hop, rock, and orchestral flourishes, a leap from <em><span class="highlight">808s & Heartbreak</span></em>’s starkness into a lush, cinematic realm.</p>
+        <p>Helmed by <span class="highlight">Kanye West</span>, with <span class="highlight">RZA</span>, <span class="highlight">No I.D.</span>, <span class="highlight">Mike Dean</span>, and <span class="highlight">Jeff Bhasker</span>, <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> stands as a sonic titan. <span class="highlight">“Dark Fantasy”</span> kicks off with choral grandeur, <span class="highlight">“All of the Lights”</span> crafts a symphony of horns and drums, and <span class="highlight">“Runaway”</span> layers haunting pianos over warped beats. <span class="highlight">“Devil in a New Dress”</span> oozes soulful guitars. Kanye’s voice—bold, Auto-Tuned, commanding—anchors this maximalist blend of hip-hop, rock, and orchestral flourishes, a leap from <em><span class="highlight">808s & Heartbreak</span></em>’s starkness into a lush, cinematic realm.</p>
         <br>
         <h2>Features</h2>
-        <p>The album’s a star-studded affair, with guests elevating Kanye’s vision. <span class="highlight">Nicki Minaj</span> dominates <span class="highlight">“Monster”</span> with a ferocious verse, while <span class="highlight">Jay-Z</span> and <span class="highlight">Rick Ross</span> shine on <span class="highlight">“Monster”</span> and <span class="highlight">“Devil in a New Dress”</span>. <span class="highlight">Rihanna</span> dazzles on <span class="highlight">“All of the Lights”</span>, and <span class="highlight">Pusha T</span> haunts <span class="highlight">“Runaway”</span>. <span class="highlight">Bon Iver</span>, <span class="highlight">John Legend</span>, and <span class="highlight">Kid Cudi</span> add depth, but Kanye’s the maestro—every voice bends to his symphony.</p>
+        <p>The album’s a star-studded affair, with guests elevating Kanye’s vision. <span class="highlight">Nicki Minaj</span> dominates <span class="highlight">“Monster”</span> with a ferocious verse, while <span class="highlight">Jay-Z</span> and <span class="highlight">Rick Ross</span> shine on <span class="highlight">“Monster”</span> and <span class="highlight">“Devil in a New Dress.”</span> <span class="highlight">Rihanna</span> dazzles on <span class="highlight">“All of the Lights,”</span> and <span class="highlight">Pusha T</span> haunts <span class="highlight">“Runaway.”</span> <span class="highlight">Bon Iver</span>, <span class="highlight">John Legend</span>, and <span class="highlight">Kid Cudi</span> add depth, but Kanye’s the maestro—every voice bends to his symphony.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">“Power”</span> - A bombastic anthem that roars with defiance, sampling King Crimson’s prog-rock riffs and layering them with thunderous drums and Kanye’s unapologetic swagger—it’s a middle finger to doubters that still shakes speakers.</li>
+                <li><span class="highlight">“Power”</span> - Thunderous drums collide with King Crimson’s prog-rock riffs, Kanye’s defiant swagger roaring through a bombastic anthem that flips the bird to doubters.</li>
                 <br>
-                <li><span class="highlight">“Runaway”</span> - A sprawling, nine-minute epic dripping with introspection, where haunting pianos and Pusha T’s cold verse collide with Kanye’s raw toast to the “douchebags,” making it a timeless gut-punch of beauty and regret.</li>
+                <li><span class="highlight">“Runaway”</span> - Haunting pianos anchor this nine-minute confessional, Pusha T’s icy verse and Kanye’s raw toast to “douchebags” crafting a gut-wrenching masterpiece.</li>
                 <br>
-                <li><span class="highlight">“All of the Lights”</span> - A cinematic explosion of horns, drums, and Rihanna’s soaring hook, weaving a star-studded choir into a chaotic ode to fame’s glare—its grandeur feels like a blockbuster in your headphones.</li>
+                <li><span class="highlight">“All of the Lights”</span> - Cinematic horns erupt alongside Rihanna’s soaring hook, a star-studded choir weaving a chaotic ode to fame’s blinding glare.</li>
                 <br>
-                <li><span class="highlight">“Monster”</span> - A ferocious posse cut where Nicki Minaj’s wild, shape-shifting verse steals the show, backed by Jay-Z’s cool menace and Kanye’s snarling energy, all over a beat that’s pure adrenaline.</li>
+                <li><span class="highlight">“Monster”</span> - Ferocious energy pulses through this posse cut, Nicki Minaj’s shape-shifting verse stealing the show over Kanye and Jay-Z’s snarling adrenaline.</li>
             </ul>
         </div>
         <br>
         <h2>Previous Works</h2>
-        <p>Kanye’s road to <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> started with <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>), followed by <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>), <em><span class="highlight">Graduation</span></em> (<span class="highlight">2007</span>), and <em><span class="highlight">808s & Heartbreak</span></em> (<span class="highlight">2008</span>). <em><span class="highlight">MBDTF</span></em> fuses <em>808s</em>’ raw emotion with <em>Late Registration</em>’s orchestral scope and <em>Graduation</em>’s bombast. Where <em>808s</em> was a minimalist detour, this is a maximalist triumph—Kanye reclaiming his crown with a darker, bolder brush.</p>
+        <p>Kanye’s road to <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> started with <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>), followed by <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>), <em><span class="highlight">Graduation</span></em> (<span class="highlight">2007</span>), and <em><span class="highlight">808s & Heartbreak</span></em> (<span class="highlight">2008</span>). <em><span class="highlight">MBDTF</span></em> fuses <em><span class="highlight">808s</span></em>’ raw emotion with <em><span class="highlight">Late Registration</span></em>’s orchestral scope and <em><span class="highlight">Graduation</span></em>’s bombast. Where <em><span class="highlight">808s</span></em> was a minimalist detour, this is a maximalist triumph—Kanye reclaiming his crown with a darker, bolder brush.</p>
         <br>
         <h2>Summary</h2>
-        <p><em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> is a <span class="highlight">68-minute spectacle</span>—13 tracks of unrelenting creativity and raw emotion. It’s Kanye at his peak, blending excess, artistry, and introspection into a near-perfect storm. Every song hits—there’s no filler, though <span class="highlight">“Hell of a Life”</span> teeters on indulgence. This isn’t just an album; it’s a monument, a defiant answer to critics that redefined Kanye’s legacy—grand, twisted, and breathtaking.</p>
+        <p><em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> unfolds as a <span class="highlight">68-minute spectacle</span>—13 tracks of unrelenting creativity and raw emotion. Kanye peaks here, blending excess, artistry, and introspection into a near-perfect storm. Every song hits—there’s no filler, though <span class="highlight">“Hell of a Life”</span> teeters on indulgence. As of <span class="highlight">March 16, 2025</span>, this isn’t just an album; it’s a monument, a defiant answer to critics that redefined Kanye’s legacy—grand, twisted, and breathtaking.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (20/20):</span> A groundbreaking fusion of hip-hop, rock, and orchestral vibes, paired with a fearless dive into Kanye’s psyche—it’s a visionary leap that still feels untouchable in its scope and daring.</p>
-            <p><span class="highlight">Production Quality (20/20):</span> Flawless from start to finish, with lush layers of instrumentation, pristine mixing, and a cinematic sweep that turns every track into an event—Kanye’s perfectionism shines in every detail.</p>
-            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Brilliant and multi-layered, juggling bravado with vulnerability in a way that’s raw and real, though a few over-the-top lines flirt with excess and pull it just shy of perfection.</p>
-            <p><span class="highlight">Enjoyment Factor (20/20):</span> A rollercoaster of thrills that demands replays, from explosive highs to gut-wrenching lows—it’s an album that grabs you by the collar and never lets go, pure ear candy with soul.</p>
-            <p><span class="highlight">Consistency (20/20):</span> Seamless and relentless, with no weak links or wasted moments—every track builds on the last, crafting a cohesive masterpiece that flows like a dark, twisted dream without stumbling.</p>
+            <p><span class="highlight">Originality (20/20):</span> Hip-hop, rock, and orchestral sounds collide in a visionary leap, Kanye’s fearless psyche dive setting an untouchable benchmark.</p>
+            <p><span class="highlight">Production Quality (20/20):</span> Lush instrumentation dazzles with cinematic sweep, every track a pristine event—Kanye’s perfectionism in every flawless detail.</p>
+            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Multi-layered bars juggle bravado and vulnerability with raw brilliance, a few indulgent lines stopping just shy of perfection.</p>
+            <p><span class="highlight">Enjoyment Factor (20/20):</span> Thrills cascade from explosive highs to gut-wrenching lows, a relentless rollercoaster demanding replays with soulful ear candy.</p>
+            <p><span class="highlight">Consistency (20/20):</span> Seamless momentum flows through every track, a cohesive dreamscape with no weak links—pure mastery from start to finish.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (99/100):</span> 9.9/10</h3></p>
             <p><em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> isn’t just Kanye’s best—it’s one of rap’s finest hours. A near-perfect storm of ambition and execution, it’s the sound of chaos turned into art, a twisted fantasy that’s as dark as it is dazzling.</p>
         </div>
@@ -164,6 +183,19 @@
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            // Add hover effect for image zoom
+            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>

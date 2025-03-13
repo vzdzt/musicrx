@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,83 +7,91 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    body {
-        background: #0a0a0a !important;
-    }
-    .highlight {
-        color: #fffdd0;
-        font-weight: bold;
-    }
-    .overall-rating h3 {
-        color: #fffdd0;
-    }
-    
-    /* Custom glitch effect for Take Care title */
-    .review-tc-glitch {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        color: #fffdd0;
-        text-shadow: 0 0 10px #fffdd0;
-        font-family: 'Syncopate', sans-serif;
-        text-transform: uppercase;
-        position: relative;
-    }
-
-    .review-tc-glitch::before,
-    .review-tc-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .review-tc-glitch::before {
-        left: 2px;
-        text-shadow: -2px 0 #00ffea;
-        animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .review-tc-glitch::after {
-        left: -2px;
-        text-shadow: -2px 0 #fffdd0;
-        animation: glitch-2 3s linear infinite;
-    }
-    
-    /* TC glass card styling and zoom effect */
-    .glass-card.tc-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        transition: transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .glass-card.tc-card:hover {
-        transform: scale(1.05);
-    }
-
-    .glass-card.tc-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .glass-card.tc-card:hover img {
-        transform: scale(1.05);
-    }
-</style>
+    <style>
+        body {
+            background: #0a0a0a !important;
+        }
+        .highlight {
+            color: #fffdd0; /* Cream */
+            font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #fffdd0; /* Matching cream for overall rating */
+        }
+        .review-tc-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #fffdd0;
+            text-shadow: 0 0 10px #fffdd0;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-tc-glitch::before,
+        .review-tc-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-tc-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-tc-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #fffdd0;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.grad-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 0; /* Remove padding to allow image to touch edges */
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.grad-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.grad-card img {
+            width: 100%; /* Force image to take full width */
+            height: auto;
+            object-fit: cover; /* Ensure image fills container, cropping if needed */
+            object-position: center; /* Center the image when cropped */
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.grad-card:hover img {
+            transform: scale(1.1); /* Slightly larger zoom for image */
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -104,56 +111,51 @@
     <div class="container">
         <h1 class="review-tc-glitch" data-text="TAKE CARE">TAKE CARE</h1>
         <div class="review-content">
-            <h2>Drake - TAKE CARE</h2>
-            <div class="glass-card tc-card">
-                <img src="TC.jpg" alt="Drake - Take Care album image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            <h2>Take Care: Drake’s Melancholic Rise to Emotional Supremacy</h2>
+            <div class="glass-card grad-card">
+                <img src="TC.jpg" alt="Drake - <em><span class='highlight'>Take Care</span></em> album image">
             </div>
             <br>
-            <p>On <span class="highlight">November 15, 2011</span>, Drake delivered his sophomore album, <em>Take Care</em>, a sprawling 19-track opus that solidified his reign over hip-hop and R&B. Following the breakout success of 2010's <em>Thank Me Later</em>, this project plunged deeper into emotional vulnerability and sonic ambition, cementing Drake as the voice of a generation. Here's a deep dive into this introspective masterpiece:</p>
+            <p>On <span class="highlight">November 15, 2011</span>, Drake delivered his sophomore album, <em><span class="highlight">Take Care</span></em>, a sprawling 19-track opus that solidified his reign over hip-hop and R&B. Following the breakout success of <span class="highlight">2010</span>’s <em><span class="highlight">Thank Me Later</span></em>, this project plunged deeper into emotional vulnerability and sonic ambition, cementing Drake as the voice of a generation. As of <span class="highlight">March 16, 2025</span>, let’s dive into this introspective masterpiece.</p>
         </div>
         <br>
         <h2>The Messaging and Theme</h2>
-        <br>
-        <p>The album's cover—a brooding Drake in a gold-drenched room—sets the stage for a tale of fame's double-edged sword. <em>Take Care</em> is a late-night confessional, blending braggadocio with aching introspection. Tracks like <span class="highlight">"Marvins Room"</span> and <span class="highlight">"Take Care"</span> explore love's wreckage—exes, longing, and self-sabotage—while <span class="highlight">"Headlines"</span> and <span class="highlight">"Lord Knows"</span> grapple with success's isolating glare. There's no linear story, just a mosaic of moods: triumph, regret, and defiance. It's Drake baring his soul, inviting us into his champagne-soaked solitude, where vulnerability isn't weakness but a flex of authenticity.</p>
+        <p>The album’s cover—a brooding Drake in a gold-drenched room—sets the stage for a tale of fame’s double-edged sword. <em><span class="highlight">Take Care</span></em> is a late-night confessional, blending braggadocio with aching introspection. Tracks like <span class="highlight">“Marvins Room”</span> and <span class="highlight">“Take Care”</span> explore love’s wreckage—exes, longing, and self-sabotage—while <span class="highlight">“Headlines”</span> and <span class="highlight">“Lord Knows”</span> grapple with success’s isolating glare. There’s no linear story, just a mosaic of moods: triumph, regret, and defiance. It’s Drake baring his soul, inviting us into his champagne-soaked solitude, where vulnerability becomes a flex of authenticity.</p>
         <br>
         <h2>Production and Sound</h2>
-        <br>
-        <p>Largely shaped by <span class="highlight">Noah "40" Shebib</span>, <em>Take Care</em> is a sonic mood board of moody R&B, atmospheric hip-hop, and subtle electronic flourishes. The beats are lush yet restrained—think icy synths, muted drums, and cavernous bass. <span class="highlight">"Crew Love"</span> shimmers with The Weeknd's ethereal haze, while <span class="highlight">"Lord Knows"</span> thunders with Just Blaze's gospel-infused bombast. Producers like <span class="highlight">Boi-1da, T-Minus,</span> and <span class="highlight">Jamie xx</span> add texture, from the glitchy pulse of <span class="highlight">"Take Care"</span> to the stripped-down melancholy of <span class="highlight">"Marvins Room."</span> Drake's delivery—half-sung, half-rapped—melds seamlessly with 40's watery soundscapes, creating a cohesive, cinematic vibe that's both intimate and expansive.</p>
+        <p>Largely shaped by <span class="highlight">Noah “40” Shebib</span>, <em><span class="highlight">Take Care</span></em> crafts a sonic mood board of moody R&B, atmospheric hip-hop, and subtle electronic flourishes. The beats are lush yet restrained—icy synths, muted drums, and cavernous bass dominate. <span class="highlight">“Crew Love”</span> shimmers with The Weeknd’s ethereal haze, while <span class="highlight">“Lord Knows”</span> thunders with Just Blaze’s gospel-infused bombast. Producers like <span class="highlight">Boi-1da</span>, <span class="highlight">T-Minus</span>, and <span class="highlight">Jamie xx</span> add texture, from the glitchy pulse of <span class="highlight">“Take Care”</span> to the stripped-down melancholy of <span class="highlight">“Marvins Room.”</span> Drake’s delivery—half-sung, half-rapped—melds seamlessly with 40’s watery soundscapes, creating a cinematic vibe that’s both intimate and expansive.</p>
         <br>
         <h2>Features</h2>
-        <br>
-        <p><em>Take Care</em> boasts a stellar cast that elevates Drake's vision. <span class="highlight">The Weeknd</span> haunts <span class="highlight">"Crew Love"</span> with his ghostly croon, setting an early XO tone. <span class="highlight">Rihanna</span> brings tender chemistry to <span class="highlight">"Take Care,"</span> flipping a Gil Scott-Heron sample into a duet of guarded hope. <span class="highlight">Lil Wayne</span> and <span class="highlight">Andre 3000</span> trade bars on <span class="highlight">"The Real Her,"</span> while <span class="highlight">Rick Ross</span> flexes regal swagger on <span class="highlight">"Lord Knows."</span> Even <span class="highlight">Nicki Minaj</span> shines on <span class="highlight">"Make Me Proud,"</span> matching Drake's charisma. These guests don't steal the spotlight but deepen the album's emotional palette, making it a true ensemble effort.</p>
+        <p><em><span class="highlight">Take Care</span></em> boasts a stellar cast that elevates Drake’s vision. <span class="highlight">The Weeknd</span> haunts <span class="highlight">“Crew Love”</span> with his ghostly croon, setting an early XO tone. <span class="highlight">Rihanna</span> brings tender chemistry to <span class="highlight">“Take Care,”</span> flipping a Gil Scott-Heron sample into a duet of guarded hope. <span class="highlight">Lil Wayne</span> and <span class="highlight">André 3000</span> trade bars on <span class="highlight">“The Real Her,”</span> while <span class="highlight">Rick Ross</span> flexes regal swagger on <span class="highlight">“Lord Knows.”</span> Even <span class="highlight">Nicki Minaj</span> shines on <span class="highlight">“Make Me Proud,”</span> matching Drake’s charisma. These guests deepen the album’s emotional palette, making it a true ensemble effort.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">"Marvins Room"</span> - A raw, drunken lament that redefined vulnerability in rap.</li>
+                <li><span class="highlight">“Marvins Room”</span> - Sparse beats frame this drunken lament, Drake’s raw vulnerability reshaping rap’s emotional landscape.</li>
                 <br>
-                <li><span class="highlight">"Take Care"</span> (feat. Rihanna) - A bittersweet anthem of love's second chances.</li>
+                <li><span class="highlight">“Take Care”</span> (feat. Rihanna) - Glitchy pulses underpin this bittersweet duet, Rihanna’s warmth offering hope amid heartbreak.</li>
                 <br>
-                <li><span class="highlight">"Headlines"</span> - A triumphant flex over a booming beat, proving Drake's star power.</li>
+                <li><span class="highlight">“Headlines”</span> - Booming drums fuel this triumphant flex, Drake’s confidence radiating through every bar.</li>
                 <br>
-                <li><span class="highlight">"Crew Love"</span> (feat. The Weeknd) - A hypnotic standout that blends their signature sounds.</li>
+                <li><span class="highlight">“Crew Love”</span> (feat. The Weeknd) - Ethereal synths create a hypnotic haze, blending their signature sounds into a nocturnal anthem.</li>
             </ul>
         </div>
         <br>
         <h2>Previous Works</h2>
-        <br>
-        <p>Drake's 2009 mixtape <em>So Far Gone</em> introduced his rap-sing hybrid with hits like "Best I Ever Had," paving the way for his <span class="highlight">2010</span> debut, <em>Thank Me Later</em>. That album leaned on polished production and radio-ready hooks, establishing him as a contender. <em>Take Care</em> refines and expands that blueprint, trading <em>Thank Me Later</em>'s glossy sheen for a darker, more introspective edge. Where <em>So Far Gone</em> was a hungry upstart's plea and <em>Thank Me Later</em> a victory lap, <em>Take Care</em> is Drake settling into stardom—less about proving himself and more about dissecting what it costs.</p>
+        <p>Drake’s <span class="highlight">2009</span> mixtape <em><span class="highlight">So Far Gone</span></em> introduced his rap-sing hybrid with hits like <span class="highlight">“Best I Ever Had,”</span> paving the way for his <span class="highlight">2010</span> debut, <em><span class="highlight">Thank Me Later</span></em>. That album leaned on polished production and radio-ready hooks, establishing him as a contender. <em><span class="highlight">Take Care</span></em> refines and expands that blueprint, trading <em><span class="highlight">Thank Me Later</span></em>’s glossy sheen for a darker, more introspective edge. Where <em><span class="highlight">So Far Gone</span></em> was a hungry upstart’s plea and <em><span class="highlight">Thank Me Later</span></em> a victory lap, <em><span class="highlight">Take Care</span></em> is Drake settling into stardom—dissecting what it costs.</p>
         <br>
         <h2>Summary</h2>
-        <br>
-        <p><em>Take Care</em> is an <span class="highlight">80-minute odyssey</span> of emotion—19 tracks that balance bravado with heartbreak. It's a slow burn, unfolding like a therapy session over cocktails, with Drake at his most candid. The album doesn't chase trends; it sets them, influencing a decade of moody, melodic rap-R&B hybrids. It's not flawless—its length and occasional indulgence drag—but its highs are untouchable. <em>Take Care</em> is Drake claiming his throne, not with force, but with a quiet, melancholic confidence that resonates long after the final note.</p>
+        <p><em><span class="highlight">Take Care</span></em> unfolds as an <span class="highlight">80-minute odyssey</span>—19 tracks balancing bravado with heartbreak. It’s a slow burn, unfolding like a therapy session over cocktails, with Drake at his most candid. The album sets trends rather than chasing them, influencing a decade of moody, melodic rap-R&B hybrids. It’s not flawless—its length and occasional indulgence drag—but its highs are untouchable. As of <span class="highlight">March 16, 2025</span>, <em><span class="highlight">Take Care</span></em> remains Drake’s defining statement, a quiet, melancholic confidence that resonates long after the final note.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (17/20):</span> A fresh take on rap-R&B fusion, though it builds on Drake's prior sound.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Lush and atmospheric, with minor pacing dips.</p>
-            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Intimate and evocative, balancing depth with catchy hooks.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> A captivating listen that rewards immersion, if you can handle the runtime.</p>
-            <p><span class="highlight">Consistency (16/20):</span> Mostly cohesive, but bloated moments slightly disrupt the flow.</p>
+            <p><span class="highlight">Originality (17/20):</span> Rap-R&B fusion evolves with emotional depth, building on Drake’s established sound with a darker edge.</p>
+            <p><span class="highlight">Production Quality (19/20):</span> Atmospheric soundscapes captivate with lush restraint, though pacing dips slightly in the runtime.</p>
+            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Intimate bars weave vulnerability with catchy hooks, balancing depth and relatability.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> Emotional resonance hooks deeply, rewarding immersion despite the lengthy journey.</p>
+            <p><span class="highlight">Consistency (16/20):</span> Cohesive moods dominate, with bloated moments slightly disrupting the flow.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (89/100):</span> 8.9/10</h3></p>
-            <p><em>Take Care</em> isn't just an album—it's a mood, a blueprint, a time capsule of Drake at his peak. It's flawed yet brilliant, weaving vulnerability and victory into a sound that's distinctly his. In a career full of hits, this remains his defining statement—a testament to the power of taking care, of himself and his craft, even when the spotlight burns.</p>
+            <p><em><span class="highlight">Take Care</span></em> isn’t just an album—it’s a mood, a blueprint, a time capsule of Drake at his peak. Flawed yet brilliant, it weaves vulnerability and victory into a sound that’s distinctly his. In a career full of hits, this remains his defining statement—a testament to the power of taking care, of himself and his craft, even when the spotlight burns.</p>
         </div>
     </div>
 
@@ -162,24 +164,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
-        // Ensure all glass cards on this page have no tilt, except for tc-card
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.tc-card)').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
-            // Special handling for TC card to allow scaling
-            document.querySelectorAll('.glass-card.tc-card').forEach(card => {
-                card.style.transform = 'none'; // No !important
+            document.querySelectorAll('.grad-card').forEach(card => {
+                card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            // Add hover effect for image zoom
+            document.querySelectorAll('.grad-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
 </body>
 </html>
-

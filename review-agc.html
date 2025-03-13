@@ -11,102 +11,12 @@
         body {
             background: #0a0a0a !important;
         }
-        .overall-rating h3 {
-            color: #8b0000;
-        }
         .highlight {
-            color: #8b0000;
+            color: #8b0000; /* Dark red */
             font-weight: bold;
         }
-        .agc-glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            opacity: 1;
-            display: block;
-            visibility: visible;
-            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-        }
-        .agc-glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent
-            );
-            transition: 0.5s;
-        }
-        .agc-glass-card:hover {
-            transform: scale(1.05) !important;
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--primary);
-            box-shadow: 
-                0 0 0 2px var(--primary),
-                0 0 30px rgba(0, 247, 255, 0.4);
-        }
-        .agc-glass-card:hover::after {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 20px;
-            padding: 1px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-            animation: borderGlow 2s linear infinite;
-        }
-        .agc-glass-card img {
-            transition: transform 0.3s ease;
-        }
-        .agc-glass-card:hover img {
-            transform: scale(1.05);
-        }
-        @keyframes borderGlow {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        .agc-glass-card:hover::before {
-            left: 100%;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-        }
-        .glass-card.agc-card {
-            transform: none;
-            perspective: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .glass-card.agc-card:hover {
-            transform: scale(1.05) !important;
-        }
-        .glass-card.agc-card:hover img {
-            transform: scale(1.05);
+        .overall-rating h3 {
+            color: #8b0000; /* Matching dark red for overall rating */
         }
         .review-agc-glitch {
             font-size: 3rem;
@@ -149,6 +59,43 @@
             10% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+        .glass-card.agc-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px; /* Adjusted to match other reviews */
+            padding: 0; /* Remove padding for image to touch edges */
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.agc-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.agc-card img {
+            width: 100%; /* Force image to take full width */
+            height: auto;
+            object-fit: cover; /* Ensure image fills container, cropping if needed */
+            object-position: center; /* Center the image when cropped */
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.agc-card:hover img {
+            transform: scale(1.1); /* Slightly larger zoom for image */
+        }
     </style>
 </head>
 <body>
@@ -169,54 +116,49 @@
     <div class="container">
         <h1 class="review-agc-glitch" data-text="A GREAT CHAOS">A GREAT CHAOS</h1>
         <div class="review-content">
-            <h2>A Great Chaos: Ken Carson’s Raging Opium Storm</h2>
+            <h2>A Great Chaos: Ken Carson’s Ferocious Descent into Opium Chaos</h2>
             <div class="glass-card agc-card">
-                <img src="agc.jpeg" alt="Ken Carson - A Great Chaos album image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+                <img src="agc.jpeg" alt="Ken Carson - <em><span class='highlight'>A Great Chaos</span></em> album image">
             </div>
             <br>
-            <p>On <span class="highlight">October 13, 2023</span>, Ken Carson unleashed <em><span class="highlight">A Great Chaos</span></em>, an 18-track opus that hit the scene with the force of a Friday the 13th storm. As a rising star of Playboi Carti’s Opium label, this album marked Carson’s boldest step yet, riding the rage rap wave to a Billboard 200 peak at #11. Here’s a deep dive into this chaotic, electrifying ride:</p>
+            <p>On <span class="highlight">October 13, 2023</span>, Ken Carson unleashed <em><span class="highlight">A Great Chaos</span></em>, an 18-track opus that hit the scene with the force of a Friday the 13th storm. As a rising star of Playboi Carti’s Opium label, this album marked Carson’s boldest step yet, riding the rage rap wave to a Billboard 200 peak at #11. As of <span class="highlight">March 16, 2025</span>, let’s dive into this chaotic, electrifying ride.</p>
         </div>
         <br>
         <h2>The Messaging and Theme</h2>
-        <br>
-        <p>The album’s cover—a gritty, low-res shot of Carson flashing a grill—telegraphs its intent: raw, unfiltered, and defiant. <em><span class="highlight">A Great Chaos</span></em> is a plunge into hedonism and havoc, with tracks like <span class="highlight">“Jennifer’s Body”</span> and <span class="highlight">“Fighting My Demons”</span> channeling a mosh-pit-ready mix of bravado and turmoil. It’s less about storytelling and more about vibe—Carson flexes his newfound fame in <span class="highlight">“Me N My Kup”</span> while hinting at darker edges in <span class="highlight">“Paranoid.”</span> The chaos isn’t just noise; it’s a Gen Z anthem of excess, rebellion, and fleeting introspection, all wrapped in an Opium haze.</p>
+        <p>The album’s cover—a gritty, low-res shot of Carson flashing a grill—telegraphs its intent: raw, unfiltered, and defiant. <em><span class="highlight">A Great Chaos</span></em> plunges into hedonism and havoc, with tracks like <span class="highlight">“Jennifer’s Body”</span> and <span class="highlight">“Fighting My Demons”</span> channeling a mosh-pit-ready mix of bravado and turmoil. It’s less about storytelling and more about vibe—Carson flexes his newfound fame in <span class="highlight">“Me N My Kup”</span> while hinting at darker edges in <span class="highlight">“Paranoid.”</span> The chaos isn’t just noise; it’s a Gen Z anthem of excess, rebellion, and fleeting introspection, all wrapped in an Opium haze.</p>
         <br>
         <h2>Production and Sound</h2>
-        <br>
-        <p>Helmed by a squad including <span class="highlight">F1LTHY</span>, <span class="highlight">Starboy</span>, and <span class="highlight">Outtatown</span>, <em><span class="highlight">A Great Chaos</span></em> is a sonic onslaught of rage rap’s finest tricks—distorted bass, glitchy synths, and relentless energy. <span class="highlight">“Lose It”</span> explodes with blown-out low-end, while <span class="highlight">“Singapore”</span> flips Atlanta trap into a futuristic fever dream. <span class="highlight">“Nightcore”</span> speeds up the tempo with hyperpop flair, and <span class="highlight">“Jennifer’s Body”</span> stutters like a malfunctioning machine. Carson’s voice—mumbled, Auto-Tuned, and dripping with swag—melds into the beats, creating a wall of sound that’s both abrasive and addictive. It’s a step up from <em>X</em>’s flatness, though the repetition can blur its edges.</p>
+        <p>Helmed by a squad including <span class="highlight">F1LTHY</span>, <span class="highlight">Starboy</span>, and <span class="highlight">Outtatown</span>, <em><span class="highlight">A Great Chaos</span></em> delivers a sonic onslaught of rage rap’s finest tricks—distorted bass, glitchy synths, and relentless energy. <span class="highlight">“Lose It”</span> explodes with blown-out low-end, while <span class="highlight">“Singapore”</span> flips Atlanta trap into a futuristic fever dream. <span class="highlight">“Nightcore”</span> speeds up the tempo with hyperpop flair, and <span class="highlight">“Jennifer’s Body”</span> stutters like a malfunctioning machine. Carson’s voice—mumbled, Auto-Tuned, and dripping with swag—melds into the beats, creating a wall of sound that’s both abrasive and addictive. It’s a step up from <em><span class="highlight">X</span></em>’s flatness, though the repetition can blur its edges.</p>
         <br>
         <h2>Features</h2>
-        <br>
-        <p><em><span class="highlight">A Great Chaos</span></em> keeps features lean but potent, with <span class="highlight">Destroy Lonely</span> and <span class="highlight">Lil Uzi Vert</span> adding Opium flair. Lonely’s icy drawl shines on <span class="highlight">“Singapore”</span> and <span class="highlight">“Paranoid,”</span> though his three appearances risk redundancy. Uzi’s turn on <span class="highlight">“Like This”</span> brings a burst of eccentricity, but it’s understated compared to his usual chaos. These guests don’t steal the show—they’re seasoning on Carson’s dish, amplifying the album’s vibe without overshadowing his spotlight.</p>
+        <p><em><span class="highlight">A Great Chaos</span></em> keeps features lean but potent, with <span class="highlight">Destroy Lonely</span> and <span class="highlight">Lil Uzi Vert</span> adding Opium flair. Lonely’s icy drawl shines on <span class="highlight">“Singapore”</span> and <span class="highlight">“Paranoid,”</span> though his three appearances risk redundancy. Uzi’s turn on <span class="highlight">“Like This”</span> brings a burst of eccentricity, but it’s understated compared to his usual chaos. These guests amplify the album’s vibe without overshadowing Carson’s spotlight.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">“Jennifer’s Body”</span> - A jagged, glitch-fueled banger that fuses horror flick vibes with a beat that ignites the mosh pit.</li>
+                <li><span class="highlight">“Jennifer’s Body”</span> - Jagged glitches ignite this mosh-pit anthem, blending horror vibes with a stuttering beat that demands chaos.</li>
                 <br>
-                <li><span class="highlight">“Fighting My Demons”</span> - A high-octane anthem, its relentless flows and gritty bass roaring like a battle cry against inner chaos.</li>
+                <li><span class="highlight">“Fighting My Demons”</span> - Relentless bass drives this high-octane battle cry, Carson’s gritty flows wrestling with inner turmoil.</li>
                 <br>
-                <li><span class="highlight">“Singapore”</span> (feat. Destroy Lonely) - A chilling, cinematic duet that warps Atlanta trap into a sleek, otherworldly haze.</li>
+                <li><span class="highlight">“Singapore”</span> (feat. Destroy Lonely) - Cinematic synths warp Atlanta trap into an otherworldly duet, eerie and sleek in equal measure.</li>
                 <br>
-                <li><span class="highlight">“Nightcore”</span> - A hyperpop-charged jolt, its frenetic tempo and warped synths pushing rage rap into overdrive.</li>
+                <li><span class="highlight">“Nightcore”</span> - Frenetic beats surge with hyperpop energy, warped synths pushing rage rap into a dizzying, overdriven realm.</li>
             </ul>
         </div>
         <br>
         <h2>Previous Works</h2>
-        <br>
-        <p>Carson’s journey began with EPs like <em><span class="highlight">Teen X</span></em> (<span class="highlight">2020</span>) and his debut <em><span class="highlight">Project X</span></em> (<span class="highlight">2021</span>), laying the rage rap groundwork. His sophomore slump, <em><span class="highlight">X</span></em> (<span class="highlight">2022</span>), leaned too hard into monotonous beats and lifeless delivery. <em><span class="highlight">A Great Chaos</span></em> rights those wrongs, sharpening his edge with tighter sequencing and bolder production. Where <em>X</em> felt like a Carti clone on autopilot, this album carves its own lane—still indebted to <em>Whole Lotta Red</em>, but with a newfound swagger and personality.</p>
+        <p>Carson’s journey began with EPs like <em><span class="highlight">Teen X</span></em> (<span class="highlight">2020</span>) and his debut <em><span class="highlight">Project X</span></em> (<span class="highlight">2021</span>), laying the rage rap groundwork. His sophomore slump, <em><span class="highlight">X</span></em> (<span class="highlight">2022</span>), leaned too hard into monotonous beats and lifeless delivery. <em><span class="highlight">A Great Chaos</span></em> rights those wrongs, sharpening his edge with tighter sequencing and bolder production. Where <em><span class="highlight">X</span></em> felt like a Carti clone on autopilot, this album carves its own lane—still indebted to <em><span class="highlight">Whole Lotta Red</span></em>, but with a newfound swagger and personality.</p>
         <br>
         <h2>Summary</h2>
-        <br>
-        <p><em><span class="highlight">A Great Chaos</span></em> is a <span class="highlight">46-minute tempest</span>—18 tracks of unrelenting rage and dark euphoria. It’s Ken Carson hitting his stride, funneling hedonism into a sound that’s equal parts abrasive and exhilarating. The album’s length and occasional sameness—like <span class="highlight">“Hardcore”</span>’s repetitive drone—drag it down, but its peaks are monstrous. <em><span class="highlight">A Great Chaos</span></em> doesn’t chase depth; it thrives on visceral impact, cementing Carson as a rage rap contender. It’s a creative leap that proves he’s more than Carti’s shadow—a chaotic king in his own right.</p>
+        <p><em><span class="highlight">A Great Chaos</span></em> unleashes a <span class="highlight">46-minute tempest</span>—18 tracks of unrelenting rage and dark euphoria. Ken Carson hits his stride, funneling hedonism into a sound that’s equal parts abrasive and exhilarating. The album’s length and occasional sameness—like <span class="highlight">“Hardcore”</span>’s repetitive drone—drag it down, but its peaks are monstrous. As of <span class="highlight">March 16, 2025</span>, <em><span class="highlight">A Great Chaos</span></em> thrives on visceral impact, cementing Carson as a rage rap contender—a creative leap proving he’s more than Carti’s shadow.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (17/20):</span> A fiery, Atlanta-tinged take on rage rap with distinct swagger, though it still nods heavily to Carti’s blueprint.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> A masterful blend of distorted chaos and textured beats, only slightly dulled by moments of sameness.</p>
-            <p><span class="highlight">Lyrics and Messaging (16/20):</span> Packed with catchy swagger and raw energy, yet thin on deeper substance—vibe reigns supreme.</p>
-            <p><span class="highlight">Enjoyment Factor (18/20):</span> An electrifying, mosh-ready rush that grips hard, softened only by its unrelenting intensity wearing thin for some.</p>
-            <p><span class="highlight">Consistency (16/20):</span> Brimming with ferocious highs, but the 18-track sprawl lets a few weaker cuts slip through the cracks.</p>
+            <p><span class="highlight">Originality (17/20):</span> Atlanta-infused rage rap shines with Carson’s distinct swagger, though Carti’s blueprint still looms large.</p>
+            <p><span class="highlight">Production Quality (19/20):</span> Distorted beats weave a chaotic tapestry, a sonic storm slightly marred by repetitive stretches.</p>
+            <p><span class="highlight">Lyrics and Messaging (16/20):</span> Catchy bars brim with swagger and energy, prioritizing vibe over substantive depth in rage tradition.</p>
+            <p><span class="highlight">Enjoyment Factor (18/20):</span> Mosh-pit intensity hooks fiercely, an exhilarating rush tempered by its relentless pace for some listeners.</p>
+            <p><span class="highlight">Consistency (16/20):</span> Ferocious highs dominate, but the 18-track sprawl allows weaker cuts to dilute the momentum.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (86/100):</span> 8.6/10</h3></p>
             <p><em><span class="highlight">A Great Chaos</span></em> is Ken Carson’s loudest proclamation yet—a wild, unholy blast of rage rap that’s as messy as it is magnetic. It’s not perfect, but it doesn’t need to be; it’s a soundtrack for the mosh pit, a middle finger to convention, and a bold step forward. In the Opium empire, Carson’s carving his throne—one distorted beat at a time.</p>
         </div>
@@ -239,6 +181,19 @@
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            // Add hover effect for image zoom
+            document.querySelectorAll('.glass-card.agc-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>

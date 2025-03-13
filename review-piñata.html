@@ -1,89 +1,125 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - PIÑATA Review</title>
+    <title>MusicRx - Piñata Review</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    .highlight {
-        color: #FFCBA4; /* Peach color for highlights */
-        font-weight: bold;
-    }
-    
-    /* Special glitch effect for Piñata title */
-    .review-pinata-glitch {
-        position: relative;
-        font-size: 5rem;
-        font-weight: 700;
-        line-height: 1.1;
-        letter-spacing: 5px;
-        color: #fff;
-        text-align: center;
-        width: 100%;
-        margin: 0 auto;
-        text-shadow: 0.05em 0 0 rgba(255, 203, 164, 0.75), /* Peach color */
-                    -0.025em -0.05em 0 rgba(255, 0, 166, 0.75),
-                    0.025em 0.05em 0 rgba(0, 255, 255, 0.75);
-        animation: glitch 2s infinite;
-    }
-    
-    .review-pinata-glitch::before,
-    .review-pinata-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-    
-    .review-pinata-glitch::before {
-        left: 0.05em;
-        text-shadow: -0.025em -0.0125em 0 rgba(255, 0, 0, 0.75);
-        animation: glitch-animation 2s infinite ease alternate-reverse;
-        clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-        transform: translateX(-0.0125em);
-    }
-    
-    .review-pinata-glitch::after {
-        left: -0.05em;
-        text-shadow: -0.05em -0.025em 0 rgba(0, 255, 0, 0.75);
-        animation: glitch-animation 2s infinite ease alternate-reverse;
-        clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-        transform: translateX(0.0125em);
-    }
-    
-    @keyframes glitch-animation {
-        0% {
-            clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%);
-            transform: translateX(0.0125em);
+    <style>
+        body {
+            background: #0a0a0a !important;
         }
-        20% {
-            clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%);
+        .highlight {
+            color: #FFCBA4; /* Peach color for highlights */
+            font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #FFCBA4; /* Matching peach for overall rating */
+        }
+        .review-pinata-glitch {
+            position: relative;
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: 5px;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+            margin: 0 auto;
+            text-shadow: 0.05em 0 0 rgba(255, 203, 164, 0.75), /* Peach color */
+                        -0.025em -0.05em 0 rgba(255, 0, 166, 0.75),
+                        0.025em 0.05em 0 rgba(0, 255, 255, 0.75);
+            animation: glitch 2s infinite;
+        }
+        .review-pinata-glitch::before,
+        .review-pinata-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-pinata-glitch::before {
+            left: 0.05em;
+            text-shadow: -0.025em -0.0125em 0 rgba(255, 0, 0, 0.75);
+            animation: glitch-animation 2s infinite ease alternate-reverse;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
             transform: translateX(-0.0125em);
         }
-        40% {
-            clip-path: polygon(0 40%, 100% 40%, 100% 55%, 0 55%);
+        .review-pinata-glitch::after {
+            left: -0.05em;
+            text-shadow: -0.05em -0.025em 0 rgba(0, 255, 0, 0.75);
+            animation: glitch-animation 2s infinite ease alternate-reverse;
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
             transform: translateX(0.0125em);
         }
-        60% {
-            clip-path: polygon(0 50%, 100% 50%, 100% 70%, 0 70%);
-            transform: translateX(-0.0125em);
+        @keyframes glitch-animation {
+            0% {
+                clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%);
+                transform: translateX(0.0125em);
+            }
+            20% {
+                clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%);
+                transform: translateX(-0.0125em);
+            }
+            40% {
+                clip-path: polygon(0 40%, 100% 40%, 100% 55%, 0 55%);
+                transform: translateX(0.0125em);
+            }
+            60% {
+                clip-path: polygon(0 50%, 100% 50%, 100% 70%, 0 70%);
+                transform: translateX(-0.0125em);
+            }
+            80% {
+                clip-path: polygon(0 65%, 100% 65%, 100% 90%, 0 90%);
+                transform: translateX(0.0125em);
+            }
+            100% {
+                clip-path: polygon(0 80%, 100% 80%, 100% 100%, 0 100%);
+                transform: translateX(-0.0125em);
+            }
         }
-        80% {
-            clip-path: polygon(0 65%, 100% 65%, 100% 90%, 0 90%);
-            transform: translateX(0.0125em);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
         }
-        100% {
-            clip-path: polygon(0 80%, 100% 80%, 100% 100%, 0 100%);
-            transform: translateX(-0.0125em);
+        .glass-card.pinata-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px; /* Adjusted to match other reviews */
+            padding: 0; /* Remove padding for image to touch edges */
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
-    }
-</style>
+        .glass-card.pinata-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.pinata-card img {
+            width: 100%; /* Force image to take full width */
+            height: auto;
+            object-fit: cover; /* Ensure image fills container, cropping if needed */
+            object-position: center; /* Center the image when cropped */
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.pinata-card:hover img {
+            transform: scale(1.1); /* Slightly larger zoom for image */
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -103,58 +139,51 @@
     <div class="container">
         <h1 class="review-pinata-glitch" data-text="PIÑATA">PIÑATA</h1>
         <div class="review-content">
-            <h2>Freddie Gibbs & Madlib - PIÑATA</h2>
+            <h2>Piñata: Freddie Gibbs & Madlib’s Gritty Soul Fusion</h2>
             <div class="glass-card pinata-card">
-                <img src="pinata.jpg" alt="Freddie Gibbs & Madlib Piñata album image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+                <img src="pinata.jpg" alt="Freddie Gibbs & Madlib - <em><span class='highlight'>Piñata</span></em> album image">
             </div>
-<br>
-            <p>On <span class="highlight">March 18, 2014</span>, Freddie Gibbs and Madlib dropped <em>Piñata</em>, a 17-track collaboration that married gritty street tales with psychedelic soul. Following Gibbs' acclaimed mixtapes and Madlib's production legacy, this album arrived as a raw, unfiltered triumph, proving gangsta rap could thrive in the underground. Here's a deep dive into this hard-hitting masterpiece:</p>
+            <br>
+            <p>On <span class="highlight">March 18, 2014</span>, Freddie Gibbs and Madlib dropped <em><span class="highlight">Piñata</span></em>, a 17-track collaboration that married gritty street tales with psychedelic soul. Following Gibbs' acclaimed mixtapes and Madlib's production legacy, this album arrived as a raw, unfiltered triumph, proving gangsta rap could thrive in the underground. As of <span class="highlight">March 16, 2025</span>, let’s dive into this hard-hitting masterpiece.</p>
         </div>
         <br>
-
         <h2>The Messaging and Theme</h2>
-        <br>
-        <p>The album's title and cover—a zebra piñata against a stark backdrop—hint at its core: something tough yet fragile, ready to spill its guts. <em>Piñata</em> is Freddie Gibbs at his most vivid, painting a world of hustling, betrayal, and survival in Gary, Indiana. Tracks like <span class="highlight">"Thuggin'"</span> and <span class="highlight">"Broken"</span> delve into the duality of street life—glory and guilt—while <span class="highlight">"Deeper"</span> offers a rare glimpse of love amid chaos. There's no preaching here, just unapologetic storytelling, layered with Madlib's eclectic beats. It's a throwback to '90s gangsta rap, filtered through a modern lens of resilience and reflection.</p>
+        <p>The album's title and cover—a zebra piñata against a stark backdrop—hint at its core: something tough yet fragile, ready to spill its guts. <em><span class="highlight">Piñata</span></em> captures Freddie Gibbs at his most vivid, painting a world of hustling, betrayal, and survival in Gary, Indiana. Tracks like <span class="highlight">“Thuggin’”</span> and <span class="highlight">“Broken”</span> delve into the duality of street life—glory and guilt—while <span class="highlight">“Deeper”</span> offers a rare glimpse of love amid chaos. There’s no preaching here, just unapologetic storytelling, layered with Madlib’s eclectic beats. It’s a throwback to '90s gangsta rap, filtered through a modern lens of resilience and reflection.</p>
         <br>
         <h2>Production and Sound</h2>
-        <br>
-        <p><em>Piñata</em> is a masterclass from <span class="highlight">Madlib</span>, whose dusty loops and soulful samples craft a cinematic backdrop. The sound is a kaleidoscope of '70s funk, blaxploitation vibes, and jazzy flourishes—think warped basslines on <span class="highlight">"Shitsville"</span> and dreamy guitar riffs on <span class="highlight">"High."</span> Tracks like <span class="highlight">"Scarface"</span> hit with menacing simplicity, while <span class="highlight">"Piñata"</span> layers chaotic horns over pounding drums. Gibbs' gruff, commanding flow cuts through Madlib's dense production like a blade, creating a perfect synergy. It's raw yet polished, a sonic time capsule that feels both nostalgic and forward-thinking.</p>
+        <p><em><span class="highlight">Piñata</span></em> shines as a masterclass from <span class="highlight">Madlib</span>, whose dusty loops and soulful samples craft a cinematic backdrop. The sound is a kaleidoscope of '70s funk, blaxploitation vibes, and jazzy flourishes—think warped basslines on <span class="highlight">“Shitsville”</span> and dreamy guitar riffs on <span class="highlight">“High”</span>. Tracks like <span class="highlight">“Scarface”</span> hit with menacing simplicity, while <span class="highlight">“Piñata”</span> layers chaotic horns over pounding drums. Gibbs’ gruff, commanding flow cuts through Madlib’s dense production like a blade, creating a perfect synergy. It’s raw yet polished, a sonic time capsule that feels both nostalgic and forward-thinking.</p>
         <br>
         <h2>Features</h2>
-        <br>
-        <p>The guest list on <em>Piñata</em> is stacked yet understated, complementing Gibbs' dominance. <span class="highlight">Earl Sweatshirt</span> brings melancholic grit to <span class="highlight">"Robes,"</span> while <span class="highlight">Danny Brown</span> unleashes manic energy on <span class="highlight">"High."</span> <span class="highlight">Raekwon</span> and <span class="highlight">Scarface</span> lend Wu-Tang and Southern gravitas to <span class="highlight">"Bomb,"</span> and <span class="highlight">Ab-Soul</span> adds a cerebral twist to <span class="highlight">"Lakers."</span> The closer, <span class="highlight">"Piñata,"</span> unites <span class="highlight">Domo Genesis, Casey Veggies,</span> and more in a posse-cut frenzy. These voices enhance Gibbs' narrative without stealing focus, a testament to the album's tight curation.</p>
+        <p>The guest list on <em><span class="highlight">Piñata</span></em> is stacked yet understated, complementing Gibbs’ dominance. <span class="highlight">Earl Sweatshirt</span> brings melancholic grit to <span class="highlight">“Robes,”</span> while <span class="highlight">Danny Brown</span> unleashes manic energy on <span class="highlight">“High.”</span> <span class="highlight">Raekwon</span> and <span class="highlight">Scarface</span> lend Wu-Tang and Southern gravitas to <span class="highlight">“Bomb,”</span> and <span class="highlight">Ab-Soul</span> adds a cerebral twist to <span class="highlight">“Lakers.”</span> The closer, <span class="highlight">“Piñata,”</span> unites <span class="highlight">Domo Genesis</span>, <span class="highlight">Casey Veggies</span>, and more in a posse-cut frenzy. These voices enhance Gibbs’ narrative without stealing focus, a testament to the album’s tight curation.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">"Thuggin'"</span> - A menacing standout with a hypnotic loop, showcasing Gibbs' street cred.</li>
+                <li><span class="highlight">“Thuggin’”</span> - Menacing loops pulse through this street anthem, Gibbs’ raw cred slicing through with unyielding force.</li>
                 <br>
-                <li><span class="highlight">"Deeper"</span> - A soulful tale of love and loss, revealing Gibbs' softer side.</li>
+                <li><span class="highlight">“Deeper”</span> - Soulful melodies unveil a tender love story, Gibbs’ vulnerability shimmering amid the gritty chaos.</li>
                 <br>
-                <li><span class="highlight">"High"</span> (feat. Danny Brown) - A wild, drugged-out banger with unrelenting energy.</li>
+                <li><span class="highlight">“High”</span> (feat. Danny Brown) - Frenetic beats ignite this drug-fueled explosion, Danny Brown’s wild energy amplifying Gibbs’ intensity.</li>
                 <br>
-                <li><span class="highlight">"Piñata"</span> - A chaotic, star-studded finale that ties the album together.</li>
+                <li><span class="highlight">“Piñata”</span> - Chaotic horns drive this star-studded finale, a posse-cut crescendo that spills the album’s soul onto the floor.</li>
             </ul>
         </div>
         <br>
         <h2>Previous Works</h2>
-        <br>
-        <p>Gibbs' pre-<em>Piñata</em> journey includes mixtapes like <em>midwestgangstaboxframecadillacmuzik</em> (<span class="highlight">2009</span>) and <em>ESGN</em> (<span class="highlight">2013</span>), where he honed his razor-sharp delivery over hard-hitting beats. Madlib, meanwhile, built a legacy with projects like <em>Madvillainy</em> (<span class="highlight">2004</span>) alongside MF DOOM, showcasing his sample-chopping genius. <em>Piñata</em> fuses Gibbs' gangsta rap roots with Madlib's experimental flair, elevating both artists. Where Gibbs' earlier work was pure street grit and Madlib's was abstract artistry, this album finds a middle ground—a focused collision of their strengths.</p>
+        <p>Gibbs’ pre-<em><span class="highlight">Piñata</span></em> journey includes mixtapes like <em><span class="highlight">midwestgangstaboxframecadillacmuzik</span></em> (<span class="highlight">2009</span>) and <em><span class="highlight">ESGN</span></em> (<span class="highlight">2013</span>), where he honed his razor-sharp delivery over hard-hitting beats. Madlib, meanwhile, built a legacy with projects like <em><span class="highlight">Madvillainy</span></em> (<span class="highlight">2004</span>) alongside MF DOOM, showcasing his sample-chopping genius. <em><span class="highlight">Piñata</span></em> fuses Gibbs’ gangsta rap roots with Madlib’s experimental flair, elevating both artists. Where Gibbs’ earlier work was pure street grit and Madlib’s was abstract artistry, this album finds a middle ground—a focused collision of their strengths.</p>
         <br>
         <h2>Summary</h2>
+        <p><em><span class="highlight">Piñata</span></em> delivers a <span class="highlight">60-minute knockout</span>—17 tracks of relentless lyricism and inventive production. It’s a love letter to gangsta rap’s golden era, reimagined through Madlib’s warped lens and Gibbs’ unyielding voice. The album doesn’t pander to mainstream tastes; it’s a slow-burn reward for fans of raw storytelling and crate-digging beats. Its density can feel overwhelming, but that’s part of its charm—every listen cracks open new layers. As of <span class="highlight">March 16, 2025</span>, <em><span class="highlight">Piñata</span></em> stands as a rare gem, proving two masters at their peak can turn a niche collab into a timeless classic.</p>
         <br>
-        <p><em>Piñata</em> is a <span class="highlight">60-minute knockout</span>—17 tracks of relentless lyricism and inventive production. It's a love letter to gangsta rap's golden era, reimagined through Madlib's warped lens and Gibbs' unyielding voice. The album doesn't pander to mainstream tastes; it's a slow-burn reward for fans of raw storytelling and crate-digging beats. Its density can feel overwhelming, but that's part of its charm—every listen cracks open new layers. <em>Piñata</em> is a rare gem, proving two masters at their peak can turn a niche collab into a timeless classic.</p>
-        <br>
-
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> A fresh twist on gangsta rap with Madlib's eclectic spin, though it nods to '90s roots.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Madlib's beats are a treasure trove—rich and textured, with slight clutter at times.</p>
-            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Gibbs' tales are vivid and gripping, with depth beyond mere thug tropes.</p>
-            <p><span class="highlight">Enjoyment Factor (18/20):</span> A thrilling ride for hip-hop heads, though its weight may not hook casual listeners.</p>
-            <p><span class="highlight">Consistency (17/20):</span> Mostly airtight, but a few tracks blur together in the back half.</p>
+            <p><span class="highlight">Originality (18/20):</span> Gangsta rap evolves with Madlib’s eclectic twist, honoring '90s roots while forging a fresh path.</p>
+            <p><span class="highlight">Production Quality (19/20):</span> Dusty loops weave a rich tapestry, Madlib’s beats brilliant yet occasionally cluttered.</p>
+            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Vivid tales brim with depth, Gibbs’ storytelling transcending thug tropes with raw authenticity.</p>
+            <p><span class="highlight">Enjoyment Factor (18/20):</span> Thrilling beats captivate hip-hop purists, its weight a challenge for casual listeners.</p>
+            <p><span class="highlight">Consistency (17/20):</span> Tight momentum drives most tracks, though the back half blurs slightly in its density.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (91/100):</span> 9.1/10</h3></p>
-            <p><em>Piñata</em> isn't just an album—it's a statement, a piñata bursting with soul, grit, and genius. Gibbs and Madlib don't compromise, delivering a project that's as punishing as it is rewarding. In a sea of trap and pop-rap, this stands tall—a testament to the power of keeping it real, raw, and relentlessly dope.</p>
+            <p><em><span class="highlight">Piñata</span></em> isn’t just an album—it’s a statement, a piñata bursting with soul, grit, and genius. Gibbs and Madlib don’t compromise, delivering a project that’s as punishing as it is rewarding. In a sea of trap and pop-rap, this stands tall—a testament to the power of keeping it real, raw, and relentlessly dope.</p>
         </div>
     </div>
 
@@ -163,7 +192,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
-        // Ensure all glass cards on this page have no tilt, except for pinata-card
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.glass-card:not(.pinata-card)').forEach(card => {
                 card.style.transform = 'none !important';
@@ -172,16 +200,13 @@
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
-            // Special handling for pinata card to allow scaling
             document.querySelectorAll('.glass-card.pinata-card').forEach(card => {
-                card.style.transform = 'none'; // No !important
+                card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
             });
-
             // Add hover effect for image zoom
-            document.querySelectorAll('.pinata-card').forEach(card => {
+            document.querySelectorAll('.glass-card.pinata-card').forEach(card => {
                 card.addEventListener('mouseenter', () => {
                     const img = card.querySelector('img');
                     if (img) img.style.transform = 'scale(1.1)';
@@ -197,4 +222,3 @@
     </script>
 </body>
 </html>
-
