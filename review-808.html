@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,77 +7,97 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    .highlight {
-        color: #ff3c00; /* Fuchsia */
-        font-weight: bold;
-    }
-
-    /* Custom graduation glitch effect */
-    .review-grad-glitch {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        color: #ff3c00; /* Fuchsia */
-        text-shadow: 0 0 10px #ff3c00;
-        font-family: 'Syncopate', sans-serif;
-        text-transform: uppercase;
-        position: relative;
-    }
-
-    .review-grad-glitch::before,
-    .review-grad-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .review-grad-glitch::before {
-        left: 2px;
-        text-shadow: -2px 0 #00ffea;
-        animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .review-grad-glitch::after {
-        left: -2px;
-        text-shadow: -2px 0 #d0e0e3;
-        animation: glitch-2 3sff3c00linear infinite;
-    }
-
-    /* Graduation image card with zoom effect */
-    .glass-card.grad-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        transition: transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .glass-card.grad-card:hover {
-        transform: scale(1.05);
-    }
-
-    .glass-card.grad-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .glass-card.grad-card:hover img {
-        transform: scale(1.05);
-    }
-</style>
+    <style>
+        .highlight {
+            color: #ff3c00; /* Orange */
+            font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #ff3c00; /* Matching orange for overall rating */
+        }
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ff3c00;
+            text-shadow: 0 0 10px #ff3c00;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #ff3c00;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.grad-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.grad-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.grad-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.grad-card:hover img {
+            transform: scale(1.05);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -98,59 +117,57 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="808s & Heartbreak">808s & Heartbreak</h1>
         <div class="review-content">
-            <h2>Kanye West - 808s & Heartbreak</h2>
+            <h2>808s & Heartbreak: Kanye West’s Frozen Echoes of Loss</h2>
             <div class="glass-card grad-card">
                 <img src="808.jpeg" alt="Kanye West 808s & Heartbreak album image">
             </div>
             <br>
-     <p>On <span class="highlight">November 24, 2008</span>, Kanye West released <em>808s & Heartbreak</em>, a 12-track sonic shift that peaked at #1 on the Billboard 200, selling over 450,000 copies in its first week. Following the soulful highs of <em>Late Registration</em> and <em>Graduation</em>, this album marked a raw, polarizing pivot. Here’s a deep dive into this haunting, influential masterpiece:</p>
-    </div>
-    <br>
-    <h2>The Messaging and Theme</h2>
-    <p>The album’s cover—a minimalist heart torn apart—mirrors its soul: a stark exploration of grief and isolation. <em>808s & Heartbreak</em> is Kanye baring his wounds after his mother’s death and a broken engagement, stripping away bravado for vulnerability. Tracks like <span class="highlight">“Heartless”</span> and <span class="highlight">“Love Lockdown”</span> mourn lost love, while <span class="highlight">“Welcome to Heartbreak”</span> laments fame’s emptiness. <span class="highlight">“Coldest Winter”</span> is a raw elegy. It’s not a narrative but an emotional purge—Kanye trading swagger for sorrow, crafting a blueprint for rap’s introspective future.</p>
-    <br>
-
-    <h2>Production and Sound</h2>
-    <p>Produced by <span class="highlight">Kanye West</span>, with <span class="highlight">No I.D.</span>, <span class="highlight">Jeff Bhasker</span>, and <span class="highlight">Plain Pat</span>, <em>808s & Heartbreak</em> is a stark, icy soundscape built on Roland TR-808 drums and heavy Auto-Tune. <span class="highlight">“Love Lockdown”</span> pulses with tribal beats and distorted vocals, while <span class="highlight">“Heartless”</span> pairs minimal synths with a chilling hook. <span class="highlight">“Paranoid”</span> sparkles with electro-pop sheen, and <span class="highlight">“RoboCop”</span> layers strings over glitchy production. Kanye’s voice—Auto-Tuned, mournful, and raw—becomes an instrument, ditching rap’s norms for a futuristic, melancholic vibe. It’s a bold departure from <em>Graduation</em>’s maximalism.</p>
-    <br>
-
-    
-    <h2>Features</h2>
-    <p><em>808s & Heartbreak</em> keeps features light, emphasizing Kanye’s solitude. <span class="highlight">Young Jeezy</span> adds grit to <span class="highlight">“Amazing,”</span> while <span class="highlight">Lil Wayne</span> brings swagger to <span class="highlight">“See You in My Nightmares.”</span> <span class="highlight">Kid Cudi</span> haunts <span class="highlight">“Paranoid”</span> and <span class="highlight">“Welcome to Heartbreak,”</span> his hums echoing Kanye’s pain. These guests don’t dominate—they’re shadows in Kanye’s storm, amplifying the album’s emotional weight without breaking its focus.</p>
-    <br>
-    <div class="glass-card">
-        <h2>Tracks to Watch</h2>
-        <ul>
-            <li><span class="highlight">“Heartless”</span> - A chilling, melodic breakup anthem with timeless appeal.</li>
-            <br>
-             <li><span class="highlight">“Love Lockdown”</span> - A bold, percussive cry that redefined Kanye’s sound.</li>
-            <br>
-            <li><span class="highlight">“Welcome to Heartbreak”</span> (feat. Kid Cudi) - A haunting reflection on fame’s toll.</li>
-            <br>
-            <li><span class="highlight">“Amazing”</span> (feat. Young Jeezy) - A brooding, triumphant standout.</li>
+            <p>On <span class="highlight">November 24, 2008</span>, Kanye West released <em><span class="highlight">808s & Heartbreak</span></em>, a 12-track sonic shift that peaked at #1 on the Billboard 200, selling over 450,000 copies in its first week under Def Jam and Roc-A-Fella. Following the soulful highs of <em><span class="highlight">Late Registration</span></em> and <em><span class="highlight">Graduation</span></em>, this album—born from his mother’s death and a shattered engagement—hit Platinum status by January 2009 and reshaped rap’s emotional landscape. As of <span class="highlight">March 11, 2025</span>, it’s a haunting cornerstone of Kanye’s legacy—let’s unpack its icy depths.</p>
+        </div>
+        <br>
+        <h2>The Messaging and Theme</h2>
+        <br>
+        <p>The cover—a minimalist heart torn apart—mirrors its soul: a stark exploration of grief and isolation. <em><span class="highlight">808s & Heartbreak</span></em> is Kanye baring his wounds, stripping away bravado for vulnerability. Tracks like <span class="highlight">“Heartless”</span> and <span class="highlight">“Love Lockdown”</span> mourn lost love, while <span class="highlight">“Welcome to Heartbreak”</span> laments fame’s emptiness. <span class="highlight">“Coldest Winter”</span>—inspired by his mother’s passing—is a raw elegy. It’s not a narrative but an emotional purge—Kanye trading swagger for sorrow, crafting a blueprint for rap’s introspective future.</p>
+        <br>
+        <h2>Production and Sound</h2>
+        <br>
+        <p>Produced by <span class="highlight">Kanye West</span>, with <span class="highlight">No I.D.</span>, <span class="highlight">Jeff Bhasker</span>, and <span class="highlight">Plain Pat</span>, <em><span class="highlight">808s & Heartbreak</span></em> is a stark, icy soundscape built on Roland TR-808 drums and heavy Auto-Tune. <span class="highlight">“Love Lockdown”</span> pulses with tribal beats and distorted vocals, while <span class="highlight">“Heartless”</span> pairs minimal synths with a chilling hook. <span class="highlight">“Paranoid”</span> sparkles with electro-pop sheen, and <span class="highlight">“RoboCop”</span> layers strings over glitchy production. Kanye’s voice—Auto-Tuned, mournful, and raw—becomes an instrument, ditching rap’s norms for a futuristic, melancholic vibe that’s worlds apart from <em><span class="highlight">Graduation</span></em>’s bombast.</p>
+        <br>
+        <h2>Features</h2>
+        <br>
+        <p><em><span class="highlight">808s & Heartbreak</span></em> keeps features light, emphasizing Kanye’s solitude. <span class="highlight">Young Jeezy</span> adds grit to <span class="highlight">“Amazing,”</span> while <span class="highlight">Lil Wayne</span> brings swagger to <span class="highlight">“See You in My Nightmares.”</span> <span class="highlight">Kid Cudi</span> haunts <span class="highlight">“Paranoid”</span> and <span class="highlight">“Welcome to Heartbreak,”</span> his hums echoing Kanye’s pain. These guests don’t dominate—they’re shadows in Kanye’s storm, amplifying the album’s emotional weight without breaking its focus.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Tracks to Watch</h2>
+            <ul>
+                <li><span class="highlight">“Heartless”</span> - Icy despair cuts through this anthem, its synths shimmering with timeless ache.</li>
+                <br>
+                <li><span class="highlight">“Love Lockdown”</span> - Tribal drums thunder beneath this wail, a bold reinvention pulsing with grief.</li>
+                <br>
+                <li><span class="highlight">“Welcome to Heartbreak”</span> (feat. Kid Cudi) - Hollow fame echoes here, Cudi’s hums haunting a minimalist void.</li>
+                <br>
+                <li><span class="highlight">“Amazing”</span> (feat. Young Jeezy) - Brooding triumph simmers in this gem, Jeezy’s growl grounding Kanye’s drift.</li>
             </ul>
-    </div>
-    <br>
-
-
-    
-    <h2>Previous Works</h2>
-    <p>Kanye's <span class="highlight">2004</span> debut, <em>The College Dropout</em>, introduced his soul-sampling genius and everyman charm, followed by <em>Late Registration</em> in <span class="highlight">2005</span>, which refined that formula with orchestral flair. <em>Graduation</em> completes the trilogy, ditching the classroom for the spotlight. Where <em>Dropout</em> was raw hustle and <em>Late Registration</em> was cinematic ambition, <em>Graduation</em> embraces pop accessibility—less about proving himself and more about claiming his throne. It's Kanye graduating to a new era of influence.</p>
-    <br>
-    <h2>Summary</h2>
-    <p><em>808s & Heartbreak</em> is a <span class="highlight">52-minute lament</span>—12 tracks of stark beauty and raw emotion. It’s Kanye at his most vulnerable, crafting a sound that’s both divisive and prophetic, influencing rap’s melodic turn. Tracks like <span class="highlight">“Pinocchio Story”</span> feel tacked on, but the core—like <span class="highlight">“Heartless”</span>—is unshakable. This isn’t just an album—it’s a pivot, a bold leap that reshaped music. It’s Kanye baring his soul through 808s, a heartbreak that echoes beyond its time.</p>
-    <br>
-    <div class="glass-card">
-        <h2>Ratings</h2>
-            <p><span class="highlight">Originality (20/20):</span> A revolutionary shift that birthed a new rap era.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Stark, innovative, and cohesive, with minor overreach.</p>
-            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Poignant and raw, though less dense than past works.</p>
-            <p><span class="highlight">Enjoyment Factor (18/20):</span> A gripping, moody listen with broad influence.</p>
-            <p><span class="highlight">Consistency (18/20):</span> Strong throughout, with a few tracks less essential.</p>
-         <p class="overall-rating"><span class="highlight"><h3>Overall Rating (93/100):</span> 9.3/10</h3></p>
-        
-        <p><em><span class="highlight">808s & Heartbreak</span></em>  isn’t Kanye’s most polished or accessible—it’s his most daring, a raw wound turned into art. It’s not perfect, but its impact is undeniable, paving the way for a generation of emotive rap. In Kanye’s catalog, this stands as a bold, broken-hearted gem—a sonic heartbreak that changed everything.</p>
-    </div>
+        </div>
+        <br>
+        <h2>Previous Works</h2>
+        <br>
+        <p>Kanye’s journey to <em><span class="highlight">808s & Heartbreak</span></em> began with <em><span class="highlight">The College Dropout</span></em> (2004), a soul-sampling debut full of everyman charm, followed by <em><span class="highlight">Late Registration</span></em> (2005), which layered orchestral grandeur onto his vision. <em><span class="highlight">Graduation</span></em> (2007) capped the trilogy with pop bombast, cementing his stardom. After those triumphs, <em><span class="highlight">808s</span></em>—recorded in Hawaii amid personal collapse—flips the script, trading celebration for desolation, setting the stage for the genre-bending chaos of <em><span class="highlight">Yeezus</span></em> (2013).</p>
+        <br>
+        <h2>Summary</h2>
+        <br>
+        <p><em><span class="highlight">808s & Heartbreak</span></em> is a <span class="highlight">52-minute lament</span>—12 tracks of stark beauty and raw emotion. It’s Kanye at his most vulnerable, crafting a sound that’s both divisive and prophetic, influencing rap’s melodic turn. Tracks like <span class="highlight">“Pinocchio Story”</span> feel tacked on, but the core—like <span class="highlight">“Heartless”</span>—is unshakable. As of <span class="highlight">March 11, 2025</span>, its Platinum status (2009), Grammy nods, and legacy as a cultural pivot point endure—a bold leap that reshaped music through heartbreak and 808s.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Ratings</h2>
+            <p><span class="highlight">Originality (20/20):</span> Groundbreaking vision rewires rap, its Auto-Tune cry a genre quake.</p>
+            <p><span class="highlight">Production Quality (19/20):</span> Icy innovation chills every beat, its starkness near flawless.</p>
+            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Grief bleeds through every line, raw yet lighter on depth.</p>
+            <p><span class="highlight">Enjoyment Factor (18/20):</span> Moody brilliance hooks you slow, its chill a haunting draw.</p>
+            <p><span class="highlight">Consistency (18/20):</span> Solid ice holds this together, with cracks in the weaker cuts.</p>
+            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (93/100):</span> 9.3/10</h3></p>
+            <p><em><span class="highlight">808s & Heartbreak</span></em> is Kanye’s soul frozen in time—a daring, fractured masterpiece born from ruin. It’s not his flashiest or tightest, but its raw courage and seismic influence make it eternal. Crank the 808s, let the Auto-Tune wash over, and feel a genius turn pain into prophecy.</p>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -158,7 +175,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
-        // Ensure all glass cards on this page have no tilt, except for grad-card
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
                 card.style.transform = 'none !important';
@@ -167,10 +183,8 @@
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
-            // Special handling for graduation card to allow scaling
             document.querySelectorAll('.glass-card.grad-card').forEach(card => {
-                card.style.transform = 'none'; // No !important
+                card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
             });
@@ -178,4 +192,3 @@
     </script>
 </body>
 </html>
-
