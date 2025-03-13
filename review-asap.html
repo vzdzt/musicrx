@@ -63,48 +63,34 @@
             20% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
-        .alla-glass-card {
+        .glass-card.grad-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 0; /* Remove padding to allow image to touch edges */
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
         }
-        .alla-glass-card:hover {
-            transform: scale(1.05) !important;
-            background: rgba(255, 255, 255, 0.15);
-            border-color: #008080;
-            box-shadow: 0 0 0 2px #008080, 0 0 30px rgba(0, 128, 128, 0.4);
+        .glass-card.grad-card:hover {
+            transform: scale(1.05);
         }
-        .alla-glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-        .alla-glass-card:hover::before {
-            left: 100%;
-        }
-        .alla-glass-card img {
-            max-width: 100%;
+        .glass-card.grad-card img {
+            width: 100%; /* Force image to take full width */
             height: auto;
-            object-fit: cover;
+            object-fit: cover; /* Ensure image fills container, cropping if needed */
+            object-position: center; /* Center the image when cropped */
             border-radius: 8px;
             transition: transform 0.3s ease;
-            width: 100%;
             display: block;
         }
-        .alla-glass-card:hover img {
-            transform: scale(1.05);
+        .glass-card.grad-card:hover img {
+            transform: scale(1.1); /* Slightly larger zoom for image */
         }
         .glass-card {
             background: rgba(255, 255, 255, 0.1);
@@ -137,56 +123,51 @@
     <div class="container">
         <h1 class="review-alla-glitch" data-text="A.L.L.A.">A.L.L.A.</h1>
         <div class="review-content">
-            <h2>At Long Last A$AP: Rocky’s Psychedelic Plunge into Loss and Legend</h2>
-            <div class="alla-glass-card">
-                <img src="asap.jpg" alt="A$AP Rocky - A.L.L.A. album image">
+            <h2>At Long Last A$AP: Rocky’s Hazy Odyssey Through Grief and Glory</h2>
+            <div class="glass-card grad-card">
+                <img src="asap.jpg" alt="A$AP Rocky - <em><span class='highlight'>At Long Last A$AP</span></em> album image">
             </div>
             <br>
-            <p>On <span class="highlight">May 26, 2015</span>, A$AP Rocky surprise-dropped <em><span class="highlight">At Long Last A$AP</span></em>, an 18-track sophomore album via A$AP Worldwide, Polo Grounds, and RCA, landing amid hype and heartbreak after A$AP Yams’ death. Following his debut <em><span class="highlight">Long. Live. A$AP</span></em>, this project hit #1 on the Billboard 200, went Gold by 2016, and carved a hazy, experimental lane. As of <span class="highlight">March 12, 2025</span>, it’s Rocky’s trippy tribute to resilience—let’s peel back its psychedelic layers.</p>
+            <p>On <span class="highlight">May 26, 2015</span>, A$AP Rocky surprise-dropped <em><span class="highlight">At Long Last A$AP</span></em>, an 18-track sophomore album via A$AP Worldwide, Polo Grounds, and RCA, arriving amid hype and heartbreak after A$AP Yams’ death. Following his debut <em><span class="highlight">Long. Live. A$AP</span></em>, this project hit #1 on the Billboard 200, went Gold by 2016, and carved a hazy, experimental lane. As of <span class="highlight">March 16, 2025</span>, it remains Rocky’s trippy tribute to resilience—let’s unravel its psychedelic layers.</p>
         </div>
         <br>
         <h2>The Messaging and Theme</h2>
-        <br>
-        <p>The cover—a purple-tinted Rocky with Yams’ birthmark—signals tribute and transcendence. <em><span class="highlight">A.L.L.A.</span></em> navigates fame’s peaks and pits, drenched in psychedelic swagger. <span class="highlight">“L$D”</span> and <span class="highlight">“Electric Body”</span> dive into drug-fueled excess, while <span class="highlight">“Jukebox Joints”</span> and <span class="highlight">“Everyday”</span> weave nostalgia with soul-searching. Dedicated to Yams, it’s Rocky confronting loss, success, and self—less a linear tale than a vibe-soaked collage. Harlem’s slickest dreamer proves he’s more than style, chasing immortality through haze.</p>
+        <p>The cover—a purple-tinted Rocky with Yams’ birthmark—sets a tone of tribute and transcendence. <em><span class="highlight">A.L.L.A.</span></em> navigates fame’s highs and lows, steeped in psychedelic swagger. <span class="highlight">“L$D”</span> and <span class="highlight">“Electric Body”</span> plunge into drug-fueled excess, while <span class="highlight">“Jukebox Joints”</span> and <span class="highlight">“Everyday”</span> blend nostalgia with soul-searching. Dedicated to Yams, it’s Rocky grappling with loss, success, and self—a vibe-soaked collage rather than a linear tale. Harlem’s slickest dreamer proves he’s more than style, chasing immortality through a hazy lens.</p>
         <br>
         <h2>Production and Sound</h2>
-        <br>
-        <p>Co-executive produced by <span class="highlight">Danger Mouse</span> and <span class="highlight">A$AP Yams</span>, with <span class="highlight">Hector Delgado</span> and <span class="highlight">Juicy J</span>, <em><span class="highlight">A.L.L.A.</span></em> is a sonic prism. Trap’s thud meets psych-rock’s blur—<span class="highlight">“L$D”</span> oozes with woozy guitars, <span class="highlight">“Holy Ghost”</span> fuses gospel soul with eerie synths. <span class="highlight">“Canal St.”</span> slices Bone Thugs into a raw banger, and <span class="highlight">“Fine Whine”</span> drifts on ethereal keys. Rocky’s flow—silky yet sharp—dances across these beats, flipping from bold bars to melodic hums, a daring shift from <em><span class="highlight">Long. Live</span></em>’s sleek trap into uncharted sonic wilds.</p>
+        <p>Co-executive produced by <span class="highlight">Danger Mouse</span> and <span class="highlight">A$AP Yams</span>, with <span class="highlight">Hector Delgado</span> and <span class="highlight">Juicy J</span>, <em><span class="highlight">A.L.L.A.</span></em> is a sonic kaleidoscope. Trap’s edge meets psych-rock’s blur—<span class="highlight">“L$D”</span> drifts with woozy guitars, while <span class="highlight">“Holy Ghost”</span> merges gospel soul with eerie synths. <span class="highlight">“Canal St.”</span> slices Bone Thugs into a raw banger, and <span class="highlight">“Fine Whine”</span> floats on ethereal keys. Rocky’s flow—silky yet sharp—glides across these beats, shifting from bold bars to melodic hums, a daring pivot from <em><span class="highlight">Long. Live. A$AP</span></em>’s sleek trap into uncharted sonic territory.</p>
         <br>
         <h2>Features</h2>
-        <br>
-        <p><em><span class="highlight">A.L.L.A.</span></em> flexes a loaded lineup, each guest fueling Rocky’s vision. <span class="highlight">Kanye West</span> and <span class="highlight">Joe Fox</span> haunt <span class="highlight">“Jukebox Joints,”</span> while <span class="highlight">Rod Stewart</span> and <span class="highlight">Miguel</span> bring soul to <span class="highlight">“Everyday.”</span> <span class="highlight">Schoolboy Q</span> snarls on <span class="highlight">“Electric Body,”</span> <span class="highlight">Lil Wayne</span> shines on <span class="highlight">“M’$,”</span> and <span class="highlight">Future</span> and <span class="highlight">M.I.A.</span> ignite <span class="highlight">“Fine Whine.”</span> <span class="highlight">Bones</span> anchors <span class="highlight">“Canal St.”</span> These voices don’t steal the show—they amplify the album’s wild texture, honoring Yams’ masterful curation.</p>
+        <p><em><span class="highlight">A.L.L.A.</span></em> boasts a stellar lineup, each guest amplifying Rocky’s vision. <span class="highlight">Kanye West</span> and <span class="highlight">Joe Fox</span> haunt <span class="highlight">“Jukebox Joints,”</span> while <span class="highlight">Rod Stewart</span> and <span class="highlight">Miguel</span> lend soul to <span class="highlight">“Everyday.”</span> <span class="highlight">Schoolboy Q</span> snarls on <span class="highlight">“Electric Body,”</span> <span class="highlight">Lil Wayne</span> shines on <span class="highlight">“M’$,”</span> and <span class="highlight">Future</span> and <span class="highlight">M.I.A.</span> ignite <span class="highlight">“Fine Whine.”</span> <span class="highlight">Bones</span> grounds <span class="highlight">“Canal St.”</span> These voices don’t overshadow—they enrich the album’s eclectic texture, honoring Yams’ curatorial genius.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">“L$D”</span> - Hazy waves crash through this psychedelic drift, a love-soaked fever dream.</li>
+                <li><span class="highlight">“L$D”</span> - Woozy guitars paint this psychedelic drift, Rocky’s love-soaked vocals crafting a fever dream.</li>
                 <br>
-                <li><span class="highlight">“Jukebox Joints”</span> (feat. Kanye West & Joe Fox) - Soulful vibes simmer in this gem, Kanye’s shadow looming large.</li>
+                <li><span class="highlight">“Jukebox Joints”</span> (feat. Kanye West & Joe Fox) - Soulful layers simmer in nostalgia, Kanye’s ghostly presence adding depth.</li>
                 <br>
-                <li><span class="highlight">“Everyday”</span> (feat. Rod Stewart, Miguel & Mark Ronson) - Fame’s weight lifts this anthem, Stewart’s croon cutting deep.</li>
+                <li><span class="highlight">“Everyday”</span> (feat. Rod Stewart, Miguel & Mark Ronson) - Stewart’s croon elevates this soulful reflection, fame’s weight resonating deeply.</li>
                 <br>
-                <li><span class="highlight">“Canal St.”</span> (feat. Bones) - Raw edge slashes this banger, Bone Thugs’ echo hitting hard.</li>
+                <li><span class="highlight">“Canal St.”</span> (feat. Bones) - Bone Thugs’ echo drives this raw banger, Rocky’s sharp bars cutting through.</li>
             </ul>
         </div>
         <br>
         <h2>Previous Works</h2>
-        <br>
-        <p>Rocky’s <span class="highlight">2011</span> mixtape <em><span class="highlight">Live. Love. A$AP</span></em> sparked his syrupy flow and cloud-rap rise, setting up his <span class="highlight">2013</span> debut <em><span class="highlight">Long. Live. A$AP</span></em>, a #1 trap-polished breakout. <em><span class="highlight">A.L.L.A.</span></em> builds on that base, ditching <em><span class="highlight">Long. Live</span></em>’s hit-chasing gloss for a bolder, trippier plunge. It’s less about pop appeal and more about legacy, paving the way for <em><span class="highlight">Testing</span></em>’s (2018) avant-garde sprawl.</p>
+        <p>Rocky’s <span class="highlight">2011</span> mixtape <em><span class="highlight">Live. Love. A$AP</span></em> sparked his syrupy flow and cloud-rap rise, paving the way for his <span class="highlight">2013</span> debut <em><span class="highlight">Long. Live. A$AP</span></em>, a #1 trap-polished breakout. <em><span class="highlight">A.L.L.A.</span></em> evolves from that foundation, trading <em><span class="highlight">Long. Live</span></em>’s hit-driven gloss for a trippier, more daring plunge. It prioritizes legacy over pop appeal, setting the stage for <em><span class="highlight">Testing</span></em>’s (<span class="highlight">2018</span>) avant-garde sprawl.</p>
         <br>
         <h2>Summary</h2>
-        <br>
-        <p><em><span class="highlight">At Long Last A$AP</span></em> is a <span class="highlight">66-minute voyage</span>—18 tracks of fearless ambition and hazy soul. Rocky channels Yams’ spirit, fusing trap’s bite with psychedelic sheen in a tribute to his fallen guide. Its sprawl stumbles—<span class="highlight">“Pharsyde”</span> drags—but its peaks, like <span class="highlight">“L$D,”</span> soar. As of <span class="highlight">March 12, 2025</span>, its Gold status (2016) and cult reverence cement it as Rocky’s wildest triumph—a refusal to conform, forged in loss and lifted by legend.</p>
+        <p><em><span class="highlight">At Long Last A$AP</span></em> unfolds as a <span class="highlight">66-minute voyage</span>—18 tracks of fearless ambition and hazy soul. Rocky channels Yams’ spirit, fusing trap’s bite with psychedelic sheen in a tribute to his fallen mentor. Its sprawl falters—<span class="highlight">“Pharsyde”</span> drags—but its peaks, like <span class="highlight">“L$D,”</span> soar. As of <span class="highlight">March 16, 2025</span>, its Gold status (<span class="highlight">2016</span>) and cult reverence cement it as Rocky’s boldest triumph—a refusal to conform, forged in loss and lifted by legend.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> Bold blends carve this path, with faint traces of psych-trap roots.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Rich textures stun across the board, with minor bloat in the haze.</p>
-            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Slick flair coats every line, depth sidelined by mood.</p>
-            <p><span class="highlight">Enjoyment Factor (18/20):</span> Trippy thrills hook you hard, its runtime a marathon worth running.</p>
-            <p><span class="highlight">Consistency (16/20):</span> Strong currents flow through, with eddies in the weaker waves.</p>
+            <p><span class="highlight">Originality (18/20):</span> Psych-trap fusion carves a daring path, building on Rocky’s roots with bold experimentation.</p>
+            <p><span class="highlight">Production Quality (19/20):</span> Textures dazzle with eclectic brilliance, though minor bloat clouds the haze.</p>
+            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Slick bars and introspective flashes shine, with mood often taking precedence over depth.</p>
+            <p><span class="highlight">Enjoyment Factor (18/20):</span> Trippy energy captivates throughout, its runtime a marathon that rewards the journey.</p>
+            <p><span class="highlight">Consistency (16/20):</span> Strong currents drive the vibe, with weaker tracks creating slight turbulence.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (88/100):</span> 8.8/10</h3></p>
-            <p><em><span class="highlight">At Long Last A$AP</span></em> is Rocky’s untamed heart—loose, long, and luminous. It’s a tribute to Yams, a defiance of norms, and a psychedelic crown that grows bolder with time. Drop the needle, let the haze roll, and vibe with Harlem’s fearless visionary.</p>
+            <p><em><span class="highlight">At Long Last A$AP</span></em> is Rocky’s untamed spirit—sprawling, luminous, and unapologetic. A tribute to Yams, a defiance of norms, and a psychedelic crown, it grows bolder with time. Drop the needle, let the haze roll, and vibe with Harlem’s visionary dreamer.</p>
         </div>
     </div>
 
@@ -196,17 +177,30 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.alla-glass-card)').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.alla-glass-card').forEach(card => {
+            document.querySelectorAll('.grad-card').forEach(card => {
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            // Add hover effect for image zoom
+            document.querySelectorAll('.grad-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>

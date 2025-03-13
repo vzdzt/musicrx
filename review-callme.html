@@ -7,82 +7,91 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-  <!-- Existing head content -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MusicRx - CMIYGL Review">
-  <meta name="twitter:description" content="My Review of Call Me If You Get Lost on MusicRx!">
-  <meta name="twitter:image"https://m.media-amazon.com/images/I/71P2Su0fu2L._UF1000,1000_QL80_.jpg">
-  <meta name="twitter:site" content="@36966_">
-<style>
-    .highlight {
-        color: #ffb6c1; /* Baby Pink */
-        font-weight: bold;
-    }
-    
-    /* CMIYGL specific glitch effect */
-    .review-cmiygl-glitch {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #ffb6c1; /* Baby Pink */
-      text-shadow: 0 0 10px #ffb6c1;
-      font-family: 'Syncopate', sans-serif;
-      text-transform: uppercase;
-      position: relative;
-    }
-
-    .review-cmiygl-glitch::before,
-    .review-cmiygl-glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .review-cmiygl-glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 #00ffea;
-      animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .review-cmiygl-glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 #ffb6c1;
-      animation: glitch-2 3s linear infinite;
-    }
-    
-    /* CMIYGL glass card styling and zoom effect */
-    .glass-card.cmiygl-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-      padding: 20px;
-      margin: 10px;
-      transition: transform 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .glass-card.cmiygl-card:hover {
-      transform: scale(1.05);
-    }
-
-    .glass-card.cmiygl-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-    }
-
-    .glass-card.cmiygl-card:hover img {
-      transform: scale(1.05);
-    }
-</style>
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MusicRx - CMIYGL Review">
+    <meta name="twitter:description" content="My Review of Call Me If You Get Lost on MusicRx!">
+    <meta name="twitter:image" content="https://m.media-amazon.com/images/I/71P2Su0fu2L._UF1000,1000_QL80_.jpg">
+    <meta name="twitter:site" content="@36966_">
+    <style>
+        .highlight {
+            color: #ffb6c1; /* Baby Pink */
+            font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #ffb6c1; /* Matching baby pink for overall rating */
+        }
+        .review-cmiygl-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ffb6c1;
+            text-shadow: 0 0 10px #ffb6c1;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-cmiygl-glitch::before,
+        .review-cmiygl-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-cmiygl-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-cmiygl-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #ffb6c1;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.grad-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 0; /* Remove padding to allow image to touch edges */
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.grad-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.grad-card img {
+            width: 100%; /* Force image to take full width */
+            height: auto;
+            object-fit: cover; /* Ensure image fills container, cropping if needed */
+            object-position: center; /* Center the image when cropped */
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+        .glass-card.grad-card:hover img {
+            transform: scale(1.1); /* Slightly larger zoom for image */
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -102,51 +111,51 @@
     <div class="container">
         <h1 class="review-cmiygl-glitch" data-text="CALL ME IF YOU GET LOST">CALL ME IF YOU GET LOST</h1>
         <div class="review-content">
-            <h2>Tyler, The Creator - CMIYGL</h2>
-            <div class="glass-card cmiygl-card">
-                <img src="callme.jpg" alt="Tyler, The Creator CMIYGL album image">
+            <h2>Call Me If You Get Lost: Tyler’s Sunlit Voyage of Swagger and Soul</h2>
+            <div class="glass-card grad-card">
+                <img src="callme.jpg" alt="Tyler, The Creator - <em><span class='highlight'>Call Me If You Get Lost</span></em> album image">
             </div>
-<br>
-              <p>On <span class="highlight">June 25, 2021</span>, Tyler, The Creator unleashed <em><span class="highlight">Call Me If You Get Lost</span></em>, a 16-track odyssey that landed two years after his introspective <em><span class="highlight">IGOR</span></em>. Blending brash rap energy with lush production, this album cemented Tyler’s evolution from provocateur to polymath. Here’s a deep dive into this vibrant, jet-setting masterpiece:</p>
+            <br>
+            <p>On <span class="highlight">June 25, 2021</span>, Tyler, The Creator unleashed <em><span class="highlight">Call Me If You Get Lost</span></em>, a 16-track odyssey that arrived two years after the introspective <em><span class="highlight">IGOR</span></em>. Merging brash rap energy with lush production, this album solidified Tyler’s evolution from provocateur to polymath. As of <span class="highlight">March 16, 2025</span>, let’s explore this vibrant, jet-setting masterpiece.</p>
         </div>
         <br>
         <h2>The Messaging and Theme</h2>
-        <p>The album’s cover—a faux ID for “Tyler Baudelaire”—and <span class="highlight">DJ Drama</span>’s Gangsta Grillz narration frame it as a travelogue of excess and identity. <em><span class="highlight">Call Me If You Get Lost</span></em> is Tyler flexing his wealth, love, and creative freedom, as seen in <span class="highlight">“Corso”</span> and <span class="highlight">“Lumberjack.”</span> Yet beneath the bravado lies vulnerability—<span class="highlight">“Wilshire”</span> unravels a tale of unrequited love with raw honesty. It’s a passport to Tyler’s mind: globetrotting swagger meets emotional turbulence, all wrapped in a nostalgic nod to mixtape culture. This is Tyler reveling in his prime, lost in the best way possible.</p>
+        <p>The album’s cover—a faux ID for <span class="highlight">“Tyler Baudelaire”</span>—and <span class="highlight">DJ Drama</span>’s Gangsta Grillz narration frame it as a travelogue of opulence and identity. <em><span class="highlight">Call Me If You Get Lost</span></em> showcases Tyler basking in wealth, love, and creative freedom, evident in <span class="highlight">“Corso”</span> and <span class="highlight">“Lumberjack.”</span> Yet vulnerability pierces through—<span class="highlight">“Wilshire”</span> unravels unrequited love with raw honesty. It’s a passport to Tyler’s psyche: globetrotting bravado meets emotional turbulence, wrapped in a nostalgic nod to mixtape culture. This is Tyler thriving in his prime, beautifully lost.</p>
         <br>
         <h2>Production and Sound</h2>
-        <p>Entirely produced by <span class="highlight">Tyler, The Creator</span>, <em><span class="highlight">CMIYGL</span></em> is a sonic buffet of jazz, soul, and hard-hitting hip-hop. The beats are eclectic—<span class="highlight">“Lumberjack”</span> chops a Gravediggaz sample into a menacing banger, while <span class="highlight">“Sweet / I Thought You Wanted to Dance”</span> blends breezy horns with reggae-tinged romance. <span class="highlight">“Lemonhead”</span> pops with triumphant brass, and <span class="highlight">“Wusyaname”</span> glides on buttery R&B vibes. Tyler’s voice shifts from guttural shouts to smooth croons, layered over his meticulous soundscapes. It’s a bold pivot from <em>IGOR</em>’s synth-heavy haze, trading melancholy for a sun-soaked, high-octane vibe.</p>
+        <p>Entirely produced by <span class="highlight">Tyler, The Creator</span>, <em><span class="highlight">Call Me If You Get Lost</span></em> offers a sonic feast of jazz, soul, and hard-hitting hip-hop. The beats dazzle—<span class="highlight">“Lumberjack”</span> transforms a Gravediggaz sample into a menacing banger, while <span class="highlight">“Sweet / I Thought You Wanted to Dance”</span> fuses breezy horns with reggae-tinged romance. <span class="highlight">“Lemonhead”</span> bursts with triumphant brass, and <span class="highlight">“Wusyaname”</span> glides on velvety R&B tones. Tyler’s voice shifts from guttural roars to silky croons, layered over his intricate soundscapes. It’s a sharp pivot from <em><span class="highlight">IGOR</span></em>’s synth-heavy haze, trading melancholy for a sun-soaked, high-octane journey.</p>
         <br>
         <h2>Features</h2>
-        <p><em><span class="highlight">Call Me If You Get Lost</span></em>’s guest list is a curated crew, each amplifying Tyler’s vision. <span class="highlight">Lil Wayne</span> snarls on <span class="highlight">“Hot Wind Blows,”</span> while <span class="highlight">42 Dugg</span> brings Detroit grit to <span class="highlight">“Lemonhead.”</span> <span class="highlight">YoungBoy Never Broke Again</span> and <span class="highlight">Ty Dolla $ign</span> shine on <span class="highlight">“Wusyaname,”</span> and <span class="highlight">Lil Uzi Vert</span> adds playful chaos to <span class="highlight">“Juggernaut.”</span> <span class="highlight">Pharrell</span> lends soulful cool to <span class="highlight">“Juggernaut,”</span> and <span class="highlight">Brent Faiyaz</span> anchors the tender <span class="highlight">“Sweet.”</span> These voices don’t dominate but enhance Tyler’s world, with DJ Drama’s hypeman energy tying it all together.</p>
+        <p><em><span class="highlight">Call Me If You Get Lost</span></em> curates a tight ensemble, each guest amplifying Tyler’s vision. <span class="highlight">Lil Wayne</span> snarls on <span class="highlight">“Hot Wind Blows,”</span> while <span class="highlight">42 Dugg</span> injects Detroit grit into <span class="highlight">“Lemonhead.”</span> <span class="highlight">YoungBoy Never Broke Again</span> and <span class="highlight">Ty Dolla $ign</span> shine on <span class="highlight">“Wusyaname,”</span> and <span class="highlight">Lil Uzi Vert</span> brings playful chaos to <span class="highlight">“Juggernaut.”</span> <span class="highlight">Pharrell</span> adds soulful finesse to <span class="highlight">“Juggernaut,”</span> and <span class="highlight">Brent Faiyaz</span> grounds <span class="highlight">“Sweet”</span> with tender depth. These voices enhance without overshadowing, with <span class="highlight">DJ Drama</span>’s hypeman energy weaving the album together.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">“Corso”</span> - A swagger-soaked opener dripping with jazzy horns and Tyler’s brash bars, laying down a lavish welcome mat for the album’s jet-set vibe.</li>
+                <li><span class="highlight">“Corso”</span> - Jazzy horns propel this lavish opener, Tyler’s brash bars setting a jet-set tone with unapologetic flair.</li>
                 <br>
-                <li><span class="highlight">“Wusyaname”</span> (feat. YoungBoy Never Broke Again & Ty Dolla $ign) - A silky-smooth flirtation that floats on lush R&B waves, with a hook so addictive it’s like musical honey.</li>
+                <li><span class="highlight">“Wusyaname”</span> (feat. YoungBoy Never Broke Again & Ty Dolla $ign) - Velvety R&B waves carry this flirtatious gem, its addictive hook dripping like musical honey.</li>
                 <br>
-                <li><span class="highlight">“Lumberjack”</span> - A ferocious, sample-driven beast where Tyler’s snarling flow slices through a Gravediggaz cut, flexing his rap roots with unrelenting grit.</li>
+                <li><span class="highlight">“Lumberjack”</span> - Menacing beats slice through a Gravediggaz sample, Tyler’s snarling flow flexing his rap roots with raw intensity.</li>
                 <br>
-                <li><span class="highlight">“Sweet / I Thought You Wanted to Dance”</span> (feat. Brent Faiyaz & Fana Hues) - A sprawling, 10-minute love letter that shifts from soulful sweetness to reggae-tinged longing, a cinematic standout that lingers.</li>
+                <li><span class="highlight">“Sweet / I Thought You Wanted to Dance”</span> (feat. Brent Faiyaz & Fana Hues) - Soulful horns and reggae rhythms weave a 10-minute love letter, cinematic and lingering.</li>
             </ul>
         </div>
         <br>
         <h2>Previous Works</h2>
-        <p>Tyler’s journey began with Odd Future’s anarchic <em><span class="highlight">Bastard</span></em> (<span class="highlight">2009</span>), evolving through the shock-rap of <em><span class="highlight">Goblin</span></em> (<span class="highlight">2011</span>) to the melodic bloom of <em><span class="highlight">Flower Boy</span></em> (<span class="highlight">2017</span>). <em><span class="highlight">IGOR</span></em> (<span class="highlight">2019</span>) marked his artistic peak with its breakup narrative and Grammy win. <em><span class="highlight">Call Me If You Get Lost</span></em> fuses <em>Flower Boy</em>’s polish with <em>Goblin</em>’s rap roots, adding a mixtape swagger. Where <em>IGOR</em> mourned love lost, <em>CMIYGL</em> celebrates life gained—less a reinvention and more a victory lap for Tyler’s boundless creativity.</p>
+        <p>Tyler’s journey began with Odd Future’s anarchic <em><span class="highlight">Bastard</span></em> (<span class="highlight">2009</span>), evolving through the shock-rap of <em><span class="highlight">Goblin</span></em> (<span class="highlight">2011</span>) to the melodic bloom of <em><span class="highlight">Flower Boy</span></em> (<span class="highlight">2017</span>). <em><span class="highlight">IGOR</span></em> (<span class="highlight">2019</span>) marked a creative peak with its breakup narrative and Grammy win. <em><span class="highlight">Call Me If You Get Lost</span></em> blends <em><span class="highlight">Flower Boy</span></em>’s polish with <em><span class="highlight">Goblin</span></em>’s rap roots, adding a mixtape swagger. Unlike <em><span class="highlight">IGOR</span></em>’s mournful haze, <em><span class="highlight">CMIYGL</span></em> celebrates life gained—a victory lap for Tyler’s boundless creativity.</p>
         <br>
         <h2>Summary</h2>
-        <p><em><span class="highlight">Call Me If You Get Lost</span></em> is a <span class="highlight">52-minute joyride</span>—16 tracks of swagger, soul, and storytelling. It’s Tyler at his most confident, blending rap’s grit with pop’s sheen, all while flexing his production prowess. The album’s pacing is near-perfect, though its dense guest list occasionally overshadows its star. <em>CMIYGL</em> doesn’t chase trends—it crafts them, offering a passport to Tyler’s universe of luxury and longing. It’s a love letter to hip-hop’s past and a blueprint for its future, proving Tyler’s lost only in his own brilliance.</p>
+        <p><em><span class="highlight">Call Me If You Get Lost</span></em> spans a vibrant <span class="highlight">52 minutes</span>—16 tracks of swagger, soul, and storytelling. Tyler’s at his most confident, merging rap’s grit with pop’s sheen, all while showcasing his production genius. The pacing shines, though a crowded guest list occasionally overshadows its star. As of <span class="highlight">March 16, 2025</span>, <em><span class="highlight">CMIYGL</span></em> stands as a trendsetter—a passport to Tyler’s universe of luxury and longing, a love letter to hip-hop’s past, and a blueprint for its future.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (19/20):</span> A masterful mixtape twist that fuses Tyler’s eclectic past with a fresh rap swagger, carving a lane that’s both nostalgic and forward-thinking.</p>
-            <p><span class="highlight">Production Quality (20/20):</span> A flawless tapestry of jazz, soul, and hip-hop—every beat sparkles with detail, proving Tyler’s ear is unmatched in its vibrancy and precision.</p>
-            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Sharp-witted and heartfelt, balancing brash flexes with tender confessions, though the bravado occasionally overshadows deeper introspection.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> A euphoric, replayable blast that hooks you from the jump—its richness rewards every listen, with only a slight guest overload as a hiccup.</p>
-            <p><span class="highlight">Consistency (18/20):</span> A tight, cohesive journey with a front-loaded punch—the back half dips slightly but never derails the album’s sunlit momentum.</p>
+            <p><span class="highlight">Originality (19/20):</span> Mixtape swagger meets eclectic innovation, blending Tyler’s past with a bold new vision that feels nostalgic yet futuristic.</p>
+            <p><span class="highlight">Production Quality (20/20):</span> Vibrant beats dazzle with jazz, soul, and hip-hop mastery—every layer a testament to Tyler’s unmatched ear.</p>
+            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Witty bars and heartfelt confessions shine, though bravado sometimes overshadows deeper reflection.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> Euphoric energy hooks from start to finish, its richness replayable, with guest density as a minor hiccup.</p>
+            <p><span class="highlight">Consistency (18/20):</span> Sunlit momentum carries the journey, with a slight dip in the back half that never derails its stride.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (94/100):</span> 9.4/10</h3></p>
-            <p><em><span class="highlight">Call Me If You Get Lost</span></em> is Tyler, The Creator firing on all cylinders—a kaleidoscope of sound and emotion that’s as bold as it is beautiful. It’s not just an album; it’s a flex, a vibe, a destination. In a career of reinvention, this stands as his most assured work yet, a call worth answering again and again.</p>
+            <p><em><span class="highlight">Call Me If You Get Lost</span></em> is Tyler, The Creator at his peak—a kaleidoscope of sound and emotion, bold and beautiful. It’s a flex, a vibe, a destination. In a career defined by reinvention, this is his most assured work yet—a call you’ll want to answer again and again.</p>
         </div>
     </div>
 
@@ -156,20 +165,32 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.cmiygl-card)').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.glass-card.cmiygl-card').forEach(card => {
+            document.querySelectorAll('.grad-card').forEach(card => {
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            // Add hover effect for image zoom
+            document.querySelectorAll('.grad-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
 </body>
 </html>
-

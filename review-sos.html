@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,83 +7,87 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    body {
-      background: #0a0a0a !important;
-    }
-    .highlight {
-        color: #00a7e1; /* Ocean blue color */
-        font-weight: bold;
-    }
-    .overall-rating h3 {
-        color: #00a7e1;
-    }
-    
-    /* Special glitch effect for SOS title */
-    .review-sos-glitch {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        color: #00a7e1; 
-        text-shadow: 0 0 10px #00a7e1;
-        font-family: 'Syncopate', sans-serif;
-        text-transform: uppercase;
-        position: relative;
-    }
-
-    .review-sos-glitch::before,
-    .review-sos-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .review-sos-glitch::before {
-        left: 2px;
-        text-shadow: -2px 0 rgba(0, 255, 255, 0.8);
-        animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .review-sos-glitch::after {
-        left: -2px;
-        text-shadow: -2px 0 #00a7e1;
-        animation: glitch-2 3s linear infinite;
-    }
-    
-    /* SOS glass card styling and zoom effect */
-    .glass-card.sos-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        transition: transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .glass-card.sos-card:hover {
-        transform: scale(1.05);
-    }
-
-    .glass-card.sos-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .glass-card.sos-card:hover img {
-        transform: scale(1.05);
-    }
-</style>
+    <style>
+        body {
+            background: #0a0a0a !important;
+        }
+        .highlight {
+            color: #00a7e1; /* Ocean blue */
+            font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #00a7e1; /* Matching ocean blue for overall rating */
+        }
+        .review-sos-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #00a7e1;
+            text-shadow: 0 0 10px #00a7e1;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-sos-glitch::before,
+        .review-sos-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-sos-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 rgba(0, 255, 255, 0.8);
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-sos-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00a7e1;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.grad-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 0; /* Remove padding to allow image to touch edges */
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.grad-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.grad-card img {
+            width: 100%; /* Force image to take full width */
+            height: auto;
+            object-fit: cover; /* Ensure image fills container, cropping if needed */
+            object-position: center; /* Center the image when cropped */
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.grad-card:hover img {
+            transform: scale(1.1); /* Slightly larger zoom for image */
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -104,63 +107,51 @@
     <div class="container">
         <h1 class="review-sos-glitch" data-text="SOS">SOS</h1>
         <div class="review-content">
-            <h2>SZA - SOS</h2>
-            <div class="glass-card sos-card">
-                <img src="soss.jpeg" alt="SZA SOS album image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            <h2>SOS: SZA’s Tidal Wave of Heartbreak and Healing</h2>
+            <div class="glass-card grad-card">
+                <img src="soss.jpeg" alt="SZA - <em><span class='highlight'>SOS</span></em> album image">
             </div>
-<br>
-            <p>On <span class="highlight">December 9, 2022</span>, SZA dropped <em>SOS</em>, a sprawling 23-track sophomore album that arrived five years after her groundbreaking debut, <em>Ctrl</em>. With sky-high anticipation, this project showcased SZA's evolution, blending raw vulnerability with bold swagger. Here's a deep dive into this soul-baring masterpiece:</p>
+            <br>
+            <p>On <span class="highlight">December 9, 2022</span>, SZA dropped <em><span class="highlight">SOS</span></em>, a sprawling 23-track sophomore album that arrived five years after her groundbreaking debut, <em><span class="highlight">Ctrl</span></em>. With sky-high anticipation, this project showcased SZA’s evolution, blending raw vulnerability with bold swagger. As of <span class="highlight">March 16, 2025</span>, let’s dive into this soul-baring masterpiece.</p>
         </div>
         <br>
-
         <h2>The Messaging and Theme</h2>
+        <p>The album’s title and cover—SZA perched on a diving board above a vast ocean—signal a cry for help and a leap of faith. <em><span class="highlight">SOS</span></em> is a diary of contradictions: love’s wreckage in <span class="highlight">“Gone Girl,”</span> self-assured defiance in <span class="highlight">“F2F,”</span> and vengeance in <span class="highlight">“Kill Bill.”</span> It’s SZA wrestling with heartbreak, insecurity, and empowerment, often within the same breath. Tracks like <span class="highlight">“Snooze”</span> and <span class="highlight">“Nobody Gets Me”</span> ache with longing, while <span class="highlight">“Smoking on My Ex Pack”</span> spits fire. There’s no tidy resolution—just a messy, honest portrait of a woman navigating her 30s, unafraid to bare her scars.</p>
         <br>
-        <p>The album's title and cover—SZA perched on a diving board above a vast ocean—signal a cry for help and a leap of faith. <em>SOS</em> is a diary of contradictions: love's wreckage in <span class="highlight">"Gone Girl"</span>, self-assured defiance in <span class="highlight">"F2F,"</span> and vengeance in <span class="highlight">"Kill Bill."</span> It's SZA wrestling with heartbreak, insecurity, and empowerment, often within the same breath. Tracks like <span class="highlight">"Snooze"</span> and <span class="highlight">"Nobody Gets Me"</span> ache with longing, while <span class="highlight">"Smoking on My Ex Pack"</span> spits fire. There's no tidy resolution—just a messy, honest portrait of a woman navigating her 30s, unafraid to bare her scars.</p>
-        <br>
-
         <h2>Production and Sound</h2>
+        <p><em><span class="highlight">SOS</span></em> weaves a sonic tapestry, helmed by producers like <span class="highlight">Babyface</span>, <span class="highlight">ThankGod4Cody</span>, and <span class="highlight">Carter Lang</span>. It spans R&B’s sultry roots, pop-punk edge, and hip-hop grit—shimmering guitars drive <span class="highlight">“F2F,”</span> woozy synths elevate <span class="highlight">“Snooze,”</span> and trap beats anchor <span class="highlight">“Low.”</span> SZA’s voice—velvety yet piercing—shifts from soft croons to biting snarls, as heard in <span class="highlight">“Kill Bill”</span>’s eerie whistle. The production is lush yet dynamic, balancing <em><span class="highlight">Ctrl</span></em>’s lo-fi intimacy with a broader, more adventurous palette. It’s a genre-blending journey that mirrors her emotional chaos.</p>
         <br>
-        <p><em>SOS</em> is a sonic tapestry, helmed by producers like <span class="highlight">Babyface, ThankGod4Cody,</span> and <span class="highlight">Carter Lang</span>. It spans R&B's sultry roots, pop-punk edge, and hip-hop grit—think the shimmering guitars of <span class="highlight">"F2F,"</span> the woozy synths of <span class="highlight">"Snooze,"</span> and the trap thump of <span class="highlight">"Low."</span> SZA's voice—velvety yet piercing—shifts from soft croons to biting snarls, as heard in <span class="highlight">"Kill Bill"</span>'s eerie whistle. The production is lush yet dynamic, balancing <em>Ctrl</em>'s lo-fi intimacy with a broader, more adventurous palette. It's a genre-blending journey that mirrors her emotional chaos.</p>
-        <br>
-
         <h2>Features</h2>
+        <p><em><span class="highlight">SOS</span></em> keeps features sparse but impactful, each guest amplifying SZA’s vision. <span class="highlight">Travis Scott</span> adds hazy swagger to <span class="highlight">“Low”</span> and <span class="highlight">“Open Arms,”</span> while <span class="highlight">Phoebe Bridgers</span> brings indie melancholy to <span class="highlight">“Ghost in the Machine.”</span> <span class="highlight">Don Toliver</span> glides over <span class="highlight">“Used,”</span> and the late <span class="highlight">Ol’ Dirty Bastard</span> haunts <span class="highlight">“Forgiveless”</span> with a sampled verse. These collaborations enrich SZA’s narrative, offering fleeting connections in her solitary storm.</p>
         <br>
-        <p><em>SOS</em> keeps features sparse but impactful, each guest amplifying SZA's vision. <span class="highlight">Travis Scott</span> adds a hazy swagger to <span class="highlight">"Low"</span> and <span class="highlight">"Open Arms,"</span> while <span class="highlight">Phoebe Bridgers</span> brings indie melancholy to <span class="highlight">"Ghost in the Machine."</span> <span class="highlight">Don Toliver</span> glides over <span class="highlight">"Used,"</span> and the late <span class="highlight">Ol' Dirty Bastard</span> haunts <span class="highlight">"Forgiveless"</span> with a sampled verse. These collaborations don't overshadow SZA but enrich her narrative, offering glimpses of connection in her solitary storm.</p>
-        <br>
-
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">"Kill Bill"</span> - A chilling revenge fantasy with a catchy hook and sinister charm.</li>
+                <li><span class="highlight">“Kill Bill”</span> - Eerie whistles frame this revenge fantasy, SZA’s haunting vocals blending sinister charm with a catchy hook.</li>
                 <br>
-                <li><span class="highlight">"Snooze"</span> - A dreamy love ballad that showcases SZA's vocal finesse.</li>
+                <li><span class="highlight">“Snooze”</span> - Woozy synths carry this dreamy ballad, SZA’s velvety voice capturing love’s tender ache.</li>
                 <br>
-                <li><span class="highlight">"F2F"</span> - A pop-punk detour that channels raw heartbreak into rebellion.</li>
+                <li><span class="highlight">“F2F”</span> - Shimmering guitars fuel this pop-punk detour, channeling raw heartbreak into defiant rebellion.</li>
                 <br>
-                <li><span class="highlight">"Nobody Gets Me"</span> - A stripped-down confessional that cuts to the bone.</li>
+                <li><span class="highlight">“Nobody Gets Me”</span> - Stripped-down acoustics bare this confessional, SZA’s raw emotion cutting straight to the bone.</li>
             </ul>
         </div>
         <br>
-
         <h2>Previous Works</h2>
+        <p>SZA’s <span class="highlight">2017</span> debut, <em><span class="highlight">Ctrl</span></em>, redefined R&B with its candid tales of love and self-doubt, earning critical acclaim and a cult following. Earlier projects like <em><span class="highlight">Z</span></em> (<span class="highlight">2014</span>) hinted at her potential with airy, eclectic vibes. <em><span class="highlight">SOS</span></em> builds on <em><span class="highlight">Ctrl</span></em>’s foundation, amplifying its intimacy with bolder production and a wider emotional scope. Where <em><span class="highlight">Ctrl</span></em> was a tight, 14-track therapy session, <em><span class="highlight">SOS</span></em> sprawls into uncharted waters—less about youth’s uncertainty, more about navigating life’s wreckage with newfound confidence.</p>
         <br>
-        <p>SZA's <span class="highlight">2017</span> debut, <em>Ctrl</em>, redefined R&B with its candid tales of love and self-doubt, earning critical acclaim and a cult following. Earlier projects like <em>Z</em> (<span class="highlight">2014</span>) hinted at her potential with airy, eclectic vibes. <em>SOS</em> builds on <em>Ctrl</em>'s foundation, amplifying its intimacy with bolder production and a wider emotional scope. Where <em>Ctrl</em> was a tight, 14-track therapy session, <em>SOS</em> sprawls into uncharted territory—less about youth's uncertainty and more about navigating life's wreckage with newfound confidence.</p>
-        <br>
-
         <h2>Summary</h2>
+        <p><em><span class="highlight">SOS</span></em> surges as a <span class="highlight">77-minute tidal wave</span>—23 tracks that ebb between despair and defiance. SZA delivers her most unfiltered work, weaving heartbreak, rage, and resilience into a sprawling yet cohesive narrative. Its length tests patience, but its highs—like the viral <span class="highlight">“Kill Bill”</span>—make the dive worthwhile. As of <span class="highlight">March 16, 2025</span>, <em><span class="highlight">SOS</span></em> sets trends rather than chasing them, cementing SZA as R&B’s rawest storyteller—a distress signal and a victory lap.</p>
         <br>
-        <p><em>SOS</em> is a <span class="highlight">77-minute tidal wave</span>—23 tracks that ebb between despair and defiance. It's SZA at her most unfiltered, weaving heartbreak, rage, and resilience into a sprawling yet cohesive narrative. The album's length tests patience, but its highs—like the viral <span class="highlight">"Kill Bill"</span>—make it worth the dive. <em>SOS</em> doesn't chase trends; it sets them, cementing SZA as R&B's rawest storyteller. It's a distress signal and a victory lap, proving she can weather any storm and come out stronger.</p>
-        <br>
-
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> A daring blend of R&B, pop-punk, and trap, though it echoes <em>Ctrl</em>'s DNA.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Rich and varied, with minor bloat in the tracklist.</p>
-            <p><span class="highlight">Lyrics and Messaging (19/20):</span> SZA's pen is sharp and soul-baring, with rare moments of repetition.</p>
-            <p><span class="highlight">Enjoyment Factor (18/20):</span> A rollercoaster of feels that rewards focus, if you can handle the runtime.</p>
-            <p><span class="highlight">Consistency (16/20):</span> Mostly tight, but the back half dips with filler.</p>
+            <p><span class="highlight">Originality (18/20):</span> R&B, pop-punk, and trap converge with bold flair, echoing <em><span class="highlight">Ctrl</span></em>’s DNA while pushing boundaries.</p>
+            <p><span class="highlight">Production Quality (19/20):</span> Lush soundscapes dazzle with variety, though minor bloat lingers in the tracklist.</p>
+            <p><span class="highlight">Lyrics and Messaging (19/20):</span> SZA’s pen cuts deep with soul-baring honesty, despite occasional repetition.</p>
+            <p><span class="highlight">Enjoyment Factor (18/20):</span> Emotional depth captivates through every wave, its runtime demanding focus but rewarding the journey.</p>
+            <p><span class="highlight">Consistency (16/20):</span> Cohesive highs anchor the narrative, with the back half dipping into filler.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (90/100):</span> 9.0/10</h3></p>
-            <p><em>SOS</em> isn't perfect—it's too long, too chaotic—but that's its strength. SZA turns her turmoil into art, delivering an album that's as messy and beautiful as life itself. In a genre often polished to a sheen, this stands out—a bold, bruising testament to her voice, her vision, and her refusal to drown.</p>
+            <p><em><span class="highlight">SOS</span></em> isn’t flawless—its length and chaos can overwhelm—but that’s its strength. SZA transforms turmoil into art, delivering an album as messy and beautiful as life itself. In a genre often polished to a sheen, this stands as a bold, bruising testament to her voice, vision, and resilience.</p>
         </div>
     </div>
 
@@ -169,24 +160,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
-        // Ensure all glass cards on this page have no tilt, except for sos-card
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.sos-card)').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
-            // Special handling for SOS card to allow scaling
-            document.querySelectorAll('.glass-card.sos-card').forEach(card => {
-                card.style.transform = 'none'; // No !important
+            document.querySelectorAll('.grad-card').forEach(card => {
+                card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            // Add hover effect for image zoom
+            document.querySelectorAll('.grad-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
 </body>
 </html>
-
