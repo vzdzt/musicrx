@@ -9,8 +9,11 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .highlight {
-            color: #d10202; /* Fuchsia */
+            color: #d10202; /* Red */
             font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #d10202; /* Matching red for overall rating */
         }
         .review-grad-glitch {
             font-size: 3rem;
@@ -45,12 +48,16 @@
             0% { clip-path: inset(0 0 90% 0); }
             5% { clip-path: inset(10% 0 70% 0); }
             10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
             100% { clip-path: inset(0 0 90% 0); }
         }
         @keyframes glitch-2 {
             0% { clip-path: inset(50% 0 0 0); }
             5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(90% 0 0 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
         .glass-card.grad-card {
@@ -79,6 +86,17 @@
         .glass-card.grad-card:hover img {
             transform: scale(1.05);
         }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -99,7 +117,7 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="BARTER 6">BARTER 6</h1>
         <div class="review-content">
-            <h2>Barter 6: Young Thug’s Trap Revolution Triumph</h2>
+            <h2>Barter 6: Young Thug’s Neon Trap Genesis Unleashed</h2>
             <div class="glass-card grad-card">
                 <img src="barter.jpeg" alt="Young Thug Barter 6 album image">
             </div>
@@ -119,13 +137,13 @@
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">“Constantly Hating”</span> - A mellow opener with Thug’s melodic flow.</li>
+                <li><span class="highlight">“Constantly Hating”</span> - A slithering intro that coils around Wheezy’s hazy beat, Thug’s warbled defiance cutting through the smoke.</li>
                 <br>
-                <li><span class="highlight">“Check”</span> - A hard-hitting strip club anthem.</li>
+                <li><span class="highlight">“Check”</span> - A brash flex that struts over London’s thumping drums, dripping with strip club swagger and reckless cash-flinging glee.</li>
                 <br>
-                <li><span class="highlight">“With That”</span> - A chaotic banger showcasing vocal versatility.</li>
+                <li><span class="highlight">“With That”</span> - A frenetic burst of warped melodies, Thug’s voice twisting like a live wire sparking through the chaos.</li>
                 <br>
-                <li><span class="highlight">“Just Might Be”</span> - A slowed-down closer with introspective vibes.</li>
+                <li><span class="highlight">“Just Might Be”</span> - A syrup-slow fade-out that hums with eerie calm, peeling back the bravado to reveal a fleeting, shadowed introspection.</li>
             </ul>
         </div>
         <br>
@@ -137,11 +155,11 @@
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (17/20):</span> A fresh take on trap with Thug’s unique style.</p>
-            <p><span class="highlight">Production Quality (18/20):</span> Polished and innovative, though slightly monotonous.</p>
-            <p><span class="highlight">Lyrics and Messaging (14/20):</span> Boastful and hazy, lacking deep narrative.</p>
-            <p><span class="highlight">Enjoyment Factor (17/20):</span> Fun and replayable, best in a club setting.</p>
-            <p><span class="highlight">Consistency (16/20):</span> Cohesive but drags with fewer standout moments.</p>
+            <p><span class="highlight">Originality (17/20):</span> A jagged, eccentric twist on trap, forging Thug’s wild signature amid echoes of Atlanta’s sound.</p>
+            <p><span class="highlight">Production Quality (18/20):</span> A slick, syrup-drenched canvas, its hypnotic beats teetering on the edge of monotony.</p>
+            <p><span class="highlight">Lyrics and Messaging (14/20):</span> A kaleidoscope of boasts and haze, vivid yet thin on deeper threads.</p>
+            <p><span class="highlight">Enjoyment Factor (17/20):</span> A heady, club-ready rush that thrives in the moment, its energy infectious despite its blur.</p>
+            <p><span class="highlight">Consistency (16/20):</span> A tight-knit vibe that flows like lean, though its peaks don’t always rise above the fog.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (82/100):</span> 8.2/10</h3></p>
             <p><em><span class="highlight">Barter 6</span></em> is Young Thug’s wild trap symphony, a lean-soaked testament to his eccentric genius. It’s not perfect, but its raw energy pulses with life. Turn it up, let the bass slap, and ride through Atlanta’s neon haze—a chaotic debut that cements a trailblazer’s mark on a genre he helped redefine.</p>
         </div>
