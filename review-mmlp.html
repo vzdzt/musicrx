@@ -1,84 +1,103 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - The Marshall Mathers LP</title>
+    <title>MusicRx - The Marshall Mathers LP Review</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    .highlight {
-        color: #FFFF00; /* Fuchsia */
-        font-weight: bold;
-    }
-
-    /* Custom graduation glitch effect */
-    .review-grad-glitch {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        color: #FFFF00; /* Fuchsia */
-        text-shadow: 0 0 10px #FFFF00;
-        font-family: 'Syncopate', sans-serif;
-        text-transform: uppercase;
-        position: relative;
-    }
-
-    .review-grad-glitch::before,
-    .review-grad-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .review-grad-glitch::before {
-        left: 2px;
-        text-shadow: -2px 0 #00ffea;
-        animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .review-grad-glitch::after {
-        left: -2px;
-        text-shadow: -2px 0 #FFFF00;
-        animation: glitch-2 3s linear infinite;
-    }
-
-    /* Graduation image card with zoom effect */
-    .glass-card.grad-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        transition: transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .glass-card.grad-card:hover {
-        transform: scale(1.05);
-    }
-
-    .glass-card.grad-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .glass-card.grad-card:hover img {
-        transform: scale(1.05);
-    }
-</style>
+    <style>
+        .highlight {
+            color: #FFFF00; /* Yellow */
+            font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #c500a6; /* Magenta for consistency with Slim Shady LP */
+        }
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #FFFF00;
+            text-shadow: 0 0 10px #FFFF00;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #FFFF00;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card.grad-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .glass-card.grad-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.grad-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.grad-card:hover img {
+            transform: scale(1.05);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -98,56 +117,56 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="The Marshall Mathers LP">The Marshall Mathers LP</h1>
         <div class="review-content">
-            <h2>Eminem - MMLP</h2>
+            <h2>The Marshall Mathers LP: Eminem’s Raw Chaotic Confession</h2>
             <div class="glass-card grad-card">
                 <img src="marshallmathers.jpeg" alt="Eminem MMLP album image">
             </div>
             <br>
-            <p>On <span class="highlight">May 23, 2000</span>, Eminem dropped <em>The Marshall Mathers LP</em>, an 18-track juggernaut that debuted at #1 on the Billboard 200 and went Diamond, selling over 11 million copies in the U.S. alone. Following the breakout success of <em>The Slim Shady LP</em>, this album doubled down on controversy and brilliance. Here’s a deep dive into this rap landmark:</p>
+            <p>On <span class="highlight">May 23, 2000</span>, Eminem dropped <em><span class="highlight">The Marshall Mathers LP</span></em>, an 18-track juggernaut that debuted at #1 on the Billboard 200 and went Diamond, selling over 11 million copies in the U.S. alone. Following the breakout success of <em>The Slim Shady LP</em>, this album doubled down on controversy and brilliance. Here’s a deep dive into this rap landmark:</p>
         </div>
         <br>
         <h2>The Messaging and Theme</h2>
         <br>
-        <p>The album’s cover—Eminem slumped outside a bleak house—reflects its core: a brutal, unflinching look at fame, rage, and identity. <em>The Marshall Mathers LP</em> blends Slim Shady’s cartoonish chaos with Marshall Mathers’ real pain, from the venomous <span class="highlight">“Kill You”</span> to the haunting <span class="highlight">“Stan.”</span> Tracks like <span class="highlight">“The Way I Am”</span> lash out at critics and fans, while <span class="highlight">“Kim”</span> dives into dark domestic turmoil. It’s a middle finger to the world and a mirror to himself—raw, provocative, and deeply personal. This is Eminem at his most exposed, teetering between genius and madness.</p>
+        <p>The album’s cover—Eminem slumped outside a bleak house—reflects its core: a brutal, unflinching look at fame, rage, and identity. <em><span class="highlight">The Marshall Mathers LP</span></em> blends Slim Shady’s cartoonish chaos with Marshall Mathers’ real pain, from the venomous <span class="highlight">“Kill You”</span> to the haunting <span class="highlight">“Stan.”</span> Tracks like <span class="highlight">“The Way I Am”</span> lash out at critics and fans, while <span class="highlight">“Kim”</span> dives into dark domestic turmoil. It’s a middle finger to the world and a mirror to himself—raw, provocative, and deeply personal. This is Eminem at his most exposed, teetering between genius and madness.</p>
         <br>
         <h2>Production and Sound</h2>
         <br>
-        <p>Produced by <span class="highlight">Dr. Dre</span>, <span class="highlight">Eminem</span>, and the <span class="highlight">Bass Brothers</span>, with <span class="highlight">Mel-Man</span> and <span class="highlight">F.B.T.</span> adding texture, <em>The Marshall Mathers LP</em> is a sonic gut punch. The beats are crisp yet ominous—<span class="highlight">“Stan”</span> builds on Dido’s melancholy sample, while <span class="highlight">“The Real Slim Shady”</span> pops with playful funk. <span class="highlight">“Bitch Please II”</span> thumps with West Coast grit, and <span class="highlight">“Marshall Mathers”</span> simmers with eerie minimalism. Eminem’s flow—sharp, relentless, and multi-syllabic—cuts through the production, balancing Dre’s polish with his own raw edge. It’s a step up from <em>Slim Shady</em>’s roughness, tighter and more cinematic.</p>
+        <p>Produced by <span class="highlight">Dr. Dre</span>, <span class="highlight">Eminem</span>, and the <span class="highlight">Bass Brothers</span>, with <span class="highlight">Mel-Man</span> and <span class="highlight">F.B.T.</span> adding texture, <em><span class="highlight">The Marshall Mathers LP</span></em> is a sonic gut punch. The beats are crisp yet ominous—<span class="highlight">“Stan”</span> builds on Dido’s melancholy sample, while <span class="highlight">“The Real Slim Shady”</span> pops with playful funk. <span class="highlight">“Bitch Please II”</span> thumps with West Coast grit, and <span class="highlight">“Marshall Mathers”</span> simmers with eerie minimalism. Eminem’s flow—sharp, relentless, and multi-syllabic—cuts through the production, balancing Dre’s polish with his own raw edge. It’s a step up from <em>Slim Shady</em>’s roughness, tighter and more cinematic.</p>
         <br>
         <h2>Features</h2>
         <br>
-        <p><em>The Marshall Mathers LP</em> boasts a stacked lineup that elevates its intensity. <span class="highlight">Dido</span>’s haunting vocals anchor <span class="highlight">“Stan,”</span> while <span class="highlight">Dr. Dre</span>, <span class="highlight">Snoop Dogg</span>, <span class="highlight">Xzibit</span>, and <span class="highlight">Nate Dogg</span> bring G-funk fire to <span class="highlight">“Bitch Please II.”</span> <span class="highlight">RBX</span> and <span class="highlight">Sticky Fingaz</span> snarl on <span class="highlight">“Remember Me?,”</span> and <span class="highlight">Dina Rae</span> adds sultry hooks to <span class="highlight">“Drug Ballad.”</span> These guests don’t overshadow—they’re pieces in Eminem’s puzzle, amplifying his vision without stealing the mic.</p>
+        <p><em><span class="highlight">The Marshall Mathers LP</span></em> boasts a stacked lineup that elevates its intensity. <span class="highlight">Dido</span>’s haunting vocals anchor <span class="highlight">“Stan,”</span> while <span class="highlight">Dr. Dre</span>, <span class="highlight">Snoop Dogg</span>, <span class="highlight">Xzibit</span>, and <span class="highlight">Nate Dogg</span> bring G-funk fire to <span class="highlight">“Bitch Please II.”</span> <span class="highlight">RBX</span> and <span class="highlight">Sticky Fingaz</span> snarl on <span class="highlight">“Remember Me?,”</span> and <span class="highlight">Dina Rae</span> adds sultry hooks to <span class="highlight">“Drug Ballad.”</span> These guests don’t overshadow—they’re pieces in Eminem’s puzzle, amplifying his vision without stealing the mic.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="highlight">“Stan”</span> (feat. Dido) - A chilling narrative that redefined rap storytelling.</li>
+                <li><span class="highlight">“Stan”</span> (feat. Dido) - A masterful, chilling tale of obsession, its melancholy sample and vivid storytelling reshaping rap’s narrative landscape.</li>
                 <br>
-                <li><span class="highlight">“The Real Slim Shady”</span> - A satirical banger that became a cultural anthem.</li>
+                <li><span class="highlight">“The Real Slim Shady”</span> - A mischievous, funk-fueled satire that skewers pop culture with razor-sharp wit and anthem-worthy hooks.</li>
                 <br>
-                <li><span class="highlight">“The Way I Am”</span> - A defiant, introspective standout with ferocious flow.</li>
+                <li><span class="highlight">“The Way I Am”</span> - A ferocious, introspective declaration, its brooding beat amplifying Eminem’s defiant snarl against fame’s cage.</li>
                 <br>
-                <li><span class="highlight">“Kill You”</span> - A dark, twisted opener that sets the album’s tone.</li>
+                <li><span class="highlight">“Kill You”</span> - A menacing, unhinged opener that blends dark humor with lethal flows, setting the stage for chaos.</li>
             </ul>
         </div>
         <br>
         <h2>Previous Works</h2>
         <br>
-        <p>Eminem’s <em>Infinite</em> (<span class="highlight">1996</span>) was a technical but overlooked debut, followed by the <em>Slim Shady EP</em> (<span class="highlight">1997</span>) and <em>The Slim Shady LP</em> (<span class="highlight">1999</span>), which introduced his shock-rap persona. <em>The Marshall Mathers LP</em> builds on <em>Slim Shady</em>’s chaos, sharpening the production and deepening the introspection. Where <em>Slim Shady</em> was a wild breakout, this album is a refined explosion—less cartoonish, more real, and unafraid to confront the fallout of fame.</p>
+        <p>Eminem’s <em><span class="highlight">Infinite</span></em> (<span class="highlight">1996</span>) was a technical but overlooked debut, followed by the <em><span class="highlight">Slim Shady EP</span></em> (<span class="highlight">1997</span>) and <em><span class="highlight">The Slim Shady LP</span></em> (<span class="highlight">1999</span>), which introduced his shock-rap persona. <em><span class="highlight">The Marshall Mathers LP</span></em> builds on <em>Slim Shady</em>’s chaos, sharpening the production and deepening the introspection. Where <em>Slim Shady</em> was a wild breakout, this album is a refined explosion—less cartoonish, more real, and unafraid to confront the fallout of fame.</p>
         <br>
         <h2>Summary</h2>
         <br>
-        <p><em>The Marshall Mathers LP</em> is a <span class="highlight">67-minute tour de force</span>—18 tracks of razor-sharp rhymes, dark humor, and raw vulnerability. It’s Eminem at his peak, weaponizing fame’s chaos into a masterpiece that’s equal parts shocking and soul-baring. Skits like <span class="highlight">“Public Service Announcement 2000”</span> and weaker cuts like <span class="highlight">“Under the Influence”</span> pad the runtime, but the core is flawless. This isn’t just rap—it’s a cultural earthquake, cementing Eminem as a generational voice. It’s messy, brilliant, and unforgettable.</p>
+        <p><em><span class="highlight">The Marshall Mathers LP</span></em> is a <span class="highlight">67-minute tour de force</span>—18 tracks of razor-sharp rhymes, dark humor, and raw vulnerability. It’s Eminem at his peak, weaponizing fame’s chaos into a masterpiece that’s equal parts shocking and soul-baring. Skits like <span class="highlight">“Public Service Announcement 2000”</span> and weaker cuts like <span class="highlight">“Under the Influence”</span> pad the runtime, but the core is flawless. This isn’t just rap—it’s a cultural earthquake, cementing Eminem as a generational voice. It’s messy, brilliant, and unforgettable.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (20/20):</span> A groundbreaking blend of shock, skill, and storytelling.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Polished and dynamic, with skits as the only snag.</p>
-            <p><span class="highlight">Lyrics and Messaging (20/20):</span> Masterful—witty, raw, and deeply layered.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> A gripping, intense ride that rarely falters.</p>
-            <p><span class="highlight">Consistency (18/20):</span> Near-perfect, though skits and a few tracks dilute the flow.</p>
+            <p><span class="highlight">Originality (20/20):</span> A seismic fusion of shock, skill, and raw introspection that redefined rap’s boundaries with fearless innovation.</p>
+            <p><span class="highlight">Production Quality (19/20):</span> A crisp, cinematic soundscape that amplifies Eminem’s vision, marred only faintly by skits’ intrusions.</p>
+            <p><span class="highlight">Lyrics and Messaging (20/20):</span> A lyrical tour de force—witty, visceral, and layered, weaving chaos and confession into timeless art.</p>
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> An electrifying, unrelenting journey that grips from start to finish, with only minor stumbles in its wild ride.</p>
+            <p><span class="highlight">Consistency (18/20):</span> A near-flawless run of brilliance, slightly softened by skits and a few less essential tracks amid the peaks.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (96/100):</span> 9.6/10</h3></p>
-            <p><em>The Marshall Mathers LP</em> isn’t just an album—it’s a statement, a raw nerve exposed to the world. It’s Eminem at his most daring, turning personal demons into art that’s as polarizing as it is profound. In rap’s pantheon, this stands as a towering achievement—a chaotic, masterful snapshot of a genius in his prime.</p>
+            <p><em><span class="highlight">The Marshall Mathers LP</span></em> isn’t just an album—it’s a statement, a raw nerve exposed to the world. It’s Eminem at his most daring, turning personal demons into art that’s as polarizing as it is profound. In rap’s pantheon, this stands as a towering achievement—a chaotic, masterful snapshot of a genius in his prime.</p>
         </div>
     </div>
 
@@ -157,15 +176,14 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.mmlp-card)').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
-            document.querySelectorAll('.glass-card.mmlp-card').forEach(card => {
+            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
