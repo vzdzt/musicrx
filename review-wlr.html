@@ -1,126 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MusicRx - WLR review</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-<style>
-          body {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx Review - Whole Lotta Red: Playboi Carti’s Blood-Red Rebellion Erupts</title>
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MusicRx - Whole Lotta Red Review">
+    <meta name="twitter:description" content="Carti’s blood-red rebellion: Our Whole Lotta Red review, with tracks like Vamp Anthem. Rated 8.2/10!">
+    <meta name="twitter:image" content="https://vzdzt.github.io/musicrx/wlr.jpeg">
+    <meta name="twitter:site" content="@YourTwitterHandle"> <!-- Optional: Replace with your Twitter handle -->
+    <!-- End Twitter Card Meta Tags -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
             background: #0a0a0a !important;
-          }
-                .overall-rating h3 {
-                color: #c500a6;
-                }
-                .highlight {
-                    color: #ff0000;
-                    font-weight: bold;
-                }
-
-            /* Scoped class just for WLR page glass cards */
-            .wlr-glass-card {
-              background: rgba(255, 255, 255, 0.1);
-              backdrop-filter: blur(10px);
-              border-radius: 20px;
-              border: 1px solid rgba(255, 255, 255, 0.2);
-              padding: 2rem;
-              margin: 2rem 0;
-              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-              cursor: pointer;
-              position: relative;
-              opacity: 1;
-              display: block;
-              visibility: visible;
-              box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
-              overflow: hidden; /* Contain the effect */
-            }
-
-            .wlr-glass-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.2),
-                    transparent
-                );
-                transition: 0.5s;
-            }
-
-            .wlr-glass-card:hover {
-                transform: scale(1.05) !important; /* Added scaling effect with !important */
-                background: rgba(255, 255, 255, 0.15);
-                border-color: var(--primary);
-                box-shadow: 
-                    0 0 0 2px var(--primary),
-                    0 0 30px rgba(0, 247, 255, 0.4);
-            }
-
-            .wlr-glass-card:hover::after {
-                content: '';
-                position: absolute;
-                inset: -1px;
-                border-radius: 20px;
-                padding: 1px;
-                background: linear-gradient(45deg, var(--primary), var(--secondary));
-                -webkit-mask: 
-                    linear-gradient(#fff 0 0) content-box, 
-                    linear-gradient(#fff 0 0);
-                -webkit-mask-composite: xor;
-                mask-composite: exclude;
-                pointer-events: none;
-                animation: borderGlow 2s linear infinite;
-            }
-
-            .wlr-glass-card img {
-                transition: transform 0.3s ease; /*Added transition to image*/
-            }
-
-            .wlr-glass-card:hover img {
-                transform: scale(1.05); /* Added scaling effect to image */
-            }
-
-            @keyframes borderGlow {
-                0% { opacity: 1; }
-                50% { opacity: 0.5; }
-                100% { opacity: 1; }
-            }
-
-            .wlr-glass-card:hover::before {
-                left: 100%;
-            }
-
-            /* Regular glass card style without the mirror effect */
-            .glass-card {
-              background: rgba(255, 255, 255, 0.1);
-              backdrop-filter: blur(10px);
-              border-radius: 20px;
-              border: 1px solid rgba(255, 255, 255, 0.2);
-              padding: 2rem;
-              margin: 2rem 0;
-              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-              cursor: pointer;
-              position: relative;
-            }
-
-            /* Allow the WLR card to transform */
-            .glass-card.wlr-card {
-              transform: none; /* Removed !important to allow hover scaling */
-              perspective: none;
-              transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-
-            .glass-card.wlr-card:hover {
-              transform: scale(1.05) !important; /* Scale up on hover with !important */
-            }
-</style>
-    </head>
+        }
+        .overall-rating h3 {
+            color: #c500a6;
+        }
+        .highlight {
+            color: #ff0000; /* Red */
+            font-weight: bold;
+        }
+        .review-wlr-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-wlr-glitch::before,
+        .review-wlr-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-wlr-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-wlr-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #ff0000;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card.wlr-card {
+            padding: 0; /* Image touches edges */
+            border-radius: 10px; /* Matches A Great Chaos template */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.wlr-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.wlr-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.wlr-card:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
 <body>
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
@@ -139,51 +124,51 @@
     <div class="container">
         <h1 class="review-wlr-glitch" data-text="WHOLE LOTTA RED">WHOLE LOTTA RED</h1>
         <div class="review-content">
-            <h2>PLAYBOI CARTI: CARTI’S RAW DAWN RISES</h2>
+            <h2>Whole Lotta Red: Playboi Carti’s Blood-Red Rebellion Erupts</h2>
             <div class="glass-card wlr-card">
-              <img src="wlr.jpeg" alt="Playboi Carti - WLR album image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+                <img src="wlr.jpeg" alt="Playboi Carti - <em><span class='highlight'>Whole Lotta Red</span></em> album image">
             </div>
-             <br>
-        <p>Hip-hop fans woke up to a chaotic Christmas surprise on <span class="review-wlr-highlight">December 25, 2020</span>, when Playboi Carti dropped his long-awaited sophomore album, <em><span class="review-wlr-highlight">Whole Lotta Red</span></em>. After years of leaks, delays, and sky-high anticipation following 2018’s <em><span class="review-wlr-highlight">Die Lit</span></em>, Carti delivered a project that divided listeners like few others. Here’s a deep dive into this frenzied, vampiric odyssey:</p>
+            <br>
+            <p>Hip-hop fans woke up to a chaotic Christmas surprise on <span class="highlight">December 25, 2020</span>, when Playboi Carti dropped his long-awaited sophomore album, <em><span class="highlight">Whole Lotta Red</span></em>. After years of leaks, delays, and sky-high anticipation following 2018’s <em><span class="highlight">Die Lit</span></em>, Carti delivered a project that divided listeners like few others. Here’s a deep dive into this frenzied, vampiric odyssey:</p>
         </div>
         <br>
         <h2>Messaging and Theme</h2>
-        <p>The album’s cover—a stark, red-and-black homage to the ‘70s punk zine <span class="review-wlr-highlight">Slash</span>—telegraphs its intent: this is Carti shedding his old skin for something darker, louder, and defiantly unpolished. <em><span class="review-wlr-highlight">Whole Lotta Red</span></em> trades the dreamy hedonism of <em>Die Lit</em> for a raw, punk-inspired ethos, steeped in vampire imagery and rockstar bravado. Tracks like <span class="review-wlr-highlight">“Vamp Anthem”</span> and <span class="review-wlr-highlight">“Rockstar Made”</span> paint Carti as a nocturnal antihero, reveling in aggression and isolation rather than party vibes. There’s little introspection here—just visceral energy and a middle finger to expectations, reflecting a restless artist pushing boundaries in real time.</p>
+        <p>The album’s cover—a stark, red-and-black homage to the ‘70s punk zine <span class="highlight">Slash</span>—telegraphs its intent: this is Carti shedding his old skin for something darker, louder, and defiantly unpolished. <em><span class="highlight">Whole Lotta Red</span></em> trades the dreamy hedonism of <em><span class="highlight">Die Lit</span></em> for a raw, punk-inspired ethos, steeped in vampire imagery and rockstar bravado. Tracks like <span class="highlight">“Vamp Anthem”</span> and <span class="highlight">“Rockstar Made”</span> paint Carti as a nocturnal antihero, reveling in aggression and isolation rather than party vibes. There’s little introspection here—just visceral energy and a middle finger to expectations, reflecting a restless artist pushing boundaries in real time.</p>
         <br>
         <h2>Production and Sound</h2>
-        <p>Executive-produced by <span class="review-wlr-highlight">Kanye West</span>, with heavy contributions from producers like <span class="review-wlr-highlight">F1lthy</span>, <span class="review-wlr-highlight">Art Dealer</span>, and <span class="review-wlr-highlight">Pi’erre Bourne</span>, <em><span class="review-wlr-highlight">Whole Lotta Red</span></em> is a sonic assault. The beats are jagged and futuristic, blending rage-fueled trap with punk and industrial influences. <span class="review-wlr-highlight">“Stop Breathing”</span> roars with blown-out 808s and shrieking synths, while <span class="review-wlr-highlight">“Vamp Anthem”</span> chops Bach’s “Toccata and Fugue in D Minor” into a gothic banger. Carti’s voice—often hoarse, pitch-shifted, or buried in the mix—morphs into a jagged instrument, amplifying the album’s unhinged vibe. It’s a stark departure from <em>Die Lit</em>’s euphoric haze, trading accessibility for raw intensity that feels like a live wire.</p>
+        <p>Executive-produced by <span class="highlight">Kanye West</span>, with heavy contributions from producers like <span class="highlight">F1lthy</span>, <span class="highlight">Art Dealer</span>, and <span class="highlight">Pi’erre Bourne</span>, <em><span class="highlight">Whole Lotta Red</span></em> is a sonic assault. The beats are jagged and futuristic, blending rage-fueled trap with punk and industrial influences. <span class="highlight">“Stop Breathing”</span> roars with blown-out 808s and shrieking synths, while <span class="highlight">“Vamp Anthem”</span> chops Bach’s “Toccata and Fugue in D Minor” into a gothic banger. Carti’s voice—often hoarse, pitch-shifted, or buried in the mix—morphs into a jagged instrument, amplifying the album’s unhinged vibe. It’s a stark departure from <em><span class="highlight">Die Lit</span></em>’s euphoric haze, trading accessibility for raw intensity that feels like a live wire.</p>
         <br>
         <h2>Features</h2>
-        <p><em><span class="review-wlr-highlight">Whole Lotta Red</span></em> keeps guest appearances minimal but impactful. <span class="review-wlr-highlight">Kanye West</span>’s verse on <span class="review-wlr-highlight">“Go2DaMoon”</span> is a chaotic highlight, his gravelly flow meshing with the track’s eerie minimalism. <span class="review-wlr-highlight">Kid Cudi</span>’s turn on <span class="review-wlr-highlight">“M3tamorphosis”</span> adds a melodic anchor to Carti’s wild vocal contortions, while <span class="review-wlr-highlight">Future</span>’s syrupy croak on <span class="review-wlr-highlight">“Teen X”</span> complements the drugged-out vibe. These features don’t steal the show but enhance Carti’s vision, grounding his experimental leaps with familiar voices.</p>
+        <p><em><span class="highlight">Whole Lotta Red</span></em> keeps guest appearances minimal but impactful. <span class="highlight">Kanye West</span>’s verse on <span class="highlight">“Go2DaMoon”</span> is a chaotic highlight, his gravelly flow meshing with the track’s eerie minimalism. <span class="highlight">Kid Cudi</span>’s turn on <span class="highlight">“M3tamorphosis”</span> adds a melodic anchor to Carti’s wild vocal contortions, while <span class="highlight">Future</span>’s syrupy croak on <span class="highlight">“Teen X”</span> complements the drugged-out vibe. These features don’t steal the show but enhance Carti’s vision, grounding his experimental leaps with familiar voices.</p>
         <br>
         <div class="glass-card">
             <h2>Tracks to Watch</h2>
             <ul>
-                <li><span class="review-wlr-highlight">“Rockstar Made”</span> - A thunderous opener that slams the door open with jagged synths and Carti’s guttural chants, setting a relentless tone for the chaos to come.</li>
+                <li><span class="highlight">“Rockstar Made”</span> - A thunderous opener that slams the door open with jagged synths and Carti’s guttural chants, setting a relentless tone for the chaos to come.</li>
                 <br>
-                <li><span class="review-wlr-highlight">“Stop Breathing”</span> - A primal, chest-rattling banger with blown-out drums and screeched vocals, channeling pure rage that hits like a punch to the gut.</li>
+                <li><span class="highlight">“Stop Breathing”</span> - A primal, chest-rattling banger with blown-out drums and screeched vocals, channeling pure rage that hits like a punch to the gut.</li>
                 <br>
-                <li><span class="review-wlr-highlight">“Vamp Anthem”</span> - A gothic masterpiece that twists Bach into a trap nightmare, with Carti’s unhinged delivery soaring over a beat that’s equal parts eerie and electrifying.</li>
+                <li><span class="highlight">“Vamp Anthem”</span> - A gothic masterpiece that twists Bach into a trap nightmare, with Carti’s unhinged delivery soaring over a beat that’s equal parts eerie and electrifying.</li>
                 <br>
-                <li><span class="review-wlr-highlight">“F33l Lik3 Dyin”</span> - A haunting closer sampling Bon Iver’s fragile falsetto, weaving a rare thread of melancholy through the album’s frenzy, leaving you dazed and reflective.</li>
+                <li><span class="highlight">“F33l Lik3 Dyin”</span> - A haunting closer sampling Bon Iver’s fragile falsetto, weaving a rare thread of melancholy through the album’s frenzy, leaving you dazed and reflective.</li>
             </ul>
         </div>
         <br>
         <h2>Previous Works</h2>
-        <p>Carti’s journey to <em><span class="review-wlr-highlight">Whole Lotta Red</span></em> kicked off with his 2017 self-titled mixtape, where hits like <span class="review-wlr-highlight">“Magnolia”</span> introduced his baby-voiced, ad-lib-heavy style over Pi’erre Bourne’s gummy beats. <em><span class="review-wlr-highlight">Die Lit</span></em> in 2018 refined that formula into a euphoric, genre-blending classic, cementing his cult status. <em>Whole Lotta Red</em> flips the script entirely, ditching the melodic bliss for a harsher, more abrasive sound. Where <em>Die Lit</em> invited you to float, <em>Whole Lotta Red</em> dares you to keep up with its breakneck pace—a bold evolution that risks alienating fans but showcases Carti’s refusal to stagnate.</p>
+        <p>Carti’s journey to <em><span class="highlight">Whole Lotta Red</span></em> kicked off with his 2017 self-titled mixtape, where hits like <span class="highlight">“Magnolia”</span> introduced his baby-voiced, ad-lib-heavy style over Pi’erre Bourne’s gummy beats. <em><span class="highlight">Die Lit</span></em> in 2018 refined that formula into a euphoric, genre-blending classic, cementing his cult status. <em><span class="highlight">Whole Lotta Red</span></em> flips the script entirely, ditching the melodic bliss for a harsher, more abrasive sound. Where <em><span class="highlight">Die Lit</span></em> invited you to float, <em><span class="highlight">Whole Lotta Red</span></em> dares you to keep up with its breakneck pace—a bold evolution that risks alienating fans but showcases Carti’s refusal to stagnate.</p>
         <br>
         <h2>Summary</h2>
-        <p><em><span class="review-wlr-highlight">Whole Lotta Red</span></em> is a <span class="review-wlr-highlight">24-track rollercoaster</span> that defies convention and demands patience. Clocking in at just over an hour, it’s both a middle finger to the polished trap mainstream and a testament to Carti’s fearless creativity. The album’s abrasive edge and punk-trap fusion make it a grower—initial shock gives way to appreciation for its audacity. It’s not <em>Die Lit 2</em>, and that’s the point: Carti’s here to burn the rulebook, not rewrite it. Whether it’s a masterpiece or a misfire depends on your taste, but one thing’s clear—this is Carti at his most untamed, a vampire rockstar living his truth.</p>
+        <p><em><span class="highlight">Whole Lotta Red</span></em> is a <span class="highlight">24-track rollercoaster</span> that defies convention and demands patience. Clocking in at just over an hour, it’s both a middle finger to the polished trap mainstream and a testament to Carti’s fearless creativity. The album’s abrasive edge and punk-trap fusion make it a grower—initial shock gives way to appreciation for its audacity. It’s not <em><span class="highlight">Die Lit 2</span></em>, and that’s the point: Carti’s here to burn the rulebook, not rewrite it. Whether it’s a masterpiece or a misfire depends on your taste, but one thing’s clear—this is Carti at his most untamed, a vampire rockstar living his truth.</p>
         <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="review-wlr-highlight">Originality (19/20):</span> A groundbreaking leap into rage-punk-trap territory, forging a sound so distinct it feels like Carti’s rewriting the genre’s DNA, even if it nods to *Yeezus*’s shadow.</p>
-            <p><span class="review-wlr-highlight">Production Quality (18/20):</span> Bold and futuristic, with beats that slice like razors—its raw, unpolished mix is a deliberate choice, though the occasional clutter holds it back from perfection.</p>
-            <p><span class="review-wlr-highlight">Lyrics and Messaging (13/20):</span> Carti trades depth for vibe, leaning on hypnotic hooks and ad-libs that electrify the mood but leave little to unpack beyond the chaos.</p>
-            <p><span class="review-wlr-highlight">Enjoyment Factor (17/20):</span> A thrilling, polarizing ride that hooks you with its wild energy—replayable for the initiated, but its intensity might alienate those craving melody over mayhem.</p>
-            <p><span class="review-wlr-highlight">Consistency (15/20):</span> The front half surges with cohesive fury, but the back half stumbles with filler—still, its fearless spirit keeps the sprawl from fully unraveling.</p>
-            <p class="overall-rating"><span class="review-wlr-highlight"><h3>Overall Rating (82/100):</span> 8.2/10</h3></p>
-            <p><em><span class="review-wlr-highlight">Whole Lotta Red</span></em> won’t win over everyone, but it’s a daring pivot that cements Carti as a sonic innovator. It’s messy, loud, and unapologetic—just like the artist himself. Love it or hate it, this album proves Carti’s not here to play it safe; he’s here to rattle cages and redefine trap’s future.</p>
+            <p><span class="highlight">Originality (19/20):</span> A groundbreaking leap into rage-punk-trap territory, forging a sound so distinct it feels like Carti’s rewriting the genre’s DNA, even if it nods to *Yeezus*’s shadow.</p>
+            <p><span class="highlight">Production Quality (18/20):</span> Bold and futuristic, with beats that slice like razors—its raw, unpolished mix is a deliberate choice, though the occasional clutter holds it back from perfection.</p>
+            <p><span class="highlight">Lyrics and Messaging (13/20):</span> Carti trades depth for vibe, leaning on hypnotic hooks and ad-libs that electrify the mood but leave little to unpack beyond the chaos.</p>
+            <p><span class="highlight">Enjoyment Factor (17/20):</span> A thrilling, polarizing ride that hooks you with its wild energy—replayable for the initiated, but its intensity might alienate those craving melody over mayhem.</p>
+            <p><span class="highlight">Consistency (15/20):</span> The front half surges with cohesive fury, but the back half stumbles with filler—still, its fearless spirit keeps the sprawl from fully unraveling.</p>
+            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (82/100):</span> 8.2/10</h3></p>
+            <p><em><span class="highlight">Whole Lotta Red</span></em> won’t win over everyone, but it’s a daring pivot that cements Carti as a sonic innovator. It’s messy, loud, and unapologetic—just like the artist himself. Love it or hate it, this album proves Carti’s not here to play it safe; he’s here to rattle cages and redefine trap’s future.</p>
         </div>
     </div>
 
@@ -193,20 +178,31 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.wlr-glass-card)').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.wlr-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.wlr-glass-card').forEach(card => {
+            document.querySelectorAll('.glass-card.wlr-card').forEach(card => {
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            document.querySelectorAll('.glass-card.wlr-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
 </body>
 </html>
-
