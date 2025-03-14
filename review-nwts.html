@@ -53,31 +53,39 @@
             10% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card.nwts-card {
+        .glass-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 10px;
-            transition: transform 0.3s ease;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card.nwts-card {
+            padding: 0; /* Image touches edges */
+            border-radius: 10px; /* Matches A Great Chaos template */
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            transition: transform 0.3s ease;
         }
         .glass-card.nwts-card:hover {
             transform: scale(1.05);
         }
         .glass-card.nwts-card img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
+            object-fit: cover;
+            object-position: center;
             border-radius: 8px;
             transition: transform 0.3s ease;
         }
         .glass-card.nwts-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -99,19 +107,19 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="NOTHING WAS THE SAME">NOTHING WAS THE SAME</h1>
         <div class="review-content">
-            <h2>NWTS: DRAKE’S GOLDEN REIGN BEGINS</h2>
+            <h2>Nothing Was the Same: Drake’s Icy Throne Ascendant</h2>
             <div class="glass-card nwts-card">
-                <img src="nwts.jpeg" alt="Drake Nothing Was the Same album image">
+                <img src="nwts.jpeg" alt="Drake - <em><span class='highlight'>Nothing Was the Same</span></em> album image">
             </div>
             <br>
-            <p>On <span class="highlight">September 24, 2013</span>, Drake released <em><span class="highlight">Nothing Was the Same</span></em>, a 13-track masterpiece that debuted at #1 on the Billboard 200, selling nearly 700,000 copies in its first week. Following the breakout success of <em>Take Care</em>, this album solidified Drake as rap’s emotional kingpin. Here’s a deep dive into this moody, polished classic:</p>
+            <p>On <span class="highlight">September 24, 2013</span>, Drake released <em><span class="highlight">Nothing Was the Same</span></em>, a 13-track masterpiece that debuted at #1 on the Billboard 200, selling nearly 700,000 copies in its first week. Following the breakout success of <em><span class="highlight">Take Care</span></em>, this album solidified Drake as rap’s emotional kingpin. Here’s a deep dive into this moody, polished classic:</p>
         </div>
         <br>
         <h2>Messaging and Theme</h2>
         <p>The album’s cover—a child Drake staring at his adult self—sets the tone: a reflective journey through fame, love, and identity. <em><span class="highlight">Nothing Was the Same</span></em> is Drake at his most introspective, balancing braggadocio with vulnerability. Tracks like <span class="highlight">“Tuscan Leather”</span> and <span class="highlight">“Started From the Bottom”</span> flex his rise, while <span class="highlight">“From Time”</span> and <span class="highlight">“Too Much”</span> peel back layers of regret and family strain. It’s not a narrative like Kendrick’s work but a vibe-driven memoir—Drake wrestling with success, relationships, and Toronto’s ghosts. This is his crown, worn with both pride and melancholy.</p>
         <br>
         <h2>Production and Sound</h2>
-        <p>Led by <span class="highlight">Noah “40” Shebib</span>, with contributions from <span class="highlight">Boi-1da</span>, <span class="highlight">Mike Zombie</span>, and <span class="highlight">Nineteen85</span>, <em><span class="highlight">Nothing Was the Same</span></em> is a sonic haze of lush beats and icy ambiance. <span class="highlight">“Hold On, We’re Going Home”</span> glides with ‘80s synth-pop sheen, while <span class="highlight">“Worst Behavior”</span> bangs with menacing trap energy. <span class="highlight">“Tuscan Leather”</span> weaves a three-part suite with Whitney Houston samples, and <span class="highlight">“Furthest Thing”</span> drifts on dreamy keys. Drake’s voice—smooth, melodic, and occasionally sharp—floats over these soundscapes, blending rap with R&B in a way that’s both cinematic and intimate. It’s a refined evolution of <em>Take Care</em>’s sprawl.</p>
+        <p>Led by <span class="highlight">Noah “40” Shebib</span>, with contributions from <span class="highlight">Boi-1da</span>, <span class="highlight">Mike Zombie</span>, and <span class="highlight">Nineteen85</span>, <em><span class="highlight">Nothing Was the Same</span></em> is a sonic haze of lush beats and icy ambiance. <span class="highlight">“Hold On, We’re Going Home”</span> glides with ‘80s synth-pop sheen, while <span class="highlight">“Worst Behavior”</span> bangs with menacing trap energy. <span class="highlight">“Tuscan Leather”</span> weaves a three-part suite with Whitney Houston samples, and <span class="highlight">“Furthest Thing”</span> drifts on dreamy keys. Drake’s voice—smooth, melodic, and occasionally sharp—floats over these soundscapes, blending rap with R&B in a way that’s both cinematic and intimate. It’s a refined evolution of <em><span class="highlight">Take Care</span></em>’s sprawl.</p>
         <br>
         <h2>Features</h2>
         <p><em><span class="highlight">Nothing Was the Same</span></em> keeps features lean, letting Drake shine. <span class="highlight">Jhené Aiko</span> adds soulful depth to <span class="highlight">“From Time,”</span> while <span class="highlight">Majid Jordan</span> co-stars on <span class="highlight">“Hold On, We’re Going Home.”</span> <span class="highlight">Jay-Z</span> brings gravitas to <span class="highlight">“Pound Cake/Paris Morton Music 2,”</span> and <span class="highlight">Sampha</span> haunts <span class="highlight">“Too Much.”</span> These guests don’t dominate—they’re accents to Drake’s vision, enhancing the album’s emotional palette without breaking its focus.</p>
@@ -130,7 +138,7 @@
         </div>
         <br>
         <h2>Previous Works</h2>
-        <p>Drake’s ascent began with <em><span class="highlight">So Far Gone</span></em> (<span class="highlight">2009</span>), followed by <em><span class="highlight">Thank Me Later</span></em> (<span class="highlight">2010</span>), which introduced his rap-R&B blend. <em><span class="highlight">Take Care</span></em> (<span class="highlight">2011</span>) perfected that formula with moody sprawl. <em><span class="highlight">Nothing Was the Same</span></em> tightens <em>Take Care</em>’s loose ends, trading some of its experimentation for focus and polish. Where <em>Take Care</em> was a breakthrough, this album is a refinement—Drake honing his sound into a sleek, introspective statement.</p>
+        <p>Drake’s ascent began with <em><span class="highlight">So Far Gone</span></em> (<span class="highlight">2009</span>), followed by <em><span class="highlight">Thank Me Later</span></em> (<span class="highlight">2010</span>), which introduced his rap-R&B blend. <em><span class="highlight">Take Care</span></em> (<span class="highlight">2011</span>) perfected that formula with moody sprawl. <em><span class="highlight">Nothing Was the Same</span></em> tightens <em><span class="highlight">Take Care</span></em>’s loose ends, trading some of its experimentation for focus and polish. Where <em><span class="highlight">Take Care</span></em> was a breakthrough, this album is a refinement—Drake honing his sound into a sleek, introspective statement.</p>
         <br>
         <h2>Summary</h2>
         <p><em><span class="highlight">Nothing Was the Same</span></em> is a <span class="highlight">59-minute mood piece</span>—13 tracks of lush production and raw introspection. It’s Drake at his peak, crafting a cohesive, emotionally charged opus that balances hits with depth. Tracks like <span class="highlight">“Connect”</span> can feel understated, but the highs—like <span class="highlight">“Tuscan Leather”</span>—are towering. This isn’t just an album—it’s a milestone, cementing Drake’s reign as rap’s introspective titan. It’s sleek, soulful, and timeless, a testament to his evolution.</p>
@@ -164,6 +172,18 @@
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            document.querySelectorAll('.glass-card.nwts-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
