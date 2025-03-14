@@ -60,32 +60,6 @@
             20% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card.grad-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 10px;
-            transition: transform 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        .glass-card.grad-card:hover {
-            transform: scale(1.05);
-        }
-        .glass-card.grad-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-        .glass-card.grad-card:hover img {
-            transform: scale(1.05);
-        }
         .glass-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -96,6 +70,29 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
+            overflow: hidden;
+        }
+        .glass-card.grad-card {
+            padding: 0; /* Image touches edges */
+            border-radius: 10px; /* Matches A Great Chaos template */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.grad-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.grad-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.grad-card:hover img {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -117,9 +114,9 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="FLOWER BOY">FLOWER BOY</h1>
         <div class="review-content">
-            <h2>Flower Boy: Tyler, The Creator’s Vibrant Bloom Unleashed</h2>
+            <h2>Flower Boy: Tyler, The Creator’s Radiant Petals Unveiled</h2>
             <div class="glass-card grad-card">
-                <img src="flower.jpeg" alt="Tyler, The Creator flower boy album image">
+                <img src="flower.jpeg" alt="Tyler, The Creator - <em><span class='highlight'>Flower Boy</span></em> album image">
             </div>
             <br>
             <p>On <span class="highlight">July 21, 2017</span>, Tyler, The Creator released <em><span class="highlight">Flower Boy</span></em>, a 14-track opus that peaked at #2 on the Billboard 200 and earned a Grammy nomination. Following the chaotic energy of his earlier work, this album marked a vibrant, introspective shift. Here’s a deep dive into this colorful, soulful masterpiece:</p>
@@ -131,7 +128,7 @@
         <br>
         <h2>Production and Sound</h2>
         <br>
-        <p>Entirely produced by <span class="highlight">Tyler, The Creator</span>, with assists from <span class="highlight">Rex Orange County</span> and others, <em><span class="highlight">Flower Boy</span></em> is a lush, genre-blending soundscape. <span class="highlight">“Foreword”</span> kicks off with gritty synths and strings, while <span class="highlight">“911 / Mr. Lonely”</span> pairs funky bass with dreamy chords. <span class="highlight">“Who Dat Boy”</span> thumps with dark energy, and <span class="highlight">“November”</span> glows with jazzy warmth. Tyler’s voice—gruff yet melodic—dances over these beats, blending hip-hop, jazz, and neo-soul into a vivid, cinematic palette. It’s a leap from <em>Cherry Bomb</em>’s abrasiveness, embracing polish and nuance.</p>
+        <p>Entirely produced by <span class="highlight">Tyler, The Creator</span>, with assists from <span class="highlight">Rex Orange County</span> and others, <em><span class="highlight">Flower Boy</span></em> is a lush, genre-blending soundscape. <span class="highlight">“Foreword”</span> kicks off with gritty synths and strings, while <span class="highlight">“911 / Mr. Lonely”</span> pairs funky bass with dreamy chords. <span class="highlight">“Who Dat Boy”</span> thumps with dark energy, and <span class="highlight">“November”</span> glows with jazzy warmth. Tyler’s voice—gruff yet melodic—dances over these beats, blending hip-hop, jazz, and neo-soul into a vivid, cinematic palette. It’s a leap from <em><span class="highlight">Cherry Bomb</span></em>’s abrasiveness, embracing polish and nuance.</p>
         <br>
         <h2>Features</h2>
         <br>
@@ -152,7 +149,7 @@
         <br>
         <h2>Previous Works</h2>
         <br>
-        <p>Tyler’s journey began with <em><span class="highlight">Bastard</span></em> (<span class="highlight">2009</span>), followed by <em><span class="highlight">Goblin</span></em> (<span class="highlight">2011</span>), <em><span class="highlight">Wolf</span></em> (<span class="highlight">2013</span>), and <em><span class="highlight">Cherry Bomb</span></em> (<span class="highlight">2015</span>), a run of abrasive, Odd Future-fueled chaos. <em><span class="highlight">Flower Boy</span></em> softens <em>Cherry Bomb</em>’s rough edges, trading shock for soul and melody. Where past works leaned on provocation, this album blooms with maturity—Tyler evolving from a rebel to an artist unafraid to bare his soul.</p>
+        <p>Tyler’s journey began with <em><span class="highlight">Bastard</span></em> (<span class="highlight">2009</span>), followed by <em><span class="highlight">Goblin</span></em> (<span class="highlight">2011</span>), <em><span class="highlight">Wolf</span></em> (<span class="highlight">2013</span>), and <em><span class="highlight">Cherry Bomb</span></em> (<span class="highlight">2015</span>), a run of abrasive, Odd Future-fueled chaos. <em><span class="highlight">Flower Boy</span></em> softens <em><span class="highlight">Cherry Bomb</span></em>’s rough edges, trading shock for soul and melody. Where past works leaned on provocation, this album blooms with maturity—Tyler evolving from a rebel to an artist unafraid to bare his soul.</p>
         <br>
         <h2>Summary</h2>
         <br>
@@ -187,6 +184,18 @@
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>

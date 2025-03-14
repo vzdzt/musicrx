@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - The Slim Shady LP Review</title>
+    <title>MusicRx - The Slim Shady LP: Eminem’s Maniacal Blueprint Ignited</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -64,32 +64,6 @@
             20% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card.slim-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 10px;
-            transition: transform 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        .glass-card.slim-card:hover {
-            transform: scale(1.05);
-        }
-        .glass-card.slim-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-        .glass-card.slim-card:hover img {
-            transform: scale(1.05);
-        }
         .glass-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -100,6 +74,29 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
+            overflow: hidden;
+        }
+        .glass-card.slim-card {
+            padding: 0; /* Image touches edges */
+            border-radius: 10px; /* Matches A Great Chaos template */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.slim-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.slim-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.slim-card:hover img {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -121,9 +118,9 @@
     <div class="container">
         <h1 class="review-slim-glitch" data-text="The Slim Shady LP">The Slim Shady LP</h1>
         <div class="review-content">
-            <h2>The Slim Shady LP: Eminem’s Unhinged Genius Unleashed</h2>
+            <h2>The Slim Shady LP: Eminem’s Maniacal Blueprint Ignited</h2>
             <div class="glass-card slim-card">
-                <img src="slim.jpeg" alt="Eminem - The Slim Shady LP album image">
+                <img src="slim.jpeg" alt="Eminem - <em><span class='highlight'>The Slim Shady LP</span></em> album image">
             </div>
             <br>
             <p>On <span class="highlight">February 23, 1999</span>, Eminem unleashed <em><span class="highlight">The Slim Shady LP</span></em>, a 20-track debut major-label album that stormed the charts, peaking at #2 on the Billboard 200 and eventually going quadruple platinum. Following his underground buzz, this project introduced the world to Slim Shady, a persona that shocked and captivated. Here’s a deep dive into this raw, iconic classic:</p>
@@ -156,7 +153,7 @@
         <br>
         <h2>Previous Works</h2>
         <br>
-        <p>Eminem’s indie debut, <em><span class="highlight">Infinite</span></em> (<span class="highlight">1996</span>), showcased his technical skill but flopped commercially. The <em><span class="highlight">Slim Shady EP</span></em> (<span class="highlight">1997</span>) introduced his twisted persona, catching Dr. Dre’s ear. <em><span class="highlight">The Slim Shady LP</span></em> builds on that EP’s foundation, amplifying the shock value and refining the storytelling. Where <em>Infinite</em> was polished but tame, and the EP was a rough sketch, this album is the full explosion—Eminem stepping from Detroit’s underground into rap’s mainstream with a vengeance.</p>
+        <p>Eminem’s indie debut, <em><span class="highlight">Infinite</span></em> (<span class="highlight">1996</span>), showcased his technical skill but flopped commercially. The <em><span class="highlight">Slim Shady EP</span></em> (<span class="highlight">1997</span>) introduced his twisted persona, catching Dr. Dre’s ear. <em><span class="highlight">The Slim Shady LP</span></em> builds on that EP’s foundation, amplifying the shock value and refining the storytelling. Where <em><span class="highlight">Infinite</span></em> was polished but tame, and the EP was a rough sketch, this album is the full explosion—Eminem stepping from Detroit’s underground into rap’s mainstream with a vengeance.</p>
         <br>
         <h2>Summary</h2>
         <br>
@@ -191,6 +188,18 @@
                 card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            document.querySelectorAll('.glass-card.slim-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
