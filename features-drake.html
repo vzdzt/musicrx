@@ -3,51 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the rise of Drake, the Canadian icon who redefined hip-hop with his blend of rap, R&B, and cultural influence, updated to March 2025.">
+    <meta name="keywords" content="Drake, Aubrey Graham, hip-hop, R&B, OVO, Degrassi, MusicRx">
+    <meta name="author" content="Veazy">
+    <!-- Open Graph Tags for Twitter Sharing -->
+    <meta property="og:title" content="MusicRx - Drake Feature">
+    <meta property="og:description" content="Dive into Drake’s journey from Degrassi to global superstar, with insights into his music, style, and cultural impact as of March 2025.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/drizzy.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/features-drake.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@36966_">
     <title>MusicRx - Drake Feature</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    body {
-      background: #0a0a0a !important;
-    }
-    .highlight {
-        color: #0088ff;
-        font-weight: bold;
-    }
-    .feature-drake-glitch {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #0088ff; 
-      text-shadow: 0 0 10px #0088ff;
-      font-family: 'Syncopate', sans-serif;
-      text-transform: uppercase;
-      position: relative;
-    }
-    
-    .feature-drake-glitch::before,
-    .feature-drake-glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .feature-drake-glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 #00ffea;
-      animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .feature-drake-glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 #0088ff;
-      animation: glitch-2 3s linear infinite;
-    }
-</style>
+    <style>
+        body {
+            background: #0a0a0a !important;
+        }
+        .highlight {
+            color: #0088ff;
+            font-weight: bold;
+        }
+        .feature-drake-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #0088ff;
+            text-shadow: 0 0 10px #0088ff;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .feature-drake-glitch::before,
+        .feature-drake-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .feature-drake-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .feature-drake-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #0088ff;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 136, 255, 0.3); /* Match highlight blue */
+        }
+        /* New Drake image card class, mirroring Carti's approach */
+        .drake-image-card {
+            padding: 0; /* Image touches edges */
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+            overflow: hidden; /* Prevent overflow */
+            max-width: 100%; /* Ensure container doesn't exceed parent */
+        }
+        .drake-image-card:hover {
+            transform: scale(1.05);
+        }
+        .drake-image-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            display: block; /* Remove inline bottom margin */
+        }
+        .drake-image-card:hover img {
+            transform: scale(1.1);
+        }
+        /* Fix for unwanted italicization */
+        body, .container, p, h2, ul, li {
+            font-style: normal !important;
+        }
+        .glass-card, .glass-card * {
+            font-style: normal !important;
+        }
+        em, .highlight em {
+            font-style: italic !important; /* Preserve intended italics */
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -60,54 +136,67 @@
             <li><a href="features.html" class="nav-link">Features</a></li>
             <li><a href="news.html" class="nav-link">News</a></li>
             <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-             <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
         </ul>
     </nav>
 
     <div class="container">
         <h1 class="feature-drake-glitch" data-text="DRAKE">DRAKE</h1>
         <div class="review-content">
-            <h2>The Evolution of a Global Icon</h2>
-            <div class="glass-card">
-                <img src="drizzy.jpeg" alt="Drake artist image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            <h2>The Evolution of a Global Icon: <span class="highlight">Drake</span>’s Ascendancy</h2>
+            <div class="drake-image-card">
+                <img src="drizzy.jpeg" alt="Drake artist image">
             </div>
             <br>
-            <p>From his early days as Jimmy Brooks on <span class="highlight">Degrassi</span> to becoming one of the most streamed artists of all time, <span class="highlight">Aubrey Drake Graham</span> has redefined what it means to be a hip-hop superstar in the digital age.</p>
+            <p>From his early acting role as <span class="highlight">Jimmy Brooks</span> on <span class="highlight">Degrassi: The Next Generation</span> to becoming one of the most streamed artists in history with over <span class="highlight">170 million records sold worldwide</span>, <span class="highlight">Aubrey Drake Graham</span> has redefined hip-hop for the streaming era. Born on <span class="highlight">October 24, 1986</span>, in <span class="highlight">Toronto, Canada</span>, this multifaceted artist blends rap, R&B, and cultural entrepreneurship, cementing his status as a global icon as of <span class="highlight">March 15, 2025</span>.</p>
         </div>
         <br>
         <h2>Rise to Fame</h2>
         <br>
-        <p>Drake's journey began with his breakthrough mixtape <span class="highlight">So Far Gone</span> in 2009, which bridged hip-hop with R&B in ways that would become his signature sound. The success of tracks like <span class="highlight">"Best I Ever Had"</span> caught the attention of <span class="highlight">Lil Wayne</span>, leading to his signing with <span class="highlight">Young Money Entertainment</span>. His debut album <span class="highlight">Thank Me Later</span> (2010) solidified his place in the industry, debuting at number one on the Billboard 200.</p>
+        <p>Drake’s journey ignited with the 2009 mixtape <span class="highlight">So Far Gone</span>, a groundbreaking fusion of hip-hop and R&B that introduced hits like <span class="highlight">"Best I Ever Had"</span> and <span class="highlight">"Successful"</span>. This caught the eye of <span class="highlight">Lil Wayne</span>, leading to a pivotal signing with <span class="highlight">Young Money Entertainment</span>. His debut album, <span class="highlight">Thank Me Later</span> (2010), debuted at number one on the <span class="highlight">Billboard 200</span>, marking the start of a career defined by innovation and commercial dominance.</p>
         <br>
         <div class="glass-card">
             <h2>Career Milestones</h2>
             <ul>
-                <li><span class="highlight">2011:</span> Released the critically acclaimed <em>Take Care</em>, which won Grammy for Best Rap Album</li>
+                <li><span class="highlight">2009:</span> Released <em><span class="highlight">So Far Gone</span></em>, his breakout mixtape, with <span class="highlight">"Best I Ever Had"</span> hitting <span class="highlight">No. 2</span> on the <span class="highlight">Billboard Hot 100</span>, earning a <span class="highlight">Juno Award</span> for Rap Recording of the Year.</li>
                 <br>
-                <li><span class="highlight">2015:</span> Released surprise mixtape <em>If You're Reading This It's Too Late</em>, breaking streaming records</li>
+                <li><span class="highlight">2011:</span> Dropped <em><span class="highlight">Take Care</span></em>, a critical and commercial triumph, winning the <span class="highlight">Grammy for Best Rap Album</span> and featuring the chart-topping <span class="highlight">"Take Care"</span> with <span class="highlight">Rihanna</span>.</li>
                 <br>
-                <li><span class="highlight">2016:</span> <em>Views</em> became Drake's highest-selling album, with "One Dance" becoming his first solo #1 hit</li>
+                <li><span class="highlight">2015:</span> Unleashed the surprise mixtape <em><span class="highlight">If You’re Reading This It’s Too Late</span></em>, breaking streaming records with over <span class="highlight">500 million streams</span> in its first week, and launched <span class="highlight">OVO Sound Radio</span> on Beats 1.</li>
                 <br>
-                <li><span class="highlight">2018:</span> <em>Scorpion</em> broke streaming records with hits like "God's Plan" and "In My Feelings"</li>
+                <li><span class="highlight">2016:</span> Released <em><span class="highlight">Views</span></em>, his highest-selling album to date, spending <span class="highlight">13 weeks</span> at <span class="highlight">No. 1</span> on the <span class="highlight">Billboard 200</span>, with <span class="highlight">"One Dance"</span> becoming his first solo <span class="highlight">No. 1</span> hit globally.</li>
                 <br>
-                <li><span class="highlight">2023:</span> Surpassed 75 billion streams across all platforms, making him one of music's most-streamed artists</li>
+                <li><span class="highlight">2018:</span> Dropped <em><span class="highlight">Scorpion</span></em>, breaking streaming records with <span class="highlight">732 million streams</span> in its first week, featuring <span class="highlight">"God’s Plan"</span> and <span class="highlight">"In My Feelings"</span>, both hitting <span class="highlight">No. 1</span>.</li>
+                <br>
+                <li><span class="highlight">2021:</span> Released <em><span class="highlight">Certified Lover Boy</span></em>, setting a record with <span class="highlight">9 top-10 hits</span> on the <span class="highlight">Billboard Hot 100</span> in one week, and expanded <span class="highlight">OVO</span> with new fashion lines.</li>
+                <br>
+                <li><span class="highlight">2022:</span> Collaborated with <span class="highlight">21 Savage</span> on <em><span class="highlight">Her Loss</span></em>, debuting at <span class="highlight">No. 1</span> with <span class="highlight">404,000 units</span>, and headlined the <span class="highlight">Aubrey & the Three Migos Tour</span>.</li>
+                <br>
+                <li><span class="highlight">2023:</span> Surpassed <span class="highlight">75 billion streams</span> across platforms, released <em><span class="highlight">For All the Dogs</span></em> (debuting at <span class="highlight">No. 1</span> with <span class="highlight">402,000 units</span>), and was named <span class="highlight">Billboard’s Artist of the 2010s Decade</span>.</li>
+                <br>
+                <li><span class="highlight">2025:</span> Released <em><span class="highlight">Some Sexy Songs 4 U</span></em> with <span class="highlight">PartyNextDoor</span> on <span class="highlight">February 14</span>, debuting at <span class="highlight">No. 1</span> on the <span class="highlight">Billboard 200</span>, and announced a historic three-day headline at the <span class="highlight">2025 Wireless Festival</span>, selling out in minutes.</li>
             </ul>
         </div>
         <br>
         <h2>Musical Style & Impact</h2>
         <br>
-        <p>Drake's ability to seamlessly blend rap, R&B, pop, and dancehall has created a sound that's distinctly his own yet widely imitated. His emotional vulnerability in tracks like <span class="highlight">"Marvin's Room"</span> and <span class="highlight">"Jungle"</span> opened doors for a new generation of introspective hip-hop artists. Beyond music, his <span class="highlight">OVO</span> brand has expanded into fashion, radio, and business ventures, establishing him as a cultural entrepreneur.</p>
+        <p>Drake’s musical alchemy lies in his seamless fusion of <span class="highlight">rap</span>, <span class="highlight">R&B</span>, <span class="highlight">pop</span>, and <span class="highlight">dancehall</span>, creating a sound that’s uniquely his yet widely emulated. His pioneering use of <span class="highlight">emotional vulnerability</span>—evident in tracks like <span class="highlight">"Marvin’s Room"</span> and <span class="highlight">"Jungle"</span>—paved the way for a new wave of introspective hip-hop artists, including <span class="highlight">The Weeknd</span> and <span class="highlight">Bryson Tiller</span>. His production, often crafted with longtime collaborator <span class="highlight">Noah “40” Shebib</span>, introduces a moody, atmospheric <span class="highlight">Toronto sound</span> that blends soulful samples with cutting-edge beats. Beyond music, Drake’s <span class="highlight">OVO Sound</span> label has launched talents like <span class="highlight">PartyNextDoor</span> and <span class="highlight">Majid Jordan</span>, while his <span class="highlight">OVO</span> brand extends into fashion, with <span class="highlight">Yeezy</span>-like collaborations, and media, including <span class="highlight">OVO Sound Radio</span>. His influence on language—coining phrases like <span class="highlight">"6ix"</span> and <span class="highlight">"YOLO"</span>—and dance trends, like the <span class="highlight">"In My Feelings" challenge</span>, has reshaped pop culture, making him a cultural entrepreneur par excellence.</p>
         <br>
         <div class="glass-card">
             <h2>Essential Listening</h2>
-            <p><span class="highlight">For Newcomers:</span> "Hotline Bling," "God's Plan," "Started From The Bottom," "One Dance"</p>
-            <p><span class="highlight">For The Dive:</span> "Marvin's Room," "Jungle," "Pound Cake," "Do Not Disturb"</p>
-            <p><span class="highlight">Hidden Gems:</span> "Paris Morton Music," "Days In The East," "Club Paradise," "4PM in Calabasas"</p>
+            <p><span class="highlight">For Newcomers:</span> <span class="highlight">"Hotline Bling"</span>, <span class="highlight">"God’s Plan"</span>, <span class="highlight">"Started From The Bottom"</span>, <span class="highlight">"One Dance"</span>—these tracks pulse with Drake’s infectious hooks and chart-dominating energy, offering a perfect entry into his melodic mastery and global appeal.</p>
+            <p><span class="highlight">For The Dive:</span> <span class="highlight">"Marvin’s Room"</span>, <span class="highlight">"Jungle"</span>, <span class="highlight">"Pound Cake"</span> (feat. <span class="highlight">Jay-Z</span>), <span class="highlight">"Do Not Disturb"</span>, <span class="highlight">"Take Care"</span> (feat. <span class="highlight">Rihanna</span>)—dive deep into his emotional landscapes, where haunting melodies and introspective lyrics reveal the soul behind the superstar, backed by lush production.</p>
+            <p><span class="highlight">Hidden Gems:</span> <span class="highlight">"Paris Morton Music"</span>, <span class="highlight">"Days In The East"</span>, <span class="highlight">"Club Paradise"</span>, <span class="highlight">4PM in Calabasas"</span>, <span class="highlight">"Furthest Thing"</span>—these underappreciated tracks showcase his raw lyricism and early Toronto vibes, offering a glimpse into his unpolished brilliance.</p>
+            <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">"Nokia"</span>, <span class="highlight">"Gimme A Hug"</span>, <span class="highlight">"Crying In Chanel"</span> (from <em><span class="highlight">Some Sexy Songs 4 U</span></em>)—2025’s releases blend R&B swagger with club-ready beats, hinting at a new chapter of vulnerability and resilience post-beef.</p>
         </div>
+        <br>
+        <h2>Drama & Controversies</h2>
+        <br>
+        <p>Drake’s career has been as dramatic as his music. Early tensions with <span class="highlight">Chris Brown</span> escalated into a 2012 nightclub brawl, though they later reconciled with a comedic <span class="highlight">2014 ESPY Awards</span> skit. His 2016 feud with <span class="highlight">Meek Mill</span>—sparked by ghostwriting allegations—produced diss tracks like <span class="highlight">"Back to Back"</span>, cementing Drake’s lyrical prowess. The 2018 clash with <span class="highlight">Pusha T</span> exposed personal details, including his son <span class="highlight">Adonis</span>, via <span class="highlight">"The Story of Adidon"</span>, prompting Drake to lean into fatherhood publicly. More recently, his 2024 beef with <span class="highlight">Kendrick Lamar</span>—ignited by <span class="highlight">"Like That"</span> and escalated with <span class="highlight">"Not Like Us"</span>—saw Lamar’s Super Bowl halftime jab and Drake’s legal action against <span class="highlight">Universal Music Group (UMG)</span> for allegedly boosting Lamar’s track, settled in <span class="highlight">February 2025</span>. As of <span class="highlight">March 2025</span>, Drake’s X posts criticize the industry’s “enslavement” of artists, reigniting his feud with <span class="highlight">Drake</span> over alleged corporate agendas, while his <span class="highlight">Anita Max Wynn Tour</span> in Australia faced fan boos, adding to his polarizing image.</p>
         <br>
         <h2>Legacy</h2>
         <br>
-        <p>As Drake continues to evolve, his influence on music, language, and pop culture remains undeniable. He's transformed from a child actor to a global superstar whose releases are cultural events. Whether through meme-worthy dance moves or quotable lyrics, Drake has mastered the art of cultural relevance in an ever-changing digital landscape. His legacy as one of hip-hop's most commercially successful and culturally impactful artists is already secured, regardless of where his artistic journey takes him next.</p>
+        <p>Drake’s legacy as a trailblazer is etched in hip-hop history. Evolving from a <span class="highlight">Degrassi</span> actor to a <span class="highlight">Billboard</span>-named <span class="highlight">Artist of the 2010s Decade</span>, he’s sold <span class="highlight">170 million records</span> and amassed <span class="highlight">75 billion streams</span>, outpacing legends like <span class="highlight">2Pac</span> and <span class="highlight">Jay-Z</span> in the streaming era. His innovation—merging <span class="highlight">R&B sensibilities</span> with rap—has inspired a generation, from <span class="highlight">Post Malone</span> to <span class="highlight">Rod Wave</span>. Cultural milestones like the <span class="highlight">"In My Feelings" challenge</span> and phrases like <span class="highlight">"6ix"</span> have permeated global pop culture. Despite controversies, his ability to turn personal setbacks into art—seen in <em><span class="highlight">Some Sexy Songs 4 U</span></em>’s pivot from the Lamar beef—ensures his enduring relevance. As he headlines the <span class="highlight">2025 Wireless Festival</span> and teases new projects, Drake’s legacy as a cultural shapeshifter remains secure, poised to evolve with each release.</p>
         <br>
         <h2>By the Numbers</h2>
         <br>
@@ -115,108 +204,154 @@
             <h3><span class="highlight">Chart Performance</span></h3>
             <div class="table-container">
                 <table class="trend-table">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Year</th>
-                        <th>Billboard Hot 100(US)</th>
-                        <th>Canadian Hot 100(CAN)</th>
-                        <th>UK Singles Chart(UK)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="highlight">"Best I Ever Had"</span></td>
-                        <td>2009</td>
-                        <td>2</td>
-                        <td>24</td>
-                        <td>123</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"Over"</span></td>
-                        <td>2010</td>
-                        <td>14</td>
-                        <td>17</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"Take Care"</span> (feat. Rihanna)</td>
-                        <td>2012</td>
-                        <td>7</td>
-                        <td>15</td>
-                        <td>9</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"Started from the Bottom"</span></td>
-                        <td>2013</td>
-                        <td>6</td>
-                        <td>36</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"Hotline Bling"</span></td>
-                        <td>2015</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>3</td>
-                    </tr>
-                </tbody>
-            </table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Year</th>
+                            <th>Billboard Hot 100 (US)</th>
+                            <th>Canadian Hot 100 (CAN)</th>
+                            <th>UK Singles Chart (UK)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">"Best I Ever Had"</span></td>
+                            <td>2009</td>
+                            <td>2</td>
+                            <td>24</td>
+                            <td>123</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Over"</span></td>
+                            <td>2010</td>
+                            <td>14</td>
+                            <td>17</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Take Care"</span> (feat. <span class="highlight">Rihanna</span>)</td>
+                            <td>2012</td>
+                            <td>7</td>
+                            <td>15</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Started from the Bottom"</span></td>
+                            <td>2013</td>
+                            <td>6</td>
+                            <td>36</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Hotline Bling"</span></td>
+                            <td>2015</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"One Dance"</span> (feat. <span class="highlight">Wizkid</span> & <span class="highlight">Kyla</span>)</td>
+                            <td>2016</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"God’s Plan"</span></td>
+                            <td>2018</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"In My Feelings"</span></td>
+                            <td>2018</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Wait for U"</span> (with <span class="highlight">Future</span> feat. <span class="highlight">Tems</span>)</td>
+                            <td>2022</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Nokia"</span> (with <span class="highlight">PartyNextDoor</span>)</td>
+                            <td>2025</td>
+                            <td>3</td>
+                            <td>2</td>
+                            <td>4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-<br>
-    <div class="glass-card">
-        <h3><span class="highlight">Album Certifications</span></h3>
-        <div class="table-container">
-            <table class="trend-table">
-                <thead>
-                    <tr>
-                        <th>Album</th>
-                        <th>Certification</th>
-                        <th>Units (Millions)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="highlight">Take Care</span></td>
-                        <td>4× Platinum</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Views</span></td>
-                        <td>4× Platinum</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Scorpion</span></td>
-                        <td>3× Platinum</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Certified Lover Boy</span></td>
-                        <td>2× Platinum</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Her Loss</span> (with 21 Savage)</td>
-                        <td>2× Platinum</td>
-                        <td>2</td>
-                    </tr>
-                </tbody>
-            </table>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Album Certifications</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Take Care</span></td>
+                            <td>5× Platinum</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Views</span></td>
+                            <td>5× Platinum</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Scorpion</span></td>
+                            <td>4× Platinum</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Certified Lover Boy</span></td>
+                            <td>3× Platinum</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Her Loss</span> (with <span class="highlight">21 Savage</span>)</td>
+                            <td>3× Platinum</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">For All the Dogs</span></td>
+                            <td>2× Platinum</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Some Sexy Songs 4 U</span> (with <span class="highlight">PartyNextDoor</span>)</td>
+                            <td>Platinum</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-<br>
-    <div class="glass-card">
-        <h3><span class="highlight">Sources</span></h3>
-        <p>
-            <a href="https://en.wikipedia.org/wiki/Drake_albums_discography">Drake albums discography (Wikipedia)</a> | 
-            <a href="https://en.wikipedia.org/wiki/Drake_(musician)">Drake musician (Wikipedia)</a> | 
-            <a href="https://www.billboard.com/artist/drake/">Billboard artist page</a> | 
-            <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
-            <a href="https://chartmasters.org/drake-albums-and-songs-sales/">ChartMasters sales data</a>
-        </p>
-    </div>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Sources</span></h3>
+            <p>
+                <a href="https://en.wikipedia.org/wiki/Drake_albums_discography">Drake albums discography (Wikipedia)</a> | 
+                <a href="https://en.wikipedia.org/wiki/Drake_(musician)">Drake musician (Wikipedia)</a> | 
+                <a href="https://www.billboard.com/artist/drake/">Billboard artist page</a> | 
+                <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+                <a href="https://chartmasters.org/drake-albums-and-songs-sales/">ChartMasters sales data</a> | 
+                <a href="https://www.nytimes.com/2025/02/14/arts/music/drake-partynextdoor-some-sexy-songs-4-u.html">NY Times on 2025 album</a>
+            </p>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -225,14 +360,38 @@
     <script src="script.js"></script>
 
     <script>
-        // Ensure all glass cards on this page have the right styling
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card').forEach(card => {
+            // Style for glass cards (excluding the image container)
+            document.querySelectorAll('.glass-card:not(.drake-image-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
+            });
+            // Add hover effects for glass cards
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 20px rgba(0, 136, 255, 0.3)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                });
+            });
+            // Add hover effects for the image container, matching Carti behavior
+            document.querySelectorAll('.drake-image-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
