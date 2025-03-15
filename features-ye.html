@@ -23,7 +23,7 @@
             background: #0a0a0a !important;
         }
         .highlight {
-            color: #f7e6a4; /* Baby yellow for highlights */
+            color: #ffda00; /* Baby yellow */
             font-weight: bold;
         }
         .feature-ye-glitch {
@@ -85,32 +85,32 @@
         }
         .glass-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(247, 230, 164, 0.3); /* Baby yellow shadow to match highlight */
+            box-shadow: 0 0 20px rgba(247, 230, 164, 0.3); /* Match baby yellow highlight */
         }
-        /* Adjusted image container to almost touch edges */
-        .image-container {
-            padding: 0;
+        /* New Ye image card class, mirroring Carti's approach */
+        .ye-image-card {
+            padding: 0; /* Image touches edges */
             border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: transform 0.3s ease;
-            margin: 2rem 0;
+            overflow: hidden; /* Prevent overflow */
             max-width: 100%; /* Ensure container doesn't exceed parent */
         }
-        .image-container:hover {
+        .ye-image-card:hover {
             transform: scale(1.05);
         }
-        .image-container img {
-            width: calc(100% - 20px); /* Small margin to almost touch edges */
+        .ye-image-card img {
+            width: 100%;
             height: auto;
             object-fit: cover;
             object-position: center;
             border-radius: 8px;
             transition: transform 0.3s ease;
-            margin: 0 auto; /* Center the image */
+            display: block; /* Remove inline bottom margin */
         }
-        .image-container:hover img {
+        .ye-image-card:hover img {
             transform: scale(1.1);
         }
         /* Fix for unwanted italicization */
@@ -144,7 +144,7 @@
         <h1 class="feature-ye-glitch" data-text="YE">YE</h1>
         <div class="review-content">
             <h2>The Controversial Genius of <span class="highlight">Ye</span></h2>
-            <div class="image-container">
+            <div class="ye-image-card">
                 <img src="yeee.jpeg" alt="Ye (Kanye West) portrait">
             </div>
             <br>
@@ -323,7 +323,7 @@
         // Ensure all glass cards on this page have the right styling
         document.addEventListener('DOMContentLoaded', () => {
             // Style for glass cards (excluding the image container)
-            document.querySelectorAll('.glass-card').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.ye-image-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
@@ -342,16 +342,16 @@
                 });
             });
             // Add hover effects for the image container
-            document.querySelectorAll('.image-container').forEach(container => {
-                container.addEventListener('mouseenter', () => {
-                    const img = container.querySelector('img');
+            document.querySelectorAll('.ye-image-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
                     if (img) img.style.transform = 'scale(1.1)';
-                    container.style.transform = 'scale(1.05)';
+                    card.style.transform = 'scale(1.05)';
                 });
-                container.addEventListener('mouseleave', () => {
-                    const img = container.querySelector('img');
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
                     if (img) img.style.transform = 'scale(1)';
-                    container.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
                 });
             });
         });
