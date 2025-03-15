@@ -132,8 +132,9 @@
             text-align: left;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
+        /* Removed glow from table headers */
         .trend-table th {
-            color: #d10202;
+            color: inherit; /* Default text color, no highlight */
         }
         body, .container, p, h2, ul, li {
             font-style: normal !important;
@@ -186,10 +187,10 @@
         <br>
         <div class="glass-card">
             <h2>Track Highlights</h2>
-            <p class="track-highlight-item"><span class="highlight">For Newcomers:</span> <span class="highlight">“Check”</span>, <span class="highlight">“Constantly Hating”</span>—thumping beats and Thug’s bouncy flex make these the gateway to his trap world.</p>
-            <p class="track-highlight-item"><span class="highlight">For The Dive:</span> <span class="highlight">“With That”</span>, <span class="highlight">“Halftime”</span>—wild energy and raw flows pull you deeper into the haze.</p>
-            <p class="track-highlight-item"><span class="highlight">Hidden Gems:</span> <span class="highlight">“Just Might Be”</span>, <span class="highlight">“Dreams”</span>—introspective cuts with eerie vibes shine for the attentive listener.</p>
-            <p class="track-highlight-item"><span class="highlight">Latest Obsessions:</span> <span class="highlight">“With That (Live 2025)”</span>—a chaotic Rolling Loud Miami 2025 performance (check X @36966_) reignites its cult fire.</p>
+            <p class="track-highlight-item"><span class="highlight">For Newcomers:</span> <span class="highlight">“Check”</span>, <span class="highlight">“Constantly Hating”</span>—London’s thumping drums crash like cash stacks hitting the pavement, Thug’s bouncy boasts—“I got a check on me”—riding Wheezy’s mellow haze with a serpentine cool that shrugs off haters. These are the neon gateways to his trap empire, pulsing with strip-club shine and unapologetic swagger, perfect for first-time listeners craving that instant Atlanta heat.</p>
+            <p class="track-highlight-item"><span class="highlight">For The Dive:</span> <span class="highlight">“With That”</span>, <span class="highlight">“Halftime”</span>—Synths twist into a frenetic storm, Thug’s wild yelps sparking like a live wire through the chaos, while “Halftime” drips with lean-soaked bravado, his flow bending and snapping over TM88’s cavernous bass. These cuts plunge you into the tape’s raw, unfiltered core—high-octane and relentless, a deep dive into Thug’s warped genius.</p>
+            <p class="track-highlight-item"><span class="highlight">Hidden Gems:</span> <span class="highlight">“Just Might Be”</span>, <span class="highlight">“Dreams”</span>—Bass hums low like codeine dripping through a double cup, Thug’s ghostly musings—“I might just be a new species”—floating over eerie calm, while “Dreams” layers Yak Gotti’s haunting drawl into a shadowy reverie. These overlooked treasures peel back the flex for a rare, introspective glow—perfect for fans digging beneath the surface.</p>
+            <p class="track-highlight-item"><span class="highlight">Latest Obsessions:</span> <span class="highlight">“With That (Live 2025)”</span>—A chaotic Rolling Loud Miami 2025 rendition (clips on X @36966_) recharges this banger, Thug’s voice leaping from mellow drawls to piercing shrieks as the crowd erupts, synths blazing like a neon inferno. It’s a cult classic reborn, a testament to the tape’s enduring fire a decade later—Veazy can’t stop replaying this one.</p>
         </div>
         <br>
         <h2>Previous Works</h2>
@@ -304,14 +305,14 @@
             <p><span class="highlight">Enjoyment Factor (17/20):</span> Chaos hooks deep—<span class="highlight">“With That”</span> bangs—perfect for turn-ups, if you ride the vibe.</p>
             <p><span class="highlight">Consistency (16/20):</span> Steady lean dream, but lacks peaks to break the hum.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (82/100):</span> 8.2/10</h3></p>
-            <p><em><span class="highlight">Barter 6</span></em> is Thug’s trap genesis—a reckless, neon gem. Blast it loud, let the bass rattle, and ride the Atlanta night—Veazy’s still vibing to this in 2025!</p>
+            <p><em><span class="highlight">Barter 6</span></em> is a neon-drenched trap odyssey—Thug’s wild spark ignites a lean-soaked fever dream that still rattles trunks a decade on. Picture this: late-night Atlanta streets, bass thumping through the haze, Thug’s voice warping like a glitch in the matrix—raw, reckless, and dripping with chaotic allure. Veazy’s still blasting this in 2025, chasing that syrupy high through every warped yelp and snare snap—it’s a timeless descent into trap’s wild heart.</p>
         </div>
         <br>
         <div class="glass-card">
             <h3><span class="highlight">Sources</span></h3>
             <p>
                 <a href="https://en.wikipedia.org/wiki/Barter_6">Barter 6 (Wikipedia)</a> |
-                <a href="https://en.wikipedia.org/wiki/Young_Thug_discography">Young Thug discography (Wikipedia)</a> |
+                <a href="https://en.wikipedia.org/wiki/Young_Thug_discography">Young_Thug discography (Wikipedia)</a> |
                 <a href="https://www.billboard.com/artist/young-thug/">Billboard artist page</a> |
                 <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> |
                 <a href="https://pitchfork.com/reviews/albums/21734-barter-6/">Pitchfork review</a> |
@@ -356,11 +357,11 @@
                 });
             });
             document.querySelectorAll('.track-highlight-item').forEach(item => {
-                item.addEventListener('mouseenter', () => {
+                card.addEventListener('mouseenter', () => {
                     item.style.transform = 'scale(1.02)';
                     item.style.boxShadow = '0 0 10px rgba(209, 2, 2, 0.2)';
                 });
-                item.addEventListener('mouseleave', () => {
+                card.addEventListener('mouseleave', () => {
                     item.style.transform = 'scale(1)';
                     item.style.boxShadow = 'none';
                 });
