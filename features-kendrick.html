@@ -3,51 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Kendrick Lamar's journey from Compton to global icon, redefining hip-hop with social commentary and innovation, updated to March 2025.">
+    <meta name="keywords" content="Kendrick Lamar, hip-hop, Compton, To Pimp a Butterfly, DAMN., MusicRx">
+    <meta name="author" content="Veazy">
+    <!-- Open Graph Tags for Twitter Sharing -->
+    <meta property="og:title" content="MusicRx - Kendrick Lamar Feature">
+    <meta property="og:description" content="Dive into Kendrick Lamar’s rise from Compton streets to Pulitzer Prize winner, with insights into his music and cultural impact as of March 2025.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/kdot.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/features-kendrick.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@36966_">
     <title>MusicRx - Kendrick Lamar Feature</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    body {
-      background: #0a0a0a !important;
-    }
-    .highlight {
-        color: #9900ff;
-        font-weight: bold;
-    }
-    .feature-kendrick-glitch {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #9900ff; 
-      text-shadow: 0 0 10px #9900ff;
-      font-family: 'Syncopate', sans-serif;
-      text-transform: uppercase;
-      position: relative;
-    }
-    
-    .feature-kendrick-glitch::before,
-    .feature-kendrick-glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .feature-kendrick-glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 #00ffea;
-      animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .feature-kendrick-glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 #9900ff;
-      animation: glitch-2 3s linear infinite;
-    }
-</style>
+    <style>
+        body {
+            background: #0a0a0a !important;
+        }
+        .highlight {
+            color: #9900ff;
+            font-weight: bold;
+        }
+        .feature-kendrick-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #9900ff;
+            text-shadow: 0 0 10px #9900ff;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .feature-kendrick-glitch::before,
+        .feature-kendrick-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .feature-kendrick-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .feature-kendrick-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #9900ff;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(153, 0, 255, 0.3); /* Match highlight purple */
+        }
+        /* New Kendrick image card class, mirroring Carti's approach */
+        .kendrick-image-card {
+            padding: 0; /* Image touches edges */
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+            overflow: hidden; /* Prevent overflow */
+            max-width: 100%; /* Ensure container doesn't exceed parent */
+        }
+        .kendrick-image-card:hover {
+            transform: scale(1.05);
+        }
+        .kendrick-image-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            display: block; /* Remove inline bottom margin */
+        }
+        .kendrick-image-card:hover img {
+            transform: scale(1.1);
+        }
+        /* Fix for unwanted italicization */
+        body, .container, p, h2, ul, li {
+            font-style: normal !important;
+        }
+        .glass-card, .glass-card * {
+            font-style: normal !important;
+        }
+        em, .highlight em {
+            font-style: italic !important; /* Preserve intended italics */
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -67,47 +143,60 @@
     <div class="container">
         <h1 class="feature-kendrick-glitch" data-text="KENDRICK LAMAR">KENDRICK LAMAR</h1>
         <div class="review-content">
-            <h2>The Conscious Voice of a Generation</h2>
-            <div class="glass-card">
-                <img src="kdot.jpeg" alt="Kendrick Lamar artist image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            <h2>The Conscious Voice of a Generation: <span class="highlight">Kendrick Lamar</span>’s Reign</h2>
+            <div class="kendrick-image-card">
+                <img src="kdot.jpeg" alt="Kendrick Lamar artist image">
             </div>
             <br>
-            <p>From his early days on the Compton streets to becoming one of the most critically acclaimed artists in hip-hop history, <span class="highlight">Kendrick Lamar Duckworth</span> has redefined what it means to use rap as a medium for social commentary and introspection.</p>
+            <p>Emerging from the gritty streets of <span class="highlight">Compton, California</span>, born <span class="highlight">Kendrick Lamar Duckworth</span> on <span class="highlight">June 17, 1987</span>, this rap visionary has transcended hip-hop to become a cultural force. With over <span class="highlight">70 million records sold</span> worldwide and a <span class="highlight">Pulitzer Prize</span> to his name, Kendrick’s introspective lyrics and social commentary have redefined rap as a tool for revolution, captivating audiences as of <span class="highlight">March 15, 2025</span>.</p>
         </div>
         <br>
         <h2>Rise to Fame</h2>
         <br>
-        <p>Kendrick's journey began with his first mixtape <span class="highlight">Youngest Head Nigga in Charge (Hub City Threat: Minor of the Year)</span> in 2004, but it was his 2011 independent album <span class="highlight">Section.80</span> that captured industry attention. The project's thoughtful examination of generational trauma and social issues demonstrated his visionary potential. His major-label debut <span class="highlight">good kid, m.A.A.d city</span> (2012) arrived as a cinematic masterpiece that chronicled his youth in Compton, earning both critical acclaim and commercial success.</p>
+        <p>Kendrick’s ascent began with his 2004 mixtape <span class="highlight">Youngest Head Nigga in Charge (Hub City Threat: Minor of the Year)</span>, a raw glimpse into his Compton roots under the moniker <span class="highlight">K. Dot</span>. The 2011 independent release <span class="highlight">Section.80</span>—a profound exploration of generational trauma and societal decay—caught the industry’s eye, leading to his signing with <span class="highlight">Top Dawg Entertainment (TDE)</span>. His 2012 major-label debut, <span class="highlight">good kid, m.A.A.d city</span>, emerged as a cinematic odyssey chronicling his youth, blending street narratives with orchestral production, and cementing his status as a critical and commercial titan.</p>
         <br>
         <div class="glass-card">
             <h2>Career Milestones</h2>
             <ul>
-                <li><span class="highlight">2015:</span> Released <em>To Pimp a Butterfly</em>, a genre-defying blend of jazz and hip-hop that addressed race relations in America and won a Grammy for Best Rap Album</li>
+                <li><span class="highlight">2004:</span> Released his debut mixtape <em><span class="highlight">Youngest Head Nigga in Charge (Hub City Threat: Minor of the Year)</span></em> as <span class="highlight">K. Dot</span>, laying the foundation for his introspective style.</li>
                 <br>
-                <li><span class="highlight">2017:</span> <em>DAMN.</em> became his most commercially successful album and made history as the first non-classical, non-jazz album to win a Pulitzer Prize</li>
+                <li><span class="highlight">2011:</span> Dropped <em><span class="highlight">Section.80</span></em>, his independent breakthrough, earning a <span class="highlight">BET Hip Hop Award</span> nomination for Best Mixtape and showcasing his social commentary prowess.</li>
                 <br>
-                <li><span class="highlight">2018:</span> Curated and produced the <em>Black Panther</em> soundtrack, which topped the Billboard 200 and earned multiple Grammy nominations</li>
+                <li><span class="highlight">2012:</span> Released <em><span class="highlight">good kid, m.A.A.d city</span></em>, a cinematic debut that earned seven <span class="highlight">Grammy</span> nominations, including Album of the Year, and debuted at <span class="highlight">No. 2</span> on the <span class="highlight">Billboard 200</span>.</li>
                 <br>
-                <li><span class="highlight">2022:</span> Released <em>Mr. Morale & the Big Steppers</em>, a deeply personal double album exploring generational trauma and mental health</li>
+                <li><span class="highlight">2015:</span> Unveiled <em><span class="highlight">To Pimp a Butterfly</span></em>, a genre-bending fusion of jazz, funk, and hip-hop addressing race and identity, winning the <span class="highlight">Grammy for Best Rap Album</span> and charting at <span class="highlight">No. 1</span>.</li>
                 <br>
-                <li><span class="highlight">2023:</span> His collaboration with Baby Keem, "Family Ties," won the Grammy for Best Rap Performance</li>
+                <li><span class="highlight">2017:</span> Released <em><span class="highlight">DAMN.</span></em>, his commercial peak with hits like <span class="highlight">"HUMBLE."</span>, winning five <span class="highlight">Grammys</span> and becoming the first non-classical, non-jazz album to earn a <span class="highlight">Pulitzer Prize</span>.</li>
+                <br>
+                <li><span class="highlight">2018:</span> Curated and produced <em><span class="highlight">Black Panther: The Album</span></em>, topping the <span class="highlight">Billboard 200</span> with contributions from <span class="highlight">SZA</span> and <span class="highlight">The Weeknd</span>, earning two <span class="highlight">Grammys</span>.</li>
+                <br>
+                <li><span class="highlight">2022:</span> Dropped <em><span class="highlight">Mr. Morale & the Big Steppers</span></em>, a double album tackling mental health and trauma, debuting at <span class="highlight">No. 1</span> and winning three <span class="highlight">Grammys</span>.</li>
+                <br>
+                <li><span class="highlight">2024:</span> Ignited a feud with <span class="highlight">Drake</span> with diss tracks like <span class="highlight">"Like That"</span> and <span class="highlight">"Not Like Us"</span>, the latter debuting at <span class="highlight">No. 1</span> on the <span class="highlight">Billboard Hot 100</span> and breaking Spotify records.</li>
+                <br>
+                <li><span class="highlight">2025:</span> Released <em><span class="highlight">GNX</span></em> in November 2024, returning to <span class="highlight">No. 1</span> on the <span class="highlight">Billboard 200</span> post-Super Bowl LIX (February 9), won five <span class="highlight">Grammys</span> for <span class="highlight">"Not Like Us"</span>, and headlined with <span class="highlight">SZA</span> in a historic halftime show.</li>
             </ul>
         </div>
         <br>
         <h2>Musical Style & Impact</h2>
         <br>
-        <p>Kendrick's music stands apart through its layered storytelling, complex themes, and innovative production. His ability to craft conceptual albums that function as cohesive artistic statements—from the jazz-infused experimentation of <span class="highlight">To Pimp a Butterfly</span> to the stripped-back introspection of <span class="highlight">DAMN.</span>—has elevated rap's potential as an art form. His fearless confrontation of topics like systemic racism, mental health, and personal accountability has influenced a generation of artists to approach their craft with greater depth and social awareness.</p>
+        <p>Kendrick Lamar’s musical tapestry weaves <span class="highlight">hip-hop</span>, <span class="highlight">jazz</span>, <span class="highlight">funk</span>, and <span class="highlight">soul</span> into a narrative-driven sound that defies genre constraints. His conceptual albums—like the jazz-soaked <span class="highlight">To Pimp a Butterfly</span>, with its <span class="highlight">George Clinton</span> intro, or the raw, minimalist <span class="highlight">DAMN.</span> produced with <span class="highlight">Mike WiLL Made-It</span>—serve as sonic novels, each track a chapter in a larger story. His lyrical precision tackles <span class="highlight">systemic racism</span>, <span class="highlight">mental health</span>, and <span class="highlight">personal redemption</span>, as heard in <span class="highlight">"Alright"</span>’s protest anthem status or <span class="highlight">"Mother I Sober"</span>’s vulnerability. Collaborators like <span class="highlight">Sounwave</span> and <span class="highlight">Tame Impala</span> amplify his experimental edge, influencing artists from <span class="highlight">J. Cole</span> to <span class="highlight">Baby Keem</span>. Beyond music, his <span class="highlight">pgLang</span> company ventures into film and fashion, while <span class="highlight">Black Panther: The Album</span> showcased his curatorial genius, cementing him as a cultural architect.</p>
         <br>
         <div class="glass-card">
             <h2>Essential Listening</h2>
-            <p><span class="highlight">For Newcomers:</span> "HUMBLE.", "Alright", "DNA.", "Swimming Pools (Drank)"</p>
-            <p><span class="highlight">For The Dive:</span> "Sing About Me, I'm Dying of Thirst", "u", "The Blacker the Berry", "Mother I Sober"</p>
-            <p><span class="highlight">Hidden Gems:</span> "Cartoon & Cereal", "The Heart Pt. 3", "Westside, Right On Time", "Black Friday"</p>
+            <p><span class="highlight">For Newcomers:</span> <span class="highlight">"HUMBLE."</span>, <span class="highlight">"Alright"</span>, <span class="highlight">"DNA."</span>, <span class="highlight">"Swimming Pools (Drank)"</span>—these tracks explode with Kendrick’s infectious beats and defiant spirit, offering a thrilling gateway into his revolutionary sound and Compton roots.</p>
+            <p><span class="highlight">For The Dive:</span> <span class="highlight">"Sing About Me, I'm Dying of Thirst"</span>, <span class="highlight">"u"</span>, <span class="highlight">"The Blacker the Berry"</span>, <span class="highlight">"Mother I Sober"</span>, <span class="highlight">"King Kunta"</span>—plunge into his soul-baring depths, where jazzy rhythms and raw confessions unravel the complexities of race, trauma, and resilience.</p>
+            <p><span class="highlight">Hidden Gems:</span> <span class="highlight">"Cartoon & Cereal"</span>, <span class="highlight">"The Heart Pt. 3"</span>, <span class="highlight">"Westside, Right On Time"</span>, <span class="highlight">"Black Friday"</span>, <span class="highlight">"Luther"</span> (feat. <span class="highlight">SZA</span>)—these under-the-radar tracks reveal his lyrical finesse and early Compton swagger, perfect for the discerning listener.</p>
+            <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">"Not Like Us"</span>, <span class="highlight">"Luther"</span>, <span class="highlight">"TV Off"</span> (from <em><span class="highlight">GNX</span></em>)—2024-2025’s anthems pulse with West Coast energy and feud-fueled intensity, showcasing his evolution post-Drake clash.</p>
         </div>
+        <br>
+        <h2>Drama & Controversies</h2>
+        <br>
+        <p>Kendrick’s career has been marked by bold confrontations. Early tensions with <span class="highlight">Drake</span> surfaced in 2013’s <span class="highlight">"Control"</span> verse, igniting a rivalry that simmered until 2024. The feud exploded with <span class="highlight">Future</span> and <span class="highlight">Metro Boomin</span>’s <span class="highlight">"Like That"</span>, escalating through diss tracks like <span class="highlight">"Not Like Us"</span>, where Kendrick accused Drake of pedophilia—claims Drake denied. The track’s cultural dominance led to five <span class="highlight">2025 Grammy</span> wins, but also a legal battle with Drake against <span class="highlight">Universal Music Group (UMG)</span> for alleged promotion bias, settled in <span class="highlight">February 2025</span>. Kendrick’s <span class="highlight">Super Bowl LIX</span> halftime show (February 9, 2025) with <span class="highlight">SZA</span> drew boos from some Drake fans, while his X posts critique industry “enslavement,” hinting at ongoing tensions as of <span class="highlight">March 2025</span>.</p>
         <br>
         <h2>Legacy</h2>
         <br>
-        <p>Kendrick Lamar's impact extends far beyond music into cultural and social realms. His anthem <span class="highlight">"Alright"</span> became a rallying cry for the Black Lives Matter movement, while his unflinching examination of his own flaws and struggles has created space for discussions about vulnerability in hip-hop. As the first rapper to win a Pulitzer Prize, he has shattered barriers for hip-hop's recognition in traditionally exclusive cultural institutions. More than just a rap superstar, Kendrick has established himself as a generational voice whose work will be studied alongside literature and poetry for decades to come.</p>
+        <p>Kendrick Lamar’s legacy towers over hip-hop as a revolutionary force. With <span class="highlight">17 Grammy</span> wins, a <span class="highlight">Pulitzer Prize</span> for <em><span class="highlight">DAMN.</span></em>, and over <span class="highlight">70 million records sold</span>, he’s the first rapper to bridge street poetry with academic acclaim. His anthem <span class="highlight">"Alright"</span> fueled the <span class="highlight">Black Lives Matter</span> movement, while <span class="highlight">GNX</span>’s 2025 <span class="highlight">Super Bowl LIX</span> performance solidified his global stage. Influencing <span class="highlight">J. Cole</span>, <span class="highlight">Chance the Rapper</span>, and beyond, his introspective style—seen in <span class="highlight">"Mother I Sober"</span>—has redefined vulnerability. As <span class="highlight">pgLang</span> expands his creative empire, Kendrick’s work promises to resonate in classrooms and culture for generations, a testament to his enduring impact as of <span class="highlight">March 2025</span>.</p>
         <br>
         <h2>By the Numbers</h2>
         <br>
@@ -115,108 +204,142 @@
             <h3><span class="highlight">Chart Performance</span></h3>
             <div class="table-container">
                 <table class="trend-table">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Year</th>
-                        <th>Billboard Hot 100(US)</th>
-                        <th>Canadian Hot 100(CAN)</th>
-                        <th>UK Singles Chart(UK)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="highlight">"Swimming Pools (Drank)"</span></td>
-                        <td>2012</td>
-                        <td>17</td>
-                        <td>32</td>
-                        <td>63</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"Poetic Justice"</span> (feat. Drake)</td>
-                        <td>2013</td>
-                        <td>26</td>
-                        <td>43</td>
-                        <td>85</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"Alright"</span></td>
-                        <td>2015</td>
-                        <td>81</td>
-                        <td>N/A</td>
-                        <td>109</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"HUMBLE."</span></td>
-                        <td>2017</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>6</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"N95"</span></td>
-                        <td>2022</td>
-                        <td>3</td>
-                        <td>8</td>
-                        <td>20</td>
-                    </tr>
-                </tbody>
-            </table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Year</th>
+                            <th>Billboard Hot 100 (US)</th>
+                            <th>Canadian Hot 100 (CAN)</th>
+                            <th>UK Singles Chart (UK)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">"Swimming Pools (Drank)"</span></td>
+                            <td>2012</td>
+                            <td>17</td>
+                            <td>32</td>
+                            <td>63</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Poetic Justice"</span> (feat. <span class="highlight">Drake</span>)</td>
+                            <td>2013</td>
+                            <td>26</td>
+                            <td>43</td>
+                            <td>85</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Alright"</span></td>
+                            <td>2015</td>
+                            <td>81</td>
+                            <td>N/A</td>
+                            <td>109</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"HUMBLE."</span></td>
+                            <td>2017</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"N95"</span></td>
+                            <td>2022</td>
+                            <td>3</td>
+                            <td>8</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Like That"</span> (with <span class="highlight">Future</span> & <span class="highlight">Metro Boomin</span>)</td>
+                            <td>2024</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Not Like Us"</span></td>
+                            <td>2024</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Luther"</span> (feat. <span class="highlight">SZA</span>)</td>
+                            <td>2024</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"TV Off"</span> (feat. <span class="highlight">Lefty Gunplay</span>)</td>
+                            <td>2024</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>7</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-<br>
-    <div class="glass-card">
-        <h3><span class="highlight">Album Certifications</span></h3>
-        <div class="table-container">
-            <table class="trend-table">
-                <thead>
-                    <tr>
-                        <th>Album</th>
-                        <th>Certification</th>
-                        <th>Units (Millions)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="highlight">good kid, m.A.A.d city</span></td>
-                        <td>3× Platinum</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">To Pimp a Butterfly</span></td>
-                        <td>Platinum</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">DAMN.</span></td>
-                        <td>3× Platinum</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Black Panther: The Album</span></td>
-                        <td>Platinum</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Mr. Morale & the Big Steppers</span></td>
-                        <td>Gold</td>
-                        <td>0.5</td>
-                    </tr>
-                </tbody>
-            </table>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Album Certifications</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">good kid, m.A.A.d city</span></td>
+                            <td>4× Platinum</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">To Pimp a Butterfly</span></td>
+                            <td>2× Platinum</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">DAMN.</span></td>
+                            <td>5× Platinum</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Black Panther: The Album</span></td>
+                            <td>2× Platinum</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Mr. Morale & the Big Steppers</span></td>
+                            <td>Platinum</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">GNX</span></td>
+                            <td>Platinum</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-<br>
-    <div class="glass-card">
-        <h3><span class="highlight">Sources</span></h3>
-        <p>
-            <a href="https://en.wikipedia.org/wiki/Kendrick_Lamar_discography">Kendrick Lamar discography (Wikipedia)</a> | 
-            <a href="https://en.wikipedia.org/wiki/Kendrick_Lamar">Kendrick Lamar (Wikipedia)</a> | 
-            <a href="https://www.billboard.com/artist/kendrick-lamar/">Billboard artist page</a> | 
-            <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
-            <a href="https://www.rollingstone.com/music/music-lists/kendrick-lamar-albums-ranked-1234750100/">Rolling Stone album rankings</a>
-        </p>
-    </div>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Sources</span></h3>
+            <p>
+                <a href="https://en.wikipedia.org/wiki/Kendrick_Lamar_discography">Kendrick Lamar discography (Wikipedia)</a> | 
+                <a href="https://en.wikipedia.org/wiki/Kendrick_Lamar">Kendrick Lamar (Wikipedia)</a> | 
+                <a href="https://www.billboard.com/artist/kendrick-lamar/">Billboard artist page</a> | 
+                <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+                <a href="https://www.rollingstone.com/music/music-lists/kendrick-lamar-albums-ranked-1234750100/">Rolling Stone album rankings</a> | 
+                <a href="https://www.grammy.com/artists/kendrick-lamar/15931">Grammy history</a>
+            </p>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -225,14 +348,38 @@
     <script src="script.js"></script>
 
     <script>
-        // Ensure all glass cards on this page have the right styling
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card').forEach(card => {
+            // Style for glass cards (excluding the image container)
+            document.querySelectorAll('.glass-card:not(.kendrick-image-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
+            });
+            // Add hover effects for glass cards
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 20px rgba(153, 0, 255, 0.3)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                });
+            });
+            // Add hover effects for the image container, matching Carti behavior
+            document.querySelectorAll('.kendrick-image-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
