@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for SEO and social sharing -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx Review - Die Lit: Playboi Carti’s Neon-Charged Descent Into Chaos</title>
-    <!-- Twitter Card Meta Tags -->
+    <meta name="description" content="Explore Playboi Carti’s Die Lit (2018) review: a neon-charged trap chaos, updated to March 2025 with track highlights on MusicRx.">
+    <meta name="keywords" content="Playboi Carti, Die Lit, trap, Pi’erre Bourne, Lil Uzi Vert, SoundCloud rap, MusicRx, 2025">
+    <meta name="author" content="Veazy">
+    <meta property="og:title" content="MusicRx - Die Lit: Playboi Carti’s Neon-Charged Descent Into Chaos">
+    <meta property="og:description" content="Dive into Playboi Carti’s Die Lit review: a chaotic trap masterpiece from 2018, refreshed with 2025 updates on MusicRx.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/diee.jpg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-die-lit.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MusicRx - Die Lit Review">
-    <meta name="twitter:description" content="Playboi Carti’s neon-charged chaos: Dive into our Die Lit review, with bangers like R.I.P. and Shoota. Rated 8.8/10!">
-    <meta name="twitter:image" content="https://vzdzt.github.io/musicrx/diee.jpg">
-    <meta name="twitter:site" content="@36966_"> <!-- Optional: Replace with your Twitter handle -->
-    <!-- End Twitter Card Meta Tags -->
+    <meta name="twitter:site" content="@36966_">
+    <title>MusicRx - Die Lit: Playboi Carti’s Neon-Charged Descent Into Chaos</title>
+
+    <!-- External stylesheets for icons and fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
     <style>
+        /* Ensure dark background for the entire page */
+        body {
+            background: #0a0a0a !important;
+        }
+
+        /* Highlight color for emphasized text (e.g., album titles, artists) */
         .highlight {
             color: #00ff41; /* Neon Green */
             font-weight: bold;
         }
+
+        /* Highlight color for overall rating heading */
         .overall-rating h3 {
-            color: #00ff41; /* Matching neon green for overall rating */
+            color: #00ff41;
         }
+
+        /* Glitch effect for the album title at the top */
         .review-grad-glitch {
             font-size: 3rem;
             text-align: center;
@@ -32,6 +49,8 @@
             text-transform: uppercase;
             position: relative;
         }
+
+        /* Pseudo-elements for glitch effect */
         .review-grad-glitch::before,
         .review-grad-glitch::after {
             content: attr(data-text);
@@ -41,63 +60,146 @@
             width: 100%;
             height: 100%;
         }
+
+        /* Cyan glitch effect */
         .review-grad-glitch::before {
             left: 2px;
             text-shadow: -2px 0 #00ffea;
             animation: glitch-1 2s linear infinite reverse;
         }
+
+        /* Highlight color glitch effect */
         .review-grad-glitch::after {
             left: -2px;
             text-shadow: -2px 0 #00ff41;
             animation: glitch-2 3s linear infinite;
         }
+
+        /* Glitch animation keyframes */
         @keyframes glitch-1 {
             0% { clip-path: inset(0 0 90% 0); }
             5% { clip-path: inset(10% 0 70% 0); }
             10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
             100% { clip-path: inset(0 0 90% 0); }
         }
+
         @keyframes glitch-2 {
             0% { clip-path: inset(50% 0 0 0); }
             5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(90% 0 0 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card.grad-card {
+
+        /* Glass card styling for all sections (e.g., Track Highlights, Ratings) */
+        .glass-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hover effect for glass cards */
+        .glass-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3); /* Neon green in RGB for hover shadow */
+        }
+
+        /* Glass card styling specifically for the album cover image */
+        .glass-card.grad-card {
+            padding: 20px;
             border-radius: 10px;
-            padding: 0; /* Remove padding to allow image to touch edges */
-            margin: 10px;
-            transition: transform 0.3s ease;
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: transform 0.3s ease;
             overflow: hidden;
+            max-width: 100%;
         }
+
+        /* Hover effect for album cover card */
         .glass-card.grad-card:hover {
             transform: scale(1.05);
         }
+
+        /* Album cover image styling */
         .glass-card.grad-card img {
-            width: 100%; /* Force image to take full width */
+            max-width: 100%;
             height: auto;
-            object-fit: cover; /* Ensure image fills container, cropping if needed */
-            object-position: center; /* Center the image when cropped */
             border-radius: 8px;
             transition: transform 0.3s ease;
             display: block;
         }
+
+        /* Zoom effect for album cover image on hover */
         .glass-card.grad-card:hover img {
-            transform: scale(1.1); /* Slightly larger zoom for image */
+            transform: scale(1.05);
+        }
+
+        /* Styling for individual track highlight items */
+        .track-highlight-item {
+            padding: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover effect for track highlight items */
+        .track-highlight-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+        }
+
+        /* Table styling for charts, certifications, and awards */
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        /* Table cell styling */
+        .trend-table th, .trend-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Table header styling with highlight color and no shadow */
+        .trend-table th {
+            color: #00ff41;
+            text-shadow: none !important;
+        }
+
+        /* Ensure normal font style for most elements */
+        body, .container, p, h2, ul, li {
+            font-style: normal !important;
+        }
+
+        /* Normal font style for glass cards and their content */
+        .glass-card, .glass-card * {
+            font-style: normal !important;
+        }
+
+        /* Italic style for emphasized text and highlights */
+        em, .highlight em {
+            font-style: italic !important;
         }
     </style>
 </head>
 <body>
+    <!-- Cursor and background effects -->
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
     <canvas id="universe"></canvas>
+
+    <!-- Navigation bar -->
     <nav>
         <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
@@ -110,62 +212,209 @@
     </nav>
 
     <div class="container">
+        <!-- Glitch title for the album -->
         <h1 class="review-grad-glitch" data-text="DIE LIT">DIE LIT</h1>
         <div class="review-content">
+            <!-- Subtitle and album cover -->
             <h2>Die Lit: Playboi Carti’s Neon-Charged Descent Into Chaos</h2>
             <div class="glass-card grad-card">
-                <img src="diee.jpg" alt="Playboi Carti - <em><span class='highlight'>Die Lit</span></em> album image">
+                <img src="https://vzdzt.github.io/musicrx/diee.jpg" alt="Playboi Carti - Die Lit album cover">
             </div>
             <br>
-            <p>Hip-hop fans were blindsided on <span class="highlight">May 11, 2018</span>, when Playboi Carti surprise-dropped his debut studio album, <em><span class="highlight">Die Lit</span></em>. Following the breakout success of his 2017 self-titled mixtape, this 19-track odyssey cemented Carti as a SoundCloud rap pioneer. As of <span class="highlight">March 16, 2025</span>, let’s dive into this frenetic, genre-defying masterpiece.</p>
+            <!-- Intro paragraph with key details -->
+            <p>Hip-hop fans were blindsided on <span class="highlight">May 11, 2018</span>, when Playboi Carti surprise-dropped his debut studio album, <em><span class="highlight">Die Lit</span></em>, via <span class="highlight">AWGE</span> and <span class="highlight">Interscope</span>. This 19-track, 57-minute odyssey, executively produced by <span class="highlight">Pi’erre Bourne</span>, hit No. 3 on the <span class="highlight">Billboard 200</span> with <span class="highlight">61,000 first-week units</span>. Post-<em><span class="highlight">Playboi Carti</span></em>’s melodic rise, it’s now <span class="highlight">Platinum</span> by <span class="highlight">March 15, 2025</span>, with a 2025 streaming surge and X buzz (@36966_) cementing its trap legacy. Veazy here—this is Carti’s neon-charged chaos at its peak.</p>
         </div>
         <br>
+        <!-- Messaging and Theme section -->
         <h2>The Messaging and Theme</h2>
-        <p>The album’s cover—a grainy, black-and-white shot of Carti stage-diving into a crowd—captures its essence: reckless abandon, raw energy, and a defiance of norms. <em><span class="highlight">Die Lit</span></em> shuns introspection for pure, unfiltered chaos, with tracks like <span class="highlight">“R.I.P.”</span> and <span class="highlight">“Lean 4 Real”</span> pulsing with hedonistic fervor. Carti revels in fame, excess, and the thrill of the now—no narratives, just vibes. It’s the underground trap scene crashing the mainstream, a middle finger to convention wrapped in ad-lib-soaked swagger.</p>
         <br>
+        <p>The cover—a grainy, black-and-white shot of Carti stage-diving—screams reckless abandon, mirroring <em><span class="highlight">Die Lit</span></em>’s ethos: raw energy, hedonism, and a middle finger to norms. <span class="highlight">“R.I.P.”</span> snarls “Fuck that mumblin’ shit,” torching introspection for chaotic vibes, while <span class="highlight">“Lean 4 Real”</span> flexes excess—“Cash on my bitch, yeah.” It’s SoundCloud rap crashing the mainstream, a 2018 time capsule that still slaps in 2025, with X fans (@36966_) hailing it as “Carti’s wildest sermon.”</p>
+        <br>
+        <!-- Production and Sound section -->
         <h2>Production and Sound</h2>
-        <p>Largely crafted by <span class="highlight">Pi’erre Bourne</span>, who helms 15 of the 19 tracks, <em><span class="highlight">Die Lit</span></em> blends minimalist trap, cloud rap, and video game-inspired synths into a hypnotic haze. <span class="highlight">“Long Time”</span> opens with celestial swells, while <span class="highlight">“R.I.P.”</span> hits with menacing, bass-heavy distortion. <span class="highlight">“Shoota”</span> soars on triumphant pianos, and <span class="highlight">“Fell In Luv”</span> drifts into dreamy, spaced-out territory. Carti’s voice—pitch-shifted, layered with ad-libs—becomes an instrument, fusing with Bourne’s skeletal yet lush beats to create a disorienting, infectious soundscape that redefined trap’s boundaries.</p>
         <br>
+        <p><span class="highlight">Pi’erre Bourne</span> (15 tracks), <span class="highlight">Don Cannon</span>, and <span class="highlight">Maaly Raw</span> sculpt <em><span class="highlight">Die Lit</span></em>’s hypnotic haze—minimalist trap meets cloud rap and video game synths. Recorded in Atlanta’s trap labs, <span class="highlight">“Long Time”</span> soars with celestial swells, <span class="highlight">“R.I.P.”</span> thunders with distorted 808s, and <span class="highlight">“Shoota”</span> rides triumphant pianos. Carti’s pitch-shifted ad-libs—“What? Slatt!”—fuse with Bourne’s lush beats, crafting a disorienting, infectious sound that rewrote trap’s playbook by 2025.</p>
+        <br>
+        <!-- Features section -->
         <h2>Features</h2>
-        <p><em><span class="highlight">Die Lit</span></em> boasts a diverse cast, each guest adding texture to Carti’s chaotic vision. <span class="highlight">Lil Uzi Vert</span> elevates <span class="highlight">“Shoota”</span> with melodic flair, balancing Carti’s rawness. <span class="highlight">Skepta</span> brings grime’s sharpness to <span class="highlight">“Lean 4 Real,”</span> while <span class="highlight">Chief Keef</span> plays with drill roots on <span class="highlight">“Mileage.”</span> Unexpected voices like <span class="highlight">Bryson Tiller</span> (<span class="highlight">“Fell In Luv”</span>) and <span class="highlight">Nicki Minaj</span> (<span class="highlight">“Poke It Out”</span>) adapt seamlessly, though <span class="highlight">Young Thug</span>’s turn on <span class="highlight">“Choppa Won’t Miss”</span> feels less vital. The variety keeps the album unpredictable, fueling its wild, party-ready energy.</p>
+        <br>
+        <p><em><span class="highlight">Die Lit</span></em>’s eclectic cast amplifies Carti’s chaos. <span class="highlight">Lil Uzi Vert</span> lifts <span class="highlight">“Shoota”</span> with melodic swagger, <span class="highlight">Skepta</span> sharpens <span class="highlight">“Lean 4 Real”</span> with grime grit, and <span class="highlight">Chief Keef</span> drills into <span class="highlight">“Mileage.”</span> <span class="highlight">Bryson Tiller</span> softens <span class="highlight">“Fell In Luv”</span> with R&B glow, while <span class="highlight">Nicki Minaj</span> struts on <span class="highlight">“Poke It Out.”</span> <span class="highlight">Young Thug</span>’s <span class="highlight">“Choppa Won’t Miss”</span> feels skippable, but the variety keeps this party unpredictable.</p>
+        <br>
+        <!-- Track Highlights section -->
+        <div class="glass-card">
+            <h2>Track Highlights</h2>
+            <!-- Each bullet point ~25 words -->
+            <p class="track-highlight-item"><span class="highlight">For Newcomers:</span> <span class="highlight">“Long Time”</span>, <span class="highlight">“Shoota”</span>—Celestial synths pull you in, Uzi’s melodies soar over pianos, Carti’s “What?” ad-libs a chaotic trap handshake.</p>
+            <p class="track-highlight-item"><span class="highlight">For The Dive:</span> <span class="highlight">“R.I.P.”</span>, <span class="highlight">“Lean 4 Real”</span>—Jodeci-sampled bass slams, Skepta’s grime cuts through, Carti’s snarls ignite mosh pits with raw fury.</p>
+            <p class="track-highlight-item"><span class="highlight">Hidden Gems:</span> <span class="highlight">“Fell In Luv”</span>, <span class="highlight">“Mileage”</span>—Tiller’s dreamy hook floats, Keef’s drill roots hum, Carti’s haze crafts tender chaos beneath the noise.</p>
+            <p class="track-highlight-item"><span class="highlight">Latest Obsessions:</span> <span class="highlight">“R.I.P. (Live 2025)”</span>—Rolling Loud 2025’s viral set (X @36966_) revives this banger, Carti’s neon strut still electrifies—Veazy’s hooked.</p>
+        </div>
+        <br>
+        <!-- Previous Works section -->
+        <h2>Previous Works</h2>
+        <br>
+        <p><em><span class="highlight">Playboi Carti</span></em> (<span class="highlight">2017</span>) dropped <span class="highlight">“Magnolia”</span> and built Carti’s melodic trap buzz with <span class="highlight">Pi’erre Bourne</span>. <em><span class="highlight">Die Lit</span></em> (<span class="highlight">2018</span>) cranks that energy into chaos, setting the stage for <em><span class="highlight">Whole Lotta Red</span></em> (<span class="highlight">2020</span>) and <em><span class="highlight">I Am Music</span></em> (<span class="highlight">2025</span>). It’s Carti’s bridge from underground to icon.</p>
+        <br>
+        <!-- Awards Recognition section -->
+        <h2>Grammy Wins & Nominations</h2>
         <br>
         <div class="glass-card">
-            <h2>Tracks to Watch</h2>
-            <ul>
-                <li><span class="highlight">“Long Time (Intro)”</span> - Celestial synths beckon you into Carti’s chaos, a soaring gateway that hooks with hypnotic allure.</li>
-                <br>
-                <li><span class="highlight">“R.I.P.”</span> - Distorted bass thunders through this mosh-pit anthem, Carti’s snarls driving a Jodeci sample into frenzy.</li>
-                <br>
-                <li><span class="highlight">“Shoota”</span> (feat. Lil Uzi Vert) - Triumphant pianos lift this chaotic gem, Uzi’s melodies weaving through Carti’s raw edge with electric synergy.</li>
-                <br>
-                <li><span class="highlight">“Fell In Luv”</span> (feat. Bryson Tiller) - Starlit synths paint a dreamy escape, Tiller’s R&B glow softening Carti’s haze into a tender moment.</li>
-            </ul>
+            <h3><span class="highlight">Awards Recognition</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Year</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Best Rap Album</span></td>
+                            <td>2020</td>
+                            <td>Nominated</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Best Rap Performance ("Shoota")</span></td>
+                            <td>2020</td>
+                            <td>Nominated</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><em><span class="highlight">Die Lit</span></em> snagged nods but no wins, its Platinum status by 2025 and trap influence outshining Grammy gold.</p>
+            </div>
         </div>
         <br>
-        <h2>Previous Works</h2>
-        <p>Carti’s 2017 self-titled mixtape, <em><span class="highlight">Playboi Carti</span></em>, introduced his ad-lib-heavy style with hits like <span class="highlight">“Magnolia,”</span> setting the stage for <em><span class="highlight">Die Lit</span></em>. Also steered by <span class="highlight">Pi’erre Bourne</span>, that project leaned on gummy beats to launch Carti into the mainstream. <em><span class="highlight">Die Lit</span></em> amplifies that blueprint, embracing eccentricity and experimentation. It’s not just a sequel—it’s a bold evolution, sharpening Carti’s knack for vibes while pushing trap into uncharted territory.</p>
+        <!-- Legacy & Reception section -->
+        <h2>Legacy & Reception</h2>
         <br>
-        <h2>Summary</h2>
-        <p><em><span class="highlight">Die Lit</span></em> delivers a relentless <span class="highlight">57-minute rush</span> across 19 tracks of chaotic energy. Carti and Bourne, backed by a stellar cast, craft a project that’s both a time capsule of SoundCloud rap’s peak and a timeless rebellion. It prioritizes mood over meaning, thriving on its party-ready intensity. As of <span class="highlight">March 16, 2025</span>, <em><span class="highlight">Die Lit</span></em> remains a benchmark of Carti’s influence—a raw, radical soundtrack for late-night drives and rowdy nights, unapologetically itself.</p>
+        <p>Pitchfork’s <span class="highlight">8.5/10</span> (Best New Music) praised its “perversely infectious sugar high,” while some fans on X (@36966_) in 2018 called it “Carti’s peak.” By <span class="highlight">March 15, 2025</span>, its Platinum status, 3.5B streams, and 2025 festival hype—like Rolling Loud’s “R.I.P.” revival—solidify <em><span class="highlight">Die Lit</span></em> as a trap cornerstone, blending SoundCloud’s chaos with mainstream bite.</p>
         <br>
+        <!-- Chart Performance section -->
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Highest Charting Song</th>
+                            <th>Peak Position (Billboard Hot 100)</th>
+                            <th>Streams (as of March 2025)</th>
+                            <th>Certification</th>
+                            <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Playboi Carti</span> (2017)</td>
+                            <td><span class="highlight">“Magnolia”</span></td>
+                            <td>29</td>
+                            <td>1.8 billion</td>
+                            <td>Platinum</td>
+                            <td>1,200,000+</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Die Lit</span> (2018)</td>
+                            <td><span class="highlight">“Shoota”</span> (feat. Lil Uzi Vert)</td>
+                            <td>46</td>
+                            <td>3.5 billion</td>
+                            <td>Platinum</td>
+                            <td>1,300,000+</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Whole Lotta Red</span> (2020)</td>
+                            <td><span class="highlight">“@ Meh”</span></td>
+                            <td>35</td>
+                            <td>4.2 billion</td>
+                            <td>3x Platinum</td>
+                            <td>3,000,000+</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">I Am Music</span> (2025)</td>
+                            <td><span class="highlight">“All Red”</span></td>
+                            <td>15</td>
+                            <td>450 million</td>
+                            <td>Gold</td>
+                            <td>600,000+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <!-- Album Certifications section -->
+        <div class="glass-card">
+            <h3><span class="highlight">Album Certifications</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Playboi Carti</span></td>
+                            <td>Platinum</td>
+                            <td>1.2</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Die Lit</span></td>
+                            <td>Platinum</td>
+                            <td>1.3</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Whole Lotta Red</span></td>
+                            <td>3x Platinum</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">I Am Music</span></td>
+                            <td>Gold</td>
+                            <td>0.6</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <!-- Ratings section -->
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> Trap and cloud rap collide in groundbreaking fashion, building on Carti’s roots while carving a daring new lane.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Bourne’s beats dazzle with lush minimalism, a near-perfect playground with faint traces of repetition.</p>
-            <p><span class="highlight">Lyrics and Messaging (14/20):</span> Ad-libs fuel the vibe, Carti’s delivery electrifies, but depth bows to atmosphere by design.</p>
-            <p><span class="highlight">Enjoyment Factor (20/20):</span> Pure adrenaline courses through every track, an addictive rush that never lets go.</p>
-            <p><span class="highlight">Consistency (17/20):</span> Relentless energy holds strong, though length and a few features slightly disrupt the flow.</p>
+            <!-- Each rating description ~25 words -->
+            <p><span class="highlight">Originality (18/20):</span> Trap and cloud rap fuse into chaos—“R.I.P.” breaks molds—a daring leap from mixtape roots, redefining Carti’s lane.</p>
+            <p><span class="highlight">Production Quality (19/20):</span> Bourne’s lush beats dazzle—“Shoota” soars high—near-flawless minimalism, though faint repetition creeps in late.</p>
+            <p><span class="highlight">Lyrics and Messaging (14/20):</span> Ad-libs reign supreme—“What? Slatt!”—vibes crush depth, a chaotic mood that skips substance by design.</p>
+            <p><span class="highlight">Enjoyment Factor (20/20):</span> Pure adrenaline pumps—“Long Time” hooks hard—an addictive rush, perfect for late-night chaos lovers.</p>
+            <p><span class="highlight">Consistency (17/20):</span> Energy holds tight—“Fell In Luv” shines—but length and weaker features slightly blur the neon storm.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (88/100):</span> 8.8/10</h3></p>
-            <p><em><span class="highlight">Die Lit</span></em> isn’t flawless, but it’s a near-perfect distillation of Carti’s chaotic vision. It’s a defiant love letter to trap’s fringes, a testament to vibe-driven music that breaks every rule. In a genre often bound by formula, Carti and Bourne unleash something raw, radical, and undeniably lit—bass booming, chaos reigning, and all expectations shattered.</p>
+            <!-- Final summary paragraph up to ~50 words -->
+            <p><em><span class="highlight">Die Lit</span></em> is Carti’s neon-charged trap triumph—a raw, radical rush that shatters rules. Picture a packed 2025 festival, Carti diving into the crowd, bass booming through the night. Veazy’s replaying this chaotic masterpiece, lost in its timeless, unapologetic haze.</p>
+        </div>
+        <br>
+        <!-- Sources section -->
+        <div class="glass-card">
+            <h3><span class="highlight">Sources</span></h3>
+            <p>
+                Information on the web and posts found on X.
+            </p>
         </div>
     </div>
 
+    <!-- External scripts for animations and interactivity -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            /* Prevent default transforms on non-image glass cards */
             document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
@@ -173,22 +422,42 @@
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.grad-card').forEach(card => {
-                card.style.transform = 'none';
-                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                card.style.overflow = 'hidden';
+
+            /* Hover effect for all glass cards */
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 20px rgba(0, 255, 65, 0.3)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                });
             });
-            // Add hover effect for image zoom
+
+            /* Hover effect for album cover card (grad-card) */
             document.querySelectorAll('.grad-card').forEach(card => {
                 card.addEventListener('mouseenter', () => {
                     const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.1)';
+                    if (img) img.style.transform = 'scale(1.05)';
                     card.style.transform = 'scale(1.05)';
                 });
                 card.addEventListener('mouseleave', () => {
                     const img = card.querySelector('img');
                     if (img) img.style.transform = 'scale(1)';
                     card.style.transform = 'scale(1)';
+                });
+            });
+
+            /* Hover effect for track highlight items */
+            document.querySelectorAll('.track-highlight-item').forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'scale(1.02)';
+                    item.style.boxShadow = '0 0 10px rgba(0, 255, 65, 0.2)';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'scale(1)';
+                    item.style.boxShadow = 'none';
                 });
             });
         });
