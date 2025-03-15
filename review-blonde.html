@@ -3,81 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - Blonde Review</title>
+    <title>MusicRx - Blonde: Frank Ocean’s Luminous Soul Unraveled</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    .highlight {
-        color: #39ff14; /* Fuchsia */
-        font-weight: bold;
-    }
-
-    /* Custom graduation glitch effect */
-    .review-grad-glitch {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        color: #39ff14; /* Fuchsia */
-        text-shadow: 0 0 10px #39ff14;
-        font-family: 'Syncopate', sans-serif;
-        text-transform: uppercase;
-        position: relative;
-    }
-
-    .review-grad-glitch::before,
-    .review-grad-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .review-grad-glitch::before {
-        left: 2px;
-        text-shadow: -2px 0 #00ffea;
-        animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .review-grad-glitch::after {
-        left: -2px;
-        text-shadow: -2px 0 #39ff14;
-        animation: glitch-2 3s linear infinite;
-    }
-
-    /* Graduation image card with zoom effect */
-    .glass-card.grad-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        transition: transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .glass-card.grad-card:hover {
-        transform: scale(1.05);
-    }
-
-    .glass-card.grad-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .glass-card.grad-card:hover img {
-        transform: scale(1.05);
-    }
-</style>
+    <style>
+        .highlight {
+            color: #39ff14; /* Neon Green */
+            font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #39ff14; /* Matching neon green for overall rating */
+        }
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #39ff14;
+            text-shadow: 0 0 10px #39ff14;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #39ff14;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card.blonde-card {
+            padding: 0; /* Image touches edges */
+            border-radius: 10px; /* Matches A Great Chaos template */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.blonde-card:hover {
+            transform: scale(1.05);
+        }
+        .glass-card.blonde-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card.blonde-card:hover img {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -97,51 +114,56 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="Blonde">Blonde</h1>
         <div class="review-content">
-            <h2>Blonde: Frank Ocean’s Intimate Masterpiece Unveiled</h2>
-<div class="glass-card grad-card">
-                <img src="blonde.jpeg" alt="Frank Ocean Blonde album image">
+            <h2>Blonde: Frank Ocean’s Luminous Soul Unraveled</h2>
+            <div class="glass-card blonde-card">
+                <img src="blonde.jpeg" alt="Frank Ocean - <em><span class='highlight'>Blonde</span></em> album image">
             </div>
             <br>
-    <p>On <span class="highlight">August 20, 2016</span>, Frank Ocean emerged from a four-year silence to drop <em>Blonde</em>, his second studio album, independently released after fulfilling his Def Jam contract with the visual project <em>Endless</em>. Following the critical acclaim of 2012’s <em>Channel Orange</em>, <em>Blonde</em> arrived with seismic anticipation, delivering a 17-track tapestry of raw emotion, sonic experimentation, and elusive genius. As of <span class="highlight">March 10, 2025</span>, it stands as a timeless benchmark in alternative R&B—let’s peel back its layers.</p>
-</div>
-        <br>
-         <h2>The Messaging and Theme</h2>
-    <p><em>Blonde</em>’s minimalist cover—a photo of Ocean with wet, green-dyed hair, snapped by <span class="highlight">Wolfgang Tillmans</span>—hints at its vulnerability and fluidity. The album explores love, loss, identity, and memory with a diaristic intimacy, weaving fragmented narratives of past relationships and self-reflection. Tracks like <span class="highlight">“Nikes”</span> critique materialism and mourn lost icons, while <span class="highlight">“Pink + White”</span> bathes in nostalgic warmth. There’s no rigid storyline—just fleeting moments and emotions, delivered in Ocean’s signature stream-of-consciousness style, making it feel like a deeply personal confession set to music.</p>
-        <br>
-        <h2>Production and Sound</h2>
-    <p>Ocean co-produced <em><span class="highlight">Blonde</span></em> with a stellar lineup including <span class="highlight">James Blake, Rick Rubin, Om’Mas Keith, and Malay</span>, crafting a sound that defies genre. The album blends R&B with ambient, pop, and experimental textures—think sparse guitar riffs, warped synths, and pitch-shifted vocals. <span class="highlight">“Solo”</span> pairs haunting organ drones with introspective lyrics, while <span class="highlight">“Self Control”</span> layers ethereal harmonies over delicate strings. The production is understated yet intricate, prioritizing mood over bombast, with moments of silence and distortion that amplify its emotional weight—a sonic diary as unpredictable as Ocean himself.</p>
-    <br>
-    <h2>Features</h2>
-    <p><em><span class="highlight">Blonde</span></em> leans on subtle, tasteful contributions rather than showy guest verses. <span class="highlight">Beyoncé</span> hums angelic backing vocals on <span class="highlight">“Pink + White”</span>, while <span class="highlight">André 3000</span> delivers a rapid-fire rap on <span class="highlight">“Solo (Reprise)”</span>, a rare burst of intensity. <span class="highlight">James Blake</span> haunts <span class="highlight">“White Ferrari”</span> with ghostly coos, and contributions from <span class="highlight">Kendrick Lamar, Yung Lean, and Tyler, The Creator</span> appear as sampled interludes or background textures. These cameos enhance Ocean’s vision without overshadowing it, keeping the focus on his singular artistry.</p>
-        <br>
-        <div class="glass-card">
-                <h2>Tracks to Watch</h2>
-    <ul>
-        <li><span class="highlight">“Nikes”</span> - A sprawling opener with pitch-shifted vocals and biting social commentary.</li>
-<br>
-        <li><span class="highlight">“Pink + White”</span> - A soulful, summery standout with lush production and Beyoncé’s touch.</li>
-<br>
-        <li><span class="highlight">“Self Control”</span> - A heartbreak anthem with soaring falsettos and aching beauty.</li>
-<br>
-        <li><span class="highlight">“White Ferrari”</span> - A tender, minimalist closer that lingers like a fading memory.</li>
-    </ul>
+            <p>On <span class="highlight">August 20, 2016</span>, Frank Ocean emerged from a four-year silence to drop <em><span class="highlight">Blonde</span></em>, his second studio album, independently released after fulfilling his Def Jam contract with the visual project <em><span class="highlight">Endless</span></em>. Following the critical acclaim of 2012’s <em><span class="highlight">Channel Orange</span></em>, <em><span class="highlight">Blonde</span></em> arrived with seismic anticipation, delivering a 17-track tapestry of raw emotion, sonic experimentation, and elusive genius. Certified Platinum by 2021, it stands as a timeless benchmark in alternative R&B as of <span class="highlight">March 10, 2025</span>—let’s peel back its layers.</p>
         </div>
         <br>
-           <h2>Previous Works</h2>
-    <p>Before <em><span class="highlight">Blonde</span></em>, Ocean’s 2011 mixtape <em><span class="highlight">Nostalgia, Ultra</span></em> introduced his knack for reimagining classics with soulful flair, while <em><span class="highlight">Channel Orange</span></em> in 2012 solidified his status as an R&B visionary with hits like “Thinkin Bout You.” <em><span class="highlight">Blonde</span></em> builds on that foundation, stripping away <em><span class="highlight">Channel Orange</span></em>'s polished storytelling for a rawer, more abstract approach. Where his debut was a vivid snapshot of young adulthood, <em><span class="highlight">Blonde</span></em> feels like a fragmented dream—less accessible but infinitely more introspective, marking Ocean’s evolution into a reclusive auteur.</p>
+        <h2>The Messaging and Theme</h2>
         <br>
-    <h2>Summary</h2>
-    <p><em><span class="highlight">Blonde</span></em> is a <span class="highlight">60-minute sonic poem</span> that rewards patience and close listening. Its beauty lies in its subtlety—Ocean trades hooks for atmosphere, crafting an album that’s as elusive as it is profound. The lack of mainstream bangers frustrated some fans expecting <em>Channel Orange 2</em>, but its emotional depth and innovative soundscapes have cemented its cult status. As of <span class="highlight">March 10, 2025</span>, <em>Blonde</em> remains a polarizing masterpiece—an album that doesn’t chase trends but defines its own lane, revealing new layers with every spin.</p>
+        <p><em><span class="highlight">Blonde</span></em>’s minimalist cover—a photo of Ocean with wet, green-dyed hair, snapped by <span class="highlight">Wolfgang Tillmans</span>—hints at its vulnerability and fluidity. The album explores love, loss, identity, and memory with a diaristic intimacy, weaving fragmented narratives of past relationships and self-reflection. Tracks like <span class="highlight">“Nikes”</span> critique materialism and mourn lost icons, while <span class="highlight">“Pink + White”</span> bathes in nostalgic warmth. There’s no rigid storyline—just fleeting moments and emotions, delivered in Ocean’s signature stream-of-consciousness style, making it feel like a deeply personal confession set to music.</p>
+        <br>
+        <h2>Production and Sound</h2>
+        <br>
+        <p>Ocean co-produced <em><span class="highlight">Blonde</span></em> with a stellar lineup including <span class="highlight">James Blake, Rick Rubin, Om’Mas Keith, and Malay</span>, crafting a sound that defies genre. The album blends R&B with ambient, pop, and experimental textures—think sparse guitar riffs, warped synths, and pitch-shifted vocals. <span class="highlight">“Solo”</span> pairs haunting organ drones with introspective lyrics, while <span class="highlight">“Self Control”</span> layers ethereal harmonies over delicate strings. The production is understated yet intricate, prioritizing mood over bombast, with moments of silence and distortion that amplify its emotional weight—a sonic diary as unpredictable as Ocean himself.</p>
+        <br>
+        <h2>Features</h2>
+        <br>
+        <p><em><span class="highlight">Blonde</span></em> leans on subtle, tasteful contributions rather than showy guest verses. <span class="highlight">Beyoncé</span> hums angelic backing vocals on <span class="highlight">“Pink + White”</span>, while <span class="highlight">André 3000</span> delivers a rapid-fire rap on <span class="highlight">“Solo (Reprise)”</span>, a rare burst of intensity. <span class="highlight">James Blake</span> haunts <span class="highlight">“White Ferrari”</span> with ghostly coos, and contributions from <span class="highlight">Kendrick Lamar, Yung Lean, and Tyler, The Creator</span> appear as sampled interludes or background textures. These cameos enhance Ocean’s vision without overshadowing it, keeping the focus on his singular artistry.</p>
         <br>
         <div class="glass-card">
-              <h2>Ratings</h2>
-        <p><span class="highlight">Originality (19/20):</span> A genre-defying blend of R&B, pop, and ambient that feels wholly unique.</p>
-        <p><span class="highlight">Production Quality (20/20):</span> Flawless, understated production that elevates every emotion.</p>
-        <p><span class="highlight">Lyrics and Messaging (18/20):</span> Poetic and evocative, though its abstraction can feel distant.</p>
-        <p><span class="highlight">Enjoyment Factor (17/20):</span> A slow burn that captivates devotees but may alienate casual listeners.</p>
-        <p><span class="highlight">Consistency (18/20):</span> Cohesive in tone, though its meandering interludes occasionally disrupt the flow.</p>
-        <p class="overall-rating"><span class="highlight"><h3>Overall Rating (92/100):</span> 9.2/10</h3></p>
-                <p><em><span class="highlight">Blonde</span></em> isn’t just an album—it’s an experience, a fragile window into Frank Ocean’s soul. It’s not for everyone, but for those who connect with its wavelength, it’s a near-perfect exploration of love, memory, and sound. Ocean doesn’t compromise, and that’s his genius—<em>Blonde</em> is a quiet revolution that lingers long after the final note fades.</p>
+            <h2>Tracks to Watch</h2>
+            <ul>
+                <li><span class="highlight">“Nikes”</span> - Pitch-shifted vocals glide over glitchy synths, Ocean’s sly “These bitches want Nikes” cutting through a dreamy haze—part elegy, part critique, all hypnotic.</li>
+                <br>
+                <li><span class="highlight">“Pink + White”</span> - Pharrell’s breezy beat and Beyoncé’s soft hums lift Ocean’s tender nostalgia—“That’s the way every day goes, every time we’ve no control”—a sunlit gem of fleeting joy.</li>
+                <br>
+                <li><span class="highlight">“Self Control”</span> - Soaring falsettos and mournful strings frame Ocean’s aching “I’ll be the boyfriend in your wet dreams tonight,” a heartbreak anthem that shimmers with raw beauty.</li>
+                <br>
+                <li><span class="highlight">“White Ferrari”</span> - Sparse keys and Blake’s ghostly wail—“I care for you still and I will forever”—build a fragile, devastating closer that lingers like a fading memory.</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Previous Works</h2>
+        <br>
+        <p>Before <em><span class="highlight">Blonde</span></em>, Ocean’s 2011 mixtape <em><span class="highlight">Nostalgia, Ultra</span></em> introduced his knack for reimagining classics with soulful flair, while <em><span class="highlight">Channel Orange</span></em> (<span class="highlight">2012</span>) solidified his status as an R&B visionary with hits like “Thinkin Bout You.” <em><span class="highlight">Blonde</span></em> builds on that foundation, stripping away <em><span class="highlight">Channel Orange</span></em>’s polished storytelling for a rawer, more abstract approach. Where his debut was a vivid snapshot of young adulthood, <em><span class="highlight">Blonde</span></em> feels like a fragmented dream—less accessible but infinitely more introspective, marking Ocean’s evolution into a reclusive auteur.</p>
+        <br>
+        <h2>Summary</h2>
+        <br>
+        <p><em><span class="highlight">Blonde</span></em> is a <span class="highlight">60-minute sonic poem</span> that rewards patience and close listening. Its beauty lies in its subtlety—Ocean trades hooks for atmosphere, crafting an album that’s as elusive as it is profound. Certified Platinum by 2021, it frustrated some fans expecting <em><span class="highlight">Channel Orange 2</span></em>, but its emotional depth and innovative soundscapes have cemented its cult status. As of <span class="highlight">March 10, 2025</span>, <em><span class="highlight">Blonde</span></em> remains a polarizing masterpiece—an album that doesn’t chase trends but defines its own lane, revealing new layers with every spin.</p>
+        <br>
+        <div class="glass-card">
+            <h2>Ratings</h2>
+            <p><span class="highlight">Originality (19/20):</span> Ocean’s R&B-ambient fusion—like “Nikes”’ warped vocals—feels singular, though it builds on his prior quirks.</p>
+            <p><span class="highlight">Production Quality (20/20):</span> From “Self Control”’s delicate strings to “White Ferrari”’s sparse glow, every texture is pristine—a flawless sonic canvas.</p>
+            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Poetic gems—“Solo”’s lonely musings—shine, but abstraction like “Seigfried” can drift too far from grasp.</p>
+            <p><span class="highlight">Enjoyment Factor (17/20):</span> A slow-burn triumph—“Pink + White” hooks gently—but its quiet sprawl tests casual ears.</p>
+            <p><span class="highlight">Consistency (18/20):</span> Tonal unity holds strong, though interludes like “Be Yourself” nudge the flow off-kilter.</p>
+            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (92/100):</span> 9.2/10</h3></p>
+            <p><em><span class="highlight">Blonde</span></em> isn’t just an album—it’s an experience, a fragile window into Frank Ocean’s soul. It’s not for everyone, but for those who vibe with its wavelength, it’s a near-perfect exploration of love, memory, and sound. Crank it soft, let it wash over, and feel Ocean’s luminous genius unfold.</p>
         </div>
     </div>
 
@@ -150,21 +172,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
-        // Ensure all glass cards on this page have no tilt, except for grad-card
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+            document.querySelectorAll('.glass-card:not(.blonde-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-
-            // Special handling for graduation card to allow scaling
-            document.querySelectorAll('.glass-card.grad-card').forEach(card => {
-                card.style.transform = 'none'; // No !important
+            document.querySelectorAll('.glass-card.blonde-card').forEach(card => {
+                card.style.transform = 'none';
                 card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 card.style.overflow = 'hidden';
+            });
+            document.querySelectorAll('.glass-card.blonde-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
