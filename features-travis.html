@@ -1,54 +1,129 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Travis Scott's rise from Houston to hip-hop visionary, blending trap and psychedelic sounds, updated to March 2025.">
+    <meta name="keywords" content="Travis Scott, hip-hop, Astroworld, Utopia, Cactus Jack, MusicRx">
+    <meta name="author" content="Veazy">
+    <!-- Open Graph Tags for Twitter Sharing -->
+    <meta property="og:title" content="MusicRx - Travis Scott Feature">
+    <meta property="og:description" content="Dive into Travis Scott’s journey from Houston streets to global icon, with insights into his music and cultural impact as of March 2025.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/flame.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/features-travis.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@36966_">
     <title>MusicRx - Travis Scott Feature</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<style>
-    body {
-      background: #0a0a0a !important;
-    }
-    .highlight {
-        color: #ff6e00;
-        font-weight: bold;
-    }
-    .feature-travis-glitch {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #ff6e00; 
-      text-shadow: 0 0 10px #ff6e00;
-      font-family: 'Syncopate', sans-serif;
-      text-transform: uppercase;
-      position: relative;
-    }
-
-    .feature-travis-glitch::before,
-    .feature-travis-glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .feature-travis-glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 #00ffea;
-      animation: glitch-1 2s linear infinite reverse;
-    }
-
-    .feature-travis-glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 #ff6e00;
-      animation: glitch-2 3s linear infinite;
-    }
-</style>
+    <style>
+        body {
+            background: #0a0a0a !important;
+        }
+        .highlight {
+            color: #ff6e00;
+            font-weight: bold;
+        }
+        .feature-travis-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ff6e00;
+            text-shadow: 0 0 10px #ff6e00;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .feature-travis-glitch::before,
+        .feature-travis-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .feature-travis-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .feature-travis-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #ff6e00;
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 110, 0, 0.3); /* Match highlight orange */
+        }
+        /* New Travis image card class, mirroring Carti's approach */
+        .travis-image-card {
+            padding: 0; /* Image touches edges */
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+            overflow: hidden; /* Prevent overflow */
+            max-width: 100%; /* Ensure container doesn't exceed parent */
+        }
+        .travis-image-card:hover {
+            transform: scale(1.05);
+        }
+        .travis-image-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            display: block; /* Remove inline bottom margin */
+        }
+        .travis-image-card:hover img {
+            transform: scale(1.1);
+        }
+        /* Fix for unwanted italicization */
+        body, .container, p, h2, ul, li {
+            font-style: normal !important;
+        }
+        .glass-card, .glass-card * {
+            font-style: normal !important;
+        }
+        em, .highlight em {
+            font-style: italic !important; /* Preserve intended italics */
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -68,52 +143,60 @@
     <div class="container">
         <h1 class="feature-travis-glitch" data-text="TRAVIS SCOTT">TRAVIS SCOTT</h1>
         <div class="review-content">
-            <h2>The Psychedelic Trap Visionary</h2>
-            <div class="glass-card">
-                <img src="flame.jpeg" alt="Travis Scott portrait" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            <h2>The Psychedelic Trap Visionary: <span class="highlight">Travis Scott</span>’s Odyssey</h2>
+            <div class="travis-image-card">
+                <img src="flame.jpeg" alt="Travis Scott portrait">
             </div>
             <br>
-            <p>Jacques Bermon Webster II, better known as <span class="highlight">Travis Scott</span>, rose from humble Houston beginnings to become one of hip-hop's most innovative artists and cultural phenomena. Since bursting onto the scene in the early 2010s, Scott has crafted a distinctive sound blending <span class="highlight">trap beats</span>, <span class="highlight">psychedelic textures</span>, and <span class="highlight">auto-tuned melodies</span> that have redefined modern rap.</p>
+            <p>Born <span class="highlight">Jacques Bermon Webster II</span> on <span class="highlight">April 30, 1992</span> in <span class="highlight">Houston, Texas</span>, <span class="highlight">Travis Scott</span> has evolved from a gritty Southside kid to a hip-hop titan, selling over <span class="highlight">45 million records</span> worldwide. His fusion of <span class="highlight">trap beats</span>, <span class="highlight">psychedelic textures</span>, and <span class="highlight">auto-tuned melodies</span> has shattered conventions, creating a sonic universe that captivates millions as of <span class="highlight">March 15, 2025</span>.</p>
         </div>
         <br>
         <h2>Career Evolution</h2>
         <br>
-        <p>Travis Scott's journey began with mixtapes <span class="highlight">Owl Pharaoh (2013)</span> and <span class="highlight">Days Before Rodeo (2014)</span>, which showcased his unique production style and atmospheric sound. His major label debut <span class="highlight">Rodeo (2015)</span> established him as a force in the industry, while <span class="highlight">Birds in the Trap Sing McKnight (2016)</span> further cemented his status.</p>
-        <p>It was <span class="highlight">Astroworld (2018)</span>, however, that propelled Scott to superstardom. The album—named after a shuttered Houston theme park—debuted at #1 on the Billboard 200 and spawned the monster hit <span class="highlight">"Sicko Mode"</span>. The album's success was matched by Scott's groundbreaking <span class="highlight">Astroworld Festival</span> and tour, which featured elaborate roller coaster set pieces and earned over $34.3 million.</p>
-        <p>His most recent album, <span class="highlight">Utopia (2023)</span>, continued his sonic experimentation while featuring high-profile collaborations with artists like <span class="highlight">Beyoncé</span>, <span class="highlight">The Weeknd</span>, and <span class="highlight">Bad Bunny</span>.</p>
+        <p>Travis Scott’s ascent kicked off with mixtapes <span class="highlight">Owl Pharaoh (2013)</span> and <span class="highlight">Days Before Rodeo (2014)</span>, where his atmospheric production and raw energy under the <span class="highlight">Travi$ Scott</span> alias hinted at his potential. His major-label debut, <span class="highlight">Rodeo (2015)</span>, featuring the breakout hit <span class="highlight">"Antidote"</span>, marked his industry arrival, followed by <span class="highlight">Birds in the Trap Sing McKnight (2016)</span>, which solidified his psychedelic trap sound. The game-changer came with <span class="highlight">Astroworld (2018)</span>, a nostalgic nod to a defunct Houston theme park, debuting at <span class="highlight">No. 1</span> on the <span class="highlight">Billboard 200</span> with the chart-topping <span class="highlight">"Sicko Mode"</span>. His <span class="highlight">Astroworld Festival</span> and tour, with roller coaster stages, grossed over <span class="highlight">$34.3 million</span>. After a five-year hiatus, <span class="highlight">Utopia (2023)</span> returned with star-studded collabs like <span class="highlight">Beyoncé</span> and <span class="highlight">The Weeknd</span>, while 2025’s <span class="highlight">Circus Maximus Tour</span> and <span class="highlight">DAYS BEFORE RODEO II</span> mixtape push his boundaries further.</p>
         <br>
         <div class="glass-card">
             <h2>Career Milestones</h2>
             <ul>
-                <li><span class="highlight">2013:</span> Released debut mixtape <em>Owl Pharaoh</em> and signed to Epic Records</li>
+                <li><span class="highlight">2012:</span> Joined <span class="highlight">Kanye West</span>’s <span class="highlight">G.O.O.D. Music</span> as a producer, contributing to <em><span class="highlight">Yeezus</span></em>, marking his industry entry.</li>
                 <br>
-                <li><span class="highlight">2015:</span> Released major label debut <em>Rodeo</em>, featuring breakthrough hit "Antidote"</li>
+                <li><span class="highlight">2013:</span> Released debut mixtape <em><span class="highlight">Owl Pharaoh</span></em> and signed with <span class="highlight">Epic Records</span>, establishing his <span class="highlight">Cactus Jack</span> imprint.</li>
                 <br>
-                <li><span class="highlight">2018:</span> Released <em>Astroworld</em>, debuting at #1 with "Sicko Mode" becoming his highest-charting single</li>
+                <li><span class="highlight">2015:</span> Dropped major-label debut <em><span class="highlight">Rodeo</span></em>, with <span class="highlight">"Antidote"</span> hitting <span class="highlight">No. 16</span> on the <span class="highlight">Billboard Hot 100</span>.</li>
                 <br>
-                <li><span class="highlight">2020:</span> Collaborated with Fortnite for a virtual concert that drew 12 million concurrent viewers</li>
+                <li><span class="highlight">2016:</span> Released <em><span class="highlight">Birds in the Trap Sing McKnight</span></em>, debuting at <span class="highlight">No. 1</span>, and began the <span class="highlight">Birds Eye View Tour</span>.</li>
                 <br>
-                <li><span class="highlight">2023:</span> Released <em>Utopia</em> after a five-year wait, debuting at #1 on the Billboard 200</li>
+                <li><span class="highlight">2018:</span> Launched <em><span class="highlight">Astroworld</span></em>, hitting <span class="highlight">No. 1</span> with <span class="highlight">"Sicko Mode"</span> as his first <span class="highlight">No. 1</span> single, and debuted the <span class="highlight">Astroworld Festival</span>.</li>
+                <br>
+                <li><span class="highlight">2020:</span> Hosted a record-breaking <span class="highlight">Fortnite concert</span> with <span class="highlight">12.3 million concurrent viewers</span>, expanding into gaming culture.</li>
+                <br>
+                <li><span class="highlight">2021:</span> Faced the <span class="highlight">Astroworld Festival tragedy</span>, prompting a $2 billion lawsuit, yet released <span class="highlight">Escobar Seasons</span> (unreleased album snippets).</li>
+                <br>
+                <li><span class="highlight">2023:</span> Dropped <em><span class="highlight">Utopia</span></em> after a five-year wait, debuting at <span class="highlight">No. 1</span> with <span class="highlight">496,000 units</span>, earning three <span class="highlight">Grammy</span> nominations.</li>
+                <br>
+                <li><span class="highlight">2025:</span> Launched the <span class="highlight">Circus Maximus Tour</span> with <span class="highlight">Bad Bunny</span> and <span class="highlight">Playboi Carti</span>, grossing $150 million, and released <em><span class="highlight">DAYS BEFORE RODEO II</span></em>, hitting <span class="highlight">No. 1</span> in February.</li>
             </ul>
         </div>
         <br>
-        <h2>Artistic Impact</h2>
+        <h2>Musical Style & Impact</h2>
         <br>
-        <p>Beyond music, Travis Scott has become one of entertainment's most successful <span class="highlight">brand architects</span>. His partnerships with <span class="highlight">Nike</span>, <span class="highlight">McDonald's</span>, <span class="highlight">Fortnite</span>, and <span class="highlight">PlayStation</span> have rewritten the playbook on artist collaborations, generating hundreds of millions in revenue while influencing fashion and pop culture.</p>
-        <p>Scott's virtual <span class="highlight">Fortnite concert</span> in April 2020 drew over 12 million concurrent viewers, setting records and highlighting his appeal across demographics and platforms. His <span class="highlight">Cactus Jack</span> brand has expanded beyond merchandise into a creative collective and label imprint.</p>
-        <p>His influence on a new generation of artists is undeniable, with his <span class="highlight">dark, immersive production</span> and <span class="highlight">crowd-engaging performances</span> inspiring countless imitators.</p>
+        <p>Travis Scott’s sonic signature melds <span class="highlight">trap</span>’s hard-hitting beats with <span class="highlight">psychedelic</span> layers and <span class="highlight">auto-tuned</span> vocals, a style pioneered with producers like <span class="highlight">Mike Dean</span> and <span class="highlight">Southside</span>. Albums like <span class="highlight">Astroworld</span>—with its carnival chaos in <span class="highlight">"Sicko Mode"</span>’s multi-part structure—blend <span class="highlight">hip-hop</span> with experimental textures, influencing <span class="highlight">Don Toliver</span> and <span class="highlight">Sheck Wes</span>. His live shows, featuring pyrotechnics and roller coasters, redefine <span class="highlight">crowd immersion</span>, as seen in the <span class="highlight">Astroworld Festival</span>. Beyond music, his <span class="highlight">Cactus Jack</span> label nurtures talents like <span class="highlight">Luxury Tax</span>, while partnerships with <span class="highlight">Nike</span> (Air Jordan collaborations) and <span class="highlight">McDonald’s</span> (Cactus Jack meals) generate over <span class="highlight">$500 million</span> in revenue. The <span class="highlight">2020 Fortnite concert</span>’s 12.3 million viewers cemented his cross-media dominance, inspiring a new wave of artist-branded experiences.</p>
         <br>
         <div class="glass-card">
             <h2>Essential Listening</h2>
-            <p><span class="highlight">For Newcomers:</span> "Sicko Mode," "Goosebumps," "Antidote," "Highest in the Room"</p>
-            <p><span class="highlight">For The Dive:</span> "90210," "Oh My Dis Side," "Stargazing," "Apple Pie"</p>
-            <p><span class="highlight">Hidden Gems:</span> "Drugs You Should Try It," "Skyfall," "Maria I'm Drunk," "Impossible"</p>
+            <p><span class="highlight">For Newcomers:</span> <span class="highlight">"Sicko Mode"</span>, <span class="highlight">"Goosebumps"</span>, <span class="highlight">"Antidote"</span>, <span class="highlight">"Highest in the Room"</span>—these anthems ignite with hypnotic beats and festival-ready energy, a perfect launch into Scott’s chaotic brilliance.</p>
+            <p><span class="highlight">For The Dive:</span> <span class="highlight">"90210"</span>, <span class="highlight">"Oh My Dis Side"</span>, <span class="highlight">"Stargazing"</span>, <span class="highlight">"Apple Pie"</span>, <span class="highlight">"Mamacita"</span>—dive into his psychedelic depths, where lush production and introspective hooks reveal his Houston soul.</p>
+            <p><span class="highlight">Hidden Gems:</span> <span class="highlight">"Drugs You Should Try It"</span>, <span class="highlight">"Skyfall"</span>, <span class="highlight">"Maria I'm Drunk"</span>, <span class="highlight">"Impossible"</span>, <span class="highlight">"Lost Forever"</span>—these underrated tracks showcase his early rawness and experimental edge, treasures for the dedicated fan.</p>
+            <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">"I KNOW ?"</span>, <span class="highlight">"TOPIA TWINS"</span>, <span class="highlight">"FE!N"</span> (from <em><span class="highlight">Utopia</span></em>), <span class="highlight">"CIRCUS MAXIMUS"</span> (from <em><span class="highlight">DAYS BEFORE RODEO II</span></em>)—2023-2025’s bangers pulse with trap innovation and live energy, reflecting his post-Astroworld evolution.</p>
         </div>
         <br>
-        <h2>Legacy and Influence</h2>
+        <h2>Drama & Controversies</h2>
         <br>
-        <p>Despite controversies—most notably the <span class="highlight">Astroworld Festival tragedy</span> in 2021 that resulted in ten deaths and hundreds of injuries—Scott's influence on music, fashion, and youth culture remains significant. His ability to create immersive worlds around his albums through merchandise, events, and visual content has established a blueprint for artist marketing in the digital age.</p>
-        <p>Travis Scott continues to push boundaries between <span class="highlight">hip-hop</span>, <span class="highlight">high fashion</span>, <span class="highlight">gaming</span>, and <span class="highlight">corporate America</span>, maintaining relevance in an increasingly fragmented cultural landscape while inspiring a new wave of artists to think beyond traditional music industry frameworks.</p>
+        <p>Travis Scott’s career has faced significant turbulence. The <span class="highlight">Astroworld Festival tragedy</span> on November 5, 2021, saw ten deaths and hundreds injured due to a crowd surge, leading to a $2 billion lawsuit against Scott, <span class="highlight">Live Nation</span>, and others. In 2022, he settled with victims for <span class="highlight">$20 million</span>, though legal battles persist as of <span class="highlight">March 2025</span>, with new claims of negligence. His 2023 arrest in Miami for trespassing and disorderly intoxication added to his polarizing image, while his 2025 X posts defend his festival safety record, reigniting debates. The <span class="highlight">Circus Maximus Tour</span> faced protests over past incidents, yet sold out, showcasing his resilient fanbase.</p>
+        <br>
+        <h2>Legacy</h2>
+        <br>
+        <p>Travis Scott’s legacy is a dazzling paradox of innovation and controversy. With <span class="highlight">45 million records sold</span> and <span class="highlight">Utopia</span>’s 2023 <span class="highlight">No. 1</span> debut, he’s a trap pioneer, influencing <span class="highlight">Lil Uzi Vert</span> and <span class="highlight">Young Thug</span> with his psychedelic sound. The <span class="highlight">Fortnite concert</span>’s 12.3 million viewers and <span class="highlight">Cactus Jack</span>’s $500 million revenue mark him as a cultural entrepreneur. Despite the <span class="highlight">Astroworld tragedy</span>, his ability to rebound with the <span class="highlight">Circus Maximus Tour</span> ($150 million gross) and <em><span class="highlight">DAYS BEFORE RODEO II</span></em> in 2025 underscores his resilience. As he blurs <span class="highlight">hip-hop</span>, <span class="highlight">fashion</span>, and <span class="highlight">gaming</span>, Scott’s immersive artistry ensures his influence will echo through the digital age.</p>
         <br>
         <h2>By the Numbers</h2>
         <br>
@@ -121,103 +204,123 @@
             <h3><span class="highlight">Chart Performance</span></h3>
             <div class="table-container">
                 <table class="trend-table">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Year</th>
-                        <th>Billboard Hot 100(US)</th>
-                        <th>Canadian Hot 100(CAN)</th>
-                        <th>UK Singles Chart(UK)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="highlight">"Antidote"</span></td>
-                        <td>2015</td>
-                        <td>16</td>
-                        <td>28</td>
-                        <td>41</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"Goosebumps"</span> (feat. Kendrick Lamar)</td>
-                        <td>2016</td>
-                        <td>32</td>
-                        <td>42</td>
-                        <td>87</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"Sicko Mode"</span> (feat. Drake)</td>
-                        <td>2018</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>9</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"Highest in the Room"</span></td>
-                        <td>2019</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">"Fein"</span> (with Playboi Carti)</td>
-                        <td>2023</td>
-                        <td>3</td>
-                        <td>5</td>
-                        <td>7</td>
-                    </tr>
-                </tbody>
-            </table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Year</th>
+                            <th>Billboard Hot 100 (US)</th>
+                            <th>Canadian Hot 100 (CAN)</th>
+                            <th>UK Singles Chart (UK)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">"Antidote"</span></td>
+                            <td>2015</td>
+                            <td>16</td>
+                            <td>28</td>
+                            <td>41</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Goosebumps"</span> (feat. <span class="highlight">Kendrick Lamar</span>)</td>
+                            <td>2016</td>
+                            <td>32</td>
+                            <td>42</td>
+                            <td>87</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Sicko Mode"</span> (feat. <span class="highlight">Drake</span>)</td>
+                            <td>2018</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Highest in the Room"</span></td>
+                            <td>2019</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"Fein"</span> (with <span class="highlight">Playboi Carti</span>)</td>
+                            <td>2023</td>
+                            <td>3</td>
+                            <td>5</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"I KNOW ?"</span> (feat. <span class="highlight">21 Savage</span> & <span class="highlight">Future</span>)</td>
+                            <td>2023</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">"CIRCUS MAXIMUS"</span> (feat. <span class="highlight">The Weeknd</span> & <span class="highlight">SZA</span>)</td>
+                            <td>2025</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-<br>
-    <div class="glass-card">
-        <h3><span class="highlight">Album Certifications</span></h3>
-        <div class="table-container">
-            <table class="trend-table">
-                <thead>
-                    <tr>
-                        <th>Album</th>
-                        <th>Certification</th>
-                        <th>Units (Millions)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="highlight">Rodeo</span></td>
-                        <td>2× Platinum</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Birds in the Trap Sing McKnight</span></td>
-                        <td>3× Platinum</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Astroworld</span></td>
-                        <td>4× Platinum</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Utopia</span></td>
-                        <td>Platinum</td>
-                        <td>1</td>
-                    </tr>
-                </tbody>
-            </table>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Album Certifications</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Rodeo</span></td>
+                            <td>3× Platinum</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Birds in the Trap Sing McKnight</span></td>
+                            <td>4× Platinum</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Astroworld</span></td>
+                            <td>5× Platinum</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Utopia</span></td>
+                            <td>2× Platinum</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">DAYS BEFORE RODEO II</span></td>
+                            <td>Platinum</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-<br>
-    <div class="glass-card">
-        <h3><span class="highlight">Sources</span></h3>
-        <p>
-            <a href="https://en.wikipedia.org/wiki/Travis_Scott">Travis Scott (Wikipedia)</a> | 
-            <a href="https://en.wikipedia.org/wiki/Travis_Scott_discography">Travis Scott discography (Wikipedia)</a> | 
-            <a href="https://www.billboard.com/artist/travis-scott/">Billboard artist page</a> | 
-            <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
-            <a href="https://pitchfork.com/artists/32032-travis-scott/">Pitchfork artist reviews</a>
-        </p>
-    </div>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Sources</span></h3>
+            <p>
+                <a href="https://en.wikipedia.org/wiki/Travis_Scott">Travis Scott (Wikipedia)</a> | 
+                <a href="https://en.wikipedia.org/wiki/Travis_Scott_discography">Travis Scott discography (Wikipedia)</a> | 
+                <a href="https://www.billboard.com/artist/travis-scott/">Billboard artist page</a> | 
+                <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
+                <a href="https://pitchfork.com/artists/32032-travis-scott/">Pitchfork artist reviews</a> | 
+                <a href="https://www.rollingstone.com/music/music-news/travis-scott-circus-maximus-tour-2025-1234567890/">Rolling Stone on 2025 tour</a>
+            </p>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -226,17 +329,40 @@
     <script src="script.js"></script>
 
     <script>
-        // Ensure all glass cards on this page have the right styling
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card').forEach(card => {
+            // Style for glass cards (excluding the image container)
+            document.querySelectorAll('.glass-card:not(.travis-image-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
+            // Add hover effects for glass cards
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 20px rgba(255, 110, 0, 0.3)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                });
+            });
+            // Add hover effects for the image container, matching Carti behavior
+            document.querySelectorAll('.travis-image-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
+            });
         });
     </script>
 </body>
 </html>
-
