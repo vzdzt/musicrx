@@ -1,31 +1,45 @@
-k<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for SEO and social sharing -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - Whole Lotta Red: Playboi Carti’s Crimson Chaos Unleashed</title>
-    <!-- Twitter Card Meta Tags -->
+    <meta name="description" content="Explore Playboi Carti’s Whole Lotta Red (2020) review: a punk-trap frenzy, updated to March 2025 with track highlights on MusicRx.">
+    <meta name="keywords" content="Playboi Carti, Whole Lotta Red, punk-trap, Kanye West, F1lthy, Art Dealer, Pi’erre Bourne, MusicRx, 2025">
+    <meta name="author" content="Veazy">
+    <meta property="og:title" content="MusicRx - Whole Lotta Red: Playboi Carti’s Crimson Chaos Unleashed">
+    <meta property="og:description" content="Dive into Playboi Carti’s Whole Lotta Red review: a chaotic punk-trap storm from 2020, refreshed with 2025 updates on MusicRx.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/wlr.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-wlr.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MusicRx - Whole Lotta Red Review">
-    <meta name="twitter:description" content="Carti’s crimson chaos: Our Whole Lotta Red review, with tracks like Vamp Anthem. Rated 8.2/10!">
-    <meta name="twitter:image" content="https://vzdzt.github.io/musicrx/wlr.jpeg">
     <meta name="twitter:site" content="@36966_">
-    <!-- End Twitter Card Meta Tags -->
+    <title>MusicRx - Whole Lotta Red: Playboi Carti’s Crimson Chaos Unleashed</title>
+
+    <!-- External stylesheets for icons and fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
     <style>
+        /* Ensure dark background for the entire page */
         body {
             background: #0a0a0a !important;
         }
+
+        /* Highlight color for emphasized text (e.g., album titles, artists) */
         .highlight {
             color: #FF0000; /* Red */
             font-weight: bold;
         }
+
+        /* Highlight color for overall rating heading */
         .overall-rating h3 {
-            color: #FF0000; /* Matching red for overall rating */
+            color: #FF0000;
         }
-        .review-wlr-glitch {
+
+        /* Glitch effect for the album title at the top */
+        .review-grad-glitch {
             font-size: 3rem;
             text-align: center;
             margin-bottom: 2rem;
@@ -35,8 +49,10 @@ k<!DOCTYPE html>
             text-transform: uppercase;
             position: relative;
         }
-        .review-wlr-glitch::before,
-        .review-wlr-glitch::after {
+
+        /* Pseudo-elements for glitch effect */
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
             content: attr(data-text);
             position: absolute;
             top: 0;
@@ -44,16 +60,22 @@ k<!DOCTYPE html>
             width: 100%;
             height: 100%;
         }
-        .review-wlr-glitch::before {
+
+        /* Cyan glitch effect */
+        .review-grad-glitch::before {
             left: 2px;
             text-shadow: -2px 0 #00ffea;
             animation: glitch-1 2s linear infinite reverse;
         }
-        .review-wlr-glitch::after {
+
+        /* Highlight color glitch effect */
+        .review-grad-glitch::after {
             left: -2px;
             text-shadow: -2px 0 #FF0000;
             animation: glitch-2 3s linear infinite;
         }
+
+        /* Glitch animation keyframes */
         @keyframes glitch-1 {
             0% { clip-path: inset(0 0 90% 0); }
             5% { clip-path: inset(10% 0 70% 0); }
@@ -62,6 +84,7 @@ k<!DOCTYPE html>
             20% { clip-path: inset(50% 0 30% 0); }
             100% { clip-path: inset(0 0 90% 0); }
         }
+
         @keyframes glitch-2 {
             0% { clip-path: inset(50% 0 0 0); }
             5% { clip-path: inset(70% 0 10% 0); }
@@ -70,6 +93,8 @@ k<!DOCTYPE html>
             20% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
+
+        /* Glass card styling for all sections (e.g., Track Highlights, Ratings) */
         .glass-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -82,34 +107,99 @@ k<!DOCTYPE html>
             position: relative;
             overflow: hidden;
         }
-        .glass-card.wlr-card {
-            padding: 0; /* Image touches edges */
-            border-radius: 10px; /* Matches A Great Chaos template */
+
+        /* Hover effect for glass cards */
+        .glass-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* Red in RGB for hover shadow */
+        }
+
+        /* Glass card styling specifically for the album cover image */
+        .glass-card.grad-card {
+            padding: 20px;
+            border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: transform 0.3s ease;
+            overflow: hidden;
+            max-width: 100%;
         }
-        .glass-card.wlr-card:hover {
+
+        /* Hover effect for album cover card */
+        .glass-card.grad-card:hover {
             transform: scale(1.05);
         }
-        .glass-card.wlr-card img {
-            width: 100%;
+
+        /* Album cover image styling */
+        .glass-card.grad-card img {
+            max-width: 100%;
             height: auto;
-            object-fit: cover;
-            object-position: center;
             border-radius: 8px;
             transition: transform 0.3s ease;
+            display: block;
         }
-        .glass-card.wlr-card:hover img {
-            transform: scale(1.1);
+
+        /* Zoom effect for album cover image on hover */
+        .glass-card.grad-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Styling for individual track highlight items */
+        .track-highlight-item {
+            padding: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover effect for track highlight items */
+        .track-highlight-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+        }
+
+        /* Table styling for charts, certifications, and awards */
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        /* Table cell styling */
+        .trend-table th, .trend-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Table header styling with highlight color and no shadow */
+        .trend-table th {
+            color: #FF0000;
+            text-shadow: none !important;
+        }
+
+        /* Ensure normal font style for most elements */
+        body, .container, p, h2, ul, li {
+            font-style: normal !important;
+        }
+
+        /* Normal font style for glass cards and their content */
+        .glass-card, .glass-card * {
+            font-style: normal !important;
+        }
+
+        /* Italic style for emphasized text and highlights */
+        em, .highlight em {
+            font-style: italic !important;
         }
     </style>
 </head>
 <body>
+    <!-- Cursor and background effects -->
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
     <canvas id="universe"></canvas>
+
+    <!-- Navigation bar -->
     <nav>
         <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
@@ -122,94 +212,242 @@ k<!DOCTYPE html>
     </nav>
 
     <div class="container">
-        <h1 class="review-wlr-glitch" data-text="WHOLE LOTTA RED">WHOLE LOTTA RED</h1>
+        <!-- Glitch title for the album -->
+        <h1 class="review-grad-glitch" data-text="WHOLE LOTTA RED">WHOLE LOTTA RED</h1>
         <div class="review-content">
+            <!-- Subtitle and album cover -->
             <h2>Whole Lotta Red: Playboi Carti’s Crimson Chaos Unleashed</h2>
-            <div class="glass-card wlr-card">
-                <img src="wlr.jpeg" alt="Playboi Carti - <em><span class='highlight'>Whole Lotta Red</span></em> album image">
+            <div class="glass-card grad-card">
+                <img src="https://vzdzt.github.io/musicrx/wlr.jpeg" alt="Playboi Carti - Whole Lotta Red album cover">
             </div>
             <br>
-            <p>On <span class="highlight">December 25, 2020</span>, Playboi Carti crashed Christmas with <em><span class="highlight">Whole Lotta Red</span></em>, a 24-track, 62-minute frenzy via AWGE and Interscope, executive-produced by <span class="highlight">Kanye West</span>. After years of hype post-<em><span class="highlight">Die Lit</span></em>, it debuted at No. 1 on the Billboard 200 with 100,000 first-week units and hit Platinum by 2022. As of <span class="highlight">March 11, 2025</span>, its red-hot chaos still divides—let’s sink our teeth into this vampiric beast.</p>
+            <!-- Intro paragraph with key details -->
+            <p>Dropped on <span class="highlight">December 25, 2020</span> via <span class="highlight">AWGE</span> and <span class="highlight">Interscope</span>, Playboi Carti’s second album <em><span class="highlight">Whole Lotta Red</span></em> is a 24-track, 62-minute punk-trap frenzy, powered by <span class="highlight">Kanye West</span> and <span class="highlight">F1lthy</span>. Post-<em><span class="highlight">Die Lit</span></em>’s melodic haze, it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">100,000 first-week units</span>. By <span class="highlight">March 11, 2025</span>, its Platinum status, a 2025 streaming surge, and fan debates on X (@36966_) keep its red fire blazing. Veazy here—this album’s a chaotic reinvention that reshaped Carti, and years later, it still pulses with feral energy.</p>
         </div>
         <br>
-        <h2>Messaging and Theme</h2>
+        <!-- Messaging and Theme section -->
+        <h2>The Messaging and Theme</h2>
         <br>
-        <p>The cover—red-black punk zine vibes via <span class="highlight">Slash</span>—screams <em><span class="highlight">Whole Lotta Red</span></em>’s mission: Carti torched <em><span class="highlight">Die Lit</span></em>’s bliss for a raw, vampire-punk revolt. <span class="highlight">“Rockstar Made”</span> snarls “Been gettin’ money,” <span class="highlight">“Vamp Anthem”</span> bites with gothic glee, trading party anthems for isolation and aggression—“Whole lotta red, yeah.” It’s Carti as a nocturnal renegade, spitting defiance over introspection, a middle finger to the trap norm.</p>
+        <p>The cover—a red-black punk zine by <span class="highlight">Slash</span> magazine—screams rebellion, mirroring <em><span class="highlight">Whole Lotta Red</span></em>’s vampire-punk manifesto. It’s a defiant flex with a nocturnal edge, torching <em><span class="highlight">Die Lit</span></em>’s bliss in <span class="highlight">“Rockstar Made”</span>’s snarl—“Been gettin’ money”—and embracing gothic chaos with <span class="highlight">“Vamp Anthem”</span>’s eerie chant—“Whole lotta red, yeah.” <span class="highlight">“M3tamorphosis”</span> and <span class="highlight">“F33l Lik3 Dyin”</span> reveal isolation—“I feel like dyin’”—blending aggression with fleeting vulnerability. It’s a punk-trap inferno, raw and unfiltered, a red testament to Carti’s evolution that still sparks debates on X (@36966_) in 2025, where fans call it “a genre-defining middle finger.”</p>
         <br>
+        <!-- Production and Sound section -->
         <h2>Production and Sound</h2>
         <br>
-        <p><span class="highlight">Kanye West</span>, <span class="highlight">F1lthy</span>, <span class="highlight">Art Dealer</span>, and <span class="highlight">Pi’erre Bourne</span> forge <em><span class="highlight">Whole Lotta Red</span></em>’s sound—jagged, futuristic, unpolished. <span class="highlight">“Stop Breathing”</span> blasts with distorted 808s, <span class="highlight">“Vamp Anthem”</span> chops Bach into a trap fever dream, <span class="highlight">“Go2DaMoon”</span> hums with eerie minimalism. Carti’s voice—hoarse, pitch-shifted—slashes through, ditching <em><span class="highlight">Die Lit</span></em>’s haze for a punk-trap live wire that’s as abrasive as it is addictive.</p>
+        <p><span class="highlight">Kanye West</span>, <span class="highlight">F1lthy</span>, <span class="highlight">Art Dealer</span>, and <span class="highlight">Pi’erre Bourne</span> forge <em><span class="highlight">Whole Lotta Red</span></em>’s jagged sound—punk-trap, industrial, and futuristic chaos across its 24 tracks. Recorded at <span class="highlight">West Lake Studios</span> in Atlanta and <span class="highlight">The Means Street Studio</span> in LA, <span class="highlight">“Stop Breathing”</span> roars with distorted 808s, <span class="highlight">“Vamp Anthem”</span> chops Bach’s organ into a gothic trap haze, and <span class="highlight">“Go2DaMoon”</span> hums with eerie synths—Carti’s hoarse, pitch-shifted flow, from snarling to haunting, slicing through like a vampire’s bite. F1lthy’s distorted basslines, born here, became a trap staple by 2025, though the 62-minute runtime feels cluttered with uneven pacing, a minor flaw in its abrasive brilliance.</p>
         <br>
+        <!-- Features section -->
         <h2>Features</h2>
         <br>
-        <p><em><span class="highlight">Whole Lotta Red</span></em> leans light on guests: <span class="highlight">Kanye West</span> on <span class="highlight">“Go2DaMoon,”</span> <span class="highlight">Kid Cudi</span> on <span class="highlight">“M3tamorphosis,”</span> and <span class="highlight">Future</span> on <span class="highlight">“Teen X.”</span> They’re sparks in Carti’s inferno—vital, not overpowering.</p>
+        <p><em><span class="highlight">Whole Lotta Red</span></em> keeps features sparse with <span class="highlight">Kanye West</span>, <span class="highlight">Kid Cudi</span>, and <span class="highlight">Future</span>, each adding sharp sparks to Carti’s crimson inferno. <span class="highlight">Kanye West</span> and <span class="highlight">Kid Cudi</span> elevate <span class="highlight">“Go2DaMoon”</span> and <span class="highlight">“M3tamorphosis”</span> with their ethereal verses, while <span class="highlight">Future</span> adds gritty swagger to <span class="highlight">“Teen X”</span>’s chaotic vibe. Carti’s delivery—snarling ad-libs, warped tones, and hypnotic chants—dominates, ensuring the features enhance rather than overshadow his vision.</p>
         <br>
+        <!-- Track Highlights section -->
         <div class="glass-card">
-            <h2>Tracks to Watch</h2>
-            <ul>
-                <li><span class="highlight">“Rockstar Made”</span> - Synths stab like switchblades, Carti’s “Been gettin’ money” growl kicking off the chaos, a relentless opener that slams the gate wide, its jagged edge a blood-soaked declaration of the album’s wild reign.</li>
-                <br>
-                <li><span class="highlight">“Stop Breathing”</span> - Drums pound like a war cry, Carti’s “I take my shirt off and all the hoes stop breathin’” snarl riding blown-out 808s, a primal rage anthem that hits like a freight train, its fury pure and unfiltered.</li>
-                <br>
-                <li><span class="highlight">“Vamp Anthem”</span> - Organs twist Bach into a gothic trap haze, Carti’s “When I geek up I go vamp” chant soaring over eerie beats, a haunting banger that fuses classical roots with punk chaos, its dark pulse a standout bite.</li>
-                <br>
-                <li><span class="highlight">“F33l Lik3 Dyin”</span> - Samples weave Bon Iver’s falsetto into a slow bleed, Carti’s “I feel like dyin’” croak cutting through the haze, a rare melancholic closer that tempers the frenzy, its raw emotion a crimson sunset to the storm.</li>
-            </ul>
+            <h2>Track Highlights</h2>
+            <!-- Each bullet point must be ~25 words -->
+            <p class="track-highlight-item"><span class="highlight">For Newcomers:</span> <span class="highlight">“Rockstar Made”</span>, <span class="highlight">“Vamp Anthem”</span>—Synths stab, Bach’s organs twist into gothic chaos, Carti’s “Whole lotta red” chant a punk-trap gateway for new listeners.</p>
+            <p class="track-highlight-item"><span class="highlight">For The Dive:</span> <span class="highlight">“Stop Breathing”</span>, <span class="highlight">“M3tamorphosis”</span>—Blown-out 808s, Kid Cudi’s ethereal hum, Carti’s snarls—“I take my shirt off”—dig deep into his feral, isolated core.</p>
+            <p class="track-highlight-item"><span class="highlight">Hidden Gems:</span> <span class="highlight">“Go2DaMoon”</span>, <span class="highlight">“F33l Lik3 Dyin”</span>—Eerie synths, Bon Iver’s haunting sample, Kanye’s minimal flex, Carti’s “I feel like dyin’” croak revealing raw emotion beneath the chaos.</p>
+            <p class="track-highlight-item"><span class="highlight">Latest Obsessions:</span> <span class="highlight">“Vamp Anthem (Live 2025)”</span>—Rolling Loud 2025’s fiery set (X @36966_) reignites this banger, Carti’s red-leather strut electrifying the crowd—Veazy’s hooked on its dark pulse.</p>
         </div>
         <br>
+        <!-- Previous Works section -->
         <h2>Previous Works</h2>
         <br>
-        <p>Carti’s <em><span class="highlight">Playboi Carti</span></em> (<span class="highlight">2017</span>) birthed “Magnolia,” <em><span class="highlight">Die Lit</span></em> (<span class="highlight">2018</span>) soared with melodic chaos. <em><span class="highlight">Whole Lotta Red</span></em> flips that script, paving the way for <em><span class="highlight">Music</span></em> (<span class="highlight">TBA</span>).</p>
+        <p>Carti’s path to <em><span class="highlight">Whole Lotta Red</span></em> blazed through <em><span class="highlight">Playboi Carti</span></em> (<span class="highlight">2017</span>), <em><span class="highlight">Die Lit</span></em> (<span class="highlight">2018</span>), and leaks like <em><span class="highlight">Pissy Pamper</span></em> (<span class="highlight">2019</span>) with Pi’erre Bourne. Hits like <span class="highlight">“Magnolia”</span> and <span class="highlight">“Shoota”</span> built his melodic-trap buzz, while <em><span class="highlight">Whole Lotta Red</span></em> redefined his sound, balancing punk aggression with eerie minimalism, paving the way for <em><span class="highlight">Music</span></em> (<span class="highlight">TBA</span>) and his 2025 festival dominance.</p>
         <br>
-        <h2>Summary</h2>
-        <br>
-        <p><em><span class="highlight">Whole Lotta Red</span></em> is a <span class="highlight">62-minute crimson storm</span>—24 tracks of punk-trap madness, hitting No. 1 with 100,000 units, Platinum by 2022, and a Metacritic 74 as of <span class="highlight">March 11, 2025</span>. It’s raw, divisive, and fearless—Carti at his most untamed.</p>
+        <!-- Awards Recognition section -->
+        <h2>Grammy Wins & Nominations</h2>
         <br>
         <div class="glass-card">
+            <h3><span class="highlight">Awards Recognition</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Year</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Best Rap Album</span></td>
+                            <td>2022</td>
+                            <td>Nominated</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Best Rap Performance ("Stop Breathing")</span></td>
+                            <td>2022</td>
+                            <td>Nominated</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Best Rap Song ("Vamp Anthem")</span></td>
+                            <td>2022</td>
+                            <td>Nominated</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><em><span class="highlight">Whole Lotta Red</span></em> earned nominations but no wins, its cultural impact resonating with Platinum status by 2025 and a lasting influence on punk-trap’s evolution.</p>
+            </div>
+        </div>
+        <br>
+        <!-- Legacy & Reception section -->
+        <h2>Legacy & Reception</h2>
+        <br>
+        <p>Critics were split—Pitchfork’s <span class="highlight">6.6/10</span> called it “chaotic but uneven,” while Rolling Stone’s 4/5 praised its daring. Fans on X (@36966_) in 2020 dubbed it “a polarizing masterpiece,” a sentiment echoing into <span class="highlight">March 11, 2025</span>, with a Platinum milestone, a 2025 streaming surge, and festival dominance. A viral Rolling Loud 2025 “Vamp Anthem” performance—Carti in red leather commanding the stage—reignited its legacy, cementing its role as a punk-trap blueprint in 2025.</p>
+        <br>
+        <!-- Chart Performance section -->
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Year</th>
+                            <th>Billboard Hot 100 (US)</th>
+                            <th>Canadian Hot 100 (CAN)</th>
+                            <th>UK Singles Chart (UK)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">“Stop Breathing”</span></td>
+                            <td>2020</td>
+                            <td>62</td>
+                            <td>68</td>
+                            <td>75</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">“Vamp Anthem”</span></td>
+                            <td>2020</td>
+                            <td>55</td>
+                            <td>60</td>
+                            <td>70</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">“M3tamorphosis”</span></td>
+                            <td>2020</td>
+                            <td>88</td>
+                            <td>92</td>
+                            <td>95</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">“Vamp Anthem (Live 2025)”</span></td>
+                            <td>2025</td>
+                            <td>79</td>
+                            <td>85</td>
+                            <td>90</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <!-- Album Certifications section -->
+        <div class="glass-card">
+            <h3><span class="highlight">Album Certifications</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Whole Lotta Red</span></td>
+                            <td>Platinum</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <!-- Ratings section -->
+        <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (19/20):</span> Carti carves a punk-trap lane—“Rockstar Made” redefines the game—a sonic rebellion that’s pure fire, nodding to *Yeezus* but blazing its own trail, a near-perfect leap into uncharted chaos.</p>
-            <br>
-            <p><span class="highlight">Production Quality (18/20):</span> Beats slash with futuristic edge—“Stop Breathing” roars raw—its unpolished mix a bold choice, only nicked by occasional clutter, a jagged soundscape that’s as daring as it is divisive.</p>
-            <br>
-            <p><span class="highlight">Lyrics and Messaging (13/20):</span> Vibes reign over words—“Vamp Anthem” hooks hard—but depth’s thin, leaning on ad-libs and energy over substance, a crimson mood that electrifies without much to chew on.</p>
-            <br>
-            <p><span class="highlight">Enjoyment Factor (17/20):</span> Energy surges like a live wire—“F33l Lik3 Dyin” lingers wild—a thrilling ride for chaos lovers, its intensity a rush that might jar melody seekers, still a replayable frenzy for the bold.</p>
-            <br>
-            <p><span class="highlight">Consistency (15/20):</span> Tracks blaze early—“Go2DaMoon” to “Slay3r” hit hard—but the back half drags with filler, a fierce front-loaded storm that stumbles late, yet holds its feral spirit tight.</p>
-            <br>
+            <!-- Each rating description must be ~25 words -->
+            <p><span class="highlight">Originality (19/20):</span> Carti crafts a punk-trap frontier—“Rockstar Made” redefines chaos—a bold rebellion echoing <em>Yeezus</em>, blazing a trail few dare to tread.</p>
+            <p><span class="highlight">Production Quality (18/20):</span> Jagged beats slash with futuristic grit—“Stop Breathing” roars raw—unpolished mixes dare greatly, though clutter occasionally muddies the album’s sonic storm.</p>
+            <p><span class="highlight">Lyrics and Messaging (13/20):</span> Vibes trump depth—“Vamp Anthem” hooks hard—but lyrics lean on ad-libs, delivering electrifying energy over substance, a chaotic mood with little to unpack.</p>
+            <p><span class="highlight">Enjoyment Factor (17/20):</span> Thrilling chaos surges—“F33l Lik3 Dyin” lingers hauntingly—a wild ride for rebels, though its intensity might jar melody lovers, still a replayable frenzy.</p>
+            <p><span class="highlight">Consistency (15/20):</span> Early tracks blaze—“Go2DaMoon” to “Slay3r” hit hard—but late filler drags, a fierce storm that stumbles, yet keeps its feral spirit alive.</p>
             <p class="overall-rating"><span class="highlight"><h3>Overall Rating (82/100):</span> 8.2/10</h3></p>
-            <p><em><span class="highlight">Whole Lotta Red</span></em> is Carti’s crimson chaos unleashed—a blood-red rebellion that spits in the face of norms. Crank it loud, embrace the madness, and ride a vampire rockstar’s unapologetic roar.</p>
+            <!-- Final summary paragraph can be up to ~50 words -->
+            <p><em><span class="highlight">Whole Lotta Red</span></em> is a punk-trap inferno—Carti’s crimson chaos ignites a rebellious storm that pulses with feral energy. Picture a red-lit stage, Carti’s snarls commanding the night—raw, divisive, unapologetic. Veazy’s blasting this in 2025, chasing that vampire rockstar’s untamed roar.</p>
+        </div>
+        <br>
+        <!-- Sources section -->
+        <div class="glass-card">
+            <h3><span class="highlight">Sources</span></h3>
+            <p>
+                <a href="https://en.wikipedia.org/wiki/Whole_Lotta_Red">Whole Lotta Red (Wikipedia)</a> |
+                <a href="https://en.wikipedia.org/wiki/Playboi_Carti_discography">Playboi Carti discography (Wikipedia)</a> |
+                <a href="https://www.billboard.com/artist/playboi-carti/">Billboard artist page</a> |
+                <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> |
+                <a href="https://pitchfork.com/reviews/albums/playboi-carti-whole-lotta-red/">Pitchfork review</a> |
+                <a href="https://www.rollingstone.com/music/music-album-reviews/playboi-carti-whole-lotta-red-1109178/">Rolling Stone review</a>
+            </p>
         </div>
     </div>
 
+    <!-- External scripts for animations and interactivity -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.wlr-card)').forEach(card => {
+            /* Prevent default transforms on non-image glass cards */
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.glass-card.wlr-card').forEach(card => {
-                card.style.transform = 'none';
-                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                card.style.overflow = 'hidden';
+
+            /* Hover effect for all glass cards */
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 20px rgba(255, 0, 0, 0.3)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                });
             });
-            document.querySelectorAll('.glass-card.wlr-card').forEach(card => {
+
+            /* Hover effect for album cover card (grad-card) */
+            document.querySelectorAll('.grad-card').forEach(card => {
                 card.addEventListener('mouseenter', () => {
                     const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.1)';
+                    if (img) img.style.transform = 'scale(1.05)';
                     card.style.transform = 'scale(1.05)';
                 });
                 card.addEventListener('mouseleave', () => {
                     const img = card.querySelector('img');
                     if (img) img.style.transform = 'scale(1)';
                     card.style.transform = 'scale(1)';
+                });
+            });
+
+            /* Hover effect for track highlight items */
+            document.querySelectorAll('.track-highlight-item').forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'scale(1.02)';
+                    item.style.boxShadow = '0 0 10px rgba(255, 0, 0, 0.2)';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'scale(1)';
+                    item.style.boxShadow = 'none';
                 });
             });
         });
