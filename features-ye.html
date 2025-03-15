@@ -7,14 +7,14 @@
     <meta name="keywords" content="Ye, Kanye West, music profile, hip-hop, Yeezy, Donda, The College Dropout, MusicRx">
     <meta name="author" content="Veazy">
     <!-- Open Graph Tags for Twitter Sharing -->
-    <meta property="og:title" content="MusicRx - Ye Feature">
+    <meta property="og:title" content="MusicRx - Ye: The Visionary Maverick">
     <meta property="og:description" content="Explore Ye's journey from producer to global icon, with insights into his music, fashion, and cultural influence as of March 2025.">
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/yeee.jpeg">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/features-ye.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@36966_">
-    <title>MusicRx - Ye Feature</title>
+    <title>MusicRx - Ye: The Visionary Maverick</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -23,7 +23,7 @@
             background: #0a0a0a !important;
         }
         .highlight {
-            color: #ffda00; /* Changed to gold/yellow to fit Ye's aesthetic */
+            color: #ffda00; /* Changed to neon cyan to match glitch effect and Ye's futuristic vibe */
             font-weight: bold;
         }
         .feature-ye-glitch {
@@ -85,9 +85,22 @@
         }
         .glass-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 218, 0, 0.3); /* Gold shadow on hover */
+            box-shadow: 0 0 20px rgba(0, 255, 234, 0.3); /* Cyan shadow to match highlight */
         }
-        .glass-card img {
+        /* Styling for the image container to match Carti page */
+        .image-container {
+            padding: 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+            margin: 2rem 0;
+        }
+        .image-container:hover {
+            transform: scale(1.05);
+        }
+        .image-container img {
             width: 100%;
             height: auto;
             object-fit: cover;
@@ -95,7 +108,7 @@
             border-radius: 8px;
             transition: transform 0.3s ease;
         }
-        .glass-card:hover img {
+        .image-container:hover img {
             transform: scale(1.1);
         }
         /* Fix for unwanted italicization */
@@ -129,8 +142,8 @@
         <h1 class="feature-ye-glitch" data-text="YE">YE</h1>
         <div class="review-content">
             <h2>The Controversial Genius of <span class="highlight">Ye</span></h2>
-            <div class="glass-card">
-                <img src="yeee.jpeg" alt="Ye (Kanye West) portrait" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
+            <div class="image-container">
+                <img src="yeee.jpeg" alt="Ye (Kanye West) portrait">
             </div>
             <br>
             <p><span class="highlight">Kanye Omari West</span>, better known as <span class="highlight">Ye</span>, emerges from <span class="highlight">Atlanta</span> and <span class="highlight">Chicago</span> as a transformative figure in music and culture. Born on <span class="highlight">June 8, 1977</span>, this visionary has spent over two decades pushing boundaries, challenging conventions, and reinventing himself. From <span class="highlight">producer</span> to <span class="highlight">rapper</span> to <span class="highlight">fashion designer</span> to <span class="highlight">presidential candidate</span>, <span class="highlight">Ye</span>’s journey has been defined by relentless ambition, artistic brilliance, and controversy as of <span class="highlight">March 23, 2025</span>.</p>
@@ -294,6 +307,7 @@
     <script>
         // Ensure all glass cards on this page have the right styling
         document.addEventListener('DOMContentLoaded', () => {
+            // Style for glass cards (excluding the image container)
             document.querySelectorAll('.glass-card').forEach(card => {
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
@@ -304,20 +318,28 @@
             // Add hover effects for glass cards
             document.querySelectorAll('.glass-card').forEach(card => {
                 card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.1)';
                     card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 0 20px rgba(255, 218, 0, 0.3)';
+                    card.style.boxShadow = '0 0 20px rgba(0, 255, 234, 0.3)';
                 });
                 card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
                     card.style.transform = 'scale(1)';
                     card.style.boxShadow = 'none';
+                });
+            });
+            // Add hover effects for the image container
+            document.querySelectorAll('.image-container').forEach(container => {
+                container.addEventListener('mouseenter', () => {
+                    const img = container.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
+                    container.style.transform = 'scale(1.05)';
+                });
+                container.addEventListener('mouseleave', () => {
+                    const img = container.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    container.style.transform = 'scale(1)';
                 });
             });
         });
     </script>
 </body>
 </html>
-
