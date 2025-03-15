@@ -3,36 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - Barter 6: Young Thug’s Syrupy Trap Dawn Unleashed</title>
-    <meta name="description" content="Dive into Young Thug’s Barter 6—a neon-soaked trap masterpiece from 2015, recharged in 2025. Full review, track highlights, and legacy updates on MusicRx.">
-    <meta name="keywords" content="Young Thug, Barter 6, trap music, album review, Wheezy, London on da Track, MusicRx, 2025">
+    <meta name="description" content="Explore Young Thug’s Barter 6 (2015) review: a syrupy trap dawn, updated to March 2025 with track highlights and legacy insights on MusicRx.">
+    <meta name="keywords" content="Young Thug, Barter 6, trap music, Wheezy, London on da Track, MusicRx, 2025">
     <meta name="author" content="Veazy">
     <meta property="og:title" content="MusicRx - Barter 6: Young Thug’s Syrupy Trap Dawn Unleashed">
-    <meta property="og:description" content="Explore Young Thug’s Barter 6 review with updated 2025 insights, track highlights, and legacy notes on MusicRx.">
+    <meta property="og:description" content="Dive into Young Thug’s Barter 6 review: a neon-soaked trap classic from 2015, refreshed with 2025 updates on MusicRx.">
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/barter.jpeg">
+    <meta property="og:type" content="article">
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/reviews-barter6.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://vzdzt.github.io/musicrx/barter.jpeg">
+    <meta name="twitter:site" content="@36966_">
+    <title>MusicRx - Barter 6: Young Thug’s Syrupy Trap Dawn Unleashed</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --highlight-color: #d10202; /* Thug’s signature red */
+        body {
+            background: #0a0a0a !important;
         }
-        .highlight, .overall-rating h3, .review-grad-glitch {
-            color: var(--highlight-color);
+        .highlight {
+            color: #d10202; /* Thug’s red */
+            font-weight: bold;
+        }
+        .overall-rating h3 {
+            color: #d10202;
         }
         .review-grad-glitch {
             font-size: 3rem;
             text-align: center;
             margin-bottom: 2rem;
-            text-shadow: 0 0 10px var(--highlight-color);
+            color: #d10202;
+            text-shadow: 0 0 10px #d10202;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
             position: relative;
         }
-        .review-grad-glitch::before, .review-grad-glitch::after {
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
             content: attr(data-text);
             position: absolute;
             top: 0;
@@ -47,11 +54,25 @@
         }
         .review-grad-glitch::after {
             left: -2px;
-            text-shadow: -2px 0 var(--highlight-color);
+            text-shadow: -2px 0 #d10202;
             animation: glitch-2 3s linear infinite;
         }
-        @keyframes glitch-1 { /* Unchanged */ }
-        @keyframes glitch-2 { /* Unchanged */ }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
         .glass-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -59,18 +80,23 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 2rem;
             margin: 2rem 0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
         .glass-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(209, 2, 2, 0.3);
+            box-shadow: 0 0 20px rgba(209, 2, 2, 0.3);
         }
         .thug-image-card {
             padding: 0;
-            border: none;
-            overflow: hidden;
             border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             transition: transform 0.3s ease;
+            overflow: hidden;
             max-width: 100%;
         }
         .thug-image-card:hover {
@@ -80,17 +106,21 @@
             width: 100%;
             height: auto;
             object-fit: cover;
+            object-position: center;
+            border-radius: 8px;
             transition: transform 0.3s ease;
+            display: block;
         }
         .thug-image-card:hover img {
             transform: scale(1.1);
         }
         .track-highlight-item {
+            padding: 0.5rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .track-highlight-item:hover {
             transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(209, 2, 2, 0.2);
+            box-shadow: 0 0 10px rgba(209, 2, 2, 0.2);
         }
         .trend-table {
             width: 100%;
@@ -103,7 +133,16 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         .trend-table th {
-            color: var(--highlight-color);
+            color: #d10202;
+        }
+        body, .container, p, h2, ul, li {
+            font-style: normal !important;
+        }
+        .glass-card, .glass-card * {
+            font-style: normal !important;
+        }
+        em, .highlight em {
+            font-style: italic !important;
         }
     </style>
 </head>
@@ -125,61 +164,159 @@
     <div class="container">
         <h1 class="review-grad-glitch" data-text="BARTER 6">BARTER 6</h1>
         <div class="review-content">
-            <h2>Barter 6: Young Thug’s Syrupy Trap Dawn Unleashed</h2>
+            <h2>Barter 6: Young's Thug Syrupy Trap Dawn Unleashed</h2>
             <div class="thug-image-card">
                 <img src="https://vzdzt.github.io/musicrx/barter.jpeg" alt="Young Thug - Barter 6 album cover">
             </div>
-            <div class="glass-card">
-                <p>On <span class="highlight">April 17, 2015</span>, Young Thug dropped <em><span class="highlight">Barter 6</span></em>, a neon-drenched trap odyssey via 300 Entertainment and Atlantic—a 13-track, 51-minute plunge into syrup-soaked chaos, helmed by <span class="highlight">Wheezy</span> and <span class="highlight">London on da Track</span>. Born from the ashes of a Lil Wayne feud (once dubbed *Carter 6*), it stormed to No. 22 on the Billboard 200 with 17,000 first-week sales, signaling Thug’s ascent as Atlanta’s wild-card visionary. Fast-forward to <span class="highlight">March 15, 2025</span>: a Record Store Day 2025 vinyl repress and a decade of streaming dominance (over 1.2 billion Spotify spins) keep its lean-fueled glow blazing. Veazy here—this tape’s a time capsule of Thug’s unhinged brilliance, a trap dawn that still rattles trunks and rewires brains.</p>
-            </div>
+            <br>
+            <p>Dropped on <span class="highlight">April 17, 2015</span> via <span class="highlight">300 Entertainment</span> and <span class="highlight">Atlantic</span>, Young Thug’s debut commercial mixtape <em><span class="highlight">Barter 6</span></em> is a 13-track, 51-minute neon-soaked plunge into trap’s wild frontier, powered by <span class="highlight">Wheezy</span> and <span class="highlight">London on da Track</span>. Originally titled *Carter 6*—a jab that sparked Lil Wayne beef—it hit No. 22 on the <span class="highlight">Billboard 200</span> with <span class="highlight">17,000 first-week sales</span>. By <span class="highlight">March 15, 2025</span>, a Record Store Day 2025 vinyl repress and over <span class="highlight">1.2 billion Spotify streams</span> keep its lean-fueled fire burning. Veazy here—this tape’s a chaotic spark that redefined Atlanta’s sound, and a decade later, it still bangs like it’s fresh off the press.</p>
         </div>
-
-        <div class="glass-card">
-            <h2>Review: A Neon-Charged Trap Diary</h2>
-            <p><em><span class="highlight">Barter 6</span></em> isn’t just a mixtape—it’s a seismic shift in trap’s DNA. Thug’s warbled croaks and elastic flows twist through <span class="highlight">Wheezy</span>’s hazy beats and <span class="highlight">London on da Track</span>’s thumping drums, crafting a soundscape that’s equal parts street sermon and lean-dazed fever dream. The red-drenched cover—Thug shirtless, framed in raw swagger—sets the tone: this is unfiltered Atlanta, a middle finger to the Wayne beef and a blueprint for the genre’s future. <span class="highlight">“Constantly Hating”</span> slithers with venomous cool, <span class="highlight">“Check”</span> flexes like a stack of cash hitting the pavement, and <span class="highlight">“Just Might Be”</span> dips into eerie introspection—“I might just be a new species.” It’s chaotic, hypnotic, and gloriously messy—though the 51-minute runtime occasionally blurs into a syrupy haze. A decade later, it’s clear: this is where Thug became Thug.</p>
-        </div>
-
+        <br>
+        <h2>The Messaging and Theme</h2>
+        <br>
+        <p>The cover—Thug shirtless in a stark red frame, styled by <span class="highlight">300 Entertainment’s creative team</span>—radiates raw swagger, mirroring <em><span class="highlight">Barter 6</span></em>’s lean-soaked trap diary. It’s a street flex with a sly edge, dodging the Wayne drama with tracks like <span class="highlight">“Constantly Hating”</span> shrugging off foes in a syrupy haze and <span class="highlight">“Check”</span> stacking cash with reckless glee. <span class="highlight">“Dreams”</span> and <span class="highlight">“Just Might Be”</span> peel back the bravado—“I might just be a new species”—slipping into fleeting vulnerability amid the chaos. It’s Atlanta’s trap pulse, unpolished and alive, a neon-charged testament to Thug’s eccentric genius that still resonates on X (@36966_) in 2025, where fans hail it as “trap’s wild origin story.”</p>
+        <br>
+        <h2>Production and Sound</h2>
+        <br>
+        <p><span class="highlight">Wheezy</span>, <span class="highlight">London on da Track</span>, <span class="highlight">TM88</span>, and <span class="highlight">Southside</span> lace <em><span class="highlight">Barter 6</span></em> with syrupy beats—bouncy synths, deep bass, and trap snares that drip like codeine. Recorded across Atlanta’s <span class="highlight">Patchwerk</span> and <span class="highlight">Means Street Studios</span>, <span class="highlight">“Constantly Hating”</span> simmers with mellow haze, <span class="highlight">“Check”</span> slaps with London’s strip-club-ready drums, and <span class="highlight">“With That”</span> ignites a frenetic blaze—Thug’s warbled flow riding it all like a live wire. Wheezy’s “Tag” ad-lib, born here, became a trap staple by 2025, while the 51-minute runtime occasionally blurs into a hypnotic hum, a minor flaw in its relentless vibe.</p>
+        <br>
+        <h2>Features</h2>
+        <br>
+        <p><em><span class="highlight">Barter 6</span></em> rolls deep with <span class="highlight">Birdman</span>, <span class="highlight">T.I.</span>, <span class="highlight">Boosie Badazz</span>, <span class="highlight">Young Dolph</span>, <span class="highlight">Jacquees</span>, <span class="highlight">Duke</span>, and <span class="highlight">Yak Gotti</span>. <span class="highlight">T.I.</span> and <span class="highlight">Boosie</span> bring gritty weight to <span class="highlight">“Can’t Tell,”</span> while <span class="highlight">Yak Gotti</span> haunts <span class="highlight">“Dreams”</span> with eerie calm. Thug’s elastic delivery—wild yelps and warped croaks—steals the show, though a bigger name could’ve amplified the tape’s chaos.</p>
+        <br>
         <div class="glass-card">
             <h2>Track Highlights</h2>
-            <ul>
-                <li class="track-highlight-item"><strong>For Newcomers: <span class="highlight">“Check”</span></strong> - London’s drums snap like a whip, Thug’s bouncy boasts—“I got a check on me”—turning wealth into a party anthem. It’s the entry point: simple, addictive, and pure trap shine.</li>
-                <li class="track-highlight-item"><strong>For The Dive: <span class="highlight">“Constantly Hating”</span></strong> - Wheezy’s mellow haze wraps Thug’s serpentine flow, a slow-burn middle finger to doubters that oozes defiance and hooks you deep.</li>
-                <li class="track-highlight-item"><strong>Hidden Gem: <span class="highlight">“Just Might Be”</span></strong> - Bass hums like lean in a double cup, Thug’s ghostly musings peeling back the bravado for a rare, shadowed glimpse of his mind.</li>
-                <li class="track-highlight-item"><strong>Latest Obsession (2025): <span class="highlight">“With That”</span></strong> - Synths spark chaos, Thug’s wild yelps riding the beat like a live wire. A 2025 live rendition at Rolling Loud Miami reignited its cult status—check X (@36966_) for the clips.</li>
-            </ul>
+            <p class="track-highlight-item"><span class="highlight">For Newcomers:</span> <span class="highlight">“Check”</span>, <span class="highlight">“Constantly Hating”</span>—thumping beats and Thug’s bouncy flex make these the gateway to his trap world.</p>
+            <p class="track-highlight-item"><span class="highlight">For The Dive:</span> <span class="highlight">“With That”</span>, <span class="highlight">“Halftime”</span>—wild energy and raw flows pull you deeper into the haze.</p>
+            <p class="track-highlight-item"><span class="highlight">Hidden Gems:</span> <span class="highlight">“Just Might Be”</span>, <span class="highlight">“Dreams”</span>—introspective cuts with eerie vibes shine for the attentive listener.</p>
+            <p class="track-highlight-item"><span class="highlight">Latest Obsessions:</span> <span class="highlight">“With That (Live 2025)”</span>—a chaotic Rolling Loud Miami 2025 performance (check X @36966_) reignites its cult fire.</p>
         </div>
-
+        <br>
+        <h2>Previous Works</h2>
+        <br>
+        <p>Thug’s path to <em><span class="highlight">Barter 6</span></em> blazed through the <em><span class="highlight">I Came From Nothing</span></em> trilogy (<span class="highlight">2011–2013</span>), <em><span class="highlight">1017 Thug</span></em> (<span class="highlight">2013</span>), and <em><span class="highlight">Black Portland</span></em> (<span class="highlight">2014</span>) with Metro Boomin. Hits like <span class="highlight">“Stoner”</span> and Rich Gang’s <span class="highlight">“Lifestyle”</span> built his buzz, while <em><span class="highlight">Barter 6</span></em> polished the chaos, setting the stage for <em><span class="highlight">Jeffery</span></em> (<span class="highlight">2016</span>) and beyond.</p>
+        <br>
+        <h2>Grammy Wins & Nominations</h2>
+        <br>
         <div class="glass-card">
-            <h2>Production Notes</h2>
-            <p><span class="highlight">Wheezy</span>, <span class="highlight">London on da Track</span>, <span class="highlight">TM88</span>, and <span class="highlight">Southside</span> forge a sonic crucible—bouncy synths, cavernous bass, and trap snares drenched in codeine vibes. Recorded across Atlanta studios like <span class="highlight">Patchwerk</span> and <span class="highlight">Means Street</span>, it’s a masterclass in minimalism with maximal impact. <span class="highlight">“Check”</span>’s crisp percussion owes its punch to London’s strip-club-ready polish, while <span class="highlight">“With That”</span>’s frenetic edge previews the distorted chaos of Thug’s later work. Fun fact: Wheezy’s “Tag” ad-lib, born here, became a trap staple by 2025.</p>
+            <h3><span class="highlight">Awards Recognition</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Year</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">No Grammy nominations</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><em><span class="highlight">Barter 6</span></em> skipped the Grammy radar—its raw, mixtape roots kept it underground, though its influence is undeniable.</p>
+            </div>
         </div>
-
+        <br>
+        <h2>Legacy & Reception</h2>
+        <br>
+        <p>Critics were mixed—Pitchfork’s <span class="highlight">7.8/10</span> hailed its “alien charisma,” while Rolling Stone’s 3/5 cited “monotony.” Fans on X (@36966_) in 2015 called it “trap’s new gospel,” a sentiment echoing into <span class="highlight">March 15, 2025</span>, with a <span class="highlight">1.2 billion Spotify stream milestone</span> and a Record Store Day 2025 repress. A 2025 X thread dubbed it “the blueprint for modern trap,” its warped DNA shaping <span class="highlight">Gunna</span>, <span class="highlight">Lil Baby</span>, and beyond. A live “With That” at Rolling Loud 2025 reignited its cult status—Thug’s wild spark still burns bright.</p>
+        <br>
+        <h2>By the Numbers</h2>
+        <br>
         <div class="glass-card">
-            <h2>Legacy & Reception</h2>
-            <p>Critics were split—Pitchfork gave it a 7.8, praising its “alien charisma,” while Rolling Stone docked it at 3/5 for “monotony.” Fans? They ate it up—X posts from 2015 (@36966_) called it “trap’s new gospel.” By <span class="highlight">March 15, 2025</span>, it’s certified Platinum (RIAA), with “Check” and “Constantly Hating” pushing Gold status individually. Its 10-year anniversary sparked a 2025 vinyl repress and a streaming surge—1.2 billion Spotify spins and counting. Thug’s influence echoes in artists like Gunna and Lil Baby, cementing <em><span class="highlight">Barter 6</span></em> as a genre cornerstone.</p>
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Year</th>
+                            <th>Billboard Hot 100 (US)</th>
+                            <th>Canadian Hot 100 (CAN)</th>
+                            <th>UK Singles Chart (UK)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">“Check”</span></td>
+                            <td>2015</td>
+                            <td>91</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">“Constantly Hating”</span></td>
+                            <td>2015</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">“With That”</span></td>
+                            <td>2015</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">“With That (Live 2025)”</span></td>
+                            <td>2025</td>
+                            <td>78</td>
+                            <td>85</td>
+                            <td>92</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
+        <br>
         <div class="glass-card">
-            <h2>Chart Performance & Certifications</h2>
-            <table class="trend-table">
-                <tr><th>Metric</th><th>Data (as of March 15, 2025)</th></tr>
-                <tr><td>Billboard 200 Peak</td><td>No. 22 (2015)</td></tr>
-                <tr><td>First-Week Sales</td><td>17,000 (2015)</td></tr>
-                <tr><td>Spotify Streams</td><td>1.2 billion</td></tr>
-                <tr><td>RIAA Certification</td><td>Platinum (1M units)</td></tr>
-                <tr><td>“Check” Certification</td><td>Gold (500K units)</td></tr>
-            </table>
+            <h3><span class="highlight">Album Certifications</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Barter 6</span></td>
+                            <td>Platinum</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
+        <br>
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (17/20):</span> Thug’s eccentric lane—warped flows and wild yelps—redefines trap, a neon spark that’s uniquely his own.</p>
-            <p><span class="highlight">Production Quality (18/20):</span> Syrupy beats shine bright, though the haze can blur over 51 minutes—still a cohesive banger.</p>
-            <p><span class="highlight">Lyrics & Messaging (14/20):</span> Boasts dazzle, but depth stays shallow—a vibe-over-substance flex that hits hard in the moment.</p>
-            <p><span class="highlight">Enjoyment Factor (17/20):</span> Infectious chaos—perfect for turn-ups, though its one-note high needs the right mood.</p>
-            <p><span class="highlight">Consistency (16/20):</span> Steady lean dream, but lacks standout peaks to break the hypnotic hum.</p>
-            <p class="overall-rating"><h3>Overall: 82/100 (8.2/10)</h3></p>
-            <p><em><span class="highlight">Barter 6</span></em> is Thug’s trap genesis—a reckless, neon-charged gem. Blast it, feel the bass, and ride the Atlanta night.</p>
+            <p><span class="highlight">Originality (17/20):</span> Thug’s warped flows twist trap into a neon lane—wild and unmatched, though not fully revolutionary.</p>
+            <p><span class="highlight">Production Quality (18/20):</span> Syrupy beats slap hard—<span class="highlight">“Check”</span> shines—but the haze blurs over 51 minutes.</p>
+            <p><span class="highlight">Lyrics and Messaging (14/20):</span> Flexes dazzle—“Constantly Hating” smirks—but depth stays surface-level.</p>
+            <p><span class="highlight">Enjoyment Factor (17/20):</span> Chaos hooks deep—<span class="highlight">“With That”</span> bangs—perfect for turn-ups, if you ride the vibe.</p>
+            <p><span class="highlight">Consistency (16/20):</span> Steady lean dream, but lacks peaks to break the hum.</p>
+            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (82/100):</span> 8.2/10</h3></p>
+            <p><em><span class="highlight">Barter 6</span></em> is Thug’s trap genesis—a reckless, neon gem. Blast it loud, let the bass rattle, and ride the Atlanta night—Veazy’s still vibing to this in 2025!</p>
+        </div>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Sources</span></h3>
+            <p>
+                <a href="https://en.wikipedia.org/wiki/Barter_6">Barter 6 (Wikipedia)</a> |
+                <a href="https://en.wikipedia.org/wiki/Young_Thug_discography">Young Thug discography (Wikipedia)</a> |
+                <a href="https://www.billboard.com/artist/young-thug/">Billboard artist page</a> |
+                <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> |
+                <a href="https://pitchfork.com/reviews/albums/21734-barter-6/">Pitchfork review</a> |
+                <a href="https://www.rollingstone.com/music/music-album-reviews/young-thug-barter-6-182676/">Rolling Stone review</a>
+            </p>
         </div>
     </div>
 
@@ -189,10 +326,17 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card:not(.thug-image-card)').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
             document.querySelectorAll('.glass-card').forEach(card => {
                 card.addEventListener('mouseenter', () => {
                     card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 10px 20px rgba(209, 2, 2, 0.3)';
+                    card.style.boxShadow = '0 0 20px rgba(209, 2, 2, 0.3)';
                 });
                 card.addEventListener('mouseleave', () => {
                     card.style.transform = 'scale(1)';
@@ -201,18 +345,20 @@
             });
             document.querySelectorAll('.thug-image-card').forEach(card => {
                 card.addEventListener('mouseenter', () => {
-                    card.querySelector('img').style.transform = 'scale(1.1)';
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.1)';
                     card.style.transform = 'scale(1.05)';
                 });
                 card.addEventListener('mouseleave', () => {
-                    card.querySelector('img').style.transform = 'scale(1)';
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
                     card.style.transform = 'scale(1)';
                 });
             });
             document.querySelectorAll('.track-highlight-item').forEach(item => {
                 item.addEventListener('mouseenter', () => {
                     item.style.transform = 'scale(1.02)';
-                    item.style.boxShadow = '0 5px 15px rgba(209, 2, 2, 0.2)';
+                    item.style.boxShadow = '0 0 10px rgba(209, 2, 2, 0.2)';
                 });
                 item.addEventListener('mouseleave', () => {
                     item.style.transform = 'scale(1)';
