@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+ <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore J. Cole’s 2014 Forest Hills Drive (2014) review: a soulful hip-hop memoir, updated to March 2025 with track highlights on MusicRx.">
     <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, hip-hop, Vinylz, Illmind, MusicRx, 2025">
@@ -22,11 +23,11 @@
             background: #0a0a0a !important;
         }
         .highlight {
-            color: #6876a1; /* Muted blue */
+            color: #6876a1; /* Fuchsia */
             font-weight: bold;
         }
         .overall-rating h3 {
-            color: #6876a1;
+            color: #e848db;
         }
         .review-grad-glitch {
             font-size: 3rem;
@@ -83,9 +84,9 @@
         }
         .glass-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(104, 118, 161, 0.3);
+            box-shadow: 0 0 20px rgba(232, 72, 219, 0.3);
         }
-        .glass-card.grad-card {
+        .glass-card.pinkprint-card {
             padding: 20px;
             border-radius: 10px;
             display: flex;
@@ -95,17 +96,17 @@
             overflow: hidden;
             max-width: 100%;
         }
-        .glass-card.grad-card:hover {
+        .glass-card.pinkprint-card:hover {
             transform: scale(1.05);
         }
-        .glass-card.grad-card img {
+        .glass-card.pinkprint-card img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             transition: transform 0.3s ease;
             display: block;
         }
-        .glass-card.grad-card:hover img {
+        .glass-card.pinkprint-card:hover img {
             transform: scale(1.05);
         }
         .track-highlight-item {
@@ -114,7 +115,7 @@
         }
         .track-highlight-item:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 10px rgba(104, 118, 161, 0.2);
+            box-shadow: 0 0 10px rgba(232, 72, 219, 0.2);
         }
         .trend-table {
             width: 100%;
@@ -127,7 +128,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         .trend-table th {
-            color: #6876a1;
+            color: #e848db;
             text-shadow: none !important;
         }
         body, .container, p, h2, ul, li {
@@ -157,14 +158,14 @@
     </nav>
 
     <div class="container">
-        <h1 class="review-grad-glitch" data-text="2014 FOREST HILLS DRIVE">2014 FOREST HILLS DRIVE</h1>
+        <h1 class="review-grad-glitch" data-text="THE PINKPRINT">THE PINKPRINT</h1>
         <div class="review-content">
-            <h2>2014 Forest Hills Drive: J. Cole’s Soulful Homecoming</h2>
-            <div class="glass-card grad-card">
-                <img src="https://vzdzt.github.io/musicrx/cole.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
+            <h2>The Pinkprint: Nicki Minaj’s Personal Evolution Triumph</h2>
+            <div class="glass-card pinkprint-card">
+                <img src="https://vzdzt.github.io/musicrx/pink.jpeg" alt="Nicki Minaj - The Pinkprint album cover">
             </div>
             <br>
-            <p>Dropped on <span class="highlight">December 9, 2014</span> via <span class="highlight">Roc Nation</span> and <span class="highlight">Columbia</span>, J. Cole’s third album <em><span class="highlight">2014 Forest Hills Drive</span></em> is a 13-track, 64-minute soulful memoir, powered by <span class="highlight">J. Cole</span> and <span class="highlight">Vinylz</span>. Named after his childhood home, it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">353,000 first-week units</span>. By <span class="highlight">March 11, 2025</span>, its 3x Platinum status and a 2025 anniversary tour keep its reflective fire alive. Veazy here—this album’s a timeless journey that defined Cole, and a decade later, it still resonates with raw honesty.</p>
+ <p>Dropped on <span class="highlight">December 9, 2014</span> via <span class="highlight">Roc Nation</span> and <span class="highlight">Columbia</span>, J. Cole’s third album <em><span class="highlight">2014 Forest Hills Drive</span></em> is a 13-track, 64-minute soulful memoir, powered by <span class="highlight">J. Cole</span> and <span class="highlight">Vinylz</span>. Named after his childhood home, it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">353,000 first-week units</span>. By <span class="highlight">March 11, 2025</span>, its 3x Platinum status and a 2025 anniversary tour keep its reflective fire alive. Veazy here—this album’s a timeless journey that defined Cole, and a decade later, it still resonates with raw honesty.</p>
         </div>
         <br>
         <h2>The Messaging and Theme</h2>
@@ -364,6 +365,56 @@
                 item.addEventListener('mouseenter', () => {
                     item.style.transform = 'scale(1.02)';
                     item.style.boxShadow = '0 0 10px rgba(104, 118, 161, 0.2)';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'scale(1)';
+                    item.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card:not(.pinkprint-card)').forEach(card => {
+                card.style.transform = 'none !important';
+                card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important';
+                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.rotate = '0deg !important';
+            });
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 20px rgba(232, 72, 219, 0.3)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                });
+            });
+            document.querySelectorAll('.pinkprint-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.05)';
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const img = card.querySelector('img');
+                    if (img) img.style.transform = 'scale(1)';
+                    card.style.transform = 'scale(1)';
+                });
+            });
+            document.querySelectorAll('.track-highlight-item').forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'scale(1.02)';
+                    item.style.boxShadow = '0 0 10px rgba(232, 72, 219, 0.2)';
                 });
                 item.addEventListener('mouseleave', () => {
                     item.style.transform = 'scale(1)';
