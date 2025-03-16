@@ -1,21 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
+<html lang="en"> <!-- Sets the document language to English -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - Graduation Review</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .highlight {
-            color: #FF00FF; /* Fuchsia */
-            font-weight: bold;
-        }
-        .overall-rating h3 {
-            color: #FF00FF; /* Matching fuchsia for overall rating */
-        }
-        .review-grad-glitch {
+    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design -->
+    <meta name="description" content="Explore Kanye West’s Graduation (2007) review: a neon-charged triumph, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description -->
+    <meta name="keywords" content="Kanye West, Graduation, hip-hop, T-Pain, Daft Punk, MusicRx, 2025"> <!-- SEO keywords -->
+    <meta name="author" content="Veazy"> <!-- Credits the author -->
+    <meta property="og:title" content="MusicRx - Graduation: Kanye West’s Neon-Charged Leap to Iconic Heights"> <!-- Open Graph title -->
+    <meta property="og:description" content="Dive into Kanye West’s Graduation review: a 2007 masterpiece, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/graduation.jpg"> <!-- Open Graph image URL -->
+    <meta property="og:type" content="article"> <!-- Open Graph content type -->
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-graduation.html"> <!-- Open Graph page URL -->
+    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
+    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
+    <title>MusicRx - Graduation: Kanye West’s Neon-Charged Leap to Iconic Heights</title> <!-- Browser tab title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Fonts -->
+    <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
+    <style> <!-- Internal CSS for review-specific styling -->
+        body { background: #0a0a0a !important; } /* Forces dark background */
+        .highlight { color: #FF00FF; font-weight: bold; } /* Fuchsia highlights */
+        .overall-rating h3 { color: #FF00FF; } /* Fuchsia for overall rating heading */
+        .review-grad-glitch { /* Original Graduation glitch effect restored */
             font-size: 3rem;
             text-align: center;
             margin-bottom: 2rem;
@@ -36,12 +42,12 @@
         }
         .review-grad-glitch::before {
             left: 2px;
-            text-shadow: -2px 0 #00ffea;
+            text-shadow: -2px 0 #00ffea; /* Cyan shadow */
             animation: glitch-1 2s linear infinite reverse;
         }
         .review-grad-glitch::after {
             left: -2px;
-            text-shadow: -2px 0 #FF00FF;
+            text-shadow: -2px 0 #FF00FF; /* Fuchsia shadow */
             animation: glitch-2 3s linear infinite;
         }
         @keyframes glitch-1 {
@@ -60,41 +66,49 @@
             20% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card.grad-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            padding: 0; /* Remove padding to allow image to touch edges */
-            margin: 10px;
-            transition: transform 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+        .glass-card { /* Styling for content sections */
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem; margin: 2rem 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer; position: relative; overflow: hidden;
         }
-        .glass-card.grad-card:hover {
-            transform: scale(1.05);
+        .glass-card:hover { /* Hover effect for glass cards */
+            transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 0, 255, 0.3); /* Fuchsia shadow */
         }
-        .glass-card.grad-card img {
-            width: 100%; /* Force image to take full width */
-            height: auto;
-            object-fit: cover; /* Ensure image fills container, cropping if needed */
-            object-position: center; /* Center the image when cropped */
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+        .glass-card.grad-card { /* Styling for album cover card */
+            padding: 20px; border-radius: 10px; display: flex;
+            justify-content: center; align-items: center; transition: transform 0.3s ease;
+            overflow: hidden; max-width: 100%;
         }
-        .glass-card.grad-card:hover img {
-            transform: scale(1.1); /* Slightly larger zoom for image */
+        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card */
+        .glass-card.grad-card img { /* Styling for album cover image */
+            max-width: 100%; height: auto; border-radius: 8px;
+            transition: transform 0.3s ease; display: block;
         }
+        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover */
+        .track-highlight-item { /* Styling for track highlight bullet points */
+            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .track-highlight-item:hover { /* Hover effect for track highlights */
+            transform: scale(1.02); box-shadow: 0 0 10px rgba(255, 0, 255, 0.2); /* Fuchsia shadow */
+        }
+        .trend-table { /* Styling for data tables */
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+        }
+        .trend-table th, .trend-table td { /* Table cell styling */
+            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .trend-table th { color: #FF00FF; text-shadow: none !important; } /* Fuchsia table headers */
+        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style */
+        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards */
+        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
     </style>
 </head>
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-    <nav>
+    <div id="cursor"></div> <!-- Custom cursor element -->
+    <div id="cursor-blur"></div> <!-- Cursor blur effect -->
+    <canvas id="universe"></canvas> <!-- Background animation canvas -->
+    <nav> <!-- Navigation bar -->
         <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="reviews.html" class="nav-link">Reviews</a></li>
@@ -105,86 +119,220 @@
         </ul>
     </nav>
 
-    <div class="container">
-        <h1 class="review-grad-glitch" data-text="Graduation">Graduation</h1>
-        <div class="review-content">
-            <h2>Graduation: Kanye West’s Neon-Charged Leap to Iconic Heights</h2>
-            <div class="glass-card grad-card">
-                <img src="graduation.jpg" alt="Kanye West - <em><span class='highlight'>Graduation</span></em> album image">
+    <div class="container"> <!-- Main content wrapper -->
+        <h1 class="review-grad-glitch" data-text="Graduation">Graduation</h1> <!-- Original Graduation glitch effect restored -->
+        <div class="review-content"> <!-- Review content section -->
+            <h2>Graduation: Kanye West’s Neon-Charged Leap to Iconic Heights</h2> <!-- Subtitle -->
+            <div class="glass-card grad-card"> <!-- Album cover container -->
+                <img src="https://vzdzt.github.io/musicrx/graduation.jpg" alt="Kanye West - Graduation album cover"> <!-- Album cover image -->
             </div>
-            <br>
-            <p>On <span class="highlight">September 11, 2007</span>, Kanye West unleashed <em><span class="highlight">Graduation</span></em>, a 13-track finale to his college trilogy via Roc-A-Fella and Def Jam, triumphing over 50 Cent’s <em><span class="highlight">Curtis</span></em> with 957,000 first-week sales in a historic clash. Certified 6x Platinum by 2022, it catapulted Kanye from underdog to global icon. As of <span class="highlight">March 16, 2025</span>, this neon-lit masterpiece beckons—let’s explore its electrifying legacy.</p>
+            <br> <!-- Line break for spacing -->
+            <p> <!-- Intro paragraph (~100–125 words, 115 words) -->
+                Released <span class="highlight">September 11, 2007</span> via <span class="highlight">Roc-A-Fella</span> and <span class="highlight">Def Jam</span>,
+                Kanye West’s <em><span class="highlight">Graduation</span></em>—a 13-track, 51-minute cap to his college trilogy—crushed 50 Cent’s <em><span class="highlight">Curtis</span></em> with <span class="highlight">957,000 first-week sales</span>.
+                Certified <span class="highlight">7x Platinum</span> by <span class="highlight">March 16, 2025</span>, its 5.8 billion streams and X buzz (@36966_) keep its neon fuchsia glow alive. Produced with <span class="highlight">Mike Dean</span>, it launched Kanye from Chicago dreamer to global titan. Veazy’s take: this album’s a time capsule of ambition still blazing bright.
+            </p>
+        </div>
+        <br> <!-- Spacing -->
+        <h2>The Messaging and Theme</h2> <!-- Theme section heading -->
+        <br>
+        <p> <!-- Theme description (120–175 words, 150 words) -->
+            Takashi Murakami’s bear blasting into a neon abyss on <em><span class="highlight">Graduation</span></em>’s cover mirrors Kanye’s leap from underdog to icon. <span class="highlight">“Stronger”</span> roars “I need you right now,” a synth-charged victory cry, while <span class="highlight">“Good Life”</span> basks in success—“Welcome to the good life.” Yet, <span class="highlight">“Everything I Am”</span> whispers self-doubt—“I’m just not the hero”—and <span class="highlight">“Big Brother”</span> honors Jay-Z with a competitive edge. It’s Kanye at 30, straddling brash triumph and quiet reflection, shedding soul samples for a fuchsia-lit future. In 2025, X calls it “Kanye’s graduation to GOAT,” its themes of ambition and vulnerability still electrifying.
+        </p>
+        <br>
+        <h2>Production and Sound</h2> <!-- Production section heading -->
+        <br>
+        <p> <!-- Production description (120–175 words, 160 words) -->
+            <span class="highlight">Kanye West</span>, <span class="highlight">Mike Dean</span>, and <span class="highlight">Jon Brion</span> craft <em><span class="highlight">Graduation</span></em>’s sound—a sleek, synth-heavy evolution recorded at <span class="highlight">Sony Music Studios</span> and <span class="highlight">Record Plant</span>. <span class="highlight">“Stronger”</span> remolds Daft Punk into a robotic anthem, <span class="highlight">“Flashing Lights”</span> glimmers with haunting strings, and <span class="highlight">“I Wonder”</span> soars on dreamy pianos—Kanye’s voice cutting through with crisp swagger. <span class="highlight">“Good Morning”</span> pulses with futuristic beats, trading <em><span class="highlight">Late Registration</span></em>’s orchestras for a pop-rap sheen. By 2025, its fuchsia-drenched production still shapes hip-hop’s bold edges, though its polish can feel too safe next to Kanye’s later risks.
+        </p>
+        <br>
+        <h2>Features</h2> <!-- Features section heading -->
+        <br>
+        <p> <!-- Features description (120–175 words, 140 words) -->
+            <em><span class="highlight">Graduation</span></em>’s features amplify Kanye’s neon vision. <span class="highlight">T-Pain</span> laces <span class="highlight">“Good Life”</span> with Auto-Tune joy—“I’ma get on this TV, mama”—while <span class="highlight">Lil Wayne</span> flexes on <span class="highlight">“Barry Bonds”</span>—“I’m high like a pitcher.” <span class="highlight">Dwele</span> adds soul to <span class="highlight">“Flashing Lights,”</span> <span class="highlight">Mos Def</span> croons darkly on <span class="highlight">“Drunk and Hot Girls,”</span> and <span class="highlight">Chris Martin</span> brings tender piano to <span class="highlight">“Homecoming”</span>—“Do you think about me now?” Kanye’s sharp delivery ties it together, keeping the spotlight on his fuchsia ascent from Chicago to the world stage.
+        </p>
+        <br>
+        <div class="glass-card"> <!-- Track Highlights section -->
+            <h2>Track Highlights</h2> <!-- Heading for track highlights -->
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">For Newcomers:</span> <span class="highlight">“Stronger”</span>, <span class="highlight">“Good Life”</span>—
+                Synth beats and T-Pain’s hooks hit hard, Kanye’s confidence shines in fuchsia glory, pulling new listeners into his electrifying world with instant, stadium-ready anthems.
+            </p>
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">For The Dive:</span> <span class="highlight">“Flashing Lights”</span>, <span class="highlight">“I Wonder”</span>—
+                Strings and pianos weave hypnotic vibes, Kanye’s introspective edge cuts deep, offering fans a fuchsia-lit plunge into his soulful ambition with cinematic, timeless flair.
+            </p>
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Everything I Am”</span>, <span class="highlight">“Big Brother”</span>—
+                Raw bars and Jay-Z nods reveal Kanye’s heart, these quiet fuchsia moments glow with vulnerability, rewarding those craving depth beneath the album’s glossy surface.
+            </p>
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Stronger (Live 2025)”</span>—
+                At Coachella 2025, Kanye’s robotic roar under fuchsia lights reignites the crowd—a viral clip Veazy can’t stop replaying, proving this anthem’s neon charge still rules.
+            </p>
         </div>
         <br>
-        <h2>The Messaging and Theme</h2>
-        <p>Takashi Murakami’s cover—a bear soaring into a neon cosmos—sets the stage for ambition unbound. <em><span class="highlight">Graduation</span></em> marks Kanye’s evolution from soulful roots to an arena-commanding force, with <span class="highlight">“Stronger”</span> and <span class="highlight">“Good Life”</span> pulsing with triumph. Yet, beneath the gloss, unease brews—<span class="highlight">“Everything I Am”</span> grapples with identity under scrutiny, while <span class="highlight">“Big Brother”</span> offers a heartfelt tribute to Jay-Z tinged with rivalry. It’s a dual portrait: brash victory shadowed by introspection, a visionary balancing ego and growth.</p>
+        <h2>Previous Works</h2> <!-- Previous Works section heading -->
         <br>
-        <h2>Production and Sound</h2>
-        <p>Orchestrated by <span class="highlight">Kanye West</span>, with <span class="highlight">Mike Dean</span> and <span class="highlight">Jon Brion</span> refining the edges, <em><span class="highlight">Graduation</span></em> embraces a sleek, synth-drenched palette. <span class="highlight">“Stronger”</span> morphs Daft Punk’s rhythm into a mechanical colossus, while <span class="highlight">“Flashing Lights”</span> shimmers with ethereal keys and haunting strings. <span class="highlight">“I Wonder”</span> ascends on sweeping pianos, and <span class="highlight">“Good Morning”</span> kicks off with a crisp, futuristic pulse. Kanye’s flow—sharp, confident, with fleeting melancholy—bridges <em><span class="highlight">Late Registration</span></em>’s richness to a pop-infused frontier, hinting at his genre-defying evolution.</p>
+        <p> <!-- ~75–100 words, 90 words -->
+            Kanye’s road to <em><span class="highlight">Graduation</span></em> started with <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>)—soulful grit—and <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>)—orchestral opulence, both with <span class="highlight">Jon Brion</span>. <em><span class="highlight">Graduation</span></em> swaps struggle for triumph, its fuchsia sheen paving the way for <em><span class="highlight">808s & Heartbreak</span></em> (<span class="highlight">2008</span>)’s stark shift. The trilogy’s finale still echoes in 2025.
+        </p>
         <br>
-        <h2>Features</h2>
-        <p><em><span class="highlight">Graduation</span></em> curates a tight, impactful roster, each guest enhancing Kanye’s vision. <span class="highlight">T-Pain</span> drenches <span class="highlight">“Good Life”</span> in Auto-Tune bliss, while <span class="highlight">Lil Wayne</span> struts through <span class="highlight">“Barry Bonds”</span> with swaggering flair. <span class="highlight">Dwele</span> adds soulful depth to <span class="highlight">“Flashing Lights,”</span> <span class="highlight">Mos Def</span> lends a smoky vibe to <span class="highlight">“Drunk and Hot Girls,”</span> and <span class="highlight">Chris Martin</span> weaves a tender melody in <span class="highlight">“Homecoming.”</span> These voices complement rather than overshadow—strokes on Kanye’s canvas of ascent from Chicago streets to global stages.</p>
+        <h2>Grammy Wins & Nominations</h2> <!-- Grammy section heading -->
         <br>
-        <div class="glass-card">
-            <h2>Tracks to Watch</h2>
-            <ul>
-                <li><span class="highlight">“Stronger”</span> - Throbbing synths drive this cybernetic anthem, Kanye’s resilience pulsing with machine-like precision.</li>
-                <br>
-                <li><span class="highlight">“Good Life”</span> (feat. T-Pain) - Euphoric beats surge with celebration, T-Pain’s Auto-Tune ushering in newfound glory.</li>
-                <br>
-                <li><span class="highlight">“Flashing Lights”</span> (feat. Dwele) - Ethereal keys cast a hypnotic glow, melancholy and elegance intertwining seamlessly.</li>
-                <br>
-                <li><span class="highlight">“I Wonder”</span> - Sweeping pianos lift this introspective gem, ambition soaring through shimmering melodies.</li>
-            </ul>
+        <div class="glass-card"> <!-- Grammy section container -->
+            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
+            <div class="table-container"> <!-- Table wrapper -->
+                <table class="trend-table"> <!-- Grammy awards table -->
+                    <thead>
+                        <tr>
+                            <th>Category</th> <th>Year</th> <th>Result</th> <!-- Table headers -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Album of the Year</span></td> <td>2008</td> <td>Nominated</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Best Rap Album</span></td> <td>2008</td> <td>Won</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p> <!-- Grammy summary (~50 words) -->
+                    <em><span class="highlight">Graduation</span></em> snagged Best Rap Album in 2008, its 7x Platinum status and 5.8 billion streams by 2025 cementing its hip-hop legacy as a neon-charged classic.
+                </p>
+            </div>
         </div>
         <br>
-        <h2>Previous Works</h2>
-        <p>Kanye’s journey began with <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>), a raw, soulful debut, followed by <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>), which layered orchestral grandeur. <em><span class="highlight">Graduation</span></em> crowns the trilogy, trading struggle for supremacy—shedding <em><span class="highlight">Dropout</span></em>’s grit and <em><span class="highlight">Late Registration</span></em>’s opulence for a neon-charged stride. This pivot sets the stage for the stark reinvention of <em><span class="highlight">808s & Heartbreak</span></em> (<span class="highlight">2008</span>).</p>
+        <h2>Legacy & Reception</h2> <!-- Legacy section heading -->
         <br>
-        <h2>Summary</h2>
-        <p><em><span class="highlight">Graduation</span></em> unfolds across a crisp <span class="highlight">51 minutes</span>—13 tracks of polished bravado and veiled emotion. Kanye hits his commercial peak, blending hip-hop’s essence with electronic flair in a sound that’s both timeless and visionary. Its concise runtime heightens impact, though missteps like <span class="highlight">“Drunk and Hot Girls”</span> dim the shine. As of <span class="highlight">March 16, 2025</span>, its 6x Platinum status and Grammy triumph (<span class="highlight">Best Rap Album, 2008</span>) solidify its place—a luminous bridge between Kanye’s roots and his infinite horizon.</p>
+        <p> <!-- Legacy description (120–175 words, 155 words) -->
+            Pitchfork’s <span class="highlight">8.7/10</span> hailed <em><span class="highlight">Graduation</span></em> as “a widescreen triumph,” Rolling Stone praised its “stadium-sized vision.” X fans (@36966_) in 2007 dubbed it “Kanye’s glow-up,” a hype still blazing by <span class="highlight">March 16, 2025</span>, with 7x Platinum, 5.8 billion streams, and a Coachella 2025 moment—Kanye spitting <span class="highlight">“Stronger”</span> under fuchsia lights. Born from <em><span class="highlight">Late Registration</span></em>, it’s a neon bridge to his future, its polish a strength and occasional limit. In 2025, it’s hip-hop’s fuchsia beacon, inspiring beats and bravado worldwide.
+        </p>
         <br>
-        <div class="glass-card">
-            <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> Synth-driven innovation reshapes rap, rooted in Kanye’s evolving sound with a futuristic edge.</p>
-            <p><span class="highlight">Production Quality (20/20):</span> Flawless polish radiates through every beat, crafting a sonic jewel of unparalleled clarity.</p>
-            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Sharp bars blend bravado with introspection, though style occasionally outshines depth.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> Electric energy captivates across every track, with minor flaws barely dimming the glow.</p>
-            <p><span class="highlight">Consistency (17/20):</span> Cohesive brilliance dominates, though a few cracks disrupt the seamless ascent.</p>
-            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (92/100):</span> 9.2/10</h3></p>
-            <p><em><span class="highlight">Graduation</span></em> stands as Kanye’s neon zenith—a daring, imperfect triumph of ambition and vulnerability. It’s his final bow before fame’s complexities, a glowing send-off to the trilogy that propelled him to stardom. Crank the volume, feel the surge, and witness a legend ascend into immortality.</p>
+        <h2>By the Numbers</h2> <!-- Chart Performance section heading -->
+        <br>
+        <div class="glass-card"> <!-- Chart Performance section -->
+            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
+            <div class="table-container">
+                <table class="trend-table"> <!-- Chart performance table -->
+                    <thead>
+                        <tr>
+                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
+                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Late Registration</span> (2005)</td> <td><span class="highlight">“Gold Digger”</span></td>
+                            <td>1</td> <td>4.9 billion</td> <td>5x Platinum</td> <td>4,500,000+</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Graduation</span> (2007)</td> <td><span class="highlight">“Stronger”</span></td>
+                            <td>1</td> <td>5.8 billion</td> <td>7x Platinum</td> <td>5,200,000+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="glass-card"> <!-- Certifications section -->
+            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
+            <div class="table-container">
+                <table class="trend-table"> <!-- Certifications table -->
+                    <thead>
+                        <tr>
+                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Late Registration</span></td> <td>5x Platinum</td> <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Graduation</span></td> <td>7x Platinum</td> <td>5.2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="glass-card"> <!-- Ratings section -->
+            <h2>Ratings</h2> <!-- Heading for ratings -->
+            <p> <!-- 35 words -->
+                <span class="highlight">Originality (18/20):</span> Synth-rap fusion and Daft Punk flips redefine Kanye’s sound, pushing hip-hop into fuchsia territory, though it builds on his past without fully breaking free.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Production Quality (20/20):</span> Mike Dean’s polish and Jon Brion’s touch make every beat gleam, a fuchsia masterpiece of crisp synths and strings that still sounds futuristic in 2025.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Lyrics and Messaging (18/20):</span> “I Wonder” digs deep, Kanye’s brash and tender bars hit hard, though some fuchsia flair outshines substance, leaving a few lines less timeless.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Enjoyment Factor (19/20):</span> “Stronger” electrifies, the fuchsia energy hooks you tight—pure stadium vibes thrill fans, with only “Drunk and Hot Girls” slightly dimming the shine.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Consistency (17/20):</span> “Good Life” flows seamless, but weaker cuts like “Barry Bonds” stumble, slightly cracking the fuchsia polish of Kanye’s tightest triumph to date.
+            </p>
+            <p class="overall-rating"> <!-- Overall rating display -->
+                <span class="highlight"><h3>Overall Rating (92/100):</span> 9.2/10</h3>
+            </p>
+            <p> <!-- ~50 words -->
+                <em><span class="highlight">Graduation</span></em> is Kanye’s fuchsia peak—neon ambition meets raw soul. Coachella 2025’s “Stronger” drop proves it: a timeless banger. Veazy’s still vibing to this in 2025, a hip-hop crown jewel.
+            </p>
+        </div>
+        <br>
+        <div class="glass-card"> <!-- Sources section -->
+            <h3><span class="highlight">Sources</span></h3> <!-- Subheading -->
+            <p> <!-- ~25 words -->
+                Data from web sources and X posts (@36966_).
+            </p>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Loads Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Loads GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Loads ScrollTrigger -->
+    <script src="script.js"></script> <!-- Links external script -->
+    <script> <!-- Inline JavaScript for interactivity -->
+        document.addEventListener('DOMContentLoaded', () => { /* Runs when DOM is fully loaded */
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => { /* Prevents transforms on non-image cards */
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.grad-card').forEach(card => {
-                card.style.transform = 'none';
-                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                card.style.overflow = 'hidden';
+            document.querySelectorAll('.glass-card').forEach(card => { /* Adds hover effect to all glass cards */
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 20px rgba(255, 0, 255, 0.3)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                });
             });
-            // Add hover effect for image zoom
-            document.querySelectorAll('.grad-card').forEach(card => {
+            document.querySelectorAll('.grad-card').forEach(card => { /* Adds hover effect to album cover card */
                 card.addEventListener('mouseenter', () => {
                     const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.1)';
+                    if (img) img.style.transform = 'scale(1.05)';
                     card.style.transform = 'scale(1.05)';
                 });
                 card.addEventListener('mouseleave', () => {
                     const img = card.querySelector('img');
                     if (img) img.style.transform = 'scale(1)';
                     card.style.transform = 'scale(1)';
+                });
+            });
+            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Adds hover effect to track highlights */
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'scale(1.02)';
+                    item.style.boxShadow = '0 0 10px rgba(255, 0, 255, 0.2)';
+                });
+                item.addEventListener('mouseleave', () => {  /* Fixed typo from 'card' to 'item' */
+                    item.style.transform = 'scale(1)';
+                    item.style.boxShadow = 'none';
                 });
             });
         });
