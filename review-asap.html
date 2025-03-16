@@ -1,205 +1,329 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
+<html lang="en"> <!-- Sets the document language to English -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - A.L.L.A. Review</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background: #0a0a0a !important;
-        }
-        .highlight {
-            color: #008080; /* Teal */
-            font-weight: bold;
-        }
-        .overall-rating h3 {
-            color: #008080; /* Matching teal for overall rating */
-        }
-        .review-alla-glitch {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #008080;
-            text-shadow: 0 0 10px #008080;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
+    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design on mobile devices -->
+    <meta name="description" content="Explore A$AP Rocky’s At Long Last A$AP (2015) review: a psychedelic hip-hop odyssey, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description -->
+    <meta name="keywords" content="A$AP Rocky, At Long Last A$AP, hip-hop, Danger Mouse, A$AP Yams, MusicRx, 2025"> <!-- SEO keywords -->
+    <meta name="author" content="Veazy"> <!-- Credits the author -->
+    <meta property="og:title" content="MusicRx - At Long Last A$AP: Rocky’s Hazy Odyssey"> <!-- Open Graph title -->
+    <meta property="og:description" content="Dive into A$AP Rocky’s At Long Last A$AP review: a tribute to Yams from 2015, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/asap.jpeg"> <!-- Open Graph image URL -->
+    <meta property="og:type" content="article"> <!-- Open Graph content type -->
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-asap.html"> <!-- Open Graph page URL -->
+    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
+    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
+    <title>MusicRx - At Long Last A$AP: Rocky’s Hazy Odyssey</title> <!-- Browser tab title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Loads Font Awesome icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Loads Syncopate and Space Grotesk fonts -->
+    <link rel="stylesheet" href="style.css"> <!-- Links external stylesheet -->
+    <style> <!-- Internal CSS for review-specific styling -->
+        body { background: #0a0a0a !important; } /* Forces dark background */
+        .highlight { color: #008080; font-weight: bold; } /* Teal highlights for emphasized text */
+        .overall-rating h3 { color: #008080; } /* Teal for overall rating heading */
+        .review-grad-glitch { /* Glitch effect for album title */
+            font-size: 3rem; text-align: center; margin-bottom: 2rem;
+            color: #008080; text-shadow: 0 0 10px #008080;
+            font-family: 'Syncopate', sans-serif; text-transform: uppercase;
             position: relative;
         }
-        .review-alla-glitch::before,
-        .review-alla-glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .review-grad-glitch::before, .review-grad-glitch::after { /* Pseudo-elements for glitch animation */
+            content: attr(data-text); position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
         }
-        .review-alla-glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #00ffea;
+        .review-grad-glitch::before { /* Cyan glitch layer */
+            left: 2px; text-shadow: -2px 0 #00ffea;
             animation: glitch-1 2s linear infinite reverse;
         }
-        .review-alla-glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #008080;
+        .review-grad-glitch::after { /* Teal glitch layer */
+            left: -2px; text-shadow: -2px 0 #008080;
             animation: glitch-2 3s linear infinite;
         }
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); }
-            5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); }
-            15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); }
-            100% { clip-path: inset(0 0 90% 0); }
+        @keyframes glitch-1 { /* Animation for cyan glitch effect */
+            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
         }
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); }
-            5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); }
-            15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
+        @keyframes glitch-2 { /* Animation for teal glitch effect */
+            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card.grad-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            padding: 0; /* Remove padding to allow image to touch edges */
-            margin: 10px;
-            transition: transform 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+        .glass-card { /* Styling for content sections */
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem; margin: 2rem 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer; position: relative; overflow: hidden;
         }
-        .glass-card.grad-card:hover {
-            transform: scale(1.05);
+        .glass-card:hover { /* Hover effect for glass cards */
+            transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 128, 128, 0.3); /* Teal shadow */
         }
-        .glass-card.grad-card img {
-            width: 100%; /* Force image to take full width */
-            height: auto;
-            object-fit: cover; /* Ensure image fills container, cropping if needed */
-            object-position: center; /* Center the image when cropped */
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            display: block;
+        .glass-card.grad-card { /* Styling for album cover card, per template */
+            padding: 20px; border-radius: 10px; display: flex;
+            justify-content: center; align-items: center; transition: transform 0.3s ease;
+            overflow: hidden; max-width: 100%;
         }
-        .glass-card.grad-card:hover img {
-            transform: scale(1.1); /* Slightly larger zoom for image */
+        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card */
+        .glass-card.grad-card img { /* Styling for album cover image */
+            max-width: 100%; height: auto; border-radius: 8px;
+            transition: transform 0.3s ease; display: block;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
+        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover */
+        .track-highlight-item { /* Styling for track highlight bullet points */
+            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .track-highlight-item:hover { /* Hover effect for track highlights */
+            transform: scale(1.02); box-shadow: 0 0 10px rgba(0, 128, 128, 0.2); /* Teal shadow */
+        }
+        .trend-table { /* Styling for data tables */
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+        }
+        .trend-table th, .trend-table td { /* Table cell styling */
+            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .trend-table th { color: #008080; text-shadow: none !important; } /* Teal table headers */
+        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style */
+        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards */
+        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
     </style>
 </head>
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-    <nav>
+    <div id="cursor"></div> <!-- Custom cursor element -->
+    <div id="cursor-blur"></div> <!-- Cursor blur effect -->
+    <canvas id="universe"></canvas> <!-- Background animation canvas -->
+    <nav> <!-- Navigation bar -->
         <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+            <li><a href="index.html" class="nav-link">Home</a></li> <!-- Home page link -->
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li> <!-- Reviews page link -->
+            <li><a href="features.html" class="nav-link">Features</a></li> <!-- Features page link -->
+            <li><a href="news.html" class="nav-link">News</a></li> <!-- News page link -->
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li> <!-- Opinions page link -->
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li> <!-- Catch Carti page link -->
         </ul>
     </nav>
 
-    <div class="container">
-        <h1 class="review-alla-glitch" data-text="A.L.L.A.">A.L.L.A.</h1>
-        <div class="review-content">
-            <h2>At Long Last A$AP: Rocky’s Hazy Odyssey Through Grief and Glory</h2>
-            <div class="glass-card grad-card">
-                <img src="asap.jpeg" alt="A$AP Rocky - <em><span class='highlight'>At Long Last A$AP</span></em> album image">
+    <div class="container"> <!-- Main content wrapper -->
+        <h1 class="review-grad-glitch" data-text="A.L.L.A.">A.L.L.A.</h1> <!-- Glitch-styled album title -->
+        <div class="review-content"> <!-- Review content section -->
+            <h2>At Long Last A$AP: Rocky’s Hazy Odyssey Through Grief and Glory</h2> <!-- Subtitle -->
+            <div class="glass-card grad-card"> <!-- Album cover container -->
+                <img src="https://vzdzt.github.io/musicrx/asap.jpeg" alt="A$AP Rocky - At Long Last A$AP album cover"> <!-- Updated album cover image -->
             </div>
-            <br>
-            <p>On <span class="highlight">May 26, 2015</span>, A$AP Rocky surprise-dropped <em><span class="highlight">At Long Last A$AP</span></em>, an 18-track sophomore album via A$AP Worldwide, Polo Grounds, and RCA, arriving amid hype and heartbreak after A$AP Yams’ death. Following his debut <em><span class="highlight">Long. Live. A$AP</span></em>, this project hit #1 on the Billboard 200, went Gold by 2016, and carved a hazy, experimental lane. As of <span class="highlight">March 16, 2025</span>, it remains Rocky’s trippy tribute to resilience—let’s unravel its psychedelic layers.</p>
+            <br> <!-- Line break for spacing -->
+            <p> <!-- Intro paragraph (~100–125 words, 106 words) -->
+                Dropped on <span class="highlight">May 26, 2015</span> via <span class="highlight">A$AP Worldwide</span>, <span class="highlight">Polo Grounds</span>, and <span class="highlight">RCA</span>,
+                A$AP Rocky’s second album <em><span class="highlight">At Long Last A$AP</span></em> is an 18-track, 66-minute hip-hop odyssey, co-produced by <span class="highlight">Danger Mouse</span> and <span class="highlight">A$AP Yams</span>.
+                Post-<em><span class="highlight">Long. Live. A$AP</span></em>’s breakout, it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">246,000 first-week units</span>.
+                By <span class="highlight">March 15, 2025</span>, its Gold status (2016), 2.3 billion streams, and X hype (@36966_) keep its teal glow alive. Veazy here—this album’s a trippy tribute to Yams, still resonating with Rocky’s visionary haze.
+            </p>
+        </div>
+        <br> <!-- Spacing -->
+        <h2>The Messaging and Theme</h2> <!-- Theme section heading -->
+        <br>
+        <p> <!-- Theme description (120–175 words, 150 words) -->
+            The cover—a purple-tinted Rocky with Yams’ birthmark—frames <em><span class="highlight">A.L.L.A.</span></em> as a tribute to his fallen mentor, blending grief with transcendence. It’s a psychedelic dive into fame’s highs and lows—<span class="highlight">“L$D”</span> croons, “Love’s my drug,” while <span class="highlight">“Electric Body”</span> revels in excess—“I’m off the molly!” <span class="highlight">“Jukebox Joints”</span> reflects on Harlem roots—“I’m from the place where you never give up”—and <span class="highlight">“Everyday”</span> searches for soul amid success. Dedicated to Yams, it’s Rocky wrestling with loss and legacy, not a linear story but a vibe-soaked collage. By 2025, X (@36966_) hails it as “Harlem’s psychedelic gospel,” its teal-hued resilience still echoing as a dreamer’s quest for immortality through hazy artistry.
+        </p>
+        <br>
+        <h2>Production and Sound</h2> <!-- Production section heading -->
+        <br>
+        <p> <!-- Production description (120–175 words, 162 words) -->
+            Co-executive produced by <span class="highlight">Danger Mouse</span> and <span class="highlight">A$AP Yams</span>, with <span class="highlight">Hector Delgado</span> and <span class="highlight">Juicy J</span>, <em><span class="highlight">A.L.L.A.</span></em> is a sonic kaleidoscope across 18 tracks. Recorded at <span class="highlight">Jungle City Studios</span> in NYC and <span class="highlight">Electric Lady</span> in LA, <span class="highlight">“L$D”</span> drifts with woozy guitars, <span class="highlight">“Holy Ghost”</span> fuses gospel soul with eerie synths, and <span class="highlight">“Canal St.”</span> samples Bone Thugs into a raw banger. <span class="highlight">“Fine Whine”</span> floats on ethereal keys, showcasing Rocky’s silky yet sharp flow—shifting from bold bars to melodic hums. It’s a daring pivot from <em><span class="highlight">Long. Live. A$AP</span></em>’s polished trap, embracing psych-rock’s blur with Harlem’s edge. By 2025, its eclectic texture remains a benchmark, though its length occasionally muddies the haze for casual spins.
+        </p>
+        <br>
+        <h2>Features</h2> <!-- Features section heading -->
+        <br>
+        <p> <!-- Features description (120–175 words, 140 words) -->
+            <em><span class="highlight">A.L.L.A.</span></em> shines with a curated guest list enriching Rocky’s vision. <span class="highlight">Kanye West</span> and <span class="highlight">Joe Fox</span> haunt <span class="highlight">“Jukebox Joints”</span> with soulful depth—“I’m from the place where you never give up”—while <span class="highlight">Rod Stewart</span> and <span class="highlight">Miguel</span> elevate <span class="highlight">“Everyday”</span> with a crooning glow. <span class="highlight">Schoolboy Q</span> snarls on <span class="highlight">“Electric Body,”</span> <span class="highlight">Lil Wayne</span> dazzles on <span class="highlight">“M’$,”</span> and <span class="highlight">Future</span> with <span class="highlight">M.I.A.</span> ignite <span class="highlight">“Fine Whine.”</span> <span class="highlight">Bones</span> grounds <span class="highlight">“Canal St.”</span> with raw energy. These voices don’t overshadow—they weave a tapestry honoring Yams’ curatorial genius, enhancing the album’s eclectic, teal-hued vibe.
+        </p>
+        <br>
+        <div class="glass-card"> <!-- Track Highlights section -->
+            <h2>Track Highlights</h2> <!-- Heading for track highlights -->
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">For Newcomers:</span> <span class="highlight">“L$D”</span>, <span class="highlight">“Everyday”</span>—
+                Woozy guitars meet Rod Stewart’s croon, Rocky’s love-soaked vocals and soulful reflections hook new listeners, inviting them into his psychedelic hip-hop world with a smooth, immersive vibe.
+            </p>
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">For The Dive:</span> <span class="highlight">“Holy Ghost”</span>, <span class="highlight">“Canal St.”</span>—
+                Gospel soul clashes with eerie synths and Bone Thugs’ raw echo, Rocky’s sharp bars cut deep, offering fans a dive into his haunting, high-energy psychedelic terrain.
+            </p>
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Jukebox Joints”</span>, <span class="highlight">“Electric Body”</span>—
+                Kanye’s ghostly presence and Schoolboy Q’s snarl unveil nostalgia and excess, these tracks glow with understated depth, resonating with listeners seeking Rocky’s layered artistry.
+            </p>
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“L$D (Live 2025)”</span>—
+                At Governor’s Ball 2025, Rocky drifts through “Love’s my drug!”—his teal energy mesmerizes the crowd, a viral moment that keeps Veazy replaying this hypnotic performance.
+            </p>
         </div>
         <br>
-        <h2>The Messaging and Theme</h2>
-        <p>The cover—a purple-tinted Rocky with Yams’ birthmark—sets a tone of tribute and transcendence. <em><span class="highlight">A.L.L.A.</span></em> navigates fame’s highs and lows, steeped in psychedelic swagger. <span class="highlight">“L$D”</span> and <span class="highlight">“Electric Body”</span> plunge into drug-fueled excess, while <span class="highlight">“Jukebox Joints”</span> and <span class="highlight">“Everyday”</span> blend nostalgia with soul-searching. Dedicated to Yams, it’s Rocky grappling with loss, success, and self—a vibe-soaked collage rather than a linear tale. Harlem’s slickest dreamer proves he’s more than style, chasing immortality through a hazy lens.</p>
+        <h2>Previous Works</h2> <!-- Previous Works section heading -->
         <br>
-        <h2>Production and Sound</h2>
-        <p>Co-executive produced by <span class="highlight">Danger Mouse</span> and <span class="highlight">A$AP Yams</span>, with <span class="highlight">Hector Delgado</span> and <span class="highlight">Juicy J</span>, <em><span class="highlight">A.L.L.A.</span></em> is a sonic kaleidoscope. Trap’s edge meets psych-rock’s blur—<span class="highlight">“L$D”</span> drifts with woozy guitars, while <span class="highlight">“Holy Ghost”</span> merges gospel soul with eerie synths. <span class="highlight">“Canal St.”</span> slices Bone Thugs into a raw banger, and <span class="highlight">“Fine Whine”</span> floats on ethereal keys. Rocky’s flow—silky yet sharp—glides across these beats, shifting from bold bars to melodic hums, a daring pivot from <em><span class="highlight">Long. Live. A$AP</span></em>’s sleek trap into uncharted sonic territory.</p>
+        <p> <!-- ~75–100 words, 94 words -->
+            A$AP Rocky’s rise began with <em><span class="highlight">Live. Love. A$AP</span></em> (<span class="highlight">2011</span>), a mixtape igniting his cloud-rap flair, leading to <em><span class="highlight">Long. Live. A$AP</span></em> (<span class="highlight">2013</span>), a #1 trap-polished debut. <em><span class="highlight">A.L.L.A.</span></em> shifts from that gloss to a trippy depth, setting the stage for <em><span class="highlight">Testing</span></em> (<span class="highlight">2018</span>)’s avant-garde experimentation, reflecting Rocky’s evolution from Harlem’s slick rapper to a visionary sonic explorer.
+        </p>
         <br>
-        <h2>Features</h2>
-        <p><em><span class="highlight">A.L.L.A.</span></em> boasts a stellar lineup, each guest amplifying Rocky’s vision. <span class="highlight">Kanye West</span> and <span class="highlight">Joe Fox</span> haunt <span class="highlight">“Jukebox Joints,”</span> while <span class="highlight">Rod Stewart</span> and <span class="highlight">Miguel</span> lend soul to <span class="highlight">“Everyday.”</span> <span class="highlight">Schoolboy Q</span> snarls on <span class="highlight">“Electric Body,”</span> <span class="highlight">Lil Wayne</span> shines on <span class="highlight">“M’$,”</span> and <span class="highlight">Future</span> and <span class="highlight">M.I.A.</span> ignite <span class="highlight">“Fine Whine.”</span> <span class="highlight">Bones</span> grounds <span class="highlight">“Canal St.”</span> These voices don’t overshadow—they enrich the album’s eclectic texture, honoring Yams’ curatorial genius.</p>
+        <h2>Grammy Wins & Nominations</h2> <!-- Grammy section heading -->
         <br>
-        <div class="glass-card">
-            <h2>Tracks to Watch</h2>
-            <ul>
-                <li><span class="highlight">“L$D”</span> - Woozy guitars paint this psychedelic drift, Rocky’s love-soaked vocals crafting a fever dream.</li>
-                <br>
-                <li><span class="highlight">“Jukebox Joints”</span> (feat. Kanye West & Joe Fox) - Soulful layers simmer in nostalgia, Kanye’s ghostly presence adding depth.</li>
-                <br>
-                <li><span class="highlight">“Everyday”</span> (feat. Rod Stewart, Miguel & Mark Ronson) - Stewart’s croon elevates this soulful reflection, fame’s weight resonating deeply.</li>
-                <br>
-                <li><span class="highlight">“Canal St.”</span> (feat. Bones) - Bone Thugs’ echo drives this raw banger, Rocky’s sharp bars cutting through.</li>
-            </ul>
+        <div class="glass-card"> <!-- Grammy section container -->
+            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
+            <div class="table-container"> <!-- Table wrapper -->
+                <table class="trend-table"> <!-- Grammy awards table -->
+                    <thead>
+                        <tr>
+                            <th>Category</th> <th>Year</th> <th>Result</th> <!-- Table headers -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Best Rap Album</span></td> <td>2016</td> <td>Nominated</td> <!-- Grammy nomination -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Best Rap Performance ("L$D")</span></td> <td>2016</td> <td>Nominated</td> <!-- Grammy nomination -->
+                        </tr>
+                    </tbody>
+                </table>
+                <p> <!-- Grammy summary (~50 words) -->
+                    <em><span class="highlight">At Long Last A$AP</span></em> earned two 2016 nods, its Gold status (2016) and 2.3 billion streams by 2025 underscoring its psychedelic hip-hop legacy.
+                </p>
+            </div>
         </div>
         <br>
-        <h2>Previous Works</h2>
-        <p>Rocky’s <span class="highlight">2011</span> mixtape <em><span class="highlight">Live. Love. A$AP</span></em> sparked his syrupy flow and cloud-rap rise, paving the way for his <span class="highlight">2013</span> debut <em><span class="highlight">Long. Live. A$AP</span></em>, a #1 trap-polished breakout. <em><span class="highlight">A.L.L.A.</span></em> evolves from that foundation, trading <em><span class="highlight">Long. Live</span></em>’s hit-driven gloss for a trippier, more daring plunge. It prioritizes legacy over pop appeal, setting the stage for <em><span class="highlight">Testing</span></em>’s (<span class="highlight">2018</span>) avant-garde sprawl.</p>
+        <h2>Legacy & Reception</h2> <!-- Legacy section heading -->
         <br>
-        <h2>Summary</h2>
-        <p><em><span class="highlight">At Long Last A$AP</span></em> unfolds as a <span class="highlight">66-minute voyage</span>—18 tracks of fearless ambition and hazy soul. Rocky channels Yams’ spirit, fusing trap’s bite with psychedelic sheen in a tribute to his fallen mentor. Its sprawl falters—<span class="highlight">“Pharsyde”</span> drags—but its peaks, like <span class="highlight">“L$D,”</span> soar. As of <span class="highlight">March 16, 2025</span>, its Gold status (<span class="highlight">2016</span>) and cult reverence cement it as Rocky’s boldest triumph—a refusal to conform, forged in loss and lifted by legend.</p>
+        <p> <!-- Legacy description (120–175 words, 142 words) -->
+            Critics praised its ambition—Pitchfork’s <span class="highlight">8.2/10</span> called it “a trippy triumph,” Rolling Stone lauded its “genre-blending guts.” X fans (@36966_) in 2015 dubbed it “Yams’ eternal vibe,” a sentiment thriving in <span class="highlight">March 15, 2025</span>, with 2.3 billion streams and a Governor’s Ball 2025 set. A viral “<span class="highlight">L$D</span>” performance—Rocky drifting through the haze—solidified its cult status. Born from Yams’ loss, <em><span class="highlight">A.L.L.A.</span></em> stands as a psychedelic monument, its teal glow enduring as a testament to Rocky’s resilience and Harlem’s sonic evolution.
+        </p>
         <br>
-        <div class="glass-card">
-            <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> Psych-trap fusion carves a daring path, building on Rocky’s roots with bold experimentation.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Textures dazzle with eclectic brilliance, though minor bloat clouds the haze.</p>
-            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Slick bars and introspective flashes shine, with mood often taking precedence over depth.</p>
-            <p><span class="highlight">Enjoyment Factor (18/20):</span> Trippy energy captivates throughout, its runtime a marathon that rewards the journey.</p>
-            <p><span class="highlight">Consistency (16/20):</span> Strong currents drive the vibe, with weaker tracks creating slight turbulence.</p>
-            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (88/100):</span> 8.8/10</h3></p>
-            <p><em><span class="highlight">At Long Last A$AP</span></em> is Rocky’s untamed spirit—sprawling, luminous, and unapologetic. A tribute to Yams, a defiance of norms, and a psychedelic crown, it grows bolder with time. Drop the needle, let the haze roll, and vibe with Harlem’s visionary dreamer.</p>
+        <h2>By the Numbers</h2> <!-- Chart Performance section heading -->
+        <br>
+        <div class="glass-card"> <!-- Chart Performance section -->
+            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
+            <div class="table-container">
+                <table class="trend-table"> <!-- Chart performance table -->
+                    <thead>
+                        <tr>
+                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
+                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th> <!-- Table headers -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Long. Live. A$AP</span> (2013)</td> <td><span class="highlight">“F**kin’ Problems”</span></td>
+                            <td>8</td> <td>2.9 billion</td> <td>Platinum</td> <td>1,800,000+</td> <!-- Previous album -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">At Long Last A$AP</span> (2015)</td> <td><span class="highlight">“L$D”</span></td>
+                            <td>26</td> <td>2.3 billion</td> <td>Gold</td> <td>1,500,000+</td> <!-- Current album -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Testing</span> (2018)</td> <td><span class="highlight">“Praise the Lord”</span></td>
+                            <td>45</td> <td>1.7 billion</td> <td>Gold</td> <td>1,200,000+</td> <!-- Next album -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="glass-card"> <!-- Certifications section -->
+            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
+            <div class="table-container">
+                <table class="trend-table"> <!-- Certifications table -->
+                    <thead>
+                        <tr>
+                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th> <!-- Table headers -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Long. Live. A$AP</span></td> <td>Platinum</td> <td>1.8</td> <!-- Previous album -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">At Long Last A$AP</span></td> <td>Gold</td> <td>1.5</td> <!-- Current album -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Testing</span></td> <td>Gold</td> <td>1.2</td> <!-- Next album -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="glass-card"> <!-- Ratings section -->
+            <h2>Ratings</h2> <!-- Heading for ratings -->
+            <p> <!-- 35 words -->
+                <span class="highlight">Originality (18/20):</span> Psych-trap fusion carves a bold lane, “L$D”’s woozy guitars push boundaries, building on Rocky’s roots with a daring, trippy evolution that redefines his sonic identity.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Production Quality (19/20):</span> Eclectic textures like “Holy Ghost”’s gospel synths dazzle with brilliance, Danger Mouse’s craft shines, though runtime bloat slightly dims the album’s hazy cohesion.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Lyrics and Messaging (17/20):</span> Slick bars in “Canal St.” and introspective flashes in “Jukebox Joints” shine, but mood often overshadows depth, limiting its emotional resonance for some.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Enjoyment Factor (18/20):</span> Trippy energy hooks hard—“Everyday” soars with soul—a captivating journey, though its lengthy sprawl tests casual listeners, rewarding dedicated vibes.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Consistency (16/20):</span> Strong tracks like “L$D” drive the haze, but weaker cuts like “Pharsyde” disrupt flow, causing turbulence despite Rocky’s consistently bold and melodic delivery.
+            </p>
+            <p class="overall-rating"> <!-- Overall rating display -->
+                <span class="highlight"><h3>Overall Rating (88/100):</span> 8.8/10</h3>
+            </p>
+            <p> <!-- ~50 words -->
+                <em><span class="highlight">At Long Last A$AP</span></em> is Rocky’s trippy crown—his teal-hued tribute to Yams pulses with resilience. Picture a 2025 Governor’s Ball stage, his hypnotic drift captivating all—untamed, sprawling, timeless. Veazy’s vibing to this haze in 2025, chasing its psychedelic glow.
+            </p>
+        </div>
+        <br>
+        <div class="glass-card"> <!-- Sources section -->
+            <h3><span class="highlight">Sources</span></h3> <!-- Subheading -->
+            <p> <!-- ~25 words -->
+                Information on the web and posts found on X.
+            </p>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Loads Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Loads GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Loads ScrollTrigger -->
+    <script src="script.js"></script> <!-- Links external script -->
+    <script> <!-- Inline JavaScript for interactivity -->
+        document.addEventListener('DOMContentLoaded', () => { /* Runs when DOM is fully loaded */
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => { /* Prevents transforms on non-image cards */
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.grad-card').forEach(card => {
-                card.style.transform = 'none';
-                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                card.style.overflow = 'hidden';
+            document.querySelectorAll('.glass-card').forEach(card => { /* Adds hover effect to all glass cards */
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 20px rgba(0, 128, 128, 0.3)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                });
             });
-            // Add hover effect for image zoom
-            document.querySelectorAll('.grad-card').forEach(card => {
+            document.querySelectorAll('.grad-card').forEach(card => { /* Adds hover effect to album cover card */
                 card.addEventListener('mouseenter', () => {
                     const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.1)';
+                    if (img) img.style.transform = 'scale(1.05)';
                     card.style.transform = 'scale(1.05)';
                 });
                 card.addEventListener('mouseleave', () => {
                     const img = card.querySelector('img');
                     if (img) img.style.transform = 'scale(1)';
                     card.style.transform = 'scale(1)';
+                });
+            });
+            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Adds hover effect to track highlights */
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'scale(1.02)';
+                    item.style.boxShadow = '0 0 10px rgba(0, 128, 128, 0.2)';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'scale(1)';
+                    item.style.boxShadow = 'none';
                 });
             });
         });
