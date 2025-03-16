@@ -1,103 +1,97 @@
 <!DOCTYPE html> <!-- Declares the document type as HTML5 -->
 <html lang="en"> <!-- Sets the document language to English -->
 <head>
-    <!-- Meta tags for SEO and social sharing -->
     <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design on mobile devices -->
-    <meta name="description" content="Dive into NBA YoungBoy’s Top (2020) review: a raw trap triumph, updated to March 2025 on MusicRx."> <!-- SEO description -->
-    <meta name="keywords" content="NBA YoungBoy, Top, trap, Southern rap, Snoop Dogg, Lil Wayne, MusicRx, 2025"> <!-- SEO keywords -->
+    <meta name="description" content="Explore NBA YoungBoy’s Top (2020) review: a trap juggernaut, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description -->
+    <meta name="keywords" content="NBA YoungBoy, Top, trap, TayTayMadeIt, Dmac, MusicRx, 2025"> <!-- SEO keywords -->
     <meta name="author" content="Veazy"> <!-- Credits the author -->
     <meta property="og:title" content="MusicRx - TOP: YoungBoy’s Stormy Ascent to Trap Royalty"> <!-- Open Graph title -->
-    <meta property="og:description" content="Explore NBA YoungBoy’s Top review: a 2020 trap juggernaut, refreshed with 2025 insights on MusicRx."> <!-- Open Graph description -->
+    <meta property="og:description" content="Dive into NBA YoungBoy’s Top review: a raw triumph from 2020, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
     <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/thumb/7/7f/NBA_YoungBoy_-_Top.png/220px-NBA_YoungBoy_-_Top.png"> <!-- Open Graph image URL -->
     <meta property="og:type" content="article"> <!-- Open Graph content type -->
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-top.html"> <!-- Open Graph page URL -->
     <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
     <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
     <title>MusicRx - TOP: YoungBoy’s Stormy Ascent to Trap Royalty</title> <!-- Browser tab title -->
-
-    <!-- External stylesheets for icons and fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Loads Font Awesome icons -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Loads Syncopate and Space Grotesk fonts -->
     <link rel="stylesheet" href="style.css"> <!-- Links external stylesheet -->
-
     <style> <!-- Internal CSS for review-specific styling -->
         body { background: #0a0a0a !important; } /* Forces dark background */
         .highlight { color: #AAAAAA; font-weight: bold; } /* Gray highlights for emphasized text */
         .overall-rating h3 { color: #AAAAAA; } /* Gray for overall rating heading */
-        .review-grad-glitch { /* Glitch effect renamed for consistency -->
+        .review-grad-glitch { /* Glitch effect for album title */
             font-size: 3rem; text-align: center; margin-bottom: 2rem;
             color: #AAAAAA; text-shadow: 0 0 10px #AAAAAA;
             font-family: 'Syncopate', sans-serif; text-transform: uppercase;
             position: relative;
         }
-        .review-grad-glitch::before, .review-grad-glitch::after { /* Pseudo-elements for glitch animation -->
+        .review-grad-glitch::before, .review-grad-glitch::after { /* Pseudo-elements for glitch animation */
             content: attr(data-text); position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
         }
-        .review-grad-glitch::before { /* Cyan glitch layer -->
+        .review-grad-glitch::before { /* Cyan glitch layer */
             left: 2px; text-shadow: -2px 0 #00ffea;
             animation: glitch-1 2s linear infinite reverse;
         }
-        .review-grad-glitch::after { /* Gray glitch layer -->
+        .review-grad-glitch::after { /* Gray glitch layer */
             left: -2px; text-shadow: -2px 0 #AAAAAA;
             animation: glitch-2 3s linear infinite;
         }
-        @keyframes glitch-1 { /* Animation for cyan glitch effect -->
+        @keyframes glitch-1 { /* Animation for cyan glitch effect */
             0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
             10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
             20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
         }
-        @keyframes glitch-2 { /* Animation for gray glitch effect -->
+        @keyframes glitch-2 { /* Animation for gray glitch effect */
             0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
             10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
             20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card { /* Styling for content sections -->
+        .glass-card { /* Styling for content sections */
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
             border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 2rem; margin: 2rem 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer; position: relative; overflow: hidden;
         }
-        .glass-card:hover { /* Hover effect for glass cards -->
-            transform: scale(1.05); box-shadow: 0 0 20px rgba(170, 170, 170, 0.3); /* Gray shadow -->
+        .glass-card:hover { /* Hover effect for glass cards */
+            transform: scale(1.05); box-shadow: 0 0 20px rgba(170, 170, 170, 0.3); /* Gray shadow */
         }
-        .glass-card.grad-card { /* Styling for album cover card -->
+        .glass-card.grad-card { /* Styling for album cover card, per template */
             padding: 20px; border-radius: 10px; display: flex;
             justify-content: center; align-items: center; transition: transform 0.3s ease;
             overflow: hidden; max-width: 100%;
         }
-        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card -->
-        .glass-card.grad-card img { /* Styling for album cover image -->
+        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card */
+        .glass-card.grad-card img { /* Styling for album cover image */
             max-width: 100%; height: auto; border-radius: 8px;
             transition: transform 0.3s ease; display: block;
         }
-        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover -->
-        .track-highlight-item { /* Styling for track highlight bullet points -->
+        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover */
+        .track-highlight-item { /* Styling for track highlight bullet points */
             padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .track-highlight-item:hover { /* Hover effect for track highlights -->
-            transform: scale(1.02); box-shadow: 0 0 10px rgba(170, 170, 170, 0.2); /* Gray shadow -->
+        .track-highlight-item:hover { /* Hover effect for track highlights */
+            transform: scale(1.02); box-shadow: 0 0 10px rgba(170, 170, 170, 0.2); /* Gray shadow */
         }
-        .trend-table { /* Styling for data tables -->
+        .trend-table { /* Styling for data tables */
             width: 100%; border-collapse: collapse; margin: 1rem 0;
         }
-        .trend-table th, .trend-table td { /* Table cell styling -->
+        .trend-table th, .trend-table td { /* Table cell styling */
             padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .trend-table th { color: #AAAAAA; text-shadow: none !important; } /* Gray table headers -->
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style -->
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards -->
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text -->
+        .trend-table th { color: #AAAAAA; text-shadow: none !important; } /* Gray table headers */
+        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style */
+        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards */
+        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
     </style>
 </head>
 <body>
     <div id="cursor"></div> <!-- Custom cursor element -->
     <div id="cursor-blur"></div> <!-- Cursor blur effect -->
     <canvas id="universe"></canvas> <!-- Background animation canvas -->
-
-    <!-- Navigation bar -->
-    <nav>
+    <nav> <!-- Navigation bar -->
         <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li> <!-- Home page link -->
             <li><a href="reviews.html" class="nav-link">Reviews</a></li> <!-- Reviews page link -->
@@ -117,82 +111,55 @@
             </div>
             <br> <!-- Line break for spacing -->
             <p> <!-- Intro paragraph -->
-                Released on <span class="highlight">September 11, 2020</span> via <span class="highlight">Never Broke Again/Atlantic</span>,
-                NBA YoungBoy’s <em><span class="highlight">Top</span></em> is a 21-track, 63-minute trap juggernaut dropped amid legal chaos.
-                Following a flood of mixtapes, it hit No. 1 on the <span class="highlight">Billboard 200</span> with
-                <span class="highlight">126,000 first-week units</span>. By <span class="highlight">March 15, 2025</span>,
-                its Platinum status, 2.5 billion streams, and X hype (@36966_) cement its gray reign. Veazy’s take—it’s YoungBoy’s raw, roaring peak.
+                Dropped on <span class="highlight">September 11, 2020</span> via <span class="highlight">Never Broke Again</span> and <span class="highlight">Atlantic</span>,
+                NBA YoungBoy’s third album <em><span class="highlight">Top</span></em> is a 21-track, 63-minute trap juggernaut, powered by <span class="highlight">TayTayMadeIt</span> and <span class="highlight">Dmac</span>.
+                Post-<em><span class="highlight">AI YoungBoy 2</span></em>’s chart-topping grit, it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">126,000 first-week units</span>.
+                By <span class="highlight">March 15, 2025</span>, its Platinum status, 2.5 billion streams, and X hype (@36966_) keep its gray fire blazing. Veazy here—this album’s a raw peak that reshaped YoungBoy, still pulsing with street energy.
             </p>
         </div>
         <br> <!-- Spacing -->
         <h2>The Messaging and Theme</h2> <!-- Theme section heading -->
         <br>
-        <p> <!-- Extended Theme description -->
-            The cover—YoungBoy brooding under a stormy sky—sets the tone for <em><span class="highlight">Top</span></em>,
-            a raw diary of defiance, pain, and street survival from Baton Rouge’s trenches. It’s unfiltered—<span class="highlight">“House Arrest Tingz”</span>
-            snarls “I’m on house arrest, but I’m still out here thuggin’,” a middle finger to confinement, while <span class="highlight">“Dead Trollz”</span>
-            unleashes venom—“Watch me bust your shit!”—aimed at foes. <span class="highlight">“Kacey Talk”</span> flips to charisma,
-            crooning “I got all these bitches wanna fuck me” with a rare lightness, and <span class="highlight">“All In”</span>
-            bares scars—“I been through some shit that you could never know.” It’s not a linear tale but a chaotic mosaic of loyalty,
-            betrayal, and hustle, delivered with YoungBoy’s raspy snarl. A 2025 X post (@36966_) calls it “YoungBoy’s gray crown”—a testament
-            to his unbowed spirit amid legal battles and personal storms, resonating as a voice for the streets, relentless and real.
+        <p> <!-- Theme description, ~150 words -->
+            The cover—YoungBoy under a stormy sky—sets a gritty tone, mirroring <em><span class="highlight">Top</span></em>’s raw trap manifesto. It’s a defiant flex with a pained edge, roaring in <span class="highlight">“House Arrest Tingz”</span>’s “I’m still thuggin’” and slashing with <span class="highlight">“Dead Trollz”</span>’s venom. <span class="highlight">“Kacey Talk”</span> and <span class="highlight">“All In”</span> shift gears—“I got all these bitches”—blending charisma with scars—“You could never know.” It’s a chaotic street diary, unfiltered and fierce, a gray testament to YoungBoy’s resilience that still sparks on X (@36966_) in 2025 as “trap’s stormy crown.” (~110 words)
         </p>
         <br>
         <h2>Production and Sound</h2> <!-- Production section heading -->
         <br>
-        <p> <!-- Extended Production description -->
-            <em><span class="highlight">Top</span></em>’s 21 tracks pulse with Southern trap, helmed by <span class="highlight">TayTayMadeIt</span>,
-            <span class="highlight">Dmac</span>, and <span class="highlight">Mike Laury</span>, recorded in Baton Rouge studios amid YoungBoy’s legal haze.
-            <span class="highlight">“Dead Trollz”</span> hits with distorted 808s and menacing snares—“This that troll music!”—while
-            <span class="highlight">“My Window”</span> layers eerie keys over pounding drums, a haunting backdrop for YoungBoy’s cries.
-            <span class="highlight">“Kacey Talk”</span> flips a soulful sample into a smooth flex, its mellow bounce cutting through the grit,
-            and <span class="highlight">“The Last Backyard…”</span> rides a hypnotic guitar riff—“I’m the last one standing!”—evoking late-night defiance.
-            YoungBoy’s voice—raspy, urgent, Auto-Tuned—shifts from shouts to melodic hooks, refining his lo-fi roots into a crisper, broader sound.
-            By 2025, its production elevates trap’s raw energy, though repetition creeps in across its sprawl, a minor crack in its stormy brilliance.
+        <p> <!-- Production description, ~150 words -->
+            <span class="highlight">TayTayMadeIt</span>, <span class="highlight">Dmac</span>, and <span class="highlight">Mike Laury</span> forge <em><span class="highlight">Top</span></em>’s sound—Southern trap chaos across its 21 tracks. Recorded at <span class="highlight">Baton Rouge Studios</span> in Louisiana and <span class="highlight">home setups</span> under legal strain, <span class="highlight">“Dead Trollz”</span> thumps with distorted 808s, <span class="highlight">“My Window”</span> haunts with eerie keys, and <span class="highlight">“Kacey Talk”</span> glides on soulful samples—YoungBoy’s raspy flow slicing through like a blade. TayTayMadeIt’s hard-hitting beats became a trap staple by 2025, though the 63-minute runtime drags slightly, a dent in its raw power. (~120 words)
         </p>
         <br>
         <h2>Features</h2> <!-- Features section heading -->
         <br>
-        <p> <!-- Extended Features description -->
-            <em><span class="highlight">Top</span></em> keeps features lean, spotlighting YoungBoy’s solo dominance across its 63 minutes.
-            <span class="highlight">Snoop Dogg</span> slides into <span class="highlight">“Callin”</span> with West Coast cool—“YoungBoy, what’s good, homie?”—
-            his laid-back flow a smooth contrast to YoungBoy’s ferocity. <span class="highlight">Lil Wayne</span> sharpens
-            <span class="highlight">“My Window”</span> with veteran swagger—“I’m a lion in this jungle!”—his rapid bars amplifying the track’s edge.
-            These legends enhance without overshadowing, brief cameos in YoungBoy’s relentless storm. The sparse guest list underscores his self-reliance—
-            no posse needed to carry this weight. It’s YoungBoy’s show, his raspy intensity ruling every bar, proving he’s a one-man army in trap’s gray landscape,
-            a Baton Rouge king who leans on his own voice to reign supreme.
+        <p> <!-- Features description, ~150 words -->
+            <em><span class="highlight">Top</span></em> leans light on features with <span class="highlight">Snoop Dogg</span>, <span class="highlight">Lil Wayne</span>, each adding flair to YoungBoy’s gray inferno. <span class="highlight">Snoop Dogg</span> lifts <span class="highlight">“Callin”</span> with laid-back cool—“What’s good, homie?”—while <span class="highlight">Lil Wayne</span> fuels <span class="highlight">“My Window”</span> with sharp bars—“I’m a lion!” YoungBoy’s delivery—raspy, urgent, commanding—dominates, ensuring features enhance rather than overshadow his vision. (~80 words)
         </p>
         <br>
         <div class="glass-card"> <!-- Track Highlights section -->
             <h2>Track Highlights</h2> <!-- Heading for track highlights -->
-            <p class="track-highlight-item"> <!-- Each bullet ~50 words -->
+            <p class="track-highlight-item"> <!-- Each bullet ~30 words -->
                 <span class="highlight">For Newcomers:</span> <span class="highlight">“Kacey Talk”</span>, <span class="highlight">“Dead Trollz”</span>—
-                Soulful samples fuel a charismatic flex—“I got all these bitches”—while distorted 808s drive a ferocious diss—“Bust your shit!”—YoungBoy’s duality hooks instantly, raw and magnetic entry points to his world.
+                Soulful hooks shine, 808s pound with rage—YoungBoy’s charisma and ferocity hook newbies fast. (~25 words)
             </p>
             <p class="track-highlight-item">
                 <span class="highlight">For The Dive:</span> <span class="highlight">“My Window”</span>, <span class="highlight">“House Arrest Tingz”</span>—
-                Eerie keys haunt with Wayne’s sharp bars—“I’m a lion!”—and gritty defiance—“Still thuggin’ on house arrest”—dig deep into YoungBoy’s stormy soul, relentless and unfiltered.
+                Wayne’s bite cuts deep, gritty defiance roars—YoungBoy’s stormy soul grips fans hard. (~25 words)
             </p>
             <p class="track-highlight-item">
                 <span class="highlight">Hidden Gems:</span> <span class="highlight">“All In”</span>, <span class="highlight">“The Last Backyard…”</span>—
-                Melodic cries bare pain—“You could never know”—while hypnotic guitars lift defiance—“I’m the last one!”—YoungBoy’s vulnerability shines through the trap haze, raw and gripping.
+                Melodic pain stings, guitars lift defiance—YoungBoy’s raw heart resonates quietly but strong. (~25 words)
             </p>
             <p class="track-highlight-item">
                 <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Dead Trollz (Live 2025)”</span>—
-                A 2025 Baton Rouge show (X @36966_) reignites this banger—YoungBoy snarling “Troll music!” to a roaring crowd—gray energy electrifies, Veazy’s stuck on its fierce replay value.
+                Baton Rouge 2025 roars “Troll music!”—YoungBoy’s gray energy electrifies, Veazy’s hooked again. (~25 words)
             </p>
         </div>
         <br>
         <h2>Previous Works</h2> <!-- Previous Works section heading -->
         <br>
-        <p> <!-- Extended Previous Works description -->
-            NBA YoungBoy’s path to <em><span class="highlight">Top</span></em> began with <em><span class="highlight">38 Baby</span></em>
-            (<span class="highlight">2016</span>), a gritty mixtape—“Murder” a raw breakout—blending melodic trap with Baton Rouge edge.
-            <em><span class="highlight">AI YoungBoy</span></em> (<span class="highlight">2017</span>) built his cult with “No Smoke” snarling “Who want it?”,
-            while <em><span class="highlight">Until Death Call My Name</span></em> (<span class="highlight">2018</span>) hit with “Outside Today,” a street anthem.
-            These lo-fi, chaotic drops showcased relentless output—dozens of tracks yearly. <em><span class="highlight">Top</span></em> polishes this blueprint,
-            trading some DIY haze for crisper beats and wider hooks, evolving his sound without losing its scarred soul. By 2025, it’s his crown jewel,
-            a testament to growth from a teen prodigy to trap royalty, still rooted in his unyielding Southern grit.
+        <p> <!-- Previous Works description, ~150 words -->
+            NBA YoungBoy’s road to <em><span class="highlight">Top</span></em> ran through <em><span class="highlight">38 Baby</span></em> (<span class="highlight">2016</span>) and <em><span class="highlight">AI YoungBoy</span></em> (<span class="highlight">2017</span>) with TayTayMadeIt. Hits like <span class="highlight">“Murder”</span> and <span class="highlight">“No Smoke”</span> built his street buzz, while <em><span class="highlight">Top</span></em> redefined his sound, paving the way for <em><span class="highlight">Sincerely, Kentrell</span></em> (<span class="highlight">2021</span>). (~80 words)
         </p>
         <br>
         <h2>Grammy Wins & Nominations</h2> <!-- Grammy section heading -->
@@ -216,20 +183,15 @@
                     </tbody>
                 </table>
                 <p> <!-- Grammy summary -->
-                    <em><span class="highlight">Top</span></em> snagged two 2021 nods—its Platinum status by 2025 underscores YoungBoy’s trap reign, even without a win.
+                    <em><span class="highlight">Top</span></em> nabbed two 2021 nods, its Platinum status and 2.5 billion streams by 2025 amplifying its trap legacy.
                 </p>
             </div>
         </div>
         <br>
         <h2>Legacy & Reception</h2> <!-- Legacy section heading -->
         <br>
-        <p> <!-- Extended Legacy description -->
-            Rolling Stone gave <em><span class="highlight">Top</span></em> <span class="highlight">3.5/5 stars</span>, calling it “YoungBoy’s rawest yet,” while XXL praised its “unrelenting hustle.”
-            X fans (@36966_) in 2020 dubbed it “trap’s gray storm—YoungBoy’s untouchable.” By <span class="highlight">March 15, 2025</span>,
-            its Platinum status, 2.5 billion streams, and 2025 live hype—like a Baton Rouge “Dead Trollz” set—solidify its mark.
-            YoungBoy’s snarling “Troll music!” electrified crowds, gray visuals flashing—a street sermon. It didn’t shift trap’s paradigm but amplified it,
-            a sprawling testament to his prolific grind and magnetic pull. In a genre of fleeting stars, <em><span class="highlight">Top</span></em>
-            endures as YoungBoy’s roaring claim—scarred, defiant, and a blueprint for Southern rap’s relentless spirit.
+        <p> <!-- Legacy description, ~150 words -->
+            Critics split—Pitchfork’s <span class="highlight">7.2/10</span> called it “YoungBoy’s grit refined,” Rolling Stone praised its rawness. X fans (@36966_) in 2020 dubbed it “trap’s gray storm,” a vibe alive in <span class="highlight">March 15, 2025</span>, with Platinum, 2.5 billion streams, and a 2025 Baton Rouge set. A viral “<span class="highlight">Dead Trollz</span>” show—YoungBoy snarling live—cements its street reign. (~70 words)
         </p>
         <br>
         <h2>By the Numbers</h2> <!-- Chart Performance section heading -->
@@ -250,12 +212,12 @@
                             <td>63</td> <td>1.8 billion</td> <td>Platinum</td> <td>1,100,000+</td> <!-- Previous album -->
                         </tr>
                         <tr>
-                            <td><span class="highlight">Until Death...</span> (2018)</td> <td><span class="highlight">“Outside Today”</span></td>
-                            <td>31</td> <td>2.2 billion</td> <td>Platinum</td> <td>1,400,000+</td> <!-- Previous album -->
-                        </tr>
-                        <tr>
                             <td><span class="highlight">Top</span> (2020)</td> <td><span class="highlight">“Kacey Talk”</span></td>
                             <td>48</td> <td>2.5 billion</td> <td>Platinum</td> <td>1,600,000+</td> <!-- Current album -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Sincerely, Kentrell</span> (2021)</td> <td><span class="highlight">“Toxic Punk”</span></td>
+                            <td>35</td> <td>2.1 billion</td> <td>Platinum</td> <td>1,500,000+</td> <!-- Next album -->
                         </tr>
                     </tbody>
                 </table>
@@ -276,10 +238,10 @@
                             <td><span class="highlight">AI YoungBoy</span></td> <td>Platinum</td> <td>1.1</td> <!-- Previous album -->
                         </tr>
                         <tr>
-                            <td><span class="highlight">Until Death...</span></td> <td>Platinum</td> <td>1.4</td> <!-- Previous album -->
+                            <td><span class="highlight">Top</span></td> <td>Platinum</td> <td>1.6</td> <!-- Current album -->
                         </tr>
                         <tr>
-                            <td><span class="highlight">Top</span></td> <td>Platinum</td> <td>1.6</td> <!-- Current album -->
+                            <td><span class="highlight">Sincerely, Kentrell</span></td> <td>Platinum</td> <td>1.5</td> <!-- Next album -->
                         </tr>
                     </tbody>
                 </table>
@@ -288,32 +250,26 @@
         <br>
         <div class="glass-card"> <!-- Ratings section -->
             <h2>Ratings</h2> <!-- Heading for ratings -->
-            <p> <!-- Each bullet ~50 words -->
-                <span class="highlight">Originality (16/20):</span> Trap evolves with polish—“Kacey Talk” adds soulful flair—but YoungBoy builds on his roots rather than breaking new ground,
-                refining his gritty sound into a broader, yet familiar, Southern storm that roars with intensity.
+            <p> <!-- Each bullet ~30 words -->
+                <span class="highlight">Originality (16/20):</span> Trap gets a polish—“Kacey Talk” adds soul—but YoungBoy refines his roots, not breaking new ground, staying fierce. (~25 words)
             </p>
             <p>
-                <span class="highlight">Production Quality (18/20):</span> Hard-hitting beats shine—“Dead Trollz” thumps with 808s—crafted with precision by TayTayMadeIt and crew,
-                though repetition across 21 tracks slightly dulls the edge of this otherwise crisp, stormy soundscape.
+                <span class="highlight">Production Quality (18/20):</span> Beats hit hard—“Dead Trollz” thumps—crafted tight by TayTayMadeIt, though repetition dulls the edge a bit. (~25 words)
             </p>
             <p>
-                <span class="highlight">Lyrics and Messaging (17/20):</span> Raw honesty cuts deep—“All In” bares scars—street tales of pain and hustle resonate,
-                but depth wavers as some tracks lean on bravado over introspection, limiting its emotional range.
+                <span class="highlight">Lyrics and Messaging (17/20):</span> Raw scars shine—“All In” cuts deep—street tales grip, but bravado sometimes overshadows deeper insight. (~25 words)
             </p>
             <p>
-                <span class="highlight">Enjoyment Factor (18/20):</span> Relentless energy hooks hard—“My Window” grips with Wayne’s bite—a thrilling ride for fans,
-                though its 63-minute sprawl can test casual listeners, balancing raw power with a touch of fatigue.
+                <span class="highlight">Enjoyment Factor (18/20):</span> Energy hooks hard—“My Window” bites—a thrilling ride, though sprawl tests casual ears slightly. (~25 words)
             </p>
             <p>
-                <span class="highlight">Consistency (15/20):</span> Front-loaded bangers like “House Arrest Tingz” hit hard, but the back half sags with filler—“Peace Hardly” fades—
-                diluting the gray storm’s momentum despite YoungBoy’s fierce delivery throughout.
+                <span class="highlight">Consistency (15/20):</span> Bangers like “House Arrest Tingz” roar, but filler drags late—momentum dips despite YoungBoy’s fierce flow. (~25 words)
             </p>
             <p class="overall-rating"> <!-- Overall rating display -->
                 <span class="highlight"><h3>Overall Rating (84/100):</span> 8.4/10</h3>
             </p>
             <p> <!-- Final summary, ~50 words -->
-                <em><span class="highlight">Top</span></em> is YoungBoy’s gray-clad triumph—raw, sprawling, unapologetic. Picture a 2025 Baton Rouge crowd roaring to “Dead Trollz”—
-                fierce, flawed, replayable. Veazy’s riding this trap wave, hooked on its stormy soul, a Southern king’s relentless reign.
+                <em><span class="highlight">Top</span></em> is a trap titan—YoungBoy’s raw reign ignites a gray blaze pulsing with grit. Picture a 2025 Baton Rouge stage, his raspy snarl commanding a roaring crowd—fierce, flawed, replayable. Veazy’s blasting this in 2025, chasing its gray storm. (~45 words)
             </p>
         </div>
         <br>
@@ -325,7 +281,6 @@
         </div>
     </div>
 
-    <!-- External scripts for animations and interactivity -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Loads Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Loads GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Loads ScrollTrigger -->
