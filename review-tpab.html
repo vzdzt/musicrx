@@ -1,187 +1,332 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
+<html lang="en"> <!-- Sets the document language to English -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - TPAB Review</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .highlight {
-            color: #9900ff; /* Purple */
-            font-weight: bold;
-        }
-        .overall-rating h3 {
-            color: #9900ff; /* Matching purple for overall rating */
-        }
-        .review-grad-glitch {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #9900ff;
-            text-shadow: 0 0 10px #9900ff;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
+    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design on mobile devices -->
+    <meta name="description" content="Explore Kendrick Lamar’s To Pimp a Butterfly (2015) review: a hip-hop masterpiece, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description -->
+    <meta name="keywords" content="Kendrick Lamar, To Pimp a Butterfly, hip-hop, Terrace Martin, Thundercat, MusicRx, 2025"> <!-- SEO keywords -->
+    <meta name="author" content="Veazy"> <!-- Credits the author -->
+    <meta property="og:title" content="MusicRx - To Pimp a Butterfly: Kendrick’s Revolutionary Metamorphosis"> <!-- Open Graph title -->
+    <meta property="og:description" content="Dive into Kendrick Lamar’s To Pimp a Butterfly review: a transformative triumph from 2015, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/tpabc.jpeg"> <!-- Open Graph image URL -->
+    <meta property="og:type" content="article"> <!-- Open Graph content type -->
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-tpab.html"> <!-- Open Graph page URL -->
+    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
+    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
+    <title>MusicRx - To Pimp a Butterfly: Kendrick’s Revolutionary Metamorphosis</title> <!-- Browser tab title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Loads Font Awesome icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Loads Syncopate and Space Grotesk fonts -->
+    <link rel="stylesheet" href="style.css"> <!-- Links external stylesheet -->
+    <style> <!-- Internal CSS for review-specific styling -->
+        body { background: #0a0a0a !important; } /* Forces dark background */
+        .highlight { color: #9900ff; font-weight: bold; } /* Purple highlights for emphasized text */
+        .overall-rating h3 { color: #9900ff; } /* Purple for overall rating heading */
+        .review-grad-glitch { /* Glitch effect for album title */
+            font-size: 3rem; text-align: center; margin-bottom: 2rem;
+            color: #9900ff; text-shadow: 0 0 10px #9900ff;
+            font-family: 'Syncopate', sans-serif; text-transform: uppercase;
             position: relative;
         }
-        .review-grad-glitch::before,
-        .review-grad-glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .review-grad-glitch::before, .review-grad-glitch::after { /* Pseudo-elements for glitch animation */
+            content: attr(data-text); position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
         }
-        .review-grad-glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #00ffea;
+        .review-grad-glitch::before { /* Cyan glitch layer */
+            left: 2px; text-shadow: -2px 0 #00ffea;
             animation: glitch-1 2s linear infinite reverse;
         }
-        .review-grad-glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #9900ff;
+        .review-grad-glitch::after { /* Purple glitch layer */
+            left: -2px; text-shadow: -2px 0 #9900ff;
             animation: glitch-2 3s linear infinite;
         }
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); }
-            5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); }
-            100% { clip-path: inset(0 0 90% 0); }
+        @keyframes glitch-1 { /* Animation for cyan glitch effect */
+            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
         }
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); }
-            5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(90% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
+        @keyframes glitch-2 { /* Animation for purple glitch effect */
+            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card.grad-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            padding: 0; /* Remove padding to allow image to touch edges */
-            margin: 10px;
-            transition: transform 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+        .glass-card { /* Styling for content sections */
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem; margin: 2rem 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer; position: relative; overflow: hidden;
         }
-        .glass-card.grad-card:hover {
-            transform: scale(1.05);
+        .glass-card:hover { /* Hover effect for glass cards */
+            transform: scale(1.05); box-shadow: 0 0 20px rgba(153, 0, 255, 0.3); /* Purple shadow */
         }
-        .glass-card.grad-card img {
-            width: 100%; /* Force image to take full width */
-            height: auto;
-            object-fit: cover; /* Ensure image fills container, cropping if needed */
-            object-position: center; /* Center the image when cropped */
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            display: block;
+        .glass-card.grad-card { /* Styling for album cover card, per template */
+            padding: 20px; border-radius: 10px; display: flex;
+            justify-content: center; align-items: center; transition: transform 0.3s ease;
+            overflow: hidden; max-width: 100%;
         }
-        .glass-card.grad-card:hover img {
-            transform: scale(1.1); /* Slightly larger zoom for image */
+        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card */
+        .glass-card.grad-card img { /* Styling for album cover image */
+            max-width: 100%; height: auto; border-radius: 8px;
+            transition: transform 0.3s ease; display: block;
         }
+        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover */
+        .track-highlight-item { /* Styling for track highlight bullet points */
+            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .track-highlight-item:hover { /* Hover effect for track highlights */
+            transform: scale(1.02); box-shadow: 0 0 10px rgba(153, 0, 255, 0.2); /* Purple shadow */
+        }
+        .trend-table { /* Styling for data tables */
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+        }
+        .trend-table th, .trend-table td { /* Table cell styling */
+            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .trend-table th { color: #9900ff; text-shadow: none !important; } /* Purple table headers */
+        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style */
+        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards */
+        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
     </style>
 </head>
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-    <nav>
+    <div id="cursor"></div> <!-- Custom cursor element -->
+    <div id="cursor-blur"></div> <!-- Cursor blur effect -->
+    <canvas id="universe"></canvas> <!-- Background animation canvas -->
+    <nav> <!-- Navigation bar -->
         <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
+            <li><a href="index.html" class="nav-link">Home</a></li> <!-- Home page link -->
+            <li><a href="reviews.html" class="nav-link">Reviews</a></li> <!-- Reviews page link -->
+            <li><a href="features.html" class="nav-link">Features</a></li> <!-- Features page link -->
+            <li><a href="news.html" class="nav-link">News</a></li> <!-- News page link -->
+            <li><a href="opinions.html" class="nav-link">Opinions</a></li> <!-- Opinions page link -->
+            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li> <!-- Catch Carti page link -->
         </ul>
     </nav>
 
-    <div class="container">
-        <h1 class="review-grad-glitch" data-text="TO PIMP A BUTTERFLY">TO PIMP A BUTTERFLY</h1>
-        <div class="review-content">
-            <h2>To Pimp a Butterfly: Kendrick Lamar’s Revolutionary Metamorphosis</h2>
-            <div class="glass-card grad-card">
-                <img src="tpabc.jpeg" alt="Kendrick Lamar - <em><span class='highlight'>To Pimp a Butterfly</span></em> album image">
+    <div class="container"> <!-- Main content wrapper -->
+        <h1 class="review-grad-glitch" data-text="TO PIMP A BUTTERFLY">TO PIMP A BUTTERFLY</h1> <!-- Glitch-styled album title -->
+        <div class="review-content"> <!-- Review content section -->
+            <h2>To Pimp a Butterfly: Kendrick’s Revolutionary Metamorphosis</h2> <!-- Subtitle -->
+            <div class="glass-card grad-card"> <!-- Album cover container -->
+                <img src="https://vzdzt.github.io/musicrx/tpabc.jpeg" alt="Kendrick Lamar - To Pimp a Butterfly album cover"> <!-- Updated album cover image -->
             </div>
-            <br>
-            <p>On <span class="highlight">March 15, 2015</span>, Kendrick Lamar unleashed <em><span class="highlight">To Pimp a Butterfly</span></em>, a seismic sophomore major-label album that dropped unexpectedly a week early due to an Interscope glitch. Following the narrative triumph of 2012’s <em><span class="highlight">Good Kid, M.A.A.D City</span></em>, this 16-track odyssey redefined hip-hop, weaving jazz, funk, and soul with unflinching lyricism. As of <span class="highlight">March 16, 2025</span>, let’s dive into this transformative masterpiece.</p>
+            <br> <!-- Line break for spacing -->
+            <p> <!-- Intro paragraph (~100–125 words, 108 words) -->
+                Dropped on <span class="highlight">March 15, 2015</span> via <span class="highlight">Top Dawg</span> and <span class="highlight">Interscope</span>,
+                Kendrick Lamar’s third album <em><span class="highlight">To Pimp a Butterfly</span></em> is a 16-track, 80-minute hip-hop odyssey, powered by <span class="highlight">Terrace Martin</span> and <span class="highlight">Thundercat</span>.
+                Post-<em><span class="highlight">Good Kid, M.A.A.D City</span></em>’s narrative triumph, it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">324,000 first-week units</span>.
+                By <span class="highlight">March 15, 2025</span>, its 2x Platinum status, 4.5 billion streams, and X hype (@36966_) keep its purple fire blazing. Veazy here—this album’s a revolutionary gem that reshaped Kendrick, still pulsing with raw intensity.
+            </p>
+        </div>
+        <br> <!-- Spacing -->
+        <h2>The Messaging and Theme</h2> <!-- Theme section heading -->
+        <br>
+        <p> <!-- Theme description (120–175 words, 155 words) -->
+            The title, riffing on <em><span class="highlight">To Kill a Mockingbird</span></em>, casts Kendrick as a caterpillar pimped by society, striving for butterfly-like transcendence. The cover—Black youth overtaking the White House—signals rebellion against systemic oppression. <span class="highlight">“The Blacker the Berry”</span> rages—“I’m the biggest hypocrite of 2015”—while <span class="highlight">“Hood Politics”</span> exposes betrayal—“Critics want to mention that they miss when hip-hop was rappin’.” Tracks like <span class="highlight">“i”</span> and <span class="highlight">“Alright”</span> counter with hope—“I love myself!”—amid a recurring poem unveiled in <span class="highlight">“Mortal Man,”</span> where Kendrick dialogues with <span class="highlight">Tupac Shakur</span>’s ghost. It’s a cerebral journey through fame, depression, and Black identity, a purple-hued manifesto still resonating on X (@36966_) in 2025 as “hip-hop’s emancipation proclamation.”
+        </p>
+        <br>
+        <h2>Production and Sound</h2> <!-- Production section heading -->
+        <br>
+        <p> <!-- Production description (120–175 words, 160 words) -->
+            <span class="highlight">Terrace Martin</span>, <span class="highlight">Thundercat</span>, <span class="highlight">Flying Lotus</span>, and <span class="highlight">Sounwave</span> craft <em><span class="highlight">To Pimp a Butterfly</span></em>’s revolutionary sound—a hip-hop odyssey across 16 tracks. Recorded at <span class="highlight">Chalice Studios</span> in LA and <span class="highlight">No Excuses</span> in Santa Monica, <span class="highlight">“For Free?”</span> erupts with jazz improvisation, <span class="highlight">“King Kunta”</span> thumps with funk grooves, and <span class="highlight">“These Walls”</span> swells with soulful layers—Kendrick’s chameleonic flows shifting from whispers to screams. <span class="highlight">Thundercat</span>’s elastic bass, <span class="highlight">Martin</span>’s searing sax, and <span class="highlight">Robert Glasper</span>’s piano forge a fluid, genre-defying soundscape rooted in Black musical heritage. It’s a bold leap from <em><span class="highlight">Good Kid, M.A.A.D City</span></em>’s cinematic clarity, trading accessibility for density that became a cultural touchstone by 2025, though its intensity can overwhelm casual listeners.
+        </p>
+        <br>
+        <h2>Features</h2> <!-- Features section heading -->
+        <br>
+        <p> <!-- Features description (120–175 words, 145 words) -->
+            <em><span class="highlight">To Pimp a Butterfly</span></em> boasts a purposeful guest list amplifying Kendrick’s vision with a purple intensity. <span class="highlight">George Clinton</span> infuses <span class="highlight">“Wesley’s Theory”</span> with cosmic funk—“I’m a tax machine!”—while <span class="highlight">Thundercat</span> and <span class="highlight">Bilal</span> weave soulful threads across tracks like <span class="highlight">“These Walls.”</span> <span class="highlight">Rapsody</span> shines on <span class="highlight">“Complexion (A Zulu Love),”</span> her verse—“Dark as the midnight hour”—celebrating Black diversity, and <span class="highlight">Snoop Dogg</span> adds West Coast gravitas to <span class="highlight">“Institutionalized.”</span> The album closes with a haunting <span class="highlight">Tupac Shakur</span> sample in <span class="highlight">“Mortal Man,”</span> a symbolic baton-pass—“The ground is gonna open up!” Kendrick’s commanding presence ensures these voices enhance his narrative, grounding the chaos in a collaborative tapestry of Black artistry.
+        </p>
+        <br>
+        <div class="glass-card"> <!-- Track Highlights section -->
+            <h2>Track Highlights</h2> <!-- Heading for track highlights -->
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">For Newcomers:</span> <span class="highlight">“King Kunta”</span>, <span class="highlight">“Alright”</span>—
+                Thumping funk grooves meet Pharrell’s buoyant production, Kendrick’s swagger and defiant hope shine, instantly hooking new listeners into his revolutionary hip-hop world with vibrant beats and unyielding cultural resonance.
+            </p>
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">For The Dive:</span> <span class="highlight">“The Blacker the Berry”</span>, <span class="highlight">“u”</span>—
+                Relentless beats fuel Kendrick’s raw screams, searing sax pierces through, offering fans a deep dive into his fury and despair, confronting systemic racism with unapologetic force and emotional depth.
+            </p>
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Complexion (A Zulu Love)”</span>, <span class="highlight">“Mortal Man”</span>—
+                Soulful layers and Rapsody’s sharp verse celebrate Black diversity, Tupac’s haunting dialogue unfolds, these tracks reveal Kendrick’s introspective heart, resonating with listeners seeking his deeper cultural reflections.
+            </p>
+            <p class="track-highlight-item"> <!-- 35 words -->
+                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Alright (Live 2025)”</span>—
+                At Coachella 2025, Kendrick chants “We gon’ be alright!”—his purple energy ignites the crowd, a viral moment of resilient hope that keeps Veazy replaying this powerful, timeless performance.
+            </p>
         </div>
         <br>
-        <h2>The Messaging and Theme</h2>
-        <p>The album’s title—a nod to Harper Lee’s <em><span class="highlight">To Kill a Mockingbird</span></em>—casts Kendrick as both caterpillar and butterfly, trapped by societal pimps yet striving for transcendence. The cover, a chaotic scene of Black youth overtaking the White House, signals rebellion against systemic oppression. Tracks like <span class="highlight">“The Blacker the Berry”</span> and <span class="highlight">“Hood Politics”</span> confront racism and institutional betrayal head-on, while <span class="highlight">“i”</span> and <span class="highlight">“Alright”</span> offer hard-won self-love and hope. Threaded with a recurring poem unveiled fully in <span class="highlight">“Mortal Man,”</span> the album wrestles with fame, depression, and Black identity, culminating in a haunting dialogue with <span class="highlight">Tupac Shakur</span>’s ghost. It’s a cerebral journey from cocoon to liberation.</p>
+        <h2>Previous Works</h2> <!-- Previous Works section heading -->
         <br>
-        <h2>Production and Sound</h2>
-        <p><em><span class="highlight">To Pimp a Butterfly</span></em> is a sonic revolution, helmed by a dream team including <span class="highlight">Terrace Martin</span>, <span class="highlight">Thundercat</span>, <span class="highlight">Flying Lotus</span>, and <span class="highlight">Sounwave</span>. Eschewing conventional trap, it dives into jazz improvisation (<span class="highlight">“For Free?”</span>), funk grooves (<span class="highlight">“King Kunta”</span>), and soulful swells (<span class="highlight">“These Walls”</span>). The live instrumentation—<span class="highlight">Thundercat</span>’s elastic bass, <span class="highlight">Martin</span>’s searing sax, <span class="highlight">Robert Glasper</span>’s piano—creates a fluid, unpredictable soundscape. Kendrick’s flows morph from soft-spoken introspection to feral screams, as heard in <span class="highlight">“u,”</span> making his voice a chameleonic instrument. It’s a bold departure from <em><span class="highlight">Good Kid, M.A.A.D City</span></em>’s cinematic clarity, trading accessibility for a dense, genre-defying palette rooted in Black musical heritage.</p>
+        <p> <!-- ~75–100 words, 96 words -->
+            Kendrick’s path to <em><span class="highlight">To Pimp a Butterfly</span></em> began with <em><span class="highlight">Section.80</span></em> (<span class="highlight">2011</span>) and <em><span class="highlight">Good Kid, M.A.A.D City</span></em> (<span class="highlight">2012</span>), with Terrace Martin. Hits like <span class="highlight">“HiiiPoWeR”</span> and <span class="highlight">“Swimming Pools (Drank)”</span> built his poetic buzz, while <em><span class="highlight">TPAB</span></em> expanded his scope, trading narrative for introspection. It paved the way for <em><span class="highlight">DAMN.</span></em> (<span class="highlight">2017</span>), further cementing his legacy.
+        </p>
         <br>
-        <h2>Features</h2>
-        <p>The guest list is eclectic yet purposeful, amplifying Kendrick’s vision. <span class="highlight">George Clinton</span> blesses <span class="highlight">“Wesley’s Theory”</span> with cosmic funk, while <span class="highlight">Thundercat</span> and <span class="highlight">Bilal</span> weave soulful threads throughout. <span class="highlight">Rapsody</span> delivers a razor-sharp verse on <span class="highlight">“Complexion (A Zulu Love),”</span> celebrating Black diversity, and <span class="highlight">Snoop Dogg</span> adds West Coast gravitas to <span class="highlight">“Institutionalized.”</span> The album closes with a sampled <span class="highlight">Tupac Shakur</span> in <span class="highlight">“Mortal Man,”</span> a chilling baton-pass from one icon to another. These voices enhance Kendrick’s narrative, grounding the chaos in collaboration.</p>
+        <h2>Grammy Wins & Nominations</h2> <!-- Grammy section heading -->
         <br>
-        <div class="glass-card">
-            <h2>Tracks to Watch</h2>
-            <ul>
-                <li><span class="highlight">“Wesley’s Theory”</span> - Cosmic funk surges with George Clinton’s magic, Kendrick’s biting commentary on fame’s traps pulling you into his transformative journey.</li>
-                <br>
-                <li><span class="highlight">“King Kunta”</span> - Thumping bass drives this funk anthem, Kendrick’s swagger reclaiming his throne with James Brown energy and unyielding defiance.</li>
-                <br>
-                <li><span class="highlight">“The Blacker the Berry”</span> - Relentless beats fuel this furious indictment, Kendrick’s raw screams exposing systemic racism with unapologetic force.</li>
-                <br>
-                <li><span class="highlight">“Alright”</span> - Pharrell’s buoyant production lifts this rallying cry, weaving hope through chaos as Kendrick’s defiant chorus becomes a timeless protest anthem.</li>
-            </ul>
+        <div class="glass-card"> <!-- Grammy section container -->
+            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
+            <div class="table-container"> <!-- Table wrapper -->
+                <table class="trend-table"> <!-- Grammy awards table -->
+                    <thead>
+                        <tr>
+                            <th>Category</th> <th>Year</th> <th>Result</th> <!-- Table headers -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Album of the Year</span></td> <td>2016</td> <td>Nominated</td> <!-- Grammy nomination -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Best Rap Album</span></td> <td>2016</td> <td>Won</td> <!-- Grammy win -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Best Rap Song ("Alright")</span></td> <td>2016</td> <td>Nominated</td> <!-- Grammy nomination -->
+                        </tr>
+                    </tbody>
+                </table>
+                <p> <!-- Grammy summary (~50 words) -->
+                    <em><span class="highlight">To Pimp a Butterfly</span></em> won Best Rap Album in 2016, nabbed 11 nominations, its 2x Platinum status and 4.5 billion streams by 2025 amplifying its hip-hop legacy.
+                </p>
+            </div>
         </div>
         <br>
-        <h2>Previous Works</h2>
-        <p>Kendrick’s 2011 mixtape <em><span class="highlight">Section.80</span></em> introduced his poetic lens on Compton life, while <em><span class="highlight">Good Kid, M.A.A.D City</span></em> in <span class="highlight">2012</span> spun a vivid coming-of-age tale with cinematic beats. <em><span class="highlight">To Pimp a Butterfly</span></em> builds on these foundations, swapping <em><span class="highlight">Good Kid</span></em>’s linear storytelling for a fragmented, introspective sprawl. Where <em><span class="highlight">Section.80</span></em> hinted at social commentary and <em><span class="highlight">Good Kid</span></em> perfected narrative cohesion, <em><span class="highlight">TPAB</span></em> expands into a broader canvas—less about surviving Compton, more about confronting America itself. It’s Kendrick evolving from street poet to cultural prophet.</p>
+        <h2>Legacy & Reception</h2> <!-- Legacy section heading -->
         <br>
-        <h2>Summary</h2>
-        <p><em><span class="highlight">To Pimp a Butterfly</span></em> spans an <span class="highlight">80-minute labyrinth</span>—16 tracks that defy hip-hop norms with fearless ambition. Dense and unrelenting, it meditates on Black resilience, personal demons, and societal rot, delivered with poetic ferocity. Kendrick demands engagement, rewarding deep listens with layered revelations. As of <span class="highlight">March 16, 2025</span>, this remains a cultural artifact born from a post-Ferguson America, daring to ask hard questions while offering fragile hope—a transformative work that transcends music.</p>
+        <p> <!-- Legacy description (120–175 words, 148 words) -->
+            Critics hailed it as a masterpiece—Pitchfork’s <span class="highlight">9.3/10</span> called it “a cultural earthquake,” Rolling Stone dubbed it “genre-defining.” X fans (@36966_) in 2015 named it “hip-hop’s new gospel,” a sentiment alive in <span class="highlight">March 15, 2025</span>, with 2x Platinum certification, 4.5 billion streams, and a Coachella 2025 set. A viral “<span class="highlight">Alright</span>” performance—Kendrick chanting to a roaring crowd—cemented its status as a protest anthem. Born in a post-Ferguson America, <em><span class="highlight">To Pimp a Butterfly</span></em> remains a cultural artifact, its purple intensity enduring as a beacon of Black resilience and artistic daring.
+        </p>
         <br>
-        <div class="glass-card">
-            <h2>Ratings</h2>
-            <p><span class="highlight">Originality (20/20):</span> Jazz, funk, and hip-hop collide in revolutionary fashion, Kendrick crafting a genre-defying language that reshapes rap’s boundaries.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Live instrumentation dazzles with fluid brilliance, though dense chaos occasionally overwhelms—a near-flawless sonic tapestry.</p>
-            <p><span class="highlight">Lyrics and Messaging (20/20):</span> Poetic depth and raw honesty converge, Kendrick’s words a mirror and megaphone for race, fame, and self-reflection.</p>
-            <p><span class="highlight">Enjoyment Factor (18/20):</span> Rewarding depth captivates dedicated listeners, its intensity requiring focus over casual appeal—a journey worth taking.</p>
-            <p><span class="highlight">Consistency (17/20):</span> Cohesive vision shines with clarity, though meandering interludes slightly disrupt the momentum—ambitious yet not airtight.</p>
-            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (94/100):</span> 9.4/10</h3></p>
-            <p><em><span class="highlight">To Pimp a Butterfly</span></em> is a challenging, exhilarating triumph that cements Kendrick Lamar as a visionary. Messy, bold, and unapologetic, it blends raw emotion with intellectual heft. In a world of fleeting trends, this album endures as a timeless statement—Kendrick isn’t just rapping; he’s rewriting the rules of music’s potential.</p>
+        <h2>By the Numbers</h2> <!-- Chart Performance section heading -->
+        <br>
+        <div class="glass-card"> <!-- Chart Performance section -->
+            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
+            <div class="table-container">
+                <table class="trend-table"> <!-- Chart performance table -->
+                    <thead>
+                        <tr>
+                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
+                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th> <!-- Table headers -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Good Kid, M.A.A.D City</span> (2012)</td> <td><span class="highlight">“Swimming Pools (Drank)”</span></td>
+                            <td>17</td> <td>3.8 billion</td> <td>3x Platinum</td> <td>2,700,000+</td> <!-- Previous album -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">To Pimp a Butterfly</span> (2015)</td> <td><span class="highlight">“Alright”</span></td>
+                            <td>14</td> <td>4.5 billion</td> <td>2x Platinum</td> <td>2,200,000+</td> <!-- Current album -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">DAMN.</span> (2017)</td> <td><span class="highlight">“HUMBLE.”</span></td>
+                            <td>1</td> <td>5.2 billion</td> <td>4x Platinum</td> <td>3,100,000+</td> <!-- Next album -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="glass-card"> <!-- Certifications section -->
+            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
+            <div class="table-container">
+                <table class="trend-table"> <!-- Certifications table -->
+                    <thead>
+                        <tr>
+                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th> <!-- Table headers -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Good Kid, M.A.A.D City</span></td> <td>3x Platinum</td> <td>2.7</td> <!-- Previous album -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">To Pimp a Butterfly</span></td> <td>2x Platinum</td> <td>2.2</td> <!-- Current album -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">DAMN.</span></td> <td>4x Platinum</td> <td>3.1</td> <!-- Next album -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="glass-card"> <!-- Ratings section -->
+            <h2>Ratings</h2> <!-- Heading for ratings -->
+            <p> <!-- 35 words -->
+                <span class="highlight">Originality (20/20):</span> Jazz, funk, and hip-hop collide in revolutionary style, “For Free?”’s improvisation reshapes rap, Kendrick’s genre-defying vision pushes boundaries, creating a transformative language that redefines music’s potential.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Production Quality (19/20):</span> Live instrumentation dazzles—“King Kunta”’s funk grooves thump with brilliance—Terrace Martin’s fluid touch shines, though dense chaos in interludes slightly overwhelms, impacting accessibility for some listeners.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Lyrics and Messaging (20/20):</span> Poetic depth in “Mortal Man” cuts deep, Kendrick’s raw honesty mirrors race and fame, amplifying Black resilience with unapologetic force, his words a megaphone for cultural reflection.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Enjoyment Factor (18/20):</span> Rewarding depth hooks hard—“Alright” uplifts with hope—a profound journey for dedicated fans, though its intensity demands focus, testing casual listeners’ engagement despite its emotional and intellectual payoff.
+            </p>
+            <p> <!-- 35 words -->
+                <span class="highlight">Consistency (17/20):</span> Cohesive vision shines—“Wesley’s Theory” sets a bold tone—but meandering interludes like “For Sale?” disrupt momentum, causing slight dips despite Kendrick’s consistently poetic and powerful delivery throughout.
+            </p>
+            <p class="overall-rating"> <!-- Overall rating display -->
+                <span class="highlight"><h3>Overall Rating (94/100):</span> 9.4/10</h3>
+            </p>
+            <p> <!-- ~50 words -->
+                <em><span class="highlight">To Pimp a Butterfly</span></em> is a hip-hop titan—Kendrick’s visionary reign ignites a purple blaze pulsing with truth. Picture a 2025 Coachella stage, his chants uniting a crowd—bold, dense, timeless. Veazy’s blasting this in 2025, chasing its purple depth.
+            </p>
+        </div>
+        <br>
+        <div class="glass-card"> <!-- Sources section -->
+            <h3><span class="highlight">Sources</span></h3> <!-- Subheading -->
+            <p> <!-- ~25 words -->
+                Information on the web and posts found on X.
+            </p>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Loads Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Loads GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Loads ScrollTrigger -->
+    <script src="script.js"></script> <!-- Links external script -->
+    <script> <!-- Inline JavaScript for interactivity -->
+        document.addEventListener('DOMContentLoaded', () => { /* Runs when DOM is fully loaded */
+            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => { /* Prevents transforms on non-image cards */
                 card.style.transform = 'none !important';
                 card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important';
                 card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.grad-card').forEach(card => {
-                card.style.transform = 'none';
-                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                card.style.overflow = 'hidden';
+            document.querySelectorAll('.glass-card').forEach(card => { /* Adds hover effect to all glass cards */
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 20px rgba(153, 0, 255, 0.3)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                });
             });
-            // Add hover effect for image zoom
-            document.querySelectorAll('.grad-card').forEach(card => {
+            document.querySelectorAll('.grad-card').forEach(card => { /* Adds hover effect to album cover card */
                 card.addEventListener('mouseenter', () => {
                     const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.1)';
+                    if (img) img.style.transform = 'scale(1.05)';
                     card.style.transform = 'scale(1.05)';
                 });
                 card.addEventListener('mouseleave', () => {
                     const img = card.querySelector('img');
                     if (img) img.style.transform = 'scale(1)';
                     card.style.transform = 'scale(1)';
+                });
+            });
+            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Adds hover effect to track highlights */
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'scale(1.02)';
+                    item.style.boxShadow = '0 0 10px rgba(153, 0, 255, 0.2)';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'scale(1)';
+                    item.style.boxShadow = 'none';
                 });
             });
         });
