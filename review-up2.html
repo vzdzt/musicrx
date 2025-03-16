@@ -1,4 +1,4 @@
-kk<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
+<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
 <html lang="en"> <!-- Sets the document language to English -->
 <head>
     <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
@@ -51,16 +51,17 @@ kk<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden;
         }
         .glass-card:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(97, 247, 92, 0.3); } /* Neon green shadow on hover */
-        .glass-card.up2me-card { /* Album cover card styling */
-            padding: 0; border-radius: 10px; display: flex; justify-content: center; align-items: center;
-            transition: transform 0.3s ease; overflow: hidden; max-width: 100%;
+        .album-card { /* Reusable album cover card styling (replaces .up2me-card) */
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 10px;
+            padding: 0; margin: 1rem 0; transition: transform 0.3s ease; display: flex;
+            justify-content: center; align-items: center; overflow: hidden; max-width: 100%;
         }
-        .glass-card.up2me-card:hover { transform: scale(1.05); } /* Hover zoom */
-        .glass-card.up2me-card img { /* Album image styling */
+        .album-card:hover { transform: scale(1.05); } /* Hover zoom */
+        .album-card img { /* Album image styling */
             width: 100%; height: auto; object-fit: cover; object-position: center; border-radius: 8px;
             transition: transform 0.3s ease; display: block;
         }
-        .glass-card.up2me-card:hover img { transform: scale(1.1); } /* Image zoom on hover */
+        .album-card:hover img { transform: scale(1.1); } /* Image zoom on hover */
         .track-highlight-item { /* Track highlight paragraph styling */
             padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -96,7 +97,7 @@ kk<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
         <h1 class="review-up2me-glitch" data-text="UP 2 MË">UP 2 MË</h1> <!-- Album title with glitch effect -->
         <div class="review-content"> <!-- Rubric Section 1: Introduction -->
             <h2>Up 2 Më: Yeat’s Glitchy Ascent to Rage Rap Stardom</h2> <!-- Subtitle -->
-            <div class="glass-card up2me-card"> <!-- Album cover container -->
+            <div class="album-card"> <!-- Reusable album cover container (replaces .glass-card.up2me-card) -->
                 <img src="https://vzdzt.github.io/musicrx/up2.jpeg" alt="Yeat - Up 2 Më album cover"> <!-- Album artwork -->
             </div>
             <br>
@@ -262,18 +263,18 @@ kk<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
     <script src="script.js"></script> <!-- External script -->
     <script> <!-- Inline JS for interactivity -->
         document.addEventListener('DOMContentLoaded', () => { /* Runs on DOM load */
-            document.querySelectorAll('.glass-card:not(.up2me-card)').forEach(card => { /* Stabilizes non-image cards */
+            document.querySelectorAll('.glass-card:not(.album-card)').forEach(card => { /* Stabilizes non-image cards */
                 card.style.transform = 'none !important'; card.style.perspective = 'none !important';
                 card.style.transformStyle = 'flat !important'; card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.glass-card').forEach(card => { /* Hover effect for all cards */
+            document.querySelectorAll('.glass-card, .album-card').forEach(card => { /* Hover effect for all cards */
                 card.addEventListener('mouseenter', () => { card.style.transform = 'scale(1.05)'; card.style.boxShadow = '0 0 20px rgba(97, 247, 92, 0.3)'; });
                 card.addEventListener('mouseleave', () => { card.style.transform = 'scale(1)'; card.style.boxShadow = 'none'; });
             });
-            document.querySelectorAll('.up2me-card').forEach(card => { /* Hover effect for album card */
-                card.addEventListener('mouseenter', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1.1)'; card.style.transform = 'scale(1.05)'; });
-                card.addEventListener('mouseleave', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1)'; card.style.transform = 'scale(1)'; });
+            document.querySelectorAll('.album-card').forEach(card => { /* Hover effect for album card */
+                card.addEventListener('mouseenter', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1.1)'; });
+                card.addEventListener('mouseleave', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1)'; });
             });
             document.querySelectorAll('.track-highlight-item').forEach(item => { /* Hover effect for track highlights */
                 item.addEventListener('mouseenter', () => { item.style.transform = 'scale(1.02)'; item.style.boxShadow = '0 0 10px rgba(97, 247, 92, 0.2)'; });
