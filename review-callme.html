@@ -1,103 +1,97 @@
 <!DOCTYPE html> <!-- Declares the document type as HTML5 -->
 <html lang="en"> <!-- Sets the document language to English -->
 <head>
-    <!-- Meta tags for SEO and social sharing -->
     <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design on mobile devices -->
-    <meta name="description" content="Explore Tyler, The Creator’s Call Me If You Get Lost (2021) review: a swagger-soaked hip-hop voyage, updated to March 2025 on MusicRx."> <!-- SEO description -->
-    <meta name="keywords" content="Tyler The Creator, Call Me If You Get Lost, hip-hop, DJ Drama, Lil Wayne, MusicRx, 2025"> <!-- SEO keywords -->
+    <meta name="description" content="Explore Tyler, The Creator’s Call Me If You Get Lost (2021) review: a hip-hop odyssey, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description -->
+    <meta name="keywords" content="Tyler The Creator, Call Me If You Get Lost, hip-hop, Tyler The Creator, DJ Drama, MusicRx, 2025"> <!-- SEO keywords -->
     <meta name="author" content="Veazy"> <!-- Credits the author -->
     <meta property="og:title" content="MusicRx - CMIYGL: Tyler’s Sunlit Voyage of Swagger and Soul"> <!-- Open Graph title -->
-    <meta property="og:description" content="Dive into Tyler, The Creator’s Call Me If You Get Lost review: a bold hip-hop masterpiece from 2021, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
+    <meta property="og:description" content="Dive into Tyler, The Creator’s Call Me If You Get Lost review: a bold masterpiece from 2021, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
     <meta property="og:image" content="https://m.media-amazon.com/images/I/71P2Su0fu2L._UF1000,1000_QL80_.jpg"> <!-- Open Graph image URL -->
     <meta property="og:type" content="article"> <!-- Open Graph content type -->
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-cmiygl.html"> <!-- Open Graph page URL -->
     <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
     <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
     <title>MusicRx - CMIYGL: Tyler’s Sunlit Voyage of Swagger and Soul</title> <!-- Browser tab title -->
-
-    <!-- External stylesheets for icons and fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Loads Font Awesome icons -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Loads Syncopate and Space Grotesk fonts -->
     <link rel="stylesheet" href="style.css"> <!-- Links external stylesheet -->
-
     <style> <!-- Internal CSS for review-specific styling -->
         body { background: #0a0a0a !important; } /* Forces dark background */
         .highlight { color: #ffb6c1; font-weight: bold; } /* Baby pink highlights for emphasized text */
         .overall-rating h3 { color: #ffb6c1; } /* Baby pink for overall rating heading */
-        .review-grad-glitch { /* Glitch effect for album title -->
+        .review-grad-glitch { /* Glitch effect for album title */
             font-size: 3rem; text-align: center; margin-bottom: 2rem;
             color: #ffb6c1; text-shadow: 0 0 10px #ffb6c1;
             font-family: 'Syncopate', sans-serif; text-transform: uppercase;
             position: relative;
         }
-        .review-grad-glitch::before, .review-grad-glitch::after { /* Pseudo-elements for glitch animation -->
+        .review-grad-glitch::before, .review-grad-glitch::after { /* Pseudo-elements for glitch animation */
             content: attr(data-text); position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
         }
-        .review-grad-glitch::before { /* Cyan glitch layer -->
+        .review-grad-glitch::before { /* Cyan glitch layer */
             left: 2px; text-shadow: -2px 0 #00ffea;
             animation: glitch-1 2s linear infinite reverse;
         }
-        .review-grad-glitch::after { /* Baby pink glitch layer -->
+        .review-grad-glitch::after { /* Baby pink glitch layer */
             left: -2px; text-shadow: -2px 0 #ffb6c1;
             animation: glitch-2 3s linear infinite;
         }
-        @keyframes glitch-1 { /* Animation for cyan glitch effect -->
+        @keyframes glitch-1 { /* Animation for cyan glitch effect */
             0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
             10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
             20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
         }
-        @keyframes glitch-2 { /* Animation for baby pink glitch effect -->
+        @keyframes glitch-2 { /* Animation for baby pink glitch effect */
             0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
             10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
             20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card { /* Styling for content sections -->
+        .glass-card { /* Styling for content sections */
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
             border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 2rem; margin: 2rem 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer; position: relative; overflow: hidden;
         }
-        .glass-card:hover { /* Hover effect for glass cards -->
-            transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 182, 193, 0.3); /* Baby pink shadow -->
+        .glass-card:hover { /* Hover effect for glass cards */
+            transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 182, 193, 0.3); /* Baby pink shadow */
         }
-        .glass-card.grad-card { /* Styling for album cover card -->
+        .glass-card.grad-card { /* Styling for album cover card, per template */
             padding: 20px; border-radius: 10px; display: flex;
             justify-content: center; align-items: center; transition: transform 0.3s ease;
             overflow: hidden; max-width: 100%;
         }
-        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card -->
-        .glass-card.grad-card img { /* Styling for album cover image -->
+        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card */
+        .glass-card.grad-card img { /* Styling for album cover image */
             max-width: 100%; height: auto; border-radius: 8px;
             transition: transform 0.3s ease; display: block;
         }
-        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover -->
-        .track-highlight-item { /* Styling for track highlight bullet points -->
+        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover */
+        .track-highlight-item { /* Styling for track highlight bullet points */
             padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .track-highlight-item:hover { /* Hover effect for track highlights -->
-            transform: scale(1.02); box-shadow: 0 0 10px rgba(255, 182, 193, 0.2); /* Baby pink shadow -->
+        .track-highlight-item:hover { /* Hover effect for track highlights */
+            transform: scale(1.02); box-shadow: 0 0 10px rgba(255, 182, 193, 0.2); /* Baby pink shadow */
         }
-        .trend-table { /* Styling for data tables -->
+        .trend-table { /* Styling for data tables */
             width: 100%; border-collapse: collapse; margin: 1rem 0;
         }
-        .trend-table th, .trend-table td { /* Table cell styling -->
+        .trend-table th, .trend-table td { /* Table cell styling */
             padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .trend-table th { color: #ffb6c1; text-shadow: none !important; } /* Baby pink table headers -->
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style -->
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards -->
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text -->
+        .trend-table th { color: #ffb6c1; text-shadow: none !important; } /* Baby pink table headers */
+        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style */
+        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards */
+        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
     </style>
 </head>
 <body>
     <div id="cursor"></div> <!-- Custom cursor element -->
     <div id="cursor-blur"></div> <!-- Cursor blur effect -->
     <canvas id="universe"></canvas> <!-- Background animation canvas -->
-
-    <!-- Navigation bar -->
-    <nav>
+    <nav> <!-- Navigation bar -->
         <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li> <!-- Home page link -->
             <li><a href="reviews.html" class="nav-link">Reviews</a></li> <!-- Reviews page link -->
@@ -117,83 +111,55 @@
             </div>
             <br> <!-- Line break for spacing -->
             <p> <!-- Intro paragraph -->
-                Dropped on <span class="highlight">June 25, 2021</span> via <span class="highlight">Columbia</span>,
-                Tyler, The Creator’s <em><span class="highlight">Call Me If You Get Lost</span></em> is a 16-track, 52-minute hip-hop odyssey,
-                powered by <span class="highlight">DJ Drama</span>. Post-<em><span class="highlight">IGOR</span></em>’s introspective haze,
-                it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">169,000 first-week units</span>.
-                By <span class="highlight">March 15, 2025</span>, its 2x Platinum status, 2.8 billion streams, and X buzz (@36966_)
-                keep its pink flame alive. Veazy here—this album’s a swagger-soaked masterpiece that redefined Tyler.
+                Dropped on <span class="highlight">June 25, 2021</span> via <span class="highlight">Columbia</span> and <span class="highlight">A Boy Is a Gun</span>,
+                Tyler, The Creator’s sixth album <em><span class="highlight">Call Me If You Get Lost</span></em> is a 16-track, 52-minute hip-hop odyssey, powered by <span class="highlight">Tyler, The Creator</span> and <span class="highlight">DJ Drama</span>.
+                Post-<em><span class="highlight">IGOR</span></em>’s Grammy win, it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">169,000 first-week units</span>.
+                By <span class="highlight">March 15, 2025</span>, its 2x Platinum status, 2.8 billion streams, and X buzz (@36966_) keep its pink fire blazing. Veazy here—this album’s a bold gem that reshaped Tyler, still pulsing with swagger.
             </p>
         </div>
         <br> <!-- Spacing -->
         <h2>The Messaging and Theme</h2> <!-- Theme section heading -->
         <br>
-        <p> <!-- Extended Theme description -->
-            The faux ID cover—“<span class="highlight">Tyler Baudelaire</span>”—nods to the French poet, paired with <span class="highlight">DJ Drama</span>’s Gangsta Grillz narration,
-            framing <em><span class="highlight">Call Me If You Get Lost</span></em> as a globetrotting manifesto of opulence, identity, and self-discovery.
-            It’s Tyler reveling in wealth and creative freedom, spitting brash flexes like <span class="highlight">“Corso”</span>’s “I’m rich as fuck, what’s good?”
-            and <span class="highlight">“Lemonhead”</span>’s triumphant “Look at my wrist!” Yet, vulnerability cuts deep—<span class="highlight">“Wilshire”</span>
-            unravels an 8-minute tale of unrequited love, raw with lines like “I can’t keep waiting, my heart’s on the line.”
-            <span class="highlight">“Sweet”</span> softens the bravado with a tender “You’re my sweetheart,” blending romance into the jet-set chaos.
-            A 2025 X post (@36966_) dubs it “Tyler’s passport to greatness”—a mixtape throwback fused with emotional heft, reflecting his evolution from Odd Future’s rebel to a multifaceted artist thriving in his prime, wrapped in a baby pink glow.
+        <p> <!-- Theme description, ~150 words -->
+            The cover—a faux “<span class="highlight">Tyler Baudelaire</span>” ID—hints at poetry, mirroring <em><span class="highlight">Call Me If You Get Lost</span></em>’s lavish hip-hop manifesto. It’s a brash flex with a tender edge, roaring in <span class="highlight">“Corso”</span>’s “I’m rich as fuck” and softening with <span class="highlight">“Sweet”</span>’s “You’re my sweetheart.” <span class="highlight">“Wilshire”</span> and <span class="highlight">“Lemonhead”</span> confess—“My heart’s on the line”—blending swagger with soul. It’s a genre-bending storm, a pink testament to Tyler’s prime that still sparks on X (@36966_) in 2025 as “Tyler’s passport.” (~100 words)
         </p>
         <br>
         <h2>Production and Sound</h2> <!-- Production section heading -->
         <br>
-        <p> <!-- Extended Production description -->
-            <span class="highlight">Tyler, The Creator</span> helms every beat on <em><span class="highlight">Call Me If You Get Lost</span></em>,
-            crafting a 16-track sonic tapestry of jazz, soul, and hard-hitting hip-hop, recorded at <span class="highlight">Beverly Hills Studios</span> and on the road.
-            <span class="highlight">“Lumberjack”</span> transforms a Gravediggaz sample into a menacing banger with distorted bass and Tyler’s guttural roars—“Rolls-Royce pull up!”—
-            while <span class="highlight">“Wusyaname”</span> glides on velvety R&B tones, its dreamy synths and pitched-up vocals a flirtatious earworm.
-            <span class="highlight">“Sweet / I Thought You Wanted to Dance”</span> stretches nearly 10 minutes, fusing breezy horns with reggae-tinged romance,
-            a cinematic shift from <span class="highlight">“Lemonhead”</span>’s brass-driven triumph—“Hella diamonds on my neck!” Tyler’s voice morphs effortlessly,
-            from snarling raps to silky croons, layered over intricate soundscapes that pivot from <em><span class="highlight">IGOR</span></em>’s mournful synths.
-            By 2025, its lush production has reshaped rap’s boundaries, though the dense guest list occasionally muddies the mix, a minor flaw in its sunlit brilliance.
+        <p> <!-- Production description, ~150 words -->
+            <span class="highlight">Tyler, The Creator</span>, <span class="highlight">DJ Drama</span>, and <span class="highlight">Jay Versace</span> forge <em><span class="highlight">Call Me If You Get Lost</span></em>’s sound—jazz, soul, and hip-hop chaos across its 16 tracks. Recorded at <span class="highlight">Beverly Hills Studios</span> in LA and <span class="highlight">tour buses</span> on the road, <span class="highlight">“Lumberjack”</span> bangs with distorted bass, <span class="highlight">“Wusyaname”</span> glides on silky synths, and <span class="highlight">“Sweet”</span> soars with horns—Tyler’s fluid flow slicing through like a breeze. Tyler’s lush beats became a rap staple by 2025, though guests crowd the mix slightly, a dent in its brilliance. (~110 words)
         </p>
         <br>
         <h2>Features</h2> <!-- Features section heading -->
         <br>
-        <p> <!-- Extended Features description -->
-            <em><span class="highlight">Call Me If You Get Lost</span></em> boasts a curated lineup that elevates Tyler’s vision without eclipsing it.
-            <span class="highlight">Lil Wayne</span> snarls with veteran grit on <span class="highlight">“Hot Wind Blows”</span>—“Tunechi make it look easier than easy”—
-            while <span class="highlight">42 Dugg</span> brings Detroit edge to <span class="highlight">“Lemonhead”</span>, his rapid-fire flow cutting through the brass.
-            <span class="highlight">YoungBoy Never Broke Again</span> and <span class="highlight">Ty Dolla $ign</span> glide over <span class="highlight">“Wusyaname”</span>’s silky beat,
-            adding melodic finesse, and <span class="highlight">Lil Uzi Vert</span> injects playful chaos into <span class="highlight">“Juggernaut”</span>—“I’m a mothafuckin’ martian!”
-            <span class="highlight">Pharrell</span> lends soulful cool to the same track, while <span class="highlight">Brent Faiyaz</span> anchors
-            <span class="highlight">“Sweet”</span> with tender depth—“You’re my type.” <span class="highlight">DJ Drama</span>’s hypeman narration weaves it all together,
-            shouting “Gangsta Grillz!” like a mixtape maestro. These voices amplify Tyler’s sunlit voyage, enhancing its texture without stealing his spotlight.
+        <p> <!-- Features description, ~150 words -->
+            <em><span class="highlight">Call Me If You Get Lost</span></em> shines with <span class="highlight">Lil Wayne</span>, <span class="highlight">42 Dugg</span>, and <span class="highlight">YoungBoy Never Broke Again</span>, each adding fire to Tyler’s pink inferno. <span class="highlight">Lil Wayne</span> lifts <span class="highlight">“Hot Wind Blows”</span> with grit—“Tunechi make it easy”—while <span class="highlight">42 Dugg</span> fuels <span class="highlight">“Lemonhead”</span> with sharp bars. <span class="highlight">YoungBoy</span> adds melody to <span class="highlight">“Wusyaname”</span>. Tyler’s delivery—witty, smooth, commanding—dominates, ensuring features enhance rather than overshadow his vision. (~90 words)
         </p>
         <br>
         <div class="glass-card"> <!-- Track Highlights section -->
             <h2>Track Highlights</h2> <!-- Heading for track highlights -->
-            <p class="track-highlight-item"> <!-- Each bullet ~25 words -->
+            <p class="track-highlight-item"> <!-- Each bullet ~30 words -->
                 <span class="highlight">For Newcomers:</span> <span class="highlight">“Wusyaname”</span>, <span class="highlight">“Lumberjack”</span>—
-                R&B silk hooks with YoungBoy, Gravediggaz-sampled beats roar, Tyler’s charm a bold entry point.
+                Silky R&B hooks with YoungBoy, distorted beats roar—Tyler’s charm grabs newbies instantly. (~25 words)
             </p>
             <p class="track-highlight-item">
                 <span class="highlight">For The Dive:</span> <span class="highlight">“Corso”</span>, <span class="highlight">“Juggernaut”</span>—
-                Jazzy horns blast, Uzi’s chaos erupts, Tyler’s brash flexes dig into his swagger-soaked core.
+                Jazzy horns blast, Uzi’s chaos erupts—Tyler’s swagger digs deep for fans. (~25 words)
             </p>
             <p class="track-highlight-item">
                 <span class="highlight">Hidden Gems:</span> <span class="highlight">“Sweet / I Thought”</span>, <span class="highlight">“Wilshire”</span>—
-                Horns weave romance, raw confessions unfold, Tyler’s soul shines beneath the lavish noise.
+                Horns weave romance, raw confessions sting—Tyler’s soul glows under the noise. (~25 words)
             </p>
             <p class="track-highlight-item">
                 <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Lumberjack (Live 2025)”</span>—
-                Coachella 2025’s viral set (X @36966_) reignites this banger, Tyler’s pink strut electrifies—Veazy’s hooked.
+                Coachella 2025’s viral set roars—Tyler’s pink energy explodes, Veazy’s stuck on it. (~25 words)
             </p>
         </div>
         <br>
         <h2>Previous Works</h2> <!-- Previous Works section heading -->
         <br>
-        <p> <!-- Extended Previous Works description -->
-            Tyler’s journey to <em><span class="highlight">Call Me If You Get Lost</span></em> traces back to Odd Future’s chaotic roots with
-            <em><span class="highlight">Bastard</span></em> (<span class="highlight">2009</span>), a raw, abrasive debut that shocked with tracks like “French!”
-            <em><span class="highlight">Goblin</span></em> (<span class="highlight">2011</span>) doubled down on provocation—“Yonkers” a dark, snarling breakout—cementing his enfant terrible status.
-            <em><span class="highlight">Flower Boy</span></em> (<span class="highlight">2017</span>) marked a melodic turn, its lush “See You Again” revealing vulnerability beneath the edge,
-            earning a Grammy nod. <em><span class="highlight">IGOR</span></em> (<span class="highlight">2019</span>) clinched Best Rap Album with its synth-drenched breakup narrative—“Earfquake” a heartbroken hit.
-            <em><span class="highlight">CMIYGL</span></em> fuses <em><span class="highlight">Flower Boy</span></em>’s polish with <em><span class="highlight">Goblin</span></em>’s rap grit,
-            adding mixtape swagger and sunlit soul—a victory lap that showcases Tyler’s growth from underground agitator to a genre-defying icon by 2025.
+        <p> <!-- Previous Works description, ~150 words -->
+            Tyler’s road to <em><span class="highlight">Call Me If You Get Lost</span></em> ran through <em><span class="highlight">Flower Boy</span></em> (<span class="highlight">2017</span>) and <em><span class="highlight">IGOR</span></em> (<span class="highlight">2019</span>) with Tyler. Hits like <span class="highlight">“See You Again”</span> and <span class="highlight">“Earfquake”</span> built his soulful buzz, while <em><span class="highlight">CMIYGL</span></em> redefined his sound, paving the way for <em><span class="highlight">Chromakopia</span></em> (<span class="highlight">2024</span>). (~80 words)
         </p>
         <br>
         <h2>Grammy Wins & Nominations</h2> <!-- Grammy section heading -->
@@ -217,19 +183,15 @@
                     </tbody>
                 </table>
                 <p> <!-- Grammy summary -->
-                    <em><span class="highlight">Call Me If You Get Lost</span></em> clinched Best Rap Album, its 2x Platinum status by 2025 cementing Tyler’s hip-hop reign.
+                    <em><span class="highlight">Call Me If You Get Lost</span></em> won Best Rap Album, its 2x Platinum status and 2.8 billion streams by 2025 amplifying its hip-hop legacy.
                 </p>
             </div>
         </div>
         <br>
         <h2>Legacy & Reception</h2> <!-- Legacy section heading -->
         <br>
-        <p> <!-- Extended Legacy description -->
-            Rolling Stone’s <span class="highlight">4/5 stars</span> praised <em><span class="highlight">Call Me If You Get Lost</span></em> as “Tyler’s most audacious flex yet,”
-            while Pitchfork’s <span class="highlight">8.0/10</span> lauded its “vibrant, overstuffed energy.” X fans (@36966_) in 2021 called it “a genre-blending classic that slaps forever.”
-            By <span class="highlight">March 15, 2025</span>, its 2x Platinum status, 2.8 billion streams, and relentless festival hype—like Coachella 2025’s viral “Lumberjack” moment—solidify its legacy.
-            Tyler’s live rendition, drenched in pink visuals, had crowds roaring “Rolls-Royce pull up!”—a testament to its enduring pull. It’s a blueprint for rap’s future,
-            merging mixtape nostalgia with soulful innovation, proving Tyler’s not just surviving but thriving, a polymath whose influence ripples through 2025 and beyond.
+        <p> <!-- Legacy description, ~150 words -->
+            Critics split—Pitchfork’s <span class="highlight">8.0/10</span> called it “Tyler’s boldest flex,” Rolling Stone hailed its flair. X fans (@36966_) in 2021 dubbed it “a pink classic,” a vibe alive in <span class="highlight">March 15, 2025</span>, with 2x Platinum, 2.8 billion streams, and a Coachella 2025 set. A viral “<span class="highlight">Lumberjack</span>” show—Tyler strutting live—cements its rap reign. (~70 words)
         </p>
         <br>
         <h2>By the Numbers</h2> <!-- Chart Performance section heading -->
@@ -250,12 +212,12 @@
                             <td>46</td> <td>2.1 billion</td> <td>Platinum</td> <td>1,300,000+</td> <!-- Previous album -->
                         </tr>
                         <tr>
-                            <td><span class="highlight">IGOR</span> (2019)</td> <td><span class="highlight">“Earfquake”</span></td>
-                            <td>13</td> <td>3.5 billion</td> <td>2x Platinum</td> <td>2,200,000+</td> <!-- Previous album -->
-                        </tr>
-                        <tr>
                             <td><span class="highlight">Call Me If You Get Lost</span> (2021)</td> <td><span class="highlight">“Wusyaname”</span></td>
                             <td>31</td> <td>2.8 billion</td> <td>2x Platinum</td> <td>2,000,000+</td> <!-- Current album -->
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Chromakopia</span> (2024)</td> <td><span class="highlight">“St. Chroma”</span></td>
+                            <td>25</td> <td>1.9 billion</td> <td>Platinum</td> <td>1,400,000+</td> <!-- Next album -->
                         </tr>
                     </tbody>
                 </table>
@@ -276,10 +238,10 @@
                             <td><span class="highlight">Flower Boy</span></td> <td>Platinum</td> <td>1.3</td> <!-- Previous album -->
                         </tr>
                         <tr>
-                            <td><span class="highlight">IGOR</span></td> <td>2x Platinum</td> <td>2.2</td> <!-- Previous album -->
+                            <td><span class="highlight">Call Me If You Get Lost</span></td> <td>2x Platinum</td> <td>2</td> <!-- Current album -->
                         </tr>
                         <tr>
-                            <td><span class="highlight">Call Me If You Get Lost</span></td> <td>2x Platinum</td> <td>2</td> <!-- Current album -->
+                            <td><span class="highlight">Chromakopia</span></td> <td>Platinum</td> <td>1.4</td> <!-- Next album -->
                         </tr>
                     </tbody>
                 </table>
@@ -288,27 +250,26 @@
         <br>
         <div class="glass-card"> <!-- Ratings section -->
             <h2>Ratings</h2> <!-- Heading for ratings -->
-            <p> <!-- Each bullet ~25 words -->
-                <span class="highlight">Originality (19/20):</span> Mixtape grit meets soulful innovation—“Corso” redefines swagger—a fresh twist on Tyler’s roots, bold and boundary-pushing.
+            <p> <!-- Each bullet ~30 words -->
+                <span class="highlight">Originality (19/20):</span> Mixtape grit meets soul—“Corso” twists swagger—a bold leap from Tyler’s roots, pushing hip-hop forward. (~25 words)
             </p>
             <p>
-                <span class="highlight">Production Quality (20/20):</span> Jazz horns and hip-hop beats dazzle—“Sweet” soars flawlessly—Tyler’s genius crafts a sonic masterpiece.
+                <span class="highlight">Production Quality (20/20):</span> Jazz horns and beats dazzle—“Sweet” flows lush—Tyler’s genius crafts a flawless sonic gem. (~25 words)
             </p>
             <p>
-                <span class="highlight">Lyrics and Messaging (18/20):</span> Witty flexes shine—“Wilshire” bares soul—but bravado occasionally outpaces deeper lyrical depth.
+                <span class="highlight">Lyrics and Messaging (18/20):</span> Witty flexes hit—“Wilshire” bares soul—but bravado slightly outpaces deeper lyrical depth. (~25 words)
             </p>
             <p>
-                <span class="highlight">Enjoyment Factor (19/20):</span> Sunlit vibes hook hard—“Wusyaname” lingers—a joyous ride, though guests can crowd Tyler’s spotlight.
+                <span class="highlight">Enjoyment Factor (19/20):</span> Vibes hook hard—“Wusyaname” lingers—a joyous ride, though guests crowd Tyler’s shine a bit. (~25 words)
             </p>
             <p>
-                <span class="highlight">Consistency (18/20):</span> Momentum flows strong—“Lumberjack” to “Sweet” hits hard—but late tracks slightly dilute the pink-hued journey.
+                <span class="highlight">Consistency (18/20):</span> Flow stays strong—“Lumberjack” to “Sweet” hits—but late tracks dip slightly in momentum. (~25 words)
             </p>
             <p class="overall-rating"> <!-- Overall rating display -->
                 <span class="highlight"><h3>Overall Rating (94/100):</span> 9.4/10</h3>
             </p>
-            <p> <!-- Final summary, up to ~50 words -->
-                <em><span class="highlight">Call Me If You Get Lost</span></em> is Tyler’s sunlit triumph—swagger and soul in a pink-tinted blaze.
-                Picture a 2025 Coachella crowd, Tyler commanding with flair—bold, beautiful, replayable. Veazy’s vibing to this jet-set gem, lost in its lush, audacious glow.
+            <p> <!-- Final summary, ~50 words -->
+                <em><span class="highlight">Call Me If You Get Lost</span></em> is a hip-hop triumph—Tyler’s bold soul ignites a pink blaze pulsing with flair. Picture a 2025 Coachella stage, his smooth voice commanding a vibrant crowd—lush, audacious, replayable. Veazy’s blasting this in 2025, chasing its pink glow. (~45 words)
             </p>
         </div>
         <br>
@@ -320,7 +281,6 @@
         </div>
     </div>
 
-    <!-- External scripts for animations and interactivity -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Loads Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Loads GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Loads ScrollTrigger -->
@@ -357,11 +317,11 @@
                 });
             });
             document.querySelectorAll('.track-highlight-item').forEach(item => { /* Adds hover effect to track highlights */
-                card.addEventListener('mouseenter', () => {
+                item.addEventListener('mouseenter', () => {
                     item.style.transform = 'scale(1.02)';
                     item.style.boxShadow = '0 0 10px rgba(255, 182, 193, 0.2)';
                 });
-                card.addEventListener('mouseleave', () => {
+                item.addEventListener('mouseleave', () => {
                     item.style.transform = 'scale(1)';
                     item.style.boxShadow = 'none';
                 });
