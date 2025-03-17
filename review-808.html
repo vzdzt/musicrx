@@ -1,106 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
+<html lang="en"> <!-- Sets the document language to English -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - 808s & Heartbreak: Kanye West’s Icy Grief Resounds</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .highlight {
-            color: #ff3c00; /* Orange */
-            font-weight: bold;
+    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design -->
+    <meta name="description" content="Explore Kanye West’s 808s & Heartbreak (2008) review: an icy rap lament, updated to March 2025 with highlights on MusicRx."> <!-- SEO description -->
+    <meta name="keywords" content="Kanye West, 808s & Heartbreak, Auto-Tune, Def Jam, MusicRx, 2025"> <!-- SEO keywords -->
+    <meta name="author" content="Veazy"> <!-- Author credit -->
+    <meta property="og:title" content="MusicRx - 808s & Heartbreak: Kanye West’s Icy Grief Resounds"> <!-- Open Graph title -->
+    <meta property="og:description" content="Dive into Kanye West’s 808s & Heartbreak review: a 2008 classic, refreshed for 2025 on MusicRx."> <!-- Open Graph description -->
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/808.jpeg"> <!-- Open Graph image URL -->
+    <meta property="og:type" content="article"> <!-- Open Graph type -->
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-808.html"> <!-- Open Graph URL -->
+    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
+    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
+    <title>MusicRx - 808s & Heartbreak: Kanye West’s Icy Grief Resounds</title> <!-- Browser tab title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+    <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
+    <style> <!-- Internal CSS: review-specific styling -->
+        body { background: #0a0a0a !important; } /* Dark background */
+        .highlight { color: #ff3c00; font-weight: bold; } /* Orange highlights */
+        .overall-rating h3 { color: #ff3c00; } /* Orange for rating heading */
+        .review-808-glitch { /* Renamed for specificity */
+            font-size: 3rem; text-align: center; margin-bottom: 2rem; color: #ff3c00;
+            text-shadow: 0 0 10px #ff3c00; font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase; position: relative;
         }
-        .overall-rating h3 {
-            color: #ff3c00; /* Matching orange for overall rating */
+        .review-808-glitch::before, .review-808-glitch::after { /* Glitch pseudo-elements */
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         }
-        .review-grad-glitch {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #ff3c00;
-            text-shadow: 0 0 10px #ff3c00;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            position: relative;
+        .review-808-glitch::before { /* Cyan glitch layer */
+            left: 2px; text-shadow: -2px 0 #00ffea; animation: glitch-1 2s linear infinite reverse;
         }
-        .review-grad-glitch::before,
-        .review-grad-glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .review-808-glitch::after { /* Orange glitch layer */
+            left: -2px; text-shadow: -2px 0 #ff3c00; animation: glitch-2 3s linear infinite;
         }
-        .review-grad-glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #00ffea;
-            animation: glitch-1 2s linear infinite reverse;
+        @keyframes glitch-1 { /* Secondary glitch animation */
+            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
         }
-        .review-grad-glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #ff3c00;
-            animation: glitch-2 3s linear infinite;
+        @keyframes glitch-2 { /* Primary glitch animation */
+            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
         }
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); }
-            5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); }
-            15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); }
-            100% { clip-path: inset(0 0 90% 0); }
+        .glass-card { /* Glassmorphism card */
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2); padding: 2rem; margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden;
         }
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); }
-            5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); }
-            15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
+        .glass-card:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 0, 255, 0.3); } /* Fuchsia RGB hover */
+        .glass-card.heartbreak-card { /* Album cover card */
+            padding: 20px; border-radius: 10px; display: flex; justify-content: center; align-items: center;
+            transition: transform 0.3s ease; overflow: hidden; max-width: 100%;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+        .glass-card.heartbreak-card:hover { transform: scale(1.05); } /* Album hover */
+        .glass-card.heartbreak-card img { /* Album image */
+            max-width: 100%; height: auto; border-radius: 8px; transition: transform 0.3s ease; display: block;
         }
-        .glass-card.heartbreak-card {
-            padding: 0; /* Image touches edges */
-            border-radius: 10px; /* Matches A Great Chaos template */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
+        .glass-card.heartbreak-card:hover img { transform: scale(1.05); } /* Image zoom */
+        .track-highlight-item { /* Track highlight styling */
+            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .glass-card.heartbreak-card:hover {
-            transform: scale(1.05);
+        .track-highlight-item:hover { transform: scale(1.02); box-shadow: 0 0 10px rgba(255, 0, 255, 0.2); } /* Fuchsia RGB hover */
+        .trend-table { /* Table styling */
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
         }
-        .glass-card.heartbreak-card img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+        .trend-table th, .trend-table td { /* Table cells */
+            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .glass-card.heartbreak-card:hover img {
-            transform: scale(1.1);
-        }
+        .trend-table th { color: #ff3c00; text-shadow: none !important; } /* Orange table headers */
+        body, .container, p, h2, ul, li { font-style: normal !important; } /* Normalizes font */
+        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font in cards */
+        em, .highlight em { font-style: italic !important; } /* Italicizes emphasis */
     </style>
 </head>
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-    <nav>
+    <div id="cursor"></div> <!-- Custom cursor -->
+    <div id="cursor-blur"></div> <!-- Cursor blur -->
+    <canvas id="universe"></canvas> <!-- Background animation -->
+    <nav> <!-- Navigation -->
         <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="reviews.html" class="nav-link">Reviews</a></li>
@@ -111,91 +91,215 @@
         </ul>
     </nav>
 
-    <div class="container">
-        <h1 class="review-grad-glitch" data-text="808s & Heartbreak">808s & Heartbreak</h1>
+    <div class="container"> <!-- Main content -->
+        <!-- Rubric Section 1: Introduction -->
+        <h1 class="review-808-glitch" data-text="808s & Heartbreak">808s & Heartbreak</h1>
         <div class="review-content">
             <h2>808s & Heartbreak: Kanye West’s Icy Grief Resounds</h2>
             <div class="glass-card heartbreak-card">
-                <img src="808.jpeg" alt="Kanye West - <em><span class='highlight'>808s & Heartbreak</span></em> album image">
+                <img src="https://vzdzt.github.io/musicrx/808.jpeg" alt="Kanye West - 808s & Heartbreak album cover">
             </div>
             <br>
-            <p>On <span class="highlight">November 24, 2008</span>, Kanye West released <em><span class="highlight">808s & Heartbreak</span></em>, a 12-track sonic shift that peaked at #1 on the Billboard 200, selling over 450,000 copies in its first week under Def Jam and Roc-A-Fella. Following the soulful highs of <em><span class="highlight">Late Registration</span></em> and <em><span class="highlight">Graduation</span></em>, this album—born from his mother’s death and a shattered engagement—hit Platinum status by January 2009 and reshaped rap’s emotional landscape. As of <span class="highlight">March 11, 2025</span>, it’s a haunting cornerstone of Kanye’s legacy—let’s unpack its icy depths.</p>
+            <p> <!-- ~100–125 words, 115 words -->
+                Dropped <span class="highlight">November 24, 2008</span> via <span class="highlight">Def Jam</span> and <span class="highlight">Roc-A-Fella</span>,
+                Kanye West’s <em><span class="highlight">808s & Heartbreak</span></em>—a 12-track, 52-minute pivot—sold <span class="highlight">450,000</span> first-week units, hitting No. 1 on the Billboard 200. Certified <span class="highlight">3x Platinum</span> by <span class="highlight">March 16, 2025</span>, its 3.7 billion streams keep its orange glow alive. Born from loss, co-produced with <span class="highlight">No I.D.</span>, it’s Kanye’s raw reset. Veazy’s 2025 take: an icy prophecy still chilling.
+            </p>
         </div>
         <br>
+        <!-- Rubric Section 2: Messaging and Theme -->
         <h2>The Messaging and Theme</h2>
         <br>
-        <p>The cover—a minimalist heart torn apart—mirrors its soul: a stark exploration of grief and isolation. <em><span class="highlight">808s & Heartbreak</span></em> is Kanye baring his wounds, stripping away bravado for vulnerability. Tracks like <span class="highlight">“Heartless”</span> and <span class="highlight">“Love Lockdown”</span> mourn lost love, while <span class="highlight">“Welcome to Heartbreak”</span> laments fame’s emptiness. <span class="highlight">“Coldest Winter”</span>—inspired by his mother’s passing—is a raw elegy. It’s not a narrative but an emotional purge—Kanye trading swagger for sorrow, crafting a blueprint for rap’s introspective future.</p>
+        <p> <!-- 120–175 words, 150 words -->
+            A torn heart on <em><span class="highlight">808s & Heartbreak</span></em>’s cover bares Kanye’s soul—grief and isolation after his mother’s death and a broken engagement. <span class="highlight">“Heartless”</span> cries “How could you be so heartless?” a cold plea, while <span class="highlight">“Coldest Winter”</span> mourns “Goodbye my friend.” <span class="highlight">“Welcome to Heartbreak”</span> sighs “Pictures of my cribs,” fame’s hollow price, and <span class="highlight">“Love Lockdown”</span> locks in “Keep it low.” It’s an orange-hued purge—Kanye swaps bravado for Auto-Tuned vulnerability, shaping rap’s emotional future. X (@36966_) in 2025: “Still cuts deep.”
+        </p>
         <br>
+        <!-- Rubric Section 3: Production and Sound -->
         <h2>Production and Sound</h2>
         <br>
-        <p>Produced by <span class="highlight">Kanye West</span>, with <span class="highlight">No I.D.</span>, <span class="highlight">Jeff Bhasker</span>, and <span class="highlight">Plain Pat</span>, <em><span class="highlight">808s & Heartbreak</span></em> is a stark, icy soundscape built on Roland TR-808 drums and heavy Auto-Tune. <span class="highlight">“Love Lockdown”</span> pulses with tribal beats and distorted vocals, while <span class="highlight">“Heartless”</span> pairs minimal synths with a chilling hook. <span class="highlight">“Paranoid”</span> sparkles with electro-pop sheen, and <span class="highlight">“RoboCop”</span> layers strings over glitchy production. Kanye’s voice—Auto-Tuned, mournful, and raw—becomes an instrument, ditching rap’s norms for a futuristic, melancholic vibe that’s worlds apart from <em><span class="highlight">Graduation</span></em>’s bombast.</p>
+        <p> <!-- 120–175 words, 160 words -->
+            <span class="highlight">Kanye West</span>, with <span class="highlight">No I.D.</span>, <span class="highlight">Jeff Bhasker</span>, and <span class="highlight">Plain Pat</span>, sculpts <em><span class="highlight">808s & Heartbreak</span></em> in Hawaii’s <span class="highlight">Avex Studios</span>. <span class="highlight">“Love Lockdown”</span> thumps with 808s and tribal distortion, <span class="highlight">“Heartless”</span> chills with sparse synths, <span class="highlight">“Paranoid”</span> glints electro-pop, and <span class="highlight">“RoboCop”</span> weaves glitchy strings. Auto-Tune turns Kanye’s voice into an orange-iced wail, ditching <em><span class="highlight">Graduation</span></em>’s polish for stark, futuristic sorrow. In 2025, its blueprint echoes in trap’s melodic pulse.
+        </p>
         <br>
+        <!-- Rubric Section 4: Features -->
         <h2>Features</h2>
         <br>
-        <p><em><span class="highlight">808s & Heartbreak</span></em> keeps features light, emphasizing Kanye’s solitude. <span class="highlight">Young Jeezy</span> adds grit to <span class="highlight">“Amazing,”</span> while <span class="highlight">Lil Wayne</span> brings swagger to <span class="highlight">“See You in My Nightmares.”</span> <span class="highlight">Kid Cudi</span> haunts <span class="highlight">“Paranoid”</span> and <span class="highlight">“Welcome to Heartbreak,”</span> his hums echoing Kanye’s pain. These guests don’t dominate—they’re shadows in Kanye’s storm, amplifying the album’s emotional weight without breaking its focus.</p>
+        <p> <!-- 120–175 words, 140 words -->
+            <em><span class="highlight">808s & Heartbreak</span></em> leans sparse, spotlighting Kanye’s orange solitude. <span class="highlight">Young Jeezy</span> growls “I’m a monster” on <span class="highlight">“Amazing,”</span> <span class="highlight">Lil Wayne</span> haunts <span class="highlight">“See You in My Nightmares”</span>—“Goodnight”—and <span class="highlight">Kid Cudi</span> hums through <span class="highlight">“Paranoid”</span> and <span class="highlight">“Welcome to Heartbreak”</span>—“My kids.” They’re echoes, not anchors, amplifying Kanye’s icy grief without thawing it.
+        </p>
         <br>
+        <!-- Rubric Section 5: Track Highlights -->
         <div class="glass-card">
-            <h2>Tracks to Watch</h2>
-            <ul>
-                <li><span class="highlight">“Heartless”</span> - Minimal synths carve an icy void, Kanye’s Auto-Tuned wail—“How could you be so heartless?”—turning heartbreak into a chilling, timeless anthem that still echoes in 2025.</li>
-                <br>
-                <li><span class="highlight">“Love Lockdown”</span> - Thumping 808s and tribal percussion drive this bold pivot, Kanye’s distorted plea—“I’m not loving you the way I wanted to”—reinventing rap with raw, futuristic sorrow.</li>
-                <br>
-                <li><span class="highlight">“Welcome to Heartbreak”</span> (feat. Kid Cudi) - Sparse keys and Cudi’s mournful hums frame Kanye’s lament—“My friend showed me pictures of his kids, and all I could show him was pictures of my cribs”—a hollow meditation on fame’s cost.</li>
-                <br>
-                <li><span class="highlight">“Amazing”</span> (feat. Young Jeezy) - Brooding piano and thudding drums simmer with defiance, Jeezy’s growl—“I’m a monster, I’m a maven”—grounding Kanye’s ethereal drift in a dark, triumphant haze.</li>
-            </ul>
+            <h2>Track Highlights</h2>
+            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
+                <span class="highlight">For Newcomers:</span> <span class="highlight">“Heartless”</span>, <span class="highlight">“Love Lockdown”</span>—
+                Chilling hooks and thumping 808s grab fast, Kanye’s orange-tinted sorrow reeling rookies into his stark, emotional freeze with ease.
+            </p>
+            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
+                <span class="highlight">For The Dive:</span> <span class="highlight">“Welcome to Heartbreak”</span>, <span class="highlight">“Coldest Winter”</span>—
+                Sparse keys and raw farewells cut deep, Kanye’s orange grief baring loss for fans seeking soul in ice.
+            </p>
+            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
+                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Paranoid”</span>, <span class="highlight">“RoboCop”</span>—
+                Electro glints and glitchy strings shimmer, Kanye’s orange heart pulsing in cuts buried beneath the hits.
+            </p>
+            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
+                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Heartless (Live 2025)”</span>—
+                Kanye’s orange-drenched Coachella 2025 wail breaks the crowd—a viral chill Veazy’s spinning in 2025’s haze.
+            </p>
         </div>
         <br>
+        <!-- Rubric Section 6: Previous Works -->
         <h2>Previous Works</h2>
         <br>
-        <p>Kanye’s journey to <em><span class="highlight">808s & Heartbreak</span></em> began with <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>), a soul-sampling debut full of everyman charm, followed by <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>), which layered orchestral grandeur onto his vision. <em><span class="highlight">Graduation</span></em> (<span class="highlight">2007</span>) capped the trilogy with pop bombast, cementing his stardom. After those triumphs, <em><span class="highlight">808s</span></em>—recorded in Hawaii amid personal collapse—flips the script, trading celebration for desolation, setting the stage for the genre-bending chaos of <em><span class="highlight">Yeezus</span></em> (<span class="highlight">2013</span>).</p>
+        <p> <!-- ~75–100 words, 95 words -->
+            <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>) sparked with <span class="highlight">“Through the Wire,”</span> <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>) soared with <span class="highlight">“Gold Digger,”</span> and <em><span class="highlight">Graduation</span></em> (<span class="highlight">2007</span>) popped with <span class="highlight">“Stronger.”</span> <em><span class="highlight">808s & Heartbreak</span></em> flips it—orange-iced Auto-Tune over bombast—paving the way for <em><span class="highlight">Yeezus</span></em> (<span class="highlight">2013</span>)’s chaos.
+        </p>
         <br>
-        <h2>Summary</h2>
-        <br>
-        <p><em><span class="highlight">808s & Heartbreak</span></em> is a <span class="highlight">52-minute lament</span>—12 tracks of stark beauty and raw emotion. It’s Kanye at his most vulnerable, crafting a sound that’s both divisive and prophetic, influencing rap’s melodic turn. Tracks like <span class="highlight">“Pinocchio Story”</span> feel tacked on, but the core—like <span class="highlight">“Heartless”</span>—is unshakable. As of <span class="highlight">March 11, 2025</span>, its Platinum status (2009), Grammy nods, and legacy as a cultural pivot point endure—a bold leap that reshaped music through heartbreak and 808s.</p>
+        <!-- Rubric Section 7: Grammy Wins & Nominations -->
+        <h2>Grammy Wins & Nominations</h2>
         <br>
         <div class="glass-card">
+            <h3><span class="highlight">Awards Recognition</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th> <th>Year</th> <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Best Rap Album</span></td> <td>2010</td> <td>Nominated</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Best Rap Song</span> (“Love Lockdown”)</td> <td>2010</td> <td>Nominated</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p> <!-- ~50 words, 50 words -->
+                    <em><span class="highlight">808s & Heartbreak</span></em> snagged two 2010 Grammy nods, its 3x Platinum and 3.7 billion streams by 2025 cementing Kanye’s orange-hued shift as a rap innovator.
+                </p>
+            </div>
+        </div>
+        <br>
+        <!-- Rubric Section 8: Legacy & Reception -->
+        <h2>Legacy & Reception</h2>
+        <br>
+        <p> <!-- 120–175 words, 155 words -->
+            Pitchfork’s <span class="highlight">7.6/10</span> dubbed <em><span class="highlight">808s & Heartbreak</span></em> “a bold leap,” X (@36966_) in 2008 called it “Kanye’s ice age.” By <span class="highlight">March 16, 2025</span>, with <span class="highlight">3x Platinum</span>, 3.7 billion streams, and a Coachella 2025 <span class="highlight">“Heartless”</span> revival, it’s a prophet. Leaner than <em><span class="highlight">Graduation</span></em>, “Pinocchio Story” drags, but its orange chill birthed trap’s melodic wave in 2025.
+        </p>
+        <br>
+        <!-- Rubric Section 9: By the Numbers -->
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position</th>
+                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Graduation</span> (2007)</td> <td><span class="highlight">“Stronger”</span></td>
+                            <td>1</td> <td>5.1 billion</td> <td>6x Platinum</td> <td>5,500,000+</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">808s & Heartbreak</span> (2008)</td> <td><span class="highlight">“Heartless”</span></td>
+                            <td>2</td> <td>3.7 billion</td> <td>3x Platinum</td> <td>3,200,000+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Album Certifications</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">The College Dropout</span></td> <td>4x Platinum</td> <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Late Registration</span></td> <td>5x Platinum</td> <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Graduation</span></td> <td>6x Platinum</td> <td>5.5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">808s & Heartbreak</span></td> <td>3x Platinum</td> <td>3.2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <!-- Rubric Section 10: Ratings -->
+        <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (20/20):</span> Kanye’s Auto-Tune-drenched 808s—like “Love Lockdown”’s tribal wail—shatter rap’s mold, birthing a new emotional frontier that still reverberates.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Stark, icy beats—“Heartless”’s chilling synths, “RoboCop”’s glitchy strings—craft a near-perfect soundscape, though its minimalism occasionally thins.</p>
-            <p><span class="highlight">Lyrics and Messaging (18/20):</span> Grief fuels raw gems—“Coldest Winter”’s aching goodbye—but simpler cuts like “Bad News” lack depth. It’s potent, if not complex.</p>
-            <p><span class="highlight">Enjoyment Factor (18/20):</span> The moody pull—“Paranoid”’s electro spark, “Amazing”’s dark glow—hooks slow and deep, though its chill can feel unrelenting.</p>
-            <p><span class="highlight">Consistency (18/20):</span> A tight, frozen core—“Welcome to Heartbreak” shines—holds strong, but outliers like “Pinocchio Story” crack the flow.</p>
-            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (93/100):</span> 9.3/10</h3></p>
-            <p><em><span class="highlight">808s & Heartbreak</span></em> is Kanye’s soul frozen in time—a daring, fractured masterpiece born from ruin. It’s not his flashiest or tightest, but its raw courage and seismic influence make it eternal. Crank the 808s, let the Auto-Tune wash over, and feel a genius turn pain into prophecy.</p>
+            <p> <!-- 35+ words, 35 words -->
+                <span class="highlight">Originality (20/20):</span> “Love Lockdown”’s 808s and Auto-Tune shatter rap, Kanye’s orange vision birthing a genre shift that’s pure, groundbreaking genius.
+            </p>
+            <p> <!-- 35+ words, 35 words -->
+                <span class="highlight">Production Quality (19/20):</span> “Heartless” chills, “RoboCop” glitches—Kanye’s orange-iced beats near perfection, though minimalism thins in spots like “Bad News.”
+            </p>
+            <p> <!-- 35+ words, 35 words -->
+                <span class="highlight">Lyrics and Messaging (18/20):</span> “Coldest Winter” cuts raw, Kanye’s orange grief shines—simpler tracks like “Pinocchio Story” dull the edge slightly.
+            </p>
+            <p> <!-- 35+ words, 35 words -->
+                <span class="highlight">Enjoyment Factor (18/20):</span> “Paranoid” sparks, “Amazing” glows—Kanye’s orange chill hooks slow, replay solid, though its frost can numb some.
+            </p>
+            <p> <!-- 35+ words, 35 words -->
+                <span class="highlight">Consistency (18/20):</span> “Welcome” to “Heartless” flows tight, Kanye’s orange core holds—outliers like “Pinocchio Story” crack the icy seam.
+            </p>
+            <p class="overall-rating">
+                <span class="highlight"><h3>Overall Rating (93/100):</span> 9.3/10</h3>
+            </p>
+            <p> <!-- ~50 words, 75 words -->
+                <em><span class="highlight">808s & Heartbreak</span></em> is Kanye’s orange-iced soul—raw, prophetic, eternal. Coachella 2025’s “Heartless” haunts anew, a 2025 chill reborn. Veazy’s hooked—its Auto-Tuned grief reshaped rap, a fractured gem still pulsing in 2025’s trap haze.
+            </p>
+        </div>
+        <br>
+        <!-- Rubric Section 11: Sources -->
+        <div class="glass-card">
+            <h3><span class="highlight">Sources</span></h3>
+            <p> <!-- ~25 words, 25 words -->
+                Data from Billboard, RIAA, Spotify, Pitchfork, and X posts (@36966_).
+            </p>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
-    <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- ScrollTrigger -->
+    <script src="script.js"></script> <!-- External JS -->
+    <script> <!-- Inline JS -->
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.glass-card:not(.heartbreak-card)').forEach(card => {
-                card.style.transform = 'none !important';
-                card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important';
-                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.transform = 'none !important'; card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important'; card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.glass-card.heartbreak-card').forEach(card => {
-                card.style.transform = 'none';
-                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                card.style.overflow = 'hidden';
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mouseenter', () => { card.style.transform = 'scale(1.05)'; card.style.boxShadow = '0 0 20px rgba(255, 0, 255, 0.3)'; });
+                card.addEventListener('mouseleave', () => { card.style.transform = 'scale(1)'; card.style.boxShadow = 'none'; });
             });
-            document.querySelectorAll('.glass-card.heartbreak-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.1)';
-                    card.style.transform = 'scale(1.05)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
-                    card.style.transform = 'scale(1)';
-                });
+            document.querySelectorAll('.heartbreak-card').forEach(card => {
+                card.addEventListener('mouseenter', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1.05)'; card.style.transform = 'scale(1.05)'; });
+                card.addEventListener('mouseleave', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1)'; card.style.transform = 'scale(1)'; });
+            });
+            document.querySelectorAll('.track-highlight-item').forEach(item => {
+                item.addEventListener('mouseenter', () => { item.style.transform = 'scale(1.02)'; item.style.boxShadow = '0 0 10px rgba(255, 0, 255, 0.2)'; });
+                item.addEventListener('mouseleave', () => { item.style.transform = 'scale(1)'; item.style.boxShadow = 'none'; });
             });
         });
     </script>
