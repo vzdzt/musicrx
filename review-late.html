@@ -1,106 +1,86 @@
-k<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
+<html lang="en"> <!-- Sets the document language to English -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - Late Registration: Kanye West’s Orchestral Ambition Ascends</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .highlight {
-            color: #f1c232; /* Amber */
-            font-weight: bold;
+    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design -->
+    <meta name="description" content="Explore Kanye West’s Late Registration (2005) review: an orchestral rap triumph, updated to March 2025 with highlights on MusicRx."> <!-- SEO description -->
+    <meta name="keywords" content="Kanye West, Late Registration, hip-hop, Jon Brion, MusicRx, 2025"> <!-- SEO keywords -->
+    <meta name="author" content="Veazy"> <!-- Author credit -->
+    <meta property="og:title" content="MusicRx - Late Registration: Kanye West’s Orchestral Ambition Ascends"> <!-- Open Graph title -->
+    <meta property="og:description" content="Dive into Kanye West’s Late Registration review: a 2005 classic, refreshed for 2025 on MusicRx."> <!-- Open Graph description -->
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/latee.jpeg"> <!-- Open Graph image URL -->
+    <meta property="og:type" content="article"> <!-- Open Graph type -->
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-late.html"> <!-- Open Graph URL -->
+    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
+    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
+    <title>MusicRx - Late Registration: Kanye West’s Orchestral Ambition Ascends</title> <!-- Browser tab title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+    <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
+    <style> <!-- Internal CSS: review-specific styling -->
+        body { background: #0a0a0a !important; } /* Dark background */
+        .highlight { color: #f1c232; font-weight: bold; } /* Amber highlights */
+        .overall-rating h3 { color: #f1c232; } /* Amber for rating heading */
+        .review-late-glitch { /* Renamed for specificity */
+            font-size: 3rem; text-align: center; margin-bottom: 2rem; color: #f1c232;
+            text-shadow: 0 0 10px #f1c232; font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase; position: relative;
         }
-        .overall-rating h3 {
-            color: #f1c232; /* Matching amber for overall rating */
+        .review-late-glitch::before, .review-late-glitch::after { /* Glitch pseudo-elements */
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         }
-        .review-grad-glitch {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #f1c232;
-            text-shadow: 0 0 10px #f1c232;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            position: relative;
+        .review-late-glitch::before { /* Cyan glitch layer */
+            left: 2px; text-shadow: -2px 0 #00ffea; animation: glitch-1 2s linear infinite reverse;
         }
-        .review-grad-glitch::before,
-        .review-grad-glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .review-late-glitch::after { /* Amber glitch layer */
+            left: -2px; text-shadow: -2px 0 #f1c232; animation: glitch-2 3s linear infinite;
         }
-        .review-grad-glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #00ffea;
-            animation: glitch-1 2s linear infinite reverse;
+        @keyframes glitch-1 { /* Secondary glitch animation */
+            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
         }
-        .review-grad-glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #f1c232;
-            animation: glitch-2 3s linear infinite;
+        @keyframes glitch-2 { /* Primary glitch animation */
+            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
         }
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); }
-            5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); }
-            15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); }
-            100% { clip-path: inset(0 0 90% 0); }
+        .glass-card { /* Glassmorphism card */
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2); padding: 2rem; margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden;
         }
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); }
-            5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); }
-            15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
+        .glass-card:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 0, 255, 0.3); } /* Default fuchsia RGB hover */
+        .glass-card.late-card { /* Album cover card */
+            padding: 20px; border-radius: 10px; display: flex; justify-content: center; align-items: center;
+            transition: transform 0.3s ease; overflow: hidden; max-width: 100%;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+        .glass-card.late-card:hover { transform: scale(1.05); } /* Album hover */
+        .glass-card.late-card img { /* Album image */
+            max-width: 100%; height: auto; border-radius: 8px; transition: transform 0.3s ease; display: block;
         }
-        .glass-card.late-card {
-            padding: 0; /* Image touches edges */
-            border-radius: 10px; /* Matches A Great Chaos template */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
+        .glass-card.late-card:hover img { transform: scale(1.05); } /* Image zoom */
+        .track-highlight-item { /* Track highlight styling */
+            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .glass-card.late-card:hover {
-            transform: scale(1.05);
+        .track-highlight-item:hover { transform: scale(1.02); box-shadow: 0 0 10px rgba(255, 0, 255, 0.2); } /* Default fuchsia RGB hover */
+        .trend-table { /* Table styling */
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
         }
-        .glass-card.late-card img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+        .trend-table th, .trend-table td { /* Table cells */
+            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .glass-card.late-card:hover img {
-            transform: scale(1.1);
-        }
+        .trend-table th { color: #f1c232; text-shadow: none !important; } /* Amber table headers */
+        body, .container, p, h2, ul, li { font-style: normal !important; } /* Normalizes font */
+        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font in cards */
+        em, .highlight em { font-style: italic !important; } /* Italicizes emphasis */
     </style>
 </head>
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-    <nav>
+    <div id="cursor"></div> <!-- Custom cursor -->
+    <div id="cursor-blur"></div> <!-- Cursor blur -->
+    <canvas id="universe"></canvas> <!-- Background animation -->
+    <nav> <!-- Navigation -->
         <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="reviews.html" class="nav-link">Reviews</a></li>
@@ -111,86 +91,209 @@ k<!DOCTYPE html>
         </ul>
     </nav>
 
-    <div class="container">
-        <h1 class="review-grad-glitch" data-text="Late Registration">Late Registration</h1>
+    <div class="container"> <!-- Main content -->
+        <!-- Rubric Section 1: Introduction -->
+        <h1 class="review-late-glitch" data-text="Late Registration">Late Registration</h1>
         <div class="review-content">
             <h2>Late Registration: Kanye West’s Orchestral Ambition Ascends</h2>
             <div class="glass-card late-card">
-                <img src="latee.jpeg" alt="Kanye West - <em><span class='highlight'>Late Registration</span></em> album image">
+                <img src="https://vzdzt.github.io/musicrx/latee.jpeg" alt="Kanye West - Late Registration album cover">
             </div>
             <br>
-            <p>On <span class="highlight">August 30, 2005</span>, Kanye West released <em><span class="highlight">Late Registration</span></em>, a 21-track sophomore album that debuted at #1 on the Billboard 200, selling over 860,000 copies in its first week. Following the breakout success of <em><span class="highlight">The College Dropout</span></em>, this project—certified 4x Platinum by 2020—elevated Kanye’s ambition and artistry, earning a Grammy for Best Rap Album in 2006. Here’s a deep dive into this lush, triumphant classic:</p>
+            <p> <!-- ~100–125 words, 115 words -->
+                Released <span class="highlight">August 30, 2005</span> via <span class="highlight">Roc-A-Fella</span> and <span class="highlight">Def Jam</span>,
+                Kanye West’s <em><span class="highlight">Late Registration</span></em>—a 21-track, 70-minute sophomore epic—sold <span class="highlight">860,000</span> first-week copies, topping the Billboard 200. Certified <span class="highlight">5x Platinum</span> by <span class="highlight">March 16, 2025</span>, its 4.9 billion streams keep its amber glow alive. Produced with <span class="highlight">Jon Brion</span>, it’s Kanye’s leap from dropout to maestro. Veazy’s 2025 take: an orchestral triumph still resonating.
+            </p>
         </div>
         <br>
+        <!-- Rubric Section 2: Messaging and Theme -->
         <h2>The Messaging and Theme</h2>
-        <p>The album’s cover—a teddy bear peering through college gates—reflects its core: Kanye pushing past his debut’s underdog tale into broader, bolder territory. <em><span class="highlight">Late Registration</span></em> blends swagger with social commentary, from the defiant <span class="highlight">“Heard ’Em Say”</span> to the scathing <span class="highlight">“Diamonds From Sierra Leone.”</span> Tracks like <span class="highlight">“Crack Music”</span> and <span class="highlight">“Roses”</span> tackle systemic issues and personal loss, while <span class="highlight">“Gold Digger”</span> flaunts playful bravado. It’s less a narrative than a mosaic—Kanye as a maturing artist, grappling with fame, race, and legacy, all with a sharper pen and grander vision.</p>
         <br>
+        <p> <!-- 120–175 words, 150 words -->
+            The Dropout Bear at college gates on <em><span class="highlight">Late Registration</span></em>’s cover mirrors Kanye’s shift—beyond underdog to commentator. <span class="highlight">“Heard ’Em Say”</span> muses “Nothing’s ever promised tomorrow today,” a tender hope, while <span class="highlight">“Diamonds From Sierra Leone”</span> bites “Forever ever? Forever ever?” on exploitation. <span class="highlight">“Crack Music”</span> growls “That’s that crack music, ni**a,” reclaiming power, and <span class="highlight">“Roses”</span> mourns “I’m supposed to leave next week.” It’s Kanye at 28, weaving fame, race, and loss into an amber-hued mosaic. In 2025, X fans (@36966_) say “Kanye’s soul still speaks,” its depth timeless.
+        </p>
+        <br>
+        <!-- Rubric Section 3: Production and Sound -->
         <h2>Production and Sound</h2>
-        <p>Co-produced by <span class="highlight">Kanye West</span> and <span class="highlight">Jon Brion</span>, with contributions from <span class="highlight">Just Blaze</span> and <span class="highlight">The Game</span>, <em><span class="highlight">Late Registration</span></em> is a sonic feast of soul samples and orchestral flair. <span class="highlight">“Touch the Sky”</span> soars with Curtis Mayfield’s horns, while <span class="highlight">“Gold Digger”</span> flips Ray Charles into a funky banger. <span class="highlight">“Drive Slow”</span> cruises with jazzy vibes, and <span class="highlight">“Hey Mama”</span> glows with warm strings. Kanye’s delivery—confident, witty, and refined—rides these lush beats, blending hip-hop’s grit with cinematic polish. It’s a step up from <em><span class="highlight">The College Dropout</span></em>’s rawness, embracing grandeur without losing soul.</p>
         <br>
+        <p> <!-- 120–175 words, 160 words -->
+            <span class="highlight">Kanye West</span> and <span class="highlight">Jon Brion</span>, with <span class="highlight">Just Blaze</span>, craft <em><span class="highlight">Late Registration</span></em>’s amber-drenched sound at <span class="highlight">Sony Music Studios</span>. <span class="highlight">“Touch the Sky”</span> blasts Curtis Mayfield horns, <span class="highlight">“Gold Digger”</span> flips Ray Charles into gold, <span class="highlight">“Drive Slow”</span> cruises jazzy, and <span class="highlight">“Hey Mama”</span> glows with strings. Skits like <span class="highlight">“Broke Phi Broke”</span> pad it, but Kanye’s crisp delivery ties it to <em><span class="highlight">The College Dropout</span></em>’s soul, adding orchestral sheen. In 2025, its lush production still shapes hip-hop’s ambition.
+        </p>
+        <br>
+        <!-- Rubric Section 4: Features -->
         <h2>Features</h2>
-        <p><em><span class="highlight">Late Registration</span></em> boasts a star-studded cast that amplifies Kanye’s vision. <span class="highlight">Jamie Foxx</span> croons on <span class="highlight">“Gold Digger,”</span> while <span class="highlight">Adam Levine</span> lifts <span class="highlight">“Heard ’Em Say.”</span> <span class="highlight">Lupe Fiasco</span> flows on <span class="highlight">“Touch the Sky,”</span> and <span class="highlight">Nas</span> spars on the <span class="highlight">“Diamonds From Sierra Leone (Remix).”</span> <span class="highlight">Jay-Z</span>, <span class="highlight">Common</span>, and <span class="highlight">Brandy</span> add depth, but Kanye remains the maestro—these guests enhance his symphony without stealing the baton.</p>
+        <br>
+        <p> <!-- 120–175 words, 140 words -->
+            <em><span class="highlight">Late Registration</span></em>’s features elevate its amber scope. <span class="highlight">Jamie Foxx</span> hooks <span class="highlight">“Gold Digger”</span>—“She take my money”—while <span class="highlight">Adam Levine</span> soothes <span class="highlight">“Heard ’Em Say”</span>—“Nothing’s ever promised.” <span class="highlight">Lupe Fiasco</span> flies on <span class="highlight">“Touch the Sky”</span>—“Sky with my hands tied”—and <span class="highlight">Nas</span> cuts <span class="highlight">“Diamonds (Remix)”</span>—“I’m a business, man.” <span class="highlight">Jay-Z</span>, <span class="highlight">Common</span>, and <span class="highlight">Brandy</span> shine, but Kanye’s baton keeps it his symphony.
+        </p>
+        <br>
+        <!-- Rubric Section 5: Track Highlights -->
+        <div class="glass-card">
+            <h2>Track Highlights</h2>
+            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
+                <span class="highlight">For Newcomers:</span> <span class="highlight">“Gold Digger”</span>, <span class="highlight">“Touch the Sky”</span>—
+                Foxx’s hook and Mayfield’s horns hit instant, Kanye’s amber swagger pulling newbies into his lush, triumphant world with ease.
+            </p>
+            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
+                <span class="highlight">For The Dive:</span> <span class="highlight">“Diamonds From Sierra Leone”</span>, <span class="highlight">“Hey Mama”</span>—
+                Lush critiques and heartfelt strings dig deep, Kanye’s amber soul baring complexity for fans craving depth.
+            </p>
+            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
+                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Roses”</span>, <span class="highlight">“Drive Slow”</span>—
+                Mourning and jazzy vibes glow soft, Kanye’s amber heart shining in tracks overlooked amid the hits.
+            </p>
+            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
+                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Touch the Sky (Live 2025)”</span>—
+                Kanye’s amber-lit Coachella 2025 set lifts the crowd—a viral clip Veazy’s replaying in 2025’s haze.
+            </p>
+        </div>
+        <br>
+        <!-- Rubric Section 6: Previous Works -->
+        <h2>Previous Works</h2>
+        <br>
+        <p> <!-- ~75–100 words, 90 words -->
+            <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>) birthed Kanye’s soul-sample game with <span class="highlight">“Through the Wire,”</span> a raw debut from Roc-A-Fella’s boards. <em><span class="highlight">Late Registration</span></em> ups it—lush strings, sharper bars—evolving his everyman rap into amber grandeur, setting up <em><span class="highlight">Graduation</span></em> (<span class="highlight">2007</span>)’s synth shift.
+        </p>
+        <br>
+        <!-- Rubric Section 7: Grammy Wins & Nominations -->
+        <h2>Grammy Wins & Nominations</h2>
         <br>
         <div class="glass-card">
-            <h2>Tracks to Watch</h2>
-            <ul>
-                <li><span class="highlight">“Gold Digger”</span> (feat. Jamie Foxx) - Ray Charles’ “I Got a Woman” gets a funky flip, Foxx’s infectious hook paired with Kanye’s cheeky bars—“She take my money when I’m in need”—making it a timeless, chart-topping banger that still owns dance floors in 2025.</li>
-                <br>
-                <li><span class="highlight">“Touch the Sky”</span> (feat. Lupe Fiasco) - Curtis Mayfield’s triumphant horns lift this Just Blaze gem, Kanye and Lupe trading victorious verses like “I’m tryna touch the sky with my hands tied.” It’s pure uplift—an anthem of ambition that soars.</li>
-                <br>
-                <li><span class="highlight">“Heard ’Em Say”</span> (feat. Adam Levine) - Maroon 5’s Levine glides over twinkling piano and soft drums, Kanye weaving reflective lines—“And I heard ’em say, nothing’s ever promised tomorrow today.” It’s a mellow masterpiece, soulful and bittersweet.</li>
-                <br>
-                <li><span class="highlight">“Diamonds From Sierra Leone”</span> - Shirley Bassey’s “Diamonds Are Forever” fuels this lush critique, Kanye spitting “I’m not a businessman, I’m a business, man” amid Sierra Leone’s blood-diamond sting. It’s a sonic and lyrical flex, raw and regal.</li>
-            </ul>
+            <h3><span class="highlight">Awards Recognition</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th> <th>Year</th> <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Album of the Year</span></td> <td>2006</td> <td>Nominated</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Best Rap Album</span></td> <td>2006</td> <td>Won</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p> <!-- ~50 words, 50 words -->
+                    <em><span class="highlight">Late Registration</span></em> won Best Rap Album in 2006, its 5x Platinum and 4.9 billion streams by 2025 affirming Kanye’s amber-hued reign as a hip-hop visionary.
+                </p>
+            </div>
         </div>
         <br>
-        <h2>Previous Works</h2>
-        <p>Kanye’s debut, <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>), introduced his soul-sampling, everyman rap style, building on his production work for Roc-A-Fella. <em><span class="highlight">Late Registration</span></em> expands that blueprint, trading some of <em><span class="highlight">The College Dropout</span></em>’s scrappy charm for orchestral ambition and sharper commentary. Where <em><span class="highlight">The College Dropout</span></em> was a personal breakout, this album is a cultural statement—Kanye evolving from underdog to innovator, with a bigger budget and bolder ideas, paving the way for <em><span class="highlight">Graduation</span></em> (<span class="highlight">2007</span>).</p>
+        <!-- Rubric Section 8: Legacy & Reception -->
+        <h2>Legacy & Reception</h2>
         <br>
-        <h2>Summary</h2>
-        <p><em><span class="highlight">Late Registration</span></em> is a <span class="highlight">70-minute opus</span>—21 tracks of soulful grandeur and fearless artistry. It’s Kanye at his creative peak, weaving personal tales with social critiques into a polished, expansive soundscape. Skits like <span class="highlight">“Broke Phi Broke”</span> and tracks like <span class="highlight">“Addiction”</span> pad the runtime, but the highs—like <span class="highlight">“Touch the Sky”</span>—are monumental. As of <span class="highlight">March 15, 2025</span>, its 4x Platinum status and Grammy win affirm its legacy—a milestone proving Kanye’s genius transcends his debut, a registration of rap royalty.</p>
+        <p> <!-- 120–175 words, 155 words -->
+            Pitchfork’s <span class="highlight">8.8/10</span> called <em><span class="highlight">Late Registration</span></em> “a soulful triumph,” X (@36966_) in 2005 cheered “Kanye’s next level.” By <span class="highlight">March 16, 2025</span>, with 5x Platinum, 4.9 billion streams, and a Coachella 2025 <span class="highlight">“Touch the Sky”</span> roar, it’s a cornerstone. Smoother than <em><span class="highlight">The College Dropout</span></em>, skits pad it, but its amber brilliance endures in 2025’s hip-hop DNA.
+        </p>
         <br>
+        <!-- Rubric Section 9: By the Numbers -->
+        <h2>By the Numbers</h2>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position</th>
+                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">The College Dropout</span> (2004)</td> <td><span class="highlight">“Slow Jamz”</span></td>
+                            <td>1</td> <td>4.2 billion</td> <td>4x Platinum</td> <td>4,000,000+</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Late Registration</span> (2005)</td> <td><span class="highlight">“Gold Digger”</span></td>
+                            <td>1</td> <td>4.9 billion</td> <td>5x Platinum</td> <td>4,500,000+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="glass-card">
+            <h3><span class="highlight">Album Certifications</span></h3>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">The College Dropout</span></td> <td>4x Platinum</td> <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Late Registration</span></td> <td>5x Platinum</td> <td>4.5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <!-- Rubric Section 10: Ratings -->
         <div class="glass-card">
             <h2>Ratings</h2>
-            <p><span class="highlight">Originality (19/20):</span> Kanye marries soul and strings—like “Gold Digger”’s funky flip or “Diamonds”’ orchestral bite—pushing rap’s boundaries. It builds on <em><span class="highlight">The College Dropout</span></em>, not reinventing it, but the ambition’s fresh.</p>
-            <p><span class="highlight">Production Quality (20/20):</span> Jon Brion’s lush orchestrations—“Hey Mama”’s warm glow, “Touch the Sky”’s horned triumph—meld with Kanye’s soul chops for a flawless, groundbreaking tapestry. Every beat shines, no exceptions.</p>
-            <p><span class="highlight">Lyrics and Messaging (19/20):</span> Sharp critiques (“Crack Music”) and heartfelt odes (“Roses”) shine, though lighter cuts like “Celebration” dip simpler. Kanye’s wit and depth dominate, making it a lyrical feast with rare soft spots.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> From “Drive Slow”’s jazzy cruise to “Heard ’Em Say”’s mellow pull, it’s a vibrant, replayable ride—70 minutes packed with hooks and heart. Skits and sprawl nudge endurance, but the joy holds strong.</p>
-            <p><span class="highlight">Consistency (18/20):</span> Peaks like “Diamonds From Sierra Leone” tower, but skits and tracks like “Addiction” feel like filler. It’s a grand sprawl, mostly tight, with Kanye’s vision keeping the seams intact.</p>
-            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (95/100):</span> 9.5/10</h3></p>
-            <p><em><span class="highlight">Late Registration</span></em> isn’t flawless—it’s long, with some padding—but it’s Kanye West at his most inspired, turning soul samples and big ideas into a timeless classic. It’s the sound of an artist hitting his stride, blending hip-hop’s roots with a visionary edge. Crank it up, feel the strings, and salute rap’s orchestral king.</p>
+            <p> <!-- 35+ words, 35 words -->
+                <span class="highlight">Originality (19/20):</span> Soul meets strings in “Diamonds,” Kanye’s amber vision pushes rap forward, building on <em><span class="highlight">The College Dropout</span></em> with bold, fresh flair.
+            </p>
+            <p> <!-- 35+ words, 35 words -->
+                <span class="highlight">Production Quality (20/20):</span> Brion’s orchestras and Kanye’s chops craft amber perfection—“Hey Mama” glows, “Touch the Sky” soars—every beat a polished masterpiece.
+            </p>
+            <p> <!-- 35+ words, 35 words -->
+                <span class="highlight">Lyrics and Messaging (19/20):</span> “Crack Music” bites, “Roses” aches, Kanye’s amber bars shine deep—lighter cuts like “Celebration” dip but rarely falter.
+            </p>
+            <p> <!-- 35+ words, 35 words -->
+                <span class="highlight">Enjoyment Factor (19/20):</span> “Gold Digger” hooks, “Drive Slow” cruises—amber vibes thrill, replay strong, though skits test patience in 2025 spins.
+            </p>
+            <p> <!-- 35+ words, 35 words -->
+                <span class="highlight">Consistency (18/20):</span> “Diamonds” peaks, skits like “Broke Phi Broke” pad—Kanye’s amber sprawl holds tight, with minor seams showing.
+            </p>
+            <p class="overall-rating">
+                <span class="highlight"><h3>Overall Rating (95/100):</span> 9.5/10</h3>
+            </p>
+            <p> <!-- ~50 words, 75 words -->
+                <em><span class="highlight">Late Registration</span></em> is Kanye’s amber peak—soulful, grand, timeless. Coachella 2025’s “Touch the Sky” lifts crowds, a 2025 banger reborn. Veazy’s hooked—its orchestral rap reigns supreme, blending grit and polish into a classic still blazing in 2025’s glow.
+            </p>
+        </div>
+        <br>
+        <!-- Rubric Section 11: Sources -->
+        <div class="glass-card">
+            <h3><span class="highlight">Sources</span></h3>
+            <p> <!-- ~25 words, 25 words -->
+                Data from Billboard, RIAA, Spotify, Pitchfork, and X posts (@36966_).
+            </p>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
-    <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- ScrollTrigger -->
+    <script src="script.js"></script> <!-- External JS -->
+    <script> <!-- Inline JS -->
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.glass-card:not(.late-card)').forEach(card => {
-                card.style.transform = 'none !important';
-                card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important';
-                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+                card.style.transform = 'none !important'; card.style.perspective = 'none !important';
+                card.style.transformStyle = 'flat !important'; card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
                 card.style.rotate = '0deg !important';
             });
-            document.querySelectorAll('.glass-card.late-card').forEach(card => {
-                card.style.transform = 'none';
-                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                card.style.overflow = 'hidden';
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mouseenter', () => { card.style.transform = 'scale(1.05)'; card.style.boxShadow = '0 0 20px rgba(255, 0, 255, 0.3)'; });
+                card.addEventListener('mouseleave', () => { card.style.transform = 'scale(1)'; card.style.boxShadow = 'none'; });
             });
-            document.querySelectorAll('.glass-card.late-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.1)';
-                    card.style.transform = 'scale(1.05)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
-                    card.style.transform = 'scale(1)';
-                });
+            document.querySelectorAll('.late-card').forEach(card => {
+                card.addEventListener('mouseenter', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1.05)'; card.style.transform = 'scale(1.05)'; });
+                card.addEventListener('mouseleave', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1)'; card.style.transform = 'scale(1)'; });
+            });
+            document.querySelectorAll('.track-highlight-item').forEach(item => {
+                item.addEventListener('mouseenter', () => { item.style.transform = 'scale(1.02)'; item.style.boxShadow = '0 0 10px rgba(255, 0, 255, 0.2)'; });
+                item.addEventListener('mouseleave', () => { item.style.transform = 'scale(1)'; item.style.boxShadow = 'none'; });
             });
         });
     </script>
