@@ -29,7 +29,7 @@
             overflow-x: hidden;
         }
 
-        /* Sidebar (Keeping Current Setup) */
+        /* Sidebar */
         .sidebar {
             width: 60px;
             background: rgba(0, 0, 0, 0.9);
@@ -324,6 +324,9 @@
             margin: 2rem 0;
             width: 100%;
             box-sizing: border-box;
+            display: block !important; /* Ensure visibility */
+            visibility: visible !important;
+            opacity: 1 !important;
         }
 
         .scroll-container {
@@ -334,6 +337,9 @@
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
             width: 100%;
+            display: flex !important; /* Ensure flex display */
+            visibility: visible !important;
+            opacity: 1 !important;
         }
 
         .scroll-container::-webkit-scrollbar {
@@ -357,6 +363,9 @@
             border-radius: 12px;
             padding: 1rem;
             transition: all 0.3s ease;
+            display: block !important; /* Ensure visibility */
+            visibility: visible !important;
+            opacity: 1 !important;
         }
 
         .scroll-item:hover {
@@ -454,11 +463,11 @@
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-right: 60px; /* Space between buttons */
+            margin-right: 60px;
         }
 
         #tipMachine {
-            right: 20px; /* Position next to music toggle */
+            right: 20px;
         }
 
         #musicToggle:hover, #tipMachine:hover {
@@ -583,12 +592,12 @@
     <audio id="bgMusic" loop>
         <source src="https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3" type="audio/mpeg">
     </audio>
-    <button id="musicToggle" style="position: fixed; bottom: 20px; right: 70px; z-index: 1001; background: var(--glass); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">
+    <button id="musicToggle">
         <i class="fas fa-music"></i>
     </button>
 
     <!-- Tip Machine Button -->
-    <button id="tipMachine" style="position: fixed; bottom: 20px; right: 20px; z-index: 1001; background: var(--glass); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">
+    <button id="tipMachine" onclick="window.location.href='tip.html'">
         <i class="fas fa-donate"></i>
     </button>
 
@@ -653,17 +662,17 @@
             </div>
             <div class="scroll-container" id="trending-scroll">
                 <a href="#" class="scroll-item">
-                    <img src="images/eviljordan.jpg" alt="Evil Jordan">
+                    <img src="images/eviljordan.jpg" alt="Evil Jordan" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>Evil Jordan</h3>
                     <p>Playboi Carti</p>
                 </a>
                 <a href="#" class="scroll-item">
-                    <img src="images/thegiver.jpg" alt="The Giver">
+                    <img src="images/thegiver.jpg" alt="The Giver" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>The Giver</h3>
                     <p>Chappell Roan</p>
                 </a>
                 <a href="#" class="scroll-item">
-                    <img src="images/darkthoughts.jpg" alt="Dark Thoughts">
+                    <img src="images/darkthoughts.jpg" alt="Dark Thoughts" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>Dark Thoughts</h3>
                     <p>Lil Tecca</p>
                 </a>
@@ -681,17 +690,17 @@
             </div>
             <div class="scroll-container" id="featured-artists-scroll">
                 <a href="features-kendrick.html" class="scroll-item">
-                    <img src="images/kdot.jpeg" alt="Kendrick Lamar">
+                    <img src="images/kdot.jpeg" alt="Kendrick Lamar" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>Kendrick Lamar</h3>
                     <p>Hip-Hop Legend</p>
                 </a>
                 <a href="features-drake.html" class="scroll-item">
-                    <img src="images/ap-drake2.jpeg" alt="Drake">
+                    <img src="images/ap-drake2.jpeg" alt="Drake" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>Drake</h3>
                     <p>Chart-Topping Star</p>
                 </a>
                 <a href="features-travis.html" class="scroll-item">
-                    <img src="images/flame.jpeg" alt="Travis Scott">
+                    <img src="images/flame.jpeg" alt="Travis Scott" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>Travis Scott</h3>
                     <p>Rap Innovator</p>
                 </a>
@@ -709,17 +718,17 @@
             </div>
             <div class="scroll-container" id="album-reviews-scroll">
                 <a href="review-slim.html" class="scroll-item">
-                    <img src="images/marshallmathers.jpeg" alt="The Slim Shady LP">
+                    <img src="images/marshallmathers.jpeg" alt="The Slim Shady LP" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>The Slim Shady LP</h3>
                     <p>Eminem</p>
                 </a>
                 <a href="review-gkmc.html" class="scroll-item">
-                    <img src="images/gkmc3.jpeg" alt="good kid, m.A.A.d city">
+                    <img src="images/gkmc3.jpeg" alt="good kid, m.A.A.d city" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>good kid, m.A.A.d city</h3>
                     <p>Kendrick Lamar</p>
                 </a>
                 <a href="review-nwts.html" class="scroll-item">
-                    <img src="images/nwts.jpeg" alt="Nothing Was The Same">
+                    <img src="images/nwts.jpeg" alt="Nothing Was The Same" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>Nothing Was The Same</h3>
                     <p>Drake</p>
                 </a>
@@ -737,17 +746,17 @@
             </div>
             <div class="scroll-container" id="opinions-scroll">
                 <a href="opinions.html" class="scroll-item">
-                    <img src="images/trap.jpg" alt="Is Trap Dead?">
+                    <img src="images/trap.jpg" alt="Is Trap Dead?" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>Is Trap Dead?</h3>
                     <p>Exploring the evolution of trap music in 2025.</p>
                 </a>
                 <a href="opinions.html" class="scroll-item">
-                    <img src="images/streaming.jpg" alt="Streaming Killed Albums">
+                    <img src="images/streaming.jpg" alt="Streaming Killed Albums" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>Streaming Killed Albums</h3>
                     <p>Why singles dominate the music industry.</p>
                 </a>
                 <a href="opinions.html" class="scroll-item">
-                    <img src="images/ai.jpg" alt="AI in Music">
+                    <img src="images/ai.jpg" alt="AI in Music" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>AI in Music</h3>
                     <p>Is artificial intelligence the future of creativity?</p>
                 </a>
@@ -765,17 +774,17 @@
             </div>
             <div class="scroll-container" id="news-scroll">
                 <a href="news.html" class="scroll-item">
-                    <img src="images/carti-news.jpg" alt="Playboi Carti News">
+                    <img src="images/carti-news.jpg" alt="Playboi Carti News" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>Playboi Carti Drops "I Am Music"</h3>
                     <p>March 15, 2025</p>
                 </a>
                 <a href="news.html" class="scroll-item">
-                    <img src="images/cole-kendrick.jpg" alt="Cole x Kendrick">
+                    <img src="images/cole-kendrick.jpg" alt="Cole x Kendrick" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>Cole x Kendrick Album?</h3>
                     <p>March 4, 2025</p>
                 </a>
                 <a href="news.html" class="scroll-item">
-                    <img src="images/travis-news.jpg" alt="Travis Scott News">
+                    <img src="images/travis-news.jpg" alt="Travis Scott News" onerror="this.src='https://via.placeholder.com/300x200';">
                     <h3>Travis Scott Announces Album</h3>
                     <p>February 25, 2025</p>
                 </a>
@@ -798,7 +807,11 @@
         // Scroll function for horizontal scrolling sections
         function scroll(elementId, amount) {
             const container = document.getElementById(elementId);
-            container.scrollBy({ left: amount, behavior: 'smooth' });
+            if (container) {
+                container.scrollBy({ left: amount, behavior: 'smooth' });
+            } else {
+                console.error(`Element with ID ${elementId} not found.`);
+            }
         }
 
         // Quote Machine Click Handler
@@ -806,7 +819,6 @@
             const quoteContainer = document.querySelector('.quote-container');
             if (quoteContainer) {
                 quoteContainer.addEventListener('click', getNewQuote);
-                // Hide prompt after first click
                 quoteContainer.addEventListener('click', () => {
                     const prompt = quoteContainer.querySelector('.quote-prompt');
                     if (prompt) prompt.style.display = 'none';
