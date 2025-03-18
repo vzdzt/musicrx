@@ -217,6 +217,21 @@ animate();
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+    // Search functionality
+    const searchInput = document.getElementById('reviewSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.glass-card');
+            
+            cards.forEach(card => {
+                const artistName = card.querySelector('h2')?.textContent.toLowerCase() || '';
+                const shouldShow = artistName.includes(searchTerm);
+                card.style.display = shouldShow ? 'flex' : 'none';
+                card.style.opacity = shouldShow ? '1' : '0';
+            });
+        });
+    }
     const universeCanvas = document.getElementById('universe');
     if (universeCanvas) {
         universeCanvas.addEventListener('click', (event) => {
