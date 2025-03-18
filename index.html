@@ -9,28 +9,587 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Enhanced styles with adjustments */
+        :root {
+            --primary: #00f7ff;
+            --secondary: #ff00f7;
+            --accent: #7B68EE;
+            --dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glow: rgba(0, 247, 255, 0.5);
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            background: var(--dark);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar (Keeping Current Setup) */
+        .sidebar {
+            width: 60px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            transition: width 0.3s ease;
+        }
+
+        .sidebar:hover {
+            width: 200px;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-logo .musicrx-logo {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .musicrx-logo {
+            opacity: 1;
+        }
+
+        .sidebar-logo .logo-symbol {
+            color: var(--primary);
+            font-size: 1.2rem;
+            animation: pulse-heart 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-heart {
+            0%, 100% { color: var(--primary); transform: scale(1); }
+            50% { color: red; transform: scale(1.2); }
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav ul li {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .sidebar-nav ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            flex-direction: column;
+        }
+
+        .sidebar-nav ul li a i {
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        .sidebar-nav ul li a span {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .sidebar-nav ul li a span {
+            display: inline;
+            opacity: 1;
+        }
+
+        .sidebar-nav ul li a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .sidebar-actions {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .sidebar-actions button {
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            margin: 0 auto 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar:hover .sidebar-actions button {
+            width: 100%;
+        }
+
+        .sidebar-actions button i {
+            margin: 0;
+        }
+
+        .sidebar-actions button span {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .sidebar-actions button span {
+            display: inline;
+            opacity: 1;
+        }
+
+        .sidebar-actions button:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 60px;
+            width: calc(100% - 60px);
+            padding: 2rem;
+            overflow-y: auto;
+            transition: margin-left 0.3s ease, width 0.3s ease;
+        }
+
+        .sidebar:hover ~ .main-content {
+            margin-left: 200px;
+            width: calc(100% - 200px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glitch {
+            font-size: 6rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--primary);
+            text-shadow: 
+                0 0 10px var(--primary),
+                0 0 20px var(--primary),
+                0 0 40px var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1rem;
+            animation: glitchFade 3s ease-in-out infinite;
+        }
+
+        @keyframes glitchFade {
+            0%, 100% { opacity: 1; transform: translate(0, 0); }
+            50% { opacity: 0.8; transform: translate(2px, -2px); }
+        }
+
+        .heartbeat-text {
+            font-size: 1.2rem;
+            letter-spacing: 0.3em;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .heartbeat-line {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: heartMonitor 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartMonitor {
+            0% { transform: translateX(-50%) scaleX(0); opacity: 0; }
+            20% { transform: translateX(-50%) scaleX(0.3); opacity: 1; }
+            40% { transform: translateX(-50%) scaleX(1); opacity: 1; }
+            43% { transform: translateX(-50%) scaleX(0.6); }
+            46% { transform: translateX(-50%) scaleX(1.4); }
+            50% { transform: translateX(-50%) scaleX(0.2); }
+            60% { transform: translateX(-50%) scaleX(1); }
+            80% { transform: translateX(-50%) scaleX(0.3); }
+            100% { transform: translateX(-50%) scaleX(0); opacity: 0; }
+        }
+
+        /* Quote Machine */
+        .quote-container {
+            margin: 2rem 0;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem 2rem;
+            max-width: 600px;
+            text-align: center;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+            position: relative;
+        }
+
+        .quote-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 247, 255, 0.4);
+            border-color: var(--primary);
+        }
+
+        .quote-prompt {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            opacity: 0.8;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+        }
+
+        .quote-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .quote-content span {
+            display: inline-block;
+            transition: all 0.25s ease;
+        }
+
+        .quote-content span:hover {
+            color: var(--primary);
+            text-shadow: 
+                2px 2px var(--secondary),
+                -2px -2px var(--accent);
+            transform: translate(2px, -2px);
+        }
+
+        .quote-author {
+            margin-top: 1rem;
+            font-style: italic;
+            opacity: 0.8;
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Scroll Sections */
+        .scroll-section {
+            padding: 2rem;
+            margin: 2rem 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            padding: 1rem;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .scroll-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .scroll-item {
+            flex: 0 0 300px;
+            min-width: 300px;
+            background: var(--glass);
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+        }
+
+        .scroll-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .scroll-item h3 {
+            font-size: 1.1rem;
+            color: white;
+            margin: 0.5rem 0 0.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .scroll-item p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+        }
+
+        .scroll-nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .scroll-button {
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-button:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        #backToTop:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        /* Toggle and Tip Buttons */
+        #musicToggle, #tipMachine {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            z-index: 1001;
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 60px; /* Space between buttons */
+        }
+
+        #tipMachine {
+            right: 20px; /* Position next to music toggle */
+        }
+
+        #musicToggle:hover, #tipMachine:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        /* Newsletter Signup */
+        .newsletter-section {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            margin: 4rem 0;
+            border-top: 1px solid var(--primary);
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .newsletter-section h2 {
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--primary);
+            background: var(--glass);
+            color: white;
+            border-radius: 5px;
+            font-family: 'Space Grotesk', sans-serif;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .newsletter-form button {
+            background: var(--primary);
+            border: none;
+            color: var(--dark);
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--secondary);
+            box-shadow: 0 0 20px var(--secondary);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+
+            .main-content {
+                margin-left: 60px;
+                width: calc(100% - 60px);
+            }
+
+            .glitch {
+                font-size: 3rem;
+            }
+
+            .heartbeat-text {
+                font-size: 0.9rem;
+            }
+
+            .quote-container {
+                max-width: 90%;
+                padding: 1rem;
+            }
+
+            .scroll-section {
+                padding: 1rem;
+            }
+
+            .scroll-item {
+                flex: 0 0 250px;
+                min-width: 250px;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            #musicToggle, #tipMachine {
+                bottom: 10px;
+                right: 70px;
+            }
+
+            #tipMachine {
+                right: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Scroll to top on load -->
-    <script>
-        window.onload = function() {
-            window.scrollTo(0, 0);
-        };
-    </script>
-
     <!-- Music Toggle -->
     <audio id="bgMusic" loop>
         <source src="https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3" type="audio/mpeg">
     </audio>
-    <button id="musicToggle">
+    <button id="musicToggle" style="position: fixed; bottom: 20px; right: 70px; z-index: 1001; background: var(--glass); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">
         <i class="fas fa-music"></i>
     </button>
 
     <!-- Tip Machine Button -->
-    <button id="tipMachine" onclick="navigateToTip()">
+    <button id="tipMachine" style="position: fixed; bottom: 20px; right: 20px; z-index: 1001; background: var(--glass); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">
         <i class="fas fa-donate"></i>
-        <span>Tip Machine</span>
     </button>
 
     <!-- Back to Top Button -->
@@ -94,17 +653,17 @@
             </div>
             <div class="scroll-container" id="trending-scroll">
                 <a href="#" class="scroll-item">
-                    <img src="images/eviljordan.jpg" alt="Evil Jordan" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/eviljordan.jpg" alt="Evil Jordan">
                     <h3>Evil Jordan</h3>
                     <p>Playboi Carti</p>
                 </a>
                 <a href="#" class="scroll-item">
-                    <img src="images/thegiver.jpg" alt="The Giver" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/thegiver.jpg" alt="The Giver">
                     <h3>The Giver</h3>
                     <p>Chappell Roan</p>
                 </a>
                 <a href="#" class="scroll-item">
-                    <img src="images/darkthoughts.jpg" alt="Dark Thoughts" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/darkthoughts.jpg" alt="Dark Thoughts">
                     <h3>Dark Thoughts</h3>
                     <p>Lil Tecca</p>
                 </a>
@@ -122,17 +681,17 @@
             </div>
             <div class="scroll-container" id="featured-artists-scroll">
                 <a href="features-kendrick.html" class="scroll-item">
-                    <img src="images/kdot.jpeg" alt="Kendrick Lamar" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/kdot.jpeg" alt="Kendrick Lamar">
                     <h3>Kendrick Lamar</h3>
                     <p>Hip-Hop Legend</p>
                 </a>
                 <a href="features-drake.html" class="scroll-item">
-                    <img src="images/ap-drake2.jpeg" alt="Drake" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/ap-drake2.jpeg" alt="Drake">
                     <h3>Drake</h3>
                     <p>Chart-Topping Star</p>
                 </a>
                 <a href="features-travis.html" class="scroll-item">
-                    <img src="images/flame.jpeg" alt="Travis Scott" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/flame.jpeg" alt="Travis Scott">
                     <h3>Travis Scott</h3>
                     <p>Rap Innovator</p>
                 </a>
@@ -150,17 +709,17 @@
             </div>
             <div class="scroll-container" id="album-reviews-scroll">
                 <a href="review-slim.html" class="scroll-item">
-                    <img src="images/marshallmathers.jpeg" alt="The Slim Shady LP" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/marshallmathers.jpeg" alt="The Slim Shady LP">
                     <h3>The Slim Shady LP</h3>
                     <p>Eminem</p>
                 </a>
                 <a href="review-gkmc.html" class="scroll-item">
-                    <img src="images/gkmc3.jpeg" alt="good kid, m.A.A.d city" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/gkmc3.jpeg" alt="good kid, m.A.A.d city">
                     <h3>good kid, m.A.A.d city</h3>
                     <p>Kendrick Lamar</p>
                 </a>
                 <a href="review-nwts.html" class="scroll-item">
-                    <img src="images/nwts.jpeg" alt="Nothing Was The Same" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/nwts.jpeg" alt="Nothing Was The Same">
                     <h3>Nothing Was The Same</h3>
                     <p>Drake</p>
                 </a>
@@ -178,17 +737,17 @@
             </div>
             <div class="scroll-container" id="opinions-scroll">
                 <a href="opinions.html" class="scroll-item">
-                    <img src="images/trap.jpg" alt="Is Trap Dead?" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/trap.jpg" alt="Is Trap Dead?">
                     <h3>Is Trap Dead?</h3>
                     <p>Exploring the evolution of trap music in 2025.</p>
                 </a>
                 <a href="opinions.html" class="scroll-item">
-                    <img src="images/streaming.jpg" alt="Streaming Killed Albums" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/streaming.jpg" alt="Streaming Killed Albums">
                     <h3>Streaming Killed Albums</h3>
                     <p>Why singles dominate the music industry.</p>
                 </a>
                 <a href="opinions.html" class="scroll-item">
-                    <img src="images/ai.jpg" alt="AI in Music" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/ai.jpg" alt="AI in Music">
                     <h3>AI in Music</h3>
                     <p>Is artificial intelligence the future of creativity?</p>
                 </a>
@@ -206,27 +765,27 @@
             </div>
             <div class="scroll-container" id="news-scroll">
                 <a href="news.html" class="scroll-item">
-                    <img src="images/carti-news.jpg" alt="Playboi Carti News" onerror="this.src='https://via.placeholder.com/300x200';">
-                    <h3>Playboi Carti Drops 'I Am Music'</h3>
+                    <img src="images/carti-news.jpg" alt="Playboi Carti News">
+                    <h3>Playboi Carti Drops "I Am Music"</h3>
                     <p>March 15, 2025</p>
                 </a>
                 <a href="news.html" class="scroll-item">
-                    <img src="images/cole-kendrick.jpg" alt="Cole x Kendrick" onerror="this.src='https://via.placeholder.com/300x200';">
+                    <img src="images/cole-kendrick.jpg" alt="Cole x Kendrick">
                     <h3>Cole x Kendrick Album?</h3>
                     <p>March 4, 2025</p>
                 </a>
                 <a href="news.html" class="scroll-item">
-                    <img src="https://via.placeholder.com/300x200" alt="News Placeholder">
-                    <h3>More Music News</h3>
-                    <p>Stay tuned for updates!</p>
+                    <img src="images/travis-news.jpg" alt="Travis Scott News">
+                    <h3>Travis Scott Announces Album</h3>
+                    <p>February 25, 2025</p>
                 </a>
             </div>
         </section>
 
-        <!-- Newsletter Signup -->
+        <!-- Newsletter Signup Section -->
         <section class="newsletter-section">
             <h2>Join the MusicRx Community</h2>
-            <p>Get the latest updates, reviews, and exclusive content straight to your inbox.</p>
+            <p>Get the latest music news, reviews, and exclusive content delivered to your inbox.</p>
             <form class="newsletter-form">
                 <input type="email" placeholder="Enter your email" required>
                 <button type="submit">Subscribe</button>
@@ -236,30 +795,55 @@
 
     <script src="script.js"></script>
     <script>
-        function scroll(containerId, amount) {
-            const container = document.getElementById(containerId);
+        // Scroll function for horizontal scrolling sections
+        function scroll(elementId, amount) {
+            const container = document.getElementById(elementId);
             container.scrollBy({ left: amount, behavior: 'smooth' });
         }
 
-        function navigateToTip() {
-            window.location.href = 'tip.html';
-        }
-
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.style.display = 'block';
-            } else {
-                backToTop.style.display = 'none';
+        // Quote Machine Click Handler
+        document.addEventListener('DOMContentLoaded', () => {
+            const quoteContainer = document.querySelector('.quote-container');
+            if (quoteContainer) {
+                quoteContainer.addEventListener('click', getNewQuote);
+                // Hide prompt after first click
+                quoteContainer.addEventListener('click', () => {
+                    const prompt = quoteContainer.querySelector('.quote-prompt');
+                    if (prompt) prompt.style.display = 'none';
+                }, { once: true });
             }
         });
 
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Back to Top Button Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.style.display = 'block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
         });
 
-        const quoteContainer = document.querySelector('.quote-container');
-        quoteContainer.addEventListener('click', getNewQuote);
+        // Newsletter Form Submission (Placeholder)
+        document.addEventListener('DOMContentLoaded', () => {
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for subscribing to MusicRx!');
+                    newsletterForm.reset();
+                });
+            }
+        });
     </script>
 </body>
 </html>
