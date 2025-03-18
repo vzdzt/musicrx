@@ -250,73 +250,12 @@
             100% { transform: translateX(-50%) scaleX(0); opacity: 0; }
         }
 
-        /* Quote Machine */
-        .quote-container {
-            margin: 2rem 0;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1.5rem 2rem;
-            max-width: 600px;
-            text-align: center;
-            transition: all 0.5s ease;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
-            position: relative;
-        }
-
-        .quote-container:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(0, 247, 255, 0.4);
-            border-color: var(--primary);
-        }
-
-        .quote-prompt {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--primary);
-            font-family: 'Syncopate', sans-serif;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            opacity: 0.8;
-            animation: pulse 2s infinite;
-        }
 
         @keyframes pulse {
             0%, 100% { opacity: 0.8; }
             50% { opacity: 0.4; }
         }
 
-        .quote-content {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: white;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .quote-content span {
-            display: inline-block;
-            transition: all 0.25s ease;
-        }
-
-        .quote-content span:hover {
-            color: var(--primary);
-            text-shadow: 
-                2px 2px var(--secondary),
-                -2px -2px var(--accent);
-            transform: translate(2px, -2px);
-        }
-
-        .quote-author {
-            margin-top: 1rem;
-            font-style: italic;
-            opacity: 0.8;
-            color: var(--primary);
-            font-family: 'Space Grotesk', sans-serif;
-        }
 
         /* Scroll Sections */
         .scroll-section {
@@ -629,16 +568,14 @@
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
+
+<div class="glass-card" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer;">
         <section class="hero">
             <h1 class="glitch" data-text="MusicRx">MusicRx</h1>
             <p class="heartbeat-text">
                 MUSIC IS MY THERAPY
                 <span class="heartbeat-line"></span>
             </p>
-            <div class="quote-container">
-                <div class="quote-prompt">Click Me</div>
-                <p class="quote-content">Music washes away from the soul the dust of everyday life. <span class="quote-author">- Berthold Auerbach</span></p>
             </div>
         </section>
 
@@ -801,18 +738,6 @@
             container.scrollBy({ left: amount, behavior: 'smooth' });
         }
 
-        // Quote Machine Click Handler
-        document.addEventListener('DOMContentLoaded', () => {
-            const quoteContainer = document.querySelector('.quote-container');
-            if (quoteContainer) {
-                quoteContainer.addEventListener('click', getNewQuote);
-                // Hide prompt after first click
-                quoteContainer.addEventListener('click', () => {
-                    const prompt = quoteContainer.querySelector('.quote-prompt');
-                    if (prompt) prompt.style.display = 'none';
-                }, { once: true });
-            }
-        });
 
         // Back to Top Button Logic
         document.addEventListener('DOMContentLoaded', () => {
