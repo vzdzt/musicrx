@@ -318,7 +318,7 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Scroll Sections (Updated from Second Code) */
+        /* Scroll Sections */
         .scroll-section {
             padding: 2rem;
             margin: 2rem 0;
@@ -441,6 +441,32 @@
             box-shadow: 0 0 20px var(--primary);
         }
 
+        /* Toggle and Tip Buttons */
+        #musicToggle, #tipMachine {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            z-index: 1001;
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 60px; /* Space between buttons */
+        }
+
+        #tipMachine {
+            right: 20px; /* Position next to music toggle */
+        }
+
+        #musicToggle:hover, #tipMachine:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
         /* Newsletter Signup */
         .newsletter-section {
             padding: 4rem 2rem;
@@ -540,6 +566,15 @@
             .section-title {
                 font-size: 1.2rem;
             }
+
+            #musicToggle, #tipMachine {
+                bottom: 10px;
+                right: 70px;
+            }
+
+            #tipMachine {
+                right: 10px;
+            }
         }
     </style>
 </head>
@@ -550,6 +585,11 @@
     </audio>
     <button id="musicToggle" style="position: fixed; bottom: 20px; right: 70px; z-index: 1001; background: var(--glass); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">
         <i class="fas fa-music"></i>
+    </button>
+
+    <!-- Tip Machine Button -->
+    <button id="tipMachine" style="position: fixed; bottom: 20px; right: 20px; z-index: 1001; background: var(--glass); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">
+        <i class="fas fa-donate"></i>
     </button>
 
     <!-- Back to Top Button -->
@@ -578,7 +618,6 @@
                 <li><a href="opinions.html"><i class="fas fa-comment"></i> <span>Opinions</span></a></li>
                 <li><a href="catchcarti.html"><i class="fas fa-compact-disc"></i> <span>Catch Carti</span></a></li>
                 <li><a href="shop.html"><i class="fas fa-shopping-cart"></i> <span>Shop</span></a></li>
-                <li><a href="tip.html"><i class="fas fa-donate"></i> <span>Tip</span></a></li>
                 <li><a href="about.html"><i class="fas fa-info-circle"></i> <span>About</span></a></li>
                 <li><a href="contact.html"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
             </ul>
