@@ -1,16 +1,324 @@
-k<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>musicRx</title>
+    <title>MusicRx - The Ultimate Music Blog</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Enhanced styles with adjustments */
+        :root {
+            --primary: #00f7ff;
+            --secondary: #ff00f7;
+            --accent: #7B68EE;
+            --dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glow: rgba(0, 247, 255, 0.5);
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            background: var(--dark);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar (Keeping Current Setup) */
+        .sidebar {
+            width: 60px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            transition: width 0.3s ease;
+        }
+
+        .sidebar:hover {
+            width: 200px;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-logo .musicrx-logo {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .musicrx-logo {
+            opacity: 1;
+        }
+
+        .sidebar-logo .logo-symbol {
+            color: var(--primary);
+            font-size: 1.2rem;
+            animation: pulse-heart 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-heart {
+            0%, 100% { color: var(--primary); transform: scale(1); }
+            50% { color: red; transform: scale(1.2); }
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav ul li {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .sidebar-nav ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            flex-direction: column;
+        }
+
+        .sidebar-nav ul li a i {
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        .sidebar-nav ul li a span {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .sidebar-nav ul li a span {
+            display: inline;
+            opacity: 1;
+        }
+
+        .sidebar-nav ul li a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .sidebar-actions {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .sidebar-actions button {
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            margin: 0 auto 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar:hover .sidebar-actions button {
+            width: 100%;
+        }
+
+        .sidebar-actions button i {
+            margin: 0;
+        }
+
+        .sidebar-actions button span {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .sidebar-actions button span {
+            display: inline;
+            opacity: 1;
+        }
+
+        .sidebar-actions button:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 60px;
+            width: calc(100% - 60px);
+            padding: 2rem;
+            overflow-y: auto;
+            transition: margin-left 0.3s ease, width 0.3s ease;
+        }
+
+        .sidebar:hover ~ .main-content {
+            margin-left: 200px;
+            width: calc(100% - 200px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glitch {
+            font-size: 6rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--primary);
+            text-shadow: 
+                0 0 10px var(--primary),
+                0 0 20px var(--primary),
+                0 0 40px var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1rem;
+            animation: glitchFade 3s ease-in-out infinite;
+        }
+
+        @keyframes glitchFade {
+            0%, 100% { opacity: 1; transform: translate(0, 0); }
+            50% { opacity: 0.8; transform: translate(2px, -2px); }
+        }
+
+        .heartbeat-text {
+            font-size: 1.2rem;
+            letter-spacing: 0.3em;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .heartbeat-line {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: heartMonitor 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartMonitor {
+            0% { transform: translateX(-50%) scaleX(0); opacity: 0; }
+            20% { transform: translateX(-50%) scaleX(0.3); opacity: 1; }
+            40% { transform: translateX(-50%) scaleX(1); opacity: 1; }
+            43% { transform: translateX(-50%) scaleX(0.6); }
+            46% { transform: translateX(-50%) scaleX(1.4); }
+            50% { transform: translateX(-50%) scaleX(0.2); }
+            60% { transform: translateX(-50%) scaleX(1); }
+            80% { transform: translateX(-50%) scaleX(0.3); }
+            100% { transform: translateX(-50%) scaleX(0); opacity: 0; }
+        }
+
+        /* Quote Machine */
+        .quote-container {
+            margin: 2rem 0;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem 2rem;
+            max-width: 600px;
+            text-align: center;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+            position: relative;
+        }
+
+        .quote-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 247, 255, 0.4);
+            border-color: var(--primary);
+        }
+
+        .quote-prompt {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            opacity: 0.8;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+        }
+
+        .quote-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .quote-content span {
+            display: inline-block;
+            transition: all 0.25s ease;
+        }
+
+        .quote-content span:hover {
+            color: var(--primary);
+            text-shadow: 
+                2px 2px var(--secondary),
+                -2px -2px var(--accent);
+            transform: translate(2px, -2px);
+        }
+
+        .quote-author {
+            margin-top: 1rem;
+            font-style: italic;
+            opacity: 0.8;
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Scroll Sections (Updated from Second Code) */
         .scroll-section {
             padding: 2rem;
             margin: 2rem 0;
@@ -64,6 +372,19 @@ k<!DOCTYPE html>
             margin-bottom: 1rem;
         }
 
+        .scroll-item h3 {
+            font-size: 1.1rem;
+            color: white;
+            margin: 0.5rem 0 0.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .scroll-item p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -98,15 +419,115 @@ k<!DOCTYPE html>
             color: var(--dark);
         }
 
-        .content-container {
-            width: 100%;
-            max-width: 100%;
-            padding: 0 2rem;
-            box-sizing: border-box;
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        #backToTop:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        /* Newsletter Signup */
+        .newsletter-section {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            margin: 4rem 0;
+            border-top: 1px solid var(--primary);
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .newsletter-section h2 {
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
             margin: 0 auto;
         }
 
+        .newsletter-form input {
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--primary);
+            background: var(--glass);
+            color: white;
+            border-radius: 5px;
+            font-family: 'Space Grotesk', sans-serif;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .newsletter-form button {
+            background: var(--primary);
+            border: none;
+            color: var(--dark);
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--secondary);
+            box-shadow: 0 0 20px var(--secondary);
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+
+            .main-content {
+                margin-left: 60px;
+                width: calc(100% - 60px);
+            }
+
+            .glitch {
+                font-size: 3rem;
+            }
+
+            .heartbeat-text {
+                font-size: 0.9rem;
+            }
+
+            .quote-container {
+                max-width: 90%;
+                padding: 1rem;
+            }
+
             .scroll-section {
                 padding: 1rem;
             }
@@ -115,248 +536,275 @@ k<!DOCTYPE html>
                 flex: 0 0 250px;
                 min-width: 250px;
             }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Music Toggle -->
+    <audio id="bgMusic" loop>
+        <source src="https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3" type="audio/mpeg">
+    </audio>
+    <button id="musicToggle" style="position: fixed; bottom: 20px; right: 70px; z-index: 1001; background: var(--glass); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">
+        <i class="fas fa-music"></i>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
     <canvas id="universe"></canvas>
 
-    <nav>
-        <div class="nav-logo">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-logo">
             <div class="musicrx-logo">MusicRx</div>
             <div class="logo-symbol">
                 <i class="fas fa-heartbeat"></i>
             </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="reviews.html">Reviews</a></li>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="opinions.html">Opinions</a></li>
-            <li><a href="catchcarti.html">Catch Carti</a></li>
-        </ul>
-    </nav>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                <li><a href="reviews.html"><i class="fas fa-star"></i> <span>Reviews</span></a></li>
+                <li><a href="features.html"><i class="fas fa-user"></i> <span>Features</span></a></li>
+                <li><a href="news.html"><i class="fas fa-newspaper"></i> <span>News</span></a></li>
+                <li><a href="opinions.html"><i class="fas fa-comment"></i> <span>Opinions</span></a></li>
+                <li><a href="catchcarti.html"><i class="fas fa-compact-disc"></i> <span>Catch Carti</span></a></li>
+                <li><a href="shop.html"><i class="fas fa-shopping-cart"></i> <span>Shop</span></a></li>
+                <li><a href="tip.html"><i class="fas fa-donate"></i> <span>Tip</span></a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> <span>About</span></a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-actions">
+            <button><i class="fas fa-plus"></i> <span>Create Playlist</span></button>
+            <button><i class="fas fa-podcast"></i> <span>Find Podcasts</span></button>
+        </div>
+    </div>
 
-    <section class="hero">
-        <h1 class="glitch" data-text="MusicRx">MusicRx</h1>
-        <p class="heartbeat-text" style="margin-top: -1rem;">
-            MUSIC IS MY THERAPY
-            <span class="heartbeat-line"></span>
-        </p>
-    </section>
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="hero">
+            <h1 class="glitch" data-text="MusicRx">MusicRx</h1>
+            <p class="heartbeat-text">
+                MUSIC IS MY THERAPY
+                <span class="heartbeat-line"></span>
+            </p>
+            <div class="quote-container">
+                <div class="quote-prompt">Click Me</div>
+                <p class="quote-content">Music washes away from the soul the dust of everyday life. <span class="quote-author">- Berthold Auerbach</span></p>
+            </div>
+        </section>
 
-    <div class="content-container">
-        <!-- Reviews Section -->
-        <section class="scroll-section" id="reviews">
+        <!-- Trending Songs -->
+        <section class="scroll-section" id="trending">
             <div class="section-header">
-                <h2 class="section-title">Latest Reviews</h2>
+                <h2 class="section-title">Trending Songs</h2>
                 <div class="scroll-nav">
-                    <button class="scroll-button" onclick="scroll('reviews-scroll', -300)">←</button>
-                    <button class="scroll-button" onclick="scroll('reviews-scroll', 300)">→</button>
+                    <button class="scroll-button" onclick="scroll('trending-scroll', -300)">←</button>
+                    <button class="scroll-button" onclick="scroll('trending-scroll', 300)">→</button>
                 </div>
             </div>
-            <div class="scroll-container" id="reviews-scroll">
-                <a href="review-slim.html" class="scroll-item glass-card">
-                    <img src="marshallmathers.jpeg" alt="The Slim Shady LP">
-                    <h3>The Slim Shady LP</h3>
-                    <p>Eminem's twisted debut that changed rap forever.</p>
+            <div class="scroll-container" id="trending-scroll">
+                <a href="#" class="scroll-item">
+                    <img src="images/eviljordan.jpg" alt="Evil Jordan">
+                    <h3>Evil Jordan</h3>
+                    <p>Playboi Carti</p>
                 </a>
-                <a href="review-gkmc.html" class="scroll-item glass-card">
-                    <img src="gkmc3.jpeg" alt="good kid, m.A.A.d city">
-                    <h3>good kid, m.A.A.d city</h3>
-                    <p>Kendrick's cinematic masterpiece from Compton.</p>
+                <a href="#" class="scroll-item">
+                    <img src="images/thegiver.jpg" alt="The Giver">
+                    <h3>The Giver</h3>
+                    <p>Chappell Roan</p>
                 </a>
-                <a href="review-nwts.html" class="scroll-item glass-card">
-                    <img src="nwts.jpeg" alt="Nothing Was The Same">
-                    <h3>Nothing Was The Same</h3>
-                    <p>Drake's emotional journey through fame.</p>
-                </a>
-                <a href="review-mbdtf.html" class="scroll-item glass-card">
-                    <img src="mbdtff.jpeg" alt="My Beautiful Dark Twisted Fantasy">
-                    <h3>MBDTF</h3>
-                    <p>Kanye's maximalist opus.</p>
-                </a>
-                <a href="review-dielit.html" class="scroll-item glass-card">
-                    <img src="die.jpeg" alt="Die Lit">
-                    <h3>Die Lit</h3>
-                    <p>Carti's trap revolution.</p>
+                <a href="#" class="scroll-item">
+                    <img src="images/darkthoughts.jpg" alt="Dark Thoughts">
+                    <h3>Dark Thoughts</h3>
+                    <p>Lil Tecca</p>
                 </a>
             </div>
         </section>
 
-        <!-- Featured Artists Section -->
+        <!-- Featured Artists -->
         <section class="scroll-section" id="featured-artists">
             <div class="section-header">
                 <h2 class="section-title">Featured Artists</h2>
                 <div class="scroll-nav">
-                    <button class="scroll-button" onclick="scroll('artists-scroll', -300)">←</button>
-                    <button class="scroll-button" onclick="scroll('artists-scroll', 300)">→</button>
+                    <button class="scroll-button" onclick="scroll('featured-artists-scroll', -300)">←</button>
+                    <button class="scroll-button" onclick="scroll('featured-artists-scroll', 300)">→</button>
                 </div>
             </div>
-            <div class="scroll-container" id="artists-scroll">
-                <a href="features-drake.html" class="scroll-item glass-card">
-                    <img src="ap-drake2.jpeg" alt="Drake">
-                    <h3>Drake</h3>
-                    <p>The Boy who conquered streaming.</p>
-                </a>
-                <a href="features-travis.html" class="scroll-item glass-card">
-                    <img src="flame.jpeg" alt="Travis Scott">
-                    <h3>Travis Scott</h3>
-                    <p>Houston's psychedelic trap pioneer.</p>
-                </a>
-                <a href="features-carti.html" class="scroll-item glass-card">
-                    <img src="carti.jpg" alt="Playboi Carti">
-                    <h3>Playboi Carti</h3>
-                    <p>The vampire king of rage rap.</p>
-                </a>
-                <a href="features-kendrick.html" class="scroll-item glass-card">
-                    <img src="kdot.jpeg" alt="Kendrick Lamar">
+            <div class="scroll-container" id="featured-artists-scroll">
+                <a href="features-kendrick.html" class="scroll-item">
+                    <img src="images/kdot.jpeg" alt="Kendrick Lamar">
                     <h3>Kendrick Lamar</h3>
-                    <p>Compton's poet laureate.</p>
+                    <p>Hip-Hop Legend</p>
                 </a>
-                <a href="features-ye.html" class="scroll-item glass-card">
-                    <img src="yeee.jpeg" alt="Ye">
-                    <h3>Ye</h3>
-                    <p>The controversial genius.</p>
+                <a href="features-drake.html" class="scroll-item">
+                    <img src="images/ap-drake2.jpeg" alt="Drake">
+                    <h3>Drake</h3>
+                    <p>Chart-Topping Star</p>
+                </a>
+                <a href="features-travis.html" class="scroll-item">
+                    <img src="images/flame.jpeg" alt="Travis Scott">
+                    <h3>Travis Scott</h3>
+                    <p>Rap Innovator</p>
                 </a>
             </div>
         </section>
 
-        <!-- Latest News Section -->
-        <section class="scroll-section" id="news">
+        <!-- Album Reviews -->
+        <section class="scroll-section" id="album-reviews">
             <div class="section-header">
-                <h2 class="section-title">Latest News</h2>
+                <h2 class="section-title">Album Reviews</h2>
                 <div class="scroll-nav">
-                    <button class="scroll-button" onclick="scroll('news-scroll', -300)">←</button>
-                    <button class="scroll-button" onclick="scroll('news-scroll', 300)">→</button>
+                    <button class="scroll-button" onclick="scroll('album-reviews-scroll', -300)">←</button>
+                    <button class="scroll-button" onclick="scroll('album-reviews-scroll', 300)">→</button>
                 </div>
             </div>
-            <div class="scroll-container" id="news-scroll">
-                <a href="news.html" class="scroll-item glass-card">
-                    <h3>Playboi Carti Drops "I Am Music"</h3>
-                    <p>March 15, 2025</p>
-                    <p>The wait is over—Carti's new 30-track project features Kendrick, Travis Scott, and The Weeknd.</p>
+            <div class="scroll-container" id="album-reviews-scroll">
+                <a href="review-slim.html" class="scroll-item">
+                    <img src="images/marshallmathers.jpeg" alt="The Slim Shady LP">
+                    <h3>The Slim Shady LP</h3>
+                    <p>Eminem</p>
                 </a>
-                <a href="news.html" class="scroll-item glass-card">
-                    <h3>Cole x Kendrick Album?</h3>
-                    <p>March 4, 2025</p>
-                    <p>Cryptic social media posts hint at collaboration.</p>
+                <a href="review-gkmc.html" class="scroll-item">
+                    <img src="images/gkmc3.jpeg" alt="good kid, m.A.A.d city">
+                    <h3>good kid, m.A.A.d city</h3>
+                    <p>Kendrick Lamar</p>
                 </a>
-                <a href="news.html" class="scroll-item glass-card">
-                    <h3>Travis Scott Announces Album</h3>
-                    <p>February 25, 2025</p>
-                    <p>Summer 2025 release confirmed.</p>
+                <a href="review-nwts.html" class="scroll-item">
+                    <img src="images/nwts.jpeg" alt="Nothing Was The Same">
+                    <h3>Nothing Was The Same</h3>
+                    <p>Drake</p>
                 </a>
             </div>
         </section>
 
-        <!-- Opinions Section -->
+        <!-- Opinions -->
         <section class="scroll-section" id="opinions">
             <div class="section-header">
-                <h2 class="section-title">Hot Takes</h2>
+                <h2 class="section-title">Opinions</h2>
                 <div class="scroll-nav">
                     <button class="scroll-button" onclick="scroll('opinions-scroll', -300)">←</button>
                     <button class="scroll-button" onclick="scroll('opinions-scroll', 300)">→</button>
                 </div>
             </div>
             <div class="scroll-container" id="opinions-scroll">
-                <a href="opinions.html" class="scroll-item glass-card">
-                    <h3>Streaming's Dark Side</h3>
-                    <p>How platforms turned music into background noise.</p>
+                <a href="opinions.html" class="scroll-item">
+                    <img src="images/trap.jpg" alt="Is Trap Dead?">
+                    <h3>Is Trap Dead?</h3>
+                    <p>Exploring the evolution of trap music in 2025.</p>
                 </a>
-                <a href="opinions.html" class="scroll-item glass-card">
-                    <h3>Drake vs Kendrick</h3>
-                    <p>Numbers or narratives: who's really winning?</p>
+                <a href="opinions.html" class="scroll-item">
+                    <img src="images/streaming.jpg" alt="Streaming Killed Albums">
+                    <h3>Streaming Killed Albums</h3>
+                    <p>Why singles dominate the music industry.</p>
                 </a>
-                <a href="opinions.html" class="scroll-item glass-card">
-                    <h3>The Auto-Tune Debate</h3>
-                    <p>It's not a crutch, it's an instrument.</p>
+                <a href="opinions.html" class="scroll-item">
+                    <img src="images/ai.jpg" alt="AI in Music">
+                    <h3>AI in Music</h3>
+                    <p>Is artificial intelligence the future of creativity?</p>
                 </a>
             </div>
         </section>
-    </div>
 
-    <!-- Underground Analysis Section -->
-    <div class="content-container">
-        <div id="content-trending">
-            <div class="glass-card">
-                <h2>Underground Analysis</h2>
-                <p>Dive deep into the underground scene with our latest discoveries and analyses.</p>
-                <div class="table-container">
-                    <table class="trend-table">
-                        <thead>
-                            <tr>
-                                <th>Artist</th>
-                                <th>Project</th>
-                                <th>Key Points</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Yeat</td>
-                                <td>2093</td>
-                                <td>Future-forward production meets cryptic lyricism</td>
-                            </tr>
-                            <tr>
-                                <td>Ken Carson</td>
-                                <td>A Great Chaos</td>
-                                <td>Evolution of rage beats with melodic undertones</td>
-                            </tr>
-                            <tr>
-                                <td>Destroy Lonely</td>
-                                <td>If Looks Could Kill</td>
-                                <td>Gothic trap aesthetics with experimental production</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <!-- News -->
+        <section class="scroll-section" id="news">
+            <div class="section-header">
+                <h2 class="section-title">News</h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button" onclick="scroll('news-scroll', -300)">←</button>
+                    <button class="scroll-button" onclick="scroll('news-scroll', 300)">→</button>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="scroll-container" id="news-scroll">
+                <a href="news.html" class="scroll-item">
+                    <img src="images/carti-news.jpg" alt="Playboi Carti News">
+                    <h3>Playboi Carti Drops "I Am Music"</h3>
+                    <p>March 15, 2025</p>
+                </a>
+                <a href="news.html" class="scroll-item">
+                    <img src="images/cole-kendrick.jpg" alt="Cole x Kendrick">
+                    <h3>Cole x Kendrick Album?</h3>
+                    <p>March 4, 2025</p>
+                </a>
+                <a href="news.html" class="scroll-item">
+                    <img src="images/travis-news.jpg" alt="Travis Scott News">
+                    <h3>Travis Scott Announces Album</h3>
+                    <p>February 25, 2025</p>
+                </a>
+            </div>
+        </section>
 
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <div class="logo-container">
-                    <div class="musicrx-logo">MusicRx</div>
-                    <div class="logo-symbol">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-links">
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-            </div>
-            <div class="social-links">
-                <a href="https://twitter.com/36966_" class="social-button" target="_blank">
-                    <i class="fab fa-x-twitter fa-2x"></i>
-                </a>
-                <a href="https://instagram.com/airveazy" class="social-button" target="_blank">
-                    <i class="fab fa-instagram fa-2x"></i>
-                </a>
-                <a href="https://tiktok.com/@okveazy" class="social-button" target="_blank">
-                    <i class="fab fa-tiktok fa-2x"></i>
-                </a>
-                <a href="https://github.com/vzdzt" class="social-button" target="_blank">
-                    <i class="fab fa-github fa-2x"></i>
-                </a>
-                <a href="catchcarti.html" class="social-button">
-                    <i class="fas fa-compact-disc fa-2x"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
+        <!-- Newsletter Signup Section -->
+        <section class="newsletter-section">
+            <h2>Join the MusicRx Community</h2>
+            <p>Get the latest music news, reviews, and exclusive content delivered to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </div>
 
     <script src="script.js"></script>
     <script>
+        // Scroll function for horizontal scrolling sections
         function scroll(elementId, amount) {
             const container = document.getElementById(elementId);
             container.scrollBy({ left: amount, behavior: 'smooth' });
         }
+
+        // Quote Machine Click Handler
+        document.addEventListener('DOMContentLoaded', () => {
+            const quoteContainer = document.querySelector('.quote-container');
+            if (quoteContainer) {
+                quoteContainer.addEventListener('click', getNewQuote);
+                // Hide prompt after first click
+                quoteContainer.addEventListener('click', () => {
+                    const prompt = quoteContainer.querySelector('.quote-prompt');
+                    if (prompt) prompt.style.display = 'none';
+                }, { once: true });
+            }
+        });
+
+        // Back to Top Button Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.style.display = 'block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Newsletter Form Submission (Placeholder)
+        document.addEventListener('DOMContentLoaded', () => {
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for subscribing to MusicRx!');
+                    newsletterForm.reset();
+                });
+            }
+        });
     </script>
 </body>
 </html>
