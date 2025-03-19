@@ -56,7 +56,7 @@ nav {
     width: 100%;
     flex-direction: row;
   }
-  
+
   .nav-links {
     flex-direction: row;
     gap: 2rem;
@@ -245,8 +245,7 @@ nav {
   }
 }
 
-
-/* Styling for standalone glass cards on news page */
+/* Styling for standalone glass cards on news page (unchanged) */
 body > .glass-card {
     width: 80%;
     max-width: 800px;
@@ -309,6 +308,223 @@ body .container h2 {
   z-index: 1; /* Ensure content is above background */
 }
 
+/* Homepage-specific styles */
+body.home {
+  /* Remove the big "MUSICRX" logo */
+  .glitch {
+    display: none; /* Hide the glitch title on homepage */
+  }
+
+  /* Hero section adjustments for homepage */
+  .hero {
+    height: 80vh;
+    padding: 4rem 2rem;
+    position: relative;
+  }
+
+  .heartbeat-text {
+    font-size: 1.5rem;
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
+  .heartbeat-line {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    animation: heartMonitor 1.5s ease-in-out infinite;
+  }
+
+  @keyframes heartMonitor {
+    0% { transform: translateX(-50%) scaleX(0); opacity: 0; }
+    20% { transform: translateX(-50%) scaleX(0.3); opacity: 1; }
+    40% { transform: translateX(-50%) scaleX(1); opacity: 1; }
+    43% { transform: translateX(-50%) scaleX(0.6); }
+    46% { transform: translateX(-50%) scaleX(1.4); }
+    50% { transform: translateX(-50%) scaleX(0.2); }
+    60% { transform: translateX(-50%) scaleX(1); }
+    80% { transform: translateX(-50%) scaleX(0.3); }
+    100% { transform: translateX(-50%) scaleX(0); opacity: 0; }
+  }
+
+  /* Magic Search Bar for homepage */
+  .magic-search {
+    max-width: 600px;
+    text-align: center;
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 247, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .magic-search:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+    border-color: var(--primary);
+  }
+
+  .magic-search input {
+    width: 70%;
+    padding: 1rem;
+    border: 1px solid var(--primary);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    border-radius: 5px 0 0 5px;
+    font-family: 'Space Grotesk', sans-serif;
+    margin-right: -5px; /* Adjust for button alignment */
+  }
+
+  .magic-search input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .magic-search button {
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: var(--dark);
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: -5px; /* Adjust for button alignment */
+  }
+
+  .magic-search button:hover {
+    background: var(--secondary);
+    box-shadow: 0 0 20px var(--secondary);
+  }
+
+  #magicAnswer {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: var(--primary);
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+  }
+
+  /* Scroll Sections for homepage */
+  .scroll-section {
+    padding: 2rem;
+    margin: 2rem 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding: 1rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+
+  .scroll-container::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .scroll-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  .scroll-container::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+  }
+
+  .scroll-item {
+    flex: 0 0 350px;
+    min-width: 350px;
+    background: var(--glass);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 247, 255, 0.1);
+    transition: box-shadow 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .scroll-item:hover {
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+    filter: brightness(1.1);
+  }
+
+  .scroll-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .scroll-item h3 {
+    font-size: 1.2rem;
+    color: white;
+    margin: 0.5rem 0 0.2rem;
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+  }
+
+  .scroll-item p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    color: var(--primary);
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+  }
+
+  .scroll-nav {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .scroll-button {
+    background: var(--glass);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .scroll-button:hover {
+    background: var(--primary);
+    color: var(--dark);
+  }
+}
+
+/* Rest of the original styles remain unchanged for subpages */
 .glitch {
   font-size: 3rem;
   text-align: center;
@@ -707,6 +923,7 @@ body .container h2 {
         justify-content: center;
     }
 }
+
 /* New styles for ap-drake2.jpeg glass card - Added [Current Date] */
 .glass-card.drake-card {
   background: rgba(255, 255, 255, 0.1);
@@ -746,6 +963,7 @@ body .container h2 {
 .glass-card.drake-card:hover img[src="ap-drake2.jpeg"] {
   transform: none;
 }
+
 /* Styling for glass-card inside content-opinions */
 #content-opinions .glass-card {
   max-width: 300px; /* Matches grid cards’ minimum width */
@@ -827,7 +1045,6 @@ body .container h2 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-
 /* Disable tilt effect from trending content cards, and specific glass cards */
 #content-trending .glass-card,
 .glass-card:has(h2:contains("Key Points")),
@@ -855,10 +1072,12 @@ body .container h2 {
 .glass-card:has(h2:contains("Featured Artists")) > * {
   transform: none !important;
 }
+
 .review-wlr-highlight {
   color: #ff0000;
   font-weight: bold;
 }
+
 .review-wlr-glitch {
   font-size: 3rem;
   text-align: center;
@@ -925,6 +1144,7 @@ body .container h2 {
 .glass-card:hover > * {
   color: #00f7ff; /* Light blue color */
 }
+
 .review-rodeo-glitch {
   font-size: 3rem;
   text-align: center;
@@ -957,6 +1177,7 @@ body .container h2 {
   text-shadow: -2px 0 #ff6e00;
   animation: glitch-2 3s linear infinite;
 }
+
 .feature-drake-glitch {
   font-size: 3rem;
   text-align: center;
@@ -989,6 +1210,7 @@ body .container h2 {
   text-shadow: -2px 0 #0088ff;
   animation: glitch-2 3s linear infinite;
 }
+
 /* Web3 Button Styling */
 .button,
 #connectWallet,
@@ -1005,7 +1227,8 @@ body .container h2 {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border-radius: 8px;
   margin: 1rem 0;
-  box-shadow: 0 4px 15px rgba(0, 247, 255, 0.1);font-family: 'Syncopate', sans-serif;
+  box-shadow: 0 4px 15px rgba(0, 247, 255, 0.1);
+  font-family: 'Syncopate', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -1042,6 +1265,7 @@ body .container h2 {
 #tipSol:hover::before {
   transform: translate(-50%, -50%) rotate(45deg) scale(1);
 }
+
 /* Specific glitch class for Astroworld */
 .review-astro-glitch {
     font-size: 3rem;
@@ -1094,6 +1318,7 @@ body .container h2 {
     20% { clip: rect(60px, 9999px, 80px, 0); }
     100% { clip: rect(0, 9999px, 0, 0); }
 }
+
 /* Specific glitch class for MBDTF */
 .review-mbdtf-glitch {
     font-size: 3rem;
@@ -1129,31 +1354,12 @@ body .container h2 {
     animation: glitch-2 3s linear infinite;
 }
 
-@keyframes glitch-1 {
-    0% { clip: rect(0, 9999px, 0, 0); }
-    5% { clip: rect(20px, 9999px, 40px, 0); }
-    10% { clip: rect(60px, 9999px, 80px, 0); }
-    15% { clip: rect(30px, 9999px, 50px, 0); }
-    20% { clip: rect(90px, 9999px, 110px, 0); }
-    100% { clip: rect(0, 9999px, 0, 0); }
-}
-
-@keyframes glitch-2 {
-    0% { clip: rect(0, 9999px, 0, 0); }
-    5% { clip: rect(40px, 9999px, 60px, 0); }
-    10% { clip: rect(80px, 9999px, 100px, 0); }
-    15% { clip: rect(20px, 9999px, 40px, 0); }
-    20% { clip: rect(60px, 9999px, 80px, 0); }
-    100% { clip: rect(0, 9999px, 0, 0); }
-}
-
-
 /* Specific glitch class for GKMC */
 .review-gkmc-glitch {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 2rem;
-    color: #8e7cc3; /* Puple from your gkmc review */
+    color: #8e7cc3; /* Purple from your gkmc review */
     text-shadow: 0 0 10px #8e7cc3;
     font-family: 'Syncopate', sans-serif;
     text-transform: uppercase;
@@ -1173,39 +1379,22 @@ body .container h2 {
 
 .review-gkmc-glitch::before {
     left: 2px;
-    text-shadow: -2px 0 #00ffea; /* Cyan fshadow for contrast */
+    text-shadow: -2px 0 #00ffea; /* Cyan shadow for contrast */
     animation: glitch-1 2s linear infinite reverse;
 }
 
 .review-gkmc-glitch::after {
     left: -2px;
-    text-shadow: -2px 0 #fffff2; /* contrast offwhite */
+    text-shadow: -2px 0 #fffff2; /* Contrast offwhite */
     animation: glitch-2 3s linear infinite;
 }
 
-@keyframes glitch-1 {
-    0% { clip: rect(0, 9999px, 0, 0); }
-    5% { clip: rect(20px, 9999px, 40px, 0); }
-    10% { clip: rect(60px, 9999px, 80px, 0); }
-    15% { clip: rect(30px, 9999px, 50px, 0); }
-    20% { clip: rect(90px, 9999px, 110px, 0); }
-    100% { clip: rect(0, 9999px, 0, 0); }
-}
-
-@keyframes glitch-2 {
-    0% { clip: rect(0, 9999px, 0, 0); }
-    5% { clip: rect(40px, 9999px, 60px, 0); }
-    10% { clip: rect(80px, 9999px, 100px, 0); }
-    15% { clip: rect(20px, 9999px, 40px, 0); }
-    20% { clip: rect(60px, 9999px, 80px, 0); }
-    100% { clip: rect(0, 9999px, 0, 0); }
-}
 /* Specific glitch class for NWTS */
 .review-nwts-glitch {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 2rem;
-    color: #1588f0; /* blue from your nwts review */
+    color: #1588f0; /* Blue from your nwts review */
     text-shadow: 0 0 10px #1588f0;
     font-family: 'Syncopate', sans-serif;
     text-transform: uppercase;
@@ -1225,85 +1414,16 @@ body .container h2 {
 
 .review-nwts-glitch::before {
     left: 2px;
-    text-shadow: -2px 0 #00ffea; /* Cyan fshadow for contrast */
+    text-shadow: -2px 0 #00ffea; /* Cyan shadow for contrast */
     animation: glitch-1 2s linear infinite reverse;
 }
 
 .review-nwts-glitch::after {
     left: -2px;
-    text-shadow: -2px 0 #fffff2; /* contrast offwhite */
+    text-shadow: -2px 0 #fffff2; /* Contrast offwhite */
     animation: glitch-2 3s linear infinite;
 }
 
-@keyframes glitch-1 {
-    0% { clip: rect(0, 9999px, 0, 0); }
-    5% { clip: rect(20px, 9999px, 40px, 0); }
-    10% { clip: rect(60px, 9999px, 80px, 0); }
-    15% { clip: rect(30px, 9999px, 50px, 0); }
-    20% { clip: rect(90px, 9999px, 110px, 0); }
-    100% { clip: rect(0, 9999px, 0, 0); }
-}
-
-@keyframes glitch-2 {
-    0% { clip: rect(0, 9999px, 0, 0); }
-    5% { clip: rect(40px, 9999px, 60px, 0); }
-    10% { clip: rect(80px, 9999px, 100px, 0); }
-    15% { clip: rect(20px, 9999px, 40px, 0); }
-    20% { clip: rect(60px, 9999px, 80px, 0); }
-    100% { clip: rect(0, 9999px, 0, 0); }
-}
-/* Specific glitch class for NWTS */
-.review-nwts-glitch {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #1588f0; /* blue from your nwts review */
-    text-shadow: 0 0 10px #1588f0;
-    font-family: 'Syncopate', sans-serif;
-    text-transform: uppercase;
-    position: relative;
-    display: block;
-}
-
-.review-nwts-glitch::before,
-.review-nwts-glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.review-nwts-glitch::before {
-    left: 2px;
-    text-shadow: -2px 0 #00ffea; /* Cyan fshadow for contrast */
-    animation: glitch-1 2s linear infinite reverse;
-}
-
-.review-nwts-glitch::after {
-    left: -2px;
-    text-shadow: -2px 0 #fffff2; /* contrast offwhite */
-    animation: glitch-2 3s linear infinite;
-}
-
-@keyframes glitch-1 {
-    0% { clip: rect(0, 9999px, 0, 0); }
-    5% { clip: rect(20px, 9999px, 40px, 0); }
-    10% { clip: rect(60px, 9999px, 80px, 0); }
-    15% { clip: rect(30px, 9999px, 50px, 0); }
-    20% { clip: rect(90px, 9999px, 110px, 0); }
-    100% { clip: rect(0, 9999px, 0, 0); }
-}
-
-@keyframes glitch-2 {
-    0% { clip: rect(0, 9999px, 0, 0); }
-    5% { clip: rect(40px, 9999px, 60px, 0); }
-    10% { clip: rect(80px, 9999px, 100px, 0); }
-    15% { clip: rect(20px, 9999px, 40px, 0); }
-    20% { clip: rect(60px, 9999px, 80px, 0); }
-    100% { clip: rect(0, 9999px, 0, 0); }
-}
 .hero {
     display: flex;
     flex-direction: column;
