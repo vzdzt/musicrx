@@ -8,263 +8,758 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-      body {
-        background: #0a0a0a !important;
-      }
+        /* Default (Normal Mode) Variables */
+        :root {
+            --primary: #00f7ff;
+            --secondary: #ff00f7;
+            --accent: #7B68EE;
+            --dark: #000000;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glow: rgba(0, 247, 255, 0.5);
+            --rgb-glow: linear-gradient(45deg, #00f7ff, #ff00f7, #7B68EE);
+            --text-color: rgba(255, 255, 255, 0.8);
+            --background: #000000;
+            --card-background: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Satin Mode */
+        [data-theme="satin"] {
+            --primary: #FFD700;
+            --secondary: #FF6347;
+            --accent: #DA70D6;
+            --dark: #1C2526;
+            --glass: rgba(255, 215, 0, 0.1);
+            --glow: rgba(255, 215, 0, 0.4);
+            --rgb-glow: linear-gradient(45deg, #FFD700, #FF6347, #DA70D6);
+            --text-color: rgba(255, 245, 238, 0.9);
+            --background: #1C2526;
+            --card-background: rgba(255, 215, 0, 0.05);
+            --border-color: rgba(255, 215, 0, 0.1);
+        }
+
+        /* Frosted White Mode */
+        [data-theme="frosted"] {
+            --primary: #00CED1;
+            --secondary: #FF69B4;
+            --accent: #6A5ACD;
+            --dark: #F5F5F5;
+            --glass: rgba(255, 255, 255, 0.3);
+            --glow: rgba(0, 206, 209, 0.5);
+            --rgb-glow: linear-gradient(45deg, #00CED1, #FF69B4, #6A5ACD);
+            --text-color: #333333;
+            --background: #F5F5F5;
+            --card-background: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(0, 206, 209, 0.2);
+        }
+
+        /* Veazy (Neon Green) Mode */
+        [data-theme="veazy"] {
+            --primary: #00ff00;
+            --secondary: #47ff47;
+            --accent: #83ff83;
+            --dark: #1a1a1a;
+            --glass: rgba(188, 255, 188, 0.1);
+            --glow: rgba(244, 255, 244, 0.5);
+            --rgb-glow: linear-gradient(45deg, #00ff00, #47ff47, #83ff83);
+            --text-color: #f4fff4;
+            --background: #1a1a1a;
+            --card-background: rgba(188, 255, 188, 0.05);
+            --border-color: rgba(244, 255, 244, 0.2);
+        }
+
+        /* Black & White Mode */
+        [data-theme="blackwhite"] {
+            --primary: #ffffff;
+            --secondary: #cccccc;
+            --accent: #999999;
+            --dark: #000000;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glow: rgba(255, 255, 255, 0.3);
+            --rgb-glow: linear-gradient(45deg, #ffffff, #cccccc, #999999);
+            --text-color: #ffffff;
+            --background: #000000;
+            --card-background: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        [data-theme="satin"] body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 245, 238, 0.1);
+            backdrop-filter: blur(2px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        [data-theme="frosted"] body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(3px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        [data-theme="veazy"] body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(244, 255, 244, 0.05);
+            backdrop-filter: blur(2px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--dark);
+            backdrop-filter: blur(10px);
+            padding: .5rem;
+            z-index: 1002;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            height: 60px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            margin-left: 1rem;
+        }
+
+        .nav-logo .logo-symbol i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            animation: pulse-heart 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-heart {
+            0%, 100% { color: var(--primary); transform: scale(1); }
+            50% { color: var(--secondary); transform: scale(1.2); }
+        }
+
+        .dropdown {
+            position: relative;
+            margin-right: 1rem;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-toggle:hover {
+            color: transparent;
+            background: var(--rgb-glow);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--dark);
+            backdrop-filter: blur(10px);
+            border-radius: 0 0 10px 10px;
+            padding: 1rem;
+            width: 200px;
+            z-index: 1003;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            margin-bottom: 1rem;
+        }
+
+        .dropdown-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: transparent;
+            background: var(--rgb-glow);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-input {
+            border: 2px solid var(--primary);
+            background: var(--card-background);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            width: 50%;
+            max-width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 15px var(--glow);
+            outline: none;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--glass);
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
+        }
+
+        @keyframes rgbShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .container {
+            z-index: 1;
+            padding: 2rem;
+            padding-top: 80px; /* Offset for fixed navbar */
+            margin-left: 0;
+            width: 100%;
+            position: relative;
+            flex: 1 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .glass-card {
+            flex: 0 0 300px;
+            min-width: 300px;
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(15px);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 500px; /* Increased to fit longer descriptions */
+            z-index: 1;
+        }
+
+        .glass-card:hover {
+            opacity: 1;
+            box-shadow: 0 0 20px var(--glow);
+            background: var(--rgb-glow);
+            background-size: 200% 200%;
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-5px);
+        }
+
+        [data-theme="blackwhite"] .glass-card:hover {
+            background: rgba(15, 15, 15, 0.8); /* Obsidian glass effect */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            animation: none; /* No RGB animation for minimalist theme */
+        }
+
+        .glass-card img {
+            width: 100%;
+            height: 250px; /* Reduced to make room for text */
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .glass-card h2 {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin: 0.3rem 0 0.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .glass-card:hover h2 {
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .glass-card p {
+            font-size: 0.85rem; /* Slightly smaller for readability */
+            color: var(--text-color);
+            margin: 0.2rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.3; /* Improved readability */
+        }
+
+        .glass-card .description {
+            flex-grow: 1; /* Pushes rating to bottom */
+            margin-bottom: 0.5rem;
+            overflow: hidden; /* Prevents overflow */
+            text-overflow: ellipsis; /* Adds ellipsis if too long */
+            display: -webkit-box;
+            -webkit-line-clamp: 4; /* Limits to 4 lines */
+            -webkit-box-orient: vertical;
+        }
+
+        .glass-card .rating {
+            margin-top: auto; /* Pins to bottom */
+            font-weight: 500;
+        }
+
+        .glitch {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        #universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
     </style>
 </head>
 <body>
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
     <canvas id="universe"></canvas>
-    <nav>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
         <div class="search-container">
             <input type="text" id="reviewSearch" placeholder="Search reviews by artist..." class="search-input">
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
+    <button id="themeToggle" class="theme-toggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
 
     <div class="container">
         <h1 class="glitch" data-text="REVIEWS">REVIEWS</h1>
         <div class="grid">
+            <div class="glass-card" onclick="window.location.href=''">
+                <img src="iammusic.jpg" alt="Playboi Carti - I AM MUSIC album image">
+                <h2>Playboi Carti - MUSIC</h2>
+                <p class="description">Coming Soon...</p>
+                <p class="rating">Rating: ??/10</p>
+            </div>
 
-
-<div class="glass-card" onclick="window.location.href=''"><img src="iammusic.jpg" alt="Playboi Carti - I AM MUSIC album image">
-                        <h2>Playboi Carti - MUSIC</h2>
-            <p>Coming Soon...</p>
-                        <p class="rating">Rating: ??/10</p>
-</div>     
-<div class="glass-card" onclick="window.location.href='review-wlr.html'"><img src="red.jpeg" alt="Playboi Carti -  WLR album image">
+            
+            <div class="glass-card" onclick="window.location.href='review-wlr.html'">
+                <img src="red.jpeg" alt="Playboi Carti - WLR album image">
                 <h2>Playboi Carti - Whole Lotta Red</h2>
-                <p>Playboi Carti’s audacious sonic plunge—a frenetic, abrasive mix of punk-rap aggression and minimalist beats that redefines trap with raw, unapologetic chaos.</p>
+                <p class="description">Playboi Carti’s audacious sonic plunge—a frenetic, abrasive mix of punk-rap aggression and minimalist beats that redefines trap with raw, unapologetic chaos.</p>
                 <p class="rating">Rating: 8.2/10</p>
             </div>
-<div class="glass-card" onclick="window.location.href='review-dielit.html'"><img src="die.jpeg" alt="Playboi Carti - Die Lit album image">
+            <div class="glass-card" onclick="window.location.href='review-dielit.html'">
+                <img src="die.jpeg" alt="Playboi Carti - Die Lit album image">
                 <h2>Playboi Carti - DIE LIT</h2>
-                <p>Playboi Carti’s hypnotic, carefree vibe—a lean, bouncy fusion of minimalist beats and ad-libbed flows that turns trap into a surreal, party-fueled dreamscape.</p>
+                <p class="description">Playboi Carti’s hypnotic, carefree vibe—a lean, bouncy fusion of minimalist beats and ad-libbed flows that turns trap into a surreal, party-fueled dreamscape.</p>
                 <p class="rating">Rating: 8.8/10</p>
             </div>
- <div class="glass-card" onclick="window.location.href='review-carti.html'"><img src="selff.jpg" alt="Playboi Carti - Self Titled album image">
-                        <h2>Playboi Carti - Playboi Carti</h2>
-            <p>Playboi Carti’s self-titled debut is a lean, hypnotic banger—a stripped-down surge of catchy hooks, ad-libbed energy, and woozy beats that ignites a new wave of trap.</p>
-                        <p class="rating">Rating: 8.9/10</p>
-</div>
-            <div class="glass-card" onclick="window.location.href='review-callme.html'"><img src="cmiygl.jpeg" alt="Tyler, The Creator CMIYGL album image">
-                <h2>Tyler, The Creator - Call Me if You Get Lost</h2>
-                <p>Tyler, the Creator’s swaggering travelogue—a slick, confident mashup of sharp lyricism, jazzy production, and globe-trotting flair that showcases his boundless artistry.</p>
-                <p class="rating">Rating: 9.4/10</p>
-            </div>
-                <div class="glass-card" onclick="window.location.href='review-top.html'"><img src="yb.jpeg" alt="NBA YoungBoy - TOP album image">
-                    <h2>NBA Youngboy - TOP</h2>
-                    <p> NBA YoungBoy’s raw, emotional ascent—a gritty barrage of pained melodies, relentless flows, and street-born intensity that captures his unyielding hustle and heart.</p>
-                    <p class="rating">Rating: 8.4/10</p>
-                </div>
-                <div class="glass-card" onclick="window.location.href='review-eternal.html'"><img src="eternal.jpeg" alt="Lil Uzi Vert - Eternal Atake album image">
-                    <h2>Lil Uzi Vert - ETERNAL ATAKE</h2>
-                    <p>Lil Uzi Vert’s cosmic odyssey—a futuristic, high-octane blend of melodic trap and otherworldly vibes that rockets through a neon-lit universe of flex and feeling.</p>
-                    <p class="rating">Rating: 9.0/10</p>
-                </div>
-                    <div class="glass-card" onclick="window.location.href='review-tpab.html'"><img src="tpab3.jpeg" alt="Kendrick Lamar - To Pimp a Butterfly album image">
-                        <h2>Kendrick Lamar - To Pimp a Butterfly</h2>
-                        <p>Kendrick Lamar’s profound, genre-defying opus—a dense, jazzy tapestry of searing lyrics and social commentary that wrestles with identity, power, and Black resilience.</p>
-                        <p class="rating">Rating: 9.4/10</p>
-                    </div>
-                        <div class="glass-card" onclick="window.location.href='review-asap.html'"><img src="asap.jpeg" alt="A$AP Rocky - AT LONG LAST A$AP album image">
-                            <h2>A$AP ROCKY - A.L.L.A</h2>
-                            <p>At.Long.Last.A$AP is a hazy, ambitious trip—a slick fusion of psychedelic beats, introspective rhymes, and Harlem swagger that drifts through a cloud of style and substance.</p>
-                            <p class="rating">Rating: 8.7/10</p>
-                        </div>
-            <div class="glass-card" onclick="window.location.href='review-piñata.html'"><img src="pina.jpeg" alt="Freddie Gibbs & Madlib - Piñata album image">
-                <h2>Freddie Gibbs & Madlib - PIÑATA</h2>
-                <p>Freddie Gibbs and Madlib’s gritty, soulful collision—a hard-hitting blend of razor-sharp rhymes and dusty, cinematic beats that cracks open the raw essence of street life.</p>
-                <p class="rating">Rating: 9.1/10</p>
-            </div>
-
-            <div class="glass-card" onclick="window.location.href='review-sos.html'"><img src="sos4k.jpeg" alt="SZA - SOS album image">
-                <h2>SZA - SOS</h2>
-                <p>SZA’s sultry, soul-baring voyage—a lush mix of R&B vulnerability, sharp lyricism, and eclectic production that navigates love, loss, and self-discovery with raw elegance.</p>
-                <p class="rating">Rating: 9.0/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-grad.html'"><img src="graduation.jpg" alt="Kanye West - Graduation album image">
-                <h2>Kanye West - Graduation</h2>
-                <p>Kanye West’s triumphant, stadium-sized evolution—a bold blend of uplifting anthems, polished beats, and introspective bars that marks his ascent to rap superstardom.</p>
-                <p class="rating">Rating: 9.2/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-tc.html'"><img src="TC.jpg" alt="Drake - Take Care album image">
-                <h2>DRAKE - TAKE CARE</h2>
-                <p>Drake’s moody, expansive confessional—a smooth, atmospheric fusion of introspective rhymes and lush production that dives deep into fame, love, and late-night melancholy.</p>
+            <div class="glass-card" onclick="window.location.href='review-carti.html'">
+                <img src="selff.jpg" alt="Playboi Carti - Self Titled album image">
+                <h2>Playboi Carti - Playboi Carti</h2>
+                <p class="description">Playboi Carti’s self-titled debut is a lean, hypnotic banger—a stripped-down surge of catchy hooks, ad-libbed energy, and woozy beats that ignites a new wave of trap.</p>
                 <p class="rating">Rating: 8.9/10</p>
             </div>
-            <div class="glass-card" onclick="window.location.href='review-up2.html'"><img src="up2me.jpeg" alt="Yeat - Up 2 Më album image">
-                <h2>Yeat - UP 2 MË</h2>
-                <p>Yeat’s relentless, futuristic surge—a glitchy, bass-heavy storm of auto-tuned flows and hypnotic beats that carves out a bold new lane in trap’s evolution.</p>
-                <p class="rating">Rating: 8.5/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-agc.html'"><img src="agc.jpeg" alt="Ken Carson - A Great Chaos album image">
-                <h2>Ken Carson - A GREAT CHAOS</h2>
-                <p>Ken Carson’s unhinged, electric rampage—a distorted, high-energy clash of aggressive flows and blown-out beats that thrives in its raw, rebellious anarchy.</p>
-                <p class="rating">Rating: 8.6/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-mbdtf.html'"><img src="mbdtff.jpeg" alt="kanye west - mbdtf album image">
-                <h2>Kanye - My Beautiful Dark Twisted Fantasy</h2>
-                <p>Kanye West’s sprawling, cinematic triumph—a lavish fusion of bold production, intricate rhymes, and unfiltered ambition that redefines hip-hop’s boundaries.</p>
-                <p class="rating">Rating: 9.9/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-gkmc.html'"><img src="gkmc3.jpeg" alt="Kendrick - gkmc album image">
-                <h2>Kendrick Lamar - good kid, m.A.A.d city</h2>
-                <p>Kendrick Lamar’s gripping, cinematic tale—a vivid blend of razor-sharp rhymes and soulful beats that chronicles Compton’s chaos and a young man’s redemption.</p>
-                <p class="rating">Rating: 9.8/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-nwts.html'"><img src="nwts.jpeg" alt="Drake - NWTS album image">
-                <h2>Drake - Nothing Was The Same</h2>
-                <p>Drake’s sleek, introspective pinnacle—a polished mix of brooding beats and confident bars that traces his rise from Toronto dreamer to rap royalty.</p>
+            <div class="glass-card" onclick="window.location.href='review-callme.html'">
+                <img src="cmiygl.jpeg" alt="Tyler, The Creator CMIYGL album image">
+                <h2>Tyler, The Creator - Call Me if You Get Lost</h2>
+                <p class="description">Tyler, the Creator’s swaggering travelogue—a slick, confident mashup of sharp lyricism, jazzy production, and globe-trotting flair that showcases his boundless artistry.</p>
                 <p class="rating">Rating: 9.4/10</p>
             </div>
-            <div class="glass-card" onclick="window.location.href='review-astro.html'"><img src="astro.jpeg" alt="Travis Scott - Astroworld album image">
+            <div class="glass-card" onclick="window.location.href='review-top.html'">
+                <img src="yb.jpeg" alt="NBA YoungBoy - TOP album image">
+                <h2>NBA Youngboy - TOP</h2>
+                <p class="description">NBA YoungBoy’s raw, emotional ascent—a gritty barrage of pained melodies, relentless flows, and street-born intensity that captures his unyielding hustle and heart.</p>
+                <p class="rating">Rating: 8.4/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-eternal.html'">
+                <img src="eternal.jpeg" alt="Lil Uzi Vert - Eternal Atake album image">
+                <h2>Lil Uzi Vert - ETERNAL ATAKE</h2>
+                <p class="description">Lil Uzi Vert’s cosmic odyssey—a futuristic, high-octane blend of melodic trap and otherworldly vibes that rockets through a neon-lit universe of flex and feeling.</p>
+                <p class="rating">Rating: 9.0/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-tpab.html'">
+                <img src="tpab3.jpeg" alt="Kendrick Lamar - To Pimp a Butterfly album image">
+                <h2>Kendrick Lamar - To Pimp a Butterfly</h2>
+                <p class="description">Kendrick Lamar’s profound, genre-defying opus—a dense, jazzy tapestry of searing lyrics and social commentary that wrestles with identity, power, and Black resilience.</p>
+                <p class="rating">Rating: 9.4/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-asap.html'">
+                <img src="asap.jpeg" alt="A$AP Rocky - AT LONG LAST A$AP album image">
+                <h2>A$AP ROCKY - A.L.L.A</h2>
+                <p class="description">At.Long.Last.A$AP is a hazy, ambitious trip—a slick fusion of psychedelic beats, introspective rhymes, and Harlem swagger that drifts through a cloud of style and substance.</p>
+                <p class="rating">Rating: 8.7/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-piñata.html'">
+                <img src="pina.jpeg" alt="Freddie Gibbs & Madlib - Piñata album image">
+                <h2>Freddie Gibbs & Madlib - PIÑATA</h2>
+                <p class="description">Freddie Gibbs and Madlib’s gritty, soulful collision—a hard-hitting blend of razor-sharp rhymes and dusty, cinematic beats that cracks open the raw essence of street life.</p>
+                <p class="rating">Rating: 9.1/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-sos.html'">
+                <img src="sos4k.jpeg" alt="SZA - SOS album image">
+                <h2>SZA - SOS</h2>
+                <p class="description">SZA’s sultry, soul-baring voyage—a lush mix of R&B vulnerability, sharp lyricism, and eclectic production that navigates love, loss, and self-discovery with raw elegance.</p>
+                <p class="rating">Rating: 9.0/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-grad.html'">
+                <img src="graduation.jpg" alt="Kanye West - Graduation album image">
+                <h2>Kanye West - Graduation</h2>
+                <p class="description">Kanye West’s triumphant, stadium-sized evolution—a bold blend of uplifting anthems, polished beats, and introspective bars that marks his ascent to rap superstardom.</p>
+                <p class="rating">Rating: 9.2/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-tc.html'">
+                <img src="TC.jpg" alt="Drake - Take Care album image">
+                <h2>DRAKE - TAKE CARE</h2>
+                <p class="description">Drake’s moody, expansive confessional—a smooth, atmospheric fusion of introspective rhymes and lush production that dives deep into fame, love, and late-night melancholy.</p>
+                <p class="rating">Rating: 8.9/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-up2.html'">
+                <img src="up2me.jpeg" alt="Yeat - Up 2 Më album image">
+                <h2>Yeat - UP 2 MË</h2>
+                <p class="description">Yeat’s relentless, futuristic surge—a glitchy, bass-heavy storm of auto-tuned flows and hypnotic beats that carves out a bold new lane in trap’s evolution.</p>
+                <p class="rating">Rating: 8.5/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-agc.html'">
+                <img src="agc.jpeg" alt="Ken Carson - A Great Chaos album image">
+                <h2>Ken Carson - A GREAT CHAOS</h2>
+                <p class="description">Ken Carson’s unhinged, electric rampage—a distorted, high-energy clash of aggressive flows and blown-out beats that thrives in its raw, rebellious anarchy.</p>
+                <p class="rating">Rating: 8.6/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-mbdtf.html'">
+                <img src="mbdtff.jpeg" alt="Kanye West - mbdtf album image">
+                <h2>Kanye - My Beautiful Dark Twisted Fantasy</h2>
+                <p class="description">Kanye West’s sprawling, cinematic triumph—a lavish fusion of bold production, intricate rhymes, and unfiltered ambition that redefines hip-hop’s boundaries.</p>
+                <p class="rating">Rating: 9.9/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-gkmc.html'">
+                <img src="gkmc3.jpeg" alt="Kendrick - gkmc album image">
+                <h2>Kendrick Lamar - good kid, m.A.A.d city</h2>
+                <p class="description">Kendrick Lamar’s gripping, cinematic tale—a vivid blend of razor-sharp rhymes and soulful beats that chronicles Compton’s chaos and a young man’s redemption.</p>
+                <p class="rating">Rating: 9.8/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-nwts.html'">
+                <img src="nwts.jpeg" alt="Drake - NWTS album image">
+                <h2>Drake - Nothing Was The Same</h2>
+                <p class="description">Drake’s sleek, introspective pinnacle—a polished mix of brooding beats and confident bars that traces his rise from Toronto dreamer to rap royalty.</p>
+                <p class="rating">Rating: 9.4/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-astro.html'">
+                <img src="astro.jpeg" alt="Travis Scott - Astroworld album image">
                 <h2>Travis Scott - Astroworld</h2>
-                <p>This is a thrilling journey—Travis Scott blends trap beats with psychedelic layers, crafting a vivid, Houston-inspired soundscape.
-</p>
+                <p class="description">This is a thrilling journey—Travis Scott blends trap beats with psychedelic layers, crafting a vivid, Houston-inspired soundscape.</p>
                 <p class="rating">Rating: 9.3/10</p>
             </div>
-             <div class="glass-card" onclick="window.location.href='review-slim.html'"><img src="slim.jpeg" alt="Eminem - SSLP album image">
-                            <h2>Eminem - The Slim Shady LP</h2>
-                            <p>A darkly comedic and lyrically ferocious album that propelled Eminem to stardom, showcasing his unparalleled ability to weave personal frustrations into biting satire with shockingly clever wordplay.
-            </p>
-                            <p class="rating">Rating: 9.3/10</p>
-                        </div>
-            <div class="glass-card" onclick="window.location.href='review-mmlp.html'"><img src="marshallmathers.jpeg" alt="Eminem - MMLP album image">
-                            <h2>Eminem - The Marshall Mathers LP</h2>
-                <p>This album is Eminem’s raw, unfiltered peak—a razor-sharp blend of dark humor, visceral storytelling, and relentless flows that cuts deep into the psyche of a troubled genius.
-                               </p>
-                            <p class="rating">Rating: 9.6/10</p>
-                        </div>
-            <div class="glass-card" onclick="window.location.href='review-flower.html'"><img src="flower.jpeg" alt="Tyler, the Creator - Flower Boy album image">
-                        <h2>Tyler, the Creator - Flower Boy</h2>
-            <p>Flower Boy is Tyler, the Creator’s blooming evolution—a lush, introspective gem that swaps brashness for soulful melodies and vibrant production, unveiling a tender, colorful core.</p>
-<p class="rating">Rating: 9.6/10</p>
-</div>
-            <div class="glass-card" onclick="window.location.href='review-carter.html'"><img src="carter.jpeg" alt="Lil Wayne - The Carter III album image">
-                        <h2>Lil Wayne - The Carter III</h2>
-            <p>Lil Wayne’s crowning triumph—a bold, syrup-soaked whirlwind of clever wordplay, infectious hooks, and innovative beats that cements his reign as a rap icon.
-            </p>
-                        <p class="rating">Rating: 9.2/10</p>
-                    </div>
-            <div class="glass-card" onclick="window.location.href='review-dropout.html'"><img src="dropoutt.jpeg" alt="Kanye West - The College Dropout album image">
-                        <h2>Kanye West - The College Dropout</h2>
-            <p>Kanye West’s soulful, groundbreaking debut—a witty, heartfelt blend of chipmunk-sampled beats and relatable rhymes that flips the script on hip-hop’s playbook.</p>
-                        <p class="rating">Rating: 9.5/10</p>
-                    </div>
-            <div class="glass-card" onclick="window.location.href='review-late.html'"><img src="latee.jpeg" alt="Kanye West - Late Registration album image">
-                        <h2>Kanye West - Late Registration</h2>
-            <p>Kanye West’s lush, orchestral leap—a masterful mix of witty lyricism, cinematic production, and soul-drenched beats that elevates his vision to new heights.</p>
-                         <p class="rating">Rating: 9.3/10</p>
+            <div class="glass-card" onclick="window.location.href='review-slim.html'">
+                <img src="slim.jpeg" alt="Eminem - SSLP album image">
+                <h2>Eminem - The Slim Shady LP</h2>
+                <p class="description">A darkly comedic and lyrically ferocious album that propelled Eminem to stardom, showcasing his unparalleled ability to weave personal frustrations into biting satire with shockingly clever wordplay.</p>
+                <p class="rating">Rating: 9.3/10</p>
             </div>
-            <div class="glass-card" onclick="window.location.href='review-808.html'"><img src="808.jpeg" alt="Kanye West - 808s & Heartbreak album image">
-                        <h2>Kanye West - 808s & Heartbreak</h2>
-            <p>Kanye West’s haunting, minimalist reinvention—a stark fusion of icy beats, auto-tuned wails, and raw emotion that reshapes heartbreak into a futuristic lament.</p>
-                        <p class="rating">Rating: 9.3/10</p>
-                    </div>
-<div class="glass-card" onclick="window.location.href='review-rodeo.html'"><img src="rodeo-rc2.jpeg" alt="Travis Scott Rodeo album image">
+            <div class="glass-card" onclick="window.location.href='review-mmlp.html'">
+                <img src="marshallmathers.jpeg" alt="Eminem - MMLP album image">
+                <h2>Eminem - The Marshall Mathers LP</h2>
+                <p class="description">This album is Eminem’s raw, unfiltered peak—a razor-sharp blend of dark humor, visceral storytelling, and relentless flows that cuts deep into the psyche of a troubled genius.</p>
+                <p class="rating">Rating: 9.6/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-flower.html'">
+                <img src="flower.jpeg" alt="Tyler, the Creator - Flower Boy album image">
+                <h2>Tyler, the Creator - Flower Boy</h2>
+                <p class="description">Flower Boy is Tyler, the Creator’s blooming evolution—a lush, introspective gem that swaps brashness for soulful melodies and vibrant production, unveiling a tender, colorful core.</p>
+                <p class="rating">Rating: 9.6/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-carter.html'">
+                <img src="carter.jpeg" alt="Lil Wayne - The Carter III album image">
+                <h2>Lil Wayne - The Carter III</h2>
+                <p class="description">Lil Wayne’s crowning triumph—a bold, syrup-soaked whirlwind of clever wordplay, infectious hooks, and innovative beats that cements his reign as a rap icon.</p>
+                <p class="rating">Rating: 9.2/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-dropout.html'">
+                <img src="dropoutt.jpeg" alt="Kanye West - The College Dropout album image">
+                <h2>Kanye West - The College Dropout</h2>
+                <p class="description">Kanye West’s soulful, groundbreaking debut—a witty, heartfelt blend of chipmunk-sampled beats and relatable rhymes that flips the script on hip-hop’s playbook.</p>
+                <p class="rating">Rating: 9.5/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-late.html'">
+                <img src="latee.jpeg" alt="Kanye West - Late Registration album image">
+                <h2>Kanye West - Late Registration</h2>
+                <p class="description">Kanye West’s lush, orchestral leap—a masterful mix of witty lyricism, cinematic production, and soul-drenched beats that elevates his vision to new heights.</p>
+                <p class="rating">Rating: 9.3/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-808.html'">
+                <img src="808.jpeg" alt="Kanye West - 808s & Heartbreak album image">
+                <h2>Kanye West - 808s & Heartbreak</h2>
+                <p class="description">Kanye West’s haunting, minimalist reinvention—a stark fusion of icy beats, auto-tuned wails, and raw emotion that reshapes heartbreak into a futuristic lament.</p>
+                <p class="rating">Rating: 9.3/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-rodeo.html'">
+                <img src="rodeo-rc2.jpeg" alt="Travis Scott Rodeo album image">
                 <h2>Travis Scott - RODEO</h2>
-                <p>Travis Scott’s wild, cinematic debut—a gritty, intoxicating blend of booming trap, hazy melodies, and chaotic energy that gallops through a dark, hedonistic wonderland.</p>
-<p class="rating">Rating: 8.1/10</p>
+                <p class="description">Travis Scott’s wild, cinematic debut—a gritty, intoxicating blend of booming trap, hazy melodies, and chaotic energy that gallops through a dark, hedonistic wonderland.</p>
+                <p class="rating">Rating: 8.1/10</p>
             </div>
-  <div class="glass-card" onclick="window.location.href='review-blonde.html'"><img src="blonde.jpeg" alt="Frank Ocean - Blonde album image">  
-                        <h2>Frank Ocean - Blonde</h2>
-            <p>Frank Ocean’s ethereal, introspective odyssey—a delicate weave of minimalist beats, poetic lyrics, and raw vulnerability that drifts through love, loss, and fleeting moments.</p>
-                        <p class="rating">Rating: 9.2/10</p>
-</div>
- <div class="glass-card" onclick="window.location.href='review-monster.html'"><img src="monster.jpeg" alt="Future - Monster album image">  
-                        <h2>Future - Monster</h2>
-            <p>Future’s grimy, relentless street sermon—a dark, syrupy onslaught of menacing beats and cold-hearted bars that solidifies his reign as trap’s dungeon master.</p>
-                        <p class="rating">Rating: 8.7/10</p>
-</div>
- <div class="glass-card" onclick="window.location.href='review-daytona.html'"><img src="daytona.jpeg" alt="Pusha T - DAYTONA album image">
-<h2>Pusha T - DAYTONA</h2>
- <p>Pusha T’s razor-sharp, compact triumph—a lean, menacing blend of coke-rap precision and Kanye’s gritty beats that slices through with unrelenting swagger.</p> 
-                        <p class="rating">Rating: 9.5/10</p>
-</div>
- <div class="glass-card" onclick="window.location.href='review-igor.html'"><img src="igor.jpeg" alt="Tyler, the Creator - IGOR album image">
-<h2>Tyler, the Creator - IGOR</h2>
- <p>Tyler, the Creator’s warped, emotional symphony—a kaleidoscopic mix of funky beats, distorted vocals, and raw heartbreak that reimagines love as a wild, colorful fever dream.</p>
-                        <p class="rating">Rating: 9.4/10</p>
-</div>
- <div class="glass-card" onclick="window.location.href='review-srs.html'"><img src="srs.jpeg" alt="Earl Sweatshirt - Some Rap Songs album image">
-<h2>Earl Sweatshirt - Some Rap Songs</h2>
- <p>Earl Sweatshirt’s lo-fi, introspective descent—a murky, concise tangle of fragmented beats and dense rhymes that excavates grief, growth, and raw humanity.</p>
-                        <p class="rating">Rating: 9.1/10</p> 
-</div>
- <div class="glass-card" onclick="window.location.href='review-yeezus.html'"><img src="yeezus.jpeg" alt="Kanye West - Yeezus">
-<h2>Kanye West - Yeezus</h2>
- <p>Kanye West’s abrasive, revolutionary jolt—a stark, industrial clash of jagged beats and defiant rhymes that strips hip-hop to its raw, rebellious core.</p>
-                        <p class="rating">Rating: 8.5/10</p>
-</div>          
- <div class="glass-card" onclick="window.location.href='review-wwaf.html'"><img src="wwaf.jpeg" alt="Billie Eilish - When We All Fall Asleep, Where Do We Go?">
-<h2>Billie Eilish - When We All Fall Asleep, Where Do We Go?</h2>
- <p>Billie Eilish’s eerie, whispery haunt—a dark, minimalist blend of pop-trap beats and unsettling lyrics that tiptoes through teenage nightmares.</p>
-                        <p class="rating">Rating: 8.4/10</p>
-</div>
- <div class="glass-card" onclick="window.location.href='review-barter.html'"><img src="barter.jpeg" alt="Young Thug - Barter 6">
-<h2>Young Thug - Barter 6</h2>
- <p>Young Thug’s slimy, slurred breakthrough—a woozy, off-kilter mix of melodic flows and eccentric beats that redefines Atlanta trap with fearless weirdness.</p>
-                        <p class="rating">Rating: 8.2/10</p>
-</div>
- <div class="glass-card" onclick="window.location.href='review-damn.html'"><img src="damn.jpeg" alt="Kendrick Lamar - Damn">
-<h2>Kendrick Lamar - Damn</h2>
- <p>Kendrick Lamar’s visceral, soul-searching banger—a taut, dynamic blend of fierce rhymes and varied beats that wrestles with faith, fame, and fierce self-reflection.</p>
-                        <p class="rating">Rating: 8.9/10</p>
-</div>
- <div class="glass-card" onclick="window.location.href='review-pink.html'"><img src="pink.jpeg" alt="Nicki Minaj - The Pinkprint">
-<h2>Nicki Minaj - The Pinkprint</h2>
- <p>Nicki Minaj’s bold, versatile showcase—a slick mix of fierce bars, pop anthems, and raw vulnerability that balances her rap dominance with personal revelation.</p>
-                        <p class="rating">Rating: 8.1/10</p>
-</div>
- <div class="glass-card" onclick="window.location.href='review-utopia.html'"><img src="utopia.jpeg" alt="Travis Scott - Utopia">
-<h2>Travis Scott - Utopia</h2>
- <p>Travis Scott’s sprawling, dystopian epic—a chaotic, immersive blend of booming trap, experimental textures, and cinematic vibes that builds a dark, futuristic playground.</p>
-                        <p class="rating">Rating: 8.4/10</p>
-</div>
- <div class="glass-card" onclick="window.location.href='review-tlop.html'"><img src="tlop.jpeg" alt="Kanye West - The Life of Pablo">
-<h2>Kanye West - The Life of Pablo</h2>
- <p>Kanye West’s messy, eclectic gospel—a frenetic patchwork of soulful samples, jagged beats, and candid bars that revels in its chaotic brilliance.</p>
-                        <p class="rating">Rating: 8.9/10</p>
-</div>
- <div class="glass-card" onclick="window.location.href='review-fhd.html'"><img src="colee.jpeg" alt="J Cole - Forest Hills Drive">
-<h2>J Cole - Forest Hills Drive</h2>
- <p>J. Cole’s introspective homecoming—a warm, narrative-driven blend of smooth beats and honest rhymes that traces his journey from Fayetteville to fame.</p>
-                        <p class="rating">Rating: 8.6/10</p>           
-           </div>
-                </div>
+            <div class="glass-card" onclick="window.location.href='review-blonde.html'">
+                <img src="blonde.jpeg" alt="Frank Ocean - Blonde album image">
+                <h2>Frank Ocean - Blonde</h2>
+                <p class="description">Frank Ocean’s ethereal, introspective odyssey—a delicate weave of minimalist beats, poetic lyrics, and raw vulnerability that drifts through love, loss, and fleeting moments.</p>
+                <p class="rating">Rating: 9.2/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-monster.html'">
+                <img src="monster.jpeg" alt="Future - Monster album image">
+                <h2>Future - Monster</h2>
+                <p class="description">Future’s grimy, relentless street sermon—a dark, syrupy onslaught of menacing beats and cold-hearted bars that solidifies his reign as trap’s dungeon master.</p>
+                <p class="rating">Rating: 8.7/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-daytona.html'">
+                <img src="daytona.jpeg" alt="Pusha T - DAYTONA album image">
+                <h2>Pusha T - DAYTONA</h2>
+                <p class="description">Pusha T’s razor-sharp, compact triumph—a lean, menacing blend of coke-rap precision and Kanye’s gritty beats that slices through with unrelenting swagger.</p>
+                <p class="rating">Rating: 9.5/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-igor.html'">
+                <img src="igor.jpeg" alt="Tyler, the Creator - IGOR album image">
+                <h2>Tyler, the Creator - IGOR</h2>
+                <p class="description">Tyler, the Creator’s warped, emotional symphony—a kaleidoscopic mix of funky beats, distorted vocals, and raw heartbreak that reimagines love as a wild, colorful fever dream.</p>
+                <p class="rating">Rating: 9.4/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-srs.html'">
+                <img src="srs.jpeg" alt="Earl Sweatshirt - Some Rap Songs album image">
+                <h2>Earl Sweatshirt - Some Rap Songs</h2>
+                <p class="description">Earl Sweatshirt’s lo-fi, introspective descent—a murky, concise tangle of fragmented beats and dense rhymes that excavates grief, growth, and raw humanity.</p>
+                <p class="rating">Rating: 9.1/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-yeezus.html'">
+                <img src="yeezus.jpeg" alt="Kanye West - Yeezus">
+                <h2>Kanye West - Yeezus</h2>
+                <p class="description">Kanye West’s abrasive, revolutionary jolt—a stark, industrial clash of jagged beats and defiant rhymes that strips hip-hop to its raw, rebellious core.</p>
+                <p class="rating">Rating: 8.5/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-wwaf.html'">
+                <img src="wwaf.jpeg" alt="Billie Eilish - When We All Fall Asleep, Where Do We Go?">
+                <h2>Billie Eilish - When We All Fall Asleep, Where Do We Go?</h2>
+                <p class="description">Billie Eilish’s eerie, whispery haunt—a dark, minimalist blend of pop-trap beats and unsettling lyrics that tiptoes through teenage nightmares.</p>
+                <p class="rating">Rating: 8.4/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-barter.html'">
+                <img src="barter.jpeg" alt="Young Thug - Barter 6">
+                <h2>Young Thug - Barter 6</h2>
+                <p class="description">Young Thug’s slimy, slurred breakthrough—a woozy, off-kilter mix of melodic flows and eccentric beats that redefines Atlanta trap with fearless weirdness.</p>
+                <p class="rating">Rating: 8.2/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-damn.html'">
+                <img src="damn.jpeg" alt="Kendrick Lamar - Damn">
+                <h2>Kendrick Lamar - Damn</h2>
+                <p class="description">Kendrick Lamar’s visceral, soul-searching banger—a taut, dynamic blend of fierce rhymes and varied beats that wrestles with faith, fame, and fierce self-reflection.</p>
+                <p class="rating">Rating: 8.9/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-pink.html'">
+                <img src="pink.jpeg" alt="Nicki Minaj - The Pinkprint">
+                <h2>Nicki Minaj - The Pinkprint</h2>
+                <p class="description">Nicki Minaj’s bold, versatile showcase—a slick mix of fierce bars, pop anthems, and raw vulnerability that balances her rap dominance with personal revelation.</p>
+                <p class="rating">Rating: 8.1/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-utopia.html'">
+                <img src="utopia.jpeg" alt="Travis Scott - Utopia">
+                <h2>Travis Scott - Utopia</h2>
+                <p class="description">Travis Scott’s sprawling, dystopian epic—a chaotic, immersive blend of booming trap, experimental textures, and cinematic vibes that builds a dark, futuristic playground.</p>
+                <p class="rating">Rating: 8.4/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-tlop.html'">
+                <img src="tlop.jpeg" alt="Kanye West - The Life of Pablo">
+                <h2>Kanye West - The Life of Pablo</h2>
+                <p class="description">Kanye West’s messy, eclectic gospel—a frenetic patchwork of soulful samples, jagged beats, and candid bars that revels in its chaotic brilliance.</p>
+                <p class="rating">Rating: 8.9/10</p>
+            </div>
+            <div class="glass-card" onclick="window.location.href='review-fhd.html'">
+                <img src="colee.jpeg" alt="J Cole - Forest Hills Drive">
+                <h2>J Cole - Forest Hills Drive</h2>
+                <p class="description">J. Cole’s introspective homecoming—a warm, narrative-driven blend of smooth beats and honest rhymes that traces his journey from Fayetteville to fame.</p>
+                <p class="rating">Rating: 8.6/10</p>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
-        document.querySelectorAll('.glass-card').forEach(card => {
-            // Disable all 3D effects and apply consistent styling
-            card.style.transform = 'none !important';
-            card.style.transformStyle = 'flat !important';
-            card.style.perspective = 'none !important';
-            card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
+        // Theme toggle functionality for five themes
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themes = ['normal', 'satin', 'frosted', 'veazy', 'blackwhite'];
+        const themeTitles = ['Normal Mode', 'Satin Mode', 'Frosted Mode', 'Veazy Mode', 'Black & White Mode'];
+        let currentThemeIndex = 0;
 
-            // Only add simple hover effect
-            card.addEventListener('mouseenter', () => {
-                card.style.boxShadow = '0 0 20px rgba(0, 247, 255, 0.3)';
-                card.style.filter = 'brightness(1.1)';
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.boxShadow = '0 8px 32px rgba(0, 247, 255, 0.1)';
-                card.style.filter = 'brightness(1)';
-            });
+        themeToggle.addEventListener('click', () => {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            body.setAttribute('data-theme', themes[currentThemeIndex]);
+            themeToggle.setAttribute('title', themeTitles[currentThemeIndex]);
         });
+
+        // Initialize with "Normal" theme
+        body.setAttribute('data-theme', 'normal');
+        themeToggle.setAttribute('title', 'Normal Mode');
+
+        // Dropdown menu toggle
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        dropdownToggle.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
+
+        // Starfield setup
+        const universeCanvas = document.getElementById('universe');
+        universeCanvas.style.position = 'fixed';
+        universeCanvas.style.top = '0';
+        universeCanvas.style.left = '0';
+        universeCanvas.style.width = '100%';
+        universeCanvas.style.height = '100%';
+        universeCanvas.style.zIndex = '-2';
+
+        // Basic starfield animation if script.js doesn't handle it
+        if (typeof initStarfield === 'undefined') {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: universeCanvas });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            const starsGeometry = new THREE.BufferGeometry();
+            const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 1 });
+            const starVertices = [];
+
+            for (let i = 0; i < 10000; i++) {
+                const x = (Math.random() - 0.5) * 2000;
+                const y = (Math.random() - 0.5) * 2000;
+                const z = (Math.random() - 0.5) * 2000;
+                starVertices.push(x, y, z);
+            }
+
+            starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            const starField = new THREE.Points(starsGeometry, starsMaterial);
+            scene.add(starField);
+
+            camera.position.z = 1000;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                starField.rotation.y += 0.001;
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
     </script>
 </body>
 </html>
