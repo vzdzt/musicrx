@@ -10,221 +10,238 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Enhanced styles with adjustments */
         :root {
+            /* Default (Normal Mode) Variables */
             --primary: #00f7ff;
             --secondary: #ff00f7;
             --accent: #7B68EE;
-            --dark: #0a0a0a;
-            --glass: rgba(255, 255, 255, 0.1);
+            --dark: #000000;
+            --glass: rgba(255, 255, 255, 0.05);
             --glow: rgba(0, 247, 255, 0.5);
+            --rgb-glow: linear-gradient(45deg, #00f7ff, #ff00f7, #7B68EE);
+            --text-color: rgba(255, 255, 255, 0.8);
+            --background: #000000;
+            --card-background: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Satin Mode */
+        [data-theme="satin"] {
+            --primary: #FFD700;
+            --secondary: #FF6347;
+            --accent: #DA70D6;
+            --dark: #1C2526;
+            --glass: rgba(255, 215, 0, 0.1);
+            --glow: rgba(255, 215, 0, 0.4);
+            --rgb-glow: linear-gradient(45deg, #FFD700, #FF6347, #DA70D6);
+            --text-color: rgba(255, 245, 238, 0.9);
+            --background: #1C2526;
+            --card-background: rgba(255, 215, 0, 0.05);
+            --border-color: rgba(255, 215, 0, 0.1);
+        }
+
+        /* Frosted White Mode */
+        [data-theme="frosted"] {
+            --primary: #00CED1;
+            --secondary: #FF69B4;
+            --accent: #6A5ACD;
+            --dark: #F5F5F5;
+            --glass: rgba(255, 255, 255, 0.3);
+            --glow: rgba(0, 206, 209, 0.5);
+            --rgb-glow: linear-gradient(45deg, #00CED1, #FF69B4, #6A5ACD);
+            --text-color: #333333;
+            --background: #F5F5F5;
+            --card-background: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(0, 206, 209, 0.2);
         }
 
         body {
-            display: flex;
-            min-height: 100vh;
             margin: 0;
-            background: var(--dark);
+            background: var(--background);
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-color);
+            position: relative;
         }
 
-        /* Sidebar (Keeping Current Setup) */
-        .sidebar {
-            width: 60px;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 1rem 0;
+        [data-theme="satin"] body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 245, 238, 0.1);
+            backdrop-filter: blur(2px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        [data-theme="frosted"] body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(3px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        #universe {
             position: fixed;
             top: 0;
-            bottom: 0;
             left: 0;
-            z-index: 1000;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            transition: width 0.3s ease;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
 
-        .sidebar:hover {
-            width: 200px;
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--dark);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            z-index: 1002;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            height: 60px;
         }
 
-        .sidebar-logo {
+        .nav-logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
+            margin-left: 1rem;
         }
 
-        .sidebar-logo .musicrx-logo {
+        .nav-logo .logo-symbol i {
+            color: var(--primary);
             font-size: 1.5rem;
-            color: var(--primary);
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .sidebar:hover .musicrx-logo {
-            opacity: 1;
-        }
-
-        .sidebar-logo .logo-symbol {
-            color: var(--primary);
-            font-size: 1.2rem;
             animation: pulse-heart 1.5s ease-in-out infinite;
         }
 
         @keyframes pulse-heart {
             0%, 100% { color: var(--primary); transform: scale(1); }
-            50% { color: red; transform: scale(1.2); }
+            50% { color: var(--secondary); transform: scale(1.2); }
         }
 
-        .sidebar-nav ul {
+        .dropdown {
+            position: relative;
+            margin-right: 1rem;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-toggle:hover {
+            color: transparent;
+            background: var(--rgb-glow);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--dark);
+            backdrop-filter: blur(10px);
+            border-radius: 0 0 10px 10px;
+            padding: 1rem;
+            width: 200px;
+            z-index: 1003;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-menu ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .sidebar-nav ul li {
-            margin-bottom: 1.5rem;
-            text-align: center;
+        .dropdown-menu li {
+            margin-bottom: 1rem;
         }
 
-        .sidebar-nav ul li a {
-            color: rgba(255, 255, 255, 0.8);
+        .dropdown-menu a {
+            color: var(--text-color);
             text-decoration: none;
             font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem;
-            border-radius: 5px;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
             transition: all 0.3s ease;
-            flex-direction: column;
         }
 
-        .sidebar-nav ul li a i {
-            margin-bottom: 0.3rem;
-            font-size: 1.2rem;
-        }
-
-        .sidebar-nav ul li a span {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .sidebar:hover .sidebar-nav ul li a span {
-            display: inline;
-            opacity: 1;
-        }
-
-        .sidebar-nav ul li a:hover {
-            color: var(--primary);
-            background: rgba(255, 255, 255, 0.1);
+        .dropdown-menu a:hover {
+            color: transparent;
+            background: var(--rgb-glow);
+            -webkit-background-clip: text;
+            background-clip: text;
             text-shadow: 0 0 10px var(--primary);
         }
 
-        .sidebar-actions {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .sidebar-actions button {
-            background: var(--glass);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 0.5rem;
-            border-radius: 5px;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 40px;
-            margin: 0 auto 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .sidebar:hover .sidebar-actions button {
-            width: 100%;
-        }
-
-        .sidebar-actions button i {
-            margin: 0;
-        }
-
-        .sidebar-actions button span {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .sidebar:hover .sidebar-actions button span {
-            display: inline;
-            opacity: 1;
-        }
-
-        .sidebar-actions button:hover {
-            background: var(--primary);
-            color: var(--dark);
-            box-shadow: 0 0 15px var(--primary);
-        }
-
-        /* Main Content */
         .main-content {
-            margin-left: 60px;
-            width: calc(100% - 60px);
+            margin-left: 0;
+            width: 100%;
             padding: 2rem;
-            overflow-y: auto;
-            transition: margin-left 0.3s ease, width 0.3s ease;
+            position: relative;
+            z-index: 1;
+            margin-top: 60px;
+            flex: 1 0 auto;
         }
 
-        .sidebar:hover ~ .main-content {
-            margin-left: 200px;
-            width: calc(100% - 200px);
-        }
-
-        /* Hero Section */
         .hero {
             height: 80vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 4rem 2rem;
+            padding: 0;
             position: relative;
-            overflow: hidden;
-        }
-
-        .glitch {
-            font-size: 6rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--primary);
-            text-shadow: 
-                0 0 10px var(--primary),
-                0 0 20px var(--primary),
-                0 0 40px var(--primary);
-            font-family: 'Orbitron', sans-serif;
-            margin-bottom: 1rem;
-            animation: glitchFade 3s ease-in-out infinite;
-        }
-
-        @keyframes glitchFade {
-            0%, 100% { opacity: 1; transform: translate(0, 0); }
-            50% { opacity: 0.8; transform: translate(2px, -2px); }
+            text-align: center;
+            transform: translateX(-50px);
         }
 
         .heartbeat-text {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             letter-spacing: 0.3em;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-color);
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
             position: relative;
             margin-bottom: 3rem;
+            opacity: 0.7;
+            text-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .heartbeat-text:hover {
+            opacity: 1;
+            text-shadow: 0 0 10px var(--primary);
         }
 
         .heartbeat-line {
@@ -234,7 +251,7 @@
             transform: translateX(-50%);
             width: 50%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            background: var(--rgb-glow);
             animation: heartMonitor 1.5s ease-in-out infinite;
         }
 
@@ -250,75 +267,116 @@
             100% { transform: translateX(-50%) scaleX(0); opacity: 0; }
         }
 
-        /* Quote Machine */
-        .quote-container {
-            margin: 2rem 0;
+        .magic-search {
+            max-width: 350px;
+            width: 100%;
+            text-align: center;
             background: var(--glass);
             backdrop-filter: blur(15px);
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1.5rem 2rem;
-            max-width: 600px;
-            text-align: center;
-            transition: all 0.5s ease;
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .magic-search:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--glow);
+            background: var(--rgb-glow);
+            background-size: 200% 200%;
+            animation: rgbShift 3s linear infinite;
+        }
+
+        @keyframes rgbShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .magic-search-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .magic-search input {
+            width: 300px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            background: var(--dark);
+            color: var(--text-color);
+            border-radius: 5px 0 0 5px;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-right: 0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .magic-search input:hover {
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .magic-search input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .magic-search button {
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--border-color);
+            background: var(--glass);
+            color: var(--primary);
+            border-radius: 0 5px 5px 0;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
-            position: relative;
+            transition: all 0.3s ease;
+            border-left: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .quote-container:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(0, 247, 255, 0.4);
-            border-color: var(--primary);
+        .magic-search button:hover {
+            background: var(--rgb-glow);
+            box-shadow: 0 0 20px var(--secondary);
+            color: var(--dark);
         }
 
-        .quote-prompt {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
+        #magicAnswer {
+            margin-top: 1rem;
+            font-size: 1.1rem;
             color: var(--primary);
             font-family: 'Syncopate', sans-serif;
-            font-size: 0.9rem;
             text-transform: uppercase;
-            opacity: 0.8;
-            animation: pulse 2s infinite;
+            width: 100%;
+            text-align: center;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 0.4; }
+        @media (max-width: 768px) {
+            .magic-search {
+                max-width: 90%;
+                padding: 1.5rem;
+            }
+
+            .magic-search-bar {
+                max-width: 100%;
+            }
+
+            .magic-search input {
+                width: 100%;
+                border-radius: 5px;
+                margin-bottom: 1rem;
+            }
+
+            .magic-search button {
+                border-radius: 5px;
+                border: 1px solid var(--primary);
+            }
         }
 
-        .quote-content {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: white;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .quote-content span {
-            display: inline-block;
-            transition: all 0.25s ease;
-        }
-
-        .quote-content span:hover {
-            color: var(--primary);
-            text-shadow: 
-                2px 2px var(--secondary),
-                -2px -2px var(--accent);
-            transform: translate(2px, -2px);
-        }
-
-        .quote-author {
-            margin-top: 1rem;
-            font-style: italic;
-            opacity: 0.8;
-            color: var(--primary);
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* Scroll Sections */
         .scroll-section {
             padding: 2rem;
             margin: 2rem 0;
@@ -353,36 +411,63 @@
         .scroll-item {
             flex: 0 0 300px;
             min-width: 300px;
-            background: var(--glass);
+            background: var(--card-background);
             border-radius: 12px;
             padding: 1rem;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(15px);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0.8;
             transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 400px;
+            z-index: 1;
         }
 
         .scroll-item:hover {
+            opacity: 1;
+            box-shadow: 0 0 20px var(--glow);
+            background: var(--rgb-glow);
+            background-size: 200% 200%;
+            animation: rgbShift 3s linear infinite;
             transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
         }
 
         .scroll-item img {
             width: 100%;
-            height: 200px;
+            height: 300px;
             object-fit: cover;
             border-radius: 8px;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .scroll-item h3 {
             font-size: 1.1rem;
-            color: white;
-            margin: 0.5rem 0 0.2rem;
+            color: var(--text-color);
+            margin: 0.3rem 0 0.2rem;
             font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .scroll-item:hover h3 {
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .scroll-item a {
+            text-decoration: none;
+            color: inherit;
         }
 
         .scroll-item p {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-color);
             margin: 0;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .section-header {
@@ -397,6 +482,11 @@
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
             font-size: 1.5rem;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .section-title:hover {
+            text-shadow: 0 0 10px var(--primary);
         }
 
         .scroll-nav {
@@ -406,152 +496,195 @@
 
         .scroll-button {
             background: var(--glass);
-            border: 1px solid var(--primary);
+            border: 1px solid var(--border-color);
             color: var(--primary);
             padding: 0.5rem 1rem;
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .scroll-button:hover {
-            background: var(--primary);
+            background: var(--rgb-glow);
             color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
         }
 
-        /* Back to Top Button */
-        #backToTop {
+        #backToTop, #musicToggle, #tipMachine, #themeToggle {
             position: fixed;
-            bottom: 80px;
-            right: 20px;
             background: var(--glass);
-            border: 1px solid var(--primary);
+            border: 1px solid var(--border-color);
             color: var(--primary);
             padding: 0.8rem;
             border-radius: 50%;
             cursor: pointer;
-            display: none;
-            z-index: 1000;
             transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
         }
 
-        #backToTop:hover {
-            background: var(--primary);
-            color: var(--dark);
-            box-shadow: 0 0 20px var(--primary);
+        #backToTop {
+            bottom: 80px;
+            right: 20px;
+            display: none;
         }
 
-        /* Toggle and Tip Buttons */
-        #musicToggle, #tipMachine {
-            position: fixed;
+        #musicToggle {
+            bottom: 20px;
+            right: 120px;
+        }
+
+        #themeToggle {
             bottom: 20px;
             right: 70px;
-            z-index: 1001;
-            background: var(--glass);
-            border: 1px solid var(--primary);
+        }
+
+        #themeToggle[title="Normal Mode"] i {
             color: var(--primary);
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-right: 60px; /* Space between buttons */
+        }
+
+        #themeToggle[title="Satin Mode"] i {
+            color: #FFD700;
+        }
+
+        #themeToggle[title="Frosted Mode"] i {
+            color: #00CED1;
         }
 
         #tipMachine {
-            right: 20px; /* Position next to music toggle */
+            bottom: 20px;
+            right: 20px;
         }
 
-        #musicToggle:hover, #tipMachine:hover {
-            background: var(--primary);
+        #backToTop:hover, #musicToggle:hover, #tipMachine:hover, #themeToggle:hover {
+            background: var(--rgb-glow);
             color: var(--dark);
             box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
         }
 
-        /* Newsletter Signup */
-        .newsletter-section {
-            padding: 4rem 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            text-align: center;
-            margin: 4rem 0;
-            border-top: 1px solid var(--primary);
-            border-bottom: 1px solid var(--primary);
-        }
-
-        .newsletter-section h2 {
-            color: var(--primary);
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .newsletter-section p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-        }
-
-        .newsletter-form {
+        .footer {
+            background: var(--dark);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+            z-index: 1001;
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            width: 100%;
+            flex-wrap: nowrap;
         }
 
-        .newsletter-form input {
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--primary);
+        .footer .nav-logo {
+            flex: 0 0 auto;
+            margin-left: 1rem;
+        }
+
+        .footer .logo-symbol i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            animation: pulse-heart 1.5s ease-in-out infinite;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            text-align: center;
+            margin: 0 1rem;
+        }
+
+        .footer-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .footer .newsletter-form {
+            flex: 0 0 auto;
+            display: flex;
+            gap: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .footer .newsletter-form input {
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
             background: var(--glass);
-            color: white;
+            color: var(--text-color);
             border-radius: 5px;
             font-family: 'Space Grotesk', sans-serif;
-            width: 100%;
-            max-width: 300px;
+            width: 150px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
         }
 
-        .newsletter-form input::placeholder {
+        .footer .newsletter-form input:hover {
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .footer .newsletter-form input::placeholder {
             color: rgba(255, 255, 255, 0.5);
         }
 
-        .newsletter-form button {
-            background: var(--primary);
-            border: none;
-            color: var(--dark);
-            padding: 0.8rem 2rem;
+        .footer .newsletter-form button {
+            background: var(--glass);
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
             border-radius: 5px;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .newsletter-form button:hover {
-            background: var(--secondary);
+        .footer .newsletter-form button:hover {
+            background: var(--rgb-glow);
             box-shadow: 0 0 20px var(--secondary);
+            color: var(--dark);
+            animation: rgbShift 3s linear infinite;
         }
 
-        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .sidebar {
-                width: 60px;
-            }
-
             .main-content {
-                margin-left: 60px;
-                width: calc(100% - 60px);
+                margin-left: 0;
+                width: 100%;
             }
 
-            .glitch {
-                font-size: 3rem;
+            .hero {
+                padding: 0 1rem;
+                transform: translateX(-50px);
             }
 
             .heartbeat-text {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
 
-            .quote-container {
+            .magic-search {
                 max-width: 90%;
-                padding: 1rem;
+                padding: 1.5rem;
+                flex-direction: column;
+            }
+
+            .magic-search input {
+                width: 100%;
+                border-radius: 5px;
+                margin-bottom: 1rem;
+            }
+
+            .magic-search button {
+                border-radius: 5px;
+                border: 1px solid var(--primary);
             }
 
             .scroll-section {
@@ -561,116 +694,106 @@
             .scroll-item {
                 flex: 0 0 250px;
                 min-width: 250px;
+                height: 350px;
+            }
+
+            .scroll-item img {
+                height: 250px;
             }
 
             .section-title {
                 font-size: 1.2rem;
             }
 
-            #musicToggle, #tipMachine {
+            #musicToggle, #themeToggle, #tipMachine {
                 bottom: 10px;
+            }
+
+            #musicToggle {
+                right: 120px;
+            }
+
+            #themeToggle {
                 right: 70px;
             }
 
             #tipMachine {
                 right: 10px;
             }
+
+            .footer {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0.5rem;
+                height: 60px;
+            }
+
+            .footer .nav-logo {
+                margin-left: 0.5rem;
+            }
+
+            .footer-content p {
+                font-size: 0.8rem;
+            }
+
+            .footer .newsletter-form {
+                margin-right: 0.5rem;
+            }
+
+            .footer .newsletter-form input {
+                width: 100px;
+            }
         }
     </style>
 </head>
-<body>
-    <!-- Music Toggle -->
+<body class="home">
     <audio id="bgMusic" loop>
         <source src="https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3" type="audio/mpeg">
     </audio>
-    <button id="musicToggle" style="position: fixed; bottom: 20px; right: 70px; z-index: 1001; background: var(--glass); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">
-        <i class="fas fa-music"></i>
-    </button>
+    <button id="musicToggle"><i class="fas fa-music"></i></button>
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="tipMachine"><i class="fas fa-donate"></i></button>
+    <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- Tip Machine Button -->
-    <button id="tipMachine" style="position: fixed; bottom: 20px; right: 20px; z-index: 1001; background: var(--glass); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">
-        <i class="fas fa-donate"></i>
-    </button>
-
-    <!-- Back to Top Button -->
-    <button id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
     <canvas id="universe"></canvas>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-logo">
-            <div class="musicrx-logo">MusicRx</div>
-            <div class="logo-symbol">
-                <i class="fas fa-heartbeat"></i>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
         </div>
-        <nav class="sidebar-nav">
-            <ul>
-                <li><a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
-                <li><a href="reviews.html"><i class="fas fa-star"></i> <span>Reviews</span></a></li>
-                <li><a href="features.html"><i class="fas fa-user"></i> <span>Features</span></a></li>
-                <li><a href="news.html"><i class="fas fa-newspaper"></i> <span>News</span></a></li>
-                <li><a href="opinions.html"><i class="fas fa-comment"></i> <span>Opinions</span></a></li>
-                <li><a href="catchcarti.html"><i class="fas fa-compact-disc"></i> <span>Catch Carti</span></a></li>
-                <li><a href="shop.html"><i class="fas fa-shopping-cart"></i> <span>Shop</span></a></li>
-                <li><a href="about.html"><i class="fas fa-info-circle"></i> <span>About</span></a></li>
-                <li><a href="contact.html"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
-            </ul>
-        </nav>
-        <div class="sidebar-actions">
-            <button><i class="fas fa-plus"></i> <span>Create Playlist</span></button>
-            <button><i class="fas fa-podcast"></i> <span>Find Podcasts</span></button>
-        </div>
-    </div>
+    </nav>
 
-    <!-- Main Content -->
     <div class="main-content">
         <section class="hero">
-            <h1 class="glitch" data-text="MusicRx">MusicRx</h1>
             <p class="heartbeat-text">
                 MUSIC IS MY THERAPY
                 <span class="heartbeat-line"></span>
             </p>
-            <div class="quote-container">
-                <div class="quote-prompt">Click Me</div>
-                <p class="quote-content">Music washes away from the soul the dust of everyday life. <span class="quote-author">- Berthold Auerbach</span></p>
-            </div>
-        </section>
-
-        <!-- Trending Songs -->
-        <section class="scroll-section" id="trending">
-            <div class="section-header">
-                <h2 class="section-title">Trending Songs</h2>
-                <div class="scroll-nav">
-                    <button class="scroll-button" onclick="scroll('trending-scroll', -300)">←</button>
-                    <button class="scroll-button" onclick="scroll('trending-scroll', 300)">→</button>
+            <div class="magic-search">
+                <div class="magic-search-bar">
+                    <input type="text" id="magicInput" placeholder="Ask the Music Oracle...">
+                    <button id="magicButton"><i class="fas fa-search"></i></button>
                 </div>
+                <p id="magicAnswer"></p>
             </div>
-            <div class="scroll-container" id="trending-scroll">
-                <a href="#" class="scroll-item">
-                    <img src="images/eviljordan.jpg" alt="Evil Jordan">
-                    <h3>Evil Jordan</h3>
-                    <p>Playboi Carti</p>
-                </a>
-                <a href="#" class="scroll-item">
-                    <img src="images/thegiver.jpg" alt="The Giver">
-                    <h3>The Giver</h3>
-                    <p>Chappell Roan</p>
-                </a>
-                <a href="#" class="scroll-item">
-                    <img src="images/darkthoughts.jpg" alt="Dark Thoughts">
-                    <h3>Dark Thoughts</h3>
-                    <p>Lil Tecca</p>
-                </a>
-            </div>
-        </section>
+        </section>        
 
-        <!-- Featured Artists -->
         <section class="scroll-section" id="featured-artists">
             <div class="section-header">
                 <h2 class="section-title">Featured Artists</h2>
@@ -681,24 +804,23 @@
             </div>
             <div class="scroll-container" id="featured-artists-scroll">
                 <a href="features-kendrick.html" class="scroll-item">
-                    <img src="images/kdot.jpeg" alt="Kendrick Lamar">
+                    <img src="kdot.jpeg" alt="Kendrick Lamar">
                     <h3>Kendrick Lamar</h3>
                     <p>Hip-Hop Legend</p>
                 </a>
                 <a href="features-drake.html" class="scroll-item">
-                    <img src="images/ap-drake2.jpeg" alt="Drake">
+                    <img src="ap-drake2.jpeg" alt="Drake">
                     <h3>Drake</h3>
                     <p>Chart-Topping Star</p>
                 </a>
                 <a href="features-travis.html" class="scroll-item">
-                    <img src="images/flame.jpeg" alt="Travis Scott">
+                    <img src="flame.jpeg" alt="Travis Scott">
                     <h3>Travis Scott</h3>
                     <p>Rap Innovator</p>
                 </a>
             </div>
         </section>
 
-        <!-- Album Reviews -->
         <section class="scroll-section" id="album-reviews">
             <div class="section-header">
                 <h2 class="section-title">Album Reviews</h2>
@@ -709,27 +831,26 @@
             </div>
             <div class="scroll-container" id="album-reviews-scroll">
                 <a href="review-slim.html" class="scroll-item">
-                    <img src="images/marshallmathers.jpeg" alt="The Slim Shady LP">
+                    <img src="marshallmathers.jpeg" alt="The Slim Shady LP">
                     <h3>The Slim Shady LP</h3>
                     <p>Eminem</p>
                 </a>
                 <a href="review-gkmc.html" class="scroll-item">
-                    <img src="images/gkmc3.jpeg" alt="good kid, m.A.A.d city">
+                    <img src="gkmc3.jpeg" alt="good kid, m.A.A.d city">
                     <h3>good kid, m.A.A.d city</h3>
                     <p>Kendrick Lamar</p>
                 </a>
                 <a href="review-nwts.html" class="scroll-item">
-                    <img src="images/nwts.jpeg" alt="Nothing Was The Same">
+                    <img src="nwts.jpeg" alt="Nothing Was The Same">
                     <h3>Nothing Was The Same</h3>
                     <p>Drake</p>
                 </a>
             </div>
         </section>
 
-        <!-- Opinions -->
         <section class="scroll-section" id="opinions">
             <div class="section-header">
-                <h2 class="section-title">Opinions</h2>
+                <h2 class="section-title">Opinions & Trending</h2>
                 <div class="scroll-nav">
                     <button class="scroll-button" onclick="scroll('opinions-scroll', -300)">←</button>
                     <button class="scroll-button" onclick="scroll('opinions-scroll', 300)">→</button>
@@ -751,10 +872,24 @@
                     <h3>AI in Music</h3>
                     <p>Is artificial intelligence the future of creativity?</p>
                 </a>
+                <a href="#" class="scroll-item">
+                    <img src="images/eviljordan.jpg" alt="Evil Jordan">
+                    <h3>Evil Jordan</h3>
+                    <p>Playboi Carti</p>
+                </a>
+                <a href="#" class="scroll-item">
+                    <img src="images/thegiver.jpg" alt="The Giver">
+                    <h3>The Giver</h3>
+                    <p>Chappell Roan</p>
+                </a>
+                <a href="#" class="scroll-item">
+                    <img src="images/darkthoughts.jpg" alt="Dark Thoughts">
+                    <h3>Dark Thoughts</h3>
+                    <p>Lil Tecca</p>
+                </a>
             </div>
         </section>
 
-        <!-- News -->
         <section class="scroll-section" id="news">
             <div class="section-header">
                 <h2 class="section-title">News</h2>
@@ -766,7 +901,7 @@
             <div class="scroll-container" id="news-scroll">
                 <a href="news.html" class="scroll-item">
                     <img src="images/carti-news.jpg" alt="Playboi Carti News">
-                    <h3>Playboi Carti Drops "I Am Music"</h3>
+                    <h3>Playboi Carti Drops 'I Am Music'</h3>
                     <p>March 15, 2025</p>
                 </a>
                 <a href="news.html" class="scroll-item">
@@ -781,41 +916,127 @@
                 </a>
             </div>
         </section>
-
-        <!-- Newsletter Signup Section -->
-        <section class="newsletter-section">
-            <h2>Join the MusicRx Community</h2>
-            <p>Get the latest music news, reviews, and exclusive content delivered to your inbox.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
-        </section>
     </div>
 
-    <script src="script.js"></script>
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>Join the MusicRx Community - Subscribe for Updates</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+
     <script>
-        // Scroll function for horizontal scrolling sections
-        function scroll(elementId, amount) {
-            const container = document.getElementById(elementId);
+        // Three.js Starfield and Supernova Effect
+        let scene, camera, renderer, stars = [], supernovaParticles = [];
+        let mouse = { x: 0, y: 0 }, previousMouse = { x: 0, y: 0 };
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('universe'), alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.position.z = 5;
+
+            // Stars
+            for (let i = 0; i < 200; i++) {
+                let star = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.1, 24, 24),
+                    new THREE.MeshBasicMaterial({ color: 0xffffff })
+                );
+                star.position.set(
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100
+                );
+                scene.add(star);
+                stars.push(star);
+            }
+
+            // Animation Loop
+            function animate() {
+                requestAnimationFrame(animate);
+                stars.forEach(star => {
+                    star.position.z += 0.1;
+                    if (star.position.z > 50) star.position.z = -50;
+                });
+
+                // Supernova Effect on Mouse Move
+                if (Math.abs(mouse.x - previousMouse.x) > 5 || Math.abs(mouse.y - previousMouse.y) > 5) {
+                    createSupernova(mouse.x, mouse.y);
+                    previousMouse.x = mouse.x;
+                    previousMouse.y = mouse.y;
+                }
+
+                supernovaParticles.forEach((particle, index) => {
+                    particle.position.x += (Math.random() - 0.5) * 0.5;
+                    particle.position.y += (Math.random() - 0.5) * 0.5;
+                    particle.material.opacity -= 0.02;
+                    if (particle.material.opacity <= 0) {
+                        scene.remove(particle);
+                        supernovaParticles.splice(index, 1);
+                    }
+                });
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Mouse Move Handler
+            document.addEventListener('mousemove', (e) => {
+                mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+            });
+
+            // Resize Handler
+            window.addEventListener('resize', () => {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+            });
+        }
+
+        function createSupernova(x, y) {
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            for (let i = 0; i < 50; i++) {
+                const theta = Math.random() * Math.PI * 2;
+                const radius = Math.random() * 2;
+                vertices.push(
+                    x + Math.cos(theta) * radius,
+                    y + Math.sin(theta) * radius,
+                    0
+                );
+            }
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+            const material = new THREE.PointsMaterial({
+                color: 0xff00ff,
+                size: 0.5,
+                transparent: true,
+                opacity: 1
+            });
+            const particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+            supernovaParticles.push(particles);
+        }
+
+        init();
+
+        // Scroll Function
+        function scroll(containerId, amount) {
+            const container = document.getElementById(containerId);
             container.scrollBy({ left: amount, behavior: 'smooth' });
         }
 
-        // Quote Machine Click Handler
+        // DOM Content Loaded Event Listener for All Interactive Elements
         document.addEventListener('DOMContentLoaded', () => {
-            const quoteContainer = document.querySelector('.quote-container');
-            if (quoteContainer) {
-                quoteContainer.addEventListener('click', getNewQuote);
-                // Hide prompt after first click
-                quoteContainer.addEventListener('click', () => {
-                    const prompt = quoteContainer.querySelector('.quote-prompt');
-                    if (prompt) prompt.style.display = 'none';
-                }, { once: true });
-            }
-        });
-
-        // Back to Top Button Logic
-        document.addEventListener('DOMContentLoaded', () => {
+            // Back to Top Logic
             const backToTop = document.getElementById('backToTop');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
@@ -831,18 +1052,46 @@
                     behavior: 'smooth'
                 });
             });
-        });
 
-        // Newsletter Form Submission (Placeholder)
-        document.addEventListener('DOMContentLoaded', () => {
-            const newsletterForm = document.querySelector('.newsletter-form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    alert('Thank you for subscribing to MusicRx!');
-                    newsletterForm.reset();
-                });
-            }
+            // Dropdown Toggle Logic
+            document.querySelector('.dropdown-toggle').addEventListener('click', function() {
+                const menu = this.nextElementSibling;
+                if (menu && menu.classList.contains('dropdown-menu')) {
+                    menu.classList.toggle('active');
+                }
+            });
+
+            // Theme Toggle Logic
+            const themeToggle = document.getElementById('themeToggle');
+            const themes = ['normal', 'satin', 'frosted'];
+            const themeLabels = ['Normal Mode', 'Satin Mode', 'Frosted Mode'];
+            let currentThemeIndex = 0;
+
+            // Set default theme to normal
+            document.documentElement.setAttribute('data-theme', themes[currentThemeIndex]);
+            themeToggle.setAttribute('title', themeLabels[currentThemeIndex]);
+
+            themeToggle.addEventListener('click', () => {
+                currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+                document.documentElement.setAttribute('data-theme', themes[currentThemeIndex]);
+                themeToggle.setAttribute('title', themeLabels[currentThemeIndex]);
+            });
+
+            // Music Toggle Logic
+            const musicToggle = document.getElementById('musicToggle');
+            const bgMusic = document.getElementById('bgMusic');
+            let isPlaying = false;
+
+            musicToggle.addEventListener('click', () => {
+                if (isPlaying) {
+                    bgMusic.pause();
+                    musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+                } else {
+                    bgMusic.play();
+                    musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+                }
+                isPlaying = !isPlaying;
+            });
         });
     </script>
 </body>
