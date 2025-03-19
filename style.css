@@ -1,765 +1,1600 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - Reviews</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Default (Normal Mode) Variables */
-        :root {
-            --primary: #00f7ff;
-            --secondary: #ff00f7;
-            --accent: #7B68EE;
-            --dark: #000000;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glow: rgba(0, 247, 255, 0.5);
-            --rgb-glow: linear-gradient(45deg, #00f7ff, #ff00f7, #7B68EE);
-            --text-color: rgba(255, 255, 255, 0.8);
-            --background: #000000;
-            --card-background: rgba(255, 255, 255, 0.05);
-            --border-color: rgba(255, 255, 255, 0.05);
-        }
+<style>
+:root {
+  --primary: #00f7ff;
+  --secondary: #ff00f7;
+  --accent: #7B68EE;
+  --dark: #0a0a0a;
+  --glass: rgba(255, 255, 255, 0.1);
+}
 
-        /* Satin Mode */
-        [data-theme="satin"] {
-            --primary: #FFD700;
-            --secondary: #FF6347;
-            --accent: #DA70D6;
-            --dark: #1C2526;
-            --glass: rgba(255, 215, 0, 0.1);
-            --glow: rgba(255, 215, 0, 0.4);
-            --rgb-glow: linear-gradient(45deg, #FFD700, #FF6347, #DA70D6);
-            --text-color: rgba(255, 245, 238, 0.9);
-            --background: #1C2526;
-            --card-background: rgba(255, 215, 0, 0.05);
-            --border-color: rgba(255, 215, 0, 0.1);
-        }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        /* Frosted White Mode */
-        [data-theme="frosted"] {
-            --primary: #00CED1;
-            --secondary: #FF69B4;
-            --accent: #6A5ACD;
-            --dark: #F5F5F5;
-            --glass: rgba(255, 255, 255, 0.3);
-            --glow: rgba(0, 206, 209, 0.5);
-            --rgb-glow: linear-gradient(45deg, #00CED1, #FF69B4, #6A5ACD);
-            --text-color: #333333;
-            --background: #F5F5F5;
-            --card-background: rgba(255, 255, 255, 0.7);
-            --border-color: rgba(0, 206, 209, 0.2);
-        }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: #0a0a0a;
+  color: #fff;
+  overflow-x: hidden;
+  perspective: 2000px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-        /* Veazy (Neon Green) Mode */
-        [data-theme="veazy"] {
-            --primary: #00ff00;
-            --secondary: #47ff47;
-            --accent: #83ff83;
-            --dark: #1a1a1a;
-            --glass: rgba(188, 255, 188, 0.1);
-            --glow: rgba(244, 255, 244, 0.5);
-            --rgb-glow: linear-gradient(45deg, #00ff00, #47ff47, #83ff83);
-            --text-color: #f4fff4;
-            --background: #1a1a1a;
-            --card-background: rgba(188, 255, 188, 0.05);
-            --border-color: rgba(244, 255, 244, 0.2);
-        }
+.container {
+  flex: 1;
+  padding-bottom: 2rem;
+}
 
-        /* Black & White Mode */
-        [data-theme="blackwhite"] {
-            --primary: #ffffff;
-            --secondary: #cccccc;
-            --accent: #999999;
-            --dark: #000000;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glow: rgba(255, 255, 255, 0.3);
-            --rgb-glow: linear-gradient(45deg, #ffffff, #cccccc, #999999);
-            --text-color: #ffffff;
-            --background: #000000;
-            --card-background: rgba(255, 255, 255, 0.05);
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
+.content-container {
+  margin-bottom: 4rem;
+}
 
-        body {
-            margin: 0;
-            background: var(--background);
-            font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            color: var(--text-color);
-            position: relative;
-        }
+.site-footer {
+  position: relative;
+  width: 100%;
+  margin-top: 4rem;
+}
 
-        [data-theme="satin"] body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 245, 238, 0.1);
-            backdrop-filter: blur(2px);
-            z-index: 0;
-            pointer-events: none;
-        }
+nav {
+  position: fixed;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  top: 0; /* Ensure nav stays at top for all pages */
+  left: 0; /* Align to left edge */
+  width: 100%; /* Full width for consistency across pages */
+}
 
-        [data-theme="frosted"] body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(3px);
-            z-index: 0;
-            pointer-events: none;
-        }
+@media (min-width: 769px) {
+  nav {
+    top: 0;
+    width: 100%;
+    flex-direction: row;
+  }
 
-        [data-theme="veazy"] body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(244, 255, 244, 0.05);
-            backdrop-filter: blur(2px);
-            z-index: 0;
-            pointer-events: none;
-        }
+  .nav-links {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
 
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--dark);
-            backdrop-filter: blur(10px);
-            padding: .5rem;
-            z-index: 1002;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            height: 60px;
-        }
+@media (max-width: 768px) {
+  nav {
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    flex-direction: column;
+    padding: 2rem 1rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    background: rgba(10, 10, 10, 0.95);
+    z-index: 1000;
+  }
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            margin-left: 1rem;
-        }
+  nav::after {
+    content: '☰';
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    color: var(--primary);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+  }
 
-        .nav-logo .logo-symbol i {
-            color: var(--primary);
-            font-size: 1.5rem;
-            animation: pulse-heart 1.5s ease-in-out infinite;
-        }
+  nav:hover,
+  nav:focus-within {
+    transform: translateX(0);
+  }
 
-        @keyframes pulse-heart {
-            0%, 100% { color: var(--primary); transform: scale(1); }
-            50% { color: var(--secondary); transform: scale(1.2); }
-        }
+  .nav-links {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
 
-        .dropdown {
-            position: relative;
-            margin-right: 1rem;
-        }
+  .nav-logo {
+    margin: 0;
+  }
 
-        .dropdown-toggle {
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            transition: all 0.3s ease;
-        }
+  /* Add mobile-specific adjustments to remove sidebar space */
+  body {
+    width: 100vw; /* Force full viewport width */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+  }
 
-        .dropdown-toggle:hover {
-            color: transparent;
-            background: var(--rgb-glow);
-            -webkit-background-clip: text;
-            background-clip: text;
-            text-shadow: 0 0 10px var(--primary);
-        }
+  nav {
+    width: 100vw; /* Ensure nav spans full width on mobile */
+    max-width: 100%; /* Prevent overflow */
+    right: 0; /* Ensure no gap on right */
+  }
 
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: var(--dark);
-            backdrop-filter: blur(10px);
-            border-radius: 0 0 10px 10px;
-            padding: 1rem;
-            width: 200px;
-            z-index: 1003;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
+  .search-container {
+    max-width: 100%; /* Full width within nav */
+    margin-right: 0; /* Remove right margin causing shift */
+    margin-left: 0; /* Remove left margin */
+    padding: 0 0.5rem; /* Minimal padding */
+    display: flex;
+    justify-content: center; /* Center search bar */
+  }
 
-        .dropdown-menu.active {
-            display: block;
-        }
+  .search-input {
+    width: 90%; /* Slightly less than full width for padding */
+    max-width: 280px; /* Cap width to avoid overflow */
+    margin: 0 auto; /* Center within container */
+  }
+}
 
-        .dropdown-menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+.search-container {
+  flex: 1;
+  max-width: 300px;
+  margin-right: 2rem;
+  margin-left: 1rem;
+}
 
-        .dropdown-menu li {
-            margin-bottom: 1rem;
-        }
+.search-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: all 0.3s ease;
+}
 
-        .dropdown-menu a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+}
 
-        .dropdown-menu a:hover {
-            color: transparent;
-            background: var(--rgb-glow);
-            -webkit-background-clip: text;
-            background-clip: text;
-            text-shadow: 0 0 10px var(--primary);
-        }
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
 
-        .search-container {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-        }
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
 
-        .search-input {
-            border: 2px solid var(--primary);
-            background: var(--card-background);
-            color: var(--text-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-family: 'Space Grotesk', sans-serif;
-            width: 50%;
-            max-width: 300px;
-            transition: all 0.3s ease;
-        }
+.nav-logo .musicrx-logo {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 1.2rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  animation: rgbGlow 3s infinite;
+}
 
-        .search-input:focus {
-            box-shadow: 0 0 15px var(--glow);
-            outline: none;
-        }
+.nav-logo:hover .musicrx-logo {
+  animation: rgbGlow 3s infinite, heartbeatPulse 1s infinite;
+}
 
-        .theme-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--glass);
-            border: 1px solid var(--border-color);
-            color: var(--primary);
-            padding: 0.8rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-            z-index: 1001;
-        }
+.nav-logo .logo-symbol {
+  color: var(--primary);
+  animation: pulse 1s infinite;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
-        .theme-toggle:hover {
-            background: var(--rgb-glow);
-            color: var(--dark);
-            box-shadow: 0 0 20px var(--primary);
-            animation: rgbShift 3s linear infinite;
-            transform: translateY(-3px);
-        }
+.nav-logo .logo-symbol i {
+  color: red;
+  transform-origin: center;
+  animation: heartbeatPulse 1s infinite;
+}
 
-        @keyframes rgbShift {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
+@keyframes rgbGlow {
+  0% { text-shadow: 0 0 10px #ff0000; }
+  33% { text-shadow: 0 0 10px #00ff00; }
+  66% { text-shadow: 0 0 10px #0000ff; }
+  100% { text-shadow: 0 0 10px #ff0000; }
+}
 
-        .container {
-            z-index: 1;
-            padding: 2rem;
-            padding-top: 80px; /* Offset for fixed navbar */
-            margin-left: 0;
-            width: 100%;
-            position: relative;
-            flex: 1 0 auto;
-        }
+@keyframes heartbeatPulse {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.4); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 1rem;
-        }
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin-right: 1rem;
+}
 
-        .glass-card {
-            flex: 0 0 300px;
-            min-width: 300px;
-            background: var(--card-background);
-            border-radius: 12px;
-            padding: 1rem;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(15px);
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
-            opacity: 0.8;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            height: 500px; /* Increased to fit longer descriptions */
-            z-index: 1;
-        }
+.nav-links a {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.1s;
+  position: relative;
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 
-        .glass-card:hover {
-            opacity: 1;
-            box-shadow: 0 0 20px var(--glow);
-            background: var(--rgb-glow);
-            background-size: 200% 200%;
-            animation: rgbShift 3s linear infinite;
-            transform: translateY(-5px);
-        }
+.nav-links a:hover {
+  animation: neonGlitch 0.2s infinite;
+}
 
-        [data-theme="blackwhite"] .glass-card:hover {
-            background: rgba(15, 15, 15, 0.8); /* Obsidian glass effect */
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            animation: none; /* No RGB animation for minimalist theme */
-        }
+@keyframes neonGlitch {
+  0% {
+      text-shadow: 
+          0 0 10px #fff,
+          0 0 20px #fff,
+          0 0 40px #fff,
+          0 0 80px #fff;
+      transform: translate(0) scale(1);
+      filter: hue-rotate(0deg);
+  }
+  25% {
+      text-shadow: 
+          -4px 0 10px #f00,
+          4px 4px 20px #0ff,
+          -4px -4px 40px #f0f;
+      transform: translate(-4px, 4px) scale(1.2) skew(-5deg);
+      filter: hue-rotate(90deg) brightness(1.5);
+  }
+  50% {
+      text-shadow: 
+          4px 0 10px #0f0,
+          -4px -4px 20px #ff0,
+          4px 4px 40px #f00;
+      transform: translate(4px, -4px) scale(0.8) skew(5deg);
+      filter: hue-rotate(180deg) contrast(1.5);
+  }
+  75% {
+      text-shadow: 
+          -4px 4px 10px #00f,
+          4px -4px 20px #f0f,
+          -4px 4px 40px #0ff;
+      transform: translate(-2px, -2px) scale(1.1) skew(-5deg);
+      filter: hue-rotate(270deg) saturate(1.5);
+  }
+  100% {
+      text-shadow: 
+          0 0 10px #fff,
+          0 0 20px #fff,
+          0 0 40px #fff,
+          0 0 80px #fff;
+      transform: translate(0) scale(1);
+      filter: hue-rotate(360deg);
+  }
+}
 
-        .glass-card img {
-            width: 100%;
-            height: 250px; /* Reduced to make room for text */
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-        }
+/* Styling for standalone glass cards on news page (unchanged) */
+body > .glass-card {
+    width: 80%;
+    max-width: 800px;
+    margin: 1rem auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+}
 
-        .glass-card h2 {
-            font-size: 1.1rem;
-            color: var(--text-color);
-            margin: 0.3rem 0 0.2rem;
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-            transition: text-shadow 0.3s ease;
-        }
+.card-title-container {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto 15px auto;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--primary);
+    padding: 10px 20px;
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+    z-index: 2;
+    text-align: center;
+    display: block;
+}
 
-        .glass-card:hover h2 {
-            text-shadow: 0 0 10px var(--primary);
-        }
+.card-title {
+    color: var(--primary);
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
 
-        .glass-card p {
-            font-size: 0.85rem; /* Slightly smaller for readability */
-            color: var(--text-color);
-            margin: 0.2rem 0;
-            font-family: 'Space Grotesk', sans-serif;
-            line-height: 1.3; /* Improved readability */
-        }
+.glass-card {
+    /* ...rest of the existing styles... */
+}
 
-        .glass-card .description {
-            flex-grow: 1; /* Pushes rating to bottom */
-            margin-bottom: 0.5rem;
-            overflow: hidden; /* Prevents overflow */
-            text-overflow: ellipsis; /* Adds ellipsis if too long */
-            display: -webkit-box;
-            -webkit-line-clamp: 4; /* Limits to 4 lines */
-            -webkit-box-orient: vertical;
-        }
+body .container {
+    margin-bottom: 2rem;
+}
 
-        .glass-card .rating {
-            margin-top: auto; /* Pins to bottom */
-            font-weight: 500;
-        }
+body .container h2 {
+    color: var(--primary);
+    font-family: 'Syncopate', sans-serif;
+    margin-top: 1rem;
+}
 
-        .glitch {
-            color: var(--primary);
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem 2rem;
+  position: relative;
+  z-index: 1; /* Ensure content is above background */
+}
 
-        #universe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-        }
-    </style>
-</head>
-<body>
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-    <nav class="navbar">
-        <div class="nav-logo">
-            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
-        </div>
-        <div class="search-container">
-            <input type="text" id="reviewSearch" placeholder="Search reviews by artist..." class="search-input">
-        </div>
-        <div class="dropdown">
-            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
-            <div class="dropdown-menu">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="features.html">Features</a></li>
-                    <li><a href="news.html">News</a></li>
-                    <li><a href="opinions.html">Opinions</a></li>
-                    <li><a href="catchcarti.html">Catch Carti</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <button id="themeToggle" class="theme-toggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+/* Homepage-specific styles */
+body.home {
+  /* Remove the big "MUSICRX" logo */
+  .glitch {
+    display: none; /* Hide the glitch title on homepage */
+  }
 
-    <div class="container">
-        <h1 class="glitch" data-text="REVIEWS">REVIEWS</h1>
-        <div class="grid">
-            <div class="glass-card" onclick="window.location.href=''">
-                <img src="iammusic.jpg" alt="Playboi Carti - I AM MUSIC album image">
-                <h2>Playboi Carti - MUSIC</h2>
-                <p class="description">Coming Soon...</p>
-                <p class="rating">Rating: ??/10</p>
-            </div>
+  /* Hero section adjustments for homepage */
+  .hero {
+    height: 80vh;
+    padding: 4rem 2rem;
+    position: relative;
+  }
 
-            
-            <div class="glass-card" onclick="window.location.href='review-wlr.html'">
-                <img src="red.jpeg" alt="Playboi Carti - WLR album image">
-                <h2>Playboi Carti - Whole Lotta Red</h2>
-                <p class="description">Playboi Carti’s audacious sonic plunge—a frenetic, abrasive mix of punk-rap aggression and minimalist beats that redefines trap with raw, unapologetic chaos.</p>
-                <p class="rating">Rating: 8.2/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-dielit.html'">
-                <img src="die.jpeg" alt="Playboi Carti - Die Lit album image">
-                <h2>Playboi Carti - DIE LIT</h2>
-                <p class="description">Playboi Carti’s hypnotic, carefree vibe—a lean, bouncy fusion of minimalist beats and ad-libbed flows that turns trap into a surreal, party-fueled dreamscape.</p>
-                <p class="rating">Rating: 8.8/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-carti.html'">
-                <img src="selff.jpg" alt="Playboi Carti - Self Titled album image">
-                <h2>Playboi Carti - Playboi Carti</h2>
-                <p class="description">Playboi Carti’s self-titled debut is a lean, hypnotic banger—a stripped-down surge of catchy hooks, ad-libbed energy, and woozy beats that ignites a new wave of trap.</p>
-                <p class="rating">Rating: 8.9/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-callme.html'">
-                <img src="cmiygl.jpeg" alt="Tyler, The Creator CMIYGL album image">
-                <h2>Tyler, The Creator - Call Me if You Get Lost</h2>
-                <p class="description">Tyler, the Creator’s swaggering travelogue—a slick, confident mashup of sharp lyricism, jazzy production, and globe-trotting flair that showcases his boundless artistry.</p>
-                <p class="rating">Rating: 9.4/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-top.html'">
-                <img src="yb.jpeg" alt="NBA YoungBoy - TOP album image">
-                <h2>NBA Youngboy - TOP</h2>
-                <p class="description">NBA YoungBoy’s raw, emotional ascent—a gritty barrage of pained melodies, relentless flows, and street-born intensity that captures his unyielding hustle and heart.</p>
-                <p class="rating">Rating: 8.4/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-eternal.html'">
-                <img src="eternal.jpeg" alt="Lil Uzi Vert - Eternal Atake album image">
-                <h2>Lil Uzi Vert - ETERNAL ATAKE</h2>
-                <p class="description">Lil Uzi Vert’s cosmic odyssey—a futuristic, high-octane blend of melodic trap and otherworldly vibes that rockets through a neon-lit universe of flex and feeling.</p>
-                <p class="rating">Rating: 9.0/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-tpab.html'">
-                <img src="tpab3.jpeg" alt="Kendrick Lamar - To Pimp a Butterfly album image">
-                <h2>Kendrick Lamar - To Pimp a Butterfly</h2>
-                <p class="description">Kendrick Lamar’s profound, genre-defying opus—a dense, jazzy tapestry of searing lyrics and social commentary that wrestles with identity, power, and Black resilience.</p>
-                <p class="rating">Rating: 9.4/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-asap.html'">
-                <img src="asap.jpeg" alt="A$AP Rocky - AT LONG LAST A$AP album image">
-                <h2>A$AP ROCKY - A.L.L.A</h2>
-                <p class="description">At.Long.Last.A$AP is a hazy, ambitious trip—a slick fusion of psychedelic beats, introspective rhymes, and Harlem swagger that drifts through a cloud of style and substance.</p>
-                <p class="rating">Rating: 8.7/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-piñata.html'">
-                <img src="pina.jpeg" alt="Freddie Gibbs & Madlib - Piñata album image">
-                <h2>Freddie Gibbs & Madlib - PIÑATA</h2>
-                <p class="description">Freddie Gibbs and Madlib’s gritty, soulful collision—a hard-hitting blend of razor-sharp rhymes and dusty, cinematic beats that cracks open the raw essence of street life.</p>
-                <p class="rating">Rating: 9.1/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-sos.html'">
-                <img src="sos4k.jpeg" alt="SZA - SOS album image">
-                <h2>SZA - SOS</h2>
-                <p class="description">SZA’s sultry, soul-baring voyage—a lush mix of R&B vulnerability, sharp lyricism, and eclectic production that navigates love, loss, and self-discovery with raw elegance.</p>
-                <p class="rating">Rating: 9.0/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-grad.html'">
-                <img src="graduation.jpg" alt="Kanye West - Graduation album image">
-                <h2>Kanye West - Graduation</h2>
-                <p class="description">Kanye West’s triumphant, stadium-sized evolution—a bold blend of uplifting anthems, polished beats, and introspective bars that marks his ascent to rap superstardom.</p>
-                <p class="rating">Rating: 9.2/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-tc.html'">
-                <img src="TC.jpg" alt="Drake - Take Care album image">
-                <h2>DRAKE - TAKE CARE</h2>
-                <p class="description">Drake’s moody, expansive confessional—a smooth, atmospheric fusion of introspective rhymes and lush production that dives deep into fame, love, and late-night melancholy.</p>
-                <p class="rating">Rating: 8.9/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-up2.html'">
-                <img src="up2me.jpeg" alt="Yeat - Up 2 Më album image">
-                <h2>Yeat - UP 2 MË</h2>
-                <p class="description">Yeat’s relentless, futuristic surge—a glitchy, bass-heavy storm of auto-tuned flows and hypnotic beats that carves out a bold new lane in trap’s evolution.</p>
-                <p class="rating">Rating: 8.5/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-agc.html'">
-                <img src="agc.jpeg" alt="Ken Carson - A Great Chaos album image">
-                <h2>Ken Carson - A GREAT CHAOS</h2>
-                <p class="description">Ken Carson’s unhinged, electric rampage—a distorted, high-energy clash of aggressive flows and blown-out beats that thrives in its raw, rebellious anarchy.</p>
-                <p class="rating">Rating: 8.6/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-mbdtf.html'">
-                <img src="mbdtff.jpeg" alt="Kanye West - mbdtf album image">
-                <h2>Kanye - My Beautiful Dark Twisted Fantasy</h2>
-                <p class="description">Kanye West’s sprawling, cinematic triumph—a lavish fusion of bold production, intricate rhymes, and unfiltered ambition that redefines hip-hop’s boundaries.</p>
-                <p class="rating">Rating: 9.9/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-gkmc.html'">
-                <img src="gkmc3.jpeg" alt="Kendrick - gkmc album image">
-                <h2>Kendrick Lamar - good kid, m.A.A.d city</h2>
-                <p class="description">Kendrick Lamar’s gripping, cinematic tale—a vivid blend of razor-sharp rhymes and soulful beats that chronicles Compton’s chaos and a young man’s redemption.</p>
-                <p class="rating">Rating: 9.8/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-nwts.html'">
-                <img src="nwts.jpeg" alt="Drake - NWTS album image">
-                <h2>Drake - Nothing Was The Same</h2>
-                <p class="description">Drake’s sleek, introspective pinnacle—a polished mix of brooding beats and confident bars that traces his rise from Toronto dreamer to rap royalty.</p>
-                <p class="rating">Rating: 9.4/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-astro.html'">
-                <img src="astro.jpeg" alt="Travis Scott - Astroworld album image">
-                <h2>Travis Scott - Astroworld</h2>
-                <p class="description">This is a thrilling journey—Travis Scott blends trap beats with psychedelic layers, crafting a vivid, Houston-inspired soundscape.</p>
-                <p class="rating">Rating: 9.3/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-slim.html'">
-                <img src="slim.jpeg" alt="Eminem - SSLP album image">
-                <h2>Eminem - The Slim Shady LP</h2>
-                <p class="description">A darkly comedic and lyrically ferocious album that propelled Eminem to stardom, showcasing his unparalleled ability to weave personal frustrations into biting satire with shockingly clever wordplay.</p>
-                <p class="rating">Rating: 9.3/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-mmlp.html'">
-                <img src="marshallmathers.jpeg" alt="Eminem - MMLP album image">
-                <h2>Eminem - The Marshall Mathers LP</h2>
-                <p class="description">This album is Eminem’s raw, unfiltered peak—a razor-sharp blend of dark humor, visceral storytelling, and relentless flows that cuts deep into the psyche of a troubled genius.</p>
-                <p class="rating">Rating: 9.6/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-flower.html'">
-                <img src="flower.jpeg" alt="Tyler, the Creator - Flower Boy album image">
-                <h2>Tyler, the Creator - Flower Boy</h2>
-                <p class="description">Flower Boy is Tyler, the Creator’s blooming evolution—a lush, introspective gem that swaps brashness for soulful melodies and vibrant production, unveiling a tender, colorful core.</p>
-                <p class="rating">Rating: 9.6/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-carter.html'">
-                <img src="carter.jpeg" alt="Lil Wayne - The Carter III album image">
-                <h2>Lil Wayne - The Carter III</h2>
-                <p class="description">Lil Wayne’s crowning triumph—a bold, syrup-soaked whirlwind of clever wordplay, infectious hooks, and innovative beats that cements his reign as a rap icon.</p>
-                <p class="rating">Rating: 9.2/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-dropout.html'">
-                <img src="dropoutt.jpeg" alt="Kanye West - The College Dropout album image">
-                <h2>Kanye West - The College Dropout</h2>
-                <p class="description">Kanye West’s soulful, groundbreaking debut—a witty, heartfelt blend of chipmunk-sampled beats and relatable rhymes that flips the script on hip-hop’s playbook.</p>
-                <p class="rating">Rating: 9.5/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-late.html'">
-                <img src="latee.jpeg" alt="Kanye West - Late Registration album image">
-                <h2>Kanye West - Late Registration</h2>
-                <p class="description">Kanye West’s lush, orchestral leap—a masterful mix of witty lyricism, cinematic production, and soul-drenched beats that elevates his vision to new heights.</p>
-                <p class="rating">Rating: 9.3/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-808.html'">
-                <img src="808.jpeg" alt="Kanye West - 808s & Heartbreak album image">
-                <h2>Kanye West - 808s & Heartbreak</h2>
-                <p class="description">Kanye West’s haunting, minimalist reinvention—a stark fusion of icy beats, auto-tuned wails, and raw emotion that reshapes heartbreak into a futuristic lament.</p>
-                <p class="rating">Rating: 9.3/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-rodeo.html'">
-                <img src="rodeo-rc2.jpeg" alt="Travis Scott Rodeo album image">
-                <h2>Travis Scott - RODEO</h2>
-                <p class="description">Travis Scott’s wild, cinematic debut—a gritty, intoxicating blend of booming trap, hazy melodies, and chaotic energy that gallops through a dark, hedonistic wonderland.</p>
-                <p class="rating">Rating: 8.1/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-blonde.html'">
-                <img src="blonde.jpeg" alt="Frank Ocean - Blonde album image">
-                <h2>Frank Ocean - Blonde</h2>
-                <p class="description">Frank Ocean’s ethereal, introspective odyssey—a delicate weave of minimalist beats, poetic lyrics, and raw vulnerability that drifts through love, loss, and fleeting moments.</p>
-                <p class="rating">Rating: 9.2/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-monster.html'">
-                <img src="monster.jpeg" alt="Future - Monster album image">
-                <h2>Future - Monster</h2>
-                <p class="description">Future’s grimy, relentless street sermon—a dark, syrupy onslaught of menacing beats and cold-hearted bars that solidifies his reign as trap’s dungeon master.</p>
-                <p class="rating">Rating: 8.7/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-daytona.html'">
-                <img src="daytona.jpeg" alt="Pusha T - DAYTONA album image">
-                <h2>Pusha T - DAYTONA</h2>
-                <p class="description">Pusha T’s razor-sharp, compact triumph—a lean, menacing blend of coke-rap precision and Kanye’s gritty beats that slices through with unrelenting swagger.</p>
-                <p class="rating">Rating: 9.5/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-igor.html'">
-                <img src="igor.jpeg" alt="Tyler, the Creator - IGOR album image">
-                <h2>Tyler, the Creator - IGOR</h2>
-                <p class="description">Tyler, the Creator’s warped, emotional symphony—a kaleidoscopic mix of funky beats, distorted vocals, and raw heartbreak that reimagines love as a wild, colorful fever dream.</p>
-                <p class="rating">Rating: 9.4/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-srs.html'">
-                <img src="srs.jpeg" alt="Earl Sweatshirt - Some Rap Songs album image">
-                <h2>Earl Sweatshirt - Some Rap Songs</h2>
-                <p class="description">Earl Sweatshirt’s lo-fi, introspective descent—a murky, concise tangle of fragmented beats and dense rhymes that excavates grief, growth, and raw humanity.</p>
-                <p class="rating">Rating: 9.1/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-yeezus.html'">
-                <img src="yeezus.jpeg" alt="Kanye West - Yeezus">
-                <h2>Kanye West - Yeezus</h2>
-                <p class="description">Kanye West’s abrasive, revolutionary jolt—a stark, industrial clash of jagged beats and defiant rhymes that strips hip-hop to its raw, rebellious core.</p>
-                <p class="rating">Rating: 8.5/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-wwaf.html'">
-                <img src="wwaf.jpeg" alt="Billie Eilish - When We All Fall Asleep, Where Do We Go?">
-                <h2>Billie Eilish - When We All Fall Asleep, Where Do We Go?</h2>
-                <p class="description">Billie Eilish’s eerie, whispery haunt—a dark, minimalist blend of pop-trap beats and unsettling lyrics that tiptoes through teenage nightmares.</p>
-                <p class="rating">Rating: 8.4/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-barter.html'">
-                <img src="barter.jpeg" alt="Young Thug - Barter 6">
-                <h2>Young Thug - Barter 6</h2>
-                <p class="description">Young Thug’s slimy, slurred breakthrough—a woozy, off-kilter mix of melodic flows and eccentric beats that redefines Atlanta trap with fearless weirdness.</p>
-                <p class="rating">Rating: 8.2/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-damn.html'">
-                <img src="damn.jpeg" alt="Kendrick Lamar - Damn">
-                <h2>Kendrick Lamar - Damn</h2>
-                <p class="description">Kendrick Lamar’s visceral, soul-searching banger—a taut, dynamic blend of fierce rhymes and varied beats that wrestles with faith, fame, and fierce self-reflection.</p>
-                <p class="rating">Rating: 8.9/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-pink.html'">
-                <img src="pink.jpeg" alt="Nicki Minaj - The Pinkprint">
-                <h2>Nicki Minaj - The Pinkprint</h2>
-                <p class="description">Nicki Minaj’s bold, versatile showcase—a slick mix of fierce bars, pop anthems, and raw vulnerability that balances her rap dominance with personal revelation.</p>
-                <p class="rating">Rating: 8.1/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-utopia.html'">
-                <img src="utopia.jpeg" alt="Travis Scott - Utopia">
-                <h2>Travis Scott - Utopia</h2>
-                <p class="description">Travis Scott’s sprawling, dystopian epic—a chaotic, immersive blend of booming trap, experimental textures, and cinematic vibes that builds a dark, futuristic playground.</p>
-                <p class="rating">Rating: 8.4/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-tlop.html'">
-                <img src="tlop.jpeg" alt="Kanye West - The Life of Pablo">
-                <h2>Kanye West - The Life of Pablo</h2>
-                <p class="description">Kanye West’s messy, eclectic gospel—a frenetic patchwork of soulful samples, jagged beats, and candid bars that revels in its chaotic brilliance.</p>
-                <p class="rating">Rating: 8.9/10</p>
-            </div>
-            <div class="glass-card" onclick="window.location.href='review-fhd.html'">
-                <img src="colee.jpeg" alt="J Cole - Forest Hills Drive">
-                <h2>J Cole - Forest Hills Drive</h2>
-                <p class="description">J. Cole’s introspective homecoming—a warm, narrative-driven blend of smooth beats and honest rhymes that traces his journey from Fayetteville to fame.</p>
-                <p class="rating">Rating: 8.6/10</p>
-            </div>
-        </div>
-    </div>
+  .heartbeat-text {
+    font-size: 1.5rem;
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 3rem;
+  }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
-    <script>
-        // Theme toggle functionality for five themes
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const themes = ['normal', 'satin', 'frosted', 'veazy', 'blackwhite'];
-        const themeTitles = ['Normal Mode', 'Satin Mode', 'Frosted Mode', 'Veazy Mode', 'Black & White Mode'];
-        let currentThemeIndex = 0;
+  .heartbeat-line {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    animation: heartMonitor 1.5s ease-in-out infinite;
+  }
 
-        themeToggle.addEventListener('click', () => {
-            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-            body.setAttribute('data-theme', themes[currentThemeIndex]);
-            themeToggle.setAttribute('title', themeTitles[currentThemeIndex]);
-        });
+  @keyframes heartMonitor {
+    0% { transform: translateX(-50%) scaleX(0); opacity: 0; }
+    20% { transform: translateX(-50%) scaleX(0.3); opacity: 1; }
+    40% { transform: translateX(-50%) scaleX(1); opacity: 1; }
+    43% { transform: translateX(-50%) scaleX(0.6); }
+    46% { transform: translateX(-50%) scaleX(1.4); }
+    50% { transform: translateX(-50%) scaleX(0.2); }
+    60% { transform: translateX(-50%) scaleX(1); }
+    80% { transform: translateX(-50%) scaleX(0.3); }
+    100% { transform: translateX(-50%) scaleX(0); opacity: 0; }
+  }
 
-        // Initialize with "Normal" theme
-        body.setAttribute('data-theme', 'normal');
-        themeToggle.setAttribute('title', 'Normal Mode');
+  /* Magic Search Bar for homepage */
+  .magic-search {
+    max-width: 600px;
+    text-align: center;
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 247, 255, 0.1);
+    transition: all 0.3s ease;
+  }
 
-        // Dropdown menu toggle
-        const dropdownToggle = document.querySelector('.dropdown-toggle');
-        const dropdownMenu = document.querySelector('.dropdown-menu');
+  .magic-search:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+    border-color: var(--primary);
+  }
 
-        dropdownToggle.addEventListener('click', () => {
-            dropdownMenu.classList.toggle('active');
-        });
+  .magic-search input {
+    width: 70%;
+    padding: 1rem;
+    border: 1px solid var(--primary);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    border-radius: 5px 0 0 5px;
+    font-family: 'Space Grotesk', sans-serif;
+    margin-right: -5px; /* Adjust for button alignment */
+  }
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.classList.remove('active');
-            }
-        });
+  .magic-search input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
 
-        // Starfield setup
-        const universeCanvas = document.getElementById('universe');
-        universeCanvas.style.position = 'fixed';
-        universeCanvas.style.top = '0';
-        universeCanvas.style.left = '0';
-        universeCanvas.style.width = '100%';
-        universeCanvas.style.height = '100%';
-        universeCanvas.style.zIndex = '-2';
+  .magic-search button {
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: var(--dark);
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: -5px; /* Adjust for button alignment */
+  }
 
-        // Basic starfield animation if script.js doesn't handle it
-        if (typeof initStarfield === 'undefined') {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ canvas: universeCanvas });
-            renderer.setSize(window.innerWidth, window.innerHeight);
+  .magic-search button:hover {
+    background: var(--secondary);
+    box-shadow: 0 0 20px var(--secondary);
+  }
 
-            const starsGeometry = new THREE.BufferGeometry();
-            const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 1 });
-            const starVertices = [];
+  #magicAnswer {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: var(--primary);
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+  }
 
-            for (let i = 0; i < 10000; i++) {
-                const x = (Math.random() - 0.5) * 2000;
-                const y = (Math.random() - 0.5) * 2000;
-                const z = (Math.random() - 0.5) * 2000;
-                starVertices.push(x, y, z);
-            }
+  /* Scroll Sections for homepage */
+  .scroll-section {
+    padding: 2rem;
+    margin: 2rem 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
 
-            starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-            const starField = new THREE.Points(starsGeometry, starsMaterial);
-            scene.add(starField);
+  .scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding: 1rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
 
-            camera.position.z = 1000;
+  .scroll-container::-webkit-scrollbar {
+    height: 8px;
+  }
 
-            function animate() {
-                requestAnimationFrame(animate);
-                starField.rotation.y += 0.001;
-                renderer.render(scene, camera);
-            }
-            animate();
+  .scroll-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
 
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-        }
-    </script>
-</body>
-</html>
+  .scroll-container::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+  }
+
+  .scroll-item {
+    flex: 0 0 350px;
+    min-width: 350px;
+    background: var(--glass);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 247, 255, 0.1);
+    transition: box-shadow 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .scroll-item:hover {
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+    filter: brightness(1.1);
+  }
+
+  .scroll-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .scroll-item h3 {
+    font-size: 1.2rem;
+    color: white;
+    margin: 0.5rem 0 0.2rem;
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+  }
+
+  .scroll-item p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    color: var(--primary);
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+  }
+
+  .scroll-nav {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .scroll-button {
+    background: var(--glass);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .scroll-button:hover {
+    background: var(--primary);
+    color: var(--dark);
+  }
+}
+
+/* Rest of the original styles remain unchanged for subpages */
+.glitch {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--primary);
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #00ffea;
+  animation: glitch-1 2s linear infinite reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #ff00f7;
+  animation: glitch-2 3s linear infinite;
+}
+
+@keyframes glitch-1 {
+  0% { transform: none; opacity: 1; }
+  7% { transform: skew(-0.5deg, -0.9deg); opacity: 0.75; }
+  10% { transform: none; opacity: 1; }
+  27% { transform: none; opacity: 1; }
+  30% { transform: skew(0.8deg, -0.1deg); opacity: 0.75; }
+  35% { transform: none; opacity: 1; }
+  52% { transform: none; opacity: 1; }
+  55% { transform: skew(-1deg, 0.2deg); opacity: 0.75; }
+  50% { transform: none; opacity: 1; }
+  72% { transform: none; opacity: 1; }
+  75% { transform: skew(0.4deg, 1deg); opacity: 0.75; }
+  80% { transform: none; opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+
+@keyframes glitch-2 {
+  0% { transform: none; opacity: 0.25; }
+  7% { transform: translate(-2px, -3px); opacity: 0.5; }
+  10% { transform: none; opacity: 0.25; }
+  27% { transform: none; opacity: 0.25; }
+  30% { transform: translate(-5px, -2px); opacity: 0.5; }
+  35% { transform: none; opacity: 0.25; }
+  52% { transform: none; opacity: 0.25; }
+  55% { transform: translate(-5px, -1px); opacity: 0.5; }
+  50% { transform: none; opacity: 0.25; }
+  72% { transform: none; opacity: 0.25; }
+  75% { transform: translate(-2px, -6px); opacity: 0.5; }
+  80% { transform: none; opacity: 0.25; }
+  100% { transform: none; opacity: 0.25; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  opacity: 1 !important; /* Force visibility as a fallback */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 247, 255, 0.1);
+  overflow: hidden;
+}
+
+/* Glass card mirror and RGB effects */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--primary);
+  box-shadow: 
+    0 0 0 2px var(--primary),
+    0 0 30px rgba(0, 247, 255, 0.4);
+  animation: rgbBorderPulse 3s linear infinite;
+}
+
+.glass-card:hover::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+  background-size: 400% 400%;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: borderGlow 2s linear infinite, gradientMove 8s ease infinite;
+}
+
+.glass-card:hover::before {
+  left: 100%;
+}
+
+@keyframes rgbBorderPulse {
+  0% { border-color: var(--primary); }
+  33% { border-color: var(--secondary); }
+  66% { border-color: var(--accent); }
+  100% { border-color: var(--primary); }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glass-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+}
+
+.glass-card h2 {
+  color: var(--primary);
+  font-family: 'Syncopate', sans-serif;
+}
+
+.glass-card p {
+  color: white;
+  line-height: 1.5;
+}
+
+.rating {
+  color: var(--secondary) !important;
+  font-weight: bold;
+}
+
+.review-content {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-top: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.review-content h2 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  font-family: 'Syncopate', sans-serif;
+}
+
+.ratings-box {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.highlight {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+#cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s ease;
+  z-index: 9999;
+}
+
+#cursor-blur {
+  width: 400px;
+  height: 400px;
+  background: rgba(0, 247, 255, 0.1);
+  border-radius: 50%;
+  position: fixed;
+  filter: blur(80px);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+#universe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.content-details {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#content-trending {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 2rem 0;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+}
+
+/* New styles for rodeo-rc.jpg glass card - Added [Current Date] */
+.glass-card.rodeo-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glass-card.rodeo-card:hover {
+  transform: scale(1.05);
+}
+
+.glass-card.rodeo-card img[src="rodeo-rc2.jpeg"] {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.glass-card.rodeo-card:hover img[src="rodeo-rc2.jpeg"] {
+  transform: scale(1.05);
+}
+
+/* Footer Styles */
+.site-footer {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem 0;
+    margin-top: 4rem;
+    border-top: 1px solid var(--primary);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .social-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
+.footer-logo {
+    flex: 1;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.musicrx-logo {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.5rem;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.logo-symbol {
+    color: var(--primary);
+    font-size: 1.5rem;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    text-shadow: 0 0 10px var(--primary);
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-button {
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.social-button:hover {
+    color: #fff;
+    text-shadow: 0 0 10px var(--primary);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+}
+
+/* New styles for ap-drake2.jpeg glass card - Added [Current Date] */
+.glass-card.drake-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  max-width: 250px;
+  z-index: 100;
+  transform: none !important;
+  transform-style: flat !important;
+  perspective: none !important;
+  transition: none !important;
+}
+
+.glass-card.drake-card:hover {
+  transform: none !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.glass-card.drake-card img[src="ap-drake2.jpeg"] {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: none;
+}
+
+.glass-card.drake-card:hover img[src="ap-drake2.jpeg"] {
+  transform: none;
+}
+
+/* Styling for glass-card inside content-opinions */
+#content-opinions .glass-card {
+  max-width: 300px; /* Matches grid cards’ minimum width */
+  margin: 0 auto; /* Centers it within content-details */
+}
+
+/* Table Card Styles */
+.table-card {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    transform: none !important;
+    perspective: none !important;
+    transition: opacity 0.3s, box-shadow 0.3s !important;
+    transform-style: flat !important;
+    border: 1px solid rgba(0, 247, 255, 0.1);
+}
+
+.table-card:hover {
+    transform: none !important;
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.3) !important;
+}
+
+.table-card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+    letter-spacing: 0.05em;
+}
+
+.table-container {
+    overflow-x: auto;
+    max-width: 100%;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 247, 255, 0.1);
+    overflow: hidden;
+}
+
+.trend-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 4px;
+    margin: 1rem 0;
+    color: white;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.trend-table th, 
+.trend-table td {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid rgba(0, 247, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.trend-table th {
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--primary);
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    border-color: rgba(0, 247, 255, 0.4);
+    text-shadow: 0 0 5px var(--primary);
+}
+
+.trend-table tr:hover td, .glass-table tr:hover td {
+    background: rgba(0, 247, 255, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Disable tilt effect from trending content cards, and specific glass cards */
+#content-trending .glass-card,
+.glass-card:has(h2:contains("Key Points")),
+#content-artists .glass-card,
+.glass-card:has(h2:contains("Featured Artists")) {
+  transform: none !important;
+  perspective: none !important;
+  transform-style: flat !important;
+  transition: opacity 0.3s, box-shadow 0.3s !important;
+  will-change: auto !important;
+}
+
+#content-trending .glass-card:hover,
+.glass-card:has(h2:contains("Key Points")):hover,
+#content-artists .glass-card:hover,
+.glass-card:has(h2:contains("Featured Artists")):hover {
+  transform: none !important;
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.3) !important;
+}
+
+/* Disable parallax for specific content */
+#content-trending .glass-card > *,
+.glass-card:has(h2:contains("Key Points")) > *,
+#content-artists .glass-card > *,
+.glass-card:has(h2:contains("Featured Artists")) > * {
+  transform: none !important;
+}
+
+.review-wlr-highlight {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.review-wlr-glitch {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ff0000; 
+  text-shadow: 0 0 10px #ff0000;
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.review-wlr-glitch::before,
+.review-wlr-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.review-wlr-glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #00ffea;
+  animation: glitch-1 2s linear infinite reverse;
+}
+
+.review-wlr-glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #ff0000;
+  animation: glitch-2 3s linear infinite;
+}
+
+/* WLR glass card styling and zoom effect */
+.glass-card.wlr-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glass-card.wlr-card:hover {
+  transform: scale(1.05);
+}
+
+.glass-card.wlr-card img[src="wlr.jpeg"] {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.glass-card.wlr-card:hover img[src="wlr.jpeg"] {
+  transform: scale(1.05);
+}
+
+.glass-card:hover > * {
+  color: #00f7ff; /* Light blue color */
+}
+
+.review-rodeo-glitch {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ff6e00; 
+  text-shadow: 0 0 10px #ff6e00;
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.review-rodeo-glitch::before,
+.review-rodeo-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.review-rodeo-glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #00ffea;
+  animation: glitch-1 2s linear infinite reverse;
+}
+
+.review-rodeo-glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #ff6e00;
+  animation: glitch-2 3s linear infinite;
+}
+
+.feature-drake-glitch {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #0088ff; 
+  text-shadow: 0 0 10px #0088ff;
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.feature-drake-glitch::before,
+.feature-drake-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.feature-drake-glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #00ffea;
+  animation: glitch-1 2s linear infinite reverse;
+}
+
+.feature-drake-glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #0088ff;
+  animation: glitch-2 3s linear infinite;
+}
+
+/* Web3 Button Styling */
+.button,
+#connectWallet,
+#tipEth,
+#tipSol {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  padding: 1rem 2rem;
+  font-size: 1.1em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 8px;
+  margin: 1rem 0;
+  box-shadow: 0 4px 15px rgba(0, 247, 255, 0.1);
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.button:hover,
+#connectWallet:hover,
+#tipEth:hover,
+#tipSol:hover {
+  transform: translateY(-5px);
+  color: var(--dark);
+  border-color: transparent;
+  box-shadow: 0 8px 25px rgba(0, 247, 255, 0.2);
+}
+
+.button::before,
+#connectWallet::before,
+#tipEth::before,
+#tipSol::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  transform: translate(-50%, -50%) rotate(45deg) scale(0);
+  transition: transform 0.6s ease;
+  z-index: -1;
+}
+
+.button:hover::before,
+#connectWallet:hover::before,
+#tipEth:hover::before,
+#tipSol:hover::before {
+  transform: translate(-50%, -50%) rotate(45deg) scale(1);
+}
+
+/* Specific glitch class for Astroworld */
+.review-astro-glitch {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #90EE90; /* Light green from your Astroworld review */
+    text-shadow: 0 0 10px #90EE90;
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    display: block;
+}
+
+.review-astro-glitch::before,
+.review-astro-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.review-astro-glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #00ffea; /* Cyan shadow for contrast */
+    animation: glitch-1 2s linear infinite reverse;
+}
+
+.review-astro-glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #90EE90; /* Matches light green */
+    animation: glitch-2 3s linear infinite;
+}
+
+@keyframes glitch-1 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(20px, 9999px, 40px, 0); }
+    10% { clip: rect(60px, 9999px, 80px, 0); }
+    15% { clip: rect(30px, 9999px, 50px, 0); }
+    20% { clip: rect(90px, 9999px, 110px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+@keyframes glitch-2 {
+    0% { clip: rect(0, 9999px, 0, 0); }
+    5% { clip: rect(40px, 9999px, 60px, 0); }
+    10% { clip: rect(80px, 9999px, 100px, 0); }
+    15% { clip: rect(20px, 9999px, 40px, 0); }
+    20% { clip: rect(60px, 9999px, 80px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+/* Specific glitch class for MBDTF */
+.review-mbdtf-glitch {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #AB2330; /* Pink from your MBDTF review */
+    text-shadow: 0 0 10px #AB2330;
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    display: block;
+}
+
+.review-mbdtf-glitch::before,
+.review-mbdtf-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.review-mbdtf-glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #00ffea; /* Cyan shadow for contrast */
+    animation: glitch-1 2s linear infinite reverse;
+}
+
+.review-mbdtf-glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #fffff2; /* Matches pink */
+    animation: glitch-2 3s linear infinite;
+}
+
+/* Specific glitch class for GKMC */
+.review-gkmc-glitch {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #8e7cc3; /* Purple from your gkmc review */
+    text-shadow: 0 0 10px #8e7cc3;
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    display: block;
+}
+
+.review-gkmc-glitch::before,
+.review-gkmc-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.review-gkmc-glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #00ffea; /* Cyan shadow for contrast */
+    animation: glitch-1 2s linear infinite reverse;
+}
+
+.review-gkmc-glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #fffff2; /* Contrast offwhite */
+    animation: glitch-2 3s linear infinite;
+}
+
+/* Specific glitch class for NWTS */
+.review-nwts-glitch {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #1588f0; /* Blue from your nwts review */
+    text-shadow: 0 0 10px #1588f0;
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    display: block;
+}
+
+.review-nwts-glitch::before,
+.review-nwts-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.review-nwts-glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #00ffea; /* Cyan shadow for contrast */
+    animation: glitch-1 2s linear infinite reverse;
+}
+
+.review-nwts-glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #fffff2; /* Contrast offwhite */
+    animation: glitch-2 3s linear infinite;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+}
+
+.heartbeat-text {
+    color: var(--primary);
+    position: relative;
+    text-align: center;
+    font-family: 'Syncopate', sans-serif;
+    margin-top: 2rem;
+}
+
+.heartbeat-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -20px;
+    width: 100px;
+    height: 2px;
+    background: red;
+}
+
+.heartbeat-line::before,
+.heartbeat-line::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    background: red;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: translateX(-50%) scaleX(1); opacity: 1; }
+    25% { transform: translateX(-50%) scaleX(2); opacity: 0.8; }
+    50% { transform: translateX(-50%) scaleX(1); opacity: 1; }
+    75% { transform: translateX(-50%) scaleX(2); opacity: 0.8; }
+    100% { transform: translateX(-50%) scaleX(1); opacity: 1; }
+}
+
+.heartbeat-line {
+    animation: heartbeat 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    box-shadow: 0 0 10px red, 0 0 20px red;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .footer-links {
+        flex-direction: row;
+        justify-content: center;
+        gap: 2rem;
+        order: 2;
+    }
+
+    .social-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        order: 3;
+    }
+
+    .footer-logo {
+        order: 1;
+    }
+
+    /* Additional mobile adjustments for homepage */
+    body.home {
+      .hero {
+        padding: 2rem 1rem;
+      }
+
+      .magic-search {
+        max-width: 100%;
+        width: 90%;
+        margin: 0 auto;
+        padding: 1.5rem;
+      }
+
+      .magic-search input {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 5px;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+      }
+
+      .magic-search button {
+        width: 100%;
+        border-radius: 5px;
+        margin-left: 0;
+      }
+    }
+}
+
+/* Ensure navigation consistency across subpages */
+nav.global-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Very small screen adjustments */
+@media (max-width: 360px) {
+  .search-container {
+    max-width: 90%;
+    padding: 0 0.25rem;
+  }
+
+  .search-input {
+    max-width: 240px;
+  }
+
+  nav {
+    width: 100vw;
+    padding: 1.5rem 0.5rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+}
+</style>
