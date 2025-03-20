@@ -183,14 +183,14 @@
             transition: all 0.3s;
             width: 250px;
         }
-        
+
         .wallet-address {
             font-size: 0.8rem;
             word-break: break-all;
             text-align: center;
             margin: 0.5rem 0;
         }
-        
+
         .copy-address-btn {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--primary);
@@ -202,7 +202,7 @@
             margin-bottom: 1rem;
             transition: all 0.3s;
         }
-        
+
         .copy-address-btn:hover {
             background: rgba(0, 247, 255, 0.2);
             transform: translateY(-2px);
@@ -363,7 +363,7 @@
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
     <canvas id="universe"></canvas>
-    
+
     <!-- Construction elements -->
     <div class="construction-tape">
         <span style="color: black; font-weight: bold; font-size: 1.2rem; text-shadow: 1px 1px 0 yellow;">UNDER CONSTRUCTION</span>
@@ -371,7 +371,7 @@
     <div class="construction-tape construction-tape-bottom">
         <span style="color: black; font-weight: bold; font-size: 1.2rem; text-shadow: 1px 1px 0 yellow;">COMING SOON</span>
     </div>
-    
+
     <div class="construction-icon construction-icon-1">
         <i class="fas fa-hard-hat"></i>
     </div>
@@ -384,9 +384,9 @@
     <div class="construction-icon construction-icon-4">
         <i class="fas fa-hammer"></i>
     </div>
-    
+
     <div class="glitch-layer"></div>
-    
+
     <!-- Floating particles -->
     <div class="particles" id="particles"></div>
 
@@ -405,16 +405,16 @@
     <div class="container">
         <section class="hero">
             <h1 class="glitch-text" data-text="Shop">Shop</h1>
-            
+
             <div class="coming-soon-banner">
                 <h2>PRODUCTS COMING SOON</h2>
                 <p>Our merch is still in the lab - we're cooking up something special for you!</p>
             </div>
-            
+
             <div class="glass-card">
                 <h2>Support MusicRX</h2>
                 <p>While our products are still in development, you can support MusicRX with a tip!</p>
-                
+
                 <div class="tip-jar">
                     <div class="jar">
                         <div class="coin"></div>
@@ -422,7 +422,7 @@
                         <div class="coin"></div>
                     </div>
                 </div>
-                
+
                 <div class="crypto-options">
                     <div class="crypto-option">
                         <div class="crypto-icon">
@@ -441,7 +441,7 @@
                             <i class="fas fa-donate"></i> Send Tip
                         </button>
                     </div>
-                    
+
                     <div class="crypto-option">
                         <div class="crypto-icon">
                             <i class="fab fa-bitcoin"></i>
@@ -459,7 +459,7 @@
                             <i class="fas fa-donate"></i> Send Tip
                         </button>
                     </div>
-                    
+
                     <div class="crypto-option">
                         <div class="crypto-icon">
                               <i class="fas fa-sun"></i>
@@ -478,7 +478,7 @@
                         </button>
                     </div>
                 </div>
-                
+
                 <div style="text-align: center; margin-top: 3rem;">
                     <h3>Other Ways to Support</h3>
                     <p>Follow @36966_ on X and share our content!</p>
@@ -495,7 +495,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="glass-card" style="margin-top: 3rem;">
                 <h2>Coming Soon</h2>
                 <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
@@ -538,39 +538,39 @@
                     alert("Address copied to clipboard!");
                 });
         }
-        
+
         // Create floating particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 30;
-            
+
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
+
                 // Random position
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.bottom = -Math.random() * 20 + '%';
-                
+
                 // Random size
                 const size = Math.random() * 5 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
-                
+
                 // Random animation duration and delay
                 const duration = Math.random() * 15 + 10;
                 const delay = Math.random() * 5;
                 particle.style.animationDuration = duration + 's';
                 particle.style.animationDelay = delay + 's';
-                
+
                 // Random color
                 const colors = ['#00f7ff', '#ff00f7', '#7B68EE'];
                 particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
+
                 particlesContainer.appendChild(particle);
             }
         }
-        
+
         // Glitch effect on hover for buttons
         function addButtonEffects() {
             const buttons = document.querySelectorAll('.button');
@@ -578,27 +578,27 @@
                 button.addEventListener('mouseenter', () => {
                     button.style.animation = 'glitch-text 0.2s infinite';
                 });
-                
+
                 button.addEventListener('mouseleave', () => {
                     button.style.animation = 'none';
                 });
             });
         }
-        
+
         // ETH tip functionality (mock)
         function setupTipping() {
             const tipEthButton = document.getElementById('tipEth');
             const tipBtcButton = document.getElementById('tipBtc');
-            
+
             if (tipEthButton) {
                 tipEthButton.addEventListener('click', async () => {
                     const amount = document.getElementById('ethAmount').value;
-                    
+
                     if (!amount || amount <= 0) {
                         alert('Please enter a valid amount');
                         return;
                     }
-                    
+
                     try {
                         // This is just a mock - in a real implementation, this would connect to a wallet
                         alert(`Thank you for wanting to tip ${amount} ETH! In a real implementation, this would open your wallet.`);
@@ -609,39 +609,39 @@
                     }
                 });
             }
-            
+
             if (tipBtcButton) {
                 tipBtcButton.addEventListener('click', () => {
                     const amount = document.getElementById('btcAmount').value;
-                    
+
                     if (!amount || amount <= 0) {
                         alert('Please enter a valid amount');
                         return;
                     }
-                    
+
                     // This is just a mock
                     alert(`Thank you for wanting to tip ${amount} BTC! In a real implementation, this would open your wallet.`);
                     createTipEffect();
                 });
             }
-            
+
             const tipSolButton = document.getElementById('tipSol');
             if (tipSolButton) {
                 tipSolButton.addEventListener('click', () => {
                     const amount = document.getElementById('solAmount').value;
-                    
+
                     if (!amount || amount <= 0) {
                         alert('Please enter a valid amount');
                         return;
                     }
-                    
+
                     // This is just a mock
                     alert(`Thank you for wanting to tip ${amount} SOL! In a real implementation, this would open your wallet.`);
                     createTipEffect();
                 });
             }
         }
-        
+
         // Create a fun visual effect when someone tips
         function createTipEffect() {
             // Create raining coins effect
@@ -656,13 +656,13 @@
                 coin.style.top = '-50px';
                 coin.style.left = Math.random() * window.innerWidth + 'px';
                 coin.style.zIndex = '9999';
-                
+
                 document.body.appendChild(coin);
-                
+
                 // Animate the coin falling
                 const duration = Math.random() * 2 + 1;
                 const delay = Math.random() * 0.5;
-                
+
                 // Using GSAP for animation
                 gsap.to(coin, {
                     top: window.innerHeight + 50,
@@ -675,7 +675,7 @@
                     }
                 });
             }
-            
+
             // Shake the tip jar
             const jar = document.querySelector('.jar');
             if (jar) {
@@ -687,13 +687,13 @@
                 });
             }
         }
-        
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             addButtonEffects();
             setupTipping();
-            
+
             // Add hover sound effects to all interactive elements
             document.querySelectorAll('.nav-links a, .social-button, .button').forEach(element => {
                 element.addEventListener('mouseenter', () => {
@@ -702,9 +702,9 @@
                         document.getElementById('hover-sound-2'),
                         document.getElementById('hover-sound-3')
                     ];
-                    
+
                     const validSounds = sounds.filter(sound => sound !== null);
-                    
+
                     if (validSounds.length > 0) {
                         const sound = validSounds[Math.floor(Math.random() * validSounds.length)];
                         if (sound) {
@@ -720,4 +720,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
