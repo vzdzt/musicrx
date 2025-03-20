@@ -9,8 +9,218 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+      :root {
+        --primary: #00f7ff;
+        --secondary: #ff00f7;
+        --accent: #7B68EE;
+        --dark: #000000;
+        --glass: rgba(255, 255, 255, 0.05);
+        --glow: rgba(0, 247, 255, 0.5);
+        --rgb-glow: linear-gradient(45deg, #00f7ff, #ff00f7, #7B68EE);
+        --text-color: rgba(255, 255, 255, 0.8);
+        --background: #000000;
+        --card-background: rgba(255, 255, 255, 0.05);
+        --border-color: rgba(255, 255, 255, 0.05);
+      }
+      
+      [data-theme="satin"] {
+        --primary: #FFD700;
+        --secondary: #FF6347;
+        --accent: #DA70D6;
+        --dark: #1C2526;
+        --glass: rgba(255, 215, 0, 0.1);
+        --glow: rgba(255, 215, 0, 0.4);
+        --rgb-glow: linear-gradient(45deg, #FFD700, #FF6347, #DA70D6);
+        --text-color: rgba(255, 245, 238, 0.9);
+        --background: #1C2526;
+        --card-background: rgba(255, 215, 0, 0.05);
+        --border-color: rgba(255, 215, 0, 0.1);
+      }
+
+      [data-theme="frosted"] {
+        --primary: #00CED1;
+        --secondary: #FF69B4;
+        --accent: #6A5ACD;
+        --dark: #F5F5F5;
+        --glass: rgba(255, 255, 255, 0.3);
+        --glow: rgba(0, 206, 209, 0.5);
+        --rgb-glow: linear-gradient(45deg, #00CED1, #FF69B4, #6A5ACD);
+        --text-color: #333333;
+        --background: #F5F5F5;
+        --card-background: rgba(255, 255, 255, 0.7);
+        --border-color: rgba(0, 206, 209, 0.2);
+      }
+
+      [data-theme="veazy"] {
+        --primary: #00ff00;
+        --secondary: #47ff47;
+        --accent: #83ff83;
+        --dark: #1a1a1a;
+        --glass: rgba(188, 255, 188, 0.1);
+        --glow: rgba(244, 255, 244, 0.5);
+        --rgb-glow: linear-gradient(45deg, #00ff00, #47ff47, #83ff83);
+        --text-color: #f4fff4;
+        --background: #1a1a1a;
+        --card-background: rgba(188, 255, 188, 0.05);
+        --border-color: rgba(244, 255, 244, 0.2);
+      }
+
+      [data-theme="white"] {
+        --primary: #ffffff;
+        --secondary: #cccccc;
+        --accent: #999999;
+        --dark: #000000;
+        --glass: rgba(255, 255, 255, 0.1);
+        --glow: rgba(255, 255, 255, 0.3);
+        --rgb-glow: linear-gradient(45deg, #ffffff, #cccccc, #999999);
+        --text-color: #ffffff;
+        --background: #000000;
+        --card-background: rgba(255, 255, 255, 0.05);
+        --border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      [data-theme="black"] {
+        --primary: #333333;
+        --secondary: #4d4d4d;
+        --accent: #666666;
+        --dark: #1a1a1a;
+        --glass: rgba(51, 51, 51, 0.1);
+        --glow: rgba(0, 247, 255, 0.5);
+        --rgb-glow: linear-gradient(45deg, #00f7ff, #ff00f7, #7B68EE);
+        --text-color: rgba(77, 77, 77, 0.9);
+        --background: #1a1a1a;
+        --card-background: rgba(51, 51, 51, 0.05);
+        --border-color: rgba(77, 77, 77, 0.1);
+      }
+
+      [data-theme="all-white"] {
+        --primary: #FFFFFF;
+        --secondary: #F5F5F5;
+        --accent: #EDEDED;
+        --dark: #FFFFFF;
+        --glass: rgba(245, 245, 245, 0.2);
+        --glow: rgba(255, 255, 255, 0.5);
+        --rgb-glow: linear-gradient(45deg, #FFFFFF, #F5F5F5, #EDEDED);
+        --text-color: #333333;
+        --background: #FFFFFF;
+        --card-background: rgba(245, 245, 245, 0.3);
+        --border-color: rgba(237, 237, 237, 0.2);
+      }
+
+      [data-theme="all-red"] {
+        --primary: #FF0000;
+        --secondary: #E50000;
+        --accent: #CC0000;
+        --dark: #660000;
+        --glass: rgba(255, 0, 0, 0.1);
+        --glow: rgba(255, 0, 0, 0.5);
+        --rgb-glow: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
+        --text-color: #FFFFFF;
+        --background: #330000;
+        --card-background: rgba(102, 0, 0, 0.2);
+        --border-color: rgba(153, 0, 0, 0.2);
+      }
+
+      [data-theme="all-blue"] {
+        --primary: #0000FF;
+        --secondary: #0000E5;
+        --accent: #0000CC;
+        --dark: #000066;
+        --glass: rgba(0, 0, 255, 0.1);
+        --glow: rgba(0, 0, 255, 0.5);
+        --rgb-glow: linear-gradient(45deg, #0000FF, #0000E5, #0000CC);
+        --text-color: #FFFFFF;
+        --background: #000033;
+        --card-background: rgba(0, 0, 102, 0.2);
+        --border-color: rgba(0, 0, 153, 0.2);
+      }
+
+      [data-theme="pink-rose"] {
+        --primary: #F2C4DE;
+        --secondary: #FFC5D3;
+        --accent: #EA76CB;
+        --dark: #DC8A78;
+        --glass: rgba(242, 196, 222, 0.1);
+        --glow: rgba(234, 118, 203, 0.5);
+        --rgb-glow: linear-gradient(45deg, #F2C4DE, #FFC5D3, #EA76CB);
+        --text-color: #333333;
+        --background: #DD7878;
+        --card-background: rgba(242, 196, 222, 0.2);
+        --border-color: rgba(220, 138, 120, 0.2);
+      }
+
+      [data-theme="blue-sky"] {
+        --primary: #71B1D9;
+        --secondary: #AED8F2;
+        --accent: #B3EBF2;
+        --dark: #71B1D9;
+        --glass: rgba(174, 216, 242, 0.2);
+        --glow: rgba(113, 177, 217, 0.5);
+        --rgb-glow: linear-gradient(45deg, #71B1D9, #AED8F2, #B3EBF2);
+        --text-color: #333333;
+        --background: #AED8F2;
+        --card-background: rgba(179, 235, 242, 0.3);
+        --border-color: rgba(113, 177, 217, 0.2);
+      }
+
+      [data-theme="yellow-beige"] {
+        --primary: #F2DEA2;
+        --secondary: #FDFD96;
+        --accent: #F2DEA2;
+        --dark: #FDFD96;
+        --glass: rgba(242, 222, 162, 0.2);
+        --glow: rgba(253, 253, 150, 0.5);
+        --rgb-glow: linear-gradient(45deg, #F2DEA2, #FDFD96, #F2DEA2);
+        --text-color: #333333;
+        --background: #FDFD96;
+        --card-background: rgba(242, 222, 162, 0.3);
+        --border-color: rgba(242, 222, 162, 0.2);
+      }
+
+      [data-theme="green"] {
+        --primary: #77DD77;
+        --secondary: #77DD77;
+        --accent: #77DD77;
+        --dark: #77DD77;
+        --glass: rgba(119, 221, 119, 0.2);
+        --glow: rgba(119, 221, 119, 0.5);
+        --rgb-glow: linear-gradient(45deg, #77DD77, #77DD77, #77DD77);
+        --text-color: #333333;
+        --background: #77DD77;
+        --card-background: rgba(119, 221, 119, 0.3);
+        --border-color: rgba(119, 221, 119, 0.2);
+      }
+
+      [data-theme="purple-lavender"] {
+        --primary: #B39EB5;
+        --secondary: #8839EF;
+        --accent: #DCB0F2;
+        --dark: #B39EB5;
+        --glass: rgba(179, 158, 181, 0.2);
+        --glow: rgba(136, 57, 239, 0.5);
+        --rgb-glow: linear-gradient(45deg, #B39EB5, #8839EF, #DCB0F2);
+        --text-color: #FFFFFF;
+        --background: #8839EF;
+        --card-background: rgba(220, 176, 242, 0.3);
+        --border-color: rgba(179, 158, 181, 0.2);
+      }
+
+      [data-theme="vogue"] {
+        --primary: #ACB7AE;
+        --secondary: #C2B490;
+        --accent: #E4DECD;
+        --dark: #82716E;
+        --glass: rgba(172, 183, 174, 0.2);
+        --glow: rgba(194, 180, 144, 0.5);
+        --rgb-glow: linear-gradient(45deg, #ACB7AE, #C2B490, #E4DECD);
+        --text-color: #333333;
+        --background: #E4DECD;
+        --card-background: rgba(172, 183, 174, 0.3);
+        --border-color: rgba(130, 113, 110, 0.2);
+      }
+
       body {
-        background: #0a0a0a !important;
+        background: var(--background) !important;
       }
 
       .glass-card {
@@ -58,12 +268,216 @@
         50% { opacity: 1; }
         100% { opacity: 0; }
       }
-    </style>
+    /* Veazy (Neon Green) Mode */
+            [data-theme="veazy"] {
+                --primary: #00ff00;
+                --secondary: #47ff47;
+                --accent: #83ff83;
+                --dark: #1a1a1a;
+                --glass: rgba(188, 255, 188, 0.1);
+                --glow: rgba(244, 255, 244, 0.5);
+                --rgb-glow: linear-gradient(45deg, #00ff00, #47ff47, #83ff83);
+                --text-color: #f4fff4;
+                --background: #1a1a1a;
+                --card-background: rgba(188, 255, 188, 0.05);
+                --border-color: rgba(244, 255, 244, 0.2);
+            }
+
+            /* White Mode */
+            [data-theme="white"] {
+                --primary: #ffffff;
+                --secondary: #cccccc;
+                --accent: #999999;
+                --dark: #000000;
+                --glass: rgba(255, 255, 255, 0.1);
+                --glow: rgba(255, 255, 255, 0.3);
+                --rgb-glow: linear-gradient(45deg, #ffffff, #cccccc, #999999);
+                --text-color: #ffffff;
+                --background: #000000;
+                --card-background: rgba(255, 255, 255, 0.05);
+                --border-color: rgba(255, 255, 255, 0.1);
+            }
+
+            /* Black Mode */
+            [data-theme="black"] {
+                --primary: #333333;
+                --secondary: #4d4d4d;
+                --accent: #666666;
+                --dark: #1a1a1a;
+                --glass: rgba(51, 51, 51, 0.1);
+                --glow: rgba(0, 247, 255, 0.5);
+                --rgb-glow: linear-gradient(45deg, #00f7ff, #ff00f7, #7B68EE);
+                --text-color: rgba(77, 77, 77, 0.9);
+                --background: #1a1a1a;
+                --card-background: rgba(51, 51, 51, 0.05);
+                --border-color: rgba(77, 77, 77, 0.1);
+            }
+
+            /* All White Theme */
+            [data-theme="all-white"] {
+                --primary: #FFFFFF;
+                --secondary: #F5F5F5;
+                --accent: #EDEDED;
+                --dark: #FFFFFF;
+                --glass: rgba(245, 245, 245, 0.2);
+                --glow: rgba(255, 255, 255, 0.5);
+                --rgb-glow: linear-gradient(45deg, #FFFFFF, #F5F5F5, #EDEDED);
+                --text-color: #333333;
+                --background: #FFFFFF;
+                --card-background: rgba(245, 245, 245, 0.3);
+                --border-color: rgba(237, 237, 237, 0.2);
+            }
+
+            /* All Red Theme */
+            [data-theme="all-red"] {
+                --primary: #FF0000;
+                --secondary: #E50000;
+                --accent: #CC0000;
+                --dark: #660000;
+                --glass: rgba(255, 0, 0, 0.1);
+                --glow: rgba(255, 0, 0, 0.5);
+                --rgb-glow: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
+                --text-color: #FFFFFF;
+                --background: #330000;
+                --card-background: rgba(102, 0, 0, 0.2);
+                --border-color: rgba(153, 0, 0, 0.2);
+            }
+
+            /* All Blue Theme */
+            [data-theme="all-blue"] {
+                --primary: #0000FF;
+                --secondary: #0000E5;
+                --accent: #0000CC;
+                --dark: #000066;
+                --glass: rgba(0, 0, 255, 0.1);
+                --glow: rgba(0, 0, 255, 0.5);
+                --rgb-glow: linear-gradient(45deg, #0000FF, #0000E5, #0000CC);
+                --text-color: #FFFFFF;
+                --background: #000033;
+                --card-background: rgba(0, 0, 102, 0.2);
+                --border-color: rgba(0, 0, 153, 0.2);
+            }
+
+            /* Pink Rose Theme */
+            [data-theme="pink-rose"] {
+                --primary: #F2C4DE;
+                --secondary: #FFC5D3;
+                --accent: #EA76CB;
+                --dark: #DC8A78;
+                --glass: rgba(242, 196, 222, 0.1);
+                --glow: rgba(234, 118, 203, 0.5);
+                --rgb-glow: linear-gradient(45deg, #F2C4DE, #FFC5D3, #EA76CB);
+                --text-color: #333333;
+                --background: #DD7878;
+                --card-background: rgba(242, 196, 222, 0.2);
+                --border-color: rgba(220, 138, 120, 0.2);
+            }
+
+            /* Blue Sky Theme */
+            [data-theme="blue-sky"] {
+                --primary: #71B1D9;
+                --secondary: #AED8F2;
+                --accent: #B3EBF2;
+                --dark: #71B1D9;
+                --glass: rgba(174, 216, 242, 0.2);
+                --glow: rgba(113, 177, 217, 0.5);
+                --rgb-glow: linear-gradient(45deg, #71B1D9, #AED8F2, #B3EBF2);
+                --text-color: #333333;
+                --background: #AED8F2;
+                --card-background: rgba(179, 235, 242, 0.3);
+                --border-color: rgba(113, 177, 217, 0.2);
+            }
+
+            /* Yellow Beige Theme */
+            [data-theme="yellow-beige"] {
+                --primary: #F2DEA2;
+                --secondary: #FDFD96;
+                --accent: #F2DEA2;
+                --dark: #FDFD96;
+                --glass: rgba(242, 222, 162, 0.2);
+                --glow: rgba(253, 253, 150, 0.5);
+                --rgb-glow: linear-gradient(45deg, #F2DEA2, #FDFD96, #F2DEA2);
+                --text-color: #333333;
+                --background: #FDFD96;
+                --card-background: rgba(242, 222, 162, 0.3);
+                --border-color: rgba(242, 222, 162, 0.2);
+            }
+
+            /* Green Theme */
+            [data-theme="green"] {
+                --primary: #77DD77;
+                --secondary: #77DD77;
+                --accent: #77DD77;
+                --dark: #77DD77;
+                --glass: rgba(119, 221, 119, 0.2);
+                --glow: rgba(119, 221, 119, 0.5);
+                --rgb-glow: linear-gradient(45deg, #77DD77, #77DD77, #77DD77);
+                --text-color: #333333;
+                --background: #77DD77;
+                --card-background: rgba(119, 221, 119, 0.3);
+                --border-color: rgba(119, 221, 119, 0.2);
+            }
+
+            /* Purple Lavender Theme */
+            [data-theme="purple-lavender"] {
+                --primary: #B39EB5;
+                --secondary: #8839EF;
+                --accent: #DCB0F2;
+                --dark: #B39EB5;
+                --glass: rgba(179, 158, 181, 0.2);
+                --glow: rgba(136, 57, 239, 0.5);
+                --rgb-glow: linear-gradient(45deg, #B39EB5, #8839EF, #DCB0F2);
+                --text-color: #FFFFFF;
+                --background: #8839EF;
+                --card-background: rgba(220, 176, 242, 0.3);
+                --border-color: rgba(179, 158, 181, 0.2);
+            }
+
+            /* Vogue Theme */
+            [data-theme="vogue"] {
+                --primary: #ACB7AE;
+                --secondary: #C2B490;
+                --accent: #E4DECD;
+                --dark: #82716E;
+                --glass: rgba(172, 183, 174, 0.2);
+                --glow: rgba(194, 180, 144, 0.5);
+                --rgb-glow: linear-gradient(45deg, #ACB7AE, #C2B490, #E4DECD);
+                --text-color: #333333;
+                --background: #E4DECD;
+                --card-background: rgba(172, 183, 174, 0.3);
+                --border-color: rgba(130, 113, 110, 0.2);
+            }
+
+            /* Theme Toggle Button Styles */
+            #themeToggle {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: var(--glass);
+                border: 1px solid var(--border-color);
+                color: var(--primary);
+                padding: 0.8rem;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+                z-index: 1001;
+            }
+
+            #themeToggle:hover {
+                background: var(--rgb-glow);
+                color: var(--dark);
+                box-shadow: 0 0 20px var(--primary);
+                animation: rgbShift 3s linear infinite;
+                transform: translateY(-3px);
+            }
+            </style>
 </head>
 <body>
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
     <canvas id="universe"></canvas>
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
     <div class="starfield-background" id="starfield"></div>
     <script>
         // Create starfield background
@@ -100,9 +514,6 @@
         document.addEventListener('DOMContentLoaded', createStarfield);
     </script>
     <nav>
-<div class="search-container">
-            <input type="text" id="reviewSearch" placeholder="Search reviews by artist..." class="search-input">
-        </div>
         <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="reviews.html" class="nav-link">Reviews</a></li>
@@ -114,6 +525,10 @@
 
     <div class="container">
         <h1 class="glitch" data-text="FEATURES">FEATURES</h1>
+        <!-- Search functionality like reviews.html -->
+        <div class="search-container">
+            <input type="text" id="featureSearch" placeholder="Search features by artist..." class="search-input">
+        </div>
         <div class="grid">
             <div class="glass-card" onclick="window.location.href='features-drake.html'">
                 <img src="drizzy.jpeg" alt="Drake featured artist image">
@@ -288,13 +703,13 @@
                 <h2>J. Cole</h2>
                 <p>J. Cole’s grounded, lyrical fire—where soulful beats meet sharp storytelling, crafting hip-hop into a deep, relatable odyssey.</p>
             </div>
-            
+
             <div class="glass-card" onclick="window.location.href='features-kencarson.html'">
                 <img src="ken.jpeg" alt="Ken Carson featured artist image">
                 <h2>Ken Carson</h2>
                 <p>Ken Carson’s chaotic, futuristic edge—where glitchy beats fuse with reckless flows, twisting trap into a bold, neon-drenched haze.</p>
             </div>
-            
+
             <div class="glass-card" onclick="window.location.href='features-destroylonely.html'">
                 <img src="lone.jpeg" alt="Destroy Lonely featured artist image">
                 <h2>Destroy Lonely</h2>
@@ -306,7 +721,44 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themes = [
+            'normal', 'satin', 'frosted', 'veazy', 'white', 'black',
+            'all-white', 'all-red', 'all-blue', 'pink-rose', 'blue-sky',
+            'yellow-beige', 'green', 'purple-lavender', 'vogue'
+        ];
+        const themeTitles = [
+            'Normal Mode', 'Satin Mode', 'Frosted Mode', 'Veazy Mode', 'White Mode', 'Black Mode',
+            'All White Mode', 'All Red Mode', 'All Blue Mode', 'Pink Rose Mode', 'Blue Sky Mode',
+            'Yellow Beige Mode', 'Green Mode', 'Purple Lavender Mode', 'Vogue Mode'
+        ];
+        let currentThemeIndex = 0;
+
+        themeToggle.addEventListener('click', () => {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            body.setAttribute('data-theme', themes[currentThemeIndex]);
+            themeToggle.setAttribute('title', themeTitles[currentThemeIndex]);
+        });
+
+        // Dropdown menu toggle
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        
+        dropdownToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
+    </script>
 
     <script>
         // Ensure all glass cards on this page have the correct behavior
@@ -327,4 +779,3 @@
     </script>
 </body>
 </html>
-
