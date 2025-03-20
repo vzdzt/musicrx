@@ -1,5 +1,94 @@
+// Enhanced Theme Management System with persistent storage and application across pages
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize theme system with localStorage persistence
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.documentElement;
+
+    // Load saved theme from localStorage
+    const savedTheme = localStorage.getItem('currentTheme') || 'normal';
+    const savedThemeTitle = localStorage.getItem('currentThemeTitle') || 'Normal Mode';
+
+    // Apply saved theme immediately
+    body.setAttribute('data-theme', savedTheme);
+    if (themeToggle) {
+        themeToggle.setAttribute('title', savedThemeTitle);
+    }
+
+    const themes = [
+        'normal', 'satin', 'frosted', 'veazy', 'white', 'black',
+        'all-white', 'all-red', 'all-blue', 'pink-rose', 'blue-sky',
+        'yellow-beige', 'green', 'purple-lavender', 'vogue', 'neon-future',
+        'midnight-gold', 'desert-oasis', 'cyber-punk', 'aurora-breeze', 'flat-white', 'cd-case'
+    ];
+    const themeTitles = [
+        'Normal Mode', 'Satin Mode', 'Frosted Mode', 'Veazy Mode', 'White Mode', 'Black Mode',
+        'All White Mode', 'All Red Mode', 'All Blue Mode', 'Pink Rose Mode', 'Blue Sky Mode',
+        'Yellow Beige Mode', 'Green Mode', 'Purple Lavender Mode', 'Vogue Mode', 'Neon Future Mode',
+        'Midnight Gold Mode', 'Desert Oasis Mode', 'Cyber Punk Mode', 'Aurora Breeze Mode', 'Flat White Mode', 'CD Case Mode'
+    ];
+
+    // Get stored theme or default to 0
+    let currentThemeIndex = themes.indexOf(savedTheme);
+
+    // Enhanced theme toggle with localStorage persistence
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            const newTheme = themes[currentThemeIndex];
+            const newThemeTitle = themeTitles[currentThemeIndex];
+
+            // Save to localStorage
+            localStorage.setItem('currentTheme', newTheme);
+            localStorage.setItem('currentThemeTitle', newThemeTitle);
+
+            // Apply theme
+            body.setAttribute('data-theme', newTheme);
+            themeToggle.setAttribute('title', newThemeTitle);
+
+            // Log theme change for debugging
+            console.log(`Theme changed to: ${newTheme}`);
+        });
+    }
+
+    // Enhanced dropdown menu functionality
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+    dropdownToggles.forEach(toggle => {
+        const menu = toggle.nextElementSibling;
+        if (!menu) return;
+
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Close all other dropdowns
+            document.querySelectorAll('.dropdown-menu').forEach(otherMenu => {
+                if (otherMenu !== menu) {
+                    otherMenu.classList.remove('active');
+                }
+            });
+
+            menu.classList.toggle('active');
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.remove('active');
+            });
+        }
+    });
+});
+
 // Three.js setup for starfield (global)
 let scene, camera, renderer;
+
+// Initialize starfield on all pages
+document.addEventListener('DOMContentLoaded', () => {
+    initThreeJS();
+});
 
 function initThreeJS() {
     const canvas = document.getElementById('universe');
