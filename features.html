@@ -22,7 +22,7 @@
         --card-background: rgba(255, 255, 255, 0.05);
         --border-color: rgba(255, 255, 255, 0.05);
       }
-      
+
       [data-theme="satin"] {
         --primary: #FFD700;
         --secondary: #FF6347;
@@ -218,7 +218,557 @@
         --card-background: rgba(172, 183, 174, 0.3);
         --border-color: rgba(130, 113, 110, 0.2);
       }
+        /* Satin Mode */
+        [data-theme="satin"] {
+            --primary: #FFD700;
+            --secondary: #FF6347;
+            --accent: #DA70D6;
+            --dark: #1C2526;
+            --glass: rgba(255, 215, 0, 0.1);
+            --glow: rgba(255, 215, 0, 0.4);
+            --rgb-glow: linear-gradient(45deg, #FFD700, #FF6347, #DA70D6);
+            --text-color: rgba(255, 245, 238, 0.9);
+            --background: #1C2526;
+            --card-background: rgba(255, 215, 0, 0.05);
+            --border-color: rgba(255, 215, 0, 0.1);
+        }
 
+        /* Frosted White Mode */
+        [data-theme="frosted"] {
+            --primary: #00CED1;
+            --secondary: #FF69B4;
+            --accent: #6A5ACD;
+            --dark: #F5F5F5;
+            --glass: rgba(255, 255, 255, 0.3);
+            --glow: rgba(0, 206, 209, 0.5);
+            --rgb-glow: linear-gradient(45deg, #00CED1, #FF69B4, #6A5ACD);
+            --text-color: #333333;
+            --background: #F5F5F5;
+            --card-background: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(0, 206, 209, 0.2);
+        }
+
+        /* Veazy (Neon Green) Mode */
+        [data-theme="veazy"] {
+            --primary: #00ff00;
+            --secondary: #47ff47;
+            --accent: #83ff83;
+            --dark: #1a1a1a;
+            --glass: rgba(188, 255, 188, 0.1);
+            --glow: rgba(244, 255, 244, 0.5);
+            --rgb-glow: linear-gradient(45deg, #00ff00, #47ff47, #83ff83);
+            --text-color: #f4fff4;
+            --background: #1a1a1a;
+            --card-background: rgba(188, 255, 188, 0.05);
+            --border-color: rgba(244, 255, 244, 0.2);
+        }
+
+        /* White Mode (Previously Black & White) */
+        [data-theme="white"] {
+            --primary: #ffffff;
+            --secondary: #cccccc;
+            --accent: #999999;
+            --dark: #000000;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glow: rgba(255, 255, 255, 0.3);
+            --rgb-glow: linear-gradient(45deg, #ffffff, #cccccc, #999999);
+            --text-color: #ffffff;
+            --background: #000000;
+            --card-background: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Black Mode */
+        [data-theme="black"] {
+            --primary: #333333;
+            --secondary: #4d4d4d;
+            --accent: #666666;
+            --dark: #1a1a1a;
+            --glass: rgba(51, 51, 51, 0.1);
+            --glow: rgba(0, 247, 255, 0.5);
+            --rgb-glow: linear-gradient(45deg, #00f7ff, #ff00f7, #7B68EE);
+            --text-color: rgba(77, 77, 77, 0.9);
+            --background: #1a1a1a;
+            --card-background: rgba(51, 51, 51, 0.05);
+            --border-color: rgba(77, 77, 77, 0.1);
+        }
+
+        /* New Theme: All White with Satin White Accents */
+        [data-theme="all-white"] {
+            --primary: #FFFFFF;
+            --secondary: #F5F5F5;
+            --accent: #EDEDED;
+            --dark: #FFFFFF;
+            --glass: rgba(245, 245, 245, 0.2);
+            --glow: rgba(255, 255, 255, 0.5);
+            --rgb-glow: linear-gradient(45deg, #FFFFFF, #F5F5F5, #EDEDED);
+            --text-color: #333333; /* Dark text for contrast */
+            --background: #FFFFFF;
+            --card-background: rgba(245, 245, 245, 0.3);
+            --border-color: rgba(237, 237, 237, 0.2);
+        }
+
+        /* New Theme: All Red */
+        [data-theme="all-red"] {
+            --primary: #FF0000;
+            --secondary: #E50000;
+            --accent: #CC0000;
+            --dark: #660000;
+            --glass: rgba(255, 0, 0, 0.1);
+            --glow: rgba(255, 0, 0, 0.5);
+            --rgb-glow: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
+            --text-color: #FFFFFF;
+            --background: #330000;
+            --card-background: rgba(102, 0, 0, 0.2);
+            --border-color: rgba(153, 0, 0, 0.2);
+        }
+
+        /* Neon Abyss Theme */
+        [data-theme="neon-abyss"] {
+            --primary: #ff00ff; /* Neon magenta */
+            --secondary: #00ffcc; /* Neon teal */
+            --accent: #ffcc00; /* Neon yellow */
+            --dark: #0a0a1f; /* Deep abyss blue */
+            --glass: rgba(255, 0, 255, 0.15); /* Magenta glass */
+            --glow: rgba(0, 255, 204, 0.6); /* Teal glow */
+            --rgb-glow: linear-gradient(45deg, #ff00ff, #00ffcc, #ffcc00); /* Neon gradient */
+            --text-color: #ffffff; /* White text */
+            --background: #0a0a1f; /* Abyss background */
+            --card-background: rgba(255, 0, 255, 0.1); /* Magenta card */
+            --border-color: rgba(255, 204, 0, 0.25); /* Yellow border */
+        }
+
+        /* Holo Grid Theme */
+        [data-theme="holo-grid"] {
+            --primary: #00ccff; /* Holo blue */
+            --secondary: #ff33cc; /* Holo pink */
+            --accent: #33ffcc; /* Holo teal */
+            --dark: #1a0033; /* Dark purple grid */
+            --glass: rgba(0, 204, 255, 0.2); /* Blue glass */
+            --glow: rgba(255, 51, 204, 0.5); /* Pink glow */
+            --rgb-glow: linear-gradient(45deg, #00ccff, #ff33cc, #33ffcc); /* Holo gradient */
+            --text-color: #e6e6ff; /* Light purple text */
+            --background: #1a0033; /* Grid background */
+            --card-background: rgba(51, 255, 204, 0.15); /* Teal card */
+            --border-color: rgba(0, 204, 255, 0.3); /* Blue border */
+        }
+
+        /* Quantum Dust Theme */
+        [data-theme="quantum-dust"] {
+            --primary: #b366ff; /* Quantum purple */
+            --secondary: #66ffcc; /* Quantum teal */
+            --accent: #ff99cc; /* Quantum pink */
+            --dark: #0f0f2e; /* Cosmic dark */
+            --glass: rgba(179, 102, 255, 0.1); /* Purple glass */
+            --glow: rgba(102, 255, 204, 0.5); /* Teal glow */
+            --rgb-glow: linear-gradient(45deg, #b366ff, #66ffcc, #ff99cc); /* Quantum gradient */
+            --text-color: #ffffff; /* White text */
+            --background: #0f0f2e; /* Cosmic background */
+            --card-background: rgba(255, 153, 204, 0.1); /* Pink card */
+            --border-color: rgba(179, 102, 255, 0.2); /* Purple border */
+        }
+
+        /* Synthwave Pulse Theme */
+        [data-theme="synthwave-pulse"] {
+            --primary: #ff2965; /* Synth pink */
+            --secondary: #00e6ff; /* Synth cyan */
+            --accent: #cc00ff; /* Synth purple */
+            --dark: #1a0047; /* Retro dark */
+            --glass: rgba(255, 41, 101, 0.15); /* Pink glass */
+            --glow: rgba(0, 230, 255, 0.6); /* Cyan glow */
+            --rgb-glow: linear-gradient(45deg, #ff2965, #00e6ff, #cc00ff); /* Synth gradient */
+            --text-color: #ffffff; /* White text */
+            --background: #1a0047; /* Retro background */
+            --card-background: rgba(204, 0, 255, 0.1); /* Purple card */
+            --border-color: rgba(255, 41, 101, 0.25); /* Pink border */
+        }
+
+        /* Monochrome Flux Theme */
+        [data-theme="monochrome-flux"] {
+            --primary: #d9d9d9; /* Light gray */
+            --secondary: #8c8c8c; /* Medium gray */
+            --accent: #404040; /* Dark gray */
+            --dark: #1f1f1f; /* Near black */
+            --glass: rgba(217, 217, 217, 0.2); /* Light gray glass */
+            --glow: rgba(140, 140, 140, 0.5); /* Medium gray glow */
+            --rgb-glow: linear-gradient(45deg, #d9d9d9, #8c8c8c, #404040); /* Mono gradient */
+            --text-color: #ffffff; /* White text */
+            --background: #1f1f1f; /* Near black background */
+            --card-background: rgba(64, 64, 64, 0.15); /* Dark gray card */
+            --border-color: rgba(217, 217, 217, 0.25); /* Light gray border */
+        }
+
+        /* Clear Plastic Theme */
+        [data-theme="clear-plastic"] {
+            --primary: #e6f2ff; /* Light blue tint */
+            --secondary: #cce6ff; /* Lighter blue tint */
+            --accent: #99ccff; /* Soft blue accent */
+            --dark: rgba(255, 255, 255, 0.1); /* Transparent base */
+            --glass: rgba(255, 255, 255, 0.3); /* Glossy glass */
+            --glow: rgba(153, 204, 255, 0.5); /* Blue glow */
+            --rgb-glow: linear-gradient(45deg, #e6f2ff, #cce6ff, #99ccff); /* Plastic gradient */
+            --text-color: #333333; /* Dark text */
+            --background: rgba(255, 255, 255, 0.05); /* Near-transparent background */
+            --card-background: rgba(255, 255, 255, 0.4); /* Glossy card */
+            --border-color: rgba(153, 204, 255, 0.3); /* Blue border */
+        }
+        /* 1. Galactic Nebula */
+        [data-theme="galactic-nebula"] {
+            --primary: #ff1a8c; /* Cosmic pink */
+            --secondary: #00ccff; /* Nebula blue */
+            --accent: #b347ff; /* Violet flare */
+            --dark: #0d001a; /* Deep space black */
+            --glass: rgba(255, 26, 140, 0.2); /* Pink glass */
+            --glow: rgba(0, 204, 255, 0.7); /* Blue nebula glow */
+            --rgb-glow: linear-gradient(45deg, #ff1a8c, #00ccff, #b347ff); /* Galactic gradient */
+            --text-color: #e6ccff; /* Light purple text */
+            --background: radial-gradient(circle at center, #1a0033, #0d001a); /* Nebula radial */
+            --card-background: rgba(179, 71, 255, 0.15); /* Violet card */
+            --border-color: rgba(255, 26, 140, 0.3); /* Pink border */
+        }
+
+        /* 2. Electric Storm */
+        [data-theme="electric-storm"] {
+            --primary: #00ffcc; /* Electric teal */
+            --secondary: #ffcc00; /* Lightning yellow */
+            --accent: #ff0066; /* Thunder pink */
+            --dark: #1a1a2e; /* Stormy dark */
+            --glass: rgba(0, 255, 204, 0.25); /* Teal glass */
+            --glow: rgba(255, 204, 0, 0.8); /* Yellow electric glow */
+            --rgb-glow: linear-gradient(45deg, #00ffcc, #ffcc00, #ff0066); /* Storm gradient */
+            --text-color: #ffffff; /* White text */
+            --background: linear-gradient(135deg, #1a1a2e, #2e2e47); /* Stormy sky */
+            --card-background: rgba(255, 0, 102, 0.2); /* Pink card */
+            --border-color: rgba(0, 255, 204, 0.35); /* Teal border */
+        }
+
+        /* 3. Void Pulse */
+        [data-theme="void-pulse"] {
+            --primary: #ff00ff; /* Void magenta */
+            --secondary: #00ff00; /* Pulse green */
+            --accent: #ff6600; /* Orange surge */
+            --dark: #000000; /* Absolute void */
+            --glass: rgba(255, 0, 255, 0.15); /* Magenta glass */
+            --glow: rgba(0, 255, 0, 0.9); /* Green pulse glow */
+            --rgb-glow: linear-gradient(45deg, #ff00ff, #00ff00, #ff6600); /* Pulsing gradient */
+            --text-color: #ffffff; /* White text */
+            --background: #000000; /* Pure black void */
+            --card-background: rgba(255, 102, 0, 0.1); /* Orange card */
+            --border-color: rgba(255, 0, 255, 0.4); /* Magenta border */
+        }
+
+        /* 4. Prism Shard */
+        [data-theme="prism-shard"] {
+            --primary: #66ffcc; /* Prism teal */
+            --secondary: #ff99cc; /* Prism pink */
+            --accent: #ccff66; /* Prism lime */
+            --dark: #1a2e47; /* Shard dark */
+            --glass: rgba(102, 255, 204, 0.3); /* Teal glass */
+            --glow: rgba(255, 153, 204, 0.6); /* Pink prism glow */
+            --rgb-glow: linear-gradient(45deg, #66ffcc, #ff99cc, #ccff66); /* Prismatic gradient */
+            --text-color: #ffffff; /* White text */
+            --background: linear-gradient(90deg, #1a2e47, #2e475c); /* Shard gradient */
+            --card-background: rgba(204, 255, 102, 0.25); /* Lime card */
+            --border-color: rgba(102, 255, 204, 0.35); /* Teal border */
+        }
+
+        /* 5. Inferno Core */
+        [data-theme="inferno-core"] {
+            --primary: #ff3300; /* Inferno red */
+            --secondary: #ff8c00; /* Flame orange */
+            --accent: #ffcc00; /* Core yellow */
+            --dark: #2e0f00; /* Charred dark */
+            --glass: rgba(255, 51, 0, 0.2); /* Red glass */
+            --glow: rgba(255, 140, 0, 0.8); /* Orange inferno glow */
+            --rgb-glow: linear-gradient(45deg, #ff3300, #ff8c00, #ffcc00); /* Fire gradient */
+            --text-color: #ffffff; /* White text */
+            --background: radial-gradient(circle, #2e0f00, #1a0700); /* Molten core */
+            --card-background: rgba(255, 204, 0, 0.15); /* Yellow card */
+            --border-color: rgba(255, 51, 0, 0.4); /* Red border */
+        }
+
+        /* 6. Cosmic Rift */
+        [data-theme="cosmic-rift"] {
+            --primary: #b366ff; /* Rift purple */
+            --secondary: #00e6ff; /* Cosmic cyan */
+            --accent: #ff66b3; /* Pink tear */
+            --dark: #0f1a2e; /* Space rift */
+            --glass: rgba(179, 102, 255, 0.25); /* Purple glass */
+            --glow: rgba(0, 230, 255, 0.7); /* Cyan rift glow */
+            --rgb-glow: linear-gradient(45deg, #b366ff, #00e6ff, #ff66b3); /* Rift gradient */
+            --text-color: #e6f2ff; /* Light blue text */
+            --background: linear-gradient(135deg, #0f1a2e, #1a2e47); /* Cosmic shift */
+            --card-background: rgba(255, 102, 179, 0.2); /* Pink card */
+            --border-color: rgba(179, 102, 255, 0.35); /* Purple border */
+        }
+
+        /* 7. Neon Eclipse */
+        [data-theme="neon-eclipse"] {
+            --primary: #ff00cc; /* Neon pink */
+            --secondary: #00ff99; /* Neon green */
+            --accent: #ffcc00; /* Eclipse yellow */
+            --dark: #1a001a; /* Eclipse shadow */
+            --glass: rgba(255, 0, 204, 0.2); /* Pink glass */
+            --glow: rgba(0, 255, 153, 0.8); /* Green neon glow */
+            --rgb-glow: linear-gradient(45deg, #ff00cc, #00ff99, #ffcc00); /* Eclipse gradient */
+            --text-color: #ffffff; /* White text */
+            --background: radial-gradient(circle, #1a001a, #0d000d); /* Shadowed core */
+            --card-background: rgba(255, 204, 0, 0.15); /* Yellow card */
+            --border-color: rgba(255, 0, 204, 0.3); /* Pink border */
+        }
+
+        /* 8. Quantum Flux */
+        [data-theme="quantum-flux"] {
+            --primary: #66ff99; /* Quantum green */
+            --secondary: #ff3399; /* Flux magenta */
+            --accent: #3399ff; /* Blue flux */
+            --dark: #0f2e1a; /* Dark quantum */
+            --glass: rgba(102, 255, 153, 0.25); /* Green glass */
+            --glow: rgba(255, 51, 153, 0.7); /* Magenta flux glow */
+            --rgb-glow: linear-gradient(45deg, #66ff99, #ff3399, #3399ff); /* Flux gradient */
+            --text-color: #ffffff; /* White text */
+            --background: linear-gradient(90deg, #0f2e1a, #1a4733); /* Quantum flow */
+            --card-background: rgba(51, 153, 255, 0.2); /* Blue card */
+            --border-color: rgba(102, 255, 153, 0.35); /* Green border */
+        }
+
+        /* 9. Holo Abyss */
+        [data-theme="holo-abyss"] {
+            --primary: #00ccff; /* Holo blue */
+            --secondary: #ff00ff; /* Holo magenta */
+            --accent: #ccff00; /* Holo lime */
+            --dark: #0a1a33; /* Abyss depth */
+            --glass: rgba(0, 204, 255, 0.3); /* Blue glass */
+            --glow: rgba(255, 0, 255, 0.8); /* Magenta holo glow */
+            --rgb-glow: linear-gradient(45deg, #00ccff, #ff00ff, #ccff00); /* Holo gradient */
+            --text-color: #e6f2ff; /* Light blue text */
+            --background: radial-gradient(circle, #0a1a33, #051428); /* Deep abyss */
+            --card-background: rgba(204, 255, 0, 0.25); /* Lime card */
+            --border-color: rgba(0, 204, 255, 0.4); /* Blue border */
+        }
+
+        /* 10. Spectral Surge */
+        [data-theme="spectral-surge"] {
+            --primary: #ff3366; /* Spectral red */
+            --secondary: #33ccff; /* Surge blue */
+            --accent: #ffcc33; /* Surge gold */
+            --dark: #2e1a0f; /* Dark surge */
+            --glass: rgba(255, 51, 102, 0.25); /* Red glass */
+            --glow: rgba(51, 204, 255, 0.7); /* Blue surge glow */
+            --rgb-glow: linear-gradient(45deg, #ff3366, #33ccff, #ffcc33); /* Spectral gradient */
+            --text-color: #ffffff; /* White text */
+            --background: linear-gradient(135deg, #2e1a0f, #472e1a); /* Surge flow */
+            --card-background: rgba(255, 204, 51, 0.2); /* Gold card */
+            --border-color: rgba(255, 51, 102, 0.35); /* Red border */
+        }
+        /* New Theme: All Blue */
+        [data-theme="all-blue"] {
+            --primary: #0000FF;
+            --secondary: #0000E5;
+            --accent: #0000CC;
+            --dark: #000066;
+            --glass: rgba(0, 0, 255, 0.1);
+            --glow: rgba(0, 0, 255, 0.5);
+            --rgb-glow: linear-gradient(45deg, #0000FF, #0000E5, #0000CC);
+            --text-color: #FFFFFF;
+            --background: #000033;
+            --card-background: rgba(0, 0, 102, 0.2);
+            --border-color: rgba(0, 0, 153, 0.2);
+        }
+
+        /* New Theme: Pink and Rose */
+        [data-theme="pink-rose"] {
+            --primary: #F2C4DE; /* Cotton Candy */
+            --secondary: #FFC5D3; /* Pastel Pink */
+            --accent: #EA76CB; /* Pink */
+            --dark: #DC8A78; /* Rosewater */
+            --glass: rgba(242, 196, 222, 0.1);
+            --glow: rgba(234, 118, 203, 0.5);
+            --rgb-glow: linear-gradient(45deg, #F2C4DE, #FFC5D3, #EA76CB);
+            --text-color: #333333;
+            --background: #DD7878; /* Flamingo */
+            --card-background: rgba(242, 196, 222, 0.2);
+            --border-color: rgba(220, 138, 120, 0.2);
+        }
+
+        /* New Theme: Blue Sky */
+        [data-theme="blue-sky"] {
+            --primary: #71B1D9; /* Robin Egg Blue */
+            --secondary: #AED8F2; /* Baby Blue */
+            --accent: #B3EBF2; /* Pastel Blue */
+            --dark: #71B1D9;
+            --glass: rgba(174, 216, 242, 0.2);
+            --glow: rgba(113, 177, 217, 0.5);
+            --rgb-glow: linear-gradient(45deg, #71B1D9, #AED8F2, #B3EBF2);
+            --text-color: #333333;
+            --background: #AED8F2;
+            --card-background: rgba(179, 235, 242, 0.3);
+            --border-color: rgba(113, 177, 217, 0.2);
+        }
+
+        /* New Theme: Yellow and Beige */
+        [data-theme="yellow-beige"] {
+            --primary: #F2DEA2; /* Cornflower Yellow */
+            --secondary: #FDFD96; /* Pastel Yellow */
+            --accent: #F2DEA2;
+            --dark: #FDFD96;
+            --glass: rgba(242, 222, 162, 0.2);
+            --glow: rgba(253, 253, 150, 0.5);
+            --rgb-glow: linear-gradient(45deg, #F2DEA2, #FDFD96, #F2DEA2);
+            --text-color: #333333;
+            --background: #FDFD96;
+            --card-background: rgba(242, 222, 162, 0.3);
+            --border-color: rgba(242, 222, 162, 0.2);
+        }
+
+        /* New Theme: Green */
+        [data-theme="green"] {
+            --primary: #77DD77; /* Pastel Green */
+            --secondary: #77DD77;
+            --accent: #77DD77;
+            --dark: #77DD77;
+            --glass: rgba(119, 221, 119, 0.2);
+            --glow: rgba(119, 221, 119, 0.5);
+            --rgb-glow: linear-gradient(45deg, #77DD77, #77DD77, #77DD77);
+            --text-color: #333333;
+            --background: #77DD77;
+            --card-background: rgba(119, 221, 119, 0.3);
+            --border-color: rgba(119, 221, 119, 0.2);
+        }
+
+        /* New Theme: Purple and Lavender */
+        [data-theme="purple-lavender"] {
+            --primary: #B39EB5; /* Pastel Purple */
+            --secondary: #8839EF; /* Mauve */
+            --accent: #DCB0F2; /* Lavender Haze */
+            --dark: #B39EB5;
+            --glass: rgba(179, 158, 181, 0.2);
+            --glow: rgba(136, 57, 239, 0.5);
+            --rgb-glow: linear-gradient(45deg, #B39EB5, #8839EF, #DCB0F2);
+            --text-color: #FFFFFF;
+            --background: #8839EF;
+            --card-background: rgba(220, 176, 242, 0.3);
+            --border-color: rgba(179, 158, 181, 0.2);
+        }
+
+        /* New Theme: Vogue */
+        [data-theme="vogue"] {
+            --primary: #ACB7AE; /* Barely Green */
+            --secondary: #C2B490; /* Blondey */
+            --accent: #E4DECD; /* Tan Blonde */
+            --dark: #82716E; /* The Brown-shirts */
+            --glass: rgba(172, 183, 174, 0.2);
+            --glow: rgba(194, 180, 144, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ACB7AE, #C2B490, #E4DECD);
+            --text-color: #333333;
+            --background: #E4DECD;
+            --card-background: rgba(172, 183, 174, 0.3);
+            --border-color: rgba(130, 113, 110, 0.2);
+        }
+
+
+        /* Neon Future Mode */
+        [data-theme="neon-future"] {
+          --primary: #00ff9f;
+          --secondary: #00f7ff;
+          --accent: #ff00ff;
+          --dark: #000033;
+          --glass: rgba(0, 255, 159, 0.1);
+          --glow: rgba(0, 247, 255, 0.5);
+          --rgb-glow: linear-gradient(45deg, #00ff9f, #00f7ff, #ff00ff);
+          --text-color: #ffffff;
+          --background: #000033;
+          --card-background: rgba(0, 255, 159, 0.05);
+          --border-color: rgba(0, 247, 255, 0.2);
+        }
+
+        /* Midnight Gold Mode */
+        [data-theme="midnight-gold"] {
+          --primary: #ffd700;
+          --secondary: #4a4a8a;
+          --accent: #c0c0c0;
+          --dark: #1a1a3a;
+          --glass: rgba(255, 215, 0, 0.1);
+          --glow: rgba(255, 215, 0, 0.4);
+          --rgb-glow: linear-gradient(45deg, #ffd700, #4a4a8a, #c0c0c0);
+          --text-color: #ffd700;
+          --background: #1a1a3a;
+          --card-background: rgba(255, 215, 0, 0.05);
+          --border-color: rgba(255, 215, 0, 0.2);
+        }
+
+        /* Desert Oasis Mode */
+        [data-theme="desert-oasis"] {
+          --primary: #ff8c00;
+          --secondary: #4b0082;
+          --accent: #00ced1;
+          --dark: #2d1810;
+          --glass: rgba(255, 140, 0, 0.1);
+          --glow: rgba(0, 206, 209, 0.4);
+          --rgb-glow: linear-gradient(45deg, #ff8c00, #4b0082, #00ced1);
+          --text-color: #ff8c00;
+          --background: #2d1810;
+          --card-background: rgba(255, 140, 0, 0.05);
+          --border-color: rgba(0, 206, 209, 0.2);
+        }
+
+        /* Cyber Punk Mode */
+        [data-theme="cyber-punk"] {
+          --primary: #ff00ff;
+          --secondary: #00ff00;
+          --accent: #ffff00;
+          --dark: #000000;
+          --glass: rgba(255, 0, 255, 0.1);
+          --glow: rgba(0, 255, 0, 0.5);
+          --rgb-glow: linear-gradient(45deg, #ff00ff, #00ff00, #ffff00);
+          --text-color: #ffffff;
+          --background: #000000;
+          --card-background: rgba(255, 0, 255, 0.05);
+          --border-color: rgba(0, 255, 0, 0.2);
+        }
+
+        /* Aurora Breeze Mode */
+        [data-theme="aurora-breeze"] {
+          --primary: #80ffdb;
+          --secondary: #64dfdf;
+          --accent: #48bfe3;
+          --dark: #1b3a4b;
+          --glass: rgba(128, 255, 219, 0.1);
+          --glow: rgba(100, 223, 223, 0.4);
+          --rgb-glow: linear-gradient(45deg, #80ffdb, #64dfdf, #48bfe3);
+          --text-color: #80ffdb;
+          --background: #1b3a4b;
+          --card-background: rgba(128, 255, 219, 0.05);
+          --border-color: rgba(100, 223, 223, 0.2);
+        }
+        /* New Glass Morphism Theme */
+        [data-theme="glass-morphism"] {
+            --primary: #a3d9ff; /* Soft cyan */
+            --secondary: #e6f2ff; /* Light blue-white */
+            --accent: #cce6ff; /* Medium cyan */
+            --dark: rgba(20, 30, 50, 0.8); /* Semi-transparent dark blue */
+            --glass: rgba(255, 255, 255, 0.15); /* Translucent glass effect */
+            --glow: rgba(163, 217, 255, 0.5); /* Soft cyan glow */
+            --rgb-glow: linear-gradient(45deg, #a3d9ff, #e6f2ff, #cce6ff);
+            --text-color: #ffffff; /* White text for contrast */
+            --background: linear-gradient(135deg, rgba(20, 30, 50, 0.9), rgba(40, 60, 100, 0.9)); /* Gradient dark blue background */
+            --card-background: rgba(255, 255, 255, 0.1); /* Subtle glass card */
+            --border-color: rgba(163, 217, 255, 0.3); /* Soft cyan border */
+        }
+
+        /* Glass Morphism Background Effect */
+        [data-theme="glass-morphism"] body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            z-index: 0;
+            pointer-events: none;
+        }
       body {
         background: var(--background) !important;
       }
@@ -728,13 +1278,14 @@
         const themes = [
             'normal', 'satin', 'frosted', 'veazy', 'white', 'black',
             'all-white', 'all-red', 'all-blue', 'pink-rose', 'blue-sky',
-            'yellow-beige', 'green', 'purple-lavender', 'vogue'
+            'yellow-beige', 'green', 'purple-lavender', 'vogue', 'neon-future',
+            'midnight-gold', 'desert-oasis', 'cyber-punk', 'aurora-breeze', 'flat-white', 'cd-case'
         ];
         const themeTitles = [
             'Normal Mode', 'Satin Mode', 'Frosted Mode', 'Veazy Mode', 'White Mode', 'Black Mode',
             'All White Mode', 'All Red Mode', 'All Blue Mode', 'Pink Rose Mode', 'Blue Sky Mode',
-            'Yellow Beige Mode', 'Green Mode', 'Purple Lavender Mode', 'Vogue Mode'
-        ];
+            'Yellow Beige Mode', 'Green Mode', 'Purple Lavender Mode', 'Vogue Mode', 'Neon Future Mode',
+            'Midnight Gold Mode', 'Desert Oasis Mode', 'Cyber Punk Mode', 'Aurora Breeze Mode', 'Flat White Mode', 'CD Case Mode'
         let currentThemeIndex = 0;
 
         themeToggle.addEventListener('click', () => {
@@ -746,7 +1297,7 @@
         // Dropdown menu toggle
         const dropdownToggle = document.querySelector('.dropdown-toggle');
         const dropdownMenu = document.querySelector('.dropdown-menu');
-        
+
         dropdownToggle.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
