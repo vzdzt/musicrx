@@ -446,6 +446,35 @@
   --border-color: rgba(100, 223, 223, 0.2);
 }
 
+/* New Glass Morphism Theme */
+[data-theme="glass-morphism"] {
+    --primary: #a3d9ff; /* Soft cyan */
+    --secondary: #e6f2ff; /* Light blue-white */
+    --accent: #cce6ff; /* Medium cyan */
+    --dark: rgba(20, 30, 50, 0.8); /* Semi-transparent dark blue */
+    --glass: rgba(255, 255, 255, 0.15); /* Translucent glass effect */
+    --glow: rgba(163, 217, 255, 0.5); /* Soft cyan glow */
+    --rgb-glow: linear-gradient(45deg, #a3d9ff, #e6f2ff, #cce6ff);
+    --text-color: #ffffff; /* White text for contrast */
+    --background: linear-gradient(135deg, rgba(20, 30, 50, 0.9), rgba(40, 60, 100, 0.9)); /* Gradient dark blue background */
+    --card-background: rgba(255, 255, 255, 0.1); /* Subtle glass card */
+    --border-color: rgba(163, 217, 255, 0.3); /* Soft cyan border */
+}
+
+/* Glass Morphism Background Effect */
+[data-theme="glass-morphism"] body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    z-index: 0;
+    pointer-events: none;
+}
+
 * {
   margin: 0;
   padding: 0;
