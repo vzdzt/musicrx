@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Default (Normal Mode) Variables */
+        /* Default (Normal Mode) Variables - Restored Original Theme */
         :root {
             --primary: #00f7ff;
             --secondary: #ff00f7;
@@ -68,8 +68,8 @@
             --border-color: rgba(244, 255, 244, 0.2);
         }
 
-        /* Black & White Mode */
-        [data-theme="blackwhite"] {
+        /* White Mode (Previously Black & White) */
+        [data-theme="white"] {
             --primary: #ffffff;
             --secondary: #cccccc;
             --accent: #999999;
@@ -83,6 +83,232 @@
             --border-color: rgba(255, 255, 255, 0.1);
         }
 
+        /* Black Mode */
+        [data-theme="black"] {
+            --primary: #333333;
+            --secondary: #4d4d4d;
+            --accent: #666666;
+            --dark: #1a1a1a;
+            --glass: rgba(51, 51, 51, 0.1);
+            --glow: rgba(0, 247, 255, 0.5);
+            --rgb-glow: linear-gradient(45deg, #00f7ff, #ff00f7, #7B68EE);
+            --text-color: rgba(77, 77, 77, 0.9);
+            --background: #1a1a1a;
+            --card-background: rgba(51, 51, 51, 0.05);
+            --border-color: rgba(77, 77, 77, 0.1);
+        }
+
+        /* New Theme: All White with Satin White Accents */
+        [data-theme="all-white"] {
+            --primary: #FFFFFF;
+            --secondary: #F5F5F5;
+            --accent: #EDEDED;
+            --dark: #FFFFFF;
+            --glass: rgba(245, 245, 245, 0.2);
+            --glow: rgba(255, 255, 255, 0.5);
+            --rgb-glow: linear-gradient(45deg, #FFFFFF, #F5F5F5, #EDEDED);
+            --text-color: #333333; /* Dark text for contrast */
+            --background: #FFFFFF;
+            --card-background: rgba(245, 245, 245, 0.3);
+            --border-color: rgba(237, 237, 237, 0.2);
+        }
+
+        /* New Theme: All Red */
+        [data-theme="all-red"] {
+            --primary: #FF0000;
+            --secondary: #E50000;
+            --accent: #CC0000;
+            --dark: #660000;
+            --glass: rgba(255, 0, 0, 0.1);
+            --glow: rgba(255, 0, 0, 0.5);
+            --rgb-glow: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
+            --text-color: #FFFFFF;
+            --background: #330000;
+            --card-background: rgba(102, 0, 0, 0.2);
+            --border-color: rgba(153, 0, 0, 0.2);
+        }
+
+        /* New Theme: All Blue */
+        [data-theme="all-blue"] {
+            --primary: #0000FF;
+            --secondary: #0000E5;
+            --accent: #0000CC;
+            --dark: #000066;
+            --glass: rgba(0, 0, 255, 0.1);
+            --glow: rgba(0, 0, 255, 0.5);
+            --rgb-glow: linear-gradient(45deg, #0000FF, #0000E5, #0000CC);
+            --text-color: #FFFFFF;
+            --background: #000033;
+            --card-background: rgba(0, 0, 102, 0.2);
+            --border-color: rgba(0, 0, 153, 0.2);
+        }
+
+        /* New Theme: Pink and Rose */
+        [data-theme="pink-rose"] {
+            --primary: #F2C4DE; /* Cotton Candy */
+            --secondary: #FFC5D3; /* Pastel Pink */
+            --accent: #EA76CB; /* Pink */
+            --dark: #DC8A78; /* Rosewater */
+            --glass: rgba(242, 196, 222, 0.1);
+            --glow: rgba(234, 118, 203, 0.5);
+            --rgb-glow: linear-gradient(45deg, #F2C4DE, #FFC5D3, #EA76CB);
+            --text-color: #333333;
+            --background: #DD7878; /* Flamingo */
+            --card-background: rgba(242, 196, 222, 0.2);
+            --border-color: rgba(220, 138, 120, 0.2);
+        }
+
+        /* New Theme: Blue Sky */
+        [data-theme="blue-sky"] {
+            --primary: #71B1D9; /* Robin Egg Blue */
+            --secondary: #AED8F2; /* Baby Blue */
+            --accent: #B3EBF2; /* Pastel Blue */
+            --dark: #71B1D9;
+            --glass: rgba(174, 216, 242, 0.2);
+            --glow: rgba(113, 177, 217, 0.5);
+            --rgb-glow: linear-gradient(45deg, #71B1D9, #AED8F2, #B3EBF2);
+            --text-color: #333333;
+            --background: #AED8F2;
+            --card-background: rgba(179, 235, 242, 0.3);
+            --border-color: rgba(113, 177, 217, 0.2);
+        }
+
+        /* New Theme: Yellow and Beige */
+        [data-theme="yellow-beige"] {
+            --primary: #F2DEA2; /* Cornflower Yellow */
+            --secondary: #FDFD96; /* Pastel Yellow */
+            --accent: #F2DEA2;
+            --dark: #FDFD96;
+            --glass: rgba(242, 222, 162, 0.2);
+            --glow: rgba(253, 253, 150, 0.5);
+            --rgb-glow: linear-gradient(45deg, #F2DEA2, #FDFD96, #F2DEA2);
+            --text-color: #333333;
+            --background: #FDFD96;
+            --card-background: rgba(242, 222, 162, 0.3);
+            --border-color: rgba(242, 222, 162, 0.2);
+        }
+
+        /* New Theme: Green */
+        [data-theme="green"] {
+            --primary: #77DD77; /* Pastel Green */
+            --secondary: #77DD77;
+            --accent: #77DD77;
+            --dark: #77DD77;
+            --glass: rgba(119, 221, 119, 0.2);
+            --glow: rgba(119, 221, 119, 0.5);
+            --rgb-glow: linear-gradient(45deg, #77DD77, #77DD77, #77DD77);
+            --text-color: #333333;
+            --background: #77DD77;
+            --card-background: rgba(119, 221, 119, 0.3);
+            --border-color: rgba(119, 221, 119, 0.2);
+        }
+
+        /* New Theme: Purple and Lavender */
+        [data-theme="purple-lavender"] {
+            --primary: #B39EB5; /* Pastel Purple */
+            --secondary: #8839EF; /* Mauve */
+            --accent: #DCB0F2; /* Lavender Haze */
+            --dark: #B39EB5;
+            --glass: rgba(179, 158, 181, 0.2);
+            --glow: rgba(136, 57, 239, 0.5);
+            --rgb-glow: linear-gradient(45deg, #B39EB5, #8839EF, #DCB0F2);
+            --text-color: #FFFFFF;
+            --background: #8839EF;
+            --card-background: rgba(220, 176, 242, 0.3);
+            --border-color: rgba(179, 158, 181, 0.2);
+        }
+
+        /* New Theme: Vogue */
+        [data-theme="vogue"] {
+            --primary: #ACB7AE; /* Barely Green */
+            --secondary: #C2B490; /* Blondey */
+            --accent: #E4DECD; /* Tan Blonde */
+            --dark: #82716E; /* The Brown-shirts */
+            --glass: rgba(172, 183, 174, 0.2);
+            --glow: rgba(194, 180, 144, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ACB7AE, #C2B490, #E4DECD);
+            --text-color: #333333;
+            --background: #E4DECD;
+            --card-background: rgba(172, 183, 174, 0.3);
+            --border-color: rgba(130, 113, 110, 0.2);
+        }
+
+
+        /* Neon Future Mode */
+        [data-theme="neon-future"] {
+          --primary: #00ff9f;
+          --secondary: #00f7ff;
+          --accent: #ff00ff;
+          --dark: #000033;
+          --glass: rgba(0, 255, 159, 0.1);
+          --glow: rgba(0, 247, 255, 0.5);
+          --rgb-glow: linear-gradient(45deg, #00ff9f, #00f7ff, #ff00ff);
+          --text-color: #ffffff;
+          --background: #000033;
+          --card-background: rgba(0, 255, 159, 0.05);
+          --border-color: rgba(0, 247, 255, 0.2);
+        }
+
+        /* Midnight Gold Mode */
+        [data-theme="midnight-gold"] {
+          --primary: #ffd700;
+          --secondary: #4a4a8a;
+          --accent: #c0c0c0;
+          --dark: #1a1a3a;
+          --glass: rgba(255, 215, 0, 0.1);
+          --glow: rgba(255, 215, 0, 0.4);
+          --rgb-glow: linear-gradient(45deg, #ffd700, #4a4a8a, #c0c0c0);
+          --text-color: #ffd700;
+          --background: #1a1a3a;
+          --card-background: rgba(255, 215, 0, 0.05);
+          --border-color: rgba(255, 215, 0, 0.2);
+        }
+
+        /* Desert Oasis Mode */
+        [data-theme="desert-oasis"] {
+          --primary: #ff8c00;
+          --secondary: #4b0082;
+          --accent: #00ced1;
+          --dark: #2d1810;
+          --glass: rgba(255, 140, 0, 0.1);
+          --glow: rgba(0, 206, 209, 0.4);
+          --rgb-glow: linear-gradient(45deg, #ff8c00, #4b0082, #00ced1);
+          --text-color: #ff8c00;
+          --background: #2d1810;
+          --card-background: rgba(255, 140, 0, 0.05);
+          --border-color: rgba(0, 206, 209, 0.2);
+        }
+
+        /* Cyber Punk Mode */
+        [data-theme="cyber-punk"] {
+          --primary: #ff00ff;
+          --secondary: #00ff00;
+          --accent: #ffff00;
+          --dark: #000000;
+          --glass: rgba(255, 0, 255, 0.1);
+          --glow: rgba(0, 255, 0, 0.5);
+          --rgb-glow: linear-gradient(45deg, #ff00ff, #00ff00, #ffff00);
+          --text-color: #ffffff;
+          --background: #000000;
+          --card-background: rgba(255, 0, 255, 0.05);
+          --border-color: rgba(0, 255, 0, 0.2);
+        }
+
+        /* Aurora Breeze Mode */
+        [data-theme="aurora-breeze"] {
+          --primary: #80ffdb;
+          --secondary: #64dfdf;
+          --accent: #48bfe3;
+          --dark: #1b3a4b;
+          --glass: rgba(128, 255, 219, 0.1);
+          --glow: rgba(100, 223, 223, 0.4);
+          --rgb-glow: linear-gradient(45deg, #80ffdb, #64dfdf, #48bfe3);
+          --text-color: #80ffdb;
+          --background: #1b3a4b;
+          --card-background: rgba(128, 255, 219, 0.05);
+          --border-color: rgba(100, 223, 223, 0.2);
+        }
+
         body {
             margin: 0;
             background: var(--background);
@@ -93,42 +319,36 @@
             flex-direction: column;
             color: var(--text-color);
             position: relative;
+            align-items: center;
         }
 
-        [data-theme="satin"] body::before {
+        /* Theme-specific body overlays */
+        [data-theme="satin"] body::before,
+        [data-theme="frosted"] body::before,
+        [data-theme="veazy"] body::before,
+        [data-theme="black"] body::before,
+        [data-theme="all-white"] body::before,
+        [data-theme="all-red"] body::before,
+        [data-theme="all-blue"] body::before,
+        [data-theme="pink-rose"] body::before,
+        [data-theme="blue-sky"] body::before,
+        [data-theme="yellow-beige"] body::before,
+        [data-theme="green"] body::before,
+        [data-theme="purple-lavender"] body::before,
+        [data-theme="vogue"] body::before 
+        [data-theme="aurora-breeze"] body::before,
+        [data-theme="cyber-punk"] body::before,
+        [data-theme="desert-oasis"] body::before,
+        [data-theme="midnight-gold"] body::before,
+        [data-theme="neon-future"] body::before
+        {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 245, 238, 0.1);
-            backdrop-filter: blur(2px);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        [data-theme="frosted"] body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(3px);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        [data-theme="veazy"] body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(244, 255, 244, 0.05);
+            background: var(--glass);
             backdrop-filter: blur(2px);
             z-index: 0;
             pointer-events: none;
@@ -144,7 +364,7 @@
             padding: .5rem;
             z-index: 1002;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
             height: 60px;
@@ -170,6 +390,7 @@
         .dropdown {
             position: relative;
             margin-right: 1rem;
+            margin-left: auto;
         }
 
         .dropdown-toggle {
@@ -237,9 +458,9 @@
         }
 
         .search-container {
-            flex-grow: 1;
             display: flex;
-            justify-content: center;
+            align-items: center;
+            margin-left: 1rem;
         }
 
         .search-input {
@@ -249,8 +470,8 @@
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-family: 'Space Grotesk', sans-serif;
-            width: 50%;
-            max-width: 300px;
+            width: 250px;
+            max-width: 400px;
             transition: all 0.3s ease;
         }
 
@@ -291,18 +512,40 @@
         .container {
             z-index: 1;
             padding: 2rem;
-            padding-top: 80px; /* Offset for fixed navbar */
+            padding-top: 80px;
             margin-left: 0;
             width: 100%;
+            max-width: 1800px;
             position: relative;
             flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             padding: 1rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        @media (min-width: 600px) {
+            .grid { grid-template-columns: repeat(2, minmax(300px, 1fr)); }
+        }
+
+        @media (min-width: 900px) {
+            .grid { grid-template-columns: repeat(3, minmax(300px, 1fr)); }
+        }
+
+        @media (min-width: 1200px) {
+            .grid { grid-template-columns: repeat(4, minmax(300px, 1fr)); }
+        }
+
+        @media (min-width: 1500px) {
+            .grid { grid-template-columns: repeat(5, minmax(300px, 1fr)); }
         }
 
         .glass-card {
@@ -310,7 +553,7 @@
             min-width: 300px;
             background: var(--card-background);
             border-radius: 12px;
-            padding: 1rem;
+            padding: 1.5rem;
             border: 1px solid var(--border-color);
             backdrop-filter: blur(15px);
             box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -321,7 +564,8 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            height: 500px; /* Increased to fit longer descriptions */
+            min-height: 520px;
+            height: auto;
             z-index: 1;
         }
 
@@ -334,15 +578,22 @@
             transform: translateY(-5px);
         }
 
-        [data-theme="blackwhite"] .glass-card:hover {
-            background: rgba(15, 15, 15, 0.8); /* Obsidian glass effect */
+        [data-theme="white"] .glass-card:hover,
+        [data-theme="all-white"] .glass-card:hover {
+            background: rgba(15, 15, 15, 0.8);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            animation: none; /* No RGB animation for minimalist theme */
+            animation: none;
+        }
+
+        [data-theme="black"] .glass-card:hover {
+            background: rgba(51, 51, 51, 0.8);
+            box-shadow: 0 0 20px var(--glow);
+            animation: rgbShift 3s linear infinite;
         }
 
         .glass-card img {
             width: 100%;
-            height: 250px; /* Reduced to make room for text */
+            height: 250px;
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 0.5rem;
@@ -362,25 +613,27 @@
         }
 
         .glass-card p {
-            font-size: 0.85rem; /* Slightly smaller for readability */
+            font-size: 0.85rem;
             color: var(--text-color);
             margin: 0.2rem 0;
             font-family: 'Space Grotesk', sans-serif;
-            line-height: 1.3; /* Improved readability */
+            line-height: 1.3;
         }
 
         .glass-card .description {
-            flex-grow: 1; /* Pushes rating to bottom */
-            margin-bottom: 0.5rem;
-            overflow: hidden; /* Prevents overflow */
-            text-overflow: ellipsis; /* Adds ellipsis if too long */
+            flex-grow: 1;
+            margin: 1rem 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 4; /* Limits to 4 lines */
+            -webkit-line-clamp: 5;
             -webkit-box-orient: vertical;
+            line-height: 1.4;
+            font-size: 0.9rem;
         }
 
         .glass-card .rating {
-            margin-top: auto; /* Pins to bottom */
+            margin-top: auto;
             font-weight: 500;
         }
 
@@ -401,13 +654,25 @@
             height: 100%;
             z-index: -2;
         }
+
+        @media (max-width: 600px) {
+            .navbar {
+                justify-content: space-between;
+                padding: 0.5rem 1rem;
+            }
+            .search-container {
+                margin-left: 0.5rem;
+            }
+            .search-input {
+                width: 150px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
+   
     <canvas id="universe"></canvas>
-    <nav class="navbar">
+    <nav class="navbar global-nav">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
         </div>
@@ -438,8 +703,6 @@
                 <p class="description">Coming Soon...</p>
                 <p class="rating">Rating: ??/10</p>
             </div>
-
-            
             <div class="glass-card" onclick="window.location.href='review-wlr.html'">
                 <img src="red.jpeg" alt="Playboi Carti - WLR album image">
                 <h2>Playboi Carti - Whole Lotta Red</h2>
@@ -680,13 +943,58 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
     <script>
-        // Theme toggle functionality for five themes
+        // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
-        const themes = ['normal', 'satin', 'frosted', 'veazy', 'blackwhite'];
-        const themeTitles = ['Normal Mode', 'Satin Mode', 'Frosted Mode', 'Veazy Mode', 'Black & White Mode'];
+        const themes = [
+            'normal', 'satin', 'frosted', 'veazy', 'white', 'black',
+            'all-white', 'all-red', 'all-blue', 'pink-rose', 'blue-sky',
+            'yellow-beige', 'green', 'purple-lavender', 'vogue'
+        ];
+        const themeTitles = [
+            'Normal Mode', 'Satin Mode', 'Frosted Mode', 'Veazy Mode', 'White Mode', 'Black Mode',
+            'All White Mode', 'All Red Mode', 'All Blue Mode', 'Pink Rose Mode', 'Blue Sky Mode',
+            'Yellow Beige Mode', 'Green Mode', 'Purple Lavender Mode', 'Vogue Mode'
+        ];
+        let currentThemeIndex = 0;
+
+        themeToggle.addEventListener('click', () => {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            body.setAttribute('data-theme', themes[currentThemeIndex]);
+            themeToggle.setAttribute('title', themeTitles[currentThemeIndex]);
+        });
+
+        // Dropdown menu toggle
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        
+        dropdownToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
+    </script>
+    <script>
+        // Theme toggle functionality for all 15 themes
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themes = [
+            'normal', 'satin', 'frosted', 'veazy', 'white', 'black',
+            'all-white', 'all-red', 'all-blue', 'pink-rose', 'blue-sky',
+            'yellow-beige', 'green', 'purple-lavender', 'vogue'
+        ];
+        const themeTitles = [
+            'Normal Mode', 'Satin Mode', 'Frosted Mode', 'Veazy Mode', 'White Mode', 'Black Mode',
+            'All White Mode', 'All Red Mode', 'All Blue Mode', 'Pink Rose Mode', 'Blue Sky Mode',
+            'Yellow Beige Mode', 'Green Mode', 'Purple Lavender Mode', 'Vogue Mode'
+        ];
         let currentThemeIndex = 0;
 
         themeToggle.addEventListener('click', () => {
@@ -702,19 +1010,14 @@
         // Dropdown menu toggle
         const dropdownToggle = document.querySelector('.dropdown-toggle');
         const dropdownMenu = document.querySelector('.dropdown-menu');
-
-        dropdownToggle.addEventListener('click', () => {
-            dropdownMenu.classList.toggle('active');
-        });
-
-        // Close dropdown when clicking outside
+        dropdownToggle.addEventListener('click', () => dropdownMenu.classList.toggle('active'));
         document.addEventListener('click', (e) => {
             if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
                 dropdownMenu.classList.remove('active');
             }
         });
 
-        // Starfield setup
+        // Enhanced Starfield with Cursor Responsiveness
         const universeCanvas = document.getElementById('universe');
         universeCanvas.style.position = 'fixed';
         universeCanvas.style.top = '0';
@@ -723,43 +1026,81 @@
         universeCanvas.style.height = '100%';
         universeCanvas.style.zIndex = '-2';
 
-        // Basic starfield animation if script.js doesn't handle it
-        if (typeof initStarfield === 'undefined') {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ canvas: universeCanvas });
-            renderer.setSize(window.innerWidth, window.innerHeight);
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: universeCanvas, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
 
-            const starsGeometry = new THREE.BufferGeometry();
-            const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 1 });
-            const starVertices = [];
+        const starsGeometry = new THREE.BufferGeometry();
+        const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 1, transparent: true });
+        const starVertices = [];
+        const starVelocities = [];
 
-            for (let i = 0; i < 10000; i++) {
-                const x = (Math.random() - 0.5) * 2000;
-                const y = (Math.random() - 0.5) * 2000;
-                const z = (Math.random() - 0.5) * 2000;
-                starVertices.push(x, y, z);
-            }
-
-            starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-            const starField = new THREE.Points(starsGeometry, starsMaterial);
-            scene.add(starField);
-
-            camera.position.z = 1000;
-
-            function animate() {
-                requestAnimationFrame(animate);
-                starField.rotation.y += 0.001;
-                renderer.render(scene, camera);
-            }
-            animate();
-
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
+        // Generate 10,000 stars with initial positions and velocities
+        for (let i = 0; i < 10000; i++) {
+            const x = (Math.random() - 0.5) * 2000;
+            const y = (Math.random() - 0.5) * 2000;
+            const z = (Math.random() - 0.5) * 2000;
+            starVertices.push(x, y, z);
+            starVelocities.push(0, 0, 0); // Initial velocities set to 0, updated by cursor
         }
+
+        starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+        const starField = new THREE.Points(starsGeometry, starsMaterial);
+        scene.add(starField);
+
+        camera.position.z = 1000;
+
+        // Mouse movement tracking
+        let mouseX = 0;
+        let mouseY = 0;
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // Normalized -1 to 1
+            mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // Normalized -1 to 1
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const positions = starField.geometry.attributes.position.array;
+            for (let i = 0; i < positions.length; i += 3) {
+                // Update velocities based on mouse position
+                starVelocities[i] += mouseX * 0.02;     // x velocity influenced by mouse
+                starVelocities[i + 1] += mouseY * 0.02; // y velocity influenced by mouse
+                starVelocities[i + 2] += 0.01;          // z moves forward slightly
+
+                // Apply damping to prevent excessive speed
+                starVelocities[i] *= 0.95;
+                starVelocities[i + 1] *= 0.95;
+                starVelocities[i + 2] *= 0.95;
+
+                // Update positions
+                positions[i] += starVelocities[i];
+                positions[i + 1] += starVelocities[i + 1];
+                positions[i + 2] += starVelocities[i + 2];
+
+                // Reset stars if they move too far
+                if (positions[i + 2] > 1000) {
+                    positions[i] = (Math.random() - 0.5) * 2000;
+                    positions[i + 1] = (Math.random() - 0.5) * 2000;
+                    positions[i + 2] = -1000; // Reset to back of field
+                    starVelocities[i] = 0;
+                    starVelocities[i + 1] = 0;
+                    starVelocities[i + 2] = 0;
+                }
+            }
+            starField.geometry.attributes.position.needsUpdate = true;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
     </script>
 </body>
 </html>
