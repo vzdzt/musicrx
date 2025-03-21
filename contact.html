@@ -1,63 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Set character encoding to UTF-8 -->
     <meta charset="UTF-8">
+    <!-- Ensure responsive viewport scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title -->
     <title>MusicRx - Contact</title>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for typography -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- External stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <!-- Theme Toggle Button -->
-    <button id="themeToggle" class="theme-toggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
 </head>
 <body>
+    <!-- Custom cursor -->
     <div id="cursor"></div>
+    <!-- Cursor blur effect -->
     <div id="cursor-blur"></div>
+    <!-- Universe starfield canvas -->
     <canvas id="universe"></canvas>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
+
+    <!-- Navigation bar -->
+    <nav class="navbar global-nav">
+        <!-- Logo with heartbeat animation -->
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <!-- Dropdown menu toggle -->
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <!-- Dropdown menu content -->
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
-        <h1 class="glitch contact-title" data-text="CONTACT">CONTACT</h1>
-        <div class="card-title-container">Get In Touch</div>
-        <div class="glass-card">
-            <p>Have a question, suggestion, or just want to chat about music? Fill out the form below and we'll get back to you.</p>
-            <br>
-            <div class="contact-form">
-                <form action="#" method="POST" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
+    <!-- Fixed buttons -->
+    <!-- Theme toggle button -->
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <!-- Back to top button -->
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <!-- Music toggle button -->
+    <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
+    <!-- Tip machine button -->
+    <button id="tipMachine" title="Get a Tip"><i class="fas fa-lightbulb"></i></button>
+
+    <!-- Main content wrapper -->
+    <div class="main-content">
+        <!-- Content container -->
+        <div class="container">
+            <!-- Page title with glitch effect -->
+            <h1 class="glitch" data-text="CONTACT">CONTACT</h1>
+            <!-- Contact card container to stack cards vertically -->
+            <div class="contact-card-container">
+                <!-- Title card for Get In Touch -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Get In Touch</h2>
+                </div>
+                <!-- Content card for contact form -->
+                <div class="glass-card content-card">
+                    <p>Have a question, suggestion, or just want to chat about music? Fill out the form below and we'll get back to you.</p>
+                    <br>
+                    <!-- Contact form -->
+                    <div class="contact-form">
+                        <form action="#" method="POST" id="contactForm">
+                            <!-- Form group for name -->
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+                            <!-- Form group for email -->
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <!-- Form group for subject -->
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-control" required>
+                            </div>
+                            <!-- Form group for message -->
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" class="form-control" required></textarea>
+                            </div>
+                            <!-- Submit button -->
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" class="form-control" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Logo with heartbeat animation -->
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <!-- Copyright notice -->
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <!-- Newsletter subscription form -->
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+
+    <!-- External scripts -->
+    <!-- Three.js for starfield -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- ScrollTrigger for scroll-based animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Main script -->
     <script src="script.js"></script>
 </body>
 </html>
