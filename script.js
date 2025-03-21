@@ -3,13 +3,23 @@ function scroll(containerId, distance) {
     const container = document.getElementById(containerId);
     if (container) {
         container.scrollBy({ left: distance, behavior: 'smooth' });
-    }   
+    } else {
+        console.warn(`Scroll container with ID '${containerId}' not found.`);
+    }
 }
+
 // Enhanced Theme Management System with persistent storage and application across pages
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('script.js loaded');
+
     // Theme Management
     const themeToggle = document.getElementById('themeToggle');
     const htmlElement = document.documentElement;
+
+    if (!themeToggle) {
+        console.error('Theme toggle button not found.');
+        return;
+    }
 
     // Load saved theme from localStorage
     const savedTheme = localStorage.getItem('currentTheme') || 'normal';
@@ -17,10 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Apply saved theme immediately
     htmlElement.setAttribute('data-theme', savedTheme);
-    if (themeToggle) {
-        themeToggle.setAttribute('title', savedThemeTitle);
-        themeToggle.setAttribute('aria-label', `Switch to next theme (current: ${savedThemeTitle})`);
-    }
+    themeToggle.setAttribute('title', savedThemeTitle);
+    themeToggle.setAttribute('aria-label', `Switch to next theme (current: ${savedThemeTitle})`);
+    console.log(`Initial theme applied: ${savedTheme}`);
 
     const themes = [
         'normal', 'satin', 'frosted', 'veazy', 'white', 'black',
@@ -52,27 +61,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentThemeIndex = themes.indexOf(savedTheme);
 
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-            const newTheme = themes[currentThemeIndex];
-            const newThemeTitle = themeTitles[currentThemeIndex];
+    themeToggle.addEventListener('click', () => {
+        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+        const newTheme = themes[currentThemeIndex];
+        const newThemeTitle = themeTitles[currentThemeIndex];
 
-            // Save to localStorage
-            localStorage.setItem('currentTheme', newTheme);
-            localStorage.setItem('currentThemeTitle', newThemeTitle);
+        // Save to localStorage
+        localStorage.setItem('currentTheme', newTheme);
+        localStorage.setItem('currentThemeTitle', newThemeTitle);
 
-            // Apply theme
-            htmlElement.setAttribute('data-theme', newTheme);
-            themeToggle.setAttribute('title', newThemeTitle);
-            themeToggle.setAttribute('aria-label', `Switch to next theme (current: ${newThemeTitle})`);
+        // Apply theme
+        htmlElement.setAttribute('data-theme', newTheme);
+        themeToggle.setAttribute('title', newThemeTitle);
+        themeToggle.setAttribute('aria-label', `Switch to next theme (current: ${newThemeTitle})`);
 
-            // Update starfield colors based on theme (if applicable)
-            updateStarfieldColors(newTheme);
+        // Update starfield colors
+        updateStarfieldColors(newTheme);
 
-            console.log(`Theme changed to: ${newTheme}`);
-        });
-    }
+        console.log(`Theme changed to: ${newTheme}`);
+    });
 
     // Dropdown Menu Functionality
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
@@ -108,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Music Toggle Functionality
     const musicToggle = document.getElementById('musicToggle');
-    const audio = new Audio('https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3'); // Replace with your preferred audio
+    const audio = new Audio('https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3');
     audio.loop = true;
     let isPlaying = false;
 
@@ -133,6 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Audio playback error:', err);
             }
         });
+    } else {
+        console.warn('Music toggle button not found.');
     }
 
     // Back to Top Button with Scroll Visibility
@@ -142,18 +151,13 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Show/hide back-to-top button based on scroll position
         window.addEventListener('scroll', () => {
             backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
         });
+    } else {
+        console.warn('Back to top button not found.');
     }
-// Scroll function for horizontal sections
-function scroll(containerId, distance) {
-    const container = document.getElementById(containerId);
-    if (container) {
-        container.scrollBy({ left: distance, behavior: 'smooth' });
-    }
-}
+
     // Search Functionality with Debounce
     function debounce(func, delay) {
         let timeout;
@@ -173,7 +177,7 @@ function scroll(containerId, distance) {
                     const shouldShow = artistName.includes(searchTerm);
                     card.style.display = shouldShow ? 'flex' : 'none';
                     card.style.opacity = shouldShow ? '1' : '0';
-                    card.style.transition = 'opacity 0.3s ease'; // Smooth transition
+                    card.style.transition = 'opacity 0.3s ease';
                 });
             }, 300));
         }
@@ -210,6 +214,8 @@ function scroll(containerId, distance) {
                 ease: 'power2.out'
             });
         });
+    } else {
+        console.warn('GSAP or ScrollTrigger not loaded.');
     }
 
     // Initialize Three.js Starfield
@@ -217,7 +223,7 @@ function scroll(containerId, distance) {
 });
 
 // Three.js Setup for Starfield
-let scene, camera, renderer, points;
+let scene, camera, renderer, starField; // Unified variable name
 
 function initThreeJS() {
     const canvas = document.getElementById('universe');
@@ -231,10 +237,9 @@ function initThreeJS() {
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Optimize for performance
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         camera.position.z = 1000;
 
-        // Starfield
         const geometry = new THREE.BufferGeometry();
         const vertices = [];
         const colors = [];
@@ -242,12 +247,12 @@ function initThreeJS() {
 
         for (let i = 0; i < starCount; i++) {
             vertices.push(
-                Math.random() * 2000 - 1000, // x
-                Math.random() * 2000 - 1000, // y
-                Math.random() * 2000 - 1000  // z
+                Math.random() * 2000 - 1000,
+                Math.random() * 2000 - 1000,
+                Math.random() * 2000 - 1000
             );
             const color = new THREE.Color();
-            color.setHSL(Math.random(), 0.7, 0.7); // Initial random colors
+            color.setHSL(Math.random(), 0.7, 0.7);
             colors.push(color.r, color.g, color.b);
         }
 
@@ -259,42 +264,101 @@ function initThreeJS() {
             vertexColors: true,
             transparent: true,
             opacity: 0.8,
-            sizeAttenuation: true // Stars fade with distance
+            sizeAttenuation: true
         });
 
-        points = new THREE.Points(geometry, material);
-        scene.add(points);
+        starField = new THREE.Points(geometry, material); // Unified name
+        scene.add(starField);
 
-        // Track mouse position
         let mouseX = 0, mouseY = 0;
         document.addEventListener('mousemove', (e) => {
             mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
             mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
         });
 
-        // Animation
         function animate() {
             requestAnimationFrame(animate);
-
-            // Rotate starfield
-            points.rotation.x += 0.0002;
-            points.rotation.y += 0.0003;
-
-            // Adjust rotation based on mouse movement
-            points.rotation.x += (mouseY - points.rotation.x) * 0.05;
-            points.rotation.y += (mouseX - points.rotation.y) * 0.05;
-
-            // Pulse scale subtly
+            starField.rotation.x += 0.0002;
+            starField.rotation.y += 0.0003;
+            starField.rotation.x += (mouseY - starField.rotation.x) * 0.05;
+            starField.rotation.y += (mouseX - starField.rotation.y) * 0.05;
             const time = Date.now() * 0.001;
-            points.scale.setScalar(Math.sin(time) * 0.05 + 1); // Reduced amplitude for smoother effect
-
+            starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
             renderer.render(scene, camera);
         }
 
         animate();
+        console.log('Starfield initialized successfully.');
     } catch (err) {
         console.error('Failed to initialize Three.js:', err);
     }
+}
+
+// Update starfield colors based on theme
+function updateStarfieldColors(theme) {
+    const target = starField || (window.points ? window.points : null) || (window.starsGeometry ? window.starsGeometry : null);
+    if (!target || !target.geometry.attributes.color) {
+        console.warn('Starfield not initialized or geometry not found.');
+        return;
+    }
+
+    const colorArray = target.geometry.attributes.color.array;
+    const themeColors = {
+        'normal': { h: 0.5, s: 0.7, l: 0.7 },
+        'satin': { h: 0.11, s: 1, l: 0.5 },
+        'frosted': { h: 0.49, s: 1, l: 0.5 },
+        'veazy': { h: 0.33, s: 1, l: 0.5 },
+        'white': { h: 0, s: 0, l: 1 },
+        'black': { h: 0, s: 0, l: 0.2 },
+        'all-white': { h: 0, s: 0, l: 1 },
+        'all-red': { h: 0, s: 1, l: 0.5 },
+        'all-blue': { h: 0.67, s: 1, l: 0.5 },
+        'pink-rose': { h: 0.92, s: 0.5, l: 0.7 },
+        'blue-sky': { h: 0.58, s: 0.6, l: 0.7 },
+        'yellow-beige': { h: 0.14, s: 0.8, l: 0.7 },
+        'green': { h: 0.33, s: 0.6, l: 0.5 },
+        'purple-lavender': { h: 0.75, s: 0.8, l: 0.6 },
+        'vogue': { h: 0.33, s: 0.2, l: 0.7 },
+        'neon-future': { h: 0.5, s: 1, l: 0.6 },
+        'midnight-gold': { h: 0.14, s: 1, l: 0.5 },
+        'desert-oasis': { h: 0.08, s: 1, l: 0.5 },
+        'cyber-punk': { h: 0.83, s: 1, l: 0.5 },
+        'aurora-breeze': { h: 0.5, s: 0.8, l: 0.7 },
+        'glass-morphism': { h: 0.58, s: 0.7, l: 0.8 },
+        'galactic-nebula': { h: 0.92, s: 1, l: 0.6 },
+        'electric-storm': { h: 0.5, s: 1, l: 0.6 },
+        'void-pulse': { h: 0.83, s: 1, l: 0.5 },
+        'prism-shard': { h: 0.5, s: 0.8, l: 0.7 },
+        'inferno-core': { h: 0.05, s: 1, l: 0.5 },
+        'cosmic-rift': { h: 0.75, s: 1, l: 0.6 },
+        'neon-eclipse': { h: 0.83, s: 1, l: 0.5 },
+        'quantum-flux': { h: 0.5, s: 0.9, l: 0.6 },
+        'holo-abyss': { h: 0.58, s: 1, l: 0.6 },
+        'spectral-surge': { h: 0.0, s: 1, l: 0.6 },
+        'starforge-nebula': { h: 0.92, s: 1, l: 0.6 },
+        'thunder-vortex': { h: 0.5, s: 1, l: 0.6 },
+        'abyss-echo': { h: 0.83, s: 1, l: 0.5 },
+        'crystal-prism': { h: 0.5, s: 0.8, l: 0.7 },
+        'magma-forge': { h: 0.05, s: 1, l: 0.5 },
+        'dimensional-veil': { h: 0.75, s: 1, l: 0.6 },
+        'shadow-pulse': { h: 0.83, s: 1, l: 0.5 },
+        'flux-horizon': { h: 0.5, s: 0.9, l: 0.6 },
+        'holo-vortex': { h: 0.58, s: 1, l: 0.6 },
+        'waveform-surge': { h: 0.0, s: 1, l: 0.6 }
+    };
+
+    const themeColor = themeColors[theme] || { h: Math.random(), s: 0.7, l: 0.7 };
+    for (let i = 0; i < colorArray.length; i += 3) {
+        const color = new THREE.Color().setHSL(
+            (themeColor.h + Math.random() * 0.1) % 1,
+            themeColor.s,
+            themeColor.l
+        );
+        colorArray[i] = color.r;
+        colorArray[i + 1] = color.g;
+        colorArray[i + 2] = color.b;
+    }
+    target.geometry.attributes.color.needsUpdate = true;
 }
 
 // Magic Search Bar Logic (Homepage Only)
@@ -362,72 +426,7 @@ if (magicButton && magicInput && magicAnswer) {
         }
     });
 } else {
-    console.error('Magic search bar elements not found:', { magicButton, magicInput, magicAnswer });
-}
-
-// Update starfield colors based on theme
-function updateStarfieldColors(theme) {
-    if (!points || !points.geometry.attributes.color) return;
-
-    const colorArray = points.geometry.attributes.color.array;
-    const themeColors = {
-        'normal': { h: 0.5, s: 0.7, l: 0.7 },
-        'satin': { h: 0.11, s: 1, l: 0.5 }, // Gold-like
-        'frosted': { h: 0.49, s: 1, l: 0.5 }, // Teal-like
-        'veazy': { h: 0.33, s: 1, l: 0.5 }, // Green
-        'white': { h: 0, s: 0, l: 1 }, // White
-        'black': { h: 0, s: 0, l: 0.2 }, // Dark gray
-        'all-white': { h: 0, s: 0, l: 1 },
-        'all-red': { h: 0, s: 1, l: 0.5 },
-        'all-blue': { h: 0.67, s: 1, l: 0.5 },
-        'pink-rose': { h: 0.92, s: 0.5, l: 0.7 },
-        'blue-sky': { h: 0.58, s: 0.6, l: 0.7 },
-        'yellow-beige': { h: 0.14, s: 0.8, l: 0.7 },
-        'green': { h: 0.33, s: 0.6, l: 0.5 },
-        'purple-lavender': { h: 0.75, s: 0.8, l: 0.6 },
-        'vogue': { h: 0.33, s: 0.2, l: 0.7 },
-        'neon-future': { h: 0.5, s: 1, l: 0.6 },
-        'midnight-gold': { h: 0.14, s: 1, l: 0.5 },
-        'desert-oasis': { h: 0.08, s: 1, l: 0.5 },
-        'cyber-punk': { h: 0.83, s: 1, l: 0.5 },
-        'aurora-breeze': { h: 0.5, s: 0.8, l: 0.7 },
-        'glass-morphism': { h: 0.58, s: 0.7, l: 0.8 },
-        // Original themes
-        'galactic-nebula': { h: 0.92, s: 1, l: 0.6 },
-        'electric-storm': { h: 0.5, s: 1, l: 0.6 },
-        'void-pulse': { h: 0.83, s: 1, l: 0.5 },
-        'prism-shard': { h: 0.5, s: 0.8, l: 0.7 },
-        'inferno-core': { h: 0.05, s: 1, l: 0.5 },
-        'cosmic-rift': { h: 0.75, s: 1, l: 0.6 },
-        'neon-eclipse': { h: 0.83, s: 1, l: 0.5 },
-        'quantum-flux': { h: 0.5, s: 0.9, l: 0.6 },
-        'holo-abyss': { h: 0.58, s: 1, l: 0.6 },
-        'spectral-surge': { h: 0.0, s: 1, l: 0.6 },
-        // Modernized themes
-        'starforge-nebula': { h: 0.92, s: 1, l: 0.6 },
-        'thunder-vortex': { h: 0.5, s: 1, l: 0.6 },
-        'abyss-echo': { h: 0.83, s: 1, l: 0.5 },
-        'crystal-prism': { h: 0.5, s: 0.8, l: 0.7 },
-        'magma-forge': { h: 0.05, s: 1, l: 0.5 },
-        'dimensional-veil': { h: 0.75, s: 1, l: 0.6 },
-        'shadow-pulse': { h: 0.83, s: 1, l: 0.5 },
-        'flux-horizon': { h: 0.5, s: 0.9, l: 0.6 },
-        'holo-vortex': { h: 0.58, s: 1, l: 0.6 },
-        'waveform-surge': { h: 0.0, s: 1, l: 0.6 }
-    };
-
-    const themeColor = themeColors[theme] || { h: Math.random(), s: 0.7, l: 0.7 }; // Fallback to random
-    for (let i = 0; i < colorArray.length; i += 3) {
-        const color = new THREE.Color().setHSL(
-            (themeColor.h + Math.random() * 0.1) % 1, // Slight hue variation
-            themeColor.s,
-            themeColor.l
-        );
-        colorArray[i] = color.r;
-        colorArray[i + 1] = color.g;
-        colorArray[i + 2] = color.b;
-    }
-    points.geometry.attributes.color.needsUpdate = true;
+    console.log('Magic search bar elements not found:', { magicButton, magicInput, magicAnswer });
 }
 
 // Resize Handler
