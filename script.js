@@ -1,3 +1,10 @@
+// Scroll function for horizontal sections
+function scroll(containerId, distance) {
+    const container = document.getElementById(containerId);
+    if (container) {
+        container.scrollBy({ left: distance, behavior: 'smooth' });
+    }   
+}
 // Enhanced Theme Management System with persistent storage and application across pages
 document.addEventListener('DOMContentLoaded', () => {
     // Theme Management
@@ -140,7 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
             backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
         });
     }
-
+// Scroll function for horizontal sections
+function scroll(containerId, distance) {
+    const container = document.getElementById(containerId);
+    if (container) {
+        container.scrollBy({ left: distance, behavior: 'smooth' });
+    }
+}
     // Search Functionality with Debounce
     function debounce(func, delay) {
         let timeout;
