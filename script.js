@@ -284,6 +284,74 @@ function initThreeJS() {
     }
 }
 
+// Magic Search Bar Logic (Homepage Only)
+const magicButton = document.getElementById('magicButton');
+const magicInput = document.getElementById('magicInput');
+const magicAnswer = document.getElementById('magicAnswer');
+const answers = [
+    "Yes, absolutely!",
+    "No, not at all.",
+    "Maybe, who knows?",
+    "Yes, but with a twist.",
+    "No, try again later.",
+    "Just put the fries in the bag bro.",
+    "She don't want you.",
+    "You might be on to something.",
+    "Only one way to find out.",
+    "I'm not sure, but I'm sure it's a no.",
+    "She still doesn't want you.",
+    "LOL, no.",
+    "She hates you",
+    "You not fighting demons bro do the dishes.",
+    "You're not gonna get anywhere with that.",
+    "Dawg you're pushing 30.",
+    "Bro you're 40.",
+    "Nah.",
+    "You should call her.",
+    "Trust me, she's not gonna like you.",
+    "She still loves you.",
+    "Call them.",
+    "I'm so fucked up right now 😹",
+    "BRO STFU!",
+    "You're going to make it gang.",
+    "Just keep pushing bro.",
+    "It'll get better.",
+    "One step at a time twin.",
+    "Pack it up bro its over.",
+    "GIVE UP."
+];
+
+if (magicButton && magicInput && magicAnswer) {
+    console.log('Magic search bar elements found:', { magicButton, magicInput, magicAnswer });
+    console.log('Answers array:', answers);
+
+    magicButton.addEventListener('click', () => {
+        console.log('Magic button clicked');
+        if (magicInput.value.trim()) {
+            const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+            console.log('Selected answer:', randomAnswer);
+            magicAnswer.textContent = randomAnswer;
+        } else {
+            magicAnswer.textContent = "Ask me something first!";
+        }
+    });
+
+    magicInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            console.log('Enter key pressed');
+            if (magicInput.value.trim()) {
+                const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+                console.log('Selected answer:', randomAnswer);
+                magicAnswer.textContent = randomAnswer;
+            } else {
+                magicAnswer.textContent = "Ask me something first!";
+            }
+        }
+    });
+} else {
+    console.error('Magic search bar elements not found:', { magicButton, magicInput, magicAnswer });
+}
+
 // Update starfield colors based on theme
 function updateStarfieldColors(theme) {
     if (!points || !points.geometry.attributes.color) return;
