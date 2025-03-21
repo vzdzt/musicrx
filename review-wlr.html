@@ -293,7 +293,7 @@
             border-radius: 10px;
             overflow-x: auto;
             font-size: 1rem;
-            table-layout: fixed; /* Ensure even column distribution */
+            table-layout: auto; /* Changed from fixed to auto to allow natural stretching */
         }
         .trend-table th, .trend-table td {
             padding: 1rem;
@@ -301,32 +301,21 @@
             border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
             font-size: 1rem;
             word-wrap: break-word; /* Allow text to wrap */
+            min-width: 150px; /* Added min-width to ensure cells don't collapse */
         }
-        /* Distribute column widths evenly */
-        .trend-table.awards-table th:nth-child(1),
-        .trend-table.awards-table td:nth-child(1) { width: 33.33%; } /* Category */
-        .trend-table.awards-table th:nth-child(2),
-        .trend-table.awards-table td:nth-child(2) { width: 33.33%; } /* Year */
-        .trend-table.awards-table th:nth-child(3),
-        .trend-table.awards-table td:nth-child(3) { width: 33.33%; } /* Result */
-        .trend-table.certifications-table th:nth-child(1),
-        .trend-table.certifications-table td:nth-child(1) { width: 33.33%; } /* Album */
-        .trend-table.certifications-table th:nth-child(2),
-        .trend-table.certifications-table td:nth-child(2) { width: 33.33%; } /* Certification */
-        .trend-table.certifications-table th:nth-child(3),
-        .trend-table.certifications-table td:nth-child(3) { width: 33.33%; } /* Units */
-        .trend-table.chart-table th:nth-child(1),
-        .trend-table.chart-table td:nth-child(1) { width: 16.67%; } /* Album */
-        .trend-table.chart-table th:nth-child(2),
-        .trend-table.chart-table td:nth-child(2) { width: 16.67%; } /* Highest Charting Song */
-        .trend-table.chart-table th:nth-child(3),
-        .trend-table.chart-table td:nth-child(3) { width: 16.67%; } /* Peak Position */
-        .trend-table.chart-table th:nth-child(4),
-        .trend-table.chart-table td:nth-child(4) { width: 16.67%; } /* Streams */
-        .trend-table.chart-table th:nth-child(5),
-        .trend-table.chart-table td:nth-child(5) { width: 16.67%; } /* Certification */
-        .trend-table.chart-table th:nth-child(6),
-        .trend-table.chart-table td:nth-child(6) { width: 16.67%; } /* Units Sold */
+        /* Distribute column widths evenly, but allow flexibility */
+        .trend-table.awards-table th,
+        .trend-table.awards-table td {
+            width: 33.33%; /* Keep the percentage, but table-layout: auto will allow stretching */
+        }
+        .trend-table.certifications-table th,
+        .trend-table.certifications-table td {
+            width: 33.33%; /* Keep the percentage, but table-layout: auto will allow stretching */
+        }
+        .trend-table.chart-table th,
+        .trend-table.chart-table td {
+            width: 16.67%; /* This table already looks good */
+        }
         .trend-table th {
             background: rgba(255, 0, 0, 0.2);
             color: var(--primary);
@@ -383,7 +372,7 @@
             .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
             .review-footer .newsletter-form button:hover { transform: none; }
             .trend-table { font-size: 0.9rem; overflow-x: auto; display: block; }
-            .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; }
+            .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; min-width: 120px; } /* Adjusted min-width for smaller screens */
             .glass-card.sources-card { padding: 1rem; max-width: 1200px; }
         }
     </style>
@@ -569,7 +558,7 @@
                         <tr>
                             <td><span class="highlight">Die Lit</span></td>
                             <td>Platinum</td>
-                            <td>1.1</td>
+                            <td>1.4</td>
                         </tr>
                         <tr>
                             <td><span class="highlight">Whole Lotta Red</span></td>
