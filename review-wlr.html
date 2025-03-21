@@ -1,491 +1,896 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="all-red" data-page="review-wlr">
 <head>
-    <!-- Meta tags for SEO and social sharing -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore Playboi Carti’s Whole Lotta Red (2020) review: a punk-trap frenzy, updated to March 2025 with track highlights on MusicRx.">
-    <meta name="keywords" content="Playboi Carti, Whole Lotta Red, punk-trap, Kanye West, F1lthy, Art Dealer, Pi’erre Bourne, MusicRx, 2025">
-    <meta name="author" content="Veazy">
-    <meta property="og:title" content="MusicRx - Whole Lotta Red: Playboi Carti’s Crimson Chaos Unleashed">
-    <meta property="og:description" content="Dive into Playboi Carti’s Whole Lotta Red review: a chaotic punk-trap storm from 2020, refreshed with 2025 updates on MusicRx.">
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/red.jpeg">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-wlr.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@36966_">
-    <title>MusicRx - Whole Lotta Red: Playboi Carti’s Crimson Chaos Unleashed</title>
-
-    <!-- External stylesheets for icons and fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* Ensure dark background for the entire page */
-        body {
-            background: #0a0a0a !important;
-        }
-
-        /* Highlight color for emphasized text (e.g., album titles, artists) */
-        .highlight {
-            color: #FF0000; /* Red */
-            font-weight: bold;
-        }
-
-        /* Highlight color for overall rating heading */
-        .overall-rating h3 {
-            color: #FF0000;
-        }
-
-        /* Glitch effect for the album title at the top */
-        .review-grad-glitch {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #FF0000;
-            text-shadow: 0 0 10px #FF0000;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            position: relative;
-        }
-
-        /* Pseudo-elements for glitch effect */
-        .review-grad-glitch::before,
-        .review-grad-glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Cyan glitch effect */
-        .review-grad-glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #00ffea;
-            animation: glitch-1 2s linear infinite reverse;
-        }
-
-        /* Highlight color glitch effect */
-        .review-grad-glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #FF0000;
-            animation: glitch-2 3s linear infinite;
-        }
-
-        /* Glitch animation keyframes */
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); }
-            5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); }
-            15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); }
-            100% { clip-path: inset(0 0 90% 0); }
-        }
-
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); }
-            5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); }
-            15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
-        }
-
-        /* Glass card styling for all sections (e.g., Track Highlights, Ratings) */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Hover effect for glass cards */
-        .glass-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* Red in RGB for hover shadow */
-        }
-
-        /* Glass card styling specifically for the album cover image */
-        .glass-card.grad-card {
-            padding: 20px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
-            overflow: hidden;
-            max-width: 100%;
-        }
-
-        /* Hover effect for album cover card */
-        .glass-card.grad-card:hover {
-            transform: scale(1.05);
-        }
-
-        /* Album cover image styling */
-        .glass-card.grad-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            display: block;
-        }
-
-        /* Zoom effect for album cover image on hover */
-        .glass-card.grad-card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Styling for individual track highlight items */
-        .track-highlight-item {
-            padding: 0.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* Hover effect for track highlight items */
-        .track-highlight-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-        }
-
-        /* Table styling for charts, certifications, and awards */
-        .trend-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-
-        /* Table cell styling */
-        .trend-table th, .trend-table td {
-            padding: 0.8rem;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* Table header styling with highlight color and no shadow */
-        .trend-table th {
-            color: #FF0000;
-            text-shadow: none !important;
-        }
-
-        /* Ensure normal font style for most elements */
-        body, .container, p, h2, ul, li {
-            font-style: normal !important;
-        }
-
-        /* Normal font style for glass cards and their content */
-        .glass-card, .glass-card * {
-            font-style: normal !important;
-        }
-
-        /* Italic style for emphasized text and highlights */
-        em, .highlight em {
-            font-style: italic !important;
-        }
-    </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="Explore Playboi Carti’s Whole Lotta Red (2020) review: a punk-trap frenzy, updated to March 2025 with track highlights on MusicRx.">
+ <meta name="keywords" content="Playboi Carti, Whole Lotta Red, punk-trap, Kanye West, F1lthy, Art Dealer, Pi’erre Bourne, MusicRx, 2025">
+ <meta name="author" content="Veazy">
+ <meta property="og:title" content="MusicRx - Whole Lotta Red: Playboi Carti’s Crimson Chaos Unleashed">
+ <meta property="og:description" content="Dive into Playboi Carti’s Whole Lotta Red review: a chaotic punk-trap storm from 2020, refreshed with 2025 updates on MusicRx.">
+ <meta property="og:image" content="https://vzdzt.github.io/musicrx/red.jpeg">
+ <meta property="og:type" content="article">
+ <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-wlr.html">
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:site" content="@36966_">
+ <title>MusicRx - Whole Lotta Red: Playboi Carti’s Crimson Chaos Unleashed</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+ <style>
+ :root {
+ --primary: #FF0000;
+ --secondary: #E50000;
+ --accent: #CC0000;
+ --dark: #660000;
+ --glass: rgba(255, 0, 0, 0.2);
+ --glow: rgba(255, 0, 0, 0.7);
+ --rgb-glow: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
+ --text-color: #FFFFFF;
+ --background: radial-gradient(circle, #660000, #330000);
+ --card-background: rgba(102, 0, 0, 0.25);
+ --border-color: rgba(153, 0, 0, 0.3);
+ }
+ [data-theme="normal"] {
+ --primary: #00A1E4;
+ --secondary: #0077B6;
+ --accent: #005F99;
+ --dark: #003366;
+ --glass: rgba(0, 161, 228, 0.2);
+ --glow: rgba(0, 161, 228, 0.7);
+ --rgb-glow: linear-gradient(45deg, #00A1E4, #0077B6, #005F99);
+ --text-color: #FFFFFF;
+ --background: radial-gradient(circle, #003366, #001833);
+ --card-background: rgba(0, 51, 102, 0.25);
+ --border-color: rgba(0, 95, 153, 0.3);
+ }
+ body {
+ font-family: 'Space Grotesk', sans-serif;
+ background: var(--background);
+ color: var(--text-color);
+ overflow-x: hidden;
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+ position: relative;
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+ #universe {
+ position: fixed;
+ top: 0; left: 0;
+ width: 100%; height: 100%;
+ z-index: -2;
+ }
+ #cursor {
+ width: 20px; height: 20px;
+ border: 2px solid var(--primary);
+ border-radius: 50%;
+ position: fixed;
+ pointer-events: none;
+ transform: translate(-50%, -50%);
+ transition: all 0.1s ease;
+ z-index: 9999;
+ }
+ #cursor-blur {
+ width: 400px; height: 400px;
+ background: var(--glow);
+ border-radius: 50%;
+ position: fixed;
+ filter: blur(80px);
+ pointer-events: none;
+ transform: translate(-50%, -50%);
+ z-index: -1;
+ }
+ @media (max-width: 768px) {
+ #cursor, #cursor-blur { display: none; }
+ }
+ .container {
+ flex: 1;
+ padding: 100px 2rem 3rem;
+ max-width: 1200px;
+ margin: 0 auto;
+ position: relative;
+ z-index: 1;
+ width: 100%;
+ box-sizing: border-box;
+ }
+ @media (max-width: 768px) { .container { padding: 80px 1.5rem 2rem; } }
+ @media (max-width: 480px) { .container { padding: 60px 1rem 1.5rem; } }
+ .review-header {
+ background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+ backdrop-filter: blur(15px);
+ padding: 1rem 2rem;
+ border-bottom: 2px solid var(--border-color);
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ position: fixed;
+ top: 0; left: 0;
+ width: 100%;
+ z-index: 1002;
+ height: 60px;
+ box-sizing: border-box;
+ margin: 0;
+ }
+ @media (max-width: 768px) { .review-header { padding: 0.75rem 1.5rem; height: 50px; } }
+ @media (max-width: 480px) { .review-header { padding: 0.5rem 1rem; height: 40px; } }
+ .nav-logo { display: flex; align-items: center; margin-left: 0; }
+ .nav-logo .logo-symbol i {
+ color: var(--primary);
+ font-size: 1.5rem;
+ animation: pulse-heart 1.5s ease-in-out infinite;
+ }
+ @media (max-width: 480px) { .nav-logo .logo-symbol i { font-size: 1.2rem; } }
+ @keyframes pulse-heart {
+ 0%, 100% { color: var(--primary); transform: scale(1); }
+ 50% { color: var(--secondary); transform: scale(1.2); }
+ }
+ .search-container {
+ display: flex;
+ align-items: center;
+ margin-left: 0;
+ margin-right: 0;
+ flex: 1;
+ max-width: 300px;
+ }
+ @media (max-width: 768px) { .search-container { max-width: 200px; } }
+ @media (max-width: 480px) { .search-container { max-width: 150px; } }
+ .search-input {
+ border: 2px solid var(--primary);
+ background: var(--card-background);
+ color: var(--text-color);
+ padding: 0.5rem 1rem;
+ border-radius: 20px;
+ font-family: 'Space Grotesk', sans-serif;
+ width: 100%;
+ transition: all 0.3s ease;
+ box-sizing: border-box;
+ font-size: 0.9rem;
+ }
+ .search-input:focus { box-shadow: 0 0 15px var(--glow); outline: none; }
+ .search-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+ @media (max-width: 480px) { .search-input { padding: 0.4rem 0.8rem; font-size: 0.8rem; } }
+ .dropdown { position: relative; margin-right: 0; }
+ @media (max-width: 480px) { .dropdown { margin-right: 0; } }
+ .dropdown-toggle {
+ background: none;
+ border: none;
+ color: var(--primary);
+ font-size: 1.5rem;
+ cursor: pointer;
+ padding: 0.5rem;
+ transition: all 0.3s ease;
+ }
+ @media (max-width: 480px) { .dropdown-toggle { font-size: 1.2rem; padding: 0.3rem; } }
+ .dropdown-toggle:hover {
+ color: transparent;
+ background: var(--rgb-glow);
+ -webkit-background-clip: text;
+ background-clip: text;
+ text-shadow: 0 0 10px var(--primary);
+ }
+ .dropdown-menu {
+ display: none;
+ position: absolute;
+ top: 100%; right: 0;
+ background: rgba(10, 10, 10, 0.8);
+ backdrop-filter: blur(10px);
+ border-radius: 0 0 10px 10px;
+ padding: 1rem;
+ width: 200px;
+ z-index: 1003;
+ border: 1px solid var(--border-color);
+ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+ }
+ @media (max-width: 480px) { .dropdown-menu { width: 150px; padding: 0.75rem; } }
+ .dropdown-menu.active { display: block; }
+ .dropdown-menu ul { list-style: none; padding: 0; margin: 0; }
+ .dropdown-menu li { margin-bottom: 1rem; }
+ @media (max-width: 480px) { .dropdown-menu li { margin-bottom: 0.75rem; } }
+ .dropdown-menu a {
+ color: var(--text-color);
+ text-decoration: none;
+ font-size: 0.9rem;
+ font-family: 'Syncopate', sans-serif;
+ text-transform: uppercase;
+ transition: all 0.3s ease;
+ }
+ @media (max-width: 480px) { .dropdown-menu a { font-size: 0.8rem; } }
+ .dropdown-menu a:hover {
+ color: transparent;
+ background: var(--rgb-glow);
+ -webkit-background-clip: text;
+ background-clip: text;
+ text-shadow: 0 0 10px var(--primary);
+ }
+ .review-title-glitch {
+ font-size: 3.5rem;
+ text-align: center;
+ margin: 4rem auto;
+ color: var(--primary);
+ text-shadow: 0 0 15px var(--glow);
+ font-family: 'Syncopate', sans-serif;
+ text-transform: uppercase;
+ position: relative;
+ animation: flicker 0.1s infinite alternate;
+ width: 100%;
+ max-width: 1200px;
+ }
+ @media (max-width: 768px) { .review-title-glitch { font-size: 2.5rem; margin: 3rem auto; } }
+ @media (max-width: 480px) { .review-title-glitch { font-size: 2rem; margin: 2rem auto; } }
+ @keyframes flicker { 0% { opacity: 1; } 100% { opacity: 0.95; } }
+ .review-title-glitch::before, .review-title-glitch::after {
+ content: attr(data-text);
+ position: absolute;
+ top: 0; left: 0;
+ width: 100%; height: 100%;
+ }
+ .review-title-glitch::before {
+ left: 3px;
+ text-shadow: -3px 0 var(--secondary);
+ animation: glitch-1 2s linear infinite reverse;
+ }
+ .review-title-glitch::after {
+ left: -3px;
+ text-shadow: -3px 0 var(--primary);
+ animation: glitch-2 3s linear infinite;
+ }
+ @keyframes glitch-1 {
+ 0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
+ 10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
+ 20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
+ }
+ @keyframes glitch-2 {
+ 0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
+ 10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
+ 20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
+ }
+ .review-content {
+ background: var(--card-background);
+ backdrop-filter: blur(10px);
+ border-radius: 20px;
+ padding: 2.5rem;
+ margin: 2rem auto;
+ width: 100%;
+ max-width: 1200px;
+ z-index: 2;
+ position: relative;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ box-sizing: border-box;
+ }
+ @media (max-width: 768px) { .review-content { padding: 2rem; margin: 1.5rem auto; } }
+ @media (max-width: 480px) { .review-content { padding: 1.5rem; margin: 1rem auto; } }
+ .review-content h2, .review-content p {
+ color: var(--text-color);
+ text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+ width: 100%;
+ text-align: center;
+ margin: 0.5rem 0;
+ }
+ @media (max-width: 480px) {
+ .review-content h2 { font-size: 1.5rem; }
+ .review-content p { font-size: 0.9rem; }
+ }
+ .glass-card {
+ background: var(--card-background);
+ backdrop-filter: blur(15px);
+ border-radius: 25px;
+ border: 2px solid var(--border-color);
+ padding: 3rem;
+ margin: 3rem auto;
+ transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+ position: relative;
+ overflow: hidden;
+ width: 100%;
+ max-width: 1200px;
+ box-sizing: border-box;
+ }
+ @media (max-width: 768px) { .glass-card { padding: 2rem; margin: 2rem auto; } }
+ @media (max-width: 480px) { .glass-card { padding: 1.5rem; margin: 1.5rem auto; } }
+ .glass-card:hover {
+ transform: translateY(-10px) scale(1.03);
+ box-shadow: 0 0 30px var(--glow);
+ background: var(--rgb-glow);
+ background-size: 200% 200%;
+ animation: rgbShift 3s linear infinite;
+ }
+ @media (max-width: 768px) {
+ .glass-card:hover {
+ transform: none;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+ background: var(--card-background);
+ animation: none;
+ }
+ }
+ @keyframes rgbShift {
+ 0% { background-position: 0% 0%; }
+ 50% { background-position: 100% 100%; }
+ 100% { background-position: 0% 0%; }
+ }
+ .glass-card.grad-card {
+ padding: 0;
+ border-radius: 15px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 100%;
+ max-width: 1200px;
+ margin: 0 auto;
+ position: relative;
+ overflow: hidden;
+ border: 2px solid var(--border-color);
+ background: var(--card-background);
+ z-index: 1;
+ box-sizing: border-box;
+ }
+ @media (max-width: 768px) { .glass-card.grad-card { max-width: 100%; } }
+ @media (max-width: 480px) { .glass-card.grad-card { max-width: 100%; } }
+ .glass-card.grad-card img {
+ width: calc(100% - 4px);
+ height: auto;
+ border-radius: 10px;
+ box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+ transition: all 0.5s ease;
+ position: relative;
+ z-index: 2;
+ }
+ .glass-card.grad-card:hover img {
+ width: 100%;
+ max-width: calc(1200px - 4px);
+ border-radius: 10px;
+ box-shadow: 0 0 30px var(--glow);
+ transform: scale(1.02);
+ }
+ @media (max-width: 768px) {
+ .glass-card.grad-card:hover img {
+ width: calc(100% - 4px);
+ max-width: 100%;
+ transform: scale(1);
+ }
+ }
+ .track-highlight-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 2rem;
+ padding: 1.5rem;
+ }
+ @media (max-width: 768px) {
+ .track-highlight-grid {
+ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+ gap: 1.5rem;
+ padding: 1rem;
+ }
+ }
+ @media (max-width: 480px) {
+ .track-highlight-grid {
+ grid-template-columns: 1fr;
+ gap: 1rem;
+ padding: 0.5rem;
+ }
+ }
+ .track-highlight-item {
+ background: rgba(255, 0, 0, 0.1);
+ border-radius: 15px;
+ padding: 1.5rem;
+ transition: all 0.3s ease;
+ box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+ min-height: 120px;
+ display: flex;
+ align-items: center;
+ }
+ @media (max-width: 480px) { .track-highlight-item { padding: 1rem; min-height: 100px; } }
+ .track-highlight-item:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 0 20px var(--glow);
+ background: rgba(255, 0, 0, 0.2);
+ }
+ @media (max-width: 768px) {
+ .track-highlight-item:hover {
+ transform: none;
+ box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+ background: rgba(255, 0, 0, 0.1);
+ }
+ }
+ .trend-table {
+ width: 100%;
+ border-collapse: separate;
+ border-spacing: 0;
+ margin: 1.5rem 0;
+ background: rgba(255, 255, 255, 0.05);
+ border-radius: 10px;
+ overflow: hidden;
+ }
+ .trend-table th, .trend-table td {
+ padding: 1.2rem;
+ text-align: left;
+ border-bottom: 1px solid var(--border-color);
+ font-size: 0.95rem;
+ }
+ @media (max-width: 768px) {
+ .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.85rem; }
+ }
+ @media (max-width: 480px) {
+ .trend-table { display: block; overflow-x: auto; white-space: nowrap; }
+ .trend-table th, .trend-table td { padding: 0.5rem; font-size: 0.75rem; }
+ }
+ .trend-table th {
+ background: rgba(255, 0, 0, 0.2);
+ color: var(--primary);
+ text-transform: uppercase;
+ font-weight: 700;
+ }
+ .trend-table tr:last-child td { border-bottom: none; }
+ .review-footer {
+ background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(255, 0, 0, 0.2));
+ backdrop-filter: blur(15px);
+ padding: 2rem;
+ border-top: 2px solid var(--border-color);
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ position: relative;
+ z-index: 1001;
+ }
+ @media (max-width: 768px) {
+ .review-footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+ }
+ @media (max-width: 480px) { .review-footer { padding: 1rem; gap: 0.75rem; } }
+ .review-footer .newsletter-form { display: flex; gap: 0.5rem; }
+ .review-footer .newsletter-form input {
+ border-radius: 20px;
+ padding: 0.8rem;
+ background: rgba(255, 255, 255, 0.1);
+ border: none;
+ color: var(--text-color);
+ font-family: 'Space Grotesk', sans-serif;
+ width: 200px;
+ }
+ .review-footer .newsletter-form button {
+ border-radius: 20px;
+ padding: 0.8rem 1.5rem;
+ background: var(--primary);
+ color: var(--dark);
+ border: none;
+ cursor: pointer;
+ transition: transform 0.3s ease;
+ }
+ @media (max-width: 768px) {
+ .review-footer .newsletter-form input { width: 150px; padding: 0.6rem; }
+ .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
+ }
+ @media (max-width: 480px) {
+ .review-footer .newsletter-form { flex-direction: column; width: 100%; }
+ .review-footer .newsletter-form input { width: 100%; padding: 0.5rem; }
+ .review-footer .newsletter-form button { padding: 0.5rem 1rem; width: 100%; }
+ }
+ .review-footer .newsletter-form button:hover { transform: scale(1.1); }
+ @media (max-width: 768px) { .review-footer .newsletter-form button:hover { transform: none; } }
+ .fixed-buttons {
+ position: fixed;
+ bottom: 20px; right: 20px;
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+ z-index: 1001;
+ }
+ @media (max-width: 480px) { .fixed-buttons { bottom: 10px; right: 10px; gap: 5px; } }
+ .fixed-button {
+ background: var(--glass);
+ border: 1px solid var(--border-color);
+ color: var(--primary);
+ padding: 0.8rem;
+ border-radius: 50%;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+ }
+ @media (max-width: 480px) { .fixed-button { padding: 0.6rem; } }
+ .fixed-button:hover {
+ background: var(--rgb-glow);
+ color: var(--dark);
+ box-shadow: 0 0 20px var(--primary);
+ transform: translateY(-3px);
+ }
+ @media (max-width: 768px) {
+ .fixed-button:hover {
+ transform: none;
+ box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+ background: var(--glass);
+ color: var(--primary);
+ }
+ }
+ h2 {
+ font-family: 'Syncopate', sans-serif;
+ font-size: 2rem;
+ color: var(--primary);
+ text-transform: uppercase;
+ text-shadow: 0 0 10px var(--glow);
+ margin: 1.5rem 0;
+ text-align: center;
+ font-weight: 700;
+ transition: all 0.3s ease;
+ }
+ h2:hover { text-shadow: 0 0 20px var(--glow); color: var(--secondary); }
+ @media (max-width: 768px) { h2 { font-size: 1.75rem; } }
+ @media (max-width: 480px) { h2 { font-size: 1.5rem; } }
+ body, .container, p, h2, ul, li, .glass-card, .glass-card * { font-style: normal !important; }
+ em, .highlight em { font-style: italic !important; }
+ </style>
 </head>
 <body>
-    <!-- Cursor and background effects -->
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-
-    <!-- Navigation bar -->
-    <nav class="navbar global-nav">
-        <!-- Logo with heartbeat animation -->
-        <div class="nav-logo">
-            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
-        </div>
-        <!-- Dropdown menu toggle -->
-        <div class="dropdown">
-            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
-            <!-- Dropdown menu content -->
-            <div class="dropdown-menu">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="reviews.html">Reviews</a></li>
-                    <li><a href="features.html">Features</a></li>
-                    <li><a href="news.html">News</a></li>
-                    <li><a href="opinions.html">Opinions</a></li>
-                    <li><a href="catchcarti.html">Catch Carti</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container">
-        <!-- Glitch title for the album -->
-        <h1 class="review-grad-glitch" data-text="WHOLE LOTTA RED">WHOLE LOTTA RED</h1>
-        <div class="review-content">
-            <!-- Subtitle and album cover -->
-            <h2>Whole Lotta Red: Playboi Carti’s Crimson Chaos Unleashed</h2>
-            <div class="glass-card grad-card">
-                <img src="https://vzdzt.github.io/musicrx/red.jpeg" alt="Playboi Carti - Whole Lotta Red album cover">
-            </div>
-            <br>
-            <p>Dropped on <span class="highlight">December 25, 2020</span> via <span class="highlight">AWGE</span> and <span class="highlight">Interscope</span>, Playboi Carti’s second album <em><span class="highlight">Whole Lotta Red</span></em> is a 24-track, 62-minute punk-trap frenzy, powered by <span class="highlight">Kanye West</span> and <span class="highlight">F1lthy</span>. Post-<em><span class="highlight">Die Lit</span></em>’s melodic haze, it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">100,000 first-week units</span>. By <span class="highlight">March 15, 2025</span>, its 3x Platinum status, a 2025 streaming surge, and fan debates on X (@36966_) keep its fire blazing. Veazy here—this album’s a chaotic reinvention that reshaped Carti, still pulsing with feral energy.</p>
-        </div>
-        <br>
-
-        <!-- Rubric Section 2: Messaging and Theme (No glass card, plain text) -->
-        <h2>The Messaging and Theme</h2>
-        <br>
-        <p>The cover—a red-black punk zine by <span class="highlight">Slash</span> magazine—screams rebellion, mirroring <em><span class="highlight">Whole Lotta Red</span></em>’s vampire-punk manifesto. It’s a defiant flex with a nocturnal edge, torching <em><span class="highlight">Die Lit</span></em>’s bliss in <span class="highlight">“Rockstar Made”</span>’s snarl—“Been gettin’ money”—and embracing gothic chaos with <span class="highlight">“Vamp Anthem”</span>’s eerie chant—“Whole lotta red, yeah.” <span class="highlight">“M3tamorphosis”</span> and <span class="highlight">“F33l Lik3 Dyin”</span> reveal isolation—“I feel like dyin’”—blending aggression with fleeting vulnerability. It’s a punk-trap inferno, raw and unfiltered, a testament to Carti’s evolution that still sparks debates on X (@36966_) in 2025, where fans call it “a genre-defining middle finger.”</p>
-        <br>
-
-        <!-- Rubric Section 3: Production and Sound (No glass card, plain text) -->
-        <h2>Production and Sound</h2>
-        <br>
-        <p><span class="highlight">Kanye West</span>, <span class="highlight">F1lthy</span>, <span class="highlight">Art Dealer</span>, and <span class="highlight">Pi’erre Bourne</span> forge <em><span class="highlight">Whole Lotta Red</span></em>’s jagged sound—punk-trap, industrial, and futuristic chaos across its 24 tracks. Recorded at <span class="highlight">West Lake Studios</span> in Atlanta and <span class="highlight">The Means Street Studio</span> in LA, <span class="highlight">“Stop Breathing”</span> roars with distorted 808s, <span class="highlight">“Vamp Anthem”</span> chops Bach’s organ into a gothic trap haze, and <span class="highlight">“Go2DaMoon”</span> hums with eerie synths—Carti’s hoarse, pitch-shifted flow, from snarling to haunting, slicing through like a vampire’s bite. F1lthy’s distorted basslines, born here, became a trap staple by 2025, though the 62-minute runtime feels cluttered with uneven pacing, a minor flaw in its abrasive brilliance.</p>
-        <br>
-
-        <!-- Rubric Section 4: Features (No glass card, plain text) -->
-        <h2>Features</h2>
-        <br>
-        <p><em><span class="highlight">Whole Lotta Red</span></em> keeps features sparse with <span class="highlight">Kanye West</span>, <span class="highlight">Kid Cudi</span>, and <span class="highlight">Future</span>, each adding sharp sparks to Carti’s crimson inferno. <span class="highlight">Kanye West</span> and <span class="highlight">Kid Cudi</span> elevate <span class="highlight">“Go2DaMoon”</span> and <span class="highlight">“M3tamorphosis”</span> with their ethereal verses, while <span class="highlight">Future</span> adds gritty swagger to <span class="highlight">“Teen X”</span>’s chaotic vibe. Carti’s delivery—snarling ad-libs, warped tones, and hypnotic chants—dominates, ensuring the features enhance rather than overshadow his vision.</p>
-        <br>
-
-        <!-- Rubric Section 5: Track Highlights (With glass card) -->
-        <div class="glass-section">
-            <div class="grid">
-                <div class="card-pair">
-                    <div class="glass-card title-card">
-                        <h2 class="card-title-container">Track Highlights</h2>
-                    </div>
-                    <div class="glass-card content-card">
-                        <p class="track-highlight-item"><span class="highlight">For Newcomers:</span> <span class="highlight">“Rockstar Made”</span>, <span class="highlight">“Vamp Anthem”</span>—Synths stab, Bach’s organs twist into gothic chaos, Carti’s “Whole lotta red” chant a punk-trap gateway for new listeners.</p>
-                        <p class="track-highlight-item"><span class="highlight">For The Dive:</span> <span class="highlight">“Stop Breathing”</span>, <span class="highlight">“M3tamorphosis”</span>—Blown-out 808s, Kid Cudi’s ethereal hum, Carti’s snarls—“I take my shirt off”—dig deep into his feral, isolated core.</p>
-                        <p class="track-highlight-item"><span class="highlight">Hidden Gems:</span> <span class="highlight">“Go2DaMoon”</span>, <span class="highlight">“F33l Lik3 Dyin”</span>—Eerie synths, Bon Iver’s haunting sample, Kanye’s minimal flex, Carti’s “I feel like dyin’” croak revealing raw emotion beneath the chaos.</p>
-                        <p class="track-highlight-item"><span class="highlight">Latest Obsessions:</span> <span class="highlight">“Vamp Anthem (Live 2025)”</span>—Rolling Loud 2025’s fiery set (X @36966_) reignites this banger, Carti’s red-leather strut electrifying the crowd—Veazy’s hooked on its dark pulse.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-
-        <!-- Rubric Section 6: Previous Works (No glass card, plain text) -->
-        <h2>Previous Works</h2>
-        <br>
-        <p>Carti’s path to <em><span class="highlight">Whole Lotta Red</span></em> blazed through <em><span class="highlight">Playboi Carti</span></em> (<span class="highlight">2017</span>), <em><span class="highlight">Die Lit</span></em> (<span class="highlight">2018</span>), and leaks like <em><span class="highlight">Pissy Pamper</span></em> (<span class="highlight">2019</span>) with Pi’erre Bourne. Hits like <span class="highlight">“Magnolia”</span> and <span class="highlight">“Shoota”</span> built his melodic-trap buzz, while <em><span class="highlight">Whole Lotta Red</span></em> redefined his sound, paving the way for <em><span class="highlight">I Am Music</span></em> (<span class="highlight">2025</span>).</p>
-        <br>
-
-        <!-- Rubric Section 7: Grammy Wins & Nominations (With glass card) -->
-        <div class="glass-section">
-            <div class="grid">
-                <div class="card-pair">
-                    <div class="glass-card title-card">
-                        <h2 class="card-title-container">Grammy Wins & Nominations</h2>
-                    </div>
-                    <div class="glass-card content-card">
-                        <h3><span class="highlight">Awards Recognition</span></h3>
-                        <div class="table-container">
-                            <table class="trend-table">
-                                <thead>
-                                    <tr>
-                                        <th>Category</th>
-                                        <th>Year</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Best Rap Album</td>
-                                        <td>2022</td>
-                                        <td>Nominated</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Best Rap Performance ("Stop Breathing")</td>
-                                        <td>2022</td>
-                                        <td>Nominated</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Best Rap Song ("Vamp Anthem")</td>
-                                        <td>2022</td>
-                                        <td>Nominated</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <p class="description"><em><span class="highlight">Whole Lotta Red</span></em> earned nominations but no wins, its cultural impact resonating with 3x Platinum status by 2025 and a lasting influence on punk-trap’s evolution.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-
-        <!-- Rubric Section 8: Legacy & Reception (No glass card, plain text) -->
-        <h2>Legacy & Reception</h2>
-        <br>
-        <p>Critics were split—Pitchfork’s <span class="highlight">6.6/10</span> called it “chaotic but uneven,” while Rolling Stone ranked it among the “200 Greatest Hip-Hop Albums.” Fans on X (@36966_) in 2020 dubbed it “a polarizing masterpiece,” a sentiment echoing into <span class="highlight">March 15, 2025</span>, with a 3x Platinum milestone, a 2025 streaming surge, and festival dominance. A viral Rolling Loud 2025 “Vamp Anthem” performance—Carti in red leather commanding the stage—reignited its legacy, cementing its role as a punk-trap blueprint.</p>
-        <br>
-
-        <!-- Rubric Section 9: By the Numbers (With glass cards) -->
-        <div class="glass-section">
-            <div class="grid">
-                <div class="card-pair">
-                    <div class="glass-card title-card">
-                        <h2 class="card-title-container">By the Numbers</h2>
-                    </div>
-                    <div class="glass-card content-card">
-                        <h3><span class="highlight">Chart Performance</span></h3>
-                        <div class="table-container">
-                            <table class="trend-table">
-                                <thead>
-                                    <tr>
-                                        <th>Album</th>
-                                        <th>Highest Charting Song</th>
-                                        <th>Peak Position (Billboard Hot 100)</th>
-                                        <th>Streams (as of March 2025)</th>
-                                        <th>Certification</th>
-                                        <th>Units Sold</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><span class="highlight">Playboi Carti</span> (2017)</td>
-                                        <td><span class="highlight">“Magnolia”</span></td>
-                                        <td>29</td>
-                                        <td>1.8 billion</td>
-                                        <td>Platinum</td>
-                                        <td>1,200,000+</td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="highlight">Die Lit</span> (2018)</td>
-                                        <td><span class="highlight">“Shoota”</span> (feat. Lil Uzi Vert)</td>
-                                        <td>46</td>
-                                        <td>2.5 billion</td>
-                                        <td>Platinum</td>
-                                        <td>1,100,000+</td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="highlight">Whole Lotta Red</span> (2020)</td>
-                                        <td><span class="highlight">“@ Meh”</span></td>
-                                        <td>35</td>
-                                        <td>4.2 billion</td>
-                                        <td>3x Platinum</td>
-                                        <td>3,000,000+</td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="highlight">I Am Music</span> (2025)</td>
-                                        <td><span class="highlight">“All Red”</span></td>
-                                        <td>15</td>
-                                        <td>450 million</td>
-                                        <td>Gold</td>
-                                        <td>600,000+</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-pair">
-                    <div class="glass-card title-card">
-                        <h2 class="card-title-container"> </h2> <!-- Empty title for alignment -->
-                    </div>
-                    <div class="glass-card content-card">
-                        <h3><span class="highlight">Album Certifications</span></h3>
-                        <div class="table-container">
-                            <table class="trend-table">
-                                <thead>
-                                    <tr>
-                                        <th>Album</th>
-                                        <th>Certification</th>
-                                        <th>Units (Millions)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><span class="highlight">Playboi Carti</span></td>
-                                        <td>Platinum</td>
-                                        <td>1.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="highlight">Die Lit</span></td>
-                                        <td>Platinum</td>
-                                        <td>1.1</td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="highlight">Whole Lotta Red</span></td>
-                                        <td>3x Platinum</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="highlight">I Am Music</span></td>
-                                        <td>Gold</td>
-                                        <td>0.6</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-
-        <!-- Rubric Section 10: Ratings (With glass card) -->
-        <div class="glass-section">
-            <div class="grid">
-                <div class="card-pair">
-                    <div class="glass-card title-card">
-                        <h2 class="card-title-container">Ratings</h2>
-                    </div>
-                    <div class="glass-card content-card">
-                        <p class="track-highlight-item"><span class="highlight">Originality (19/20):</span> Carti crafts a punk-trap frontier—“Rockstar Made” redefines chaos—a bold rebellion echoing <em>Yeezus</em>, blazing a trail few dare to tread.</p>
-                        <p class="track-highlight-item"><span class="highlight">Production Quality (18/20):</span> Jagged beats slash with futuristic grit—“Stop Breathing” roars raw—unpolished mixes dare greatly, though clutter occasionally muddies the album’s sonic storm.</p>
-                        <p class="track-highlight-item"><span class="highlight">Lyrics and Messaging (13/20):</span> Vibes trump depth—“Vamp Anthem” hooks hard—but lyrics lean on ad-libs, delivering electrifying energy over substance, a chaotic mood with little to unpack.</p>
-                        <p class="track-highlight-item"><span class="highlight">Enjoyment Factor (17/20):</span> Thrilling chaos surges—“F33l Lik3 Dyin” lingers hauntingly—a wild ride for rebels, though its intensity might jar melody lovers, still a replayable frenzy.</p>
-                        <p class="track-highlight-item"><span class="highlight">Consistency (15/20):</span> Early tracks blaze—“Go2DaMoon” to “Slay3r” hit hard—but late filler drags, a fierce storm that stumbles, yet keeps its feral spirit alive.</p>
-                        <p class="overall-rating"><span class="highlight"><h3>Overall Rating (82/100):</span> 8.2/10</h3></p>
-                        <p class="description"><em><span class="highlight">Whole Lotta Red</span></em> is a punk-trap inferno—Carti’s crimson chaos ignites a rebellious storm that pulses with feral energy. Picture a red-lit stage, Carti’s snarls commanding the night—raw, divisive, unapologetic. Veazy’s blasting this in 2025, chasing that vampire rockstar’s untamed roar.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-
-        <!-- Rubric Section 11: Sources (With glass card) -->
-        <div class="glass-section">
-            <div class="grid">
-                <div class="card-pair">
-                    <div class="glass-card title-card">
-                        <h2 class="card-title-container">Sources</h2>
-                    </div>
-                    <div class="glass-card content-card">
-                        <p>Data from Billboard, RIAA, Spotify charts, and fan reactions on X (@36966_) as of March 2025.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="nav-logo">
-            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
-        </div>
-        <div class="footer-content">
-            <p>© 2025 MusicRx. All rights reserved.</p>
-        </div>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Subscribe to Newsletter" required>
-            <button type="submit">Subscribe</button>
-        </form>
-    </footer>
-
-    <!-- External scripts for animations and interactivity -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
+ <div id="cursor"></div>
+ <div id="cursor-blur"></div>
+ <canvas id="universe"></canvas>
+ <header class="review-header">
+ <div class="nav-logo">
+ <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+ </div>
+ <div class="search-container">
+ <input type="text" class="search-input" placeholder="Search Reviews..." aria-label="Search reviews">
+ </div>
+ <nav>
+ <div class="dropdown">
+ <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+ <div class="dropdown-menu">
+ <ul>
+ <li><a href="index.html">Home</a></li>
+ <li><a href="reviews.html">Reviews</a></li>
+ <li><a href="features.html">Features</a></li>
+ <li><a href="news.html">News</a></li>
+ <li><a href="opinions.html">Opinions</a></li>
+ <li><a href="catchcarti.html">Catch Carti</a></li>
+ </ul>
+ </div>
+ </div>
+ </nav>
+ </header>
+ <div class="container">
+ <h1 class="review-title-glitch" data-text="WHOLE LOTTA RED">WHOLE LOTTA RED</h1>
+ <div class="review-content">
+ <h2>Whole Lotta Red: Playboi Carti’s Crimson Chaos Unleashed</h2>
+ <div class="glass-card grad-card">
+ <img src="https://vzdzt.github.io/musicrx/red.jpeg" alt="Playboi Carti - Whole Lotta Red album cover">
+ </div>
+ <br>
+ <p>Dropped on <span class="highlight">December 25, 2020</span> via <span class="highlight">AWGE</span> and <span class="highlight">Interscope</span>, Playboi Carti’s second album <em><span class="highlight">Whole Lotta Red</span></em> is a 24-track, 62-minute punk-trap frenzy, powered by <span class="highlight">Kanye West</span> and <span class="highlight">F1lthy</span>. Post-<em><span class="highlight">Die Lit</span></em>’s melodic haze, it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">100,000 first-week units</span>. By <span class="highlight">March 15, 2025</span>, its 3x Platinum status, a 2025 streaming surge, and fan debates on X (@36966_) keep its fire blazing. Veazy here—this album’s a chaotic reinvention that reshaped Carti, still pulsing with feral energy.</p>
+ </div>
+ <br>
+ <h2>The Messaging and Theme</h2>
+ <br>
+ <p>The cover—a red-black punk zine by <span class="highlight">Slash</span> magazine—screams rebellion, mirroring <em><span class="highlight">Whole Lotta Red</span></em>’s vampire-punk manifesto. It’s a defiant flex with a nocturnal edge, torching <em><span class="highlight">Die Lit</span></em>’s bliss in <span class="highlight">“Rockstar Made”</span>’s snarl—“Been gettin’ money”—and embracing gothic chaos with <span class="highlight">“Vamp Anthem”</span>’s eerie chant—“Whole lotta red, yeah.” <span class="highlight">“M3tamorphosis”</span> and <span class="highlight">“F33l Lik3 Dyin”</span> reveal isolation—“I feel like dyin’”—blending aggression with fleeting vulnerability. It’s a punk-trap inferno, raw and unfiltered, a testament to Carti’s evolution that still sparks debates on X (@36966_) in 2025, where fans call it “a genre-defining middle finger.”</p>
+ <br>
+ <h2>Production and Sound</h2>
+ <br>
+ <p><span class="highlight">Kanye West</span>, <span class="highlight">F1lthy</span>, <span class="highlight">Art Dealer</span>, and <span class="highlight">Pi’erre Bourne</span> forge <em><span class="highlight">Whole Lotta Red</span></em>’s jagged sound—punk-trap, industrial, and futuristic chaos across its 24 tracks. Recorded at <span class="highlight">West Lake Studios</span> in Atlanta and <span class="highlight">The Means Street Studio</span> in LA, <span class="highlight">“Stop Breathing”</span> roars with distorted 808s, <span class="highlight">“Vamp Anthem”</span> chops Bach’s organ into a gothic trap haze, and <span class="highlight">“Go2DaMoon”</span> hums with eerie synths—Carti’s hoarse, pitch-shifted flow, from snarling to haunting, slicing through like a vampire’s bite. F1lthy’s distorted basslines, born here, became a trap staple by 2025, though the 62-minute runtime feels cluttered with uneven pacing, a minor flaw in its abrasive brilliance.</p>
+ <br>
+ <h2>Features</h2>
+ <br>
+ <p><em><span class="highlight">Whole Lotta Red</span></em> keeps features sparse with <span class="highlight">Kanye West</span>, <span class="highlight">Kid Cudi</span>, and <span class="highlight">Future</span>, each adding sharp sparks to Carti’s crimson inferno. <span class="highlight">Kanye West</span> and <span class="highlight">Kid Cudi</span> elevate <span class="highlight">“Go2DaMoon”</span> and <span class="highlight">“M3tamorphosis”</span> with their ethereal verses, while <span class="highlight">Future</span> adds gritty swagger to <span class="highlight">“Teen X”</span>’s chaotic vibe. Carti’s delivery—snarling ad-libs, warped tones, and hypnotic chants—dominates, ensuring the features enhance rather than overshadow his vision.</p>
+ <br>
+ <div class="glass-card">
+ <h2>Track Highlights</h2>
+ <div class="track-highlight-grid">
+ <div class="track-highlight-item">
+ <p><span class="highlight">For Newcomers:</span> <span class="highlight">“Rockstar Made”</span>, <span class="highlight">“Vamp Anthem”</span>—Synths stab like daggers, Bach’s organs twist into gothic chaos, Carti’s “Whole lotta red” chant hooks instantly, a punk-trap gateway for new listeners to dive into his crimson world.</p>
+ </div>
+ <div class="track-highlight-item">
+ <p><span class="highlight">For The Dive:</span> <span class="highlight">“Stop Breathing”</span>, <span class="highlight">“M3tamorphosis”</span>—Blown-out 808s rumble, Kid Cudi’s ethereal hum floats over Carti’s snarls—“I take my shirt off”—digging deep into his feral, isolated core for fans craving raw intensity.</p>
+ </div>
+ <div class="track-highlight-item">
+ <p><span class="highlight">Hidden Gems:</span> <span class="highlight">“Go2DaMoon”</span>, <span class="highlight">“F33l Lik3 Dyin”</span>—Eerie synths hum, Bon Iver’s haunting sample cuts through, Kanye’s minimal flex pairs with Carti’s “I feel like dyin’” croak, revealing raw emotion beneath chaos.</p>
+ </div>
+ <div class="track-highlight-item">
+ <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">“Vamp Anthem (Live 2025)”</span>—Rolling Loud 2025’s fiery set (X @36966_) reignites this banger, Carti’s red-leather strut electrifies the crowd, Veazy’s hooked on its dark, pulsating energy in 2025’s live revival.</p>
+ </div>
+ </div>
+ </div>
+ <br>
+ <h2>Previous Works</h2>
+ <br>
+ <p>Playboi Carti’s journey to <em><span class="highlight">Whole Lotta Red</span></em> began with his 2017 self-titled debut, <em><span class="highlight">Playboi Carti</span></em>, which introduced his melodic trap sound with hits like <span class="highlight">“Magnolia”</span>—a cultural phenomenon that peaked at No. 29 on the Billboard Hot 100. His 2018 album <em><span class="highlight">Die Lit</span></em> doubled down on this vibe, blending Pi’erre Bourne’s dreamy production with bangers like <span class="highlight">“Shoota”</span> featuring Lil Uzi Vert, charting at No. 3 on the Billboard 200. Leaks like <span class="highlight">“Pissy Pamper”</span> in 2019, a viral hit with Young Nudy, showcased Carti’s experimental edge, gaining millions of streams despite never officially releasing. These projects built his cult following, setting the stage for <em><span class="highlight">Whole Lotta Red</span></em>’s punk-trap reinvention, a bold pivot that influenced his 2025 release <em><span class="highlight">I Am Music</span></em>.</p>
+ <br>
+ <div class="glass-card">
+ <h3><span class="highlight">Awards Recognition</span></h3>
+ <div class="table-container">
+ <table class="trend-table">
+ <thead>
+ <tr>
+ <th>Category</th>
+ <th>Year</th>
+ <th>Result</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>Best Rap Album</td>
+ <td>2022</td>
+ <td>Nominated</td>
+ </tr>
+ <tr>
+ <td>Best Rap Performance ("Stop Breathing")</td>
+ <td>2022</td>
+ <td>Nominated</td>
+ </tr>
+ <tr>
+ <td>Best Rap Song ("Vamp Anthem")</td>
+ <td>2022</td>
+ <td>Nominated</td>
+ </tr>
+ </tbody>
+ </table>
+ <p><em><span class="highlight">Whole Lotta Red</span></em> earned nominations but no wins, its cultural impact resonating with 3x Platinum status by 2025 and a lasting influence on punk-trap’s evolution.</p>
+ </div>
+ </div>
+ <br>
+ <h2>Legacy & Reception</h2>
+ <br>
+ <p>Critics were split—Pitchfork’s <span class="highlight">6.6/10</span> called it “chaotic but uneven,” while Rolling Stone ranked it among the “200 Greatest Hip-Hop Albums.” Fans on X (@36966_) in 2020 dubbed it “a polarizing masterpiece,” a sentiment echoing into <span class="highlight">March 15, 2025</span>, with a 3x Platinum milestone, a 2025 streaming surge, and festival dominance. A viral Rolling Loud 2025 “Vamp Anthem” performance—Carti in red leather commanding the stage—reignited its legacy, cementing its role as a punk-trap blueprint.</p>
+ <br>
+ <div class="glass-card">
+ <h3><span class="highlight">Chart Performance</span></h3>
+ <div class="table-container">
+ <table class="trend-table">
+ <thead>
+ <tr>
+ <th>Album</th>
+ <th>Highest Charting Song</th>
+ <th>Peak Position</th>
+ <th>Streams (as of 2025)</th>
+ <th>Certification</th>
+ <th>Units Sold</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><span class="highlight">Playboi Carti</span> (2017)</td>
+ <td><span class="highlight">“Magnolia”</span></td>
+ <td>29</td>
+ <td>1.8 billion</td>
+ <td>Platinum</td>
+ <td>1,200,000+</td>
+ </tr>
+ <tr>
+ <td><span class="highlight">Die Lit</span> (2018)</td>
+ <td><span class="highlight">“Shoota”</span></td>
+ <td>46</td>
+ <td>2.5 billion</td>
+ <td>Platinum</td>
+ <td>1,100,000+</td>
+ </tr>
+ <tr>
+ <td><span class="highlight">Whole Lotta Red</span> (2020)</td>
+ <td><span class="highlight">“@ Meh”</span></td>
+ <td>35</td>
+ <td>4.2 billion</td>
+ <td>3x Platinum</td>
+ <td>3,000,000+</td>
+ </tr>
+ <tr>
+ <td><span class="highlight">I Am Music</span> (2025)</td>
+ <td><span class="highlight">“All Red”</span></td>
+ <td>15</td>
+ <td>450 million</td>
+ <td>Gold</td>
+ <td>600,000+</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+ </div>
+ <br>
+ <div class="glass-card">
+ <h3><span class="highlight">Album Certifications</span></h3>
+ <div class="table-container">
+ <table class="trend-table">
+ <thead>
+ <tr>
+ <th>Album</th>
+ <th>Certification</th>
+ <th>Units (Millions)</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><span class="highlight">Playboi Carti</span></td>
+ <td>Platinum</td>
+ <td>1.2</td>
+ </tr>
+ <tr>
+ <td><span class="highlight">Die Lit</span></td>
+ <td>Platinum</td>
+ <td>1.1</td>
+ </tr>
+ <tr>
+ <td><span class="highlight">Whole Lotta Red</span></td>
+ <td>3x Platinum</td>
+ <td>3</td>
+ </tr>
+ <tr>
+ <td><span class="highlight">I Am Music</span></td>
+ <td>Gold</td>
+ <td>0.6</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+ </div>
+ <br>
+ <div class="glass-card">
+ <h2>Ratings</h2>
+ <p><span class="highlight">Originality (19/20):</span> Carti crafts a punk-trap frontier—“Rockstar Made” redefines chaos—a bold rebellion echoing <em>Yeezus</em>, blazing a trail few dare to tread.</p>
+ <p><span class="highlight">Production Quality (18/20):</span> Jagged beats slash with futuristic grit—“Stop Breathing” roars raw—unpolished mixes dare greatly, though clutter occasionally muddies the album’s sonic storm.</p>
+ <p><span class="highlight">Lyrics and Messaging (13/20):</span> Vibes trump depth—“Vamp Anthem” hooks hard—but lyrics lean on ad-libs, delivering electrifying energy over substance, a chaotic mood with little to unpack.</p>
+ <p><span class="highlight">Enjoyment Factor (17/20):</span> Thrilling chaos surges—“F33l Lik3 Dyin” lingers hauntingly—a wild ride for rebels, though its intensity might jar melody lovers, still a replayable frenzy.</p>
+ <p><span class="highlight">Consistency (15/20):</span> Early tracks blaze—“Go2DaMoon” to “Slay3r” hit hard—but late filler drags, a fierce storm that stumbles, yet keeps its feral spirit alive.</p>
+ <p class="overall-rating"><h3><span class="highlight">Overall Rating (82/100):</span> 8.2/10</h3></p>
+ <p><em><span class="highlight">Whole Lotta Red</span></em> is a punk-trap inferno—Carti’s crimson chaos ignites a rebellious storm that pulses with feral energy. Picture a red-lit stage, Carti’s snarls commanding the night—raw, divisive, unapologetic. Veazy’s blasting this in 2025, chasing that vampire rockstar’s untamed roar.</p>
+ </div>
+ <br>
+ <div class="glass-card">
+ <h3><span class="highlight">Sources</span></h3>
+ <p>Data from Billboard, RIAA, Spotify charts, and fan reactions on X (@36966_) as of March 2025.</p>
+ </div>
+ </div>
+ <footer class="review-footer">
+ <div class="nav-logo">
+ <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+ </div>
+ <div class="footer-content">
+ <p>© 2025 MusicRx. All rights reserved.</p>
+ </div>
+ <form class="newsletter-form">
+ <input type="email" placeholder="Subscribe to Newsletter" required>
+ <button type="submit">Subscribe</button>
+ </form>
+ </footer>
+ <div class="fixed-buttons">
+ <button id="backToTop" class="fixed-button" title="Back to Top" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
+ <button id="musicToggle" class="fixed-button" title="Toggle Music" aria-label="Play music"><i class="fas fa-play"></i></button>
+ <button id="themeToggle" class="fixed-button" title="Normal Mode" aria-label="Switch to next theme (current: All Red Mode)"><i class="fas fa-adjust"></i></button>
+ <button id="tipMachine" class="fixed-button" title="Tip Machine" aria-label="Support the site"><i class="fas fa-coffee"></i></button>
+ </div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+ <script>
+ document.addEventListener('DOMContentLoaded', () => {
+ const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+ const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+ dropdownToggles.forEach(toggle => {
+ const menu = toggle.nextElementSibling;
+ if (!menu) return;
+ toggle.addEventListener('click', function(e) {
+ e.preventDefault();
+ e.stopPropagation();
+ dropdownMenus.forEach(otherMenu => {
+ if (otherMenu !== menu) otherMenu.classList.remove('active');
+ });
+ menu.classList.toggle('active');
+ });
+ });
+ document.addEventListener('click', (e) => {
+ if (!e.target.closest('.dropdown')) {
+ dropdownMenus.forEach(menu => menu.classList.remove('active'));
+ }
+ });
+ const musicToggle = document.getElementById('musicToggle');
+ const audio = new Audio('https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3');
+ audio.loop = true;
+ let isPlaying = false;
+ if (musicToggle) {
+ audio.volume = 0.5;
+ musicToggle.setAttribute('aria-label', 'Play music');
+ musicToggle.innerHTML = '<i class="fas fa-play"></i>';
+ musicToggle.addEventListener('click', async () => {
+ try {
+ if (isPlaying) {
+ audio.pause();
+ musicToggle.innerHTML = '<i class="fas fa-play"></i>';
+ musicToggle.setAttribute('aria-label', 'Play music');
+ } else {
+ await audio.play();
+ musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+ musicToggle.setAttribute('aria-label', 'Pause music');
+ }
+ isPlaying = !isPlaying;
+ } catch (err) {
+ console.error('Audio playback error:', err);
+ }
+ });
+ }
+ const backToTop = document.getElementById('backToTop');
+ if (backToTop) {
+ backToTop.addEventListener('click', () => {
+ window.scrollTo({ top: 0, behavior: 'smooth' });
+ });
+ window.addEventListener('scroll', () => {
+ backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+ });
+ }
+ const themeToggle = document.getElementById('themeToggle');
+ if (themeToggle) {
+ themeToggle.addEventListener('click', () => {
+ const currentTheme = document.documentElement.getAttribute('data-theme');
+ const newTheme = currentTheme === 'all-red' ? 'normal' : 'all-red';
+ document.documentElement.setAttribute('data-theme', newTheme);
+ themeToggle.setAttribute('title', newTheme === 'all-red' ? 'Normal Mode' : 'All Red Mode');
+ themeToggle.setAttribute('aria-label', `Switch to next theme (current: ${newTheme === 'all-red' ? 'All Red Mode' : 'Normal Mode'})`);
+ updateStarfieldColors(newTheme);
+ document.querySelector('.review-header').style.background = newTheme === 'all-red' 
+ ? 'linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.8))' 
+ : 'linear-gradient(135deg, rgba(0, 161, 228, 0.2), rgba(0, 0, 0, 0.8))';
+ document.querySelector('.review-footer').style.background = newTheme === 'all-red' 
+ ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(255, 0, 0, 0.2))' 
+ : 'linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 161, 228, 0.2))';
+ });
+ }
+ const cursor = document.getElementById('cursor');
+ const cursorBlur = document.getElementById('cursor-blur');
+ document.addEventListener('mousemove', (e) => {
+ cursor.style.left = e.x + 'px';
+ cursor.style.top = e.y + 'px';
+ cursorBlur.style.left = e.x + 'px';
+ cursorBlur.style.top = e.y + 'px';
+ });
+ const scene = new THREE.Scene();
+ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+ const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('universe'), alpha: true });
+ renderer.setSize(window.innerWidth, window.innerHeight);
+ const starsGeometry = new THREE.BufferGeometry();
+ const starsCount = 5000;
+ const positions = new Float32Array(starsCount * 3);
+ const colors = new Float32Array(starsCount * 3);
+ for (let i = 0; i < starsCount * 3; i += 3) {
+ positions[i] = (Math.random() - 0.5) * 2000;
+ positions[i + 1] = (Math.random() - 0.5) * 2000;
+ positions[i + 2] = (Math.random() - 0.5) * 2000;
+ colors[i] = 1;
+ colors[i + 1] = Math.random();
+ colors[i + 2] = Math.random();
+ }
+ starsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+ starsGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+ const starsMaterial = new THREE.PointsMaterial({ size: 2, vertexColors: true, transparent: true, opacity: 0.8 });
+ const starField = new THREE.Points(starsGeometry, starsMaterial);
+ scene.add(starField);
+ camera.position.z = 100;
+ function updateStarfieldColors(theme) {
+ const colors = starsGeometry.attributes.color.array;
+ for (let i = 0; i < starsCount * 3; i += 3) {
+ if (theme === 'all-red') {
+ colors[i] = 1;
+ colors[i + 1] = Math.random() * 0.5;
+ colors[i + 2] = Math.random() * 0.5;
+ } else {
+ colors[i] = Math.random() * 0.5;
+ colors[i + 1] = Math.random() * 0.5;
+ colors[i + 2] = 1;
+ }
+ }
+ starsGeometry.attributes.color.needsUpdate = true;
+ }
+ function animate() {
+ requestAnimationFrame(animate);
+ starField.rotation.y += 0.0005;
+ renderer.render(scene, camera);
+ }
+ animate();
+ window.addEventListener('resize', () => {
+ camera.aspect = window.innerWidth / window.innerHeight;
+ camera.updateProjectionMatrix();
+ renderer.setSize(window.innerWidth, window.innerHeight);
+ });
+ const tipMachine = document.getElementById('tipMachine');
+ if (tipMachine) {
+ tipMachine.addEventListener('click', () => {
+ alert('Support the site! (This is a placeholder - add your donation link here)');
+ });
+ }
+ });
+ </script>
 </body>
 </html>
