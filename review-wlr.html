@@ -290,7 +290,6 @@
         }
         .trend-table {
             width: 100%; /* Force the table to take up the full width of its container */
-            min-width: 600px; /* Ensure the table doesn't collapse too much on smaller screens */
             border-collapse: separate;
             border-spacing: 0;
             margin: 1rem 0;
@@ -306,14 +305,25 @@
             font-size: 1rem;
             word-wrap: break-word; /* Allow text to wrap */
         }
-        /* Distribute column widths evenly and force stretching */
+        /* Specific styling for Awards Recognition table */
+        .trend-table.awards-table {
+            min-width: 800px; /* Ensure the table has enough width to stretch columns */
+        }
         .trend-table.awards-table th,
         .trend-table.awards-table td {
             width: 33.33%; /* Each column takes up exactly 1/3 of the table */
         }
+        /* Specific styling for Album Certifications table */
+        .trend-table.certifications-table {
+            min-width: 800px; /* Ensure the table has enough width to stretch columns */
+        }
         .trend-table.certifications-table th,
         .trend-table.certifications-table td {
             width: 33.33%; /* Each column takes up exactly 1/3 of the table */
+        }
+        /* Styling for Chart Performance table (already working well) */
+        .trend-table.chart-table {
+            min-width: 900px; /* Slightly wider to accommodate 6 columns */
         }
         .trend-table.chart-table th,
         .trend-table.chart-table td {
