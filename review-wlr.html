@@ -116,12 +116,12 @@
         }
         .glass-card.sources-card {
             padding: 1.5rem;
-            max-width: 1200px; /* Match other cards */
+            max-width: 1200px;
             min-height: auto;
         }
         .glass-card.ratings-card {
-            text-align: left; /* Left-align content */
-            align-items: flex-start; /* Override centering */
+            text-align: left;
+            align-items: flex-start;
         }
         .review-content {
             background: var(--card-background, rgba(102, 0, 0, 0.25));
@@ -203,7 +203,7 @@
             border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-        .dropdown-menu.active { display: block !important; } /* Ensure toggle works */
+        .dropdown-menu.active { display: block !important; }
         .dropdown-menu ul { list-style: none; padding: 0; margin: 0; }
         .dropdown-menu li { margin-bottom: 1rem; }
         .dropdown-menu a {
@@ -286,22 +286,34 @@
         }
         .trend-table {
             width: 100%;
-            border-collapse: separate; /* Better spacing */
+            border-collapse: separate;
             border-spacing: 0;
             margin: 1rem 0;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             overflow-x: auto;
             font-size: 1rem;
+            table-layout: fixed; /* Ensure even column distribution */
         }
         .trend-table th, .trend-table td {
             padding: 1rem;
             text-align: left;
             border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
             font-size: 1rem;
-            white-space: nowrap; /* Prevent wrapping unless necessary */
-            min-width: 100px; /* Ensure columns have minimum width */
         }
+        /* Distribute column widths evenly */
+        .trend-table.awards-table th:nth-child(1),
+        .trend-table.awards-table td:nth-child(1) { width: 50%; } /* Category */
+        .trend-table.awards-table th:nth-child(2),
+        .trend-table.awards-table td:nth-child(2) { width: 25%; } /* Year */
+        .trend-table.awards-table th:nth-child(3),
+        .trend-table.awards-table td:nth-child(3) { width: 25%; } /* Result */
+        .trend-table.certifications-table th:nth-child(1),
+        .trend-table.certifications-table td:nth-child(1) { width: 50%; } /* Album */
+        .trend-table.certifications-table th:nth-child(2),
+        .trend-table.certifications-table td:nth-child(2) { width: 30%; } /* Certification */
+        .trend-table.certifications-table th:nth-child(3),
+        .trend-table.certifications-table td:nth-child(3) { width: 20%; } /* Units */
         .trend-table th {
             background: rgba(255, 0, 0, 0.2);
             color: var(--primary);
@@ -438,7 +450,7 @@
         <div class="glass-card">
             <h3><span class="highlight">Awards Recognition</span></h3>
             <div class="table-container">
-                <table class="trend-table">
+                <table class="trend-table awards-table">
                     <thead>
                         <tr>
                             <th>Category</th>
@@ -527,7 +539,7 @@
         <div class="glass-card">
             <h3><span class="highlight">Album Certifications</span></h3>
             <div class="table-container">
-                <table class="trend-table">
+                <table class="trend-table certifications-table">
                     <thead>
                         <tr>
                             <th>Album</th>
