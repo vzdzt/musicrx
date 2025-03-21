@@ -293,7 +293,7 @@
             border-radius: 10px;
             overflow-x: auto;
             font-size: 1rem;
-            table-layout: auto; /* Changed from fixed to auto to allow natural stretching */
+            table-layout: fixed; /* Changed back to fixed to force column stretching */
         }
         .trend-table th, .trend-table td {
             padding: 1rem;
@@ -301,20 +301,19 @@
             border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
             font-size: 1rem;
             word-wrap: break-word; /* Allow text to wrap */
-            min-width: 150px; /* Added min-width to ensure cells don't collapse */
         }
-        /* Distribute column widths evenly, but allow flexibility */
+        /* Distribute column widths evenly and force stretching */
         .trend-table.awards-table th,
         .trend-table.awards-table td {
-            width: 33.33%; /* Keep the percentage, but table-layout: auto will allow stretching */
+            width: 33.33%; /* Each column takes up exactly 1/3 of the table */
         }
         .trend-table.certifications-table th,
         .trend-table.certifications-table td {
-            width: 33.33%; /* Keep the percentage, but table-layout: auto will allow stretching */
+            width: 33.33%; /* Each column takes up exactly 1/3 of the table */
         }
         .trend-table.chart-table th,
         .trend-table.chart-table td {
-            width: 16.67%; /* This table already looks good */
+            width: 16.67%; /* Each column takes up exactly 1/6 of the table */
         }
         .trend-table th {
             background: rgba(255, 0, 0, 0.2);
@@ -372,7 +371,7 @@
             .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
             .review-footer .newsletter-form button:hover { transform: none; }
             .trend-table { font-size: 0.9rem; overflow-x: auto; display: block; }
-            .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; min-width: 120px; } /* Adjusted min-width for smaller screens */
+            .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; }
             .glass-card.sources-card { padding: 1rem; max-width: 1200px; }
         }
     </style>
