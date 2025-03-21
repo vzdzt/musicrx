@@ -1,95 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Set character encoding to UTF-8 -->
     <meta charset="UTF-8">
+    <!-- Ensure responsive viewport scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title -->
     <title>MusicRx - News</title>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for typography -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- External stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <!-- Theme Toggle Button -->
-    <button id="themeToggle" class="theme-toggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
 </head>
 <body>
+    <!-- Custom cursor -->
     <div id="cursor"></div>
+    <!-- Cursor blur effect -->
     <div id="cursor-blur"></div>
+    <!-- Universe starfield canvas -->
     <canvas id="universe"></canvas>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
+
+    <!-- Navigation bar -->
+    <nav class="navbar global-nav">
+        <!-- Logo with heartbeat animation -->
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <!-- Dropdown menu toggle -->
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <!-- Dropdown menu content -->
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
-        <h1 class="glitch" data-text="NEWS">NEWS</h1>
+    <!-- Fixed buttons -->
+    <!-- Theme toggle button -->
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <!-- Back to top button -->
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <!-- Music toggle button -->
+    <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
+    <!-- Tip machine button -->
+    <button id="tipMachine" title="Get a Tip"><i class="fas fa-lightbulb"></i></button>
+
+    <!-- Main content wrapper -->
+    <div class="main-content">
+        <!-- Content container -->
+        <div class="container">
+            <!-- Page title with glitch effect -->
+            <h1 class="glitch" data-text="NEWS">NEWS</h1>
+            <!-- Grid layout for news cards -->
+            <div class="grid">
+                <!-- Title card for Carti Projected 300K First Week -->
+               
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Carti Projected 300K First Week</h2>
+                    <p class="date">March 18, 2024</p>
+            </div>
+                <!-- Content card for Carti Projected 300K First Week -->
+                <div class="glass-card content-card">
+                    <img src="images/carti-projections.jpg" alt="Carti Sales">
+                    <p>I AM MUSIC expected to dominate charts</p>
+                </div>
+                <!-- Title card for Ye's Controversial Vultures Comments -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Ye's Controversial Vultures Comments</h2>
+                    <p class="date">March 17, 2024</p>
+                </div>
+                <!-- Content card for Ye's Controversial Vultures Comments -->
+                <div class="glass-card content-card">
+                    <img src="images/ye-news.jpg" alt="Ye News">
+                    <p>Sparks debate in music industry</p>
+                </div>
+                <!-- Title card for Future & Metro Album Announcement -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Future & Metro Album Announcement</h2>
+                    <p class="date">March 16, 2024</p>
+                </div>
+                <!-- Content card for Future & Metro Album Announcement -->
+                <div class="glass-card content-card">
+                    <img src="images/future-metro.jpg" alt="Future & Metro">
+                    <p>Surprise collaboration coming soon</p>
+                </div>
+                <!-- Title card for Rolling Loud Miami 2024 Lineup -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Rolling Loud Miami 2024 Lineup</h2>
+                    <p class="date">March 15, 2024</p>
+                </div>
+                <!-- Content card for Rolling Loud Miami 2024 Lineup -->
+                <div class="glass-card content-card">
+                    <img src="images/rolling-loud.jpg" alt="Rolling Loud">
+                    <p>Major festival announcement</p>
+                </div>
+                <!-- Title card for Drake Hints at Summer Album -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Drake Hints at Summer Album</h2>
+                    <p class="date">March 14, 2024</p>
+                </div>
+                <!-- Content card for Drake Hints at Summer Album -->
+                <div class="glass-card content-card">
+                    <img src="images/drake-announcement.jpg" alt="Drake News">
+                    <p>New music teased on social media</p>
+                </div>
+                <!-- Title card for Playboi Carti Drops I AM MUSIC -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Playboi Carti Drops I AM MUSIC</h2>
+                    <p class="date">March 15, 2025</p>
+                </div>
+                <!-- Content card for Playboi Carti Drops I AM MUSIC -->
+                <div class="glass-card content-card">
+                    <img src="images/carti-projections.jpg" alt="Carti Album Drop">
+                    <p>The wait is over—Playboi Carti finally dropped his long-awaited album "I Am Music" on March 14, 2025, after over four years since "Whole Lotta Red." The 30-track project features heavy hitters like Kendrick Lamar, Travis Scott, and The Weeknd, blending trap roots with experimental vibes. Carti’s set to perform it live at Rolling Loud California tomorrow, March 16. Elsewhere, Normani and NFL star DK Metcalf announced their engagement, with Metcalf proposing after years of admiring her "Motivation" video. Meanwhile, Chicago rapper Lil Zay Osama’s alleged robbery arrest stirred controversy, with him denying it online, claiming AI-generated fake news.</p>
+                </div>
+                <!-- Title card for Playboi Carti Confirms Album Completion -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Playboi Carti Confirms Album Completion</h2>
+                    <p class="date">March 10, 2025</p>
+                </div>
+                <!-- Content card for Playboi Carti Confirms Album Completion -->
+                <div class="glass-card content-card">
+                    <img src="images/carti-projections.jpg" alt="Carti Album Completion">
+                    <p>It's been 5 years since Playboi Carti released WLR and fans are getting restless. His album started rolling out in the beginning of 2024 and has since been doing everything but dropping the album. Well you'll be happy to hear that Carti recently posted on his IG that the album is finished. Will he drop I AM MUSIC this month? Stay tuned.</p>
+                </div>
+                <!-- Title card for Possible J Cole x Kendrick Lamar Collab Album -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Possible J Cole x Kendrick Lamar Collab Album</h2>
+                    <p class="date">March 4, 2025</p>
+                </div>
+                <!-- Content card for Possible J Cole x Kendrick Lamar Collab Album -->
+                <div class="glass-card content-card">
+                    <img src="images/cole-kendrick.jpg" alt="Cole x Kendrick">
+                    <p>The music industry is buzzing with news of a potential Kendrick Lamar and J. Cole joint album, after cryptic social media posts from both artists have fans speculating about a long-awaited collaboration project.</p>
+                </div>
+                <!-- Title card for Travis Scott Announces New Album -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Travis Scott Announces New Album</h2>
+                    <p class="date">February 25, 2025</p>
+                </div>
+                <!-- Content card for Travis Scott Announces New Album -->
+                <div class="glass-card content-card">
+                    <img src="images/travis-news.jpg" alt="Travis Scott News">
+                    <p>Travis Scott has officially announced his next studio album, set to release in Summer 2025. The Houston rapper took to social media to tease the project, which he describes as "a new sonic direction" following the success of "Utopia."</p>
+                </div>
+                <!-- Title card for Playboi Carti Surprise Releases New Single -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Playboi Carti Surprise Releases New Single</h2>
+                    <p class="date">February 20, 2025</p>
+                </div>
+                <!-- Content card for Playboi Carti Surprise Releases New Single -->
+                <div class="glass-card content-card">
+                    <img src="images/carti-projections.jpg" alt="Carti Single Release">
+                    <p>Without warning, Playboi Carti dropped a new single titled "OPIUM DREAMS" featuring an unexpected collaboration with a classical orchestra. The track has already accumulated over 5 million streams in its first 24 hours.</p>
+                </div>
+                <!-- Title card for Music Industry Reports Vinyl Sales Surpass Digital Downloads -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Music Industry Reports Vinyl Sales Surpass Digital Downloads</h2>
+                    <p class="date">February 18, 2025</p>
+                </div>
+                <!-- Content card for Music Industry Reports Vinyl Sales Surpass Digital Downloads -->
+                <div class="glass-card content-card">
+                    <img src="images/news-placeholder.jpg" alt="Vinyl Sales News">
+                    <p>In a surprising turn of events, vinyl record sales have officially surpassed digital downloads for the first time since 2005. Industry analysts attribute this to both nostalgia and audiophiles seeking higher fidelity listening experiences.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="card-title-container">This Week's Updates</div>
-    <div class="glass-card">
-        <p>March 18, 2024</p>
-        <br>
-        <p>Carti Projected 300K First Week - I AM MUSIC expected to dominate charts</p>
-        <br>
-        <p>Ye's Controversial Vultures Comments - Sparks debate in music industry</p>
-        <br>
-        <p>Future & Metro Album Announcement - Surprise collaboration coming soon</p>
-        <br>
-        <p>Rolling Loud Miami 2024 Lineup - Major festival announcement</p>
-        <br>
-        <p>Drake Hints at Summer Album - New music teased on social media</p>
-        <br>
-        <p>March 15, 2025</p>
-        <br>
-        <p>The wait is over—Playboi Carti finally dropped his long-awaited album "I Am Music" on March 14, 2025, after over four years since "Whole Lotta Red." The 30-track project features heavy hitters like Kendrick Lamar, Travis Scott, and The Weeknd, blending trap roots with experimental vibes. Carti’s set to perform it live at Rolling Loud California tomorrow, March 16. Elsewhere, Normani and NFL star DK Metcalf announced their engagement, with Metcalf proposing after years of admiring her "Motivation" video. Meanwhile, Chicago rapper Lil Zay Osama’s alleged robbery arrest stirred controversy, with him denying it online, claiming AI-generated fake news.</p>
-    </div>
-    <br>
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Logo with heartbeat animation -->
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <!-- Copyright notice -->
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <!-- Newsletter subscription form -->
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
 
-    <div class="card-title-container">Playboi Carti Confirms Album Completion</div>
-    <div class="glass-card">
-        <p>March 10, 2025</p>
-        <br>
-        <p>It's been 5 years since Playboi Carti released WLR and fans are getting restless. His album started rolling out in the beginning of 2024 and has since been doing everything but dropping the album. Well you'll be happy to hear that Carti recently posted on his IG that the album is finished. Will he drop I AM MUSIC this month? Stay tuned.</p>
-    </div>
-    <br>
-
-    <div class="card-title-container">Possible J Cole x Kendrick Lamar Collab Album</div>
-    <div class="glass-card">
-        <p>March 4, 2025</p>
-        <br>
-        <p>The music industry is buzzing with news of a potential Kendrick Lamar and J. Cole joint album, after cryptic social media posts from both artists have fans speculating about a long-awaited collaboration project.</p>
-    </div>
-    <br>
-
-    <div class="card-title-container">Travis Scott Announces New Album</div>
-    <div class="glass-card">
-        <p>February 25, 2025</p>
-        <br>
-        <p>Travis Scott has officially announced his next studio album, set to release in Summer 2025. The Houston rapper took to social media to tease the project, which he describes as "a new sonic direction" following the success of "Utopia."</p>
-    </div>
-    <br>
-
-    <div class="card-title-container">Playboi Carti Surprise Releases New Single</div>
-    <div class="glass-card">
-        <p>February 20, 2025</p>
-        <br>
-        <p>Without warning, Playboi Carti dropped a new single titled "OPIUM DREAMS" featuring an unexpected collaboration with a classical orchestra. The track has already accumulated over 5 million streams in its first 24 hours.</p>
-    </div>
-    <br>
-
-    <div class="card-title-container">Music Industry Reports Vinyl Sales Surpass Digital Downloads</div>
-    <div class="glass-card">
-        <p>February 18, 2025</p>
-        <br>
-        <p>In a surprising turn of events, vinyl record sales have officially surpassed digital downloads for the first time since 2005. Industry analysts attribute this to both nostalgia and audiophiles seeking higher fidelity listening experiences.</p>
-    </div>
-
+    <!-- External scripts -->
+    <!-- Three.js for starfield -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- ScrollTrigger for scroll-based animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Main script -->
     <script src="script.js"></script>
 </body>
 </html>
