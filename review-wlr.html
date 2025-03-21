@@ -284,16 +284,20 @@
             box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
             background: rgba(255, 0, 0, 0.2);
         }
+        .table-container {
+            width: 100%; /* Ensure the table container takes up the full width of the glass-card */
+            overflow-x: auto; /* Allow horizontal scrolling if needed */
+        }
         .trend-table {
-            width: 100%;
+            width: 100%; /* Force the table to take up the full width of its container */
+            min-width: 600px; /* Ensure the table doesn't collapse too much on smaller screens */
             border-collapse: separate;
             border-spacing: 0;
             margin: 1rem 0;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            overflow-x: auto;
             font-size: 1rem;
-            table-layout: fixed; /* Changed back to fixed to force column stretching */
+            table-layout: fixed; /* Force columns to stretch based on specified widths */
         }
         .trend-table th, .trend-table td {
             padding: 1rem;
@@ -370,7 +374,7 @@
             .review-footer .newsletter-form input { width: 150px; padding: 0.6rem; }
             .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
             .review-footer .newsletter-form button:hover { transform: none; }
-            .trend-table { font-size: 0.9rem; overflow-x: auto; display: block; }
+            .trend-table { font-size: 0.9rem; min-width: 100%; } /* Ensure the table takes up the full width on smaller screens */
             .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; }
             .glass-card.sources-card { padding: 1rem; max-width: 1200px; }
         }
