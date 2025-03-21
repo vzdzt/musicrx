@@ -16,13 +16,338 @@
     <title>MusicRx - Whole Lotta Red: Playboi Carti’s Crimson Chaos Unleashed</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
+    <link rel="stylesheet" href="style.css"> <!-- External stylesheet for themes -->
     <style>
-        /* Minimal inline CSS for highlights and font normalization */
+        /* Critical inline styles to restore original design */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--background, #0a0a0a);
+            color: var(--text-color, #FFFFFF);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .review-header {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+            backdrop-filter: blur(15px);
+            padding: 1rem 2rem;
+            border-bottom: 2px solid var(--border-color, rgba(153, 0, 0, 0.3));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1002;
+            height: 60px;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        .review-footer {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(255, 0, 0, 0.2));
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-top: 2px solid var(--border-color, rgba(153, 0, 0, 0.3));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1001;
+        }
+        .container {
+            flex: 1;
+            padding: 100px 2rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .glass-card {
+            background: var(--card-background, rgba(102, 0, 0, 0.25));
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 2px solid var(--border-color, rgba(153, 0, 0, 0.3));
+            padding: 3rem;
+            margin: 3rem auto;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1200px;
+            box-sizing: border-box;
+        }
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7));
+            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000));
+            background-size: 200% 200%;
+            animation: rgbShift 3s linear infinite;
+        }
+        .glass-card.grad-card {
+            padding: 0;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .glass-card.grad-card img {
+            width: calc(100% - 4px);
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            transition: all 0.5s ease;
+        }
+        .glass-card.grad-card:hover img {
+            width: 100%;
+            box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7));
+            transform: scale(1.02);
+        }
+        .review-content {
+            background: var(--card-background, rgba(102, 0, 0, 0.25));
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            width: 100%;
+            max-width: 1200px;
+            z-index: 2;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
         .highlight { color: var(--primary); font-weight: bold; }
         .overall-rating h3 { color: var(--primary); }
         body, .container, p, h2, ul, li, .glass-card, .glass-card * { font-style: normal !important; }
         em, .highlight em { font-style: italic !important; }
+        /* Additional restored styles */
+        .nav-logo { display: flex; align-items: center; margin-left: 0; }
+        .nav-logo .logo-symbol i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            animation: pulse-heart 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse-heart {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-left: 0;
+            margin-right: 0;
+            flex: 1;
+            max-width: 300px;
+        }
+        .search-input {
+            border: 2px solid var(--primary);
+            background: var(--card-background, rgba(102, 0, 0, 0.25));
+            color: var(--text-color, #FFFFFF);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        .search-input:focus { box-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)); outline: none; }
+        .dropdown { position: relative; margin-right: 0; }
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .dropdown-toggle:hover {
+            color: transparent;
+            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000));
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 10px var(--primary);
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 0 0 10px 10px;
+            padding: 1rem;
+            width: 200px;
+            z-index: 1003;
+            border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown-menu.active { display: block; }
+        .dropdown-menu ul { list-style: none; padding: 0; margin: 0; }
+        .dropdown-menu li { margin-bottom: 1rem; }
+        .dropdown-menu a {
+            color: var(--text-color, #FFFFFF);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .dropdown-menu a:hover {
+            color: transparent;
+            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000));
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 10px var(--primary);
+        }
+        .review-title-glitch {
+            font-size: 3.5rem;
+            text-align: center;
+            margin: 4rem auto;
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7));
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+            animation: flicker 0.1s infinite alternate;
+            width: 100%;
+            max-width: 1200px;
+        }
+        @keyframes flicker { 0% { opacity: 1; } 100% { opacity: 0.95; } }
+        .review-title-glitch::before, .review-title-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .review-title-glitch::before {
+            left: 3px;
+            text-shadow: -3px 0 var(--secondary, #E50000);
+            animation: glitch-1 2s linear infinite reverse;
+        }
+        .review-title-glitch::after {
+            left: -3px;
+            text-shadow: -3px 0 var(--primary);
+            animation: glitch-2 3s linear infinite;
+        }
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
+        }
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
+        }
+        .track-highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1.5rem;
+        }
+        .track-highlight-item {
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+        }
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+            background: rgba(255, 0, 0, 0.2);
+        }
+        .trend-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .trend-table th, .trend-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
+            font-size: 0.95rem;
+        }
+        .trend-table th {
+            background: rgba(255, 0, 0, 0.2);
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .trend-table tr:last-child td { border-bottom: none; }
+        .review-footer .newsletter-form { display: flex; gap: 0.5rem; }
+        .review-footer .newsletter-form input {
+            border-radius: 20px;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-color, #FFFFFF);
+            font-family: 'Space Grotesk', sans-serif;
+            width: 200px;
+        }
+        .review-footer .newsletter-form button {
+            border-radius: 20px;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: var(--dark, #660000);
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .review-footer .newsletter-form button:hover { transform: scale(1.1); }
+        h2 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7));
+            margin: 1.5rem 0;
+            text-align: center;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        h2:hover { text-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7)); color: var(--secondary, #E50000); }
+        @keyframes rgbShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        @media (max-width: 768px) {
+            .review-header { padding: 0.75rem 1.5rem; height: 50px; }
+            .review-footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+            .container { padding: 80px 1.5rem 2rem; }
+            .glass-card { padding: 2rem; margin: 2rem auto; }
+            .glass-card:hover { transform: none; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); background: var(--card-background, rgba(102, 0, 0, 0.25)); animation: none; }
+            .track-highlight-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; padding: 1rem; }
+            .track-highlight-item:hover { transform: none; box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); background: rgba(255, 0, 0, 0.1); }
+            .review-footer .newsletter-form input { width: 150px; padding: 0.6rem; }
+            .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
+            .review-footer .newsletter-form button:hover { transform: none; }
+        }
     </style>
 </head>
 <body>
@@ -260,6 +585,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script> <!-- External script -->
+    <script src="script.js"></script>
 </body>
 </html>
