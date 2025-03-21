@@ -300,20 +300,33 @@
             text-align: left;
             border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
             font-size: 1rem;
+            word-wrap: break-word; /* Allow text to wrap */
         }
         /* Distribute column widths evenly */
         .trend-table.awards-table th:nth-child(1),
-        .trend-table.awards-table td:nth-child(1) { width: 50%; } /* Category */
+        .trend-table.awards-table td:nth-child(1) { width: 33.33%; } /* Category */
         .trend-table.awards-table th:nth-child(2),
-        .trend-table.awards-table td:nth-child(2) { width: 25%; } /* Year */
+        .trend-table.awards-table td:nth-child(2) { width: 33.33%; } /* Year */
         .trend-table.awards-table th:nth-child(3),
-        .trend-table.awards-table td:nth-child(3) { width: 25%; } /* Result */
+        .trend-table.awards-table td:nth-child(3) { width: 33.33%; } /* Result */
         .trend-table.certifications-table th:nth-child(1),
-        .trend-table.certifications-table td:nth-child(1) { width: 50%; } /* Album */
+        .trend-table.certifications-table td:nth-child(1) { width: 33.33%; } /* Album */
         .trend-table.certifications-table th:nth-child(2),
-        .trend-table.certifications-table td:nth-child(2) { width: 30%; } /* Certification */
+        .trend-table.certifications-table td:nth-child(2) { width: 33.33%; } /* Certification */
         .trend-table.certifications-table th:nth-child(3),
-        .trend-table.certifications-table td:nth-child(3) { width: 20%; } /* Units */
+        .trend-table.certifications-table td:nth-child(3) { width: 33.33%; } /* Units */
+        .trend-table.chart-table th:nth-child(1),
+        .trend-table.chart-table td:nth-child(1) { width: 16.67%; } /* Album */
+        .trend-table.chart-table th:nth-child(2),
+        .trend-table.chart-table td:nth-child(2) { width: 16.67%; } /* Highest Charting Song */
+        .trend-table.chart-table th:nth-child(3),
+        .trend-table.chart-table td:nth-child(3) { width: 16.67%; } /* Peak Position */
+        .trend-table.chart-table th:nth-child(4),
+        .trend-table.chart-table td:nth-child(4) { width: 16.67%; } /* Streams */
+        .trend-table.chart-table th:nth-child(5),
+        .trend-table.chart-table td:nth-child(5) { width: 16.67%; } /* Certification */
+        .trend-table.chart-table th:nth-child(6),
+        .trend-table.chart-table td:nth-child(6) { width: 16.67%; } /* Units Sold */
         .trend-table th {
             background: rgba(255, 0, 0, 0.2);
             color: var(--primary);
@@ -487,7 +500,7 @@
         <div class="glass-card">
             <h3><span class="highlight">Chart Performance</span></h3>
             <div class="table-container">
-                <table class="trend-table">
+                <table class="trend-table chart-table">
                     <thead>
                         <tr>
                             <th>Album</th>
