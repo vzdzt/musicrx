@@ -1,60 +1,133 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Set character encoding to UTF-8 -->
     <meta charset="UTF-8">
+    <!-- Ensure responsive viewport scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title -->
     <title>MusicRx - Opinions</title>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for typography -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- External stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <!-- Theme Toggle Button -->
-    <button id="themeToggle" class="theme-toggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
 </head>
 <body>
+    <!-- Custom cursor -->
     <div id="cursor"></div>
+    <!-- Cursor blur effect -->
     <div id="cursor-blur"></div>
+    <!-- Universe starfield canvas -->
     <canvas id="universe"></canvas>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
+
+    <!-- Navigation bar -->
+    <nav class="navbar global-nav">
+        <!-- Logo with heartbeat animation -->
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <!-- Dropdown menu toggle -->
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <!-- Dropdown menu content -->
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
-        <h1 class="glitch" data-text="OPINIONS">OPINIONS</h1>
+    <!-- Fixed buttons -->
+    <!-- Theme toggle button -->
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <!-- Back to top button -->
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <!-- Music toggle button -->
+    <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
+    <!-- Tip machine button -->
+    <button id="tipMachine" title="Get a Tip"><i class="fas fa-lightbulb"></i></button>
+
+    <!-- Main content wrapper -->
+    <div class="main-content">
+        <!-- Content container -->
+        <div class="container">
+            <!-- Page title with glitch effect -->
+            <h1 class="glitch" data-text="OPINIONS">OPINIONS</h1>
+            <!-- Grid layout for opinion cards -->
+            <div class="grid">
+                <!-- Title card for This Week's Updates -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">This Week's Updates</h2>
+                    <p class="date">March 20, 2025</p>
+                </div>
+                <!-- Content card for This Week's Updates -->
+                <div class="glass-card content-card">
+                    <img src="images/ai-drake.jpg" alt="AI Drake">
+                    <p>AI Drake Better Than Real Drake - The uncomfortable truth about AI music.</p>
+                    <br>
+                    <p>90s Rap Overrated - Why modern production trumps nostalgia.</p>
+                    <br>
+                    <p>Underground > Mainstream - The death of authentic music.</p>
+                    <br>
+                    <p>Sampling Is Dying - Why producers avoid samples in 2024.</p>
+                    <br>
+                    <p>Concerts Are Overpriced - The unsustainable future of live music.</p>
+                </div>
+                <!-- Title card for Hot Takes -->
+                <div class="glass-card title-card">
+                    <h2 class="card-title-container">Hot Takes</h2>
+                    <p class="date">March 20, 2025</p>
+                </div>
+                <!-- Content card for Hot Takes -->
+                <div class="glass-card content-card">
+                    <img src="images/streaming.jpg" alt="Streaming Impact">
+                    <p>Streaming platforms like Spotify have turned music into background noise, not art—over 100 million songs uploaded by 2025, and most get less than 100 plays.</p>
+                    <br>
+                    <p>Drake's dominance is overrated; his 75 billion streams are inflated by playlist algorithms, not raw talent—Kendrick's catalog outclasses him pound-for-pound.</p>
+                    <br>
+                    <p>Taylor Swift's re-recordings are a genius cash grab, but they've diluted her legacy—fans are buying the same songs twice while she's laughing to the bank with $1 billion+.</p>
+                    <br>
+                    <p>Hip-hop's golden age ended in the 2010s; trap's repetition and mumble rap killed lyrical innovation—only 5% of Top 100 tracks in 2024 had bars worth quoting.</p>
+                    <br>
+                    <p>Auto-tune isn't a crutch, it's a revolution—Kanye and T-Pain proved it's an instrument, and purists crying about "real singing" are stuck in the 90s.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="card-title-container">Hot Takes</div>
-    <div class="glass-card">
-        <p>Streaming platforms like Spotify have turned music into background noise, not art—over 100 million songs uploaded by 2025, and most get less than 100 plays.</p>
-        <br>
-        <p>Drake's dominance is overrated; his 75 billion streams are inflated by playlist algorithms, not raw talent—Kendrick's catalog outclasses him pound-for-pound.</p>
-        <br>
-        <p>Taylor Swift's re-recordings are a genius cash grab, but they've diluted her legacy—fans are buying the same songs twice while she's laughing to the bank with $1 billion+.</p>
-        <br>
-        <p>Hip-hop's golden age ended in the 2010s; trap's repetition and mumble rap killed lyrical innovation—only 5% of Top 100 tracks in 2024 had bars worth quoting.</p>
-        <br>
-        <p>Auto-tune isn't a crutch, it's a revolution—Kanye and T-Pain proved it's an instrument, and purists crying about "real singing" are stuck in the 90s.</p>
-        <br>
-        <p>AI Drake Better Than Real Drake - The uncomfortable truth about AI music.</p>
-        <br>
-        <p>90s Rap Overrated - Why modern production trumps nostalgia.</p>
-        <br>
-        <p>Underground > Mainstream - The death of authentic music.</p>
-        <br>
-        <p>Sampling Is Dying - Why producers avoid samples in 2024.</p>
-        <br>
-        <p>Concerts Are Overpriced - The unsustainable future of live music.</p>
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Logo with heartbeat animation -->
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <!-- Copyright notice -->
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <!-- Newsletter subscription form -->
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
 
+    <!-- External scripts -->
+    <!-- Three.js for starfield -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- ScrollTrigger for scroll-based animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Main script -->
     <script src="script.js"></script>
 </body>
 </html>
