@@ -115,6 +115,12 @@
             box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7));
             transform: scale(1.02);
         }
+        /* Compact sources card */
+        .glass-card.sources-card {
+            padding: 1.5rem;
+            max-width: 600px;
+            min-height: auto;
+        }
         .review-content {
             background: var(--card-background, rgba(102, 0, 0, 0.25));
             backdrop-filter: blur(10px);
@@ -134,7 +140,6 @@
         .overall-rating h3 { color: var(--primary); }
         body, .container, p, h2, ul, li, .glass-card, .glass-card * { font-style: normal !important; }
         em, .highlight em { font-style: italic !important; }
-        /* Additional restored styles */
         .nav-logo { display: flex; align-items: center; margin-left: 0; }
         .nav-logo .logo-symbol i {
             color: var(--primary);
@@ -279,18 +284,20 @@
         }
         .trend-table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin: 1.5rem 0;
+            border-collapse: collapse; /* Changed for better text alignment */
+            margin: 1rem 0;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             overflow: hidden;
+            font-size: 1rem; /* Increased for readability */
         }
         .trend-table th, .trend-table td {
-            padding: 1.2rem;
+            padding: 1rem; /* Adjusted padding */
             text-align: left;
             border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            font-size: 0.95rem;
+            font-size: 1rem;
+            white-space: normal; /* Allow text wrapping */
+            word-wrap: break-word; /* Ensure long words break */
         }
         .trend-table th {
             background: rgba(255, 0, 0, 0.2);
@@ -347,6 +354,9 @@
             .review-footer .newsletter-form input { width: 150px; padding: 0.6rem; }
             .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
             .review-footer .newsletter-form button:hover { transform: none; }
+            .trend-table { font-size: 0.9rem; }
+            .trend-table th, .trend-table td { padding: 0.8rem; }
+            .glass-card.sources-card { padding: 1rem; max-width: 500px; }
         }
     </style>
 </head>
@@ -559,7 +569,7 @@
             <p><em><span class="highlight">Whole Lotta Red</span></em> is a punk-trap inferno—Carti’s crimson chaos ignites a rebellious storm that pulses with feral energy. Picture a red-lit stage, Carti’s snarls commanding the night—raw, divisive, unapologetic. Veazy’s blasting this in 2025, chasing that vampire rockstar’s untamed roar.</p>
         </div>
         <br>
-        <div class="glass-card">
+        <div class="glass-card sources-card">
             <h3><span class="highlight">Sources</span></h3>
             <p>Data from <span class="highlight">Billboard</span>, <span class="highlight">RIAA</span>, <span class="highlight">Spotify</span> charts, and fan reactions on X (@36966_) as of <span class="highlight">March 2025</span>.</p>
         </div>
