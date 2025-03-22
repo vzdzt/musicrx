@@ -2541,6 +2541,97 @@ textarea.form-control {
     transform: translateY(-3px);
 }
 
+/* Tip Machine Overlay */
+.tip-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000; /* Ensure it's above the navbar and other elements */
+    justify-content: center;
+    align-items: center;
+    overflow: auto; /* Allow scrolling if content overflows */
+}
+.tip-overlay.active {
+    display: flex;
+}
+.tip-modal {
+    background: var(--glass);
+    /* Fallback */
+    background: rgba(255, 255, 255, 0.1);
+    @supports (backdrop-filter: blur(15px)) {
+        backdrop-filter: blur(15px);
+        background: var(--card-background);
+    }
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 20px var(--glow);
+}
+.tip-modal p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+}
+.tip-modal input {
+    background: var(--glass);
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    color: var(--text-color);
+    padding: 0.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.tip-modal button {
+    background: var(--primary);
+    color: var(--dark);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 0.5rem;
+}
+.tip-modal button:hover {
+    background: var(--secondary);
+    transform: scale(1.05);
+}
+.tip-modal .close-btn {
+    background: var(--glass);
+    color: var(--primary);
+}
+.tip-modal .close-btn:hover {
+    background: var(--rgb-glow);
+    color: var(--dark);
+    box-shadow: 0 0 20px var(--primary);
+    animation: rgbShift 3s linear infinite;
+}
+
+/* Responsive adjustments for tip overlay */
+@media (max-width: 768px) {
+    .tip-modal {
+        max-width: 300px;
+        padding: 1.5rem;
+    }
+    .tip-modal p {
+        font-size: 0.9rem;
+    }
+    .tip-modal input {
+        padding: 0.4rem;
+    }
+    .tip-modal button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
 /* Responsive adjustments for wallet modal */
 @media (max-width: 768px) {
     .wallet-modal-content {
