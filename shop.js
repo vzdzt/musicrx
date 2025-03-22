@@ -1,4 +1,3 @@
-// Log to confirm the script is loaded
 console.log("shop.js loaded");
 
 // Function to create and show the wallet selection modal
@@ -50,9 +49,10 @@ function showWalletModal() {
     // Event listeners for wallet options
     const walletOptions = modalBody.querySelectorAll(".wallet-option");
     walletOptions.forEach(option => {
-        option.addEventListener("click", async () => {
+        option.addEventListener("click", async (event) => {
+            console.log("Wallet option clicked:", event);
             const walletType = option.getAttribute("data-wallet");
-            console.log(`Wallet option clicked: ${walletType}`);
+            console.log(`Wallet type selected: ${walletType}`);
             await connectWallet(walletType);
             closeWalletModal();
         });
@@ -83,24 +83,29 @@ function attachWalletButtonListeners() {
     const connectWalletButton = document.getElementById("connectWallet");
     if (connectWalletButton) {
         console.log("Connect Wallet (navbar) button found, attaching event listener");
-        connectWalletButton.addEventListener("click", () => {
-            console.log("Connect Wallet (navbar) button clicked");
-            showWalletModal();
-        });
+        // Remove any existing listeners to avoid duplicates
+        connectWalletButton.removeEventListener("click", handleWalletButtonClick);
+        connectWalletButton.addEventListener("click", handleWalletButtonClick);
     } else {
         console.error("Connect Wallet (navbar) button not found in the DOM, retrying...");
-        setTimeout(attachWalletButtonListeners, 500); // Use function reference
+        setTimeout(attachWalletButtonListeners, 500);
     }
 
     // Shop page hero banner button
     const connectWalletShopButton = document.getElementById("connectWalletShop");
     if (connectWalletShopButton) {
         console.log("Connect Wallet (shop page) button found, attaching event listener");
-        connectWalletShopButton.addEventListener("click", () => {
-            console.log("Connect Wallet (shop page) button clicked");
-            showWalletModal();
-        });
+        connectWalletShopButton.removeEventListener("click", handleWalletButtonClick);
+        connectWalletShopButton.addEventListener("click", handleWalletButtonClick);
     }
+}
+
+// Handle the click event for wallet buttons
+function handleWalletButtonClick(event) {
+    console.log("Wallet button clicked:", event);
+    console.log("Target element:", event.target);
+    console.log("Current target:", event.currentTarget);
+    showWalletModal();
 }
 
 // Use a MutationObserver to watch for the buttons being added to the DOM
@@ -378,4 +383,3 @@ function createTipEffect() {
         });
     }
 }
-
