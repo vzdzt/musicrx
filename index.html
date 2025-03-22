@@ -444,7 +444,28 @@
         </form>
     </footer>
 
-    <!-- External JavaScript files -->
+    <!-- Inline script to test shop.js loading and attach event listener -->
+    <script>
+        console.log("Inline script in index.html running");
+        // Test if shop.js functions are available
+        setTimeout(() => {
+            if (typeof showWalletModal === "function") {
+                console.log("showWalletModal function found, shop.js loaded successfully");
+            } else {
+                console.error("showWalletModal function not found. Ensure shop.js is loaded correctly.");
+            }
+        }, 1000);
+
+        // Temporarily attach event listener inline
+        document.getElementById("connectWallet").addEventListener("click", () => {
+            console.log("Connect Wallet button clicked (inline in index.html)");
+            if (typeof showWalletModal === "function") {
+                showWalletModal();
+            } else {
+                alert("Wallet modal function not found. Please ensure shop.js is loaded.");
+            }
+        });
+    </script>
     <script src="script.js"></script>
     <script src="shop.js"></script>
 </body>
