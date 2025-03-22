@@ -3,36 +3,55 @@ document.addEventListener("DOMContentLoaded", () => {
     const solConnection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com");
     const myEthAddress = "0x24A77F76fe0CF427f26A9E49F33f7E9287217250";
     const mySolAddress = "9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z";
-    // Expose these variables globally
     window.connectedChain = null;
     window.connectedAddress = null;
 
     async function connectWallet() {
-        if (window.ethereum) {
+        const hasEth = window.ethereum;
+        const hasSol = window.solana && window.solana.isPhantom;
+        const walletStatus = document.getElementById("walletStatus");
+
+        if (!hasEth && !hasSol) {
+            alert("Please install MetaMask or Phantom wallet!");
+            return;
+        }
+
+        let choice = null;
+        if (hasEth && hasSol) {
+            choice = prompt("Which wallet would you like to connect? Type 'ETH' for MetaMask or 'SOL' for Phantom:");
+            if (!choice) return; // User canceled the prompt
+            choice = choice.toLowerCase();
+        }
+
+        if ((hasEth && !hasSol) || (choice === "eth")) {
             try {
                 await window.ethereum.request({ method: "eth_requestAccounts" });
                 const signer = ethProvider.getSigner();
                 const address = await signer.getAddress();
                 window.connectedAddress = address;
-                document.getElementById("walletAddress").innerText = `ETH Connected: ${address.slice(0, 6)}...`;
                 window.connectedChain = "eth";
+                if (walletStatus) {
+                    walletStatus.textContent = `ETH: ${address.slice(0, 6)}...`;
+                }
             } catch (error) {
                 console.error("ETH connection failed:", error);
                 alert("ETH connection failed: " + error.message);
             }
-        } else if (window.solana && window.solana.isPhantom) {
+        } else if ((hasSol && !hasEth) || (choice === "sol")) {
             try {
                 await window.solana.connect();
                 const address = window.solana.publicKey.toString();
                 window.connectedAddress = address;
-                document.getElementById("walletAddress").innerText = `SOL Connected: ${address.slice(0, 6)}...`;
                 window.connectedChain = "sol";
+                if (walletStatus) {
+                    walletStatus.textContent = `SOL: ${address.slice(0, 6)}...`;
+                }
             } catch (error) {
                 console.error("SOL connection failed:", error);
                 alert("SOL connection failed: " + error.message);
             }
         } else {
-            alert("Please install MetaMask or Phantom wallet!");
+            alert("Invalid choice! Please type 'ETH' or 'SOL'.");
         }
     }
 
