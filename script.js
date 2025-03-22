@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Music Toggle Functionality
     const musicToggle = document.getElementById('musicToggle');
-    const audio = new Audio('https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3');
+    const audio = document.getElementById('bgMusic') || new Audio('https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3');
     audio.loop = true;
     let isPlaying = false;
 
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Three.js Setup for Starfield
-let scene, camera, renderer, starField; // Unified variable name
+let scene, camera, renderer, starField;
 
 function initThreeJS() {
     const canvas = document.getElementById('universe');
@@ -267,7 +267,7 @@ function initThreeJS() {
             sizeAttenuation: true
         });
 
-        starField = new THREE.Points(geometry, material); // Unified name
+        starField = new THREE.Points(geometry, material);
         scene.add(starField);
 
         let mouseX = 0, mouseY = 0;
