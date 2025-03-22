@@ -13,12 +13,75 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <!-- ScrollTrigger for scroll-based animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Web3 dependencies for wallet connectivity -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7/dist/ethers.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts for typography -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <!-- External stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Tip Machine Overlay */
+        .tip-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .tip-overlay.active {
+            display: flex;
+        }
+        .tip-modal {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 20px var(--glow);
+        }
+        .tip-modal p {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        .tip-modal input {
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            border-radius: 5px;
+            color: var(--text-color);
+            padding: 0.5rem;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .tip-modal button {
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0.5rem;
+        }
+        .tip-modal button:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+        .tip-modal .close-btn {
+            background: var(--glass);
+            color: var(--primary);
+        }
+    </style>
 </head>
 <body class="home">
     <!-- Background music element -->
@@ -35,6 +98,16 @@
     <button id="tipMachine" title="Get a Tip"><i class="fas fa-donate"></i></button>
     <!-- Back to top button -->
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Tip Machine Overlay -->
+    <div class="tip-overlay" id="tipOverlay">
+        <div class="tip-modal">
+            <p id="tipStatus">Click to connect your wallet and send a tip!</p>
+            <input type="number" placeholder="Amount" id="tipAmount" min="0.001" step="0.001" value="0.01">
+            <button id="sendTip"><i class="fas fa-donate"></i> Send Tip</button>
+            <button class="close-btn" id="closeTipOverlay">Close</button>
+        </div>
+    </div>
 
     <!-- Starfield canvas -->
     <canvas id="universe"></canvas>
@@ -157,7 +230,7 @@
                     <h3>MUSIC</h3>
                     <p>Playboi Carti</p>
                 </a>		
-                    <a href="review-slim.html" class="scroll-item">
+                <a href="review-slim.html" class="scroll-item">
                     <img src="marshallmathers.jpeg" alt="The Slim Shady LP">
                     <h3>The Marshall Mathers LP</h3>
                     <p>Eminem</p>
@@ -339,9 +412,53 @@
         </form>
     </footer>
 
-    <!-- Inline JavaScript for Magic Search Bar (for testing) -->
+    <!-- Inline JavaScript for Magic Search Bar and Tip Machine -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Tip Machine Logic (Prompt to send a tip via connected wallet)
+            const tipButton = document.getElementById('tipMachine');
+            const tipOverlay = document.getElementById('tipOverlay');
+            const sendTipButton = document.getElementById('sendTip');
+            const closeTipOverlay = document.getElementById('closeTipOverlay');
+            const tipStatus = document.getElementById('tipStatus');
+
+            if (tipButton && tipOverlay && sendTipButton && closeTipOverlay && tipStatus) {
+                tipButton.addEventListener('click', () => {
+                    tipOverlay.classList.add('active');
+                    if (!window.connectedAddress) {
+                        tipStatus.textContent = "Please connect your wallet to send a tip!";
+                    } else {
+                        tipStatus.textContent = `Connected: ${window.connectedAddress.slice(0, 6)}...`;
+                    }
+                });
+
+                sendTipButton.addEventListener('click', () => {
+                    const amount = document.getElementById('tipAmount')?.value;
+                    if (!amount || amount <= 0) {
+                        tipStatus.textContent = "Please enter a valid amount!";
+                        return;
+                    }
+                    if (!window.connectedAddress) {
+                        tipStatus.textContent = "Please connect your wallet first!";
+                        return;
+                    }
+                    if (window.connectedChain === "eth") {
+                        sendEth(amount);
+                        tipStatus.textContent = `Sending ${amount} ETH...`;
+                    } else if (window.connectedChain === "sol") {
+                        sendSol(amount);
+                        tipStatus.textContent = `Sending ${amount} SOL...`;
+                    } else {
+                        tipStatus.textContent = "Unsupported wallet type!";
+                    }
+                });
+
+                closeTipOverlay.addEventListener('click', () => {
+                    tipOverlay.classList.remove('active');
+                    tipStatus.textContent = "Click to connect your wallet and send a tip!";
+                });
+            }
+
             // Magic Search Bar Logic
             const magicButton = document.getElementById('magicButton');
             const magicInput = document.getElementById('magicInput');
@@ -767,6 +884,7 @@
             }
         });
     </script>
-<script src="script.js"></script>
+    <script src="shop.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
