@@ -442,29 +442,6 @@
     <!-- Inline JavaScript for Magic Search Bar, Tip Machine, and Wallet Connect -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Wallet Connect Logic
-            const connectWalletButton = document.getElementById('connectWallet');
-            const walletStatus = document.getElementById('walletStatus');
-
-            if (connectWalletButton && walletStatus) {
-                connectWalletButton.addEventListener('click', () => {
-                    connectWallet(); // Function from shop.js
-                });
-
-                // Update wallet status when connected (listen for changes from shop.js)
-                const checkWalletStatus = () => {
-                    if (window.connectedAddress) {
-                        walletStatus.textContent = `${window.connectedAddress.slice(0, 6)}...`;
-                    } else {
-                        walletStatus.textContent = '';
-                    }
-                };
-
-                // Check wallet status on load and periodically
-                checkWalletStatus();
-                setInterval(checkWalletStatus, 1000); // Update every second
-            }
-
             // Tip Machine Logic (Prompt to send a tip via connected wallet)
             const tipButton = document.getElementById('tipMachine');
             const tipOverlay = document.getElementById('tipOverlay');
