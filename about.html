@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,41 +7,227 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* News item container to group title and content cards */
+        .news-item {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        /* Specific styling for news title card */
+        .news-title-card {
+            padding: 0.3rem 1rem;
+            min-height: auto;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(102, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(153, 0, 0, 0.3);
+            border-bottom: none;
+            border-radius: 15px 15px 0 0;
+            margin-bottom: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .news-title-card h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            line-height: 1.2;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            color: var(--primary, #FF0000);
+            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7));
+        }
+        .news-title-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+            background: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
+            background-size: 200% 200%;
+            animation: rgbShift 3s linear infinite;
+        }
+        /* Specific styling for news content card */
+        .news-content-card {
+            padding: 1.5rem;
+            background: rgba(102, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(153, 0, 0, 0.3);
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            margin-top: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .news-content-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        .news-content-card p {
+            margin: 0 0 1rem 0;
+            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            color: #FFFFFF;
+        }
+        .news-content-card .date {
+            font-size: 0.9rem;
+            color: var(--secondary, #E50000);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .news-content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1.5rem;
+        }
+        @keyframes rgbShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        @media (max-width: 768px) {
+            .news-title-card {
+                padding: 0.3rem 0.5rem;
+            }
+            .news-title-card h2 {
+                font-size: 1rem;
+            }
+            .news-content-card {
+                padding: 1rem;
+            }
+            .news-content-card p {
+                font-size: 0.9rem;
+            }
+            .news-content-card .date {
+                font-size: 0.8rem;
+            }
+            .grid {
+                gap: 1.5rem;
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
     <canvas id="universe"></canvas>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
-        <h1 class="glitch" data-text="ABOUT">ABOUT</h1>
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
+    <button id="tipMachine" title="Get a Tip"><i class="fas fa-lightbulb"></i></button>
+
+    <div class="main-content">
+        <div class="container">
+            <h1 class="glitch" data-text="ABOUT">ABOUT</h1>
+            <div class="grid">
+                <!-- About MusicRx -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">About MusicRx</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 22, 2025</p>
+                        <img src="images/musicrx-vibe.jpg" alt="MusicRx Vibe">
+                        <p>MusicRx is more than a site—it’s a sonic sanctuary born in 2025, dissecting the chaos and beauty of music with razor-sharp analysis.</p>
+                        <p>We’re obsessed with the art form—spanning punk-trap hybrids to glitchy soundscapes—delivering reviews, news, and takes that hit like a bass drop.</p>
+                        <p>Think of us as your plug for discovering hidden gems and decoding the culture, all while vibing to the universe’s soundtrack.</p>
+                    </div>
+                </div>
+                <!-- Our Mission -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">Our Mission</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 22, 2025</p>
+                        <img src="images/music-therapy.jpg" alt="Music Therapy">
+                        <p>Music’s therapy—we’re here to prove it. MusicRx connects the dots across genres, cultures, and eras, amplifying what makes it universal.</p>
+                        <p>Our mission? Elevate your ears with content that’s deep, raw, and real—whether you’re a casual streamer or a vinyl-hoarding audiophile.</p>
+                        <p>We’re not just critics; we’re curators pushing the boundaries of how you experience sound in 2025 and beyond.</p>
+                    </div>
+                </div>
+                <!-- The Crew -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">The Crew</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 22, 2025</p>
+                        <img src="images/musicrx-crew.jpg" alt="MusicRx Crew">
+                        <p>Meet the squad: a mix of beat junkies, lyric nerds, and vibe architects who live for music’s pulse.</p>
+                        <p>Led by a Carti stan with a punk streak, our team’s got ex-DJs, bedroom producers, and a former Rolling Loud intern spilling the tea.</p>
+                        <p>We’re a chaotic collective—think F1LTHY meets Pitchfork, minus the pretension—here to keep it 100.</p>
+                    </div>
+                </div>
+                <!-- How We Started -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">How We Started</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">January 15, 2025</p>
+                        <img src="images/musicrx-origin.jpg" alt="MusicRx Origin">
+                        <p>MusicRx kicked off in a basement studio, sparked by a late-night debate over Carti’s MUSIC drop in January 2025.</p>
+                        <p>Three friends, fueled by energy drinks and a shared hatred of shallow reviews, built this from scratch—no funding, just passion.</p>
+                        <p>Two months later, we’re here—hundreds of readers deep, chasing the high of music that actually means something.</p>
+                    </div>
+                </div>
+                <!-- Where We’re Going -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">Where We’re Going</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 22, 2025</p>
+                        <img src="images/musicrx-future.jpg" alt="MusicRx Future">
+                        <p>We’re aiming big—think live podcasts from Rolling Loud, collabs with underground artists, and a MusicRx fest by 2026.</p>
+                        <p>Next up: deeper dives into AI music, VR concerts, and the death of streaming monopolies. Stay tuned.</p>
+                        <p>Our endgame? To be the pulse of 2025’s music scene—raw, unfiltered, and always ahead of the beat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="card-title-container">About MusicRx</div>
-    <div class="glass-card">
-        <p>MusicRx is a passion project dedicated to providing thoughtful music analysis, reviews, and commentary on albums and artists across various genres.</p>
-        <br>
-        <p>Our goal is to create a space where music enthusiasts can discover new sounds, gain deeper appreciation for albums, and engage with content that treats music as the art form it truly is.</p>
-    </div>
-
-    <br>
-
-    <div class="card-title-container">Our Mission</div>
-    <div class="glass-card">
-        <p>We believe music is a form of therapy—a universal language that connects us across cultures and experiences. Our mission is to celebrate music in all its forms while providing analytical perspectives that enhance the listening experience.</p>
-        <br>
-        <p>Whether you're a casual listener or a dedicated audiophile, MusicRx aims to offer content that resonates with your passion for sound.</p>
-    </div>
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
