@@ -264,6 +264,7 @@ body[data-theme="all-blue"] {
 body[data-theme="neon-future"] {
   animation: neon-flicker 2s infinite;
 }
+
 /* Midnight Gold Mode - Luxurious night with golden shimmer */
 [data-theme="midnight-gold"] {
   --primary: #ffd700;
@@ -311,7 +312,6 @@ body[data-theme="desert-oasis"] {
   --card-background: rgba(255, 0, 255, 0.1);
   --border-color: rgba(0, 255, 0, 0.3);
 }
-
 /* Aurora Breeze Mode - Ethereal aurora with flowing colors */
 [data-theme="aurora-breeze"] {
   --primary: #80ffdb;
@@ -1195,6 +1195,50 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   text-shadow: 0 0 10px var(--primary);
+}
+
+/* Wallet Connect Button in Navbar */
+.wallet-connect {
+  background: var(--glass);
+  /* Fallback */
+  background: rgba(255, 255, 255, 0.1);
+  @supports (backdrop-filter: blur(10px)) {
+    backdrop-filter: blur(10px);
+    background: var(--glass);
+  }
+  border: 1px solid var(--border-color);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.wallet-connect:hover {
+  background: var(--rgb-glow);
+  color: var(--dark);
+  box-shadow: 0 0 15px var(--glow);
+  animation: rgbShift 3s linear infinite;
+  transform: translateY(-3px);
+}
+
+.wallet-connect.connected {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  color: var(--dark);
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--glow);
+}
+
+/* Wallet status in navbar */
+.navbar .wallet-status {
+  color: var(--text-color);
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Fixed button styling */
@@ -2575,6 +2619,7 @@ textarea.form-control {
   background: var(--rgb-glow);
   opacity: 0.2;
   animation: pulseGlow 6s infinite;
+  pointer-events: none; /* Fix to allow clicks on button */
 }
 
 [data-page="shop"] .shop-hero h1 {
@@ -2590,22 +2635,42 @@ textarea.form-control {
   margin: 1rem 0;
 }
 
+/* Shop Hero Connect Wallet Button */
 [data-page="shop"] .connect-wallet-btn {
-  background: var(--rgb-glow);
-  border: none;
-  color: var(--dark);
+  background: var(--glass);
+  /* Fallback */
+  background: rgba(255, 255, 255, 0.1);
+  @supports (backdrop-filter: blur(15px)) {
+    backdrop-filter: blur(15px);
+    background: var(--glass);
+  }
+  border: 1px solid var(--border-color);
+  color: var(--primary);
   padding: 1rem 2rem;
   border-radius: 30px;
   font-family: 'Syncopate', sans-serif;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 20px var(--glow);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px var(--glow);
+  font-size: 1rem;
+  position: relative;
+  z-index: 2; /* Ensure it’s above the pseudo-element */
 }
 
 [data-page="shop"] .connect-wallet-btn:hover {
+  background: var(--rgb-glow);
+  color: var(--dark);
   transform: scale(1.1);
   box-shadow: 0 0 30px var(--primary);
+  animation: rgbShift 3s linear infinite;
+}
+
+[data-page="shop"] .connect-wallet-btn.connected {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  color: var(--dark);
+  border-color: var(--primary);
+  box-shadow: 0 0 15px var(--glow);
 }
 
 [data-page="shop"] .shop-grid {
