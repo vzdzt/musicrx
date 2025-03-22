@@ -13,10 +13,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        #universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
         .container {
             max-width: 1200px;
+            min-width: 320px;
+            width: 100%; /* Ensure the container takes full available width */
             margin: 0 auto;
             padding: 0 1rem;
+            box-sizing: border-box;
         }
 
         .construction-tape {
@@ -171,7 +183,7 @@
 
         .crypto-options {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted min width for better fit */
             gap: 2rem;
             justify-items: center;
             margin-top: 2rem;
@@ -180,6 +192,8 @@
             border-radius: 15px;
             border: 2px solid var(--primary);
             box-shadow: 0 0 30px rgba(0, 247, 255, 0.3);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .crypto-option {
@@ -193,6 +207,7 @@
             transition: all 0.3s;
             width: 100%;
             max-width: 250px;
+            box-sizing: border-box;
         }
 
         .wallet-address {
@@ -244,6 +259,7 @@
             padding: 0.5rem;
             width: 100%;
             margin-bottom: 1rem;
+            box-sizing: border-box;
         }
 
         .donate-button {
@@ -256,6 +272,7 @@
             border: none;
             cursor: pointer;
             transition: all 0.3s;
+            box-sizing: border-box;
         }
 
         .donate-button:hover {
@@ -537,13 +554,15 @@
         /* Coming Soon Products Styling */
         .coming-soon-products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted min width */
             gap: 2rem;
             justify-items: center;
+            width: 100%;
         }
 
         .product-item {
-            width: 200px;
+            width: 100%;
+            max-width: 200px;
             text-align: center;
             transition: all 0.3s;
         }
@@ -575,10 +594,11 @@
         /* Web3 Benefits Styling */
         .web3-benefits {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted min width */
             gap: 2rem;
             justify-items: center;
             margin-top: 2rem;
+            width: 100%;
         }
 
         .benefit-item {
@@ -697,9 +717,10 @@
 
         .shop-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted min width */
             gap: 2rem;
             padding: 1.5rem;
+            width: 100%;
         }
 
         @keyframes rgbShift {
@@ -744,14 +765,35 @@
                 font-size: 0.8rem;
             }
             .shop-grid {
+                grid-template-columns: 1fr; /* Stack on small screens */
                 gap: 1.5rem;
                 padding: 1rem;
             }
             .crypto-options {
+                grid-template-columns: 1fr; /* Stack on small screens */
                 padding: 1rem;
             }
+            .coming-soon-products {
+                grid-template-columns: 1fr; /* Stack on small screens */
+            }
             .web3-benefits {
+                grid-template-columns: 1fr; /* Stack on small screens */
                 padding: 1rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .crypto-options {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ensure multiple columns on desktop */
+            }
+            .coming-soon-products {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+            .web3-benefits {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .shop-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
         }
     </style>
