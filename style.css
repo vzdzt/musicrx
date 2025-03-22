@@ -264,7 +264,6 @@ body[data-theme="all-blue"] {
 body[data-theme="neon-future"] {
   animation: neon-flicker 2s infinite;
 }
-
 /* Midnight Gold Mode - Luxurious night with golden shimmer */
 [data-theme="midnight-gold"] {
   --primary: #ffd700;
@@ -845,8 +844,8 @@ body[data-theme="waveform-surge"] {
 /* Apply theme variables to body */
 body {
   font-family: 'Space Grotesk', sans-serif;
-  background: var(--background);
-  color: var(--text-color);
+  background: var(--background, #0a0a0a);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
   overflow-x: hidden;
   min-height: 100vh;
   display: flex;
@@ -895,7 +894,9 @@ body {
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: -1;
-} /* Container for main content */
+}
+
+/* Container for main content */
 .container {
   flex: 1;
   padding: 80px 1rem 2rem;
@@ -1217,9 +1218,47 @@ body {
 #tipMachine { bottom: 20px; right: 20px; }
 
 /* Theme-specific icon colors for theme toggle */
-#themeToggle[title="Normal Mode"] i { color: var(--primary); }
+#themeToggle[title="Normal Mode"] i { color: #00f7ff; }
 #themeToggle[title="Satin Mode"] i { color: #FFD700; }
 #themeToggle[title="Frosted Mode"] i { color: #00CED1; }
+#themeToggle[title="Veazy Mode"] i { color: #00ff00; }
+#themeToggle[title="White Mode"] i { color: #ffffff; }
+#themeToggle[title="Black Mode"] i { color: #333333; }
+#themeToggle[title="All White Mode"] i { color: #FFFFFF; }
+#themeToggle[title="All Red Mode"] i { color: #FF0000; }
+#themeToggle[title="All Blue Mode"] i { color: #0000FF; }
+#themeToggle[title="Pink Rose Mode"] i { color: #F2C4DE; }
+#themeToggle[title="Blue Sky Mode"] i { color: #71B1D9; }
+#themeToggle[title="Yellow Beige Mode"] i { color: #F2DEA2; }
+#themeToggle[title="Green Mode"] i { color: #77DD77; }
+#themeToggle[title="Purple Lavender Mode"] i { color: #B39EB5; }
+#themeToggle[title="Vogue Mode"] i { color: #ACB7AE; }
+#themeToggle[title="Neon Future Mode"] i { color: #00ff9f; }
+#themeToggle[title="Midnight Gold Mode"] i { color: #ffd700; }
+#themeToggle[title="Desert Oasis Mode"] i { color: #ff8c00; }
+#themeToggle[title="Cyber Punk Mode"] i { color: #ff00ff; }
+#themeToggle[title="Aurora Breeze Mode"] i { color: #80ffdb; }
+#themeToggle[title="Glass Morphism Mode"] i { color: #a3d9ff; }
+#themeToggle[title="Galactic Nebula"] i { color: #ff1a8c; }
+#themeToggle[title="Electric Storm"] i { color: #00ffcc; }
+#themeToggle[title="Void Pulse"] i { color: #ff00ff; }
+#themeToggle[title="Prism Shard"] i { color: #66ffcc; }
+#themeToggle[title="Inferno Core"] i { color: #ff3300; }
+#themeToggle[title="Cosmic Rift"] i { color: #b366ff; }
+#themeToggle[title="Neon Eclipse"] i { color: #ff00cc; }
+#themeToggle[title="Quantum Flux"] i { color: #66ff99; }
+#themeToggle[title="Holo Abyss"] i { color: #00ccff; }
+#themeToggle[title="Spectral Surge"] i { color: #ff3366; }
+#themeToggle[title="Starforge Nebula"] i { color: #ff1a8c; }
+#themeToggle[title="Thunder Vortex"] i { color: #00ffcc; }
+#themeToggle[title="Abyss Echo"] i { color: #ff00ff; }
+#themeToggle[title="Crystal Prism"] i { color: #66ffcc; }
+#themeToggle[title="Magma Forge"] i { color: #ff3300; }
+#themeToggle[title="Dimensional Veil"] i { color: #b366ff; }
+#themeToggle[title="Shadow Pulse"] i { color: #ff00cc; }
+#themeToggle[title="Flux Horizon"] i { color: #66ff99; }
+#themeToggle[title="Holo Vortex"] i { color: #00ccff; }
+#themeToggle[title="Waveform Surge"] i { color: #ff3366; }
 
 /* Hover effect for fixed buttons */
 #backToTop:hover, #musicToggle:hover, #tipMachine:hover, #themeToggle:hover {
@@ -1400,7 +1439,6 @@ body {
   margin: 2rem 0;
   width: 100%;
 }
-
 /* Scroll container styling */
 .scroll-container {
   display: flex;
@@ -1715,7 +1753,7 @@ body {
 
 /* Standard glass card styling */
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)); /* Enhanced fallback */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
   @supports (backdrop-filter: blur(15px)) {
     backdrop-filter: blur(15px);
     background: var(--card-background);
@@ -1724,7 +1762,7 @@ body {
   padding: 1.5rem;
   border: 1px solid var(--border-color);
   box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.3);
-  opacity: 0.95; /* Increased opacity for better visibility */
+  opacity: 0.95;
   transition: all 0.3s ease;
   cursor: pointer;
   display: flex;
@@ -1737,7 +1775,7 @@ body {
   margin: 0 auto;
   box-sizing: border-box;
   will-change: transform, box-shadow, opacity;
-  z-index: 3; /* Higher z-index to ensure visibility */
+  z-index: 3;
   position: relative;
 }
 
@@ -1763,7 +1801,7 @@ body {
 /* Glass card heading styling */
 .glass-card h2, .glass-card h3 {
   font-size: 1.2rem;
-  color: var(--primary); /* Use primary color for headings */
+  color: var(--primary);
   margin: 0.5rem 0;
   font-family: 'Syncopate', sans-serif;
   text-transform: uppercase;
@@ -1963,18 +2001,6 @@ body {
 .review-content h2, .review-content p {
   color: var(--text-color);
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-/* Apply theme variables to body */
-body {
-  font-family: 'Space Grotesk', sans-serif;
-  background: var(--background, #0a0a0a); /* Fallback */
-  color: var(--text-color, rgba(255, 255, 255, 0.8));
-  overflow-x: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  position: relative;
 }
 
 /* Highlight text styling */
@@ -2204,192 +2230,6 @@ textarea.form-control {
   }
   .container {
     padding: 60px 0.5rem 1rem;
-    width: calc(100% - 1rem); /* Smaller margin on mobile */
-  }
-  /* Adjust table for mobile: enable horizontal scrolling */
-  .trend-table {
-    display: block; /* Enable horizontal scrolling on mobile */
-    overflow-x: auto;
-    font-size: 0.8rem;
-  }
-  .glass-card {
-    min-height: 450px;
-    max-width: clamp(200px, 90vw, 250px); /* Further scaled down for mobile */
-  }
-  .glass-card img {
-    height: 200px;
-  }
-  /* Navbar adjustments for mobile */
-  .navbar {
-    padding: 0.5rem;
-    height: 50px; /* Slightly smaller height for mobile */
-  }
-  .nav-logo {
-    margin-left: 0.5rem;
-  }
-  .nav-logo .logo-symbol i {
-    font-size: 1.2rem; /* Smaller logo on mobile */
-  }
-  .search-container {
-    max-width: 220px;
-    margin-left: 0.5rem;
-  }
-  .search-input {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-  }
-}
-/* Shop Page Specific Styles */
-[data-page="shop"] body {
-  background: var(--background);
-}
-
-[data-page="shop"] .hero-banner {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  height: 400px;
-  background: linear-gradient(135deg, var(--dark), #2c2c2c);
-  border-radius: 15px;
-  overflow: hidden;
-  margin: 2rem auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-shadow: 0 0 30px var(--glow);
-}
-
-[data-page="shop"] .crypto-options {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 15px;
-  border: 2px solid var(--primary);
-  box-shadow: 0 0 30px var(--glow);
-}
-
-[data-page="shop"] .shop-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
-}
-
-[data-page="shop"] .construction-tape {
-  position: fixed;
-  width: 150%;
-  height: 50px;
-  background: repeating-linear-gradient(
-    45deg,
-    #000,
-    #000 10px,
-    #ffcc00 10px,
-    #ffcc00 20px
-  );
-  top: 0;
-  left: -25%;
-  z-index: 1000;
-  transform: rotate(-5deg);
-  animation: slide 15s linear infinite;
-}
-
-@keyframes slide {
-  0% { transform: translateX(-50px) rotate(-5deg); }
-  100% { transform: translateX(50px) rotate(-5deg); }
-}
-
-/* Media queries for responsive design */
-@media (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
-    width: 100%;
-  }
-  .scroll-section {
-    padding: 1rem;
-  }
-  .scroll-item {
-    flex: 0 0 250px;
-    min-width: 250px;
-    height: 350px;
-  }
-  .scroll-item img {
-    height: 250px;
-  }
-  .section-title {
-    font-size: 1.2rem;
-  }
-  #musicToggle, #themeToggle, #tipMachine {
-    bottom: 10px;
-  }
-  #musicToggle { right: 120px; }
-  #themeToggle { right: 70px; }
-  #tipMachine { right: 10px; }
-  .footer {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0.5rem;
-    height: 60px;
-  }
-  .footer .nav-logo {
-    margin-left: 0.5rem;
-  }
-  .footer-content p {
-    font-size: 0.8rem;
-  }
-  .footer .newsletter-form {
-    margin-right: 0.5rem;
-  }
-  .footer .newsletter-form input {
-    width: 100px;
-  }
-  .hero {
-    padding: 1rem;
-  }
-  .heartbeat-text {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-  .magic-search {
-    max-width: 280px;
-    padding: 1rem;
-    width: calc(100% - 2rem);
-    margin: 0 auto;
-  }
-  .magic-search-bar {
-    flex-direction: column;
-    max-width: 100%;
-    align-items: center;
-  }
-  .magic-search input {
-    width: 100%;
-    max-width: 220px;
-    padding: 0.8rem;
-    border-radius: 5px;
-    margin-bottom: 0.8rem;
-    margin-right: 0;
-    font-size: 0.9rem;
-  }
-  .magic-search button {
-    padding: 0.8rem 1.2rem;
-    border-radius: 5px;
-    border: 1px solid var(--primary);
-  }
-  .form-control {
-    padding: 0.4rem;
-    font-size: 0.85rem;
-  }
-  .submit-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
-  }
-  .glitch {
-    font-size: 1.5rem;
-  }
-  .container {
-    padding: 60px 0.5rem 1rem;
     width: calc(100% - 1rem);
   }
   .trend-table {
@@ -2422,237 +2262,566 @@ textarea.form-control {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
   }
-  [data-page="shop"] .crypto-options {
-    grid-template-columns: 1fr;
+  [data-page="shop"] .shop-hero h1 {
+    font-size: 2rem;
   }
   [data-page="shop"] .shop-grid {
     grid-template-columns: 1fr;
   }
+  [data-page="shop"] .crypto-grid {
+    grid-template-columns: 1fr;
+  }
+  [data-page="shop"] .countdown-timer div {
+    font-size: 1rem;
+    min-width: 50px;
+  }
+  [data-page="shop"] .crypto-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Shop Page Specific Styles */
+[data-page="shop"] body {
+  background: var(--background);
+}
+
+[data-page="shop"] .hero-banner {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 400px;
+  background: linear-gradient(135deg, var(--dark), #2c2c2c);
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 0 30px var(--glow);
+}
+
+[data-page="shop"] .crypto-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 30px var(--glow);
+}
+
+[data-page="shop"] .construction-tape {
+  position: fixed;
+  width: 150%;
+  height: 50px;
+  background: repeating-linear-gradient(
+    45deg,
+    #000,
+    #000 10px,
+    #ffcc00 10px,
+    #ffcc00 20px
+  );
+  top: 0;
+  left: -25%;
+  z-index: 1000;
+  transform: rotate(-5deg);
+  animation: slide 15s linear infinite;
+}
+
 /* Wallet Modal Styling */
 .wallet-modal-overlay {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 2000; /* Ensure it's above all other elements */
-    justify-content: center;
-    align-items: center;
-    overflow: auto; /* Allow scrolling if content overflows */
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.wallet-modal-overlay.active {
+  display: flex;
+  opacity: 1;
 }
 
 .wallet-modal-content {
-    background: var(--glass);
-    /* Fallback */
-    background: rgba(255, 255, 255, 0.1);
-    @supports (backdrop-filter: blur(15px)) {
-        backdrop-filter: blur(15px);
-        background: var(--card-background);
-    }
-    border: 1px solid var(--border-color);
-    border-radius: 15px;
-    padding: 2rem;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 0 20px var(--glow);
-    position: relative;
-    transition: all 0.3s ease;
+  background: var(--glass);
+  /* Fallback */
+  background: rgba(255, 255, 255, 0.1);
+  @supports (backdrop-filter: blur(15px)) {
+    backdrop-filter: blur(15px);
+    background: var(--card-background);
+  }
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 20px var(--glow);
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.wallet-modal-overlay.active .wallet-modal-content {
+  transform: scale(1);
 }
 
 .wallet-modal-header {
-    position: relative;
-    margin-bottom: 1.5rem;
+  position: relative;
+  margin-bottom: 1.5rem;
 }
 
 .wallet-modal-header h2 {
-    color: var(--primary);
-    font-family: 'Syncopate', sans-serif;
-    text-transform: uppercase;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px var(--primary);
+  color: var(--primary);
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px var(--primary);
 }
 
 .wallet-modal-header p {
-    color: var(--text-color);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
-    margin: 0;
+  color: var(--text-color);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .wallet-modal-close {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background: var(--glass);
-    border: 1px solid var(--border-color);
-    color: var(--primary);
-    padding: 0.5rem;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: var(--glass);
+  border: 1px solid var(--border-color);
+  color: var(--primary);
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .wallet-modal-close:hover {
-    background: var(--rgb-glow);
-    color: var(--dark);
-    box-shadow: 0 0 20px var(--primary);
-    animation: rgbShift 3s linear infinite;
+  background: var(--rgb-glow);
+  color: var(--dark);
+  box-shadow: 0 0 20px var(--primary);
+  animation: rgbShift 3s linear infinite;
 }
 
 .wallet-modal-body {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .wallet-option {
-    background: var(--glass);
-    border: 1px solid var(--border-color);
-    color: var(--primary);
-    padding: 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  background: var(--glass);
+  border: 1px solid var(--border-color);
+  color: var(--primary);
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .wallet-option i {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .wallet-option:hover {
-    background: var(--rgb-glow);
-    color: var(--dark);
-    box-shadow: 0 0 20px var(--primary);
-    animation: rgbShift 3s linear infinite;
-    transform: translateY(-3px);
+  background: var(--rgb-glow);
+  color: var(--dark);
+  box-shadow: 0 0 20px var(--primary);
+  animation: rgbShift 3s linear infinite;
+  transform: translateY(-3px);
 }
 
 /* Tip Machine Overlay */
 .tip-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 2000; /* Ensure it's above the navbar and other elements */
-    justify-content: center;
-    align-items: center;
-    overflow: auto; /* Allow scrolling if content overflows */
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
+
 .tip-overlay.active {
-    display: flex;
+  display: flex;
+  opacity: 1;
 }
+
 .tip-modal {
-    background: var(--glass);
-    /* Fallback */
-    background: rgba(255, 255, 255, 0.1);
-    @supports (backdrop-filter: blur(15px)) {
-        backdrop-filter: blur(15px);
-        background: var(--card-background);
-    }
-    border: 1px solid var(--border-color);
-    border-radius: 15px;
-    padding: 2rem;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 0 20px var(--glow);
+  background: var(--glass);
+  /* Fallback */
+  background: rgba(255, 255, 255, 0.1);
+  @supports (backdrop-filter: blur(15px)) {
+    backdrop-filter: blur(15px);
+    background: var(--card-background);
+  }
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 20px var(--glow);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
 }
+
+.tip-overlay.active .tip-modal {
+  transform: scale(1);
+}
+
 .tip-modal p {
-    color: var(--text-color);
-    margin-bottom: 1rem;
-    font-family: 'Space Grotesk', sans-serif;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
 }
+
 .tip-modal input {
-    background: var(--glass);
-    border: 1px solid var(--primary);
-    border-radius: 5px;
-    color: var(--text-color);
-    padding: 0.5rem;
-    width: 100%;
-    margin-bottom: 1rem;
+  background: var(--glass);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  color: var(--text-color);
+  padding: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
 }
+
 .tip-modal button {
-    background: var(--primary);
-    color: var(--dark);
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin: 0.5rem;
+  background: var(--primary);
+  color: var(--dark);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 0.5rem;
 }
+
 .tip-modal button:hover {
-    background: var(--secondary);
-    transform: scale(1.05);
+  background: var(--secondary);
+  transform: scale(1.05);
 }
+
 .tip-modal .close-btn {
-    background: var(--glass);
-    color: var(--primary);
+  background: var(--glass);
+  color: var(--primary);
 }
+
 .tip-modal .close-btn:hover {
-    background: var(--rgb-glow);
-    color: var(--dark);
-    box-shadow: 0 0 20px var(--primary);
-    animation: rgbShift 3s linear infinite;
+  background: var(--rgb-glow);
+  color: var(--dark);
+  box-shadow: 0 0 20px var(--primary);
+  animation: rgbShift 3s linear infinite;
+}
+
+/* New Shop-Specific Styles for Remodeled shop.html */
+[data-page="shop"] .shop-container {
+  padding: 100px 2rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+[data-page="shop"] .shop-hero {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 50, 0.8));
+  border-radius: 20px;
+  margin-bottom: 4rem;
+  overflow: hidden;
+  box-shadow: 0 0 40px var(--glow);
+}
+
+[data-page="shop"] .shop-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--rgb-glow);
+  opacity: 0.2;
+  animation: pulseGlow 6s infinite;
+}
+
+[data-page="shop"] .shop-hero h1 {
+  font-size: 3rem;
+  color: var(--primary);
+  text-shadow: 0 0 15px var(--glow);
+  animation: glitch 3s infinite;
+}
+
+[data-page="shop"] .shop-hero p {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin: 1rem 0;
+}
+
+[data-page="shop"] .connect-wallet-btn {
+  background: var(--rgb-glow);
+  border: none;
+  color: var(--dark);
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px var(--glow);
+}
+
+[data-page="shop"] .connect-wallet-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px var(--primary);
+}
+
+[data-page="shop"] .shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+[data-page="shop"] .shop-card {
+  background: var(--card-background);
+  @supports (backdrop-filter: blur(15px)) {
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-page="shop"] .shop-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px var(--glow);
+  background: var(--rgb-glow);
+  animation: rgbShift 3s linear infinite;
+}
+
+[data-page="shop"] .shop-card i {
+  font-size: 4rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+[data-page="shop"] .shop-card h2 {
+  font-size: 1.5rem;
+  color: var(--primary);
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  margin: 0.5rem 0;
+}
+
+[data-page="shop"] .shop-card p {
+  font-size: 1rem;
+  color: var(--text-color);
+  margin: 0;
+}
+
+[data-page="shop"] .countdown-section {
+  text-align: center;
+  margin: 4rem 0;
+}
+
+[data-page="shop"] .countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+[data-page="shop"] .countdown-timer div {
+  background: var(--glass);
+  border: 1px solid var(--primary);
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  color: var(--primary);
+  min-width: 60px;
+  text-align: center;
+  box-shadow: 0 0 10px var(--glow);
+}
+
+[data-page="shop"] .support-section {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 50, 0.7));
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 4rem;
+  box-shadow: 0 0 30px var(--glow);
+}
+
+[data-page="shop"] .crypto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+[data-page="shop"] .crypto-card {
+  background: var(--glass);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+[data-page="shop"] .crypto-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px var(--glow);
+}
+
+[data-page="shop"] .crypto-icon {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+[data-page="shop"] .wallet-address {
+  font-size: 0.8rem;
+  word-break: break-all;
+  color: var(--text-color);
+  margin: 0.5rem 0;
+}
+
+[data-page="shop"] .copy-address-btn {
+  background: var(--glass);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+[data-page="shop"] .copy-address-btn:hover {
+  background: var(--rgb-glow);
+  transform: translateY(-2px);
+}
+
+[data-page="shop"] .donate-input {
+  background: var(--glass);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  color: var(--text-color);
+  padding: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+[data-page="shop"] .donate-button {
+  background: var(--primary);
+  color: var(--dark);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+[data-page="shop"] .donate-button:hover {
+  background: var(--secondary);
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments for wallet modal */
+@media (max-width: 768px) {
+  .wallet-modal-content {
+    max-width: 300px;
+    padding: 1.5rem;
+  }
+  .wallet-modal-header h2 {
+    font-size: 1.2rem;
+  }
+  .wallet-modal-header p {
+    font-size: 0.8rem;
+  }
+  .wallet-option {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  .wallet-option i {
+    font-size: 1.2rem;
+  }
 }
 
 /* Responsive adjustments for tip overlay */
 @media (max-width: 768px) {
-    .tip-modal {
-        max-width: 300px;
-        padding: 1.5rem;
-    }
-    .tip-modal p {
-        font-size: 0.9rem;
-    }
-    .tip-modal input {
-        padding: 0.4rem;
-    }
-    .tip-modal button {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
-    }
-
-/* Responsive adjustments for wallet modal */
-@media (max-width: 768px) {
-    .wallet-modal-content {
-        max-width: 300px;
-        padding: 1.5rem;
-    }
-
-    .wallet-modal-header h2 {
-        font-size: 1.2rem;
-    }
-
-    .wallet-modal-header p {
-        font-size: 0.8rem;
-    }
-
-    .wallet-option {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-    }
-
-    .wallet-option i {
-        font-size: 1.2rem;
-    }
+  .tip-modal {
+    max-width: 300px;
+    padding: 1.5rem;
+  }
+  .tip-modal p {
+    font-size: 0.9rem;
+  }
+  .tip-modal input {
+    padding: 0.4rem;
+  }
+  .tip-modal button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
 }
+
+/* Additional Keyframes */
+@keyframes slide {
+  0% { transform: translateX(-50px) rotate(-5deg); }
+  100% { transform: translateX(50px) rotate(-5deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
