@@ -1,4 +1,8 @@
+console.log("shop.js loaded"); // Debugging to confirm script is running
+
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOMContentLoaded event fired in shop.js"); // Debugging
+
     const ethProvider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : null;
     const solConnection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com");
     const myEthAddress = "0x24A77F76fe0CF427f26A9E49F33f7E9287217250"; // Your MetaMask address (ETH)
@@ -7,10 +11,42 @@ document.addEventListener("DOMContentLoaded", () => {
     window.connectedAddress = null;
     let walletConnectProvider = null;
 
+    // Debugging: Check if libraries are loaded
+    if (typeof ethers === 'undefined') {
+        console.error("Ethers.js not loaded. Please ensure the library is included.");
+    }
+    if (typeof solanaWeb3 === 'undefined') {
+        console.error("Solana Web3.js not loaded. Please ensure the library is included.");
+    }
+
+    // Function to attach the event listener to the Connect Wallet button
+    function attachWalletButtonListener() {
+        const connectWalletButton = document.getElementById("connectWallet");
+        if (connectWalletButton) {
+            console.log("Connect Wallet button found, attaching event listener"); // Debugging
+            connectWalletButton.addEventListener("click", () => {
+                console.log("Connect Wallet button clicked"); // Debugging
+                showWalletModal();
+            });
+        } else {
+            console.error("Connect Wallet button not found in the DOM"); // Debugging
+        }
+    }
+
+    // Attach the listener immediately
+    attachWalletButtonListener();
+
+    // Fallback: Retry attaching the listener after a short delay
+    setTimeout(attachWalletButtonListener, 1000);
+
     // Function to create and show the wallet selection modal
     function showWalletModal() {
+        console.log("showWalletModal called"); // Debugging
         // Check if modal already exists to avoid duplicates
-        if (document.getElementById("walletModal")) return;
+        if (document.getElementById("walletModal")) {
+            console.log("Wallet modal already exists, skipping creation"); // Debugging
+            return;
+        }
 
         // Create modal overlay
         const modalOverlay = document.createElement("div");
@@ -47,12 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
         modalContent.appendChild(modalBody);
         modalOverlay.appendChild(modalContent);
         document.body.appendChild(modalOverlay);
+        console.log("Wallet modal appended to body:", modalOverlay); // Debugging
 
         // Event listeners for wallet options
         const walletOptions = modalBody.querySelectorAll(".wallet-option");
         walletOptions.forEach(option => {
             option.addEventListener("click", async () => {
                 const walletType = option.getAttribute("data-wallet");
+                console.log(`Wallet option clicked: ${walletType}`); // Debugging
                 await connectWallet(walletType);
                 closeWalletModal();
             });
@@ -72,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeWalletModal() {
         const modal = document.getElementById("walletModal");
         if (modal) {
+            console.log("Closing wallet modal"); // Debugging
             modal.remove();
         }
     }
@@ -162,11 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Event Listeners for Web3 Buttons
-    document.getElementById("connectWallet")?.addEventListener("click", () => {
-        showWalletModal();
-    });
-
+    // Event Listeners for Web3 Buttons (other than connectWallet)
     document.getElementById("tipEth")?.addEventListener("click", () => {
         const amount = document.getElementById('ethAmount')?.value;
         if (!amount || amount <= 0) {
