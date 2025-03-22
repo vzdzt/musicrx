@@ -24,6 +24,140 @@
             position: relative;
         }
 
+        /* Cursor and Canvas */
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: #FF0000;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+
+        #cursor-blur {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 0, 0, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            filter: blur(10px);
+            transform: translate(-50%, -50%);
+        }
+
+        #universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Navbar */
+        .navbar.global-nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+        }
+
+        .logo-symbol i {
+            color: #FF0000;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: #FF0000;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #FF0000;
+            border-radius: 5px;
+            padding: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            color: #FF0000;
+            text-decoration: none;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            color: #E50000;
+        }
+
+        /* Fixed Buttons */
+        #themeToggle, #backToTop, #musicToggle, #tipMachine {
+            position: fixed;
+            background: rgba(255, 0, 0, 0.8);
+            border: none;
+            color: #FFFFFF;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s;
+        }
+
+        #themeToggle:hover, #backToTop:hover, #musicToggle:hover, #tipMachine:hover {
+            transform: scale(1.1);
+        }
+
+        #themeToggle { top: 20px; right: 20px; }
+        #backToTop { bottom: 20px; right: 20px; }
+        #musicToggle { bottom: 70px; right: 20px; }
+        #tipMachine { bottom: 120px; right: 20px; }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 1;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -51,6 +185,16 @@
             color: #FF0000;
             text-transform: uppercase;
             margin-bottom: 1rem;
+        }
+
+        .hero-content h1.glitch {
+            animation: glitch 1s linear infinite;
+        }
+
+        @keyframes glitch {
+            2%, 64% { transform: translate(2px, 0) skew(0deg); }
+            4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+            62% { transform: translate(0, 0) skew(5deg); }
         }
 
         .hero-content p {
@@ -393,6 +537,11 @@
             animation: pulse 2s infinite;
         }
 
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
         .product-item h3 {
             color: #FF0000;
             font-family: 'Syncopate', sans-serif;
@@ -524,6 +673,49 @@
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
         }
 
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-content p {
+            font-size: 0.9rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            padding: 0.5rem;
+            border: 1px solid #FF0000;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+        }
+
+        .newsletter-form button {
+            background: #FF0000;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: #FFFFFF;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #E50000;
+        }
+
         /* Media Queries */
         @media (max-width: 768px) {
             .container {
@@ -569,6 +761,9 @@
             .web3-benefits {
                 grid-template-columns: 1fr;
                 padding: 1rem;
+            }
+            .footer {
+                flex-direction: column;
             }
         }
 
@@ -906,6 +1101,16 @@
                 }
             }, 1000);
         }
+
+        // Basic cursor movement (minimal replacement for script.js)
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.getElementById('cursor');
+            const cursorBlur = document.getElementById('cursor-blur');
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+            cursorBlur.style.left = e.pageX + 'px';
+            cursorBlur.style.top = e.pageY + 'px';
+        });
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
