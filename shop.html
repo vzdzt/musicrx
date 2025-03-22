@@ -13,6 +13,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        .container {
+            max-width: 1200px; /* Constrain content width on large screens */
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
         .construction-tape {
             position: fixed;
             width: 150%;
@@ -164,11 +170,16 @@
         }
 
         .crypto-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            justify-items: center;
             margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.3);
         }
 
         .crypto-option {
@@ -180,7 +191,8 @@
             flex-direction: column;
             align-items: center;
             transition: all 0.3s;
-            width: 250px;
+            width: 100%;
+            max-width: 250px;
         }
 
         .wallet-address {
@@ -188,6 +200,7 @@
             word-break: break-all;
             text-align: center;
             margin: 0.5rem 0;
+            color: #FFFFFF;
         }
 
         .copy-address-btn {
@@ -236,6 +249,18 @@
         .donate-button {
             margin-top: 1rem;
             width: 100%;
+            background: var(--primary);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .donate-button:hover {
+            background: #E50000;
+            transform: scale(1.05);
         }
 
         .qr-code {
@@ -350,11 +375,12 @@
         .hero-banner {
             position: relative;
             width: 100%;
+            max-width: 1200px;
             height: 400px;
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
             border-radius: 15px;
             overflow: hidden;
-            margin-bottom: 2rem;
+            margin: 2rem auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -407,6 +433,7 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
         }
 
         .connect-wallet-btn:hover {
@@ -420,6 +447,9 @@
             margin: 2rem 0;
             color: #FFFFFF;
             font-family: 'Space Grotesk', sans-serif;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .countdown-timer h2 {
@@ -506,10 +536,10 @@
 
         /* Coming Soon Products Styling */
         .coming-soon-products {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            justify-content: center;
+            justify-items: center;
         }
 
         .product-item {
@@ -544,15 +574,16 @@
 
         /* Web3 Benefits Styling */
         .web3-benefits {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            justify-content: center;
+            justify-items: center;
             margin-top: 2rem;
         }
 
         .benefit-item {
-            width: 250px;
+            width: 100%;
+            max-width: 250px;
             text-align: center;
             padding: 1.5rem;
             background: rgba(0, 0, 0, 0.5);
@@ -678,6 +709,9 @@
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 0 0.5rem;
+            }
             .hero-banner {
                 height: 300px;
             }
@@ -711,6 +745,12 @@
             }
             .shop-grid {
                 gap: 1.5rem;
+                padding: 1rem;
+            }
+            .crypto-options {
+                padding: 1rem;
+            }
+            .web3-benefits {
                 padding: 1rem;
             }
         }
@@ -920,7 +960,8 @@
                     </div>
                     <div class="product-item">
                         <i class="fas fa-headphones"></i>
-                        <p>Exclusive Playlists</p>
+                        <h3>Exclusive Playlists</h3>
+                        <p>Curated music selections</p>
                     </div>
                     <div class="product-item">
                         <i class="fas fa-ticket-alt"></i>
@@ -1088,7 +1129,7 @@
 
         // Glitch effect on hover for buttons
         function addButtonEffects() {
-            const buttons = document.querySelectorAll('.button');
+            const buttons = document.querySelectorAll('.button, .connect-wallet-btn');
             buttons.forEach(button => {
                 button.addEventListener('mouseenter', () => {
                     button.style.animation = 'glitch-text 0.2s infinite';
@@ -1104,6 +1145,7 @@
         function setupTipping() {
             const tipEthButton = document.getElementById('tipEth');
             const tipBtcButton = document.getElementById('tipBtc');
+            const tipSolButton = document.getElementById('tipSol');
 
             if (tipEthButton) {
                 tipEthButton.addEventListener('click', async () => {
@@ -1138,7 +1180,6 @@
                 });
             }
 
-            const tipSolButton = document.getElementById('tipSol');
             if (tipSolButton) {
                 tipSolButton.addEventListener('click', () => {
                     const amount = document.getElementById('solAmount').value;
@@ -1176,6 +1217,8 @@
                 gsap.to(coin, {
                     top: window.innerHeight + 50,
                     rotation: Math.random() * 360,
+                    scale: Math.random() * 0.5 + 0.5,
+                    opacity: 0,
                     duration: duration,
                     delay: delay,
                     ease: 'power1.in',
@@ -1191,7 +1234,8 @@
                     rotation: 10,
                     duration: 0.1,
                     repeat: 5,
-                    yoyo: true
+                    yoyo: true,
+                    ease: 'power1.inOut'
                 });
             }
         }
@@ -1203,7 +1247,7 @@
             setupTipping();
             startCountdown();
 
-            document.querySelectorAll('.nav-links a, .social-button, .button').forEach(element => {
+            document.querySelectorAll('.nav-links a, .social-button, .button, .connect-wallet-btn').forEach(element => {
                 element.addEventListener('mouseenter', () => {
                     const sounds = [
                         document.getElementById('hover-sound-1'),
