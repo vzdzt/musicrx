@@ -10,202 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: #1a1a1a;
-            color: #FFFFFF;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Cursor and Canvas */
-        #cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: #FF0000;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-        }
-
-        #cursor-blur {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 0, 0, 0.3);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            filter: blur(10px);
-            transform: translate(-50%, -50%);
-        }
-
-        #universe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        /* Navbar */
-        .navbar.global-nav {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 1.5rem;
-        }
-
-        .logo-symbol i {
-            color: #FF0000;
-            animation: heartbeat 1.5s infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            background: none;
-            border: none;
-            color: #FF0000;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #FF0000;
-            border-radius: 5px;
-            padding: 0.5rem;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu ul {
-            list-style: none;
-        }
-
-        .dropdown-menu a {
-            color: #FF0000;
-            text-decoration: none;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            display: block;
-            transition: color 0.3s;
-        }
-
-        .dropdown-menu a:hover {
-            color: #E50000;
-        }
-
-        /* Fixed Buttons */
-        #themeToggle, #backToTop, #musicToggle, #tipMachine {
-            position: fixed;
-            background: rgba(255, 0, 0, 0.8);
-            border: none;
-            color: #FFFFFF;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1001;
-            transition: transform 0.3s;
-        }
-
-        #themeToggle:hover, #backToTop:hover, #musicToggle:hover, #tipMachine:hover {
-            transform: scale(1.1);
-        }
-
-        #themeToggle { top: 20px; right: 20px; }
-        #backToTop { bottom: 20px; right: 20px; }
-        #musicToggle { bottom: 70px; right: 20px; }
-        #tipMachine { bottom: 120px; right: 20px; }
-
-        /* Main Content */
-        .main-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .hero-banner {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+        /* Shop-specific overrides */
+        [data-page="shop"] .hero-banner {
+            background: linear-gradient(135deg, var(--dark), #2c2c2c);
             border-radius: 15px;
             padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            margin: 2rem auto;
+            box-shadow: 0 0 20px var(--glow);
+            max-width: 1200px;
         }
-
-        .hero-content h1 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 3rem;
-            color: #FF0000;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .hero-content h1.glitch {
-            animation: glitch 1s linear infinite;
-        }
-
-        @keyframes glitch {
-            2%, 64% { transform: translate(2px, 0) skew(0deg); }
-            4%, 60% { transform: translate(-2px, 0) skew(0deg); }
-            62% { transform: translate(0, 0) skew(5deg); }
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .connect-wallet-btn {
-            background: linear-gradient(45deg, #FF0000, #E50000);
+        [data-page="shop"] .connect-wallet-btn {
+            background: var(--rgb-glow);
             border: none;
-            color: #FFFFFF;
+            color: var(--dark);
             padding: 0.8rem 2rem;
             border-radius: 25px;
             font-family: 'Syncopate', sans-serif;
@@ -213,90 +30,40 @@
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
-        .connect-wallet-btn:hover {
+        [data-page="shop"] .connect-wallet-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+            box-shadow: 0 0 15px var(--glow);
         }
-
-        #walletAddress {
-            margin-top: 1rem;
-            font-size: 1rem;
-        }
-
-        /* Countdown Timer */
-        .countdown-timer {
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        .countdown-timer h2 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 2rem;
-            color: #FF0000;
-            margin-bottom: 1rem;
-        }
-
-        .timer {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .timer div {
-            background: rgba(255, 255, 255, 0.1);
+        [data-page="shop"] .countdown-timer .timer div {
+            background: var(--glass);
             padding: 0.5rem 1rem;
             border-radius: 5px;
-            border: 1px solid #FF0000;
+            border: 1px solid var(--primary);
         }
-
-        /* Glass Card */
-        .glass-card {
-            background: rgba(102, 0, 0, 0.25);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(153, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .glass-card h2 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 2rem;
-            color: #FF0000;
-            margin-bottom: 1rem;
-        }
-
-        /* Featured Product */
-        .featured-product {
+        [data-page="shop"] .featured-product {
             width: 300px;
             height: 400px;
             margin: 0 auto;
             perspective: 1000px;
         }
-
-        .featured-card {
+        [data-page="shop"] .featured-card {
             width: 100%;
             height: 100%;
             transform-style: preserve-3d;
             transition: transform 0.6s;
             position: relative;
         }
-
-        .featured-product:hover .featured-card {
+        [data-page="shop"] .featured-product:hover .featured-card {
             transform: rotateY(180deg);
         }
-
-        .featured-front, .featured-back {
+        [data-page="shop"] .featured-front, [data-page="shop"] .featured-back {
             position: absolute;
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            background: rgba(102, 0, 0, 0.25);
+            background: var(--card-background);
             backdrop-filter: blur(15px);
-            border: 2px solid rgba(153, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
             border-radius: 15px;
             display: flex;
             flex-direction: column;
@@ -305,58 +72,33 @@
             text-align: center;
             padding: 1rem;
         }
-
-        .featured-back {
+        [data-page="shop"] .featured-back {
             transform: rotateY(180deg);
         }
-
-        .featured-front img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .featured-front h3, .featured-back h3 {
-            color: #FF0000;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .featured-front p, .featured-back p {
-            color: #FFFFFF;
-            font-size: 1rem;
-        }
-
-        /* Support Section */
-        .tip-jar {
+        [data-page="shop"] .tip-jar {
             position: relative;
             width: 100px;
             height: 100px;
             margin: 0 auto 2rem auto;
             animation: float 3s ease-in-out infinite;
         }
-
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-15px) rotate(5deg); }
         }
-
-        .jar {
+        [data-page="shop"] .jar {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: 3px solid #FF0000;
+            border: 3px solid var(--primary);
             border-radius: 15px 15px 30px 30px;
-            background: rgba(255, 0, 0, 0.1);
+            background: var(--glass);
             backdrop-filter: blur(5px);
             overflow: hidden;
         }
-
-        .jar::after {
+        [data-page="shop"] .jar::after {
             content: '';
             position: absolute;
             top: -10px;
@@ -364,11 +106,10 @@
             transform: translateX(-50%);
             width: 80%;
             height: 20px;
-            background: #FF0000;
+            background: var(--primary);
             border-radius: 10px 10px 0 0;
         }
-
-        .coin {
+        [data-page="shop"] .coin {
             position: absolute;
             width: 15px;
             height: 15px;
@@ -378,41 +119,33 @@
             left: 20px;
             animation: coin-glow 2s infinite;
         }
-
-        .coin:nth-child(2) {
+        [data-page="shop"] .coin:nth-child(2) {
             left: 40px;
             bottom: 15px;
             animation-delay: 0.5s;
         }
-
-        .coin:nth-child(3) {
+        [data-page="shop"] .coin:nth-child(3) {
             left: 60px;
             bottom: 8px;
             animation-delay: 1s;
         }
-
         @keyframes coin-glow {
             0%, 100% { box-shadow: 0 0 5px gold; }
             50% { box-shadow: 0 0 15px gold; }
         }
-
-        .crypto-options {
+        [data-page="shop"] .crypto-options {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            justify-items: center;
-            margin-top: 2rem;
-            padding: 2rem;
+            gap: 1.5rem;
+            padding: 1rem;
             background: rgba(0, 0, 0, 0.8);
             border-radius: 15px;
-            border: 2px solid #FF0000;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-            width: 100%;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 30px var(--glow);
         }
-
-        .crypto-option {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid #FF0000;
+        [data-page="shop"] .crypto-option {
+            background: var(--glass);
+            border: 1px solid var(--border-color);
             border-radius: 10px;
             padding: 1.5rem;
             display: flex;
@@ -422,37 +155,26 @@
             width: 100%;
             max-width: 250px;
         }
-
-        .crypto-option:hover {
+        [data-page="shop"] .crypto-option:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            box-shadow: 0 0 20px var(--glow);
         }
-
-        .crypto-icon {
+        [data-page="shop"] .crypto-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #FFFFFF;
+            color: var(--primary);
         }
-
-        .crypto-option h3 {
-            color: #FF0000;
-            margin-bottom: 1rem;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-        }
-
-        .wallet-address {
+        [data-page="shop"] .wallet-address {
             font-size: 0.8rem;
             word-break: break-all;
             text-align: center;
             margin: 0.5rem 0;
-            color: #FFFFFF;
+            color: var(--text-color);
         }
-
-        .copy-address-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #FF0000;
-            color: #FF0000;
+        [data-page="shop"] .copy-address-btn {
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            color: var(--primary);
             padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
@@ -460,330 +182,105 @@
             margin-bottom: 1rem;
             transition: all 0.3s;
         }
-
-        .copy-address-btn:hover {
-            background: rgba(255, 0, 0, 0.2);
+        [data-page="shop"] .copy-address-btn:hover {
+            background: var(--rgb-glow);
             transform: translateY(-2px);
         }
-
-        .donate-input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #FF0000;
+        [data-page="shop"] .donate-input {
+            background: var(--glass);
+            border: 1px solid var(--primary);
             border-radius: 5px;
-            color: white;
+            color: var(--text-color);
             padding: 0.5rem;
             width: 100%;
             margin-bottom: 1rem;
         }
-
-        .donate-button {
+        [data-page="shop"] .donate-button {
             margin-top: 1rem;
             width: 100%;
-            background: #FF0000;
-            color: #000;
+            background: var(--primary);
+            color: var(--dark);
             padding: 0.5rem 1rem;
             border-radius: 5px;
             border: none;
             cursor: pointer;
             transition: all 0.3s;
         }
-
-        .donate-button:hover {
-            background: #E50000;
+        [data-page="shop"] .donate-button:hover {
+            background: var(--secondary);
             transform: scale(1.05);
         }
-
-        .social-links {
+        [data-page="shop"] .social-links {
             display: flex;
             gap: 1rem;
             justify-content: center;
             margin-top: 1rem;
         }
-
-        .social-button {
-            color: #FF0000;
+        [data-page="shop"] .social-button {
+            color: var(--primary);
             font-size: 1.5rem;
             transition: color 0.3s;
         }
-
-        .social-button:hover {
-            color: #E50000;
+        [data-page="shop"] .social-button:hover {
+            color: var(--secondary);
         }
-
-        /* Coming Soon Products */
-        .coming-soon-products {
+        [data-page="shop"] .coming-soon-products {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2rem;
-            justify-items: center;
-            width: 100%;
+            gap: 1.5rem;
+            padding: 1rem;
         }
-
-        .product-item {
-            width: 100%;
-            max-width: 200px;
+        [data-page="shop"] .product-item {
             text-align: center;
             transition: all 0.3s;
         }
-
-        .product-item:hover {
+        [data-page="shop"] .product-item:hover {
             transform: rotate(5deg) scale(1.1);
         }
-
-        .product-item i {
+        [data-page="shop"] .product-item i {
             font-size: 3rem;
-            color: #FF0000;
+            color: var(--primary);
             margin-bottom: 1rem;
             animation: pulse 2s infinite;
         }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .product-item h3 {
-            color: #FF0000;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-item p {
-            color: #FFFFFF;
-            font-size: 0.9rem;
-        }
-
-        /* Web3 Benefits */
-        .web3-benefits {
+        [data-page="shop"] .web3-benefits {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            justify-items: center;
-            margin-top: 2rem;
-            width: 100%;
+            gap: 1.5rem;
+            padding: 1rem;
         }
-
-        .benefit-item {
-            width: 100%;
-            max-width: 250px;
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid #FF0000;
+        [data-page="shop"] .benefit-item {
+            background: var(--glass);
+            border: 1px solid var(--border-color);
             border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
             transition: all 0.3s;
         }
-
-        .benefit-item:hover {
+        [data-page="shop"] .benefit-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            box-shadow: 0 0 20px var(--glow);
         }
-
-        .benefit-item i {
+        [data-page="shop"] .benefit-item i {
             font-size: 2.5rem;
-            color: #FF0000;
+            color: var(--primary);
             margin-bottom: 1rem;
         }
-
-        .benefit-item h3 {
-            color: #FF0000;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        .benefit-item p {
-            color: #FFFFFF;
-            font-size: 0.9rem;
-        }
-
-        /* Shop Updates */
-        .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 1.5rem;
-            width: 100%;
-        }
-
-        .shop-item {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .shop-title-card {
-            padding: 0.3rem 1rem;
-            background: rgba(102, 0, 0, 0.25);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(153, 0, 0, 0.3);
-            border-bottom: none;
-            border-radius: 15px 15px 0 0;
-            transition: all 0.4s;
-        }
-
-        .shop-title-card h2 {
-            margin: 0;
-            font-size: 1.2rem;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            color: #FF0000;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
-        }
-
-        .shop-title-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
-            background: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
-        }
-
-        .shop-content-card {
-            padding: 1.5rem;
-            background: rgba(102, 0, 0, 0.25);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(153, 0, 0, 0.3);
-            border-top: none;
-            border-radius: 0 0 15px 15px;
-            transition: all 0.4s;
-        }
-
-        .shop-content-card img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .shop-content-card p {
-            margin: 0;
-            font-size: 1rem;
-            color: #FFFFFF;
-        }
-
-        .shop-content-card .date {
-            font-size: 0.9rem;
-            color: #E50000;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .shop-content-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
-        }
-
-        /* Footer */
-        .footer {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 2rem;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-content p {
-            font-size: 0.9rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .newsletter-form input {
-            padding: 0.5rem;
-            border: 1px solid #FF0000;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #FFFFFF;
-        }
-
-        .newsletter-form button {
-            background: #FF0000;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            color: #FFFFFF;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .newsletter-form button:hover {
-            background: #E50000;
-        }
-
-        /* Media Queries */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 0.5rem;
+            [data-page="shop"] .crypto-options,
+            [data-page="shop"] .coming-soon-products,
+            [data-page="shop"] .web3-benefits,
+            [data-page="shop"] .shop-grid {
+                grid-template-columns: 1fr;
             }
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .hero-content p {
-                font-size: 1rem;
-            }
-            .countdown-timer .timer {
-                font-size: 1.2rem;
-            }
-            .featured-product {
+            [data-page="shop"] .featured-product {
                 width: 250px;
                 height: 350px;
-            }
-            .shop-title-card h2 {
-                font-size: 1rem;
-            }
-            .shop-content-card {
-                padding: 1rem;
-            }
-            .shop-content-card p {
-                font-size: 0.9rem;
-            }
-            .shop-content-card .date {
-                font-size: 0.8rem;
-            }
-            .shop-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                padding: 1rem;
-            }
-            .crypto-options {
-                grid-template-columns: 1fr;
-                padding: 1rem;
-            }
-            .coming-soon-products {
-                grid-template-columns: 1fr;
-            }
-            .web3-benefits {
-                grid-template-columns: 1fr;
-                padding: 1rem;
-            }
-            .footer {
-                flex-direction: column;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .crypto-options {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
-            .coming-soon-products {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            }
-            .web3-benefits {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
-            .shop-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
         }
     </style>
 </head>
-<body>
+<body data-page="shop">
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
     <canvas id="universe"></canvas>
@@ -816,18 +313,16 @@
 
     <div class="main-content">
         <div class="container">
+            <h1 class="glitch" data-text="SHOP">SHOP</h1>
             <section class="hero">
-                <!-- Hero Banner -->
                 <div class="hero-banner">
                     <div class="hero-content">
-                        <h1 class="glitch" data-text="SHOP">SHOP</h1>
                         <p>Discover exclusive music blog merch, digital content, and Web3 experiences!</p>
                         <button class="connect-wallet-btn" id="connectWallet">Connect Wallet</button>
                         <p id="walletAddress"></p>
                     </div>
                 </div>
 
-                <!-- Countdown Timer -->
                 <div class="countdown-timer">
                     <h2>Shop Launch Countdown</h2>
                     <div class="timer" id="countdown-timer">
@@ -838,7 +333,6 @@
                     </div>
                 </div>
 
-                <!-- Featured Product -->
                 <div class="glass-card">
                     <h2>Featured Product</h2>
                     <div class="featured-product">
@@ -856,11 +350,9 @@
                     </div>
                 </div>
 
-                <!-- Support Section -->
                 <div class="glass-card">
                     <h2>Support MusicRX</h2>
                     <p>While our products are still in development, you can support MusicRX with a tip!</p>
-
                     <div class="tip-jar">
                         <div class="jar">
                             <div class="coin"></div>
@@ -868,57 +360,39 @@
                             <div class="coin"></div>
                         </div>
                     </div>
-
                     <div class="crypto-options">
                         <div class="crypto-option">
-                            <div class="crypto-icon">
-                                <i class="fab fa-ethereum"></i>
-                            </div>
+                            <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
                             <h3>Tip with ETH</h3>
                             <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
                             <button class="copy-address-btn" onclick="copyToClipboard('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
                                 <i class="fas fa-copy"></i> Copy Address
                             </button>
                             <input type="number" placeholder="Amount in ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
-                            <button id="tipEth" class="donate-button">
-                                <i class="fas fa-donate"></i> Send Tip
-                            </button>
+                            <button id="tipEth" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
                         </div>
-
                         <div class="crypto-option">
-                            <div class="crypto-icon">
-                                <i class="fab fa-bitcoin"></i>
-                            </div>
+                            <div class="crypto-icon"><i class="fab fa-bitcoin"></i></div>
                             <h3>Tip with BTC</h3>
                             <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
                             <button class="copy-address-btn" onclick="copyToClipboard('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
                                 <i class="fas fa-copy"></i> Copy Address
                             </button>
                             <input type="number" placeholder="Amount in BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
-                            <button id="tipBtc" class="donate-button">
-                                <i class="fas fa-donate"></i> Send Tip
-                            </button>
+                            <button id="tipBtc" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
                         </div>
-
                         <div class="crypto-option">
-                            <div class="crypto-icon">
-                                <i class="fas fa-sun"></i>
-                            </div>     
+                            <div class="crypto-icon"><i class="fas fa-sun"></i></div>
                             <h3>Tip with SOL</h3>
                             <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
                             <button class="copy-address-btn" onclick="copyToClipboard('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
                                 <i class="fas fa-copy"></i> Copy Address
                             </button>
                             <input type="number" placeholder="Amount in SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
-                            <button id="tipSol" class="donate-button">
-                                <i class="fas fa-donate"></i> Send Tip
-                            </button>
+                            <button id="tipSol" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
                         </div>
-
                         <div class="crypto-option">
-                            <div class="crypto-icon">
-                                <i class="fas fa-cube"></i>
-                            </div>
+                            <div class="crypto-icon"><i class="fas fa-cube"></i></div>
                             <h3>Buy MusicRX NFT</h3>
                             <p class="wallet-address">Coming Soon: Unlock exclusive content!</p>
                             <button class="donate-button" onclick="alert('NFT purchase coming soon! Connect your wallet to reserve your MusicRX NFT.')">
@@ -926,25 +400,17 @@
                             </button>
                         </div>
                     </div>
-
                     <div style="text-align: center; margin-top: 3rem;">
                         <h3>Other Ways to Support</h3>
                         <p>Follow @36966_ on X and share our content!</p>
                         <div class="social-links">
-                            <a href="#" class="social-button">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="social-button">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="social-button">
-                                <i class="fab fa-tiktok"></i>
-                            </a>
+                            <a href="#" class="social-button"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-button"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-button"><i class="fab fa-tiktok"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Coming Soon Products -->
                 <div class="glass-card">
                     <h2>Coming Soon Products</h2>
                     <div class="coming-soon-products">
@@ -971,7 +437,6 @@
                     </div>
                 </div>
 
-                <!-- Web3 Benefits -->
                 <div class="glass-card">
                     <h2>Web3 Benefits</h2>
                     <div class="web3-benefits">
@@ -993,46 +458,45 @@
                     </div>
                 </div>
 
-                <!-- Shop Updates -->
                 <div class="glass-card">
                     <h2>Shop Updates</h2>
                     <div class="shop-grid">
                         <div class="shop-item">
-                            <div class="shop-title-card">
-                                <h2>MusicRX Hoodies Teased</h2>
-                            </div>
-                            <div class="shop-content-card">
+                            <div class="glass-card title-card">
+                                <h2 class="card-title-container">MusicRX Hoodies Teased</h2>
                                 <p class="date">March 21, 2025</p>
+                            </div>
+                            <div class="glass-card content-card">
                                 <img src="images/musicrx-hoodie.jpg" alt="MusicRX Hoodie">
                                 <p>MusicRX teases limited edition hoodies featuring the blog’s iconic logo, set to launch with the shop’s opening.</p>
                             </div>
                         </div>
                         <div class="shop-item">
-                            <div class="shop-title-card">
-                                <h2>Playlist NFTs Announced</h2>
-                            </div>
-                            <div class="shop-content-card">
+                            <div class="glass-card title-card">
+                                <h2 class="card-title-container">Playlist NFTs Announced</h2>
                                 <p class="date">March 20, 2025</p>
+                            </div>
+                            <div class="glass-card content-card">
                                 <img src="images/playlist-nft.jpg" alt="Playlist NFT">
                                 <p>MusicRX announces exclusive playlist NFTs, offering early access to curated tracks for NFT holders.</p>
                             </div>
                         </div>
                         <div class="shop-item">
-                            <div class="shop-title-card">
-                                <h2>Blog Launch Party Tickets</h2>
-                            </div>
-                            <div class="shop-content-card">
+                            <div class="glass-card title-card">
+                                <h2 class="card-title-container">Blog Launch Party Tickets</h2>
                                 <p class="date">March 19, 2025</p>
+                            </div>
+                            <div class="glass-card content-card">
                                 <img src="images/launch-party.jpg" alt="Launch Party">
                                 <p>MusicRX teases blog launch party tickets with Web3 perks, including NFT-based VIP access.</p>
                             </div>
                         </div>
                         <div class="shop-item">
-                            <div class="shop-title-card">
-                                <h2>Premium Subscription Teased</h2>
-                            </div>
-                            <div class="shop-content-card">
+                            <div class="glass-card title-card">
+                                <h2 class="card-title-container">Premium Subscription Teased</h2>
                                 <p class="date">March 18, 2025</p>
+                            </div>
+                            <div class="glass-card content-card">
                                 <img src="images/premium-sub.jpg" alt="Premium Subscription">
                                 <p>MusicRX teases a premium subscription with ad-free content, exclusive articles, and Web3 benefits.</p>
                             </div>
@@ -1060,12 +524,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
-        // Copy wallet address to clipboard
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text)
-                .then(() => {
-                    alert("Address copied to clipboard!");
-                })
+                .then(() => alert("Address copied to clipboard!"))
                 .catch(err => {
                     console.error('Failed to copy: ', err);
                     const textArea = document.createElement("textarea");
@@ -1078,13 +539,11 @@
                 });
         }
 
-        // Countdown timer
         function startCountdown() {
             const launchDate = new Date("April 1, 2025 00:00:00").getTime();
             const timer = setInterval(() => {
                 const now = new Date().getTime();
                 const distance = launchDate - now;
-
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -1102,17 +561,6 @@
             }, 1000);
         }
 
-        // Basic cursor movement (minimal replacement for script.js)
-        document.addEventListener('mousemove', (e) => {
-            const cursor = document.getElementById('cursor');
-            const cursorBlur = document.getElementById('cursor-blur');
-            cursor.style.left = e.pageX + 'px';
-            cursor.style.top = e.pageY + 'px';
-            cursorBlur.style.left = e.pageX + 'px';
-            cursorBlur.style.top = e.pageY + 'px';
-        });
-
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             startCountdown();
         });
