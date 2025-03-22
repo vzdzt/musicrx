@@ -82,25 +82,36 @@ function attachWalletButtonListener() {
     const connectWalletButton = document.getElementById("connectWallet");
     if (connectWalletButton) {
         console.log("Connect Wallet button found, attaching event listener");
+        // Remove any existing listeners to avoid duplicates
+        connectWalletButton.removeEventListener("click", showWalletModal);
         connectWalletButton.addEventListener("click", () => {
             console.log("Connect Wallet button clicked");
             showWalletModal();
         });
     } else {
-        console.error("Connect Wallet button not found in the DOM");
-        // Retry after a delay
-        setTimeout(attachWalletButtonListener, 1000);
+        console.error("Connect Wallet button not found in the DOM, retrying...");
+        setTimeout(attachWalletButtonListener, 500);
     }
 }
 
-// Attach the event listener on DOMContentLoaded
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOMContentLoaded event fired in shop.js");
-    attachWalletButtonListener();
+// Use a MutationObserver to watch for the button being added to the DOM
+const observer = new MutationObserver((mutations, obs) => {
+    const connectWalletButton = document.getElementById("connectWallet");
+    if (connectWalletButton) {
+        attachWalletButtonListener();
+        obs.disconnect(); // Stop observing once the button is found
+    }
 });
 
-// Attach the event listener immediately (in case DOMContentLoaded already fired)
+// Start observing the document body for changes
+observer.observe(document.body, {
+    childList: true,
+    subtree: true
+});
+
+// Also try attaching immediately and on DOMContentLoaded
 attachWalletButtonListener();
+document.addEventListener("DOMContentLoaded", attachWalletButtonListener);
 
 // Web3 wallet connection logic
 const ethProvider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : null;
