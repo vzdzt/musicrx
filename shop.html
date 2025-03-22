@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .container {
-            max-width: 1200px; /* Constrain content width on large screens */
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
         }
@@ -817,7 +817,8 @@
                 <div class="hero-content">
                     <h1>Welcome to the MusicRX Shop</h1>
                     <p>Discover exclusive music blog merch, digital content, and Web3 experiences!</p>
-                    <button class="connect-wallet-btn" onclick="connectWallet()">Connect Wallet</button>
+                    <button class="connect-wallet-btn" id="connectWallet">Connect Wallet</button>
+                    <p id="walletAddress" style="color: white; margin-top: 1rem;"></p>
                 </div>
             </div>
 
@@ -907,8 +908,8 @@
                         <div class="qr-code">
                             <img src="" alt="SOL QR Code" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
-                        <p class="wallet-address">9ahtvae2NGuvJLvP4F8rSMkTx7hXEoowZ8Wr3wEV3niZ</p>
-                        <button class="copy-address-btn" onclick="copyToClipboard('9ahtvae2NGuvJLvP4F8rSMkTx7hXEoowZ8Wr3wEV3niZ')">
+                        <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
+                        <button class="copy-address-btn" onclick="copyToClipboard('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
                             <i class="fas fa-copy"></i> Copy Address
                         </button>
                         <input type="number" placeholder="Amount in SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
@@ -1070,11 +1071,6 @@
                 });
         }
 
-        // Mock wallet connection
-        function connectWallet() {
-            alert("Wallet connection coming soon! In a real implementation, this would connect to your Web3 wallet (e.g., MetaMask, Solana).");
-        }
-
         // Countdown timer
         function startCountdown() {
             const launchDate = new Date("April 1, 2025 00:00:00").getTime();
@@ -1141,110 +1137,10 @@
             });
         }
 
-        // ETH tip functionality (mock)
-        function setupTipping() {
-            const tipEthButton = document.getElementById('tipEth');
-            const tipBtcButton = document.getElementById('tipBtc');
-            const tipSolButton = document.getElementById('tipSol');
-
-            if (tipEthButton) {
-                tipEthButton.addEventListener('click', async () => {
-                    const amount = document.getElementById('ethAmount').value;
-
-                    if (!amount || amount <= 0) {
-                        alert('Please enter a valid amount');
-                        return;
-                    }
-
-                    try {
-                        alert(`Thank you for wanting to tip ${amount} ETH! In a real implementation, this would open your wallet.`);
-                        createTipEffect();
-                    } catch (error) {
-                        console.error('Tip error:', error);
-                        alert('There was an error processing your tip. Please try again.');
-                    }
-                });
-            }
-
-            if (tipBtcButton) {
-                tipBtcButton.addEventListener('click', () => {
-                    const amount = document.getElementById('btcAmount').value;
-
-                    if (!amount || amount <= 0) {
-                        alert('Please enter a valid amount');
-                        return;
-                    }
-
-                    alert(`Thank you for wanting to tip ${amount} BTC! In a real implementation, this would open your wallet.`);
-                    createTipEffect();
-                });
-            }
-
-            if (tipSolButton) {
-                tipSolButton.addEventListener('click', () => {
-                    const amount = document.getElementById('solAmount').value;
-
-                    if (!amount || amount <= 0) {
-                        alert('Please enter a valid amount');
-                        return;
-                    }
-
-                    alert(`Thank you for wanting to tip ${amount} SOL! In a real implementation, this would open your wallet.`);
-                    createTipEffect();
-                });
-            }
-        }
-
-        // Create a fun visual effect when someone tips
-        function createTipEffect() {
-            for (let i = 0; i < 20; i++) {
-                const coin = document.createElement('div');
-                coin.style.position = 'fixed';
-                coin.style.width = '20px';
-                coin.style.height = '20px';
-                coin.style.background = 'radial-gradient(circle at center, #ffd700, #cc9900)';
-                coin.style.borderRadius = '50%';
-                coin.style.boxShadow = '0 0 10px rgba(255, 215, 0, 0.7)';
-                coin.style.top = '-50px';
-                coin.style.left = Math.random() * window.innerWidth + 'px';
-                coin.style.zIndex = '9999';
-
-                document.body.appendChild(coin);
-
-                const duration = Math.random() * 2 + 1;
-                const delay = Math.random() * 0.5;
-
-                gsap.to(coin, {
-                    top: window.innerHeight + 50,
-                    rotation: Math.random() * 360,
-                    scale: Math.random() * 0.5 + 0.5,
-                    opacity: 0,
-                    duration: duration,
-                    delay: delay,
-                    ease: 'power1.in',
-                    onComplete: () => {
-                        document.body.removeChild(coin);
-                    }
-                });
-            }
-
-            const jar = document.querySelector('.jar');
-            if (jar) {
-                gsap.to(jar, {
-                    rotation: 10,
-                    duration: 0.1,
-                    repeat: 5,
-                    yoyo: true,
-                    ease: 'power1.inOut'
-                });
-            }
-        }
-
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             addButtonEffects();
-            setupTipping();
             startCountdown();
 
             document.querySelectorAll('.nav-links a, .social-button, .button, .connect-wallet-btn').forEach(element => {
@@ -1269,6 +1165,7 @@
             });
         });
     </script>
+    <script src="shop.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

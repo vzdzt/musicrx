@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const ethProvider = new ethers.providers.Web3Provider(window.ethereum);
     const solConnection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com");
     const myEthAddress = "0x24A77F76fe0CF427f26A9E49F33f7E9287217250";
-    const mySolAddress = "7YCdysgzcxuJTrGe5XfyKpobagonNmwT8ygPvpEBwUUr";
+    const mySolAddress = "9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z"; // Updated SOL address
     let connectedChain = null;
+    let connectedAddress = null; // Added to track connected wallet
 
     async function connectWallet() {
         if (window.ethereum) {
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 await window.ethereum.request({ method: "eth_requestAccounts" });
                 const signer = ethProvider.getSigner();
                 const address = await signer.getAddress();
+                connectedAddress = address; // Store the connected address
                 document.getElementById("walletAddress").innerText = `ETH Connected: ${address.slice(0, 6)}...`;
                 connectedChain = "eth";
                 showEthButtons();
@@ -23,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 await window.solana.connect();
                 const address = window.solana.publicKey.toString();
+                connectedAddress = address; // Store the connected address
                 document.getElementById("walletAddress").innerText = `SOL Connected: ${address.slice(0, 6)}...`;
                 connectedChain = "sol";
                 showSolButtons();
@@ -36,21 +39,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showEthButtons() {
-        document.getElementById("buyTeeEth").style.display = "block";
-        document.getElementById("buyAlbumEth").style.display = "block";
-        document.getElementById("tipEth").style.display = "block";
-        document.getElementById("buyTeeSol").style.display = "none";
-        document.getElementById("buyAlbumSol").style.display = "none";
-        document.getElementById("tipSol").style.display = "none";
+        document.getElementById("buyTeeEth")?.style.display = "block";
+        document.getElementById("buyAlbumEth")?.style.display = "block";
+        document.getElementById("tipEth")?.style.display = "block";
+        document.getElementById("buyTeeSol")?.style.display = "none";
+        document.getElementById("buyAlbumSol")?.style.display = "none";
+        document.getElementById("tipSol")?.style.display = "none";
     }
 
     function showSolButtons() {
-        document.getElementById("buyTeeSol").style.display = "block";
-        document.getElementById("buyAlbumSol").style.display = "block";
-        document.getElementById("tipSol").style.display = "block";
-        document.getElementById("buyTeeEth").style.display = "none";
-        document.getElementById("buyAlbumEth").style.display = "none";
-        document.getElementById("tipEth").style.display = "none";
+        document.getElementById("buyTeeSol")?.style.display = "block";
+        document.getElementById("buyAlbumSol")?.style.display = "block";
+        document.getElementById("tipSol")?.style.display = "block";
+        document.getElementById("buyTeeEth")?.style.display = "none";
+        document.getElementById("buyAlbumEth")?.style.display = "none";
+        document.getElementById("tipEth")?.style.display = "none";
     }
 
     async function sendEth(amount, item) {
@@ -63,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             await tx.wait();
             alert(`Thanks for buying ${item} with ${amount} ETH!`);
+            createTipEffect(); // Add visual effect after successful transaction
         } catch (error) {
             alert(`ETH transaction failed: ${error.message}`);
         }
@@ -81,19 +85,88 @@ document.addEventListener("DOMContentLoaded", () => {
             const { signature } = await window.solana.signAndSendTransaction(transaction);
             await solConnection.confirmTransaction(signature);
             alert(`Thanks for ${item === "donation" ? "donating" : "buying"} ${item} with ${amount} SOL!`);
+            createTipEffect(); // Add visual effect after successful transaction
         } catch (error) {
             alert(`SOL transaction failed: ${error.message}`);
         }
     }
 
     // Event Listeners for Web3 Buttons
-    document.getElementById("connectWallet").addEventListener("click", connectWallet);
-    document.getElementById("buyTeeEth").addEventListener("click", () => sendEth("0.05", "MusicRX Tee"));
-    document.getElementById("buyTeeSol").addEventListener("click", () => sendSol(0.1, "MusicRX Tee"));
-    document.getElementById("buyAlbumEth").addEventListener("click", () => sendEth("0.03", "Digital Album"));
-    document.getElementById("buyAlbumSol").addEventListener("click", () => sendSol(0.07, "Digital Album"));
-    document.getElementById("tipEth").addEventListener("click", () => sendEth("0.01", "donation"));
-    document.getElementById("tipSol").addEventListener("click", () => sendSol(0.01, "donation"));
+    document.getElementById("connectWallet")?.addEventListener("click", connectWallet);
+    document.getElementById("buyTeeEth")?.addEventListener("click", () => sendEth("0.05", "MusicRX Tee"));
+    document.getElementById("buyTeeSol")?.addEventListener("click", () => sendSol(0.1, "MusicRX Tee"));
+    document.getElementById("buyAlbumEth")?.addEventListener("click", () => sendEth("0.03", "Digital Album"));
+    document.getElementById("buyAlbumSol")?.addEventListener("click", () => sendSol(0.07, "Digital Album"));
+    document.getElementById("tipEth")?.addEventListener("click", () => {
+        const amount = document.getElementById('ethAmount')?.value;
+        if (!amount || amount <= 0) {
+            alert('Please enter a valid amount');
+            return;
+        }
+        sendEth(amount, "donation");
+    });
+    document.getElementById("tipSol")?.addEventListener("click", () => {
+        const amount = document.getElementById('solAmount')?.value;
+        if (!amount || amount <= 0) {
+            alert('Please enter a valid amount');
+            return;
+        }
+        sendSol(amount, "donation");
+    });
+    document.getElementById("tipBtc")?.addEventListener("click", () => {
+        const amount = document.getElementById('btcAmount')?.value;
+        if (!amount || amount <= 0) {
+            alert('Please enter a valid amount');
+            return;
+        }
+        alert("BTC tipping is not yet Web3-integrated. Coming soon!");
+        createTipEffect(); // Add visual effect for consistency
+    });
+
+    // Visual effect for tipping
+    function createTipEffect() {
+        for (let i = 0; i < 20; i++) {
+            const coin = document.createElement('div');
+            coin.style.position = 'fixed';
+            coin.style.width = '20px';
+            coin.style.height = '20px';
+            coin.style.background = 'radial-gradient(circle at center, #ffd700, #cc9900)';
+            coin.style.borderRadius = '50%';
+            coin.style.boxShadow = '0 0 10px rgba(255, 215, 0, 0.7)';
+            coin.style.top = '-50px';
+            coin.style.left = Math.random() * window.innerWidth + 'px';
+            coin.style.zIndex = '9999';
+
+            document.body.appendChild(coin);
+
+            const duration = Math.random() * 2 + 1;
+            const delay = Math.random() * 0.5;
+
+            gsap.to(coin, {
+                top: window.innerHeight + 50,
+                rotation: Math.random() * 360,
+                scale: Math.random() * 0.5 + 0.5,
+                opacity: 0,
+                duration: duration,
+                delay: delay,
+                ease: 'power1.in',
+                onComplete: () => {
+                    document.body.removeChild(coin);
+                }
+            });
+        }
+
+        const jar = document.querySelector('.jar');
+        if (jar) {
+            gsap.to(jar, {
+                rotation: 10,
+                duration: 0.1,
+                repeat: 5,
+                yoyo: true,
+                ease: 'power1.inOut'
+            });
+        }
+    }
 
     // Custom Cursor
     const cursor = document.getElementById('cursor');
@@ -106,8 +179,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateCursor() {
         requestAnimationFrame(updateCursor);
-        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
-        cursorBlur.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        if (cursor) cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        if (cursorBlur) cursorBlur.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
     }
     updateCursor();
 
