@@ -346,61 +346,311 @@
             100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Specific styling for shop title card */
-        .shop-title-card {
-            padding: 0.3rem 1rem; /* Comfortable vertical padding for text */
-            min-height: auto; /* Override any min-height */
-            height: auto; /* Fit content */
+        /* Hero Banner Styling */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 2rem;
             display: flex;
             align-items: center;
-            justify-content: center; /* Center the title */
-            background: rgba(102, 0, 0, 0.25); /* Glass effect background */
-            backdrop-filter: blur(15px); /* Blur effect */
-            border: 2px solid rgba(153, 0, 0, 0.3); /* Border */
-            border-bottom: none; /* Remove bottom border for seamless connection */
-            border-radius: 15px 15px 0 0; /* Round top corners only */
-            margin-bottom: 0; /* No gap between title and content */
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transition */
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.5);
         }
-        .shop-title-card h2 {
-            margin: 0; /* Remove default margins */
-            font-size: 1.2rem; /* Adjust font size for fit */
-            line-height: 1.2; /* Slightly increased for readability */
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L40 20 M20 0 L20 40" stroke="cyan" stroke-width="1"/></svg>');
+            background-size: 30px 30px;
+            opacity: 0.2;
+            animation: glitch-layer 2s infinite alternate-reverse;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: #FFFFFF;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
-            color: var(--primary, #FF0000); /* Primary color */
-            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7)); /* Glow effect */
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7));
+            margin-bottom: 1rem;
         }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 2rem;
+        }
+
+        .connect-wallet-btn {
+            background: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
+            border: none;
+            color: #FFFFFF;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .connect-wallet-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+        }
+
+        /* Countdown Timer Styling */
+        .countdown-timer {
+            text-align: center;
+            margin: 2rem 0;
+            color: #FFFFFF;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .countdown-timer h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .countdown-timer .timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .countdown-timer .timer div {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: 1px solid var(--primary);
+        }
+
+        /* Featured Product Styling */
+        .featured-product {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 2rem auto;
+            perspective: 1000px;
+        }
+
+        .featured-card {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            position: relative;
+        }
+
+        .featured-product:hover .featured-card {
+            transform: rotateY(180deg);
+        }
+
+        .featured-front, .featured-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background: rgba(102, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(153, 0, 0, 0.3);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .featured-back {
+            transform: rotateY(180deg);
+        }
+
+        .featured-front img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .featured-front h3, .featured-back h3 {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .featured-front p, .featured-back p {
+            color: #FFFFFF;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+        }
+
+        /* Coming Soon Products Styling */
+        .coming-soon-products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .product-item {
+            width: 200px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .product-item:hover {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .product-item i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        .product-item h3 {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-item p {
+            color: #FFFFFF;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        /* Web3 Benefits Styling */
+        .web3-benefits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .benefit-item {
+            width: 250px;
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(0, 247, 255, 0.5);
+        }
+
+        .benefit-item i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-item h3 {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-item p {
+            color: #FFFFFF;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        /* Shop Updates Styling */
+        .shop-item {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .shop-title-card {
+            padding: 0.3rem 1rem;
+            min-height: auto;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(102, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(153, 0, 0, 0.3);
+            border-bottom: none;
+            border-radius: 15px 15px 0 0;
+            margin-bottom: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .shop-title-card h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            line-height: 1.2;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            color: var(--primary, #FF0000);
+            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7));
+        }
+
         .shop-title-card:hover {
-            transform: translateY(-5px); /* Slight lift on hover */
+            transform: translateY(-5px);
             box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
-            background: linear-gradient(45deg, #FF0000, #E50000, #CC0000); /* Gradient on hover */
+            background: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
             background-size: 200% 200%;
             animation: rgbShift 3s linear infinite;
         }
-        /* Specific styling for shop content card */
+
         .shop-content-card {
             padding: 1.5rem;
-            background: rgba(102, 0, 0, 0.25); /* Glass effect background */
-            backdrop-filter: blur(15px); /* Blur effect */
-            border: 2px solid rgba(153, 0, 0, 0.3); /* Border */
-            border-top: none; /* Remove top border for seamless connection */
-            border-radius: 0 0 15px 15px; /* Round bottom corners only */
-            margin-top: 0; /* No gap between title and content */
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transition */
+            background: rgba(102, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(153, 0, 0, 0.3);
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            margin-top: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .shop-content-card img {
             width: 100%;
             height: auto;
             border-radius: 10px;
             margin-bottom: 1rem;
         }
+
         .shop-content-card p {
             margin: 0;
             font-size: 1rem;
             font-family: 'Space Grotesk', sans-serif;
             color: #FFFFFF;
         }
+
         .shop-content-card .date {
             font-size: 0.9rem;
             color: var(--secondary, #E50000);
@@ -408,27 +658,42 @@
             margin-bottom: 0.5rem;
             font-family: 'Space Grotesk', sans-serif;
         }
+
         .shop-content-card:hover {
-            transform: translateY(-5px); /* Slight lift on hover */
+            transform: translateY(-5px);
             box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
         }
+
         .shop-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             padding: 1.5rem;
         }
-        .shop-item {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
+
         @keyframes rgbShift {
             0% { background-position: 0% 0%; }
             50% { background-position: 100% 100%; }
             100% { background-position: 0% 0%; }
         }
+
         @media (max-width: 768px) {
+            .hero-banner {
+                height: 300px;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .countdown-timer .timer {
+                font-size: 1.2rem;
+            }
+            .featured-product {
+                width: 250px;
+                height: 350px;
+            }
             .shop-title-card {
                 padding: 0.3rem 0.5rem;
             }
@@ -507,14 +772,45 @@
 
     <div class="container">
         <section class="hero">
-            <h1 class="glitch-text" data-text="Shop">Shop</h1>
-
-            <div class="coming-soon-banner">
-                <h2>PRODUCTS COMING SOON</h2>
-                <p>Our merch is still in the lab - we're cooking up something special for you!</p>
+            <!-- Hero Banner -->
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <h1>Welcome to the MusicRX Shop</h1>
+                    <p>Discover exclusive music blog merch, digital content, and Web3 experiences!</p>
+                    <button class="connect-wallet-btn" onclick="connectWallet()">Connect Wallet</button>
+                </div>
             </div>
 
+            <!-- Countdown Timer -->
+            <div class="countdown-timer">
+                <h2>Shop Launch Countdown</h2>
+                <div class="timer" id="countdown-timer">
+                    <div id="days">00</div>
+                    <div id="hours">00</div>
+                    <div id="minutes">00</div>
+                    <div id="seconds">00</div>
+                </div>
+            </div>
+
+            <!-- Featured Product -->
             <div class="glass-card">
+                <h2>Featured Product</h2>
+                <div class="featured-product">
+                    <div class="featured-card">
+                        <div class="featured-front">
+                            <img src="images/musicrx-hoodie.jpg" alt="MusicRX Hoodie">
+                            <h3>MusicRX Limited Hoodie</h3>
+                            <p>Exclusive drop coming soon!</p>
+                        </div>
+                        <div class="featured-back">
+                            <h3>Unlock with NFT</h3>
+                            <p>Own a MusicRX NFT to get early access to this limited edition hoodie!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card" style="margin-top: 3rem;">
                 <h2>Support MusicRX</h2>
                 <p>While our products are still in development, you can support MusicRX with a tip!</p>
 
@@ -580,6 +876,21 @@
                             <i class="fas fa-donate"></i> Send Tip
                         </button>
                     </div>
+
+                    <!-- New NFT Purchase Option -->
+                    <div class="crypto-option">
+                        <div class="crypto-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3>Buy MusicRX NFT</h3>
+                        <div class="qr-code">
+                            <img src="" alt="NFT QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <p class="wallet-address">Coming Soon: Unlock exclusive content!</p>
+                        <button class="button donate-button" onclick="alert('NFT purchase coming soon! Connect your wallet to reserve your MusicRX NFT.')">
+                            <i class="fas fa-cube"></i> Reserve NFT
+                        </button>
+                    </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 3rem;">
@@ -600,72 +911,98 @@
             </div>
 
             <div class="glass-card" style="margin-top: 3rem;">
-                <h2>Coming Soon</h2>
-                <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
-                    <div style="text-align: center;">
-                        <i class="fas fa-tshirt" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                        <h3>Merch</h3>
-                        <p>Limited edition apparel</p>
+                <h2>Coming Soon Products</h2>
+                <div class="coming-soon-products">
+                    <div class="product-item">
+                        <i class="fas fa-tshirt"></i>
+                        <h3>MusicRX Apparel</h3>
+                        <p>Limited edition hoodies & tees</p>
                     </div>
-                    <div style="text-align: center;">
-                        <i class="fas fa-headphones" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                        <h3>Digital Content</h3>
-                        <p>Exclusive beats & mixes</p>
+                    <div class="product-item">
+                        <i class="fas fa-headphones"></i>
+                        <p>Exclusive Playlists</p>
                     </div>
-                    <div style="text-align: center;">
-                        <i class="fas fa-ticket-alt" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <div class="product-item">
+                        <i class="fas fa-ticket-alt"></i>
                         <h3>Event Tickets</h3>
-                        <p>Listening parties & more</p>
+                        <p>Blog launch parties & more</p>
+                    </div>
+                    <div class="product-item">
+                        <i class="fas fa-cube"></i>
+                        <h3>MusicRX NFTs</h3>
+                        <p>Unlock exclusive content</p>
                     </div>
                 </div>
             </div>
 
-            <!-- New Shop Updates Section -->
+            <!-- Web3 Benefits Section -->
+            <div class="glass-card" style="margin-top: 3rem;">
+                <h2>Web3 Benefits</h2>
+                <div class="web3-benefits">
+                    <div class="benefit-item">
+                        <i class="fas fa-cube"></i>
+                        <h3>NFT Ownership</h3>
+                        <p>Own MusicRX NFTs to unlock exclusive blog content and perks.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-wallet"></i>
+                        <h3>Secure Payments</h3>
+                        <p>Pay with ETH, BTC, or SOL for a seamless, decentralized experience.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-users"></i>
+                        <h3>Community Access</h3>
+                        <p>Join our Web3 community for exclusive events and updates.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop Updates Section -->
             <div class="glass-card" style="margin-top: 3rem;">
                 <h2>Shop Updates</h2>
                 <div class="shop-grid">
                     <!-- Shop Item 1 -->
                     <div class="shop-item">
                         <div class="shop-title-card">
-                            <h2 class="card-title-container">MUSIC Vinyl Pre-Order Announced</h2>
+                            <h2 class="card-title-container">MusicRX Hoodies Teased</h2>
                         </div>
                         <div class="shop-content-card">
                             <p class="date">March 21, 2025</p>
-                            <img src="images/music-vinyl.jpg" alt="MUSIC Vinyl">
-                            <p>Limited edition MUSIC vinyl pre-orders open, featuring exclusive artwork and a bonus track, available for fans to reserve starting today.</p>
+                            <img src="images/musicrx-hoodie.jpg" alt="MusicRX Hoodie">
+                            <p>MusicRX teases limited edition hoodies featuring the blog’s iconic logo, set to launch with the shop’s opening.</p>
                         </div>
                     </div>
                     <!-- Shop Item 2 -->
                     <div class="shop-item">
                         <div class="shop-title-card">
-                            <h2 class="card-title-container">MUSIC-Themed Merch Teased</h2>
+                            <h2 class="card-title-container">Playlist NFTs Announced</h2>
                         </div>
                         <div class="shop-content-card">
                             <p class="date">March 20, 2025</p>
-                            <img src="images/music-merch.jpg" alt="MUSIC Merch">
-                            <p>MusicRX teases MUSIC-themed merchandise, including hoodies and hats with punk-trap designs, set to launch alongside the album’s vinyl release.</p>
+                            <img src="images/playlist-nft.jpg" alt="Playlist NFT">
+                            <p>MusicRX announces exclusive playlist NFTs, offering early access to curated tracks for NFT holders.</p>
                         </div>
                     </div>
                     <!-- Shop Item 3 -->
                     <div class="shop-item">
                         <div class="shop-title-card">
-                            <h2 class="card-title-container">Listening Party Tickets on Sale</h2>
+                            <h2 class="card-title-container">Blog Launch Party Tickets</h2>
                         </div>
                         <div class="shop-content-card">
                             <p class="date">March 19, 2025</p>
-                            <img src="images/listening-party.jpg" alt="Listening Party">
-                            <p>Exclusive MUSIC listening party tickets go on sale, offering fans a chance to experience the album live with special guest appearances.</p>
+                            <img src="images/launch-party.jpg" alt="Launch Party">
+                            <p>MusicRX teases blog launch party tickets with Web3 perks, including NFT-based VIP access.</p>
                         </div>
                     </div>
                     <!-- Shop Item 4 -->
                     <div class="shop-item">
                         <div class="shop-title-card">
-                            <h2 class="card-title-container">MUSIC Beat Packs Announced</h2>
+                            <h2 class="card-title-container">Premium Subscription Teased</h2>
                         </div>
                         <div class="shop-content-card">
                             <p class="date">March 18, 2025</p>
-                            <img src="images/beat-packs.jpg" alt="Beat Packs">
-                            <p>Digital beat packs inspired by MUSIC’s production by F1LTHY, Cardo, and Bnyx are announced, available for aspiring producers to purchase soon.</p>
+                            <img src="images/premium-sub.jpg" alt="Premium Subscription">
+                            <p>MusicRX teases a premium subscription with ad-free content, exclusive articles, and Web3 benefits.</p>
                         </div>
                     </div>
                 </div>
@@ -690,6 +1027,35 @@
                     document.body.removeChild(textArea);
                     alert("Address copied to clipboard!");
                 });
+        }
+
+        // Mock wallet connection
+        function connectWallet() {
+            alert("Wallet connection coming soon! In a real implementation, this would connect to your Web3 wallet (e.g., MetaMask, Solana).");
+        }
+
+        // Countdown timer
+        function startCountdown() {
+            const launchDate = new Date("April 1, 2025 00:00:00").getTime();
+            const timer = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = launchDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").textContent = days.toString().padStart(2, '0');
+                document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.getElementById("countdown-timer").innerHTML = "<h3>Shop Now Open!</h3>";
+                }
+            }, 1000);
         }
 
         // Create floating particles
@@ -835,6 +1201,7 @@
             createParticles();
             addButtonEffects();
             setupTipping();
+            startCountdown();
 
             document.querySelectorAll('.nav-links a, .social-button, .button').forEach(element => {
                 element.addEventListener('mouseenter', () => {
