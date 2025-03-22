@@ -10,19 +10,74 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Shop-specific overrides */
-        [data-page="shop"] .hero-banner {
-            background: linear-gradient(135deg, var(--dark), #2c2c2c);
+        /* Minimal overrides to integrate with style.css */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--background, #1a1a1a);
+            color: var(--text-color, #FFFFFF);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 1rem 2rem; /* Adjusted for navbar height */
+            width: 100%;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation (override for compatibility with style.css) */
+        nav.navbar.global-nav {
+            background: var(--dark);
+            background: rgba(10, 10, 10, 0.8);
+            @supports (backdrop-filter: blur(10px)) {
+                backdrop-filter: blur(10px);
+                background: var(--dark);
+            }
+            padding: 0.5rem;
+            z-index: 1002;
+            border-bottom: 1px solid var(--border-color);
+            height: 60px;
+            box-sizing: border-box;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, var(--dark, #1a1a1a) 0%, #2c2c2c 100%);
             border-radius: 15px;
             padding: 2rem;
-            margin: 2rem auto;
-            box-shadow: 0 0 20px var(--glow);
-            max-width: 1200px;
+            margin: 2rem 0;
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.5));
         }
-        [data-page="shop"] .connect-wallet-btn {
-            background: var(--rgb-glow);
+
+        .hero-content h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 3rem;
+            color: var(--primary, #FF0000);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .connect-wallet-btn {
+            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000));
             border: none;
-            color: var(--dark);
+            color: var(--text-color, #FFFFFF);
             padding: 0.8rem 2rem;
             border-radius: 25px;
             font-family: 'Syncopate', sans-serif;
@@ -30,40 +85,90 @@
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        [data-page="shop"] .connect-wallet-btn:hover {
+
+        .connect-wallet-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 15px var(--glow);
+            box-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7));
         }
-        [data-page="shop"] .countdown-timer .timer div {
-            background: var(--glass);
+
+        #walletAddress {
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        /* Countdown Timer */
+        .countdown-timer {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .countdown-timer h2 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2rem;
+            color: var(--primary, #FF0000);
+            margin-bottom: 1rem;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .timer div {
+            background: var(--glass, rgba(255, 255, 255, 0.1));
             padding: 0.5rem 1rem;
             border-radius: 5px;
-            border: 1px solid var(--primary);
+            border: 1px solid var(--primary, #FF0000);
         }
-        [data-page="shop"] .featured-product {
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--card-background, rgba(102, 0, 0, 0.25));
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .glass-card h2 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2rem;
+            color: var(--primary, #FF0000);
+            margin-bottom: 1rem;
+        }
+
+        /* Featured Product */
+        .featured-product {
             width: 300px;
             height: 400px;
             margin: 0 auto;
             perspective: 1000px;
         }
-        [data-page="shop"] .featured-card {
+
+        .featured-card {
             width: 100%;
             height: 100%;
             transform-style: preserve-3d;
             transition: transform 0.6s;
             position: relative;
         }
-        [data-page="shop"] .featured-product:hover .featured-card {
+
+        .featured-product:hover .featured-card {
             transform: rotateY(180deg);
         }
-        [data-page="shop"] .featured-front, [data-page="shop"] .featured-back {
+
+        .featured-front, .featured-back {
             position: absolute;
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            background: var(--card-background);
+            background: var(--card-background, rgba(102, 0, 0, 0.25));
             backdrop-filter: blur(15px);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
             border-radius: 15px;
             display: flex;
             flex-direction: column;
@@ -72,33 +177,58 @@
             text-align: center;
             padding: 1rem;
         }
-        [data-page="shop"] .featured-back {
+
+        .featured-back {
             transform: rotateY(180deg);
         }
-        [data-page="shop"] .tip-jar {
+
+        .featured-front img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .featured-front h3, .featured-back h3 {
+            color: var(--primary, #FF0000);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .featured-front p, .featured-back p {
+            color: var(--text-color, #FFFFFF);
+            font-size: 1rem;
+        }
+
+        /* Support Section */
+        .tip-jar {
             position: relative;
             width: 100px;
             height: 100px;
             margin: 0 auto 2rem auto;
             animation: float 3s ease-in-out infinite;
         }
+
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-15px) rotate(5deg); }
         }
-        [data-page="shop"] .jar {
+
+        .jar {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: 3px solid var(--primary);
+            border: 3px solid var(--primary, #FF0000);
             border-radius: 15px 15px 30px 30px;
-            background: var(--glass);
+            background: var(--glass, rgba(255, 0, 0, 0.1));
             backdrop-filter: blur(5px);
             overflow: hidden;
         }
-        [data-page="shop"] .jar::after {
+
+        .jar::after {
             content: '';
             position: absolute;
             top: -10px;
@@ -106,46 +236,55 @@
             transform: translateX(-50%);
             width: 80%;
             height: 20px;
-            background: var(--primary);
+            background: var(--primary, #FF0000);
             border-radius: 10px 10px 0 0;
         }
-        [data-page="shop"] .coin {
+
+        .coin {
             position: absolute;
             width: 15px;
             height: 15px;
-            background: gold;
+            background: var(--accent, gold);
             border-radius: 50%;
             bottom: 5px;
             left: 20px;
             animation: coin-glow 2s infinite;
         }
-        [data-page="shop"] .coin:nth-child(2) {
+
+        .coin:nth-child(2) {
             left: 40px;
             bottom: 15px;
             animation-delay: 0.5s;
         }
-        [data-page="shop"] .coin:nth-child(3) {
+
+        .coin:nth-child(3) {
             left: 60px;
             bottom: 8px;
             animation-delay: 1s;
         }
+
         @keyframes coin-glow {
-            0%, 100% { box-shadow: 0 0 5px gold; }
-            50% { box-shadow: 0 0 15px gold; }
+            0%, 100% { box-shadow: 0 0 5px var(--accent, gold); }
+            50% { box-shadow: 0 0 15px var(--accent, gold); }
         }
-        [data-page="shop"] .crypto-options {
+
+        .crypto-options {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem;
+            gap: 2rem;
+            justify-items: center;
+            margin-top: 2rem;
+            padding: 2rem;
             background: rgba(0, 0, 0, 0.8);
             border-radius: 15px;
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 30px var(--glow);
+            border: 2px solid var(--primary, #FF0000);
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.5));
+            width: 100%;
         }
-        [data-page="shop"] .crypto-option {
-            background: var(--glass);
-            border: 1px solid var(--border-color);
+
+        .crypto-option {
+            background: var(--glass, rgba(0, 0, 0, 0.5));
+            border: 1px solid var(--primary, #FF0000);
             border-radius: 10px;
             padding: 1.5rem;
             display: flex;
@@ -155,26 +294,37 @@
             width: 100%;
             max-width: 250px;
         }
-        [data-page="shop"] .crypto-option:hover {
+
+        .crypto-option:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 20px var(--glow);
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.5));
         }
-        [data-page="shop"] .crypto-icon {
+
+        .crypto-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: var(--primary);
+            color: var(--text-color, #FFFFFF);
         }
-        [data-page="shop"] .wallet-address {
+
+        .crypto-option h3 {
+            color: var(--primary, #FF0000);
+            margin-bottom: 1rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .wallet-address {
             font-size: 0.8rem;
             word-break: break-all;
             text-align: center;
             margin: 0.5rem 0;
-            color: var(--text-color);
+            color: var(--text-color, #FFFFFF);
         }
-        [data-page="shop"] .copy-address-btn {
-            background: var(--glass);
-            border: 1px solid var(--primary);
-            color: var(--primary);
+
+        .copy-address-btn {
+            background: var(--glass, rgba(255, 255, 255, 0.1));
+            border: 1px solid var(--primary, #FF0000);
+            color: var(--primary, #FF0000);
             padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
@@ -182,100 +332,279 @@
             margin-bottom: 1rem;
             transition: all 0.3s;
         }
-        [data-page="shop"] .copy-address-btn:hover {
-            background: var(--rgb-glow);
+
+        .copy-address-btn:hover {
+            background: rgba(255, 0, 0, 0.2);
             transform: translateY(-2px);
         }
-        [data-page="shop"] .donate-input {
-            background: var(--glass);
-            border: 1px solid var(--primary);
+
+        .donate-input {
+            background: var(--glass, rgba(255, 255, 255, 0.1));
+            border: 1px solid var(--primary, #FF0000);
             border-radius: 5px;
-            color: var(--text-color);
+            color: var(--text-color, white);
             padding: 0.5rem;
             width: 100%;
             margin-bottom: 1rem;
         }
-        [data-page="shop"] .donate-button {
+
+        .donate-button {
             margin-top: 1rem;
             width: 100%;
-            background: var(--primary);
-            color: var(--dark);
+            background: var(--primary, #FF0000);
+            color: var(--dark, #000);
             padding: 0.5rem 1rem;
             border-radius: 5px;
             border: none;
             cursor: pointer;
             transition: all 0.3s;
         }
-        [data-page="shop"] .donate-button:hover {
-            background: var(--secondary);
+
+        .donate-button:hover {
+            background: var(--secondary, #E50000);
             transform: scale(1.05);
         }
-        [data-page="shop"] .social-links {
+
+        .social-links {
             display: flex;
             gap: 1rem;
             justify-content: center;
             margin-top: 1rem;
         }
-        [data-page="shop"] .social-button {
-            color: var(--primary);
+
+        .social-button {
+            color: var(--primary, #FF0000);
             font-size: 1.5rem;
             transition: color 0.3s;
         }
-        [data-page="shop"] .social-button:hover {
-            color: var(--secondary);
+
+        .social-button:hover {
+            color: var(--secondary, #E50000);
         }
-        [data-page="shop"] .coming-soon-products {
+
+        /* Coming Soon Products */
+        .coming-soon-products {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem;
+            gap: 2rem;
+            justify-items: center;
+            width: 100%;
         }
-        [data-page="shop"] .product-item {
+
+        .product-item {
+            width: 100%;
+            max-width: 200px;
             text-align: center;
             transition: all 0.3s;
         }
-        [data-page="shop"] .product-item:hover {
+
+        .product-item:hover {
             transform: rotate(5deg) scale(1.1);
         }
-        [data-page="shop"] .product-item i {
+
+        .product-item i {
             font-size: 3rem;
-            color: var(--primary);
+            color: var(--primary, #FF0000);
             margin-bottom: 1rem;
             animation: pulse 2s infinite;
         }
-        [data-page="shop"] .web3-benefits {
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .product-item h3 {
+            color: var(--primary, #FF0000);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-item p {
+            color: var(--text-color, #FFFFFF);
+            font-size: 0.9rem;
+        }
+
+        /* Web3 Benefits */
+        .web3-benefits {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem;
+            gap: 2rem;
+            justify-items: center;
+            margin-top: 2rem;
+            width: 100%;
         }
-        [data-page="shop"] .benefit-item {
-            background: var(--glass);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1.5rem;
+
+        .benefit-item {
+            width: 100%;
+            max-width: 250px;
             text-align: center;
+            padding: 1.5rem;
+            background: var(--glass, rgba(0, 0, 0, 0.5));
+            border: 1px solid var(--primary, #FF0000);
+            border-radius: 10px;
             transition: all 0.3s;
         }
-        [data-page="shop"] .benefit-item:hover {
+
+        .benefit-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 20px var(--glow);
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.5));
         }
-        [data-page="shop"] .benefit-item i {
+
+        .benefit-item i {
             font-size: 2.5rem;
-            color: var(--primary);
+            color: var(--primary, #FF0000);
             margin-bottom: 1rem;
         }
+
+        .benefit-item h3 {
+            color: var(--primary, #FF0000);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-item p {
+            color: var(--text-color, #FFFFFF);
+            font-size: 0.9rem;
+        }
+
+        /* Shop Updates */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 1.5rem;
+            width: 100%;
+        }
+
+        .shop-item {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .shop-title-card {
+            padding: 0.3rem 1rem;
+            background: var(--card-background, rgba(102, 0, 0, 0.25));
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
+            border-bottom: none;
+            border-radius: 15px 15px 0 0;
+            transition: all 0.4s;
+        }
+
+        .shop-title-card h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            color: var(--primary, #FF0000);
+            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7));
+        }
+
+        .shop-title-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000));
+        }
+
+        .shop-content-card {
+            padding: 1.5rem;
+            background: var(--card-background, rgba(102, 0, 0, 0.25));
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            transition: all 0.4s;
+        }
+
+        .shop-content-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .shop-content-card p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-color, #FFFFFF);
+        }
+
+        .shop-content-card .date {
+            font-size: 0.9rem;
+            color: var(--secondary, #E50000);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .shop-content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+        }
+
+        /* Media Queries */
         @media (max-width: 768px) {
-            [data-page="shop"] .crypto-options,
-            [data-page="shop"] .coming-soon-products,
-            [data-page="shop"] .web3-benefits,
-            [data-page="shop"] .shop-grid {
-                grid-template-columns: 1fr;
+            .container {
+                padding: 60px 0.5rem 1rem;
             }
-            [data-page="shop"] .featured-product {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .countdown-timer .timer {
+                font-size: 1.2rem;
+            }
+            .featured-product {
                 width: 250px;
                 height: 350px;
+            }
+            .shop-title-card h2 {
+                font-size: 1rem;
+            }
+            .shop-content-card {
+                padding: 1rem;
+            }
+            .shop-content-card p {
+                font-size: 0.9rem;
+            }
+            .shop-content-card .date {
+                font-size: 0.8rem;
+            }
+            .shop-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1rem;
+            }
+            .crypto-options {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            .coming-soon-products {
+                grid-template-columns: 1fr;
+            }
+            .web3-benefits {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .crypto-options {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .coming-soon-products {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+            .web3-benefits {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .shop-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
         }
     </style>
@@ -311,200 +640,198 @@
     <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
     <button id="tipMachine" title="Get a Tip"><i class="fas fa-lightbulb"></i></button>
 
-    <div class="main-content">
-        <div class="container">
-            <h1 class="glitch" data-text="SHOP">SHOP</h1>
-            <section class="hero">
-                <div class="hero-banner">
-                    <div class="hero-content">
-                        <p>Discover exclusive music blog merch, digital content, and Web3 experiences!</p>
-                        <button class="connect-wallet-btn" id="connectWallet">Connect Wallet</button>
-                        <p id="walletAddress"></p>
-                    </div>
+    <div class="container">
+        <section class="hero">
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <h1>Welcome to the MusicRX Shop</h1>
+                    <p>Discover exclusive music blog merch, digital content, and Web3 experiences!</p>
+                    <button class="connect-wallet-btn" id="connectWallet">Connect Wallet</button>
+                    <p id="walletAddress"></p>
                 </div>
+            </div>
 
-                <div class="countdown-timer">
-                    <h2>Shop Launch Countdown</h2>
-                    <div class="timer" id="countdown-timer">
-                        <div id="days">00</div>
-                        <div id="hours">00</div>
-                        <div id="minutes">00</div>
-                        <div id="seconds">00</div>
-                    </div>
+            <div class="countdown-timer">
+                <h2>Shop Launch Countdown</h2>
+                <div class="timer" id="countdown-timer">
+                    <div id="days">00</div>
+                    <div id="hours">00</div>
+                    <div id="minutes">00</div>
+                    <div id="seconds">00</div>
                 </div>
+            </div>
 
-                <div class="glass-card">
-                    <h2>Featured Product</h2>
-                    <div class="featured-product">
-                        <div class="featured-card">
-                            <div class="featured-front">
-                                <img src="images/musicrx-hoodie.jpg" alt="MusicRX Hoodie">
-                                <h3>MusicRX Limited Hoodie</h3>
-                                <p>Exclusive drop coming soon!</p>
-                            </div>
-                            <div class="featured-back">
-                                <h3>Unlock with NFT</h3>
-                                <p>Own a MusicRX NFT to get early access to this limited edition hoodie!</p>
-                            </div>
+            <div class="glass-card">
+                <h2>Featured Product</h2>
+                <div class="featured-product">
+                    <div class="featured-card">
+                        <div class="featured-front">
+                            <img src="images/musicrx-hoodie.jpg" alt="MusicRX Hoodie">
+                            <h3>MusicRX Limited Hoodie</h3>
+                            <p>Exclusive drop coming soon!</p>
+                        </div>
+                        <div class="featured-back">
+                            <h3>Unlock with NFT</h3>
+                            <p>Own a MusicRX NFT to get early access to this limited edition hoodie!</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="glass-card">
-                    <h2>Support MusicRX</h2>
-                    <p>While our products are still in development, you can support MusicRX with a tip!</p>
-                    <div class="tip-jar">
-                        <div class="jar">
-                            <div class="coin"></div>
-                            <div class="coin"></div>
-                            <div class="coin"></div>
-                        </div>
-                    </div>
-                    <div class="crypto-options">
-                        <div class="crypto-option">
-                            <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
-                            <h3>Tip with ETH</h3>
-                            <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
-                            <button class="copy-address-btn" onclick="copyToClipboard('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
-                                <i class="fas fa-copy"></i> Copy Address
-                            </button>
-                            <input type="number" placeholder="Amount in ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
-                            <button id="tipEth" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
-                        </div>
-                        <div class="crypto-option">
-                            <div class="crypto-icon"><i class="fab fa-bitcoin"></i></div>
-                            <h3>Tip with BTC</h3>
-                            <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
-                            <button class="copy-address-btn" onclick="copyToClipboard('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
-                                <i class="fas fa-copy"></i> Copy Address
-                            </button>
-                            <input type="number" placeholder="Amount in BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
-                            <button id="tipBtc" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
-                        </div>
-                        <div class="crypto-option">
-                            <div class="crypto-icon"><i class="fas fa-sun"></i></div>
-                            <h3>Tip with SOL</h3>
-                            <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
-                            <button class="copy-address-btn" onclick="copyToClipboard('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
-                                <i class="fas fa-copy"></i> Copy Address
-                            </button>
-                            <input type="number" placeholder="Amount in SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
-                            <button id="tipSol" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
-                        </div>
-                        <div class="crypto-option">
-                            <div class="crypto-icon"><i class="fas fa-cube"></i></div>
-                            <h3>Buy MusicRX NFT</h3>
-                            <p class="wallet-address">Coming Soon: Unlock exclusive content!</p>
-                            <button class="donate-button" onclick="alert('NFT purchase coming soon! Connect your wallet to reserve your MusicRX NFT.')">
-                                <i class="fas fa-cube"></i> Reserve NFT
-                            </button>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 3rem;">
-                        <h3>Other Ways to Support</h3>
-                        <p>Follow @36966_ on X and share our content!</p>
-                        <div class="social-links">
-                            <a href="#" class="social-button"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-button"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-button"><i class="fab fa-tiktok"></i></a>
-                        </div>
+            <div class="glass-card">
+                <h2>Support MusicRX</h2>
+                <p>While our products are still in development, you can support MusicRX with a tip!</p>
+                <div class="tip-jar">
+                    <div class="jar">
+                        <div class="coin"></div>
+                        <div class="coin"></div>
+                        <div class="coin"></div>
                     </div>
                 </div>
+                <div class="crypto-options">
+                    <div class="crypto-option">
+                        <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
+                        <h3>Tip with ETH</h3>
+                        <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
+                        <button class="copy-address-btn" onclick="copyToClipboard('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
+                            <i class="fas fa-copy"></i> Copy Address
+                        </button>
+                        <input type="number" placeholder="Amount in ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
+                        <button id="tipEth" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
+                    </div>
+                    <div class="crypto-option">
+                        <div class="crypto-icon"><i class="fab fa-bitcoin"></i></div>
+                        <h3>Tip with BTC</h3>
+                        <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
+                        <button class="copy-address-btn" onclick="copyToClipboard('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
+                            <i class="fas fa-copy"></i> Copy Address
+                        </button>
+                        <input type="number" placeholder="Amount in BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
+                        <button id="tipBtc" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
+                    </div>
+                    <div class="crypto-option">
+                        <div class="crypto-icon"><i class="fas fa-sun"></i></div>
+                        <h3>Tip with SOL</h3>
+                        <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
+                        <button class="copy-address-btn" onclick="copyToClipboard('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
+                            <i class="fas fa-copy"></i> Copy Address
+                        </button>
+                        <input type="number" placeholder="Amount in SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
+                        <button id="tipSol" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
+                    </div>
+                    <div class="crypto-option">
+                        <div class="crypto-icon"><i class="fas fa-cube"></i></div>
+                        <h3>Buy MusicRX NFT</h3>
+                        <p class="wallet-address">Coming Soon: Unlock exclusive content!</p>
+                        <button class="donate-button" onclick="alert('NFT purchase coming soon! Connect your wallet to reserve your MusicRX NFT.')">
+                            <i class="fas fa-cube"></i> Reserve NFT
+                        </button>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <h3>Other Ways to Support</h3>
+                    <p>Follow @36966_ on X and share our content!</p>
+                    <div class="social-links">
+                        <a href="#" class="social-button"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-button"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-button"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
 
-                <div class="glass-card">
-                    <h2>Coming Soon Products</h2>
-                    <div class="coming-soon-products">
-                        <div class="product-item">
-                            <i class="fas fa-tshirt"></i>
-                            <h3>MusicRX Apparel</h3>
-                            <p>Limited edition hoodies & tees</p>
-                        </div>
-                        <div class="product-item">
-                            <i class="fas fa-headphones"></i>
-                            <h3>Exclusive Playlists</h3>
-                            <p>Curated music selections</p>
-                        </div>
-                        <div class="product-item">
-                            <i class="fas fa-ticket-alt"></i>
-                            <h3>Event Tickets</h3>
-                            <p>Blog launch parties & more</p>
-                        </div>
-                        <div class="product-item">
-                            <i class="fas fa-cube"></i>
-                            <h3>MusicRX NFTs</h3>
-                            <p>Unlock exclusive content</p>
-                        </div>
+            <div class="glass-card">
+                <h2>Coming Soon Products</h2>
+                <div class="coming-soon-products">
+                    <div class="product-item">
+                        <i class="fas fa-tshirt"></i>
+                        <h3>MusicRX Apparel</h3>
+                        <p>Limited edition hoodies & tees</p>
+                    </div>
+                    <div class="product-item">
+                        <i class="fas fa-headphones"></i>
+                        <h3>Exclusive Playlists</h3>
+                        <p>Curated music selections</p>
+                    </div>
+                    <div class="product-item">
+                        <i class="fas fa-ticket-alt"></i>
+                        <h3>Event Tickets</h3>
+                        <p>Blog launch parties & more</p>
+                    </div>
+                    <div class="product-item">
+                        <i class="fas fa-cube"></i>
+                        <h3>MusicRX NFTs</h3>
+                        <p>Unlock exclusive content</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="glass-card">
-                    <h2>Web3 Benefits</h2>
-                    <div class="web3-benefits">
-                        <div class="benefit-item">
-                            <i class="fas fa-cube"></i>
-                            <h3>NFT Ownership</h3>
-                            <p>Own MusicRX NFTs to unlock exclusive blog content and perks.</p>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-wallet"></i>
-                            <h3>Secure Payments</h3>
-                            <p>Pay with ETH, BTC, or SOL for a seamless, decentralized experience.</p>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-users"></i>
-                            <h3>Community Access</h3>
-                            <p>Join our Web3 community for exclusive events and updates.</p>
-                        </div>
+            <div class="glass-card">
+                <h2>Web3 Benefits</h2>
+                <div class="web3-benefits">
+                    <div class="benefit-item">
+                        <i class="fas fa-cube"></i>
+                        <h3>NFT Ownership</h3>
+                        <p>Own MusicRX NFTs to unlock exclusive blog content and perks.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-wallet"></i>
+                        <h3>Secure Payments</h3>
+                        <p>Pay with ETH, BTC, or SOL for a seamless, decentralized experience.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-users"></i>
+                        <h3>Community Access</h3>
+                        <p>Join our Web3 community for exclusive events and updates.</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="glass-card">
-                    <h2>Shop Updates</h2>
-                    <div class="shop-grid">
-                        <div class="shop-item">
-                            <div class="glass-card title-card">
-                                <h2 class="card-title-container">MusicRX Hoodies Teased</h2>
-                                <p class="date">March 21, 2025</p>
-                            </div>
-                            <div class="glass-card content-card">
-                                <img src="images/musicrx-hoodie.jpg" alt="MusicRX Hoodie">
-                                <p>MusicRX teases limited edition hoodies featuring the blog’s iconic logo, set to launch with the shop’s opening.</p>
-                            </div>
+            <div class="glass-card">
+                <h2>Shop Updates</h2>
+                <div class="shop-grid">
+                    <div class="shop-item">
+                        <div class="shop-title-card">
+                            <h2>MusicRX Hoodies Teased</h2>
                         </div>
-                        <div class="shop-item">
-                            <div class="glass-card title-card">
-                                <h2 class="card-title-container">Playlist NFTs Announced</h2>
-                                <p class="date">March 20, 2025</p>
-                            </div>
-                            <div class="glass-card content-card">
-                                <img src="images/playlist-nft.jpg" alt="Playlist NFT">
-                                <p>MusicRX announces exclusive playlist NFTs, offering early access to curated tracks for NFT holders.</p>
-                            </div>
+                        <div class="shop-content-card">
+                            <p class="date">March 21, 2025</p>
+                            <img src="images/musicrx-hoodie.jpg" alt="MusicRX Hoodie">
+                            <p>MusicRX teases limited edition hoodies featuring the blog’s iconic logo, set to launch with the shop’s opening.</p>
                         </div>
-                        <div class="shop-item">
-                            <div class="glass-card title-card">
-                                <h2 class="card-title-container">Blog Launch Party Tickets</h2>
-                                <p class="date">March 19, 2025</p>
-                            </div>
-                            <div class="glass-card content-card">
-                                <img src="images/launch-party.jpg" alt="Launch Party">
-                                <p>MusicRX teases blog launch party tickets with Web3 perks, including NFT-based VIP access.</p>
-                            </div>
+                    </div>
+                    <div class="shop-item">
+                        <div class="shop-title-card">
+                            <h2>Playlist NFTs Announced</h2>
                         </div>
-                        <div class="shop-item">
-                            <div class="glass-card title-card">
-                                <h2 class="card-title-container">Premium Subscription Teased</h2>
-                                <p class="date">March 18, 2025</p>
-                            </div>
-                            <div class="glass-card content-card">
-                                <img src="images/premium-sub.jpg" alt="Premium Subscription">
-                                <p>MusicRX teases a premium subscription with ad-free content, exclusive articles, and Web3 benefits.</p>
-                            </div>
+                        <div class="shop-content-card">
+                            <p class="date">March 20, 2025</p>
+                            <img src="images/playlist-nft.jpg" alt="Playlist NFT">
+                            <p>MusicRX announces exclusive playlist NFTs, offering early access to curated tracks for NFT holders.</p>
+                        </div>
+                    </div>
+                    <div class="shop-item">
+                        <div class="shop-title-card">
+                            <h2>Blog Launch Party Tickets</h2>
+                        </div>
+                        <div class="shop-content-card">
+                            <p class="date">March 19, 2025</p>
+                            <img src="images/launch-party.jpg" alt="Launch Party">
+                            <p>MusicRX teases blog launch party tickets with Web3 perks, including NFT-based VIP access.</p>
+                        </div>
+                    </div>
+                    <div class="shop-item">
+                        <div class="shop-title-card">
+                            <h2>Premium Subscription Teased</h2>
+                        </div>
+                        <div class="shop-content-card">
+                            <p class="date">March 18, 2025</p>
+                            <img src="images/premium-sub.jpg" alt="Premium Subscription">
+                            <p>MusicRX teases a premium subscription with ad-free content, exclusive articles, and Web3 benefits.</p>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </div>
 
     <footer class="footer">
