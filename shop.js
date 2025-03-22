@@ -1,29 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
     const ethProvider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : null;
     const solConnection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com");
-    const myEthAddress = "0x24A77F76fe0CF427f26A9E49F33f7E9287217250";
-    const mySolAddress = "9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z";
+    const myEthAddress = "0x24A77F76fe0CF427f26A9E49F33f7E9287217250"; // Your MetaMask address
+    const mySolAddress = "7YCdysgzcxuJTrGe5XfyKpobagonNmwT8ygPvpEBwUUr"; // Your Phantom address
     window.connectedChain = null;
     window.connectedAddress = null;
+    let walletConnectProvider = null;
 
     async function connectWallet() {
         const hasEth = window.ethereum;
         const hasSol = window.solana && window.solana.isPhantom;
+        const connectWalletButton = document.getElementById("connectWallet");
         const walletStatus = document.getElementById("walletStatus");
 
         if (!hasEth && !hasSol) {
-            alert("Please install MetaMask or Phantom wallet!");
+            alert("Please install MetaMask, Phantom, or a WalletConnect-compatible wallet!");
             return;
         }
 
-        let choice = null;
-        if (hasEth && hasSol) {
-            choice = prompt("Which wallet would you like to connect? Type 'ETH' for MetaMask or 'SOL' for Phantom:");
-            if (!choice) return; // User canceled the prompt
-            choice = choice.toLowerCase();
-        }
+        let choice = prompt("Which wallet would you like to connect? Type 'ETH' for MetaMask, 'SOL' for Phantom, or 'WC' for WalletConnect:");
+        if (!choice) return; // User canceled the prompt
+        choice = choice.toLowerCase();
 
-        if ((hasEth && !hasSol) || (choice === "eth")) {
+        if ((hasEth && choice === "eth") || (hasEth && !hasSol && choice !== "sol" && choice !== "wc")) {
             try {
                 await window.ethereum.request({ method: "eth_requestAccounts" });
                 const signer = ethProvider.getSigner();
@@ -33,11 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (walletStatus) {
                     walletStatus.textContent = `ETH: ${address.slice(0, 6)}...`;
                 }
+                if (connectWalletButton) {
+                    connectWalletButton.textContent = "Wallet Connected";
+                }
             } catch (error) {
                 console.error("ETH connection failed:", error);
                 alert("ETH connection failed: " + error.message);
             }
-        } else if ((hasSol && !hasEth) || (choice === "sol")) {
+        } else if ((hasSol && choice === "sol") || (hasSol && !hasEth && choice !== "eth" && choice !== "wc")) {
             try {
                 await window.solana.connect();
                 const address = window.solana.publicKey.toString();
@@ -46,19 +48,47 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (walletStatus) {
                     walletStatus.textContent = `SOL: ${address.slice(0, 6)}...`;
                 }
+                if (connectWalletButton) {
+                    connectWalletButton.textContent = "Wallet Connected";
+                }
             } catch (error) {
                 console.error("SOL connection failed:", error);
                 alert("SOL connection failed: " + error.message);
             }
+        } else if (choice === "wc") {
+            try {
+                const { EthereumProvider } = await import('https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider@2.11.0/+esm');
+                walletConnectProvider = await EthereumProvider.init({
+                    projectId: "YOUR_WALLETCONNECT_PROJECT_ID", // Replace with your WalletConnect project ID
+                    chains: [1], // Ethereum mainnet
+                    showQrModal: true,
+                });
+                await walletConnectProvider.connect();
+                const provider = new ethers.providers.Web3Provider(walletConnectProvider);
+                const signer = provider.getSigner();
+                const address = await signer.getAddress();
+                window.connectedAddress = address;
+                window.connectedChain = "eth"; // WalletConnect uses ETH
+                if (walletStatus) {
+                    walletStatus.textContent = `WC: ${address.slice(0, 6)}...`;
+                }
+                if (connectWalletButton) {
+                    connectWalletButton.textContent = "Wallet Connected";
+                }
+            } catch (error) {
+                console.error("WalletConnect connection failed:", error);
+                alert("WalletConnect connection failed: " + error.message);
+            }
         } else {
-            alert("Invalid choice! Please type 'ETH' or 'SOL'.");
+            alert("Invalid choice! Please type 'ETH', 'SOL', or 'WC'.");
         }
     }
 
     async function sendEth(amount) {
         if (window.connectedChain !== "eth") return alert("Connect an ETH wallet first!");
         try {
-            const signer = ethProvider.getSigner();
+            const provider = walletConnectProvider ? new ethers.providers.Web3Provider(walletConnectProvider) : ethProvider;
+            const signer = provider.getSigner();
             const tx = await signer.sendTransaction({
                 to: myEthAddress,
                 value: ethers.utils.parseEther(amount),
