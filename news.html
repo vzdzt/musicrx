@@ -8,52 +8,69 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Ensure title card fits text height comfortably */
-        .glass-card.title-card {
-            padding: 0.3rem 1rem; /* Slightly increased vertical padding for comfort */
+        /* Specific styling for news title card */
+        .news-title-card {
+            padding: 0.3rem 1rem; /* Comfortable vertical padding for text */
             min-height: auto; /* Override any min-height */
             height: auto; /* Fit content */
             display: flex;
             align-items: center;
             justify-content: center; /* Center the title */
-            background: rgba(102, 0, 0, 0.25);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(153, 0, 0, 0.3);
+            background: rgba(102, 0, 0, 0.25); /* Glass effect background */
+            backdrop-filter: blur(15px); /* Blur effect */
+            border: 2px solid rgba(153, 0, 0, 0.3); /* Border */
             border-radius: 15px 15px 0 0; /* Round top corners only */
             margin-bottom: 0; /* No gap between title and content */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transition */
         }
-        .glass-card.title-card h2 {
+        .news-title-card h2 {
             margin: 0; /* Remove default margins */
             font-size: 1.2rem; /* Adjust font size for fit */
             line-height: 1.2; /* Slightly increased for readability */
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
-            color: var(--primary);
-            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7));
+            color: var(--primary, #FF0000); /* Primary color */
+            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7)); /* Glow effect */
         }
-        .glass-card.content-card {
+        .news-title-card:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+            background: linear-gradient(45deg, #FF0000, #E50000, #CC0000); /* Gradient on hover */
+            background-size: 200% 200%;
+            animation: rgbShift 3s linear infinite;
+        }
+        /* Specific styling for news content card */
+        .news-content-card {
             padding: 1.5rem;
-            background: rgba(102, 0, 0, 0.25);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(153, 0, 0, 0.3);
+            background: rgba(102, 0, 0, 0.25); /* Glass effect background */
+            backdrop-filter: blur(15px); /* Blur effect */
+            border: 2px solid rgba(153, 0, 0, 0.3); /* Border */
             border-radius: 0 0 15px 15px; /* Round bottom corners only */
             margin-top: 0; /* No gap between title and content */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transition */
         }
-        .glass-card.content-card img {
+        .news-content-card img {
             width: 100%;
             height: auto;
             border-radius: 10px;
             margin-bottom: 1rem;
         }
-        .glass-card.content-card p {
+        .news-content-card p {
             margin: 0;
             font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            color: #FFFFFF;
         }
-        .glass-card.content-card .date {
+        .news-content-card .date {
             font-size: 0.9rem;
             color: var(--secondary, #E50000);
             text-align: center;
             margin-bottom: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .news-content-card:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
         }
         .grid {
             display: grid;
@@ -61,20 +78,25 @@
             gap: 2rem;
             padding: 1.5rem;
         }
+        @keyframes rgbShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
         @media (max-width: 768px) {
-            .glass-card.title-card {
+            .news-title-card {
                 padding: 0.3rem 0.5rem;
             }
-            .glass-card.title-card h2 {
+            .news-title-card h2 {
                 font-size: 1rem;
             }
-            .glass-card.content-card {
+            .news-content-card {
                 padding: 1rem;
             }
-            .glass-card.content-card p {
+            .news-content-card p {
                 font-size: 0.9rem;
             }
-            .glass-card.content-card .date {
+            .news-content-card .date {
                 font-size: 0.8rem;
             }
             .grid {
@@ -118,81 +140,81 @@
             <h1 class="glitch" data-text="NEWS">NEWS</h1>
             <div class="grid">
                 <!-- Title card for MUSIC Tops Billboard 200 -->
-                <div class="glass-card title-card">
+                <div class="news-title-card">
                     <h2 class="card-title-container">MUSIC Tops Billboard 200</h2>
                 </div>
                 <!-- Content card for MUSIC Tops Billboard 200 -->
-                <div class="glass-card content-card">
+                <div class="news-content-card">
                     <p class="date">March 21, 2025</p>
                     <img src="images/carti-projections.jpg" alt="Billboard 200">
                     <p>Playboi Carti’s MUSIC debuted at No. 1 on the Billboard 200, solidifying its dominance with 302,000 units sold in its first week.</p>
                 </div>
                 <!-- Title card for BACKR00MS Goes Viral on TikTok -->
-                <div class="glass-card title-card">
+                <div class="news-title-card">
                     <h2 class="card-title-container">BACKR00MS Goes Viral on TikTok</h2>
                 </div>
                 <!-- Content card for BACKR00MS Goes Viral on TikTok -->
-                <div class="glass-card content-card">
+                <div class="news-content-card">
                     <p class="date">March 20, 2025</p>
-                    <img src="backrooms.jpeg" alt="TikTok Viral">
+                    <img src="https://vzdzt.github.io/musicrx/backrooms.jpeg" alt="TikTok Viral">
                     <p>“BACKR00MS” from MUSIC exploded on TikTok, becoming a viral sensation with its infectious beat, driving the album’s cultural impact in 2025.</p>
                 </div>
                 <!-- Title card for MUSIC Tops Spotify Streams -->
-                <div class="glass-card title-card">
+                <div class="news-title-card">
                     <h2 class="card-title-container">MUSIC Tops Spotify Streams</h2>
                 </div>
                 <!-- Content card for MUSIC Tops Spotify Streams -->
-                <div class="glass-card content-card">
+                <div class="news-content-card">
                     <p class="date">March 19, 2025</p>
                     <img src="images/carti-projections.jpg" alt="Spotify Streams">
                     <p>Playboi Carti’s MUSIC racked up 228.7 million Spotify streams by March 21, 2025, with a single-day record of 139.3 million streams.</p>
                 </div>
                 <!-- Title card for Carti Projected 302K First Week -->
-                <div class="glass-card title-card">
+                <div class="news-title-card">
                     <h2 class="card-title-container">Carti Projected 302K First Week</h2>
                 </div>
                 <!-- Content card for Carti Projected 302K First Week -->
-                <div class="glass-card content-card">
+                <div class="news-content-card">
                     <p class="date">March 18, 2025</p>
                     <img src="images/carti-projections.jpg" alt="Carti Sales">
                     <p>I AM MUSIC is projected to sell 302,000 units in its first week, eyeing a No. 1 Billboard 200 debut, per HITS Daily Double.</p>
                 </div>
                 <!-- Title card for AI Rumors Spark Debate -->
-                <div class="glass-card title-card">
+                <div class="news-title-card">
                     <h2 class="card-title-container">AI Rumors Spark Debate</h2>
                 </div>
                 <!-- Content card for AI Rumors Spark Debate -->
-                <div class="glass-card content-card">
+                <div class="news-content-card">
                     <p class="date">March 17, 2025</p>
                     <img src="images/carti-projections.jpg" alt="AI Rumors">
                     <p>Rumors of AI use on “FINE SH*T” and “RATHER LIE” from MUSIC stir controversy, with fans debating authenticity after the album’s release.</p>
                 </div>
                 <!-- Title card for Carti Debuts MUSIC at Rolling Loud -->
-                <div class="glass-card title-card">
+                <div class="news-title-card">
                     <h2 class="card-title-container">Carti Debuts MUSIC at Rolling Loud</h2>
                 </div>
                 <!-- Content card for Carti Debuts MUSIC at Rolling Loud -->
-                <div class="glass-card content-card">
+                <div class="news-content-card">
                     <p class="date">March 16, 2025</p>
                     <img src="images/rolling-loud.jpg" alt="Rolling Loud">
                     <p>Playboi Carti debuted MUSIC live at Rolling Loud LA, headlining with a high-energy set that fueled viral hype across social media.</p>
                 </div>
                 <!-- Title card for Rolling Loud LA Lineup Announced -->
-                <div class="glass-card title-card">
+                <div class="news-title-card">
                     <h2 class="card-title-container">Rolling Loud LA Lineup Announced</h2>
                 </div>
                 <!-- Content card for Rolling Loud LA Lineup Announced -->
-                <div class="glass-card content-card">
+                <div class="news-content-card">
                     <p class="date">March 15, 2025</p>
                     <img src="images/rolling-loud.jpg" alt="Rolling Loud">
                     <p>Rolling Loud LA announced its 2025 lineup, with Playboi Carti headlining to debut MUSIC, alongside other major acts, sparking festival excitement.</p>
                 </div>
                 <!-- Title card for Playboi Carti Drops MUSIC -->
-                <div class="glass-card title-card">
+                <div class="news-title-card">
                     <h2 class="card-title-container">Playboi Carti Drops MUSIC</h2>
                 </div>
                 <!-- Content card for Playboi Carti Drops MUSIC -->
-                <div class="glass-card content-card">
+                <div class="news-content-card">
                     <p class="date">March 14, 2025</p>
                     <img src="images/carti-projections.jpg" alt="Carti Album Drop">
                     <p>Playboi Carti released MUSIC, a 30-track punk-trap odyssey featuring The Weeknd, Kendrick Lamar, and Travis Scott, after over four years since Whole Lotta Red.</p>
