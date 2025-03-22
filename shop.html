@@ -3,12 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRX - Shop</title>
+    <title>MusicRX - Bodega</title>
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7/dist/ethers.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Web3 subtle styling */
+        .web3-hint {
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--primary);
+            position: relative;
+            cursor: help;
+        }
+        .web3-hint:hover::after {
+            content: "Web3 tech powers exclusive perks!";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            color: var(--text-color);
+            z-index: 10;
+            white-space: nowrap;
+        }
+        /* Smaller MusicRx card */
+        .musicrx-card {
+            max-width: 250px;
+            min-height: auto;
+            padding: 1rem;
+            background: var(--glass);
+            box-shadow: 0 0 8px var(--glow);
+            border-radius: 10px;
+        }
+        .musicrx-card .connect-wallet-btn {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+            border-radius: 15px;
+        }
+        /* Subtle pulse animation */
+        .fa-pulse-subtle {
+            animation: pulse 4s infinite ease-in-out;
+        }
+        /* Adjust grid spacing */
+        [data-page="shop"] .shop-grid {
+            gap: 3rem;
+            padding: 2rem;
+        }
+    </style>
 </head>
 <body data-page="shop">
     <canvas id="universe"></canvas>
@@ -49,16 +96,18 @@
     <div class="main-content">
         <div class="shop-container">
             <!-- Hero Section -->
-            <section class="shop-hero">
-                <h1 class="glitch" data-text="MUSICRX SHOP">MUSICRX SHOP</h1>
-                <p>Unleash the Soundwave: Exclusive Web3 Merch & Experiences</p>
-                <button class="connect-wallet-btn" id="connectWalletShop">Connect Wallet</button>
-                <canvas id="particles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
+            <section class="shop-hero" style="height: 50vh;">
+                <h1 class="glitch" data-text="MUSICRX BODEGA">MUSICRX BODEGA</h1>
+                <p>Minimalist Music Essentials</p>
+                <div class="glass-card musicrx-card">
+                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                    <button class="connect-wallet-btn" id="connectWalletShop">Connect</button>
+                </div>
             </section>
 
             <!-- Countdown Timer -->
             <section class="countdown-section">
-                <h2 class="glitch" data-text="PRODUCTS DROPPING IN...">PRODUCTS DROPPING IN...</h2>
+                <h2 class="section-title">Opening Soon</h2>
                 <div class="countdown-timer" id="countdown-timer">
                     <div id="days">00</div>
                     <div id="hours">00</div>
@@ -70,61 +119,56 @@
             <!-- Products Teaser Grid -->
             <section class="shop-grid">
                 <div class="shop-card">
-                    <i class="fas fa-ticket-alt fa-spin-slow"></i>
-                    <h2>Raffle Vault</h2>
-                    <p>Enter NFT raffles for exclusive vinyls & merch drops. Coming Soon!</p>
+                    <i class="fas fa-heartbeat fa-pulse-subtle"></i>
+                    <h2>Apparel</h2>
+                    <p>Black & white essentials.</p>
                 </div>
                 <div class="shop-card">
-                    <i class="fas fa-tshirt fa-float"></i>
-                    <h2>Hoodies & Sweatpants</h2>
-                    <p>Cyberpunk-inspired apparel to vibe in style. In Production.</p>
+                    <i class="fas fa-heartbeat fa-pulse-subtle"></i>
+                    <h2>Raffles</h2>
+                    <p>Vinyls & artist bundles via <span class="web3-hint">NFTs</span>.</p>
                 </div>
                 <div class="shop-card">
-                    <i class="fas fa-headphones fa-pulse"></i>
-                    <h2>Exclusive Content</h2>
-                    <p>Unlock playlists & digital collectibles with NFT perks.</p>
-                </div>
-                <div class="shop-card">
-                    <i class="fas fa-calendar-alt fa-float"></i>
-                    <h2>Event Tickets</h2>
-                    <p>VIP access to MusicRx live events. Stay tuned!</p>
+                    <i class="fas fa-heartbeat fa-pulse-subtle"></i>
+                    <h2>Perks</h2>
+                    <p><span class="web3-hint">NFT</span> holders get exclusives.</p>
                 </div>
             </section>
 
             <!-- Support Section -->
             <section class="support-section">
-                <h2 class="section-title">Support the Vision</h2>
-                <p>Fuel MusicRx’s future with a tip while we craft the ultimate shop!</p>
+                <h2 class="section-title">Support Us</h2>
+                <p>Tip to fuel the bodega.</p>
                 <div class="crypto-grid">
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
-                        <h3>Tip with ETH</h3>
+                        <h3><span class="web3-hint">ETH</span></h3>
                         <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
                         <button class="copy-address-btn" onclick="copyToClipboard('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
-                            <i class="fas fa-copy"></i> Copy
+                            <i class="fas fa-copy"></i>
                         </button>
-                        <input type="number" placeholder="Amount in ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
-                        <button id="tipEth" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
+                        <input type="number" placeholder="ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
+                        <button id="tipEth" class="donate-button"><i class="fas fa-donate"></i></button>
                     </div>
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fab fa-bitcoin"></i></div>
-                        <h3>Tip with BTC</h3>
+                        <h3>BTC</h3>
                         <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
                         <button class="copy-address-btn" onclick="copyToClipboard('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
-                            <i class="fas fa-copy"></i> Copy
+                            <i class="fas fa-copy"></i>
                         </button>
-                        <input type="number" placeholder="Amount in BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
-                        <button id="tipBtc" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
+                        <input type="number" placeholder="BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
+                        <button id="tipBtc" class="donate-button"><i class="fas fa-donate"></i></button>
                     </div>
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fas fa-sun"></i></div>
-                        <h3>Tip with SOL</h3>
+                        <h3><span class="web3-hint">SOL</span></h3>
                         <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
                         <button class="copy-address-btn" onclick="copyToClipboard('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
-                            <i class="fas fa-copy"></i> Copy
+                            <i class="fas fa-copy"></i>
                         </button>
-                        <input type="number" placeholder="Amount in SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
-                        <button id="tipSol" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
+                        <input type="number" placeholder="SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
+                        <button id="tipSol" class="donate-button"><i class="fas fa-donate"></i></button>
                     </div>
                 </div>
             </section>
@@ -137,11 +181,11 @@
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
         </div>
         <div class="footer-content">
-            <p>© 2025 MusicRx. All rights reserved.</p>
+            <p>© 2025 MusicRx</p>
         </div>
         <form class="newsletter-form">
-            <input type="email" placeholder="Subscribe to Newsletter" required>
-            <button type="submit">Subscribe</button>
+            <input type="email" placeholder="Subscribe" required>
+            <button type="submit"><i class="fas fa-envelope"></i></button>
         </form>
     </footer>
 
@@ -151,75 +195,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script src="shop.js"></script>
-    <script>
-        // Simple particle effect for hero section
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-
-        const particlesArray = [];
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 5 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.size > 0.2) this.size -= 0.1;
-            }
-            draw() {
-                ctx.fillStyle = 'rgba(0, 247, 255, 0.5)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            for (let i = 0; i < 50; i++) {
-                particlesArray.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-                if (particlesArray[i].size <= 0.2) {
-                    particlesArray.splice(i, 1);
-                    i--;
-                    particlesArray.push(new Particle());
-                }
-            }
-            requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
-
-        // Resize canvas on window resize
-        window.addEventListener('resize', () => {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        });
-    </script>
-    <style>
-        /* Additional inline styles for animations */
-        .fa-spin-slow {
-            animation: spin 6s linear infinite;
-        }
-        .fa-float {
-            animation: float 3s ease-in-out infinite;
-        }
-        .fa-pulse {
-            animation: pulse 2s infinite;
-        }
-    </style>
 </body>
 </html>
