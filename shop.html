@@ -311,7 +311,7 @@
     <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
     <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
-    <button id="tipMachine" title="Send a Tip"><i class="fas fa-lightbulb"></i></button>
+    <button id="tipMachine" title="Send a Tip"><i class="fas fa-donate"></i></button>
 
     <div class="main-content">
         <div class="container">
@@ -462,7 +462,7 @@
                             <div class="product-item">
                                 <i class="fas fa-tshirt"></i>
                                 <h3>MusicRX Apparel</h3>
-                                <p>Limited edition hoodies & tees</p>
+                                <p>Limited edition hoodies & W tees</p>
                             </div>
                             <div class="product-item">
                                 <i class="fas fa-headphones"></i>
@@ -618,27 +618,16 @@
         }
 
         // Tip Machine Logic (Prompt to send a tip via connected wallet)
-        let connectedChain = null; // To track the connected chain (set by shop.js)
-        let connectedAddress = null; // To track the connected address (set by shop.js)
-
-        // Expose these variables to shop.js (since shop.js sets them)
-        window.addEventListener('message', (event) => {
-            if (event.data.connectedChain) {
-                connectedChain = event.data.connectedChain;
-                connectedAddress = event.data.connectedAddress;
-            }
-        });
-
         const tipButton = document.getElementById('tipMachine');
         const sendTipButton = document.getElementById('sendTip');
         const tipOutput = document.getElementById('tipOutput');
 
         if (tipButton && sendTipButton && tipOutput) {
             tipButton.addEventListener('click', () => {
-                if (!connectedAddress) {
+                if (!window.connectedAddress) {
                     tipOutput.textContent = "Please connect your wallet first!";
                 } else {
-                    tipOutput.textContent = `Connected: ${connectedAddress.slice(0, 6)}...`;
+                    tipOutput.textContent = `Connected: ${window.connectedAddress.slice(0, 6)}...`;
                 }
             });
 
@@ -648,14 +637,16 @@
                     tipOutput.textContent = "Please enter a valid amount!";
                     return;
                 }
-                if (!connectedAddress) {
+                if (!window.connectedAddress) {
                     tipOutput.textContent = "Please connect your wallet first!";
                     return;
                 }
-                if (connectedChain === "eth") {
+                if (window.connectedChain === "eth") {
                     sendEth(amount);
-                } else if (connectedChain === "sol") {
+                    tipOutput.textContent = `Sending ${amount} ETH...`;
+                } else if (window.connectedChain === "sol") {
                     sendSol(amount);
+                    tipOutput.textContent = `Sending ${amount} SOL...`;
                 } else {
                     tipOutput.textContent = "Unsupported wallet type!";
                 }
