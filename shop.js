@@ -225,15 +225,19 @@ async function sendSol(amount) {
     }
 }
 
-// Event Listeners for Web3 Buttons (other than connectWallet)
-document.addEventListener("DOMContentLoaded", () => {
-    // Tip Machine Logic (Prompt to send a tip via connected wallet)
+// Function to attach the event listener to the Tip Machine button
+function attachTipMachineListener() {
     const tipButton = document.getElementById('tipMachine');
+    const tipOverlay = document.getElementById('tipOverlay');
+    const tipOutput = document.getElementById('tipStatus');
     const sendTipButton = document.getElementById('sendTip');
-    const tipOutput = document.getElementById('tipOutput');
+    const closeTipButton = document.getElementById('closeTipOverlay');
 
-    if (tipButton && sendTipButton && tipOutput) {
+    if (tipButton && tipOverlay && tipOutput && sendTipButton && closeTipButton) {
+        console.log("Tip Machine button and elements found, attaching event listener");
         tipButton.addEventListener('click', () => {
+            console.log("Tip Machine button clicked");
+            tipOverlay.classList.add('active');
             if (!window.connectedAddress) {
                 tipOutput.textContent = "Please connect your wallet first!";
             } else {
@@ -242,6 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         sendTipButton.addEventListener('click', () => {
+            console.log("Send Tip button clicked");
             const amount = document.getElementById('tipAmount')?.value;
             if (!amount || amount <= 0) {
                 tipOutput.textContent = "Please enter a valid amount!";
@@ -261,8 +266,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 tipOutput.textContent = "Unsupported wallet type!";
             }
         });
-    }
 
+        closeTipButton.addEventListener('click', () => {
+            console.log("Close Tip Overlay button clicked");
+            tipOverlay.classList.remove('active');
+        });
+    } else {
+        console.error("Tip Machine elements not found in the DOM, retrying...");
+        setTimeout(attachTipMachineListener, 500);
+    }
+}
+
+// Attach the Tip Machine listener
+attachTipMachineListener();
+document.addEventListener("DOMContentLoaded", attachTipMachineListener);
+
+// Event Listeners for Web3 Buttons (other than connectWallet and tipMachine)
+document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("tipEth")?.addEventListener("click", () => {
         const amount = document.getElementById('ethAmount')?.value;
         if (!amount || amount <= 0) {
