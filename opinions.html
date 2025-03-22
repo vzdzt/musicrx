@@ -1,37 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Set character encoding to UTF-8 -->
     <meta charset="UTF-8">
-    <!-- Ensure responsive viewport scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Page title -->
     <title>MusicRx - Opinions</title>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for typography -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- External stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* News item container to group title and content cards */
+        .news-item {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        /* Specific styling for news title card */
+        .news-title-card {
+            padding: 0.3rem 1rem;
+            min-height: auto;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(102, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(153, 0, 0, 0.3);
+            border-bottom: none;
+            border-radius: 15px 15px 0 0;
+            margin-bottom: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .news-title-card h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            line-height: 1.2;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            color: var(--primary, #FF0000);
+            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7));
+        }
+        .news-title-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+            background: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
+            background-size: 200% 200%;
+            animation: rgbShift 3s linear infinite;
+        }
+        /* Specific styling for news content card */
+        .news-content-card {
+            padding: 1.5rem;
+            background: rgba(102, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(153, 0, 0, 0.3);
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            margin-top: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .news-content-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        .news-content-card p {
+            margin: 0 0 1rem 0; /* Added spacing between paragraphs */
+            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            color: #FFFFFF;
+        }
+        .news-content-card .date {
+            font-size: 0.9rem;
+            color: var(--secondary, #E50000);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .news-content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1.5rem;
+        }
+        @keyframes rgbShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        @media (max-width: 768px) {
+            .news-title-card {
+                padding: 0.3rem 0.5rem;
+            }
+            .news-title-card h2 {
+                font-size: 1rem;
+            }
+            .news-content-card {
+                padding: 1rem;
+            }
+            .news-content-card p {
+                font-size: 0.9rem;
+            }
+            .news-content-card .date {
+                font-size: 0.8rem;
+            }
+            .grid {
+                gap: 1.5rem;
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Custom cursor -->
     <div id="cursor"></div>
-    <!-- Cursor blur effect -->
     <div id="cursor-blur"></div>
-    <!-- Universe starfield canvas -->
     <canvas id="universe"></canvas>
 
-    <!-- Navigation bar -->
     <nav class="navbar global-nav">
-        <!-- Logo with heartbeat animation -->
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
         </div>
-        <!-- Dropdown menu toggle -->
         <div class="dropdown">
             <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
-            <!-- Dropdown menu content -->
             <div class="dropdown-menu">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -45,89 +138,117 @@
         </div>
     </nav>
 
-    <!-- Fixed buttons -->
-    <!-- Theme toggle button -->
     <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
-    <!-- Back to top button -->
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
-    <!-- Music toggle button -->
     <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
-    <!-- Tip machine button -->
     <button id="tipMachine" title="Get a Tip"><i class="fas fa-lightbulb"></i></button>
 
-    <!-- Main content wrapper -->
     <div class="main-content">
-        <!-- Content container -->
         <div class="container">
-            <!-- Page title with glitch effect -->
             <h1 class="glitch" data-text="OPINIONS">OPINIONS</h1>
-            <!-- Grid layout for opinion cards -->
             <div class="grid">
-                <!-- Title card for This Week's Updates -->
-                <div class="glass-card title-card">
-                    <h2 class="card-title-container">This Week's Updates</h2>
-                    <p class="date">March 20, 2025</p>
+                <!-- Opinion Item 1: Carti's Influence -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">Carti's Reign Overrated?</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 22, 2025</p>
+                        <img src="images/carti-opinion.jpg" alt="Carti Opinion">
+                        <p>Playboi Carti’s MUSIC is a cultural reset, but his fans overhype him—his mystique relies more on silence than substance.</p>
+                        <p>His punk-trap fusion is innovative, yet half the tracks feel like unfinished demos—genius or lazy?</p>
+                        <p>“BACKR00MS” is a TikTok fluke; Travis Scott carried it—Carti’s ad-libs aren’t enough to claim the crown.</p>
+                    </div>
                 </div>
-                <!-- Content card for This Week's Updates -->
-                <div class="glass-card content-card">
-                    <img src="images/ai-drake.jpg" alt="AI Drake">
-                    <p>AI Drake Better Than Real Drake - The uncomfortable truth about AI music.</p>
-                    <br>
-                    <p>90s Rap Overrated - Why modern production trumps nostalgia.</p>
-                    <br>
-                    <p>Underground > Mainstream - The death of authentic music.</p>
-                    <br>
-                    <p>Sampling Is Dying - Why producers avoid samples in 2024.</p>
-                    <br>
-                    <p>Concerts Are Overpriced - The unsustainable future of live music.</p>
+                <!-- Opinion Item 2: Festival Fatigue -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">Festivals Are Dead</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 21, 2025</p>
+                        <img src="images/festival-crowd.jpg" alt="Festival Fatigue">
+                        <p>Rolling Loud’s record attendance proves hype, but $500 tickets for muddy fields and mid sets? Hard pass.</p>
+                        <p>Coachella’s influencer circus killed the vibe—music’s just a backdrop for Instagram now.</p>
+                        <p>Small venues beat festivals in 2025—intimate shows deliver raw energy without the corporate stench.</p>
+                    </div>
                 </div>
-                <!-- Title card for Hot Takes -->
-                <div class="glass-card title-card">
-                    <h2 class="card-title-container">Hot Takes</h2>
-                    <p class="date">March 20, 2025</p>
+                <!-- Opinion Item 3: This Week's Hot Takes -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">This Week's Hot Takes</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 20, 2025</p>
+                        <img src="images/ai-drake.jpg" alt="AI Drake">
+                        <p>AI Drake Better Than Real Drake - The uncomfortable truth: AI’s bars hit harder than Aubrey’s ghostwriters.</p>
+                        <p>90s Rap Overrated - Nostalgia blinds us; modern beats bury Biggie’s dated flows.</p>
+                        <p>Underground > Mainstream - 2025’s best tracks won’t chart—Spotify’s algorithm buries real talent.</p>
+                        <p>Sampling Is Dying - Producers dodge lawsuits, leaving creativity in a chokehold.</p>
+                        <p>Concerts Are Overpriced - $200 to see your fave mime to a backing track? Live music’s a scam now.</p>
+                    </div>
                 </div>
-                <!-- Content card for Hot Takes -->
-                <div class="glass-card content-card">
-                    <img src="images/streaming.jpg" alt="Streaming Impact">
-                    <p>Streaming platforms like Spotify have turned music into background noise, not art—over 100 million songs uploaded by 2025, and most get less than 100 plays.</p>
-                    <br>
-                    <p>Drake's dominance is overrated; his 75 billion streams are inflated by playlist algorithms, not raw talent—Kendrick's catalog outclasses him pound-for-pound.</p>
-                    <br>
-                    <p>Taylor Swift's re-recordings are a genius cash grab, but they've diluted her legacy—fans are buying the same songs twice while she's laughing to the bank with $1 billion+.</p>
-                    <br>
-                    <p>Hip-hop's golden age ended in the 2010s; trap's repetition and mumble rap killed lyrical innovation—only 5% of Top 100 tracks in 2024 had bars worth quoting.</p>
-                    <br>
-                    <p>Auto-tune isn't a crutch, it's a revolution—Kanye and T-Pain proved it's an instrument, and purists crying about "real singing" are stuck in the 90s.</p>
+                <!-- Opinion Item 4: Hot Takes (Original) -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">More Hot Takes</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 19, 2025</p>
+                        <img src="images/streaming.jpg" alt="Streaming Impact">
+                        <p>Streaming’s 100 million songs by 2025 turned music into elevator noise—art’s dead, playlists rule.</p>
+                        <p>Drake’s 75 billion streams? Algorithm juice, not skill—Kendrick’s pen still smokes him.</p>
+                        <p>Taylor Swift’s re-records are a $1 billion flex, but her legacy’s a recycled cash cow now.</p>
+                        <p>Hip-hop peaked in the 2010s—trap’s stale, mumble rap’s a graveyard, only 5% of 2024’s top tracks had bars.</p>
+                        <p>Auto-tune’s a game-changer—Kanye and T-Pain made it art, while purists whine about “real vocals.”</p>
+                    </div>
+                </div>
+                <!-- Opinion Item 5: Vinyl Revival BS -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">Vinyl Revival Is Fake</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 18, 2025</p>
+                        <img src="images/vinyl.jpg" alt="Vinyl Revival">
+                        <p>Vinyl’s “comeback” is a hipster scam—$40 for crackly sound when streaming’s free? Nah.</p>
+                        <p>Collectors flex $200 rare presses on TikTok, but 90% don’t even own a turntable.</p>
+                        <p>CDs were better—cheaper, clearer, and didn’t warp in your car. Vinyl’s just nostalgia bait.</p>
+                    </div>
+                </div>
+                <!-- Opinion Item 6: Ye’s Downfall -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">Ye’s Lost It</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 17, 2025</p>
+                        <img src="images/ye-opinion.jpg" alt="Ye Opinion">
+                        <p>VULTURES 2 flopped—Ye’s genius drowned in Ty Dolla $ign’s shadow and rushed mixes.</p>
+                        <p>His “I’m a god” shtick aged poorly—2025 fans want music, not sermons.</p>
+                        <p>MUSIC outshines him—Carti stole Ye’s experimental crown while he’s stuck in 2016.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
-        <!-- Logo with heartbeat animation -->
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
         </div>
-        <!-- Copyright notice -->
         <div class="footer-content">
             <p>© 2025 MusicRx. All rights reserved.</p>
         </div>
-        <!-- Newsletter subscription form -->
         <form class="newsletter-form">
             <input type="email" placeholder="Subscribe to Newsletter" required>
             <button type="submit">Subscribe</button>
         </form>
     </footer>
 
-    <!-- External scripts -->
-    <!-- Three.js for starfield -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <!-- ScrollTrigger for scroll-based animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- Main script -->
     <script src="script.js"></script>
 </body>
 </html>
