@@ -74,14 +74,14 @@
             backdrop-filter: blur(15px);
             border-radius: 25px;
             border: 2px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            padding: 3rem;
-            margin: 3rem auto;
+            padding: 1.5rem;
+            margin: 1.5rem auto;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
             width: 100%;
-            max-width: 1200px;
+            max-width: 500px; /* Reduced from 600px */
             box-sizing: border-box;
         }
         .glass-card:hover {
@@ -94,31 +94,28 @@
         .glass-card.grad-card {
             padding: 0;
             border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
+            display: inline-block; /* Shrink-wrap to fit the image */
+            margin: 1.5rem auto;
             overflow: hidden;
         }
         .glass-card.grad-card img {
             width: 100%;
-            max-width: 600px; /* Limit the maximum width to prevent overflow */
+            max-width: 400px; /* Reduced from 600px */
             height: auto;
-            max-height: 600px; /* Limit the maximum height to fit within the viewport */
-            object-fit: contain; /* Ensure the image scales while maintaining aspect ratio */
+            max-height: 400px; /* Reduced from 600px */
+            object-fit: contain;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
             transition: all 0.5s ease;
+            display: block; /* Ensure the image behaves as a block element */
         }
         .glass-card.grad-card:hover img {
             box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7));
             transform: scale(1.02);
         }
         .glass-card.sources-card {
-            padding: 1.5rem;
-            max-width: 1200px;
+            padding: 0.75rem;
+            max-width: 500px; /* Reduced from 600px */
             min-height: auto;
         }
         .glass-card.ratings-card {
@@ -129,10 +126,10 @@
             background: var(--card-background, rgba(102, 0, 0, 0.25));
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 2.5rem;
-            margin: 2rem auto;
+            padding: 1.25rem;
+            margin: 1rem auto;
             width: 100%;
-            max-width: 1200px;
+            max-width: 500px; /* Reduced from 600px */
             z-index: 2;
             position: relative;
             display: flex;
@@ -234,7 +231,7 @@
             position: relative;
             animation: flicker 0.1s infinite alternate;
             width: 100%;
-            max-width: 1200px;
+            max-width: 500px; /* Reduced from 600px */
         }
         @keyframes flicker { 0% { opacity: 1; } 100% { opacity: 0.95; } }
         .review-title-glitch::before, .review-title-glitch::after {
@@ -267,17 +264,17 @@
         }
         .track-highlight-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Reduced from 250px */
+            gap: 1rem;
+            padding: 1rem;
         }
         .track-highlight-item {
             background: rgba(255, 0, 0, 0.1);
             border-radius: 15px;
-            padding: 1.5rem;
+            padding: 1rem;
             transition: all 0.3s ease;
             box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
-            min-height: 120px;
+            min-height: 100px;
             display: flex;
             align-items: center;
         }
@@ -294,35 +291,35 @@
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            margin: 1rem 0;
+            margin: 0.5rem 0;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             font-size: 1rem;
             table-layout: fixed;
         }
         .trend-table th, .trend-table td {
-            padding: 1rem;
+            padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            font-size: 1rem;
+            font-size: 0.9rem;
             word-wrap: break-word;
         }
         .trend-table.awards-table {
-            min-width: 800px;
+            min-width: 100%;
         }
         .trend-table.awards-table th,
         .trend-table.awards-table td {
             width: 33.33%;
         }
         .trend-table.certifications-table {
-            min-width: 800px;
+            min-width: 100%;
         }
         .trend-table.certifications-table th,
         .trend-table.certifications-table td {
             width: 33.33%;
         }
         .trend-table.chart-table {
-            min-width: 900px;
+            min-width: 100%;
         }
         .trend-table.chart-table th,
         .trend-table.chart-table td {
@@ -376,19 +373,23 @@
             .review-header { padding: 0.75rem 1.5rem; height: 50px; }
             .review-footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
             .container { padding: 80px 1.5rem 2rem; }
-            .glass-card { padding: 2rem; margin: 2rem auto; }
+            .glass-card { 
+                padding: 1rem;
+                margin: 1rem auto;
+            }
             .glass-card:hover { transform: none; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); background: var(--card-background, rgba(102, 0, 0, 0.25)); animation: none; }
-            .track-highlight-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; padding: 1rem; }
+            .track-highlight-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; padding: 0.5rem; }
+            .track-highlight-item { padding: 0.75rem; min-height: 80px; }
             .track-highlight-item:hover { transform: none; box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); background: rgba(255, 0, 0, 0.1); }
             .review-footer .newsletter-form input { width: 150px; padding: 0.6rem; }
             .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
             .review-footer .newsletter-form button:hover { transform: none; }
-            .trend-table { font-size: 0.9rem; min-width: 100%; }
-            .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; }
-            .glass-card.sources-card { padding: 1rem; max-width: 1200px; }
+            .trend-table { font-size: 0.8rem; min-width: 100%; }
+            .trend-table th, .trend-table td { padding: 0.4rem; font-size: 0.8rem; }
+            .glass-card.sources-card { padding: 0.5rem; max-width: 500px; }
             .glass-card.grad-card img {
-                max-width: 100%; /* Ensure the image doesn't exceed the container width on small screens */
-                max-height: 400px; /* Further reduce the max height for smaller screens */
+                max-width: 100%;
+                max-height: 300px; /* Further reduced for smaller screens */
             }
         }
     </style>
