@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
         * {
             margin: 0;
@@ -28,39 +29,6 @@
             margin: 0 auto;
             padding: 0 1rem;
             width: 100%;
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .nav-links li {
-            display: inline;
-        }
-
-        .nav-links a {
-            color: #FF0000;
-            text-decoration: none;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #E50000;
         }
 
         /* Hero Section */
@@ -602,11 +570,6 @@
                 grid-template-columns: 1fr;
                 padding: 1rem;
             }
-            .nav-links {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
         }
 
         @media (min-width: 769px) {
@@ -626,245 +589,281 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="opinions.html">Opinions</a></li>
-                <li><a href="interviews.html">Interviews</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </nav>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
 
-        <section class="hero">
-            <!-- Hero Banner -->
-            <div class="hero-banner">
-                <div class="hero-content">
-                    <h1>Welcome to the MusicRX Shop</h1>
-                    <p>Discover exclusive music blog merch, digital content, and Web3 experiences!</p>
-                    <button class="connect-wallet-btn" id="connectWallet">Connect Wallet</button>
-                    <p id="walletAddress"></p>
-                </div>
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                </ul>
             </div>
+        </div>
+    </nav>
 
-            <!-- Countdown Timer -->
-            <div class="countdown-timer">
-                <h2>Shop Launch Countdown</h2>
-                <div class="timer" id="countdown-timer">
-                    <div id="days">00</div>
-                    <div id="hours">00</div>
-                    <div id="minutes">00</div>
-                    <div id="seconds">00</div>
-                </div>
-            </div>
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
+    <button id="tipMachine" title="Get a Tip"><i class="fas fa-lightbulb"></i></button>
 
-            <!-- Featured Product -->
-            <div class="glass-card">
-                <h2>Featured Product</h2>
-                <div class="featured-product">
-                    <div class="featured-card">
-                        <div class="featured-front">
-                            <img src="images/musicrx-hoodie.jpg" alt="MusicRX Hoodie">
-                            <h3>MusicRX Limited Hoodie</h3>
-                            <p>Exclusive drop coming soon!</p>
-                        </div>
-                        <div class="featured-back">
-                            <h3>Unlock with NFT</h3>
-                            <p>Own a MusicRX NFT to get early access to this limited edition hoodie!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Support Section -->
-            <div class="glass-card">
-                <h2>Support MusicRX</h2>
-                <p>While our products are still in development, you can support MusicRX with a tip!</p>
-
-                <div class="tip-jar">
-                    <div class="jar">
-                        <div class="coin"></div>
-                        <div class="coin"></div>
-                        <div class="coin"></div>
+    <div class="main-content">
+        <div class="container">
+            <section class="hero">
+                <!-- Hero Banner -->
+                <div class="hero-banner">
+                    <div class="hero-content">
+                        <h1 class="glitch" data-text="SHOP">SHOP</h1>
+                        <p>Discover exclusive music blog merch, digital content, and Web3 experiences!</p>
+                        <button class="connect-wallet-btn" id="connectWallet">Connect Wallet</button>
+                        <p id="walletAddress"></p>
                     </div>
                 </div>
 
-                <div class="crypto-options">
-                    <div class="crypto-option">
-                        <div class="crypto-icon">
-                            <i class="fab fa-ethereum"></i>
+                <!-- Countdown Timer -->
+                <div class="countdown-timer">
+                    <h2>Shop Launch Countdown</h2>
+                    <div class="timer" id="countdown-timer">
+                        <div id="days">00</div>
+                        <div id="hours">00</div>
+                        <div id="minutes">00</div>
+                        <div id="seconds">00</div>
+                    </div>
+                </div>
+
+                <!-- Featured Product -->
+                <div class="glass-card">
+                    <h2>Featured Product</h2>
+                    <div class="featured-product">
+                        <div class="featured-card">
+                            <div class="featured-front">
+                                <img src="images/musicrx-hoodie.jpg" alt="MusicRX Hoodie">
+                                <h3>MusicRX Limited Hoodie</h3>
+                                <p>Exclusive drop coming soon!</p>
+                            </div>
+                            <div class="featured-back">
+                                <h3>Unlock with NFT</h3>
+                                <p>Own a MusicRX NFT to get early access to this limited edition hoodie!</p>
+                            </div>
                         </div>
-                        <h3>Tip with ETH</h3>
-                        <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
-                        <button class="copy-address-btn" onclick="copyToClipboard('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
-                            <i class="fas fa-copy"></i> Copy Address
-                        </button>
-                        <input type="number" placeholder="Amount in ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
-                        <button id="tipEth" class="donate-button">
-                            <i class="fas fa-donate"></i> Send Tip
-                        </button>
                     </div>
+                </div>
 
-                    <div class="crypto-option">
-                        <div class="crypto-icon">
-                            <i class="fab fa-bitcoin"></i>
+                <!-- Support Section -->
+                <div class="glass-card">
+                    <h2>Support MusicRX</h2>
+                    <p>While our products are still in development, you can support MusicRX with a tip!</p>
+
+                    <div class="tip-jar">
+                        <div class="jar">
+                            <div class="coin"></div>
+                            <div class="coin"></div>
+                            <div class="coin"></div>
                         </div>
-                        <h3>Tip with BTC</h3>
-                        <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
-                        <button class="copy-address-btn" onclick="copyToClipboard('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
-                            <i class="fas fa-copy"></i> Copy Address
-                        </button>
-                        <input type="number" placeholder="Amount in BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
-                        <button id="tipBtc" class="donate-button">
-                            <i class="fas fa-donate"></i> Send Tip
-                        </button>
                     </div>
 
-                    <div class="crypto-option">
-                        <div class="crypto-icon">
-                            <i class="fas fa-sun"></i>
-                        </div>     
-                        <h3>Tip with SOL</h3>
-                        <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
-                        <button class="copy-address-btn" onclick="copyToClipboard('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
-                            <i class="fas fa-copy"></i> Copy Address
-                        </button>
-                        <input type="number" placeholder="Amount in SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
-                        <button id="tipSol" class="donate-button">
-                            <i class="fas fa-donate"></i> Send Tip
-                        </button>
+                    <div class="crypto-options">
+                        <div class="crypto-option">
+                            <div class="crypto-icon">
+                                <i class="fab fa-ethereum"></i>
+                            </div>
+                            <h3>Tip with ETH</h3>
+                            <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
+                            <button class="copy-address-btn" onclick="copyToClipboard('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
+                                <i class="fas fa-copy"></i> Copy Address
+                            </button>
+                            <input type="number" placeholder="Amount in ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
+                            <button id="tipEth" class="donate-button">
+                                <i class="fas fa-donate"></i> Send Tip
+                            </button>
+                        </div>
+
+                        <div class="crypto-option">
+                            <div class="crypto-icon">
+                                <i class="fab fa-bitcoin"></i>
+                            </div>
+                            <h3>Tip with BTC</h3>
+                            <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
+                            <button class="copy-address-btn" onclick="copyToClipboard('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
+                                <i class="fas fa-copy"></i> Copy Address
+                            </button>
+                            <input type="number" placeholder="Amount in BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
+                            <button id="tipBtc" class="donate-button">
+                                <i class="fas fa-donate"></i> Send Tip
+                            </button>
+                        </div>
+
+                        <div class="crypto-option">
+                            <div class="crypto-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>     
+                            <h3>Tip with SOL</h3>
+                            <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
+                            <button class="copy-address-btn" onclick="copyToClipboard('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
+                                <i class="fas fa-copy"></i> Copy Address
+                            </button>
+                            <input type="number" placeholder="Amount in SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
+                            <button id="tipSol" class="donate-button">
+                                <i class="fas fa-donate"></i> Send Tip
+                            </button>
+                        </div>
+
+                        <div class="crypto-option">
+                            <div class="crypto-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <h3>Buy MusicRX NFT</h3>
+                            <p class="wallet-address">Coming Soon: Unlock exclusive content!</p>
+                            <button class="donate-button" onclick="alert('NFT purchase coming soon! Connect your wallet to reserve your MusicRX NFT.')">
+                                <i class="fas fa-cube"></i> Reserve NFT
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="crypto-option">
-                        <div class="crypto-icon">
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <h3>Other Ways to Support</h3>
+                        <p>Follow @36966_ on X and share our content!</p>
+                        <div class="social-links">
+                            <a href="#" class="social-button">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-button">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-button">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coming Soon Products -->
+                <div class="glass-card">
+                    <h2>Coming Soon Products</h2>
+                    <div class="coming-soon-products">
+                        <div class="product-item">
+                            <i class="fas fa-tshirt"></i>
+                            <h3>MusicRX Apparel</h3>
+                            <p>Limited edition hoodies & tees</p>
+                        </div>
+                        <div class="product-item">
+                            <i class="fas fa-headphones"></i>
+                            <h3>Exclusive Playlists</h3>
+                            <p>Curated music selections</p>
+                        </div>
+                        <div class="product-item">
+                            <i class="fas fa-ticket-alt"></i>
+                            <h3>Event Tickets</h3>
+                            <p>Blog launch parties & more</p>
+                        </div>
+                        <div class="product-item">
                             <i class="fas fa-cube"></i>
+                            <h3>MusicRX NFTs</h3>
+                            <p>Unlock exclusive content</p>
                         </div>
-                        <h3>Buy MusicRX NFT</h3>
-                        <p class="wallet-address">Coming Soon: Unlock exclusive content!</p>
-                        <button class="donate-button" onclick="alert('NFT purchase coming soon! Connect your wallet to reserve your MusicRX NFT.')">
-                            <i class="fas fa-cube"></i> Reserve NFT
-                        </button>
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-top: 3rem;">
-                    <h3>Other Ways to Support</h3>
-                    <p>Follow @36966_ on X and share our content!</p>
-                    <div class="social-links">
-                        <a href="#" class="social-button">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-button">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-button">
-                            <i class="fab fa-tiktok"></i>
-                        </a>
+                <!-- Web3 Benefits -->
+                <div class="glass-card">
+                    <h2>Web3 Benefits</h2>
+                    <div class="web3-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-cube"></i>
+                            <h3>NFT Ownership</h3>
+                            <p>Own MusicRX NFTs to unlock exclusive blog content and perks.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-wallet"></i>
+                            <h3>Secure Payments</h3>
+                            <p>Pay with ETH, BTC, or SOL for a seamless, decentralized experience.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-users"></i>
+                            <h3>Community Access</h3>
+                            <p>Join our Web3 community for exclusive events and updates.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Coming Soon Products -->
-            <div class="glass-card">
-                <h2>Coming Soon Products</h2>
-                <div class="coming-soon-products">
-                    <div class="product-item">
-                        <i class="fas fa-tshirt"></i>
-                        <h3>MusicRX Apparel</h3>
-                        <p>Limited edition hoodies & tees</p>
-                    </div>
-                    <div class="product-item">
-                        <i class="fas fa-headphones"></i>
-                        <h3>Exclusive Playlists</h3>
-                        <p>Curated music selections</p>
-                    </div>
-                    <div class="product-item">
-                        <i class="fas fa-ticket-alt"></i>
-                        <h3>Event Tickets</h3>
-                        <p>Blog launch parties & more</p>
-                    </div>
-                    <div class="product-item">
-                        <i class="fas fa-cube"></i>
-                        <h3>MusicRX NFTs</h3>
-                        <p>Unlock exclusive content</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Web3 Benefits -->
-            <div class="glass-card">
-                <h2>Web3 Benefits</h2>
-                <div class="web3-benefits">
-                    <div class="benefit-item">
-                        <i class="fas fa-cube"></i>
-                        <h3>NFT Ownership</h3>
-                        <p>Own MusicRX NFTs to unlock exclusive blog content and perks.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-wallet"></i>
-                        <h3>Secure Payments</h3>
-                        <p>Pay with ETH, BTC, or SOL for a seamless, decentralized experience.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-users"></i>
-                        <h3>Community Access</h3>
-                        <p>Join our Web3 community for exclusive events and updates.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Shop Updates -->
-            <div class="glass-card">
-                <h2>Shop Updates</h2>
-                <div class="shop-grid">
-                    <div class="shop-item">
-                        <div class="shop-title-card">
-                            <h2>MusicRX Hoodies Teased</h2>
+                <!-- Shop Updates -->
+                <div class="glass-card">
+                    <h2>Shop Updates</h2>
+                    <div class="shop-grid">
+                        <div class="shop-item">
+                            <div class="shop-title-card">
+                                <h2>MusicRX Hoodies Teased</h2>
+                            </div>
+                            <div class="shop-content-card">
+                                <p class="date">March 21, 2025</p>
+                                <img src="images/musicrx-hoodie.jpg" alt="MusicRX Hoodie">
+                                <p>MusicRX teases limited edition hoodies featuring the blog’s iconic logo, set to launch with the shop’s opening.</p>
+                            </div>
                         </div>
-                        <div class="shop-content-card">
-                            <p class="date">March 21, 2025</p>
-                            <img src="images/musicrx-hoodie.jpg" alt="MusicRX Hoodie">
-                            <p>MusicRX teases limited edition hoodies featuring the blog’s iconic logo, set to launch with the shop’s opening.</p>
+                        <div class="shop-item">
+                            <div class="shop-title-card">
+                                <h2>Playlist NFTs Announced</h2>
+                            </div>
+                            <div class="shop-content-card">
+                                <p class="date">March 20, 2025</p>
+                                <img src="images/playlist-nft.jpg" alt="Playlist NFT">
+                                <p>MusicRX announces exclusive playlist NFTs, offering early access to curated tracks for NFT holders.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="shop-item">
-                        <div class="shop-title-card">
-                            <h2>Playlist NFTs Announced</h2>
+                        <div class="shop-item">
+                            <div class="shop-title-card">
+                                <h2>Blog Launch Party Tickets</h2>
+                            </div>
+                            <div class="shop-content-card">
+                                <p class="date">March 19, 2025</p>
+                                <img src="images/launch-party.jpg" alt="Launch Party">
+                                <p>MusicRX teases blog launch party tickets with Web3 perks, including NFT-based VIP access.</p>
+                            </div>
                         </div>
-                        <div class="shop-content-card">
-                            <p class="date">March 20, 2025</p>
-                            <img src="images/playlist-nft.jpg" alt="Playlist NFT">
-                            <p>MusicRX announces exclusive playlist NFTs, offering early access to curated tracks for NFT holders.</p>
-                        </div>
-                    </div>
-                    <div class="shop-item">
-                        <div class="shop-title-card">
-                            <h2>Blog Launch Party Tickets</h2>
-                        </div>
-                        <div class="shop-content-card">
-                            <p class="date">March 19, 2025</p>
-                            <img src="images/launch-party.jpg" alt="Launch Party">
-                            <p>MusicRX teases blog launch party tickets with Web3 perks, including NFT-based VIP access.</p>
-                        </div>
-                    </div>
-                    <div class="shop-item">
-                        <div class="shop-title-card">
-                            <h2>Premium Subscription Teased</h2>
-                        </div>
-                        <div class="shop-content-card">
-                            <p class="date">March 18, 2025</p>
-                            <img src="images/premium-sub.jpg" alt="Premium Subscription">
-                            <p>MusicRX teases a premium subscription with ad-free content, exclusive articles, and Web3 benefits.</p>
+                        <div class="shop-item">
+                            <div class="shop-title-card">
+                                <h2>Premium Subscription Teased</h2>
+                            </div>
+                            <div class="shop-content-card">
+                                <p class="date">March 18, 2025</p>
+                                <img src="images/premium-sub.jpg" alt="Premium Subscription">
+                                <p>MusicRX teases a premium subscription with ad-free content, exclusive articles, and Web3 benefits.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
 
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
         // Copy wallet address to clipboard
         function copyToClipboard(text) {
