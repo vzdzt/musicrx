@@ -9,266 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Shop-specific styles */
-        [data-page="shop"] .shop-container {
-            padding: 100px 2rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        [data-page="shop"] .shop-hero {
-            position: relative;
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 50, 0.8));
-            border-radius: 20px;
-            margin-bottom: 4rem;
-            overflow: hidden;
-            box-shadow: 0 0 40px var(--glow);
-        }
-
-        [data-page="shop"] .shop-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--rgb-glow);
-            opacity: 0.2;
-            animation: pulseGlow 6s infinite;
-        }
-
-        [data-page="shop"] .shop-hero h1 {
-            font-size: 3rem;
-            color: var(--primary);
-            text-shadow: 0 0 15px var(--glow);
-            animation: glitch 3s infinite;
-        }
-
-        [data-page="shop"] .shop-hero p {
-            font-size: 1.2rem;
-            color: var(--text-color);
-            margin: 1rem 0;
-        }
-
-        [data-page="shop"] .connect-wallet-btn {
-            background: var(--rgb-glow);
-            border: none;
-            color: var(--dark);
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px var(--glow);
-        }
-
-        [data-page="shop"] .connect-wallet-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px var(--primary);
-        }
-
-        [data-page="shop"] .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        [data-page="shop"] .shop-card {
-            background: var(--card-background);
-            @supports (backdrop-filter: blur(15px)) {
-                backdrop-filter: blur(15px);
-                background: rgba(255, 255, 255, 0.1);
-            }
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        [data-page="shop"] .shop-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 30px var(--glow);
-            background: var(--rgb-glow);
-            animation: rgbShift 3s linear infinite;
-        }
-
-        [data-page="shop"] .shop-card i {
-            font-size: 4rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        [data-page="shop"] .shop-card h2 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            margin: 0.5rem 0;
-        }
-
-        [data-page="shop"] .shop-card p {
-            font-size: 1rem;
-            color: var(--text-color);
-            margin: 0;
-        }
-
-        [data-page="shop"] .countdown-section {
-            text-align: center;
-            margin: 4rem 0;
-        }
-
-        [data-page="shop"] .countdown-timer {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        [data-page="shop"] .countdown-timer div {
-            background: var(--glass);
-            border: 1px solid var(--primary);
-            padding: 1rem;
-            border-radius: 10px;
-            font-size: 1.5rem;
-            color: var(--primary);
-            min-width: 60px;
-            text-align: center;
-            box-shadow: 0 0 10px var(--glow);
-        }
-
-        [data-page="shop"] .support-section {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 50, 0.7));
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 4rem;
-            box-shadow: 0 0 30px var(--glow);
-        }
-
-        [data-page="shop"] .crypto-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        [data-page="shop"] .crypto-card {
-            background: var(--glass);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        [data-page="shop"] .crypto-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 20px var(--glow);
-        }
-
-        [data-page="shop"] .crypto-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        [data-page="shop"] .wallet-address {
-            font-size: 0.8rem;
-            word-break: break-all;
-            color: var(--text-color);
-            margin: 0.5rem 0;
-        }
-
-        [data-page="shop"] .copy-address-btn {
-            background: var(--glass);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        [data-page="shop"] .copy-address-btn:hover {
-            background: var(--rgb-glow);
-            transform: translateY(-2px);
-        }
-
-        [data-page="shop"] .donate-input {
-            background: var(--glass);
-            border: 1px solid var(--primary);
-            border-radius: 5px;
-            color: var(--text-color);
-            padding: 0.5rem;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-
-        [data-page="shop"] .donate-button {
-            background: var(--primary);
-            color: var(--dark);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-        }
-
-        [data-page="shop"] .donate-button:hover {
-            background: var(--secondary);
-            transform: scale(1.05);
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 0.4; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @media (max-width: 768px) {
-            [data-page="shop"] .shop-hero h1 {
-                font-size: 2rem;
-            }
-            [data-page="shop"] .shop-grid {
-                grid-template-columns: 1fr;
-            }
-            [data-page="shop"] .crypto-grid {
-                grid-template-columns: 1fr;
-            }
-            [data-page="shop"] .countdown-timer div {
-                font-size: 1rem;
-                min-width: 50px;
-            }
-        }
-    </style>
 </head>
 <body data-page="shop">
     <canvas id="universe"></canvas>
 
+    <!-- Navbar -->
     <nav class="navbar global-nav">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
@@ -294,23 +39,26 @@
         </div>
     </nav>
 
+    <!-- Fixed Buttons -->
     <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
     <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
     <button id="tipMachine" title="Send a Tip"><i class="fas fa-donate"></i></button>
 
+    <!-- Main Content -->
     <div class="main-content">
         <div class="shop-container">
             <!-- Hero Section -->
             <section class="shop-hero">
                 <h1 class="glitch" data-text="MUSICRX SHOP">MUSICRX SHOP</h1>
-                <p>Unleash the Soundwave: Exclusive Merch & Web3 Experiences Coming Soon!</p>
+                <p>Unleash the Soundwave: Exclusive Web3 Merch & Experiences</p>
                 <button class="connect-wallet-btn" id="connectWalletShop">Connect Wallet</button>
+                <canvas id="particles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
             </section>
 
             <!-- Countdown Timer -->
             <section class="countdown-section">
-                <h2 class="section-title">Shop Launch Countdown</h2>
+                <h2 class="glitch" data-text="PRODUCTS DROPPING IN...">PRODUCTS DROPPING IN...</h2>
                 <div class="countdown-timer" id="countdown-timer">
                     <div id="days">00</div>
                     <div id="hours">00</div>
@@ -319,34 +67,34 @@
                 </div>
             </section>
 
-            <!-- Products Grid -->
+            <!-- Products Teaser Grid -->
             <section class="shop-grid">
                 <div class="shop-card">
-                    <i class="fas fa-tshirt"></i>
-                    <h2>MusicRX Apparel</h2>
-                    <p>Limited edition hoodies & tees dropping soon. Get ready to rep the vibe!</p>
+                    <i class="fas fa-ticket-alt fa-spin-slow"></i>
+                    <h2>Raffle Vault</h2>
+                    <p>Enter NFT raffles for exclusive vinyls & merch drops. Coming Soon!</p>
                 </div>
                 <div class="shop-card">
-                    <i class="fas fa-headphones"></i>
-                    <h2>Exclusive Playlists</h2>
-                    <p>Curated cosmic beats, unlockable via NFT ownership.</p>
+                    <i class="fas fa-tshirt fa-float"></i>
+                    <h2>Hoodies & Sweatpants</h2>
+                    <p>Cyberpunk-inspired apparel to vibe in style. In Production.</p>
                 </div>
                 <div class="shop-card">
-                    <i class="fas fa-ticket-alt"></i>
+                    <i class="fas fa-headphones fa-pulse"></i>
+                    <h2>Exclusive Content</h2>
+                    <p>Unlock playlists & digital collectibles with NFT perks.</p>
+                </div>
+                <div class="shop-card">
+                    <i class="fas fa-calendar-alt fa-float"></i>
                     <h2>Event Tickets</h2>
-                    <p>VIP access to MusicRX launch parties and live events.</p>
-                </div>
-                <div class="shop-card">
-                    <i class="fas fa-cube"></i>
-                    <h2>MusicRX NFTs</h2>
-                    <p>Holographic collectibles with exclusive perks.</p>
+                    <p>VIP access to MusicRx live events. Stay tuned!</p>
                 </div>
             </section>
 
             <!-- Support Section -->
             <section class="support-section">
-                <h2 class="section-title">Support MusicRX</h2>
-                <p>Fuel the future of music blogging with a tip while we gear up!</p>
+                <h2 class="section-title">Support the Vision</h2>
+                <p>Fuel MusicRx’s future with a tip while we craft the ultimate shop!</p>
                 <div class="crypto-grid">
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
@@ -383,6 +131,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
@@ -396,10 +145,81 @@
         </form>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script src="shop.js"></script>
+    <script>
+        // Simple particle effect for hero section
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        const particlesArray = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 5 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(0, 247, 255, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < 50; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+                if (particlesArray[i].size <= 0.2) {
+                    particlesArray.splice(i, 1);
+                    i--;
+                    particlesArray.push(new Particle());
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        });
+    </script>
+    <style>
+        /* Additional inline styles for animations */
+        .fa-spin-slow {
+            animation: spin 6s linear infinite;
+        }
+        .fa-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        .fa-pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
 </body>
 </html>
