@@ -1,28 +1,94 @@
 document.addEventListener("DOMContentLoaded", () => {
     const ethProvider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : null;
     const solConnection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com");
-    const myEthAddress = "0x24A77F76fe0CF427f26A9E49F33f7E9287217250"; // Your MetaMask address
-    const mySolAddress = "7YCdysgzcxuJTrGe5XfyKpobagonNmwT8ygPvpEBwUUr"; // Your Phantom address
+    const myEthAddress = "0x24A77F76fe0CF427f26A9E49F33f7E9287217250"; // Your MetaMask address (ETH)
+    const mySolAddress = "7YCdysgzcxuJTrGe5XfyKpobagonNmwT8ygPvpEBwUUr"; // Your Phantom address (SOL)
     window.connectedChain = null;
     window.connectedAddress = null;
     let walletConnectProvider = null;
 
-    async function connectWallet() {
+    // Function to create and show the wallet selection modal
+    function showWalletModal() {
+        // Check if modal already exists to avoid duplicates
+        if (document.getElementById("walletModal")) return;
+
+        // Create modal overlay
+        const modalOverlay = document.createElement("div");
+        modalOverlay.className = "wallet-modal-overlay";
+        modalOverlay.id = "walletModal";
+
+        // Create modal content
+        const modalContent = document.createElement("div");
+        modalContent.className = "wallet-modal-content";
+
+        // Modal header
+        const modalHeader = document.createElement("div");
+        modalHeader.className = "wallet-modal-header";
+        modalHeader.innerHTML = `
+            <h2>Select a Wallet</h2>
+            <p>Please select a wallet to connect to MusicRX</p>
+            <button class="wallet-modal-close"><i class="fas fa-times"></i></button>
+        `;
+
+        // Modal body with wallet options
+        const modalBody = document.createElement("div");
+        modalBody.className = "wallet-modal-body";
+        modalBody.innerHTML = `
+            <button class="wallet-option" data-wallet="eth">
+                <i class="fab fa-ethereum"></i> MetaMask (ETH)
+            </button>
+            <button class="wallet-option" data-wallet="sol">
+                <i class="fas fa-sun"></i> Phantom (SOL)
+            </button>
+        `;
+
+        // Append elements
+        modalContent.appendChild(modalHeader);
+        modalContent.appendChild(modalBody);
+        modalOverlay.appendChild(modalContent);
+        document.body.appendChild(modalOverlay);
+
+        // Event listeners for wallet options
+        const walletOptions = modalBody.querySelectorAll(".wallet-option");
+        walletOptions.forEach(option => {
+            option.addEventListener("click", async () => {
+                const walletType = option.getAttribute("data-wallet");
+                await connectWallet(walletType);
+                closeWalletModal();
+            });
+        });
+
+        // Event listener for close button
+        const closeButton = modalHeader.querySelector(".wallet-modal-close");
+        closeButton.addEventListener("click", closeWalletModal);
+
+        // Close modal when clicking outside
+        modalOverlay.addEventListener("click", (e) => {
+            if (e.target === modalOverlay) closeWalletModal();
+        });
+    }
+
+    // Function to close the wallet modal
+    function closeWalletModal() {
+        const modal = document.getElementById("walletModal");
+        if (modal) {
+            modal.remove();
+        }
+    }
+
+    // Updated connectWallet function with proper wallet selection
+    async function connectWallet(walletType) {
         const hasEth = window.ethereum;
         const hasSol = window.solana && window.solana.isPhantom;
         const connectWalletButton = document.getElementById("connectWallet");
         const walletStatus = document.getElementById("walletStatus");
 
         if (!hasEth && !hasSol) {
-            alert("Please install MetaMask, Phantom, or a WalletConnect-compatible wallet!");
+            alert("Please install MetaMask or Phantom wallet!");
             return;
         }
 
-        let choice = prompt("Which wallet would you like to connect? Type 'ETH' for MetaMask, 'SOL' for Phantom, or 'WC' for WalletConnect:");
-        if (!choice) return; // User canceled the prompt
-        choice = choice.toLowerCase();
-
-        if ((hasEth && choice === "eth") || (hasEth && !hasSol && choice !== "sol" && choice !== "wc")) {
+        if (walletType === "eth" && hasEth) {
             try {
                 await window.ethereum.request({ method: "eth_requestAccounts" });
                 const signer = ethProvider.getSigner();
@@ -39,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("ETH connection failed:", error);
                 alert("ETH connection failed: " + error.message);
             }
-        } else if ((hasSol && choice === "sol") || (hasSol && !hasEth && choice !== "eth" && choice !== "wc")) {
+        } else if (walletType === "sol" && hasSol) {
             try {
                 await window.solana.connect();
                 const address = window.solana.publicKey.toString();
@@ -55,32 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("SOL connection failed:", error);
                 alert("SOL connection failed: " + error.message);
             }
-        } else if (choice === "wc") {
-            try {
-                const { EthereumProvider } = await import('https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider@2.11.0/+esm');
-                walletConnectProvider = await EthereumProvider.init({
-                    projectId: "43c4d9871d34c95b6ecad88155711a62", // Your WalletConnect project ID
-                    chains: [1], // Ethereum mainnet
-                    showQrModal: true,
-                });
-                await walletConnectProvider.connect();
-                const provider = new ethers.providers.Web3Provider(walletConnectProvider);
-                const signer = provider.getSigner();
-                const address = await signer.getAddress();
-                window.connectedAddress = address;
-                window.connectedChain = "eth"; // WalletConnect uses ETH
-                if (walletStatus) {
-                    walletStatus.textContent = `WC: ${address.slice(0, 6)}...`;
-                }
-                if (connectWalletButton) {
-                    connectWalletButton.textContent = "Wallet Connected";
-                }
-            } catch (error) {
-                console.error("WalletConnect connection failed:", error);
-                alert("WalletConnect connection failed: " + error.message);
-            }
         } else {
-            alert("Invalid choice! Please type 'ETH', 'SOL', or 'WC'.");
+            alert(`Selected wallet (${walletType.toUpperCase()}) is not available. Please install ${walletType === "eth" ? "MetaMask" : "Phantom"}.`);
         }
     }
 
@@ -121,7 +163,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Event Listeners for Web3 Buttons
-    document.getElementById("connectWallet")?.addEventListener("click", connectWallet);
+    document.getElementById("connectWallet")?.addEventListener("click", () => {
+        showWalletModal();
+    });
+
     document.getElementById("tipEth")?.addEventListener("click", () => {
         const amount = document.getElementById('ethAmount')?.value;
         if (!amount || amount <= 0) {
@@ -130,6 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         sendEth(amount);
     });
+
     document.getElementById("tipSol")?.addEventListener("click", () => {
         const amount = document.getElementById('solAmount')?.value;
         if (!amount || amount <= 0) {
@@ -138,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         sendSol(amount);
     });
+
     document.getElementById("tipBtc")?.addEventListener("click", () => {
         const amount = document.getElementById('btcAmount')?.value;
         if (!amount || amount <= 0) {
