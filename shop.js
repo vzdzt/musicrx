@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 const { EthereumProvider } = await import('https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider@2.11.0/+esm');
                 walletConnectProvider = await EthereumProvider.init({
-                    projectId: "YOUR_WALLETCONNECT_PROJECT_ID", // Replace with your WalletConnect project ID
+                    projectId: "43c4d9871d34c95b6ecad88155711a62", // Your WalletConnect project ID
                     chains: [1], // Ethereum mainnet
                     showQrModal: true,
                 });
