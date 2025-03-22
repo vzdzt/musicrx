@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Web3 Wallet and Transaction Logic
     const ethProvider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : null;
     const solConnection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com");
     const myEthAddress = "0x24A77F76fe0CF427f26A9E49F33f7E9287217250";
     const mySolAddress = "9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z";
-    let connectedChain = null;
-    let connectedAddress = null;
+    // Expose these variables globally
+    window.connectedChain = null;
+    window.connectedAddress = null;
 
     async function connectWallet() {
         if (window.ethereum) {
@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 await window.ethereum.request({ method: "eth_requestAccounts" });
                 const signer = ethProvider.getSigner();
                 const address = await signer.getAddress();
-                connectedAddress = address;
+                window.connectedAddress = address;
                 document.getElementById("walletAddress").innerText = `ETH Connected: ${address.slice(0, 6)}...`;
-                connectedChain = "eth";
+                window.connectedChain = "eth";
             } catch (error) {
                 console.error("ETH connection failed:", error);
                 alert("ETH connection failed: " + error.message);
@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 await window.solana.connect();
                 const address = window.solana.publicKey.toString();
-                connectedAddress = address;
+                window.connectedAddress = address;
                 document.getElementById("walletAddress").innerText = `SOL Connected: ${address.slice(0, 6)}...`;
-                connectedChain = "sol";
+                window.connectedChain = "sol";
             } catch (error) {
                 console.error("SOL connection failed:", error);
                 alert("SOL connection failed: " + error.message);
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function sendEth(amount) {
-        if (connectedChain !== "eth") return alert("Connect an ETH wallet first!");
+        if (window.connectedChain !== "eth") return alert("Connect an ETH wallet first!");
         try {
             const signer = ethProvider.getSigner();
             const tx = await signer.sendTransaction({
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function sendSol(amount) {
-        if (connectedChain !== "sol") return alert("Connect a SOL wallet first!");
+        if (window.connectedChain !== "sol") return alert("Connect a SOL wallet first!");
         try {
             const transaction = new solanaWeb3.Transaction().add(
                 solanaWeb3.SystemProgram.transfer({
