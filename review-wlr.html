@@ -103,14 +103,16 @@
             overflow: hidden;
         }
         .glass-card.grad-card img {
-            width: calc(100% - 4px);
+            width: 100%;
+            max-width: 600px; /* Limit the maximum width to prevent overflow */
             height: auto;
+            max-height: 600px; /* Limit the maximum height to fit within the viewport */
+            object-fit: contain; /* Ensure the image scales while maintaining aspect ratio */
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
             transition: all 0.5s ease;
         }
         .glass-card.grad-card:hover img {
-            width: 100%;
             box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7));
             transform: scale(1.02);
         }
@@ -285,49 +287,46 @@
             background: rgba(255, 0, 0, 0.2);
         }
         .table-container {
-            width: 100%; /* Ensure the table container takes up the full width of the glass-card */
-            overflow-x: auto; /* Allow horizontal scrolling if needed */
+            width: 100%;
+            overflow-x: auto;
         }
         .trend-table {
-            width: 100%; /* Force the table to take up the full width of its container */
+            width: 100%;
             border-collapse: separate;
             border-spacing: 0;
             margin: 1rem 0;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             font-size: 1rem;
-            table-layout: fixed; /* Force columns to stretch based on specified widths */
+            table-layout: fixed;
         }
         .trend-table th, .trend-table td {
             padding: 1rem;
             text-align: left;
             border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
             font-size: 1rem;
-            word-wrap: break-word; /* Allow text to wrap */
+            word-wrap: break-word;
         }
-        /* Specific styling for Awards Recognition table */
         .trend-table.awards-table {
-            min-width: 800px; /* Ensure the table has enough width to stretch columns */
+            min-width: 800px;
         }
         .trend-table.awards-table th,
         .trend-table.awards-table td {
-            width: 33.33%; /* Each column takes up exactly 1/3 of the table */
+            width: 33.33%;
         }
-        /* Specific styling for Album Certifications table */
         .trend-table.certifications-table {
-            min-width: 800px; /* Ensure the table has enough width to stretch columns */
+            min-width: 800px;
         }
         .trend-table.certifications-table th,
         .trend-table.certifications-table td {
-            width: 33.33%; /* Each column takes up exactly 1/3 of the table */
+            width: 33.33%;
         }
-        /* Styling for Chart Performance table (already working well) */
         .trend-table.chart-table {
-            min-width: 900px; /* Slightly wider to accommodate 6 columns */
+            min-width: 900px;
         }
         .trend-table.chart-table th,
         .trend-table.chart-table td {
-            width: 16.67%; /* Each column takes up exactly 1/6 of the table */
+            width: 16.67%;
         }
         .trend-table th {
             background: rgba(255, 0, 0, 0.2);
@@ -384,9 +383,13 @@
             .review-footer .newsletter-form input { width: 150px; padding: 0.6rem; }
             .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
             .review-footer .newsletter-form button:hover { transform: none; }
-            .trend-table { font-size: 0.9rem; min-width: 100%; } /* Ensure the table takes up the full width on smaller screens */
+            .trend-table { font-size: 0.9rem; min-width: 100%; }
             .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; }
             .glass-card.sources-card { padding: 1rem; max-width: 1200px; }
+            .glass-card.grad-card img {
+                max-width: 100%; /* Ensure the image doesn't exceed the container width on small screens */
+                max-height: 400px; /* Further reduce the max height for smaller screens */
+            }
         }
     </style>
 </head>
