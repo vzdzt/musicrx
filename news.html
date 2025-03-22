@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* News item container to group title and content cards */
+        .news-item {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
         /* Specific styling for news title card */
         .news-title-card {
             padding: 0.3rem 1rem; /* Comfortable vertical padding for text */
@@ -19,6 +25,7 @@
             background: rgba(102, 0, 0, 0.25); /* Glass effect background */
             backdrop-filter: blur(15px); /* Blur effect */
             border: 2px solid rgba(153, 0, 0, 0.3); /* Border */
+            border-bottom: none; /* Remove bottom border for seamless connection */
             border-radius: 15px 15px 0 0; /* Round top corners only */
             margin-bottom: 0; /* No gap between title and content */
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transition */
@@ -45,6 +52,7 @@
             background: rgba(102, 0, 0, 0.25); /* Glass effect background */
             backdrop-filter: blur(15px); /* Blur effect */
             border: 2px solid rgba(153, 0, 0, 0.3); /* Border */
+            border-top: none; /* Remove top border for seamless connection */
             border-radius: 0 0 15px 15px; /* Round bottom corners only */
             margin-top: 0; /* No gap between title and content */
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transition */
@@ -139,85 +147,93 @@
         <div class="container">
             <h1 class="glitch" data-text="NEWS">NEWS</h1>
             <div class="grid">
-                <!-- Title card for MUSIC Tops Billboard 200 -->
-                <div class="news-title-card">
-                    <h2 class="card-title-container">MUSIC Tops Billboard 200</h2>
+                <!-- News Item 1 -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">Ye and Ty Dolla $ign Announce New Project</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 21, 2025</p>
+                        <img src="images/ye-tydolla.jpg" alt="Ye and Ty Dolla $ign">
+                        <p>Ye and Ty Dolla $ign announce a new collaborative project, inspired by Carti’s experimental sound in MUSIC, following the success of VULTURES 2.</p>
+                    </div>
                 </div>
-                <!-- Content card for MUSIC Tops Billboard 200 -->
-                <div class="news-content-card">
-                    <p class="date">March 21, 2025</p>
-                    <img src="images/carti-projections.jpg" alt="Billboard 200">
-                    <p>Playboi Carti’s MUSIC debuted at No. 1 on the Billboard 200, solidifying its dominance with 302,000 units sold in its first week.</p>
+                <!-- News Item 2 (Keep the one with your image) -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">BACKR00MS Goes Viral on TikTok</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 20, 2025</p>
+                        <img src="https://vzdzt.github.io/musicrx/backrooms.jpeg" alt="TikTok Viral">
+                        <p>“BACKR00MS” from MUSIC exploded on TikTok, becoming a viral sensation with its infectious beat, driving the album’s cultural impact in 2025.</p>
+                    </div>
                 </div>
-                <!-- Title card for BACKR00MS Goes Viral on TikTok -->
-                <div class="news-title-card">
-                    <h2 class="card-title-container">BACKR00MS Goes Viral on TikTok</h2>
+                <!-- News Item 3 -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">Travis Scott Teases New Single</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 19, 2025</p>
+                        <img src="images/travis-news.jpg" alt="Travis Scott News">
+                        <p>Travis Scott teases a new single inspired by his feature on “BACKR00MS,” hinting at a darker sound influenced by Carti’s MUSIC.</p>
+                    </div>
                 </div>
-                <!-- Content card for BACKR00MS Goes Viral on TikTok -->
-                <div class="news-content-card">
-                    <p class="date">March 20, 2025</p>
-                    <img src="https://vzdzt.github.io/musicrx/backrooms.jpeg" alt="TikTok Viral">
-                    <p>“BACKR00MS” from MUSIC exploded on TikTok, becoming a viral sensation with its infectious beat, driving the album’s cultural impact in 2025.</p>
+                <!-- News Item 4 -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">The Weeknd and Carti Tour Rumors</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 18, 2025</p>
+                        <img src="images/weeknd-carti.jpg" alt="The Weeknd and Carti">
+                        <p>The Weeknd’s feature on “RATHER LIE” from MUSIC sparks rumors of a joint tour with Carti, fueled by fan excitement on social media.</p>
+                    </div>
                 </div>
-                <!-- Title card for MUSIC Tops Spotify Streams -->
-                <div class="news-title-card">
-                    <h2 class="card-title-container">MUSIC Tops Spotify Streams</h2>
+                <!-- News Item 5 -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">Kendrick Lamar Album Speculation</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 17, 2025</p>
+                        <img src="images/kendrick-news.jpg" alt="Kendrick Lamar News">
+                        <p>Kendrick Lamar’s verse on “MOJO JOJO” from MUSIC fuels speculation of a new album, with fans noting Carti’s influence on his sound.</p>
+                    </div>
                 </div>
-                <!-- Content card for MUSIC Tops Spotify Streams -->
-                <div class="news-content-card">
-                    <p class="date">March 19, 2025</p>
-                    <img src="images/carti-projections.jpg" alt="Spotify Streams">
-                    <p>Playboi Carti’s MUSIC racked up 228.7 million Spotify streams by March 21, 2025, with a single-day record of 139.3 million streams.</p>
+                <!-- News Item 6 -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">Rolling Loud LA Breaks Attendance Record</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 16, 2025</p>
+                        <img src="images/rolling-loud.jpg" alt="Rolling Loud">
+                        <p>Rolling Loud LA sees record attendance, driven by Carti’s MUSIC debut performance, marking a historic moment for the festival in 2025.</p>
+                    </div>
                 </div>
-                <!-- Title card for Carti Projected 302K First Week -->
-                <div class="news-title-card">
-                    <h2 class="card-title-container">Carti Projected 302K First Week</h2>
+                <!-- News Item 7 -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">MUSIC Production Team Praised</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 15, 2025</p>
+                        <img src="images/production-team.jpg" alt="Production Team">
+                        <p>MUSIC’s production team, F1LTHY, Cardo, and Bnyx, wins praise for their innovative sound design, blending punk and trap in Carti’s latest album.</p>
+                    </div>
                 </div>
-                <!-- Content card for Carti Projected 302K First Week -->
-                <div class="news-content-card">
-                    <p class="date">March 18, 2025</p>
-                    <img src="images/carti-projections.jpg" alt="Carti Sales">
-                    <p>I AM MUSIC is projected to sell 302,000 units in its first week, eyeing a No. 1 Billboard 200 debut, per HITS Daily Double.</p>
-                </div>
-                <!-- Title card for AI Rumors Spark Debate -->
-                <div class="news-title-card">
-                    <h2 class="card-title-container">AI Rumors Spark Debate</h2>
-                </div>
-                <!-- Content card for AI Rumors Spark Debate -->
-                <div class="news-content-card">
-                    <p class="date">March 17, 2025</p>
-                    <img src="images/carti-projections.jpg" alt="AI Rumors">
-                    <p>Rumors of AI use on “FINE SH*T” and “RATHER LIE” from MUSIC stir controversy, with fans debating authenticity after the album’s release.</p>
-                </div>
-                <!-- Title card for Carti Debuts MUSIC at Rolling Loud -->
-                <div class="news-title-card">
-                    <h2 class="card-title-container">Carti Debuts MUSIC at Rolling Loud</h2>
-                </div>
-                <!-- Content card for Carti Debuts MUSIC at Rolling Loud -->
-                <div class="news-content-card">
-                    <p class="date">March 16, 2025</p>
-                    <img src="images/rolling-loud.jpg" alt="Rolling Loud">
-                    <p>Playboi Carti debuted MUSIC live at Rolling Loud LA, headlining with a high-energy set that fueled viral hype across social media.</p>
-                </div>
-                <!-- Title card for Rolling Loud LA Lineup Announced -->
-                <div class="news-title-card">
-                    <h2 class="card-title-container">Rolling Loud LA Lineup Announced</h2>
-                </div>
-                <!-- Content card for Rolling Loud LA Lineup Announced -->
-                <div class="news-content-card">
-                    <p class="date">March 15, 2025</p>
-                    <img src="images/rolling-loud.jpg" alt="Rolling Loud">
-                    <p>Rolling Loud LA announced its 2025 lineup, with Playboi Carti headlining to debut MUSIC, alongside other major acts, sparking festival excitement.</p>
-                </div>
-                <!-- Title card for Playboi Carti Drops MUSIC -->
-                <div class="news-title-card">
-                    <h2 class="card-title-container">Playboi Carti Drops MUSIC</h2>
-                </div>
-                <!-- Content card for Playboi Carti Drops MUSIC -->
-                <div class="news-content-card">
-                    <p class="date">March 14, 2025</p>
-                    <img src="images/carti-projections.jpg" alt="Carti Album Drop">
-                    <p>Playboi Carti released MUSIC, a 30-track punk-trap odyssey featuring The Weeknd, Kendrick Lamar, and Travis Scott, after over four years since Whole Lotta Red.</p>
+                <!-- News Item 8 -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">MUSIC Release Party in Paris</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 14, 2025</p>
+                        <img src="images/carti-party.jpg" alt="Release Party">
+                        <p>MUSIC’s release party in Paris draws A-list celebrities, celebrating the album’s chaotic vibe at the cave-like studio where it was recorded.</p>
+                    </div>
                 </div>
             </div>
         </div>
