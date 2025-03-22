@@ -21,6 +21,8 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 1003; /* Ensure it's clickable */
+            pointer-events: auto; /* Ensure it can be clicked */
         }
         [data-page="shop"] .connect-wallet-btn:hover {
             transform: scale(1.05);
@@ -280,6 +282,35 @@
                 height: auto;
             }
         }
+        /* Wallet Connect Button in Navbar (same as index.html) */
+        .navbar .wallet-connect {
+            background: var(--glass);
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1003; /* Ensure it's above the navbar */
+            pointer-events: auto; /* Ensure it can be clicked */
+        }
+        .navbar .wallet-connect:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 15px var(--glow);
+            animation: rgbShift 3s linear infinite;
+            transform: scale(1.05);
+        }
+        .navbar .wallet-status {
+            color: var(--text-color);
+            font-size: 0.8rem;
+            margin-left: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
     </style>
 </head>
 <body data-page="shop">
@@ -290,6 +321,11 @@
     <nav class="navbar global-nav">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <!-- Wallet Connect Button and Status -->
+        <div class="wallet-section">
+            <button class="wallet-connect" id="connectWallet">Connect Wallet</button>
+            <span class="wallet-status" id="walletStatus"></span>
         </div>
         <div class="dropdown">
             <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
@@ -324,7 +360,7 @@
                     </div>
                     <div class="news-content-card">
                         <p>Discover exclusive music blog merch, digital content, and Web3 experiences!</p>
-                        <button class="connect-wallet-btn" id="connectWallet">Connect Wallet</button>
+                        <button class="connect-wallet-btn" id="connectWalletShop">Connect Wallet</button>
                         <p id="walletAddress"></p>
                     </div>
                 </div>
@@ -579,85 +615,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script>
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text)
-                .then(() => alert("Address copied to clipboard!"))
-                .catch(err => {
-                    console.error('Failed to copy: ', err);
-                    const textArea = document.createElement("textarea");
-                    textArea.value = text;
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand("copy");
-                    document.body.removeChild(textArea);
-                    alert("Address copied to clipboard!");
-                });
-        }
-
-        function startCountdown() {
-            const launchDate = new Date("April 1, 2025 00:00:00").getTime();
-            const timer = setInterval(() => {
-                const now = new Date().getTime();
-                const distance = launchDate - now;
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("days").textContent = days.toString().padStart(2, '0');
-                document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-                document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-                document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
-
-                if (distance < 0) {
-                    clearInterval(timer);
-                    document.getElementById("countdown-timer").innerHTML = "<h3>Shop Now Open!</h3>";
-                }
-            }, 1000);
-        }
-
-        // Tip Machine Logic (Prompt to send a tip via connected wallet)
-        const tipButton = document.getElementById('tipMachine');
-        const sendTipButton = document.getElementById('sendTip');
-        const tipOutput = document.getElementById('tipOutput');
-
-        if (tipButton && sendTipButton && tipOutput) {
-            tipButton.addEventListener('click', () => {
-                if (!window.connectedAddress) {
-                    tipOutput.textContent = "Please connect your wallet first!";
-                } else {
-                    tipOutput.textContent = `Connected: ${window.connectedAddress.slice(0, 6)}...`;
-                }
-            });
-
-            sendTipButton.addEventListener('click', () => {
-                const amount = document.getElementById('tipAmount')?.value;
-                if (!amount || amount <= 0) {
-                    tipOutput.textContent = "Please enter a valid amount!";
-                    return;
-                }
-                if (!window.connectedAddress) {
-                    tipOutput.textContent = "Please connect your wallet first!";
-                    return;
-                }
-                if (window.connectedChain === "eth") {
-                    sendEth(amount);
-                    tipOutput.textContent = `Sending ${amount} ETH...`;
-                } else if (window.connectedChain === "sol") {
-                    sendSol(amount);
-                    tipOutput.textContent = `Sending ${amount} SOL...`;
-                } else {
-                    tipOutput.textContent = "Unsupported wallet type!";
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            startCountdown();
-        });
-    </script>
-    <script src="shop.js"></script>
     <script src="script.js"></script>
+    <script src="shop.js"></script>
 </body>
 </html>
