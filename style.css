@@ -178,366 +178,71 @@ body[data-theme="all-blue"] {
   --secondary: #AED8F2;
   --accent: #B3EBF2;
   --dark: #71B1D9;
-  --glass: rgba(174, 216, 242, 0.25);
-  --glow: rgba(113, 177, 217, 0.6);
-  --rgb-glow: linear-gradient(45deg, #71B1D9, #AED8F2, #B3EBF2);
-  --text-color: #333333;
-  --background: linear-gradient(to top, #AED8F2, #87CEEB);
-  --card-background: rgba(179, 235, 242, 0.35);
-  --border-color: rgba(113, 177, 217, 0.3);
+  --glass: rgba(174, 216, 242, 0.25...
+@keyframes mirage {
+  0%, 100% { filter: blur(0px); }
+  50% { filter: blur(2px); }
 }
 
-/* Yellow Beige Mode - Warm sands with subtle shimmer */
-[data-theme="yellow-beige"] {
-  --primary: #F2DEA2;
-  --secondary: #FDFD96;
-  --accent: #F2DEA2;
-  --dark: #FDFD96;
-  --glass: rgba(242, 222, 162, 0.25);
-  --glow: rgba(253, 253, 150, 0.6);
-  --rgb-glow: linear-gradient(45deg, #F2DEA2, #FDFD96, #F2DEA2);
-  --text-color: #333333;
-  --background: radial-gradient(circle, #FDFD96, #F5E050);
-  --card-background: rgba(242, 222, 162, 0.35);
-  --border-color: rgba(242, 222, 162, 0.3);
+@keyframes aurora-flow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
 }
 
-/* Green Mode - Lush forest with organic flow */
-[data-theme="green"] {
-  --primary: #77DD77;
-  --secondary: #77DD77;
-  --accent: #77DD77;
-  --dark: #77DD77;
-  --glass: rgba(119, 221, 119, 0.25);
-  --glow: rgba(119, 221, 119, 0.6);
-  --rgb-glow: linear-gradient(45deg, #77DD77, #98FF98, #77DD77);
-  --text-color: #333333;
-  --background: linear-gradient(135deg, #77DD77, #4CAF50);
-  --card-background: rgba(119, 221, 119, 0.35);
-  --border-color: rgba(119, 221, 119, 0.3);
+@keyframes nebula-swirl {
+  0% { background-position: 0% 0%; transform: scale(1); }
+  50% { background-position: 100% 100%; transform: scale(1.02); }
+  100% { background-position: 0% 0%; transform: scale(1); }
 }
 
-/* Purple Lavender Mode - Mystical twilight with gradient flow */
-[data-theme="purple-lavender"] {
-  --primary: #B39EB5;
-  --secondary: #8839EF;
-  --accent: #DCB0F2;
-  --dark: #B39EB5;
-  --glass: rgba(179, 158, 181, 0.25);
-  --glow: rgba(136, 57, 239, 0.6);
-  --rgb-glow: linear-gradient(45deg, #B39EB5, #8839EF, #DCB0F2);
-  --text-color: #FFFFFF;
-  --background: conic-gradient(from 135deg, #8839EF, #B39EB5, #8839EF);
-  --card-background: rgba(220, 176, 242, 0.35);
-  --border-color: rgba(179, 158, 181, 0.3);
+@keyframes lightning-flash {
+  0%, 100% { filter: brightness(1); }
+  10%, 12%, 50%, 52% { filter: brightness(1.8); }
 }
 
-/* Vogue Mode - Chic elegance with metallic gradients */
-[data-theme="vogue"] {
-  --primary: #ACB7AE;
-  --secondary: #C2B490;
-  --accent: #E4DECD;
-  --dark: #82716E;
-  --glass: rgba(172, 183, 174, 0.25);
-  --glow: rgba(194, 180, 144, 0.6);
-  --rgb-glow: linear-gradient(45deg, #ACB7AE, #C2B490, #E4DECD);
-  --text-color: #333333;
-  --background: linear-gradient(90deg, #E4DECD, #D3CBB8);
-  --card-background: rgba(172, 183, 174, 0.35);
-  --border-color: rgba(130, 113, 110, 0.3);
+@keyframes void-ripple {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
 }
 
-/* Neon Future Mode - Cyberpunk vibrance with neon flicker */
-[data-theme="neon-future"] {
-  --primary: #00ff9f;
-  --secondary: #00f7ff;
-  --accent: #ff00ff;
-  --dark: #000033;
-  --glass: rgba(0, 255, 159, 0.15);
-  --glow: rgba(0, 247, 255, 0.7);
-  --rgb-glow: linear-gradient(45deg, #00ff9f, #00f7ff, #ff00ff);
-  --text-color: #ffffff;
-  --background: radial-gradient(circle, #000033, #000011);
-  --card-background: rgba(0, 255, 159, 0.1);
-  --border-color: rgba(0, 247, 255, 0.3);
-}
-body[data-theme="neon-future"] {
-  animation: neon-flicker 2s infinite;
+@keyframes lava-flow {
+  0% { background-position: 0% 0%; filter: brightness(1); }
+  50% { background-position: 100% 100%; filter: brightness(1.3); }
+  100% { background-position: 0% 0%; filter: brightness(1); }
 }
 
-/* Midnight Gold Mode - Luxurious night with golden shimmer */
-[data-theme="midnight-gold"] {
-  --primary: #ffd700;
-  --secondary: #4a4a8a;
-  --accent: #c0c0c0;
-  --dark: #1a1a3a;
-  --glass: rgba(255, 215, 0, 0.15);
-  --glow: rgba(255, 215, 0, 0.6);
-  --rgb-glow: linear-gradient(45deg, #ffd700, #4a4a8a, #c0c0c0);
-  --text-color: #ffd700;
-  --background: radial-gradient(circle at top, #1a1a3a, #0f0f1f);
-  --card-background: conic-gradient(from 45deg, rgba(255, 215, 0, 0.1), rgba(74, 74, 138, 0.15));
-  --border-color: rgba(255, 215, 0, 0.25);
+@keyframes rift-portal {
+  0% { transform: rotate(0deg); background-position: 0% 0%; }
+  100% { transform: rotate(360deg); background-position: 100% 100%; }
 }
 
-/* Desert Oasis Mode - Sandy warmth with mirage effects */
-[data-theme="desert-oasis"] {
-  --primary: #ff8c00;
-  --secondary: #4b0082;
-  --accent: #00ced1;
-  --dark: #2d1810;
-  --glass: rgba(255, 140, 0, 0.15);
-  --glow: rgba(0, 206, 209, 0.6);
-  --rgb-glow: linear-gradient(45deg, #ff8c00, #4b0082, #00ced1);
-  --text-color: #ff8c00;
-  --background: linear-gradient(to bottom, #2d1810, #4a2e1a);
-  --card-background: rgba(255, 140, 0, 0.1);
-  --border-color: rgba(0, 206, 209, 0.25);
-}
-body[data-theme="desert-oasis"] {
-  animation: mirage 5s infinite;
+@keyframes eclipse-glow {
+  0%, 100% { filter: brightness(1); transform: scale(1); }
+  50% { filter: brightness(0.8); transform: scale(1.03); }
 }
 
-/* Cyber Punk Mode - Retro-futuristic neon grid */
-[data-theme="cyber-punk"] {
-  --primary: #ff00ff;
-  --secondary: #00ff00;
-  --accent: #ffff00;
-  --dark: #000000;
-  --glass: rgba(255, 0, 255, 0.15);
-  --glow: rgba(0, 255, 0, 0.7);
-  --rgb-glow: linear-gradient(45deg, #ff00ff, #00ff00, #ffff00);
-  --text-color: #ffffff;
-  --background: #000000 linear-gradient(90deg, rgba(255,0,255,0.1) 1px, transparent 1px), linear-gradient(0deg, rgba(0,255,0,0.1) 1px, transparent 1px);
-  --card-background: rgba(255, 0, 255, 0.1);
-  --border-color: rgba(0, 255, 0, 0.3);
+@keyframes quantum-shimmer {
+  0% { background-position: 0% 0%; filter: brightness(1); }
+  50% { background-position: 100% 100%; filter: brightness(1.2); }
+  100% { background-position: 0% 0%; filter: brightness(1); }
 }
 
-/* Aurora Breeze Mode - Ethereal aurora with flowing colors */
-[data-theme="aurora-breeze"] {
-  --primary: #80ffdb;
-  --secondary: #64dfdf;
-  --accent: #48bfe3;
-  --dark: #1b3a4b;
-  --glass: rgba(128, 255, 219, 0.15);
-  --glow: rgba(100, 223, 223, 0.6);
-  --rgb-glow: linear-gradient(45deg, #80ffdb, #64dfdf, #48bfe3);
-  --text-color: #80ffdb;
-  --background: linear-gradient(135deg, #1b3a4b, #2e5a6b);
-  --card-background: rgba(128, 255, 219, 0.1);
-  --border-color: rgba(100, 223, 223, 0.25);
-}
-body[data-theme="aurora-breeze"] {
-  animation: aurora-flow 8s infinite;
+@keyframes spectral-surge {
+  0% { background-position: 0% 0%; transform: translateY(0); }
+  50% { background-position: 100% 100%; transform: translateY(-5px); }
+  100% { background-position: 0% 0%; transform: translateY(0); }
 }
 
-/* Glass Morphism Mode - Transparent elegance with 3D glass effect */
-[data-theme="glass-morphism"] {
-  --primary: #a3d9ff;
-  --secondary: #e6f2ff;
-  --accent: #cce6ff;
-  --dark: rgba(20, 30, 50, 0.8);
-  --glass: rgba(255, 255, 255, 0.2);
-  --glow: rgba(163, 217, 255, 0.7);
-  --rgb-glow: linear-gradient(45deg, #a3d9ff, #e6f2ff, #cce6ff);
-  --text-color: #ffffff;
-  --background: linear-gradient(135deg, rgba(20, 30, 50, 0.9), rgba(40, 60, 100, 0.9));
-  --card-background: rgba(255, 255, 255, 0.15);
-  --border-color: rgba(163, 217, 255, 0.35);
+@keyframes prism-shift {
+  0% { background-position: 0% 0%; transform: translateX(0); }
+  50% { background-position: 100% 100%; transform: translateX(5px); }
+  100% { background-position: 0% 0%; transform: translateX(0); }
 }
 
-/* Glass Morphism background overlay */
-[data-theme="glass-morphism"]::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(8px);
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Galactic Nebula (Original) - Cosmic swirl with starry overlay */
-[data-theme="galactic-nebula"] {
-  --primary: #ff1a8c;
-  --secondary: #00ccff;
-  --accent: #b347ff;
-  --dark: #0d001a;
-  --glass: rgba(255, 26, 140, 0.2);
-  --glow: rgba(0, 204, 255, 0.7);
-  --rgb-glow: linear-gradient(45deg, #ff1a8c, #00ccff, #b347ff);
-  --text-color: #e6ccff;
-  --background: radial-gradient(circle at center, #1a0033, #0d001a);
-  --card-background: rgba(179, 71, 255, 0.15);
-  --border-color: rgba(255, 26, 140, 0.3);
-}
-body[data-theme="galactic-nebula"] {
-  animation: nebula-swirl 15s ease-in-out infinite;
-}
-
-/* Electric Storm (Original) - Charged energy with lightning effects */
-[data-theme="electric-storm"] {
-  --primary: #00ffcc;
-  --secondary: #ffcc00;
-  --accent: #ff0066;
-  --dark: #1a1a2e;
-  --glass: rgba(0, 255, 204, 0.25);
-  --glow: rgba(255, 204, 0, 0.8);
-  --rgb-glow: linear-gradient(45deg, #00ffcc, #ffcc00, #ff0066);
-  --text-color: #ffffff;
-  --background: linear-gradient(135deg, #1a1a2e, #2e2e47);
-  --card-background: rgba(255, 0, 102, 0.2);
-  --border-color: rgba(0, 255, 204, 0.35);
-}
-body[data-theme="electric-storm"] {
-  animation: storm-flash 5s infinite;
-}
-
-/* Void Pulse (Original) - Dark abyss with pulsating neon */
-[data-theme="void-pulse"] {
-  --primary: #ff00ff;
-  --secondary: #00ff00;
-  --accent: #ff6600;
-  --dark: #000000;
-  --glass: rgba(255, 0, 255, 0.15);
-  --glow: rgba(0, 255, 0, 0.9);
-  --rgb-glow: linear-gradient(45deg, #ff00ff, #00ff00, #ff6600);
-  --text-color: #ffffff;
-  --background: #000000;
-  --card-background: rgba(255, 102, 0, 0.1);
-  --border-color: rgba(255, 0, 255, 0.4);
-}
-body[data-theme="void-pulse"] {
-  animation: void-pulse 3s infinite;
-}
-
-/* Prism Shard (Original) - Refracted light with crystalline edges */
-[data-theme="prism-shard"] {
-  --primary: #66ffcc;
-  --secondary: #ff99cc;
-  --accent: #ccff66;
-  --dark: #1a2e47;
-  --glass: rgba(102, 255, 204, 0.3);
-  --glow: rgba(255, 153, 204, 0.6);
-  --rgb-glow: linear-gradient(45deg, #66ffcc, #ff99cc, #ccff66);
-  --text-color: #ffffff;
-  --background: linear-gradient(90deg, #1a2e47, #2e475c);
-  --card-background: rgba(204, 255, 102, 0.25);
-  --border-color: rgba(102, 255, 204, 0.35);
-}
-body[data-theme="prism-shard"] {
-  animation: prism-shift 6s infinite;
-}
-
-/* Inferno Core (Original) - Molten core with fiery glow */
-[data-theme="inferno-core"] {
-  --primary: #ff3300;
-  --secondary: #ff8c00;
-  --accent: #ffcc00;
-  --dark: #2e0f00;
-  --glass: rgba(255, 51, 0, 0.2);
-  --glow: rgba(255, 140, 0, 0.8);
-  --rgb-glow: linear-gradient(45deg, #ff3300, #ff8c00, #ffcc00);
-  --text-color: #ffffff;
-  --background: radial-gradient(circle, #2e0f00, #1a0700);
-  --card-background: rgba(255, 204, 0, 0.15);
-  --border-color: rgba(255, 51, 0, 0.4);
-}
-body[data-theme="inferno-core"] {
-  animation: inferno-glow 4s infinite;
-}
-
-/* Cosmic Rift (Original) - Interdimensional tear with swirling colors */
-[data-theme="cosmic-rift"] {
-  --primary: #b366ff;
-  --secondary: #00e6ff;
-  --accent: #ff66b3;
-  --dark: #0f1a2e;
-  --glass: rgba(179, 102, 255, 0.25);
-  --glow: rgba(0, 230, 255, 0.7);
-  --rgb-glow: linear-gradient(45deg, #b366ff, #00e6ff, #ff66b3);
-  --text-color: #e6f2ff;
-  --background: linear-gradient(135deg, #0f1a2e, #1a2e47);
-  --card-background: rgba(255, 102, 179, 0.2);
-  --border-color: rgba(179, 102, 255, 0.35);
-}
-body[data-theme="cosmic-rift"] {
-  animation: rift-swirl 6s infinite;
-}
-
-/* Neon Eclipse (Original) - Darkened glow with eclipse-like transitions */
-[data-theme="neon-eclipse"] {
-  --primary: #ff00cc;
-  --secondary: #00ff99;
-  --accent: #ffcc00;
-  --dark: #1a001a;
-  --glass: rgba(255, 0, 204, 0.2);
-  --glow: rgba(0, 255, 153, 0.8);
-  --rgb-glow: linear-gradient(45deg, #ff00cc, #00ff99, #ffcc00);
-  --text-color: #ffffff;
-  --background: radial-gradient(circle, #1a001a, #0d000d);
-  --card-background: rgba(255, 204, 0, 0.15);
-  --border-color: rgba(255, 0, 204, 0.3);
-}
-body[data-theme="neon-eclipse"] {
-  animation: eclipse-pulse 5s infinite;
-}
-
-/* Quantum Flux (Original) - Fluxing energy with particle effects */
-[data-theme="quantum-flux"] {
-  --primary: #66ff99;
-  --secondary: #ff3399;
-  --accent: #3399ff;
-  --dark: #0f2e1a;
-  --glass: rgba(102, 255, 153, 0.25);
-  --glow: rgba(255, 51, 153, 0.7);
-  --rgb-glow: linear-gradient(45deg, #66ff99, #ff3399, #3399ff);
-  --text-color: #ffffff;
-  --background: linear-gradient(90deg, #0f2e1a, #1a4733);
-  --card-background: rgba(51, 153, 255, 0.2);
-  --border-color: rgba(102, 255, 153, 0.35);
-}
-body[data-theme="quantum-flux"] {
-  animation: flux-shift 3s infinite;
-}
-
-/* Holo Abyss (Original) - Holographic depth with shimmering reflections */
-[data-theme="holo-abyss"] {
-  --primary: #00ccff;
-  --secondary: #ff00ff;
-  --accent: #ccff00;
-  --dark: #0a1a33;
-  --glass: rgba(0, 204, 255, 0.3);
-  --glow: rgba(255, 0, 255, 0.8);
-  --rgb-glow: linear-gradient(45deg, #00ccff, #ff00ff, #ccff00);
-  --text-color: #e6f2ff;
-  --background: radial-gradient(circle, #0a1a33, #051428);
-  --card-background: rgba(204, 255, 0, 0.25);
-  --border-color: rgba(0, 204, 255, 0.4);
-}
-body[data-theme="holo-abyss"] {
-  animation: holo-shift 4s infinite;
-}
-
-/* Spectral Surge (Original) - Vibrant energy with spectral waves */
-[data-theme="spectral-surge"] {
-  --primary: #ff3366;
-  --secondary: #33ccff;
-  --accent: #ffcc33;
-  --dark: #2e1a0f;
-  --glass: rgba(255, 51, 102, 0.25);
-  --glow: rgba(51, 204, 255, 0.7);
-  --rgb-glow: linear-gradient(45deg, #ff3366, #33ccff, #ffcc33);
-  --text-color: #ffffff;
-  --background: linear-gradient(135deg, #2e1a0f, #472e1a);
-  --card-background: rgba(255, 204, 51, 0.2);
-  --border-color: rgba(255, 51, 102, 0.35);
-}
-body[data-theme="spectral-surge"] {
-  animation: spectral-wave 4s infinite;
+@keyframes holo-shift {
+  0% { background-position: 0% 0%; transform: rotate(0deg); }
+  50% { background-position: 100% 100%; transform: rotate(2deg); }
+  100% { background-position: 0% 0%; transform: rotate(0deg); }
 }
 
 /* Starforge Nebula - A cosmic swirl with glowing nebulae and particle effects */
@@ -720,128 +425,6 @@ body[data-theme="waveform-surge"] {
   animation: spectral-surge 4s infinite ease-in-out;
 }
 
-/* Animation Keyframes */
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
-}
-
-@keyframes heatwave {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-}
-
-@keyframes wave {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
-}
-
-@keyframes neon-flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.95; }
-}
-
-@keyframes storm-flash {
-  0%, 100% { filter: brightness(1); }
-  10%, 12% { filter: brightness(1.5); }
-}
-
-@keyframes void-pulse {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.2); }
-}
-
-@keyframes inferno-glow {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.3); }
-}
-
-@keyframes rift-swirl {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
-}
-
-@keyframes eclipse-pulse {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(0.9); }
-}
-
-@keyframes flux-shift {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
-}
-
-@keyframes spectral-wave {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
-}
-
-@keyframes mirage {
-  0%, 100% { filter: blur(0px); }
-  50% { filter: blur(2px); }
-}
-
-@keyframes aurora-flow {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
-}
-
-@keyframes nebula-swirl {
-  0% { background-position: 0% 0%; transform: scale(1); }
-  50% { background-position: 100% 100%; transform: scale(1.02); }
-  100% { background-position: 0% 0%; transform: scale(1); }
-}
-
-@keyframes lightning-flash {
-  0%, 100% { filter: brightness(1); }
-  10%, 12%, 50%, 52% { filter: brightness(1.8); }
-}
-
-@keyframes void-ripple {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.05); opacity: 1; }
-}
-
-@keyframes lava-flow {
-  0% { background-position: 0% 0%; filter: brightness(1); }
-  50% { background-position: 100% 100%; filter: brightness(1.3); }
-  100% { background-position: 0% 0%; filter: brightness(1); }
-}
-
-@keyframes rift-portal {
-  0% { transform: rotate(0deg); background-position: 0% 0%; }
-  100% { transform: rotate(360deg); background-position: 100% 100%; }
-}
-
-@keyframes eclipse-glow {
-  0%, 100% { filter: brightness(1); transform: scale(1); }
-  50% { filter: brightness(0.8); transform: scale(1.03); }
-}
-
-@keyframes quantum-shimmer {
-  0% { background-position: 0% 0%; filter: brightness(1); }
-  50% { background-position: 100% 100%; filter: brightness(1.2); }
-  100% { background-position: 0% 0%; filter: brightness(1); }
-}
-
-@keyframes spectral-surge {
-  0% { background-position: 0% 0%; transform: translateY(0); }
-  50% { background-position: 100% 100%; transform: translateY(-5px); }
-  100% { background-position: 0% 0%; transform: translateY(0); }
-}
-
-@keyframes prism-shift {
-  0% { background-position: 0% 0%; transform: translateX(0); }
-  50% { background-position: 100% 100%; transform: translateX(5px); }
-  100% { background-position: 0% 0%; transform: translateX(0); }
-}
-
-@keyframes holo-shift {
-  0% { background-position: 0% 0%; transform: rotate(0deg); }
-  50% { background-position: 100% 100%; transform: rotate(2deg); }
-  100% { background-position: 0% 0%; transform: rotate(0deg); }
-}
-
 /* Apply theme variables to body */
 body {
   font-family: 'Space Grotesk', sans-serif;
@@ -895,15 +478,17 @@ body {
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: -1;
-} /* Container for main content */
+}
+
+/* Container for main content */
 .container {
   flex: 1;
   padding: 80px 1rem 2rem;
-  max-width: 1400px;
+  max-width: 1200px; /* Adjusted from 1400px for consistency with shop.html */
   margin: 0 auto;
   position: relative;
-  z-index: 1;
-  width: calc(100% - 2rem); /* Small margin on each side */
+  z-index: 10; /* Higher than background but below nav/footer */
+  width: calc(100% - 2rem);
   box-sizing: border-box;
 }
 
@@ -945,10 +530,10 @@ body {
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    padding: 1rem 0.5rem; /* Reduced padding on smaller screens */
+    padding: 1rem 0.5rem;
   }
   .card-pair {
-    max-width: clamp(200px, 90vw, 250px); /* Further scaled down for mobile */
+    max-width: clamp(200px, 90vw, 250px);
   }
 }
 
@@ -978,47 +563,47 @@ body {
   background: var(--card-background);
   border-radius: 8px;
   overflow: hidden;
-  display: table; /* Default to table display for stretching on larger screens */
+  display: table;
   font-size: 0.9rem;
-  table-layout: fixed; /* Force columns to stretch evenly */
+  table-layout: fixed;
 }
 
 /* Specific styling for Awards Recognition table */
 .trend-table.awards-table {
-  min-width: 100%; /* Ensure the table stretches to the full container width */
+  min-width: 100%;
 }
 .trend-table.awards-table th,
 .trend-table.awards-table td {
-  width: 33.33%; /* Each column takes up exactly 1/3 of the table */
+  width: 33.33%;
 }
 
 /* Specific styling for Album Certifications table */
 .trend-table.certifications-table {
-  min-width: 100%; /* Ensure the table stretches to the full container width */
+  min-width: 100%;
 }
 .trend-table.certifications-table th,
 .trend-table.certifications-table td {
-  width: 33.33%; /* Each column takes up exactly 1/3 of the table */
+  width: 33.33%;
 }
 
 /* Specific styling for Chart Performance table */
 .trend-table.chart-table {
-  min-width: 100%; /* Ensure the table stretches to the full container width */
+  min-width: 100%;
 }
 .trend-table.chart-table th,
 .trend-table.chart-table td {
-  width: 16.67%; /* Each column takes up exactly 1/6 of the table (6 columns) */
+  width: 16.67%;
 }
 
 /* Table cell styling */
 .trend-table th,
 .trend-table td {
-  padding: 0.8rem 1rem; /* Increased padding for better spacing */
+  padding: 0.8rem 1rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
   color: var(--text-color);
   font-size: 0.9rem;
-  word-wrap: break-word; /* Allow text to wrap for better stretching */
+  word-wrap: break-word;
 }
 
 /* Table header styling */
@@ -1034,7 +619,7 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Navigation bar styling */
@@ -1044,7 +629,6 @@ body {
   left: 0;
   width: 100%;
   background: var(--dark);
-  /* Fallback */
   background: rgba(10, 10, 10, 0.8);
   @supports (backdrop-filter: blur(10px)) {
     backdrop-filter: blur(10px);
@@ -1146,7 +730,6 @@ body {
   top: 100%;
   right: 0;
   background: var(--dark);
-  /* Fallback */
   background: rgba(10, 10, 10, 0.8);
   @supports (backdrop-filter: blur(10px)) {
     backdrop-filter: blur(10px);
@@ -1307,7 +890,6 @@ body {
   max-width: 350px;
   width: 100%;
   background: var(--glass);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(15px)) {
     backdrop-filter: blur(15px);
@@ -1434,7 +1016,6 @@ body {
   flex: 0 0 300px;
   min-width: 300px;
   background: var(--card-background);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(15px)) {
     backdrop-filter: blur(15px);
@@ -1554,7 +1135,6 @@ body {
 /* Footer styling */
 .footer {
   background: var(--dark);
-  /* Fallback */
   background: rgba(10, 10, 10, 0.8);
   @supports (backdrop-filter: blur(10px)) {
     backdrop-filter: blur(10px);
@@ -1715,7 +1295,7 @@ body {
 
 /* Standard glass card styling */
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)); /* Enhanced fallback */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
   @supports (backdrop-filter: blur(15px)) {
     backdrop-filter: blur(15px);
     background: var(--card-background);
@@ -1724,7 +1304,7 @@ body {
   padding: 1.5rem;
   border: 1px solid var(--border-color);
   box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.3);
-  opacity: 0.95; /* Increased opacity for better visibility */
+  opacity: 0.95;
   transition: all 0.3s ease;
   cursor: pointer;
   display: flex;
@@ -1737,7 +1317,7 @@ body {
   margin: 0 auto;
   box-sizing: border-box;
   will-change: transform, box-shadow, opacity;
-  z-index: 3; /* Higher z-index to ensure visibility */
+  z-index: 3;
   position: relative;
 }
 
@@ -1763,7 +1343,7 @@ body {
 /* Glass card heading styling */
 .glass-card h2, .glass-card h3 {
   font-size: 1.2rem;
-  color: var(--primary); /* Use primary color for headings */
+  color: var(--primary);
   margin: 0.5rem 0;
   font-family: 'Syncopate', sans-serif;
   text-transform: uppercase;
@@ -1911,7 +1491,6 @@ body {
   overflow: hidden;
   max-width: 100%;
   background: var(--card-background);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(15px)) {
     backdrop-filter: blur(15px);
@@ -1968,7 +1547,7 @@ body {
 /* Apply theme variables to body */
 body {
   font-family: 'Space Grotesk', sans-serif;
-  background: var(--background, #0a0a0a); /* Fallback */
+  background: var(--background, #0a0a0a);
   color: var(--text-color, rgba(255, 255, 255, 0.8));
   overflow-x: hidden;
   min-height: 100vh;
@@ -2055,7 +1634,6 @@ body {
   padding: 0.5rem;
   border: 1px solid var(--border-color);
   background: var(--glass);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(5px)) {
     backdrop-filter: blur(5px);
@@ -2084,7 +1662,6 @@ textarea.form-control {
 /* Submit button styling */
 .submit-btn {
   background: var(--glass);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(5px)) {
     backdrop-filter: blur(5px);
@@ -2113,6 +1690,68 @@ textarea.form-control {
 /* Center the contact title */
 .contact-title {
   text-align: center;
+}
+
+/* Shop Page Specific Styles */
+[data-page="shop"] body {
+  background: var(--background);
+}
+
+[data-page="shop"] .hero-banner {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 400px;
+  background: linear-gradient(135deg, var(--dark), #2c2c2c);
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 0 30px var(--glow);
+}
+
+[data-page="shop"] .crypto-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 30px var(--glow);
+}
+
+[data-page="shop"] .shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+[data-page="shop"] .construction-tape {
+  position: fixed;
+  width: 150%;
+  height: 50px;
+  background: repeating-linear-gradient(
+    45deg,
+    #000,
+    #000 10px,
+    #ffcc00 10px,
+    #ffcc00 20px
+  );
+  top: 0;
+  left: -25%;
+  z-index: 1000;
+  transform: rotate(-5deg);
+  animation: slide 15s linear infinite;
+}
+
+@keyframes slide {
+  0% { transform: translateX(-50px) rotate(-5deg); }
+  100% { transform: translateX(50px) rotate(-5deg); }
 }
 
 /* Media queries for responsive design */
@@ -2204,31 +1843,29 @@ textarea.form-control {
   }
   .container {
     padding: 60px 0.5rem 1rem;
-    width: calc(100% - 1rem); /* Smaller margin on mobile */
+    width: calc(100% - 1rem);
   }
-  /* Adjust table for mobile: enable horizontal scrolling */
   .trend-table {
-    display: block; /* Enable horizontal scrolling on mobile */
+    display: block;
     overflow-x: auto;
     font-size: 0.8rem;
   }
   .glass-card {
     min-height: 450px;
-    max-width: clamp(200px, 90vw, 250px); /* Further scaled down for mobile */
+    max-width: clamp(200px, 90vw, 250px);
   }
   .glass-card img {
     height: 200px;
   }
-  /* Navbar adjustments for mobile */
   .navbar {
     padding: 0.5rem;
-    height: 50px; /* Slightly smaller height for mobile */
+    height: 50px;
   }
   .nav-logo {
     margin-left: 0.5rem;
   }
   .nav-logo .logo-symbol i {
-    font-size: 1.2rem; /* Smaller logo on mobile */
+    font-size: 1.2rem;
   }
   .search-container {
     max-width: 220px;
@@ -2237,5 +1874,11 @@ textarea.form-control {
   .search-input {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
+  }
+  [data-page="shop"] .crypto-options {
+    grid-template-columns: 1fr;
+  }
+  [data-page="shop"] .shop-grid {
+    grid-template-columns: 1fr;
   }
 }
