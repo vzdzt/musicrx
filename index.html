@@ -81,6 +81,28 @@
             background: var(--glass);
             color: var(--primary);
         }
+        /* Wallet Connect Button in Navbar */
+        .navbar .wallet-connect {
+            background: var(--rgb-glow);
+            border: none;
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 0.8rem;
+        }
+        .navbar .wallet-connect:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        .navbar .wallet-status {
+            color: var(--text-color);
+            font-size: 0.8rem;
+            margin-left: 1rem;
+        }
     </style>
 </head>
 <body class="home">
@@ -117,6 +139,11 @@
         <!-- Logo with heartbeat animation -->
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <!-- Wallet Connect Button and Status -->
+        <div class="wallet-section">
+            <button class="wallet-connect" id="connectWallet">Connect Wallet</button>
+            <span class="wallet-status" id="walletStatus"></span>
         </div>
         <!-- Dropdown menu toggle -->
         <div class="dropdown">
@@ -412,9 +439,32 @@
         </form>
     </footer>
 
-    <!-- Inline JavaScript for Magic Search Bar and Tip Machine -->
+    <!-- Inline JavaScript for Magic Search Bar, Tip Machine, and Wallet Connect -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Wallet Connect Logic
+            const connectWalletButton = document.getElementById('connectWallet');
+            const walletStatus = document.getElementById('walletStatus');
+
+            if (connectWalletButton && walletStatus) {
+                connectWalletButton.addEventListener('click', () => {
+                    connectWallet(); // Function from shop.js
+                });
+
+                // Update wallet status when connected (listen for changes from shop.js)
+                const checkWalletStatus = () => {
+                    if (window.connectedAddress) {
+                        walletStatus.textContent = `${window.connectedAddress.slice(0, 6)}...`;
+                    } else {
+                        walletStatus.textContent = '';
+                    }
+                };
+
+                // Check wallet status on load and periodically
+                checkWalletStatus();
+                setInterval(checkWalletStatus, 1000); // Update every second
+            }
+
             // Tip Machine Logic (Prompt to send a tip via connected wallet)
             const tipButton = document.getElementById('tipMachine');
             const tipOverlay = document.getElementById('tipOverlay');
