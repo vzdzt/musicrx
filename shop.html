@@ -10,11 +10,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Web3 subtle styling */
+        [data-page="shop"] .shop-hero {
+            height: 40vh;
+            padding: 2rem 0;
+        }
+
+        .musicrx-card {
+            max-width: 200px;
+            padding: 1rem;
+            background: var(--glass);
+            box-shadow: 0 0 5px var(--glow);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .musicrx-card .connect-wallet-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border-radius: 20px;
+        }
+
         .web3-hint {
             font-style: italic;
             font-size: 0.8rem;
-            color: var(--primary);
+            color: rgba(255, 255, 255, 0.7);
             position: relative;
             cursor: help;
         }
@@ -24,36 +43,56 @@
             bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--dark);
+            background: rgba(10, 10, 10, 0.9);
             padding: 0.5rem;
             border-radius: 5px;
             font-size: 0.75rem;
-            color: var(--text-color);
+            color: rgba(255, 255, 255, 0.9);
             z-index: 10;
             white-space: nowrap;
         }
-        /* Smaller MusicRx card */
-        .musicrx-card {
-            max-width: 250px;
-            min-height: auto;
-            padding: 1rem;
-            background: var(--glass);
-            box-shadow: 0 0 8px var(--glow);
-            border-radius: 10px;
-        }
-        .musicrx-card .connect-wallet-btn {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.85rem;
-            border-radius: 15px;
-        }
-        /* Subtle pulse animation */
-        .fa-pulse-subtle {
-            animation: pulse 4s infinite ease-in-out;
-        }
-        /* Adjust grid spacing */
+
         [data-page="shop"] .shop-grid {
+            max-width: 1000px;
+            margin: 0 auto;
             gap: 3rem;
             padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.8)), url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVR4nGP4z8DA8P//f4b///8DAApnA/8Wn0EuAAAAAElFTkSuQmCC') repeat;
+            border-radius: 20px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .shop-card {
+            max-width: 250px;
+            min-height: 300px;
+            padding: 1.5rem;
+            box-shadow: 0 0 5px var(--glow);
+        }
+
+        .fa-pulse-subtle {
+            animation: pulse 5s infinite ease-in-out;
+        }
+
+        .countdown-section {
+            margin: 2rem 0;
+        }
+
+        .support-section {
+            margin: 2rem 0;
+        }
+
+        .crypto-card {
+            background: var(--glass);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .crypto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px var(--glow);
         }
     </style>
 </head>
@@ -96,7 +135,7 @@
     <div class="main-content">
         <div class="shop-container">
             <!-- Hero Section -->
-            <section class="shop-hero" style="height: 50vh;">
+            <section class="shop-hero">
                 <h1 class="glitch" data-text="MUSICRX BODEGA">MUSICRX BODEGA</h1>
                 <p>Minimalist Music Essentials</p>
                 <div class="glass-card musicrx-card">
@@ -119,56 +158,66 @@
             <!-- Products Teaser Grid -->
             <section class="shop-grid">
                 <div class="shop-card">
-                    <i class="fas fa-heartbeat fa-pulse-subtle"></i>
+                    <i class="fas fa-tshirt fa-float"></i>
                     <h2>Apparel</h2>
-                    <p>Black & white essentials.</p>
+                    <p>Black & white music gear coming soon.</p>
                 </div>
                 <div class="shop-card">
-                    <i class="fas fa-heartbeat fa-pulse-subtle"></i>
+                    <i class="fas fa-ticket-alt fa-spin-slow"></i>
                     <h2>Raffles</h2>
-                    <p>Vinyls & artist bundles via <span class="web3-hint">NFTs</span>.</p>
+                    <p>Win exclusive vinyls & merch through our NFT raffles.</p>
+                </div>
+                <div class="shop-card">
+                    <i class="fas fa-cube fa-pulse-subtle"></i>
+                    <h2>NFTs</h2>
+                    <p>Mint our NFTs for early access to drops and events.</p>
                 </div>
                 <div class="shop-card">
                     <i class="fas fa-heartbeat fa-pulse-subtle"></i>
                     <h2>Perks</h2>
-                    <p><span class="web3-hint">NFT</span> holders get exclusives.</p>
+                    <p>NFT holders get exclusives; subscribers notified first.</p>
+                </div>
+                <div class="shop-card">
+                    <i class="fas fa-envelope fa-pulse-subtle"></i>
+                    <h2>Subscribe</h2>
+                    <p>Join for updates and early access offers.</p>
                 </div>
             </section>
 
             <!-- Support Section -->
             <section class="support-section">
-                <h2 class="section-title">Support Us</h2>
-                <p>Tip to fuel the bodega.</p>
+                <h2 class="section-title">Support MusicRx</h2>
+                <p>Help us grow with a tip in your preferred crypto.</p>
                 <div class="crypto-grid">
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
-                        <h3><span class="web3-hint">ETH</span></h3>
+                        <h3>ETH</h3>
                         <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
                         <button class="copy-address-btn" onclick="copyToClipboard('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
-                            <i class="fas fa-copy"></i>
+                            <i class="fas fa-copy"></i> Copy
                         </button>
-                        <input type="number" placeholder="ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
-                        <button id="tipEth" class="donate-button"><i class="fas fa-donate"></i></button>
+                        <input type="number" placeholder="Amount" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
+                        <button id="tipEth" class="donate-button"><i class="fas fa-donate"></i> Send</button>
                     </div>
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fab fa-bitcoin"></i></div>
                         <h3>BTC</h3>
                         <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
                         <button class="copy-address-btn" onclick="copyToClipboard('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
-                            <i class="fas fa-copy"></i>
+                            <i class="fas fa-copy"></i> Copy
                         </button>
-                        <input type="number" placeholder="BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
-                        <button id="tipBtc" class="donate-button"><i class="fas fa-donate"></i></button>
+                        <input type="number" placeholder="Amount" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
+                        <button id="tipBtc" class="donate-button"><i class="fas fa-donate"></i> Send</button>
                     </div>
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fas fa-sun"></i></div>
-                        <h3><span class="web3-hint">SOL</span></h3>
+                        <h3>SOL</h3>
                         <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
                         <button class="copy-address-btn" onclick="copyToClipboard('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
-                            <i class="fas fa-copy"></i>
+                            <i class="fas fa-copy"></i> Copy
                         </button>
-                        <input type="number" placeholder="SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
-                        <button id="tipSol" class="donate-button"><i class="fas fa-donate"></i></button>
+                        <input type="number" placeholder="Amount" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
+                        <button id="tipSol" class="donate-button"><i class="fas fa-donate"></i> Send</button>
                     </div>
                 </div>
             </section>
