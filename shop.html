@@ -257,6 +257,15 @@
             color: var(--primary);
             margin-bottom: 1rem;
         }
+        [data-page="shop"] #tipAmount {
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            border-radius: 5px;
+            color: var(--text-color);
+            padding: 0.5rem;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
         [data-page="shop"] #tipOutput {
             margin-top: 1rem;
             font-size: 1.1rem;
@@ -302,7 +311,7 @@
     <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
     <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
-    <button id="tipMachine" title="Get a Tip"><i class="fas fa-lightbulb"></i></button>
+    <button id="tipMachine" title="Send a Tip"><i class="fas fa-lightbulb"></i></button>
 
     <div class="main-content">
         <div class="container">
@@ -423,13 +432,22 @@
                     </div>
                 </div>
 
-                <!-- Tip Machine Output -->
+                <!-- Tip Machine Prompt -->
                 <div class="news-item">
                     <div class="news-title-card">
                         <h2 class="card-title-container">Tip Machine</h2>
                     </div>
                     <div class="news-content-card">
-                        <p>Click the lightbulb to get a tip!</p>
+                        <p>Click the lightbulb to send a quick tip via your connected wallet!</p>
+                        <div class="tip-jar">
+                            <div class="jar">
+                                <div class="coin"></div>
+                                <div class="coin"></div>
+                                <div class="coin"></div>
+                            </div>
+                        </div>
+                        <input type="number" placeholder="Amount" class="donate-input" id="tipAmount" min="0.001" step="0.001" value="0.01">
+                        <button id="sendTip" class="donate-button"><i class="fas fa-donate"></i> Send Tip</button>
                         <p id="tipOutput"></p>
                     </div>
                 </div>
@@ -599,46 +617,48 @@
             }, 1000);
         }
 
-        // Tip Machine Logic (adapted from Magic Search in script.js)
-        const tipButton = document.getElementById('tipMachine');
-        const tipOutput = document.getElementById('tipOutput');
-        const tips = [
-            "Yes, absolutely!",
-            "No, not at all.",
-            "Maybe, who knows?",
-            "Yes, but with a twist.",
-            "No, try again later.",
-            "Just put the fries in the bag bro.",
-            "She don't want you.",
-            "You might be on to something.",
-            "Only one way to find out.",
-            "I'm not sure, but I'm sure it's a no.",
-            "She still doesn't want you.",
-            "LOL, no.",
-            "She hates you",
-            "You not fighting demons bro do the dishes.",
-            "You're not gonna get anywhere with that.",
-            "Dawg you're pushing 30.",
-            "Bro you're 40.",
-            "Nah.",
-            "You should call her.",
-            "Trust me, she's not gonna like you.",
-            "She still loves you.",
-            "Call them.",
-            "I'm so fucked up right now 😹",
-            "BRO STFU!",
-            "You're going to make it gang.",
-            "Just keep pushing bro.",
-            "It'll get better.",
-            "One step at a time twin.",
-            "Pack it up bro its over.",
-            "GIVE UP."
-        ];
+        // Tip Machine Logic (Prompt to send a tip via connected wallet)
+        let connectedChain = null; // To track the connected chain (set by shop.js)
+        let connectedAddress = null; // To track the connected address (set by shop.js)
 
-        if (tipButton && tipOutput) {
+        // Expose these variables to shop.js (since shop.js sets them)
+        window.addEventListener('message', (event) => {
+            if (event.data.connectedChain) {
+                connectedChain = event.data.connectedChain;
+                connectedAddress = event.data.connectedAddress;
+            }
+        });
+
+        const tipButton = document.getElementById('tipMachine');
+        const sendTipButton = document.getElementById('sendTip');
+        const tipOutput = document.getElementById('tipOutput');
+
+        if (tipButton && sendTipButton && tipOutput) {
             tipButton.addEventListener('click', () => {
-                const randomTip = tips[Math.floor(Math.random() * tips.length)];
-                tipOutput.textContent = randomTip;
+                if (!connectedAddress) {
+                    tipOutput.textContent = "Please connect your wallet first!";
+                } else {
+                    tipOutput.textContent = `Connected: ${connectedAddress.slice(0, 6)}...`;
+                }
+            });
+
+            sendTipButton.addEventListener('click', () => {
+                const amount = document.getElementById('tipAmount')?.value;
+                if (!amount || amount <= 0) {
+                    tipOutput.textContent = "Please enter a valid amount!";
+                    return;
+                }
+                if (!connectedAddress) {
+                    tipOutput.textContent = "Please connect your wallet first!";
+                    return;
+                }
+                if (connectedChain === "eth") {
+                    sendEth(amount);
+                } else if (connectedChain === "sol") {
+                    sendSol(amount);
+                } else {
+                    tipOutput.textContent = "Unsupported wallet type!";
+                }
             });
         }
 
