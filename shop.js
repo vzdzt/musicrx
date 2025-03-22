@@ -77,41 +77,46 @@ function closeWalletModal() {
     }
 }
 
-// Function to attach the event listener to the Connect Wallet button
-function attachWalletButtonListener() {
+// Function to attach the event listener to the Connect Wallet buttons
+function attachWalletButtonListeners() {
+    // Navbar button (both pages)
     const connectWalletButton = document.getElementById("connectWallet");
     if (connectWalletButton) {
-        console.log("Connect Wallet button found, attaching event listener");
-        // Remove any existing listeners to avoid duplicates
-        connectWalletButton.removeEventListener("click", showWalletModal);
+        console.log("Connect Wallet (navbar) button found, attaching event listener");
         connectWalletButton.addEventListener("click", () => {
-            console.log("Connect Wallet button clicked");
+            console.log("Connect Wallet (navbar) button clicked");
             showWalletModal();
         });
     } else {
-        console.error("Connect Wallet button not found in the DOM, retrying...");
-        setTimeout(attachWalletButtonListener, 500);
+        console.error("Connect Wallet (navbar) button not found in the DOM, retrying...");
+        setTimeout(attachWalletButtonListeners, 500); // Use function reference
+    }
+
+    // Shop page hero banner button
+    const connectWalletShopButton = document.getElementById("connectWalletShop");
+    if (connectWalletShopButton) {
+        console.log("Connect Wallet (shop page) button found, attaching event listener");
+        connectWalletShopButton.addEventListener("click", () => {
+            console.log("Connect Wallet (shop page) button clicked");
+            showWalletModal();
+        });
     }
 }
 
-// Use a MutationObserver to watch for the button being added to the DOM
+// Use a MutationObserver to watch for the buttons being added to the DOM
 const observer = new MutationObserver((mutations, obs) => {
     const connectWalletButton = document.getElementById("connectWallet");
-    if (connectWalletButton) {
-        attachWalletButtonListener();
-        obs.disconnect(); // Stop observing once the button is found
+    const connectWalletShopButton = document.getElementById("connectWalletShop");
+    if (connectWalletButton || connectWalletShopButton) {
+        attachWalletButtonListeners();
+        obs.disconnect();
     }
 });
+observer.observe(document.body, { childList: true, subtree: true });
 
-// Start observing the document body for changes
-observer.observe(document.body, {
-    childList: true,
-    subtree: true
-});
-
-// Also try attaching immediately and on DOMContentLoaded
-attachWalletButtonListener();
-document.addEventListener("DOMContentLoaded", attachWalletButtonListener);
+// Attach the listeners immediately and on DOMContentLoaded
+attachWalletButtonListeners();
+document.addEventListener("DOMContentLoaded", attachWalletButtonListeners);
 
 // Web3 wallet connection logic
 const ethProvider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : null;
@@ -217,6 +222,42 @@ async function sendSol(amount) {
 
 // Event Listeners for Web3 Buttons (other than connectWallet)
 document.addEventListener("DOMContentLoaded", () => {
+    // Tip Machine Logic (Prompt to send a tip via connected wallet)
+    const tipButton = document.getElementById('tipMachine');
+    const sendTipButton = document.getElementById('sendTip');
+    const tipOutput = document.getElementById('tipOutput');
+
+    if (tipButton && sendTipButton && tipOutput) {
+        tipButton.addEventListener('click', () => {
+            if (!window.connectedAddress) {
+                tipOutput.textContent = "Please connect your wallet first!";
+            } else {
+                tipOutput.textContent = `Connected: ${window.connectedAddress.slice(0, 6)}...`;
+            }
+        });
+
+        sendTipButton.addEventListener('click', () => {
+            const amount = document.getElementById('tipAmount')?.value;
+            if (!amount || amount <= 0) {
+                tipOutput.textContent = "Please enter a valid amount!";
+                return;
+            }
+            if (!window.connectedAddress) {
+                tipOutput.textContent = "Please connect your wallet first!";
+                return;
+            }
+            if (window.connectedChain === "eth") {
+                sendEth(amount);
+                tipOutput.textContent = `Sending ${amount} ETH...`;
+            } else if (window.connectedChain === "sol") {
+                sendSol(amount);
+                tipOutput.textContent = `Sending ${amount} SOL...`;
+            } else {
+                tipOutput.textContent = "Unsupported wallet type!";
+            }
+        });
+    }
+
     document.getElementById("tipEth")?.addEventListener("click", () => {
         const amount = document.getElementById('ethAmount')?.value;
         if (!amount || amount <= 0) {
@@ -244,7 +285,54 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("BTC tipping is not yet Web3-integrated. Coming soon!");
         createTipEffect();
     });
+
+    // Countdown timer for shop page
+    function startCountdown() {
+        const launchDate = new Date("April 1, 2025 00:00:00").getTime();
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const daysElement = document.getElementById("days");
+            const hoursElement = document.getElementById("hours");
+            const minutesElement = document.getElementById("minutes");
+            const secondsElement = document.getElementById("seconds");
+
+            if (daysElement) daysElement.textContent = days.toString().padStart(2, '0');
+            if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, '0');
+            if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, '0');
+            if (secondsElement) secondsElement.textContent = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(timer);
+                const countdownTimer = document.getElementById("countdown-timer");
+                if (countdownTimer) countdownTimer.innerHTML = "<h3>Shop Now Open!</h3>";
+            }
+        }, 1000);
+    }
+
+    startCountdown();
 });
+
+// Function to copy wallet addresses to clipboard
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text)
+        .then(() => alert("Address copied to clipboard!"))
+        .catch(err => {
+            console.error('Failed to copy: ', err);
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            alert("Address copied to clipboard!");
+        });
+}
 
 // Visual effect for tipping
 function createTipEffect() {
@@ -290,3 +378,4 @@ function createTipEffect() {
         });
     }
 }
+
