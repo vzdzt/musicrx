@@ -4,497 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MusicRX - Shop</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7/dist/ethers.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <style>
-        #universe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: #1a1a1a;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            position: relative;
         }
 
         .container {
             max-width: 1200px;
-            min-width: 320px;
-            width: 100%; /* Ensure the container takes full available width */
             margin: 0 auto;
             padding: 0 1rem;
-            box-sizing: border-box;
-        }
-
-        .construction-tape {
-            position: fixed;
-            width: 150%;
-            height: 50px;
-            background: repeating-linear-gradient(
-                45deg,
-                #000,
-                #000 10px,
-                #ffcc00 10px,
-                #ffcc00 20px
-            );
-            top: 0;
-            left: -25%;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transform: rotate(-5deg);
-            transform-origin: center;
-            box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
-            animation: slide 15s linear infinite;
-        }
-
-        .construction-tape-bottom {
-            bottom: 0;
-            top: auto;
-            transform: rotate(5deg);
-            animation-duration: 18s;
-            animation-direction: reverse;
-        }
-
-        @keyframes slide {
-            0% { transform: translateX(-50px) rotate(-5deg); }
-            100% { transform: translateX(50px) rotate(-5deg); }
-        }
-
-        .construction-icon {
-            position: fixed;
-            font-size: 3rem;
-            color: #ff6b6b;
-            z-index: 1001;
-            animation: bounce 2s ease infinite;
-        }
-
-        .construction-icon-1 {
-            top: 80px;
-            left: 50px;
-            animation-delay: 0.2s;
-        }
-
-        .construction-icon-2 {
-            top: 120px;
-            right: 50px;
-            animation-delay: 0.5s;
-        }
-
-        .construction-icon-3 {
-            bottom: 120px;
-            left: 80px;
-            animation-delay: 0.8s;
-        }
-
-        .construction-icon-4 {
-            bottom: 80px;
-            right: 80px;
-            animation-delay: 1.1s;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(15deg); }
-        }
-
-        .glitch-text {
-            position: relative;
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary);
-            letter-spacing: 0.1em;
-            animation: glitch-text 2.5s infinite;
-            text-shadow: 0 0 10px var(--primary);
-        }
-
-        @keyframes glitch-text {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
-
-        .glitch-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            opacity: 0.1;
-            animation: glitch-layer 2s infinite alternate-reverse;
-            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L40 20 M20 0 L20 40" stroke="cyan" stroke-width="1"/></svg>');
-            background-size: 30px 30px;
-            pointer-events: none;
         }
 
-        @keyframes glitch-layer {
-            0% { transform: translateX(0); opacity: 0.1; }
-            100% { transform: translateX(10px); opacity: 0.3; }
-        }
-
-        .coming-soon-banner {
-            background: rgba(0, 0, 0, 0.7);
-            color: var(--primary);
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid var(--primary);
-            margin: 2rem 0;
-            position: relative;
-            overflow: hidden;
-            animation: pulse 3s infinite;
-        }
-
-        .coming-soon-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 0%,
-                rgba(0, 247, 255, 0.1) 50%,
-                transparent 100%
-            );
-            transform: rotate(45deg);
-            animation: glint 4s infinite;
-        }
-
-        @keyframes glint {
-            0% { transform: rotate(45deg) translateX(-100%); }
-            100% { transform: rotate(45deg) translateX(100%); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 247, 255, 0.5); }
-            50% { box-shadow: 0 0 30px rgba(0, 247, 255, 0.8); }
-        }
-
-        .crypto-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted min width for better fit */
-            gap: 2rem;
-            justify-items: center;
-            margin-top: 2rem;
-            padding: 2rem;
+        /* Navigation */
+        nav {
             background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 30px rgba(0, 247, 255, 0.3);
-            width: 100%;
-            box-sizing: border-box;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .crypto-option {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--primary);
-            border-radius: 10px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: all 0.3s;
-            width: 100%;
-            max-width: 250px;
-            box-sizing: border-box;
-        }
-
-        .wallet-address {
-            font-size: 0.8rem;
-            word-break: break-all;
-            text-align: center;
-            margin: 0.5rem 0;
-            color: #FFFFFF;
-        }
-
-        .copy-address-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s;
-        }
-
-        .copy-address-btn:hover {
-            background: rgba(0, 247, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .crypto-option:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 25px rgba(0, 247, 255, 0.5);
-        }
-
-        .crypto-option h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .crypto-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .donate-input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--primary);
-            border-radius: 5px;
-            color: white;
-            padding: 0.5rem;
-            width: 100%;
-            margin-bottom: 1rem;
-            box-sizing: border-box;
-        }
-
-        .donate-button {
-            margin-top: 1rem;
-            width: 100%;
-            background: var(--primary);
-            color: #000;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-sizing: border-box;
-        }
-
-        .donate-button:hover {
-            background: #E50000;
-            transform: scale(1.05);
-        }
-
-        .qr-code {
-            width: 100px;
-            height: 100px;
-            background: white;
-            border-radius: 10px;
-            margin: 1rem 0;
+        .nav-links {
+            list-style: none;
             display: flex;
             justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            color: black;
-            font-size: 0.8rem;
+            gap: 2rem;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            color: #FF0000;
+            text-decoration: none;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #E50000;
+        }
+
+        /* Hero Section */
+        .hero {
             text-align: center;
+            padding: 2rem 0;
         }
 
-        .tip-jar {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 2rem auto;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
-        }
-
-        .jar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 3px solid var(--primary);
-            border-radius: 15px 15px 30px 30px;
-            background: rgba(0, 247, 255, 0.1);
-            backdrop-filter: blur(5px);
-            overflow: hidden;
-        }
-
-        .jar::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 20px;
-            background: var(--primary);
-            border-radius: 10px 10px 0 0;
-        }
-
-        .coin {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: gold;
-            border-radius: 50%;
-            bottom: 5px;
-            left: 20px;
-            animation: coin-glow 2s infinite;
-        }
-
-        .coin:nth-child(2) {
-            left: 40px;
-            bottom: 15px;
-            animation-delay: 0.5s;
-        }
-
-        .coin:nth-child(3) {
-            left: 60px;
-            bottom: 8px;
-            animation-delay: 1s;
-        }
-
-        @keyframes coin-glow {
-            0%, 100% { box-shadow: 0 0 5px gold; }
-            50% { box-shadow: 0 0 15px gold; }
-        }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: particle-float 10s linear infinite;
-            opacity: 0.5;
-        }
-
-        @keyframes particle-float {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* Hero Banner Styling */
         .hero-banner {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            height: 400px;
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
             border-radius: 15px;
-            overflow: hidden;
-            margin: 2rem auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(0, 247, 255, 0.5);
-        }
-
-        .hero-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L40 20 M20 0 L20 40" stroke="cyan" stroke-width="1"/></svg>');
-            background-size: 30px 30px;
-            opacity: 0.2;
-            animation: glitch-layer 2s infinite alternate-reverse;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            color: #FFFFFF;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
             font-family: 'Syncopate', sans-serif;
+            font-size: 3rem;
+            color: #FF0000;
             text-transform: uppercase;
-            color: var(--primary);
-            text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7));
             margin-bottom: 1rem;
         }
 
         .hero-content p {
             font-size: 1.2rem;
-            font-family: 'Space Grotesk', sans-serif;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .connect-wallet-btn {
-            background: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
+            background: linear-gradient(45deg, #FF0000, #E50000);
             border: none;
             color: #FFFFFF;
             padding: 0.8rem 2rem;
             border-radius: 25px;
-            font-size: 1rem;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .connect-wallet-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
         }
 
-        /* Countdown Timer Styling */
+        #walletAddress {
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        /* Countdown Timer */
         .countdown-timer {
             text-align: center;
             margin: 2rem 0;
-            color: #FFFFFF;
-            font-family: 'Space Grotesk', sans-serif;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .countdown-timer h2 {
+            font-family: 'Syncopate', sans-serif;
             font-size: 2rem;
-            color: var(--primary);
+            color: #FF0000;
             margin-bottom: 1rem;
         }
 
-        .countdown-timer .timer {
+        .timer {
             display: flex;
             justify-content: center;
             gap: 1rem;
             font-size: 1.5rem;
         }
 
-        .countdown-timer .timer div {
+        .timer div {
             background: rgba(255, 255, 255, 0.1);
             padding: 0.5rem 1rem;
             border-radius: 5px;
-            border: 1px solid var(--primary);
+            border: 1px solid #FF0000;
         }
 
-        /* Featured Product Styling */
+        /* Glass Card */
+        .glass-card {
+            background: rgba(102, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(153, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .glass-card h2 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2rem;
+            color: #FF0000;
+            margin-bottom: 1rem;
+        }
+
+        /* Featured Product */
         .featured-product {
-            position: relative;
             width: 300px;
             height: 400px;
-            margin: 2rem auto;
+            margin: 0 auto;
             perspective: 1000px;
         }
 
@@ -539,7 +206,7 @@
         }
 
         .featured-front h3, .featured-back h3 {
-            color: var(--primary);
+            color: #FF0000;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
             margin-bottom: 1rem;
@@ -547,14 +214,194 @@
 
         .featured-front p, .featured-back p {
             color: #FFFFFF;
-            font-family: 'Space Grotesk', sans-serif;
             font-size: 1rem;
         }
 
-        /* Coming Soon Products Styling */
+        /* Support Section */
+        .tip-jar {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem auto;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .jar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid #FF0000;
+            border-radius: 15px 15px 30px 30px;
+            background: rgba(255, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+        }
+
+        .jar::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 20px;
+            background: #FF0000;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .coin {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: gold;
+            border-radius: 50%;
+            bottom: 5px;
+            left: 20px;
+            animation: coin-glow 2s infinite;
+        }
+
+        .coin:nth-child(2) {
+            left: 40px;
+            bottom: 15px;
+            animation-delay: 0.5s;
+        }
+
+        .coin:nth-child(3) {
+            left: 60px;
+            bottom: 8px;
+            animation-delay: 1s;
+        }
+
+        @keyframes coin-glow {
+            0%, 100% { box-shadow: 0 0 5px gold; }
+            50% { box-shadow: 0 0 15px gold; }
+        }
+
+        .crypto-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            border: 2px solid #FF0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            width: 100%;
+        }
+
+        .crypto-option {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #FF0000;
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .crypto-option:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .crypto-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #FFFFFF;
+        }
+
+        .crypto-option h3 {
+            color: #FF0000;
+            margin-bottom: 1rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .wallet-address {
+            font-size: 0.8rem;
+            word-break: break-all;
+            text-align: center;
+            margin: 0.5rem 0;
+            color: #FFFFFF;
+        }
+
+        .copy-address-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #FF0000;
+            color: #FF0000;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        .copy-address-btn:hover {
+            background: rgba(255, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .donate-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #FF0000;
+            border-radius: 5px;
+            color: white;
+            padding: 0.5rem;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .donate-button {
+            margin-top: 1rem;
+            width: 100%;
+            background: #FF0000;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .donate-button:hover {
+            background: #E50000;
+            transform: scale(1.05);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-button {
+            color: #FF0000;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-button:hover {
+            color: #E50000;
+        }
+
+        /* Coming Soon Products */
         .coming-soon-products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted min width */
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 2rem;
             justify-items: center;
             width: 100%;
@@ -573,13 +420,13 @@
 
         .product-item i {
             font-size: 3rem;
-            color: var(--primary);
+            color: #FF0000;
             margin-bottom: 1rem;
             animation: pulse 2s infinite;
         }
 
         .product-item h3 {
-            color: var(--primary);
+            color: #FF0000;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
@@ -587,14 +434,13 @@
 
         .product-item p {
             color: #FFFFFF;
-            font-family: 'Space Grotesk', sans-serif;
             font-size: 0.9rem;
         }
 
-        /* Web3 Benefits Styling */
+        /* Web3 Benefits */
         .web3-benefits {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted min width */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             justify-items: center;
             margin-top: 2rem;
@@ -607,24 +453,24 @@
             text-align: center;
             padding: 1.5rem;
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--primary);
+            border: 1px solid #FF0000;
             border-radius: 10px;
             transition: all 0.3s;
         }
 
         .benefit-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 25px rgba(0, 247, 255, 0.5);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
         }
 
         .benefit-item i {
             font-size: 2.5rem;
-            color: var(--primary);
+            color: #FF0000;
             margin-bottom: 1rem;
         }
 
         .benefit-item h3 {
-            color: var(--primary);
+            color: #FF0000;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
@@ -632,11 +478,18 @@
 
         .benefit-item p {
             color: #FFFFFF;
-            font-family: 'Space Grotesk', sans-serif;
             font-size: 0.9rem;
         }
 
-        /* Shop Updates Styling */
+        /* Shop Updates */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 1.5rem;
+            width: 100%;
+        }
+
         .shop-item {
             display: flex;
             flex-direction: column;
@@ -645,36 +498,27 @@
 
         .shop-title-card {
             padding: 0.3rem 1rem;
-            min-height: auto;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             background: rgba(102, 0, 0, 0.25);
             backdrop-filter: blur(15px);
             border: 2px solid rgba(153, 0, 0, 0.3);
             border-bottom: none;
             border-radius: 15px 15px 0 0;
-            margin-bottom: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s;
         }
 
         .shop-title-card h2 {
             margin: 0;
             font-size: 1.2rem;
-            line-height: 1.2;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
-            color: var(--primary, #FF0000);
-            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7));
+            color: #FF0000;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
         }
 
         .shop-title-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             background: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
-            background-size: 200% 200%;
-            animation: rgbShift 3s linear infinite;
         }
 
         .shop-content-card {
@@ -684,8 +528,7 @@
             border: 2px solid rgba(153, 0, 0, 0.3);
             border-top: none;
             border-radius: 0 0 15px 15px;
-            margin-top: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s;
         }
 
         .shop-content-card img {
@@ -698,43 +541,25 @@
         .shop-content-card p {
             margin: 0;
             font-size: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
             color: #FFFFFF;
         }
 
         .shop-content-card .date {
             font-size: 0.9rem;
-            color: var(--secondary, #E50000);
+            color: #E50000;
             text-align: center;
             margin-bottom: 0.5rem;
-            font-family: 'Space Grotesk', sans-serif;
         }
 
         .shop-content-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
         }
 
-        .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted min width */
-            gap: 2rem;
-            padding: 1.5rem;
-            width: 100%;
-        }
-
-        @keyframes rgbShift {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
-
+        /* Media Queries */
         @media (max-width: 768px) {
             .container {
                 padding: 0 0.5rem;
-            }
-            .hero-banner {
-                height: 300px;
             }
             .hero-content h1 {
                 font-size: 2.5rem;
@@ -749,9 +574,6 @@
                 width: 250px;
                 height: 350px;
             }
-            .shop-title-card {
-                padding: 0.3rem 0.5rem;
-            }
             .shop-title-card h2 {
                 font-size: 1rem;
             }
@@ -765,26 +587,31 @@
                 font-size: 0.8rem;
             }
             .shop-grid {
-                grid-template-columns: 1fr; /* Stack on small screens */
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
                 padding: 1rem;
             }
             .crypto-options {
-                grid-template-columns: 1fr; /* Stack on small screens */
+                grid-template-columns: 1fr;
                 padding: 1rem;
             }
             .coming-soon-products {
-                grid-template-columns: 1fr; /* Stack on small screens */
+                grid-template-columns: 1fr;
             }
             .web3-benefits {
-                grid-template-columns: 1fr; /* Stack on small screens */
+                grid-template-columns: 1fr;
                 padding: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
             }
         }
 
         @media (min-width: 769px) {
             .crypto-options {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ensure multiple columns on desktop */
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
             .coming-soon-products {
                 grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -799,60 +626,19 @@
     </style>
 </head>
 <body>
-    <!-- Audio for hover effects -->
-    <audio id="hover-sound-1" preload="auto">
-        <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="hover-sound-2" preload="auto">
-        <source src="https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="hover-sound-3" preload="auto">
-        <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
-    </audio>
-
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-
-    <!-- Construction elements -->
-    <div class="construction-tape">
-        <span style="color: black; font-weight: bold; font-size: 1.2rem; text-shadow: 1px 1px 0 yellow;">UNDER CONSTRUCTION</span>
-    </div>
-    <div class="construction-tape construction-tape-bottom">
-        <span style="color: black; font-weight: bold; font-size: 1.2rem; text-shadow: 1px 1px 0 yellow;">COMING SOON</span>
-    </div>
-
-    <div class="construction-icon construction-icon-1">
-        <i class="fas fa-hard-hat"></i>
-    </div>
-    <div class="construction-icon construction-icon-2">
-        <i class="fas fa-tools"></i>
-    </div>
-    <div class="construction-icon construction-icon-3">
-        <i class="fas fa-paint-roller"></i>
-    </div>
-    <div class="construction-icon construction-icon-4">
-        <i class="fas fa-hammer"></i>
-    </div>
-
-    <div class="glitch-layer"></div>
-
-    <!-- Floating particles -->
-    <div class="particles" id="particles"></div>
-
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="reviews.html">Reviews</a></li>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="opinions.html">Opinions</a></li>
-            <li><a href="interviews.html">Interviews</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
-
     <div class="container">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="opinions.html">Opinions</a></li>
+                <li><a href="interviews.html">Interviews</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
         <section class="hero">
             <!-- Hero Banner -->
             <div class="hero-banner">
@@ -860,7 +646,7 @@
                     <h1>Welcome to the MusicRX Shop</h1>
                     <p>Discover exclusive music blog merch, digital content, and Web3 experiences!</p>
                     <button class="connect-wallet-btn" id="connectWallet">Connect Wallet</button>
-                    <p id="walletAddress" style="color: white; margin-top: 1rem;"></p>
+                    <p id="walletAddress"></p>
                 </div>
             </div>
 
@@ -893,7 +679,8 @@
                 </div>
             </div>
 
-            <div class="glass-card" style="margin-top: 3rem;">
+            <!-- Support Section -->
+            <div class="glass-card">
                 <h2>Support MusicRX</h2>
                 <p>While our products are still in development, you can support MusicRX with a tip!</p>
 
@@ -911,15 +698,12 @@
                             <i class="fab fa-ethereum"></i>
                         </div>
                         <h3>Tip with ETH</h3>
-                        <div class="qr-code">
-                            <img src="" alt="ETH QR Code" style="width: 100%; height: 100%; object-fit: contain;">
-                        </div>
                         <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
                         <button class="copy-address-btn" onclick="copyToClipboard('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
                             <i class="fas fa-copy"></i> Copy Address
                         </button>
                         <input type="number" placeholder="Amount in ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
-                        <button id="tipEth" class="button donate-button">
+                        <button id="tipEth" class="donate-button">
                             <i class="fas fa-donate"></i> Send Tip
                         </button>
                     </div>
@@ -929,15 +713,12 @@
                             <i class="fab fa-bitcoin"></i>
                         </div>
                         <h3>Tip with BTC</h3>
-                        <div class="qr-code">
-                            <img src="" alt="BTC QR Code" style="width: 100%; height: 100%; object-fit: contain;">
-                        </div>
                         <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
                         <button class="copy-address-btn" onclick="copyToClipboard('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
                             <i class="fas fa-copy"></i> Copy Address
                         </button>
                         <input type="number" placeholder="Amount in BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
-                        <button id="tipBtc" class="button donate-button">
+                        <button id="tipBtc" class="donate-button">
                             <i class="fas fa-donate"></i> Send Tip
                         </button>
                     </div>
@@ -947,30 +728,23 @@
                             <i class="fas fa-sun"></i>
                         </div>     
                         <h3>Tip with SOL</h3>
-                        <div class="qr-code">
-                            <img src="" alt="SOL QR Code" style="width: 100%; height: 100%; object-fit: contain;">
-                        </div>
                         <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
                         <button class="copy-address-btn" onclick="copyToClipboard('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
                             <i class="fas fa-copy"></i> Copy Address
                         </button>
                         <input type="number" placeholder="Amount in SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
-                        <button id="tipSol" class="button donate-button">
+                        <button id="tipSol" class="donate-button">
                             <i class="fas fa-donate"></i> Send Tip
                         </button>
                     </div>
 
-                    <!-- New NFT Purchase Option -->
                     <div class="crypto-option">
                         <div class="crypto-icon">
                             <i class="fas fa-cube"></i>
                         </div>
                         <h3>Buy MusicRX NFT</h3>
-                        <div class="qr-code">
-                            <img src="" alt="NFT QR Code" style="width: 100%; height: 100%; object-fit: contain;">
-                        </div>
                         <p class="wallet-address">Coming Soon: Unlock exclusive content!</p>
-                        <button class="button donate-button" onclick="alert('NFT purchase coming soon! Connect your wallet to reserve your MusicRX NFT.')">
+                        <button class="donate-button" onclick="alert('NFT purchase coming soon! Connect your wallet to reserve your MusicRX NFT.')">
                             <i class="fas fa-cube"></i> Reserve NFT
                         </button>
                     </div>
@@ -979,7 +753,7 @@
                 <div style="text-align: center; margin-top: 3rem;">
                     <h3>Other Ways to Support</h3>
                     <p>Follow @36966_ on X and share our content!</p>
-                    <div class="social-links" style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                    <div class="social-links">
                         <a href="#" class="social-button">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -993,7 +767,8 @@
                 </div>
             </div>
 
-            <div class="glass-card" style="margin-top: 3rem;">
+            <!-- Coming Soon Products -->
+            <div class="glass-card">
                 <h2>Coming Soon Products</h2>
                 <div class="coming-soon-products">
                     <div class="product-item">
@@ -1019,8 +794,8 @@
                 </div>
             </div>
 
-            <!-- Web3 Benefits Section -->
-            <div class="glass-card" style="margin-top: 3rem;">
+            <!-- Web3 Benefits -->
+            <div class="glass-card">
                 <h2>Web3 Benefits</h2>
                 <div class="web3-benefits">
                     <div class="benefit-item">
@@ -1041,14 +816,13 @@
                 </div>
             </div>
 
-            <!-- Shop Updates Section -->
-            <div class="glass-card" style="margin-top: 3rem;">
+            <!-- Shop Updates -->
+            <div class="glass-card">
                 <h2>Shop Updates</h2>
                 <div class="shop-grid">
-                    <!-- Shop Item 1 -->
                     <div class="shop-item">
                         <div class="shop-title-card">
-                            <h2 class="card-title-container">MusicRX Hoodies Teased</h2>
+                            <h2>MusicRX Hoodies Teased</h2>
                         </div>
                         <div class="shop-content-card">
                             <p class="date">March 21, 2025</p>
@@ -1056,10 +830,9 @@
                             <p>MusicRX teases limited edition hoodies featuring the blog’s iconic logo, set to launch with the shop’s opening.</p>
                         </div>
                     </div>
-                    <!-- Shop Item 2 -->
                     <div class="shop-item">
                         <div class="shop-title-card">
-                            <h2 class="card-title-container">Playlist NFTs Announced</h2>
+                            <h2>Playlist NFTs Announced</h2>
                         </div>
                         <div class="shop-content-card">
                             <p class="date">March 20, 2025</p>
@@ -1067,10 +840,9 @@
                             <p>MusicRX announces exclusive playlist NFTs, offering early access to curated tracks for NFT holders.</p>
                         </div>
                     </div>
-                    <!-- Shop Item 3 -->
                     <div class="shop-item">
                         <div class="shop-title-card">
-                            <h2 class="card-title-container">Blog Launch Party Tickets</h2>
+                            <h2>Blog Launch Party Tickets</h2>
                         </div>
                         <div class="shop-content-card">
                             <p class="date">March 19, 2025</p>
@@ -1078,10 +850,9 @@
                             <p>MusicRX teases blog launch party tickets with Web3 perks, including NFT-based VIP access.</p>
                         </div>
                     </div>
-                    <!-- Shop Item 4 -->
                     <div class="shop-item">
                         <div class="shop-title-card">
-                            <h2 class="card-title-container">Premium Subscription Teased</h2>
+                            <h2>Premium Subscription Teased</h2>
                         </div>
                         <div class="shop-content-card">
                             <p class="date">March 18, 2025</p>
@@ -1137,76 +908,12 @@
             }, 1000);
         }
 
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.bottom = -Math.random() * 20 + '%';
-
-                const size = Math.random() * 5 + 2;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-
-                const duration = Math.random() * 15 + 10;
-                const delay = Math.random() * 5;
-                particle.style.animationDuration = duration + 's';
-                particle.style.animationDelay = delay + 's';
-
-                const colors = ['#00f7ff', '#ff00f7', '#7B68EE'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Glitch effect on hover for buttons
-        function addButtonEffects() {
-            const buttons = document.querySelectorAll('.button, .connect-wallet-btn');
-            buttons.forEach(button => {
-                button.addEventListener('mouseenter', () => {
-                    button.style.animation = 'glitch-text 0.2s infinite';
-                });
-
-                button.addEventListener('mouseleave', () => {
-                    button.style.animation = 'none';
-                });
-            });
-        }
-
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            addButtonEffects();
             startCountdown();
-
-            document.querySelectorAll('.nav-links a, .social-button, .button, .connect-wallet-btn').forEach(element => {
-                element.addEventListener('mouseenter', () => {
-                    const sounds = [
-                        document.getElementById('hover-sound-1'),
-                        document.getElementById('hover-sound-2'),
-                        document.getElementById('hover-sound-3')
-                    ];
-
-                    const validSounds = sounds.filter(sound => sound !== null);
-
-                    if (validSounds.length > 0) {
-                        const sound = validSounds[Math.floor(Math.random() * validSounds.length)];
-                        if (sound) {
-                            sound.currentTime = 0;
-                            sound.volume = 0.2;
-                            sound.play().catch(e => console.log("Audio play prevented:", e));
-                        }
-                    }
-                });
-            });
         });
     </script>
     <script src="shop.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
