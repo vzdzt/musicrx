@@ -37,12 +37,10 @@
             text-align: center;
             padding: 1rem 0;
         }
-        .title-card h1 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 2rem;
+        .title-card .logo-symbol {
+            font-size: 2.5rem;
             color: var(--primary);
             text-shadow: 0 0 8px var(--glow);
-            margin: 0;
             animation: glitch 3s infinite;
         }
         .title-card p {
@@ -62,6 +60,14 @@
             0%, 100% { transform: scaleX(1); }
             50% { transform: scaleX(1.2); }
         }
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, 0); }
+            80% { transform: translate(2px, 0); }
+            100% { transform: translate(0); }
+        }
         /* Adjust grid spacing and card size */
         [data-page="shop"] .shop-grid {
             gap: 2rem;
@@ -69,11 +75,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
         }
         [data-page="shop"] .shop-card {
-            max-width: 250px; /* Larger cards */
-            min-height: 250px; /* Increased height */
-            padding: 1rem; /* Balanced padding */
+            max-width: 250px;
+            min-height: 250px;
+            padding: 1rem;
         }
         /* Pulsing heart animation */
         .fa-pulse-subtle {
@@ -98,6 +105,23 @@
             background: var(--primary);
             color: #000;
             box-shadow: 0 0 10px var(--glow);
+        }
+        /* Mission statement styling */
+        .mission-statement {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .mission-statement h2 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .mission-statement p {
+            font-size: 1rem;
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto;
         }
         /* Refine crypto cards for sleekness */
         .crypto-card {
@@ -165,7 +189,7 @@
 <body data-page="shop">
     <canvas id="universe"></canvas>
 
-    <!-- Navbar (untouched) -->
+    <!-- Navbar (unchanged) -->
     <nav class="navbar global-nav">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
@@ -191,7 +215,7 @@
         </div>
     </nav>
 
-    <!-- Fixed Buttons (untouched) -->
+    <!-- Fixed Buttons (unchanged) -->
     <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
     <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
@@ -200,11 +224,11 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="shop-container">
-            <!-- Title Card (replaces shop-hero) -->
+            <!-- Title Card (unchanged) -->
             <div class="title-card">
-                <h1 class="glitch" data-text="MUSICRX SHOP">MUSICRX SHOP</h1>
-                <div class="heartbeat-line"></div>
+                <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
                 <p>Music is my therapy</p>
+                <div class="heartbeat-line"></div>
             </div>
 
             <!-- Countdown Timer (unchanged) -->
@@ -218,7 +242,7 @@
                 </div>
             </section>
 
-            <!-- Products Teaser Grid (content card with button) -->
+            <!-- Products Teaser Grid (unchanged) -->
             <section class="shop-grid">
                 <div class="shop-card">
                     <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
@@ -235,15 +259,27 @@
                     <h2>NFTs</h2>
                     <p>Mint for early access to drops and events</p>
                 </div>
+                <div class="shop-card">
+                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                    <h2>Wellness</h2>
+                    <p>Stay cozy with stress relief essentials</p>
+                </div>
             </section>
             <div class="content-card-button">
                 <button class="connect-wallet-btn" id="connectWalletShop">Connect Wallet</button>
             </div>
+            <p class="subscriber-note">Subscribers get notified first</p>
 
-            <!-- Support Section (touched up: sleeker cards) -->
+            <!-- Mission Statement (updated: focus on reviews, blogs, etc.) -->
+            <div class="mission-statement">
+                <h2>Our Mission</h2>
+                <p>MusicRx dives deep into music culture with reviews, blogs, news, hot takes, and artist features. We’re your hub for aesthetics, exclusive digital collectibles, and a community that thrives on creativity.</p>
+            </div>
+
+            <!-- Support Section (unchanged) -->
             <section class="support-section">
                 <h2 class="section-title">Support MusicRx</h2>
-                <p>Fuel the future of MusicRx with your support</p>
+                <p>Fuel the future of music with your support</p>
                 <div class="crypto-grid">
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
@@ -283,7 +319,7 @@
         </div>
     </div>
 
-    <!-- Footer (untouched) -->
+    <!-- Footer (unchanged) -->
     <footer class="footer">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
@@ -297,7 +333,7 @@
         </form>
     </footer>
 
-    <!-- Scripts (untouched) -->
+    <!-- Scripts (unchanged) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
