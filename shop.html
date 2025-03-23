@@ -38,8 +38,8 @@
             padding: 1rem 0;
             position: relative;
             z-index: 1;
-            display: inline-block; /* Shrinks to content width */
-            margin: 0 auto; /* Centers within parent */
+            display: block; /* Full width for centering */
+            width: 100%; /* Ensures it takes parent width */
         }
         .title-card .logo-symbol {
             font-size: 2.5rem;
@@ -53,8 +53,10 @@
             color: var(--primary);
             text-shadow: 0 0 8px var(--glow);
             text-transform: uppercase;
-            margin: 0.5rem 0;
+            margin: 0.5rem auto; /* Center text */
             animation: glitch 3s infinite;
+            position: relative;
+            display: inline-block; /* Shrinks to text width */
         }
         .title-card p::before {
             content: attr(data-text);
@@ -62,14 +64,18 @@
             color: var(--primary);
             opacity: 0.5;
             animation: glitch 3s infinite;
+            left: 0;
+            width: 100%;
         }
         /* Heartbeat line effect */
         .heartbeat-line {
             height: 2px;
             background: var(--rgb-glow);
-            margin: 0.5rem auto;
+            margin: 0.5rem auto; /* Center it */
             animation: heartbeat 1.5s infinite;
-            width: 100%; /* Matches the title-card's content width */
+            width: 100%; /* Matches the text width */
+            max-width: 180px; /* Matches approximate text width */
+            display: block; /* Ensures centering */
         }
         @keyframes heartbeat {
             0%, 100% { transform: scaleX(1); }
@@ -254,7 +260,7 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="shop-container">
-            <!-- Title Card (updated: fix heartbeat line, glitch effect, text styling) -->
+            <!-- Title Card (updated: fix centering) -->
             <div class="title-card">
                 <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
                 <p class="glitch" data-text="Music is my therapy">Music is my therapy</p>
@@ -300,10 +306,10 @@
             </div>
             <p class="subscriber-note">Subscribers get notified first</p>
 
-            <!-- Mission Statement (updated: glass card) -->
+            <!-- Mission Statement (updated: no Web3, livelier) -->
             <div class="mission-statement">
                 <h2>Our Mission</h2>
-                <p>MusicRx dives deep into music culture with reviews, blogs, news, hot takes, and artist features. We’re your hub for aesthetics, exclusive digital collectibles via Web3, and a community that thrives on creativity.</p>
+                <p>MusicRx is your go-to for raw reviews, killer blogs, fresh news, and hot takes on the music game. We’re here to vibe with the culture, spotlight dope artists, and keep the energy real.</p>
             </div>
 
             <!-- Support Section (unchanged) -->
