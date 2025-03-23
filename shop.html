@@ -72,15 +72,15 @@
             height: 2px;
             background: var(--rgb-glow);
             margin: 0.5rem auto; /* Center it */
+            margin-left: calc(50% - 98px); /* Center and nudge left 8px (180px/2 + 8px) */
             animation: heartbeat 1.5s infinite;
             width: 100%; /* Matches the text width */
             max-width: 180px; /* Matches approximate text width */
             display: block; /* Ensures centering */
-            transform: translateX(-8px) !important; /* Nudge left 8px */
         }
         @keyframes heartbeat {
-            0%, 100% { transform: translateX(-8px) scaleX(1); } /* Pulse works */
-            50% { transform: translateX(-8px) scaleX(1.2); }
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(1.2); }
         }
         @keyframes glitch {
             0% { transform: translate(0); }
@@ -279,7 +279,7 @@
                 </div>
             </section>
 
-            <!-- Products Teaser Grid (updated: heart logos closer to text) -->
+            <!-- Products Teaser Grid (unchanged: heart logos closer to text) -->
             <section class="shop-grid">
                 <div class="shop-card">
                     <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.25rem;"></i>

@@ -197,6 +197,7 @@ async function sendEth(amount) {
 
 async function sendSol(amount) {
     if (window.connectedChain !== "sol") return alert("Connect a SOL wallet first!");
+    const tipOutput = document.getElementById("tipStatus");
     try {
         const transaction = new solanaWeb3.Transaction().add(
             solanaWeb3.SystemProgram.transfer({
@@ -205,11 +206,14 @@ async function sendSol(amount) {
                 lamports: solanaWeb3.LAMPORTS_PER_SOL * amount,
             })
         );
+        if (tipOutput) tipOutput.textContent = `Sending ${amount} SOL...`;
         const { signature } = await window.solana.signAndSendTransaction(transaction);
         await solConnection.confirmTransaction(signature);
+        if (tipOutput) tipOutput.textContent = `Thanks for donating ${amount} SOL!`;
         alert(`Thanks for donating ${amount} SOL!`);
         createTipEffect();
     } catch (error) {
+        if (tipOutput) tipOutput.textContent = `SOL transaction failed: ${error.message}`;
         alert(`SOL transaction failed: ${error.message}`);
     }
 }
@@ -304,34 +308,34 @@ document.addEventListener("DOMContentLoaded", () => {
         createTipEffect();
     });
 
-// Countdown timer for shop page
-function startCountdown() {
-    const launchDate = new Date("September 22, 2025 00:00:00").getTime();
-    const timer = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = launchDate - now;
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Countdown timer for shop page
+    function startCountdown() {
+        const launchDate = new Date("September 22, 2025 00:00:00").getTime();
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        const daysElement = document.getElementById("days");
-        const hoursElement = document.getElementById("hours");
-        const minutesElement = document.getElementById("minutes");
-        const secondsElement = document.getElementById("seconds");
+            const daysElement = document.getElementById("days");
+            const hoursElement = document.getElementById("hours");
+            const minutesElement = document.getElementById("minutes");
+            const secondsElement = document.getElementById("seconds");
 
-        if (daysElement) daysElement.textContent = days.toString().padStart(2, "0");
-        if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, "0");
-        if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, "0");
-        if (secondsElement) secondsElement.textContent = seconds.toString().padStart(2, "0");
+            if (daysElement) daysElement.textContent = days.toString().padStart(2, "0");
+            if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, "0");
+            if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, "0");
+            if (secondsElement) secondsElement.textContent = seconds.toString().padStart(2, "0");
 
-        if (distance < 0) {
-            clearInterval(timer);
-            const countdownTimer = document.getElementById("countdown-timer");
-            if (countdownTimer) countdownTimer.innerHTML = "<h3>Shop Now Open!</h3>";
-        }
-    }, 1000);
-}
+            if (distance < 0) {
+                clearInterval(timer);
+                const countdownTimer = document.getElementById("countdown-timer");
+                if (countdownTimer) countdownTimer.innerHTML = "<h3>Shop Now Open!</h3>";
+            }
+        }, 1000);
+    }
     startCountdown();
 });
 
