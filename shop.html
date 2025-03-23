@@ -36,11 +36,14 @@
         [data-page="shop"] .shop-grid {
             gap: 2rem;
             padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         [data-page="shop"] .shop-card {
-            max-width: 200px; /* Smaller cards */
-            min-height: 200px; /* Reduced height */
-            padding: 0.8rem; /* Tighter padding */
+            max-width: 250px; /* Larger cards */
+            min-height: 250px; /* Increased height */
+            padding: 1rem; /* Balanced padding */
         }
         /* Pulsing heart animation */
         .fa-pulse-subtle {
@@ -68,6 +71,7 @@
             color: #ccc;
             word-break: break-all;
             margin: 0.5rem 0;
+            text-align: center;
         }
         .copy-address-btn {
             background: rgba(255, 255, 255, 0.1);
@@ -105,6 +109,18 @@
         .donate-button:hover {
             background: var(--secondary);
             transform: scale(1.05);
+        }
+        /* Heartbeat line effect */
+        .heartbeat-line {
+            width: 100px;
+            height: 2px;
+            background: var(--rgb-glow);
+            margin: 0.5rem auto;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(1.2); }
         }
     </style>
 </head>
@@ -146,10 +162,11 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="shop-container">
-            <!-- Hero Section (updated: no glass card) -->
+            <!-- Hero Section (updated: no container, add heartbeat line) -->
             <section class="shop-hero" style="height: 20vh;">
                 <h1 class="glitch" data-text="MUSICRX SHOP">MUSICRX SHOP</h1>
-                <p>Minimalist Music Essentials</p>
+                <div class="heartbeat-line"></div>
+                <p>Music is my therapy</p>
                 <button class="connect-wallet-btn" id="connectWalletShop">Connect Wallet</button>
             </section>
 
@@ -164,7 +181,7 @@
                 </div>
             </section>
 
-            <!-- Products Teaser Grid (updated: smaller cards, add pulsing heart) -->
+            <!-- Products Teaser Grid (updated: larger cards, centered) -->
             <section class="shop-grid">
                 <div class="shop-card">
                     <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
@@ -184,40 +201,43 @@
             </section>
             <p class="subscriber-note">Subscribers get notified first</p>
 
-            <!-- Support Section (touched up: sleeker cards) -->
+            <!-- Support Section (updated: better styling, more content) -->
             <section class="support-section">
                 <h2 class="section-title">Support MusicRx</h2>
-                <p>Fuel the future</p>
+                <p>Fuel the future of music with your support</p>
                 <div class="crypto-grid">
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
                         <h3><span class="web3-hint">ETH</span></h3>
+                        <p>Support with Ethereum to help us grow</p>
                         <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
                         <button class="copy-address-btn" onclick="navigator.clipboard.writeText('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
-                            <i class="fas fa-copy"></i>
+                            <i class="fas fa-copy"></i> Copy
                         </button>
                         <input type="number" placeholder="ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
-                        <button id="tipEth" class="donate-button"><i class="fas fa-donate"></i></button>
+                        <button id="tipEth" class="donate-button"><i class="fas fa-donate"></i> Donate Now</button>
                     </div>
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fab fa-bitcoin"></i></div>
                         <h3>BTC</h3>
+                        <p>Contribute with Bitcoin to fuel our mission</p>
                         <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
                         <button class="copy-address-btn" onclick="navigator.clipboard.writeText('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
-                            <i class="fas fa-copy"></i>
+                            <i class="fas fa-copy"></i> Copy
                         </button>
                         <input type="number" placeholder="BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
-                        <button id="tipBtc" class="donate-button"><i class="fas fa-donate"></i></button>
+                        <button id="tipBtc" class="donate-button"><i class="fas fa-donate"></i> Donate Now</button>
                     </div>
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fas fa-sun"></i></div>
                         <h3><span class="web3-hint">SOL</span></h3>
+                        <p>Donate with Solana to support MusicRx</p>
                         <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
                         <button class="copy-address-btn" onclick="navigator.clipboard.writeText('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
-                            <i class="fas fa-copy"></i>
+                            <i class="fas fa-copy"></i> Copy
                         </button>
                         <input type="number" placeholder="SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
-                        <button id="tipSol" class="donate-button"><i class="fas fa-donate"></i></button>
+                        <button id="tipSol" class="donate-button"><i class="fas fa-donate"></i> Donate Now</button>
                     </div>
                 </div>
             </section>
