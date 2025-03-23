@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUSICRX - Shop</title>
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7/dist/ethers.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-    <!-- Add Buffer polyfill for SOL transactions -->
-    <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
+    <!-- Add Buffer polyfill for SOL transactions (updated to unpkg) -->
+    <script src="https://unpkg.com/buffer@6.0.3/index.js"></script>
     <!-- Ensure Buffer is globally available -->
     <script>
         if (typeof window.Buffer === 'undefined') {
             window.Buffer = Buffer;
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -113,7 +113,7 @@
             color: #000;
             box-shadow: 0 0 10px var(--glow);
         }
-        /* Subscriber note styling */
+        /* Subscriber note styling (kept for reference, but not used) */
         .subscriber-note {
             text-align: center;
             font-family: 'Syncopate', sans-serif;
@@ -295,7 +295,7 @@
                 <h2>Our Mission</h2>
                 <p>MusicRx is about real talk on music—reviews that cut deep, blogs worth reading, news you need, and takes that don’t hold back. We’re in it for the artists who move us and the fans who get it.</p>
             </div>
-<br>
+            <br>
 
             <!-- Support Section (unchanged) -->
             <section class="support-section">
