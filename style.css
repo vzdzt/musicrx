@@ -91,19 +91,19 @@ body[data-theme="veazy"] {
   --border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Black Mode - Deep void with gray outline */
+/* Black Mode - Glossy void with satin shimmer */
 [data-theme="black"] {
   --primary: #333333;
   --secondary: #4d4d4d;
   --accent: #666666;
   --dark: #1a1a1a;
-  --glass: rgba(51, 51, 51, 0.15);
-  --glow: rgba(77, 77, 77, 0.8); /* Gray outline instead of cyan glow */
-  --rgb-glow: linear-gradient(45deg, #00f7ff, #ff00f7, #7B68EE);
+  --glass: rgba(255, 255, 255, 0.2); /* Glossy, reflective glass */
+  --glow: rgba(255, 255, 255, 0.3); /* Subtle white sheen for gloss */
+  --rgb-glow: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(77, 77, 77, 0.4), rgba(255, 255, 255, 0.2)); /* Satin shimmer */
   --text-color: #ffffff;
-  --background: radial-gradient(circle at top left, #1a1a1a, #0a0a0a);
-  --card-background: rgba(51, 51, 51, 0.1);
-  --border-color: rgba(77, 77, 77, 0.2);
+  --background: linear-gradient(135deg, #1a1a1a, #0f0f0f); /* Satin-smooth gradient */
+  --card-background: rgba(255, 255, 255, 0.05); /* Glossy card finish */
+  --border-color: rgba(128, 128, 128, 0.3); /* Soft gray border */
 }
 
 /* All White Mode - Pure light with holographic shine */
@@ -1483,6 +1483,7 @@ body {
   margin: 2rem 0;
   width: 100%;
 }
+
 /* Scroll container styling */
 .scroll-container {
   display: flex;
@@ -1563,12 +1564,13 @@ body {
   margin: 0.3rem 0 0.2rem;
   font-family: 'Space Grotesk', sans-serif;
   text-transform: uppercase;
-  transition: text-shadow 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 /* Hover effect for scroll item heading */
 .scroll-item:hover h3 {
-  text-shadow: 0 0 10px var(--primary);
+  color: var(--text-color);
+  text-shadow: 1px 1px 0 var(--glow); /* Thin outline, no blur */
 }
 
 /* Scroll item link styling */
@@ -1599,12 +1601,13 @@ body {
   font-family: 'Syncopate', sans-serif;
   text-transform: uppercase;
   font-size: 1.5rem;
-  transition: text-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
+  box-shadow: inset 0 1px 2px var(--glow); /* Glossy inset */
 }
 
 /* Hover effect for section title */
 .section-title:hover {
-  text-shadow: 0 0 10px var(--primary);
+  box-shadow: inset 0 1px 2px var(--glow), 0 0 5px var(--glow); /* Subtle gloss on hover */
 }
 
 /* Scroll navigation container */
@@ -1746,7 +1749,7 @@ body {
   margin-bottom: 1.5rem;
   text-align: center;
   position: relative;
-  text-shadow: 0 0 10px var(--primary);
+  text-shadow: 1px 1px 0 var(--glow), -1px -1px 0 var(--glow); /* Sharp outline */
   width: 100%;
   overflow-wrap: break-word;
 }
@@ -1849,13 +1852,14 @@ body {
   margin: 0.5rem 0;
   font-family: 'Syncopate', sans-serif;
   text-transform: uppercase;
-  transition: text-shadow 0.3s ease;
+  transition: color 0.3s ease;
   font-weight: 700;
 }
 
 /* Hover effect for glass card heading */
 .glass-card:hover h2, .glass-card:hover h3 {
-  text-shadow: 0 0 10px var(--primary);
+  color: var(--text-color);
+  text-shadow: 1px 1px 0 var(--glow); /* Thin outline, no blur */
 }
 
 /* Glass card paragraph styling */
@@ -2888,5 +2892,88 @@ textarea.form-control {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
+}
+
+/* Wallet Connect Button in Dropdown */
+.dropdown-menu .wallet-connect {
+  background: var(--glass);
+  border: 1px solid var(--border-color);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  padding-left: 2rem; /* Space for light */
+}
+
+.dropdown-menu .wallet-connect::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff0000; /* Red light when disconnected */
+  box-shadow: 0 0 5px #ff0000;
+}
+
+.dropdown-menu .wallet-connect:hover {
+  background: var(--rgb-glow);
+  color: var(--dark);
+  box-shadow: 0 0 15px var(--glow);
+  animation: rgbShift 3s linear infinite;
+  transform: translateY(-3px);
+}
+
+.dropdown-menu .wallet-connect.connected {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  color: var(--dark);
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--glow);
+}
+
+.dropdown-menu .wallet-connect.connected::before {
+  background: #00ff00; /* Green light when connected */
+  box-shadow: 0 0 5px #00ff00;
+}
+
+/* Wallet Disconnect Button in Dropdown */
+.dropdown-menu .wallet-disconnect {
+  background: var(--glass);
+  border: 1px solid var(--border-color);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 0.5rem;
+}
+
+.dropdown-menu .wallet-disconnect:hover {
+  background: var(--rgb-glow);
+  color: var(--dark);
+  box-shadow: 0 0 15px var(--glow);
+  animation: rgbShift 3s linear infinite;
+  transform: translateY(-3px);
+}
+
+/* Wallet status in dropdown */
+.dropdown-menu .wallet-status {
+  color: var(--text-color);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  display: block;
 }
 
