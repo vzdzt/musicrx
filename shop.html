@@ -3,197 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRX - Bodega</title>
+    <title>MUSICRX - Shop</title>
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7/dist/ethers.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Web3 subtle styling */
-        .web3-hint {
-            font-style: italic;
-            font-size: 0.8rem;
-            color: var(--primary);
-            position: relative;
-            cursor: help;
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
-        .web3-hint:hover::after {
-            content: "Web3 tech powers exclusive perks!";
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--dark);
-            padding: 0.5rem;
-            border-radius: 5px;
-            font-size: 0.75rem;
-            color: var(--text-color);
-            z-index: 10;
-            white-space: nowrap;
+
+        #universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
         }
-        /* Smaller MusicRx card */
-        .musicrx-card {
-            max-width: 250px;
-            min-height: auto;
-            padding: 1rem;
-            background: var(--glass);
-            box-shadow: 0 0 8px var(--glow);
-            border-radius: 10px;
+
+        .shop-hero {
+            text-align: center;
+            padding: 1rem 0;
+            height: 20vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        .musicrx-card .connect-wallet-btn {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.85rem;
+
+        .shop-hero h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2rem;
+            color: #00ffff;
+            text-shadow: 0 0 8px #00ffff;
+            margin: 0;
+            animation: glitch 3s infinite;
+        }
+
+        .shop-hero p {
+            font-size: 1rem;
+            color: #ccc;
+            margin: 0.5rem 0;
+        }
+
+        .connect-wallet-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .connect-wallet-btn:hover {
+            background: #00ffff;
+            color: #000;
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        .countdown-section {
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .countdown-section h2 {
+            font-size: 1.2rem;
+            color: #00ffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            font-size: 1.2rem;
+            color: #00ffff;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 1rem auto;
+            padding: 1.5rem;
+            background: rgba(20, 20, 20, 0.8);
             border-radius: 15px;
         }
-        /* Subtle pulse animation */
-        .fa-pulse-subtle {
-            animation: pulse 4s infinite ease-in-out;
+
+        .shop-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #00ffff;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
         }
-        /* Adjust grid spacing */
-        [data-page="shop"] .shop-grid {
-            gap: 3rem;
-            padding: 2rem;
+
+        .shop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #00ffff;
+        }
+
+        .shop-card h2 {
+            font-size: 1.1rem;
+            color: #00ffff;
+            margin: 0.5rem 0;
+        }
+
+        .shop-card p {
+            font-size: 0.85rem;
+            color: #ccc;
+            margin: 0;
+        }
+
+        .subscriber-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ccc;
+            margin: 1rem 0;
+        }
+
+        .support-section {
+            max-width: 900px;
+            margin: 1rem auto;
+            text-align: center;
+        }
+
+        .support-section h2 {
+            font-size: 1.2rem;
+            color: #00ffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .support-section p {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .crypto-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 0 1.5rem;
+        }
+
+        .crypto-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #00ffff;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .crypto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #00ffff;
+        }
+
+        .crypto-icon {
+            font-size: 1.5rem;
+            color: #00ffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .wallet-address {
+            font-size: 0.75rem;
+            color: #ccc;
+            word-break: break-all;
+            margin: 0.5rem 0;
+        }
+
+        .copy-address-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+
+        .copy-address-btn:hover {
+            background: #00ffff;
+            color: #000;
+        }
+
+        .donate-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00ffff;
+            color: #fff;
+            padding: 0.4rem;
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .donate-button {
+            background: #00ffff;
+            color: #000;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        .donate-button:hover {
+            background: #00cccc;
+            transform: scale(1.05);
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, 0); }
+            80% { transform: translate(2px, 0); }
+            100% { transform: translate(0); }
         }
     </style>
 </head>
 <body data-page="shop">
     <canvas id="universe"></canvas>
 
-    <!-- Navbar -->
-    <nav class="navbar global-nav">
-        <div class="nav-logo">
-            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+    <!-- Hero Section -->
+    <section class="shop-hero">
+        <h1 class="glitch" data-text="MUSICRX SHOP">MUSICRX SHOP</h1>
+        <p>Minimalist Music Essentials</p>
+        <button class="connect-wallet-btn" id="connectWalletShop">Connect Wallet</button>
+    </section>
+
+    <!-- Countdown Timer -->
+    <section class="countdown-section">
+        <h2>Opening Soon</h2>
+        <div class="countdown-timer" id="countdown-timer">
+            <div id="days">00</div>
+            <div id="hours">00</div>
+            <div id="minutes">00</div>
+            <div id="seconds">00</div>
         </div>
-        <div class="wallet-section">
-            <button class="wallet-connect" id="connectWallet">Connect Wallet</button>
-            <span class="wallet-status" id="walletStatus"></span>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="shop-grid">
+        <div class="shop-card">
+            <h2>Apparel</h2>
+            <p>Official clothing and accessories</p>
         </div>
-        <div class="dropdown">
-            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
-            <div class="dropdown-menu">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="reviews.html">Reviews</a></li>
-                    <li><a href="features.html">Features</a></li>
-                    <li><a href="news.html">News</a></li>
-                    <li><a href="opinions.html">Opinions</a></li>
-                    <li><a href="catchcarti.html">Catch Carti</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                </ul>
+        <div class="shop-card">
+            <h2>Raffles</h2>
+            <p>Exclusive merch and artist bundles</p>
+        </div>
+        <div class="shop-card">
+            <h2>NFTs</h2>
+            <p>Mint for early access to drops and events</p>
+        </div>
+    </section>
+    <p class="subscriber-note">Subscribers get notified first</p>
+
+    <!-- Support Section -->
+    <section class="support-section">
+        <h2>Support MusicRx</h2>
+        <p>Fuel the future with a tip</p>
+        <div class="crypto-grid">
+            <div class="crypto-card">
+                <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
+                <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
+                <button class="copy-address-btn" onclick="navigator.clipboard.writeText('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">Copy</button>
+                <input type="number" placeholder="ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
+                <button class="donate-button" id="tipEth">Send</button>
+            </div>
+            <div class="crypto-card">
+                <div class="crypto-icon"><i class="fab fa-bitcoin"></i></div>
+                <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
+                <button class="copy-address-btn" onclick="navigator.clipboard.writeText('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">Copy</button>
+                <input type="number" placeholder="BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
+                <button class="donate-button" id="tipBtc">Send</button>
+            </div>
+            <div class="crypto-card">
+                <div class="crypto-icon"><i class="fas fa-sun"></i></div>
+                <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
+                <button class="copy-address-btn" onclick="navigator.clipboard.writeText('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">Copy</button>
+                <input type="number" placeholder="SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
+                <button class="donate-button" id="tipSol">Send</button>
             </div>
         </div>
-    </nav>
+    </section>
 
-    <!-- Fixed Buttons -->
-    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
-    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
-    <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
-    <button id="tipMachine" title="Send a Tip"><i class="fas fa-donate"></i></button>
+    <script>
+        // Countdown timer (September 22, 2025)
+        const countDownDate = new Date("September 22, 2025 00:00:00").getTime();
+        const x = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown-timer").innerText = "Shop is Open!";
+            }
+        }, 1000);
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="shop-container">
-            <!-- Hero Section -->
-            <section class="shop-hero" style="height: 50vh;">
-                <h1 class="glitch" data-text="MUSICRX BODEGA">MUSICRX BODEGA</h1>
-                <p>Minimalist Music Essentials</p>
-                <div class="glass-card musicrx-card">
-                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
-                    <button class="connect-wallet-btn" id="connectWalletShop">Connect</button>
-                </div>
-            </section>
-
-            <!-- Countdown Timer -->
-            <section class="countdown-section">
-                <h2 class="section-title">Opening Soon</h2>
-                <div class="countdown-timer" id="countdown-timer">
-                    <div id="days">00</div>
-                    <div id="hours">00</div>
-                    <div id="minutes">00</div>
-                    <div id="seconds">00</div>
-                </div>
-            </section>
-
-            <!-- Products Teaser Grid -->
-            <section class="shop-grid">
-                <div class="shop-card">
-                    <i class="fas fa-heartbeat fa-pulse-subtle"></i>
-                    <h2>Apparel</h2>
-                    <p>Black & white essentials.</p>
-                </div>
-                <div class="shop-card">
-                    <i class="fas fa-heartbeat fa-pulse-subtle"></i>
-                    <h2>Raffles</h2>
-                    <p>Vinyls & artist bundles via <span class="web3-hint">NFTs</span>.</p>
-                </div>
-                <div class="shop-card">
-                    <i class="fas fa-heartbeat fa-pulse-subtle"></i>
-                    <h2>Perks</h2>
-                    <p><span class="web3-hint">NFT</span> holders get exclusives.</p>
-                </div>
-            </section>
-
-            <!-- Support Section -->
-            <section class="support-section">
-                <h2 class="section-title">Support Us</h2>
-                <p>Tip to fuel the bodega.</p>
-                <div class="crypto-grid">
-                    <div class="crypto-card">
-                        <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
-                        <h3><span class="web3-hint">ETH</span></h3>
-                        <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
-                        <button class="copy-address-btn" onclick="copyToClipboard('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                        <input type="number" placeholder="ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
-                        <button id="tipEth" class="donate-button"><i class="fas fa-donate"></i></button>
-                    </div>
-                    <div class="crypto-card">
-                        <div class="crypto-icon"><i class="fab fa-bitcoin"></i></div>
-                        <h3>BTC</h3>
-                        <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
-                        <button class="copy-address-btn" onclick="copyToClipboard('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                        <input type="number" placeholder="BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
-                        <button id="tipBtc" class="donate-button"><i class="fas fa-donate"></i></button>
-                    </div>
-                    <div class="crypto-card">
-                        <div class="crypto-icon"><i class="fas fa-sun"></i></div>
-                        <h3><span class="web3-hint">SOL</span></h3>
-                        <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
-                        <button class="copy-address-btn" onclick="copyToClipboard('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                        <input type="number" placeholder="SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
-                        <button id="tipSol" class="donate-button"><i class="fas fa-donate"></i></button>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="nav-logo">
-            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
-        </div>
-        <div class="footer-content">
-            <p>© 2025 MusicRx</p>
-        </div>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Subscribe" required>
-            <button type="submit"><i class="fas fa-envelope"></i></button>
-        </form>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
-    <script src="shop.js"></script>
+        // Button functionality test
+        document.getElementById("connectWalletShop").addEventListener("click", () => {
+            alert("Connect Wallet button clicked! Add your wallet connection logic here.");
+        });
+    </script>
 </body>
 </html>
