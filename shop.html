@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUSICRX - Shop</title>
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7/dist/ethers.umd.min.js"></script>
-    <!-- Add Buffer polyfill for SOL transactions (updated to UMD bundle) -->
     <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/dist/index.umd.min.js"></script>
-    <!-- Ensure Buffer is globally available -->
     <script>
         if (typeof window.Buffer === 'undefined') {
-            window.Buffer = buffer.Buffer; // Use the UMD module's Buffer
+            window.Buffer = buffer.Buffer;
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
@@ -46,14 +44,14 @@
             padding: 1rem 0;
             position: relative;
             z-index: 1;
-            display: block; /* Full width for centering */
-            width: 100%; /* Ensures it takes parent width */
+            display: block;
+            width: 100%;
         }
         .title-card .logo-symbol {
             font-size: 2.5rem;
             color: var(--primary);
             text-shadow: 0 0 8px var(--glow);
-            animation: glitch 3s infinite, colorPulse 6s infinite; /* Add color pulse */
+            animation: glitch 3s infinite, colorPulse 6s infinite;
         }
         @keyframes heartbeat {
             0%, 100% { transform: scaleX(1); }
@@ -67,13 +65,12 @@
             80% { transform: translate(2px, 0); }
             100% { transform: translate(0); }
         }
-        /* Color pulse animation for the heart logo */
         @keyframes colorPulse {
-            0% { color: #ff0000; text-shadow: 0 0 8px #ff6666; } /* Red */
-            25% { color: #ff69b4; text-shadow: 0 0 8px #ff99cc; } /* Pink */
-            50% { color: #800080; text-shadow: 0 0 8px #cc00cc; } /* Purple */
-            75% { color: #0000ff; text-shadow: 0 0 8px #6666ff; } /* Blue */
-            100% { color: #ff0000; text-shadow: 0 0 8px #ff6666; } /* Back to red */
+            0% { color: #ff0000; text-shadow: 0 0 8px #ff6666; }
+            25% { color: #ff69b4; text-shadow: 0 0 8px #ff99cc; }
+            50% { color: #800080; text-shadow: 0 0 8px #cc00cc; }
+            75% { color: #0000ff; text-shadow: 0 0 8px #6666ff; }
+            100% { color: #ff0000; text-shadow: 0 0 8px #ff6666; }
         }
         /* Adjust grid spacing and card size */
         [data-page="shop"] .shop-grid {
@@ -182,42 +179,17 @@
             background: var(--primary);
             color: #000;
         }
-        .donate-input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--primary);
-            color: #fff;
-            padding: 0.4rem;
-            width: 100%;
-            border-radius: 5px;
-            margin-bottom: 0.5rem;
-            font-size: 0.8rem;
-        }
-        .donate-button {
-            background: var(--primary);
-            color: #000;
-            padding: 0.4rem 0.8rem;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            font-size: 0.9rem;
-        }
-        .donate-button:hover {
-            background: var(--secondary);
-            transform: scale(1.05);
-        }
     </style>
 </head>
 <body data-page="shop">
     <canvas id="universe"></canvas>
 
-    <!-- Navbar (unchanged) -->
+    <!-- Navbar (removed connect wallet button from tab) -->
     <nav class="navbar global-nav">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
         </div>
         <div class="wallet-section">
-            <button class="wallet-connect" id="connectWallet">Connect Wallet</button>
             <span class="wallet-status" id="walletStatus"></span>
         </div>
         <div class="dropdown">
@@ -232,6 +204,7 @@
                     <li><a href="catchcarti.html">Catch Carti</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="shop.html">Shop</a></li>
+                    <li><button class="wallet-connect" id="connectWallet">Connect Wallet</button></li>
                 </ul>
             </div>
         </div>
@@ -246,13 +219,13 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="shop-container">
-            <!-- Title Card (updated: removed glitch text, heart logo pulses colors) -->
+            <!-- Title Card -->
             <div class="title-card">
                 <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
                 <div class="heartbeat-line"></div>
             </div>
 
-            <!-- Countdown Timer (unchanged) -->
+            <!-- Countdown Timer -->
             <section class="countdown-section">
                 <h2 class="section-title">Opening Soon</h2>
                 <div class="countdown-timer" id="countdown-timer">
@@ -263,7 +236,7 @@
                 </div>
             </section>
 
-            <!-- Products Teaser Grid (unchanged: heart logos closer to text) -->
+            <!-- Products Teaser Grid -->
             <section class="shop-grid">
                 <div class="shop-card">
                     <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.25rem;"></i>
@@ -290,14 +263,14 @@
                 <button class="connect-wallet-btn" id="connectWalletShop">Connect Wallet</button>
             </div>
 
-            <!-- Mission Statement (unchanged) -->
+            <!-- Mission Statement -->
             <div class="mission-statement">
                 <h2>Our Mission</h2>
                 <p>MusicRx is about real talk on music—reviews that cut deep, blogs worth reading, news you need, and takes that don’t hold back. We’re in it for the artists who move us and the fans who get it.</p>
             </div>
             <br>
 
-            <!-- Support Section (unchanged) -->
+            <!-- Support Section (removed donate inputs/buttons) -->
             <section class="support-section">
                 <h2 class="section-title">Support MusicRx</h2>
                 <p>Fuel the future of music with your support</p>
@@ -310,8 +283,6 @@
                         <button class="copy-address-btn" onclick="navigator.clipboard.writeText('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
                             <i class="fas fa-copy"></i> Copy
                         </button>
-                        <input type="number" placeholder="ETH" class="donate-input" id="ethAmount" min="0.001" step="0.001" value="0.01">
-                        <button id="tipEth" class="donate-button"><i class="fas fa-donate"></i> Donate Now</button>
                     </div>
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fab fa-bitcoin"></i></div>
@@ -321,8 +292,6 @@
                         <button class="copy-address-btn" onclick="navigator.clipboard.writeText('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
                             <i class="fas fa-copy"></i> Copy
                         </button>
-                        <input type="number" placeholder="BTC" class="donate-input" id="btcAmount" min="0.0001" step="0.0001" value="0.001">
-                        <button id="tipBtc" class="donate-button"><i class="fas fa-donate"></i> Donate Now</button>
                     </div>
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fas fa-sun"></i></div>
@@ -332,15 +301,13 @@
                         <button class="copy-address-btn" onclick="navigator.clipboard.writeText('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
                             <i class="fas fa-copy"></i> Copy
                         </button>
-                        <input type="number" placeholder="SOL" class="donate-input" id="solAmount" min="0.01" step="0.01" value="0.1">
-                        <button id="tipSol" class="donate-button"><i class="fas fa-donate"></i> Donate Now</button>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
-    <!-- Footer (unchanged) -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
@@ -354,7 +321,7 @@
         </form>
     </footer>
 
-    <!-- Scripts (unchanged) -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
