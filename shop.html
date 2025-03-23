@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUSICRX - Shop</title>
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7/dist/ethers.umd.min.js"></script>
-    <!-- Add Buffer polyfill for SOL transactions (updated to unpkg) -->
-    <script src="https://unpkg.com/buffer@6.0.3/index.js"></script>
+    <!-- Add Buffer polyfill for SOL transactions (updated to UMD bundle) -->
+    <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/dist/index.umd.min.js"></script>
     <!-- Ensure Buffer is globally available -->
     <script>
         if (typeof window.Buffer === 'undefined') {
-            window.Buffer = Buffer;
+            window.Buffer = buffer.Buffer; // Use the UMD module's Buffer
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
@@ -113,7 +113,7 @@
             color: #000;
             box-shadow: 0 0 10px var(--glow);
         }
-        /* Subscriber note styling (kept for reference, but not used) */
+        /* Subscriber note styling */
         .subscriber-note {
             text-align: center;
             font-family: 'Syncopate', sans-serif;
