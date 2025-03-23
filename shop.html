@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUSICRX - Shop</title>
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7/dist/ethers.umd.min.js"></script>
-    <!-- Add Solana Wallet Adapter libraries -->
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-    <script src="https://unpkg.com/@solana/wallet-adapter-base@0.9.23/dist/index.global.js"></script>
-    <script src="https://unpkg.com/@solana/wallet-adapter-wallets@0.19.32/dist/index.global.js"></script>
-    <script src="https://unpkg.com/@solana/wallet-adapter-walletconnect@0.1.16/dist/index.global.js"></script>
+    <!-- Add Buffer polyfill for SOL transactions (updated to UMD bundle) -->
+    <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/dist/index.umd.min.js"></script>
+    <!-- Ensure Buffer is globally available -->
+    <script>
+        if (typeof window.Buffer === 'undefined') {
+            window.Buffer = buffer.Buffer; // Use the UMD module's Buffer
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
