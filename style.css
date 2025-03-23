@@ -1,4 +1,3 @@
-/* style.css - Part 1 of 3 (Lines 1–993) */
 
 /* Define root variables for default fallbacks */
 :root {
@@ -99,13 +98,13 @@ body[data-theme="veazy"] {
   --secondary: #4d4d4d;
   --accent: #666666;
   --dark: #1a1a1a;
-  --glass: rgba(255, 255, 255, 0.1); /* Simplified glass, no gloss */
-  --glow: rgba(0, 0, 0, 0); /* No glow */
-  --rgb-glow: none; /* No gradient glow */
+  --glass: rgba(255, 255, 255, 0.1);
+  --glow: rgba(0, 0, 0, 0);
+  --rgb-glow: none;
   --text-color: #ffffff;
-  --background: linear-gradient(135deg, #1a1a1a, #0f0f0f); /* Keep smooth gradient */
-  --card-background: rgba(255, 255, 255, 0.05); /* Plain card finish */
-  --border-color: rgba(128, 128, 128, 0.3); /* Soft gray border */
+  --background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+  --card-background: rgba(255, 255, 255, 0.05);
+  --border-color: rgba(128, 128, 128, 0.3);
 }
 
 /* All White Mode - Pure light with holographic shine */
@@ -314,6 +313,7 @@ body[data-theme="desert-oasis"] {
   --card-background: rgba(255, 0, 255, 0.1);
   --border-color: rgba(0, 255, 0, 0.3);
 }
+
 /* Aurora Breeze Mode - Ethereal aurora with flowing colors */
 [data-theme="aurora-breeze"] {
   --primary: #80ffdb;
@@ -541,7 +541,7 @@ body[data-theme="spectral-surge"] {
   animation: spectral-wave 4s infinite;
 }
 
-/* Starforge Nebula - A cosmic swirl with glowing nebulae and particle effects */
+/* Starforge Nebula - Cosmic swirl with glowing nebulae */
 [data-theme="starforge-nebula"] {
   --primary: #ff1a8c;
   --secondary: #00ccff;
@@ -906,7 +906,7 @@ body {
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  width: calc(100% - 2rem); /* Small margin on each side */
+  width: calc(100% - 2rem);
   box-sizing: border-box;
 }
 
@@ -948,10 +948,10 @@ body {
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    padding: 1rem 0.5rem; /* Reduced padding on smaller screens */
+    padding: 1rem 0.5rem;
   }
   .card-pair {
-    max-width: clamp(200px, 90vw, 250px); /* Further scaled down for mobile */
+    max-width: clamp(200px, 90vw, 250px);
   }
 }
 
@@ -981,47 +981,47 @@ body {
   background: var(--card-background);
   border-radius: 8px;
   overflow: hidden;
-  display: table; /* Default to table display for stretching on larger screens */
+  display: table;
   font-size: 0.9rem;
-  table-layout: fixed; /* Force columns to stretch evenly */
+  table-layout: fixed;
 }
 
 /* Specific styling for Awards Recognition table */
 .trend-table.awards-table {
-  min-width: 100%; /* Ensure the table stretches to the full container width */
+  min-width: 100%;
 }
 .trend-table.awards-table th,
 .trend-table.awards-table td {
-  width: 33.33%; /* Each column takes up exactly 1/3 of the table */
+  width: 33.33%;
 }
 
 /* Specific styling for Album Certifications table */
 .trend-table.certifications-table {
-  min-width: 100%; /* Ensure the table stretches to the full container width */
+  min-width: 100%;
 }
 .trend-table.certifications-table th,
 .trend-table.certifications-table td {
-  width: 33.33%; /* Each column takes up exactly 1/3 of the table */
+  width: 33.33%;
 }
 
 /* Specific styling for Chart Performance table */
 .trend-table.chart-table {
-  min-width: 100%; /* Ensure the table stretches to the full container width */
+  min-width: 100%;
 }
 .trend-table.chart-table th,
 .trend-table.chart-table td {
-  width: 16.67%; /* Each column takes up exactly 1/6 of the table (6 columns) */
+  width: 16.67%;
 }
 
 /* Table cell styling */
 .trend-table th,
 .trend-table td {
-  padding: 0.8rem 1rem; /* Increased padding for better spacing */
+  padding: 0.8rem 1rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
   color: var(--text-color);
   font-size: 0.9rem;
-  word-wrap: break-word; /* Allow text to wrap for better stretching */
+  word-wrap: break-word;
 }
 
 /* Table header styling */
@@ -1037,7 +1037,7 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Navigation bar styling */
@@ -1047,7 +1047,6 @@ body {
   left: 0;
   width: 100%;
   background: var(--dark);
-  /* Fallback */
   background: rgba(10, 10, 10, 0.8);
   @supports (backdrop-filter: blur(10px)) {
     backdrop-filter: blur(10px);
@@ -1081,6 +1080,110 @@ body {
 @keyframes pulse-heart {
   0%, 100% { color: var(--primary); transform: scale(1); }
   50% { color: var(--secondary); transform: scale(1.2); }
+}
+
+/* Footer styling */
+.footer {
+  background: var(--dark);
+  background: rgba(10, 10, 10, 0.8);
+  @supports (backdrop-filter: blur(10px)) {
+    backdrop-filter: blur(10px);
+    background: var(--dark);
+  }
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+  z-index: 1001;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Footer logo container */
+.footer .nav-logo {
+  flex: 0 0 auto;
+  margin-left: 0;
+}
+
+/* Footer logo symbol icon styling */
+.footer .logo-symbol i {
+  color: var(--primary);
+  font-size: 1.5rem;
+  animation: pulse-heart 1.5s ease-in-out infinite;
+}
+
+/* Footer content container */
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  text-align: center;
+  margin: 0 1rem;
+}
+
+/* Footer paragraph styling */
+.footer-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+/* Footer newsletter form styling */
+.footer .newsletter-form {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.5rem;
+  margin-right: 0;
+}
+
+/* Newsletter input styling */
+.footer .newsletter-form input {
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  background: var(--glass);
+  color: var(--text-color);
+  border-radius: 5px;
+  font-family: 'Space Grotesk', sans-serif;
+  width: 150px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for newsletter input */
+.footer .newsletter-form input:hover {
+  box-shadow: 0 0 10px var(--primary);
+}
+
+/* Newsletter input placeholder styling */
+.footer .newsletter-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Newsletter button styling */
+.footer .newsletter-form button {
+  background: var(--glass);
+  border: 1px solid var(--border-color);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover effect for newsletter button */
+.footer .newsletter-form button:hover {
+  background: var(--rgb-glow);
+  box-shadow: 0 0 20px var(--secondary);
+  color: var(--dark);
+  animation: rgbShift 3s linear infinite;
 }
 
 /* Search container styling */
@@ -1149,7 +1252,6 @@ body {
   top: 100%;
   right: 0;
   background: var(--dark);
-  /* Fallback */
   background: rgba(10, 10, 10, 0.8);
   @supports (backdrop-filter: blur(10px)) {
     backdrop-filter: blur(10px);
@@ -1202,7 +1304,6 @@ body {
 /* Wallet Connect Button in Navbar */
 .wallet-connect {
   background: var(--glass);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(10px)) {
     backdrop-filter: blur(10px);
@@ -1220,6 +1321,7 @@ body {
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Wallet connect hover effect */
 .wallet-connect:hover {
   background: var(--rgb-glow);
   color: var(--dark);
@@ -1228,6 +1330,7 @@ body {
   transform: translateY(-3px);
 }
 
+/* Wallet connect connected state */
 .wallet-connect.connected {
   background: linear-gradient(45deg, var(--primary), var(--secondary));
   color: var(--dark);
@@ -1341,6 +1444,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative; /* Contain heartbeat-line */
 }
 
 /* Heartbeat text styling */
@@ -1354,6 +1458,7 @@ body {
   opacity: 0.7;
   text-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
+  position: relative;
 }
 
 /* Hover effect for heartbeat text */
@@ -1365,7 +1470,7 @@ body {
 /* Heartbeat line styling */
 .heartbeat-line {
   position: absolute;
-  bottom: -15px;
+  top: calc(100% + 5px); /* Below heartbeat-text */
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
@@ -1392,7 +1497,6 @@ body {
   max-width: 350px;
   width: 100%;
   background: var(--glass);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(15px)) {
     backdrop-filter: blur(15px);
@@ -1519,7 +1623,6 @@ body {
   flex: 0 0 300px;
   min-width: 300px;
   background: var(--card-background);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(15px)) {
     backdrop-filter: blur(15px);
@@ -1606,10 +1709,40 @@ body {
 
 /* Hover effect for section title */
 .section-title:hover {
-  color: var(--primary); /* No change on hover */
+  color: var(--primary);
 }
 
-/* style.css - Part 2 of 3 (Lines 994–1986) */
+/* Scroll navigation styling */
+.section-header .scroll-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Scroll button styling */
+.section-header .scroll-nav .scroll-button {
+  background: var(--glass);
+  border: 1px solid var(--border-color);
+  color: var(--primary);
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 1.2rem;
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover effect for scroll buttons */
+.section-header .scroll-nav .scroll-button:hover {
+  background: var(--rgb-glow);
+  color: var(--dark);
+  box-shadow: 0 0 20px var(--primary);
+  animation: rgbShift 3s linear infinite;
+  transform: scale(1.1);
+}
 
 /* Glitch text styling for headings */
 .glitch {
@@ -1865,7 +1998,6 @@ body {
   overflow: hidden;
   max-width: 100%;
   background: var(--card-background);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(15px)) {
     backdrop-filter: blur(15px);
@@ -1997,7 +2129,6 @@ body {
   padding: 0.5rem;
   border: 1px solid var(--border-color);
   background: var(--glass);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(5px)) {
     backdrop-filter: blur(5px);
@@ -2026,7 +2157,6 @@ textarea.form-control {
 /* Submit button styling */
 .submit-btn {
   background: var(--glass);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(5px)) {
     backdrop-filter: blur(5px);
@@ -2084,10 +2214,10 @@ textarea.form-control {
   #themeToggle { right: 70px; }
   #tipMachine { right: 10px; }
   .footer {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0.5rem;
-    height: 60px;
+    padding: 0.5rem 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
   }
   .footer .nav-logo {
     margin-left: 0.5rem;
@@ -2099,7 +2229,7 @@ textarea.form-control {
     margin-right: 0.5rem;
   }
   .footer .newsletter-form input {
-    width: 100px;
+    width: 120px;
   }
   .hero {
     padding: 1rem;
@@ -2201,6 +2331,7 @@ textarea.form-control {
   background: var(--background);
 }
 
+/* Hero banner for shop page */
 [data-page="shop"] .hero-banner {
   position: relative;
   width: 100%;
@@ -2217,6 +2348,7 @@ textarea.form-control {
   box-shadow: 0 0 30px var(--glow);
 }
 
+/* Crypto options styling */
 [data-page="shop"] .crypto-options {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -2228,6 +2360,7 @@ textarea.form-control {
   box-shadow: 0 0 30px var(--glow);
 }
 
+/* Construction tape animation */
 [data-page="shop"] .construction-tape {
   position: fixed;
   width: 150%;
@@ -2270,7 +2403,6 @@ textarea.form-control {
 
 .wallet-modal-content {
   background: var(--glass);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(15px)) {
     backdrop-filter: blur(15px);
@@ -2392,7 +2524,6 @@ textarea.form-control {
 
 .tip-modal {
   background: var(--glass);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(15px)) {
     backdrop-filter: blur(15px);
@@ -2491,7 +2622,7 @@ textarea.form-control {
   background: var(--rgb-glow);
   opacity: 0.2;
   animation: pulseGlow 6s infinite;
-  pointer-events: none; /* Fix to allow clicks on button */
+  pointer-events: none;
 }
 
 [data-page="shop"] .shop-hero h1 {
@@ -2510,7 +2641,6 @@ textarea.form-control {
 /* Shop Hero Connect Wallet Button */
 [data-page="shop"] .connect-wallet-btn {
   background: var(--glass);
-  /* Fallback */
   background: rgba(255, 255, 255, 0.1);
   @supports (backdrop-filter: blur(15px)) {
     backdrop-filter: blur(15px);
@@ -2527,7 +2657,7 @@ textarea.form-control {
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px var(--glow);
   font-size: 1rem;
   position: relative;
-  z-index: 2; /* Ensure it’s above the pseudo-element */
+  z-index: 2;
 }
 
 [data-page="shop"] .connect-wallet-btn:hover {
@@ -2776,7 +2906,7 @@ textarea.form-control {
   font-size: 0.8rem;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
   position: relative;
-  padding-left: 2rem; /* Space for light */
+  padding-left: 2rem;
 }
 
 .dropdown-menu .wallet-connect::before {
@@ -2788,7 +2918,7 @@ textarea.form-control {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #ff0000; /* Red light when disconnected */
+  background: #ff0000;
   box-shadow: 0 0 5px #ff0000;
 }
 
@@ -2808,12 +2938,12 @@ textarea.form-control {
 }
 
 .dropdown-menu .wallet-connect.connected::before {
-  background: #00ff00; /* Green light when connected */
+  background: #00ff00;
   box-shadow: 0 0 5px #00ff00;
 }
 
 /* Wallet Disconnect Button in Dropdown */
-.dropdown-menu .wallet-disconnect {
+.wallet-disconnect, #wallet-disconnect {
   background: var(--glass);
   border: 1px solid var(--border-color);
   color: var(--primary);
@@ -2825,10 +2955,14 @@ textarea.form-control {
   transition: all 0.3s ease;
   font-size: 0.8rem;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  display: inline-block;
+}
+
+.dropdown-menu .wallet-disconnect, .dropdown-menu #wallet-disconnect {
   margin-top: 0.5rem;
 }
 
-.dropdown-menu .wallet-disconnect:hover {
+.wallet-disconnect:hover, #wallet-disconnect:hover {
   background: var(--rgb-glow);
   color: var(--dark);
   box-shadow: 0 0 15px var(--glow);
@@ -2844,658 +2978,3 @@ textarea.form-control {
   font-family: 'Space Grotesk', sans-serif;
   display: block;
 }
-
-/* End of Part 2 */
-
-/* style.css - Part 3 of 3 (Lines 1987–2979) */
-
-/* Shop Page Specific Styles */
-[data-page="shop"] body {
-  background: var(--background);
-}
-
-[data-page="shop"] .hero-banner {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  height: 400px;
-  background: linear-gradient(135deg, var(--dark), #2c2c2c);
-  border-radius: 15px;
-  overflow: hidden;
-  margin: 2rem auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-shadow: 0 0 30px var(--glow);
-}
-
-[data-page="shop"] .crypto-options {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 15px;
-  border: 2px solid var(--primary);
-  box-shadow: 0 0 30px var(--glow);
-}
-
-[data-page="shop"] .construction-tape {
-  position: fixed;
-  width: 150%;
-  height: 50px;
-  background: repeating-linear-gradient(
-    45deg,
-    #000,
-    #000 10px,
-    #ffcc00 10px,
-    #ffcc00 20px
-  );
-  top: 0;
-  left: -25%;
-  z-index: 1000;
-  transform: rotate(-5deg);
-  animation: slide 15s linear infinite;
-}
-
-/* Wallet Modal Styling */
-.wallet-modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 2000;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.wallet-modal-overlay.active {
-  display: flex;
-  opacity: 1;
-}
-
-.wallet-modal-content {
-  background: var(--glass);
-  /* Fallback */
-  background: rgba(255, 255, 255, 0.1);
-  @supports (backdrop-filter: blur(15px)) {
-    backdrop-filter: blur(15px);
-    background: var(--card-background);
-  }
-  border: 1px solid var(--border-color);
-  border-radius: 15px;
-  padding: 2rem;
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-  box-shadow: 0 0 20px var(--glow);
-  position: relative;
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
-}
-
-.wallet-modal-overlay.active .wallet-modal-content {
-  transform: scale(1);
-}
-
-.wallet-modal-header {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.wallet-modal-header h2 {
-  color: var(--primary);
-  font-family: 'Syncopate', sans-serif;
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px var(--primary);
-}
-
-.wallet-modal-header p {
-  color: var(--text-color);
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.wallet-modal-close {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background: var(--glass);
-  border: 1px solid var(--border-color);
-  color: var(--primary);
-  padding: 0.5rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.wallet-modal-close:hover {
-  background: var(--rgb-glow);
-  color: var(--dark);
-  box-shadow: 0 0 20px var(--primary);
-  animation: rgbShift 3s linear infinite;
-}
-
-.wallet-modal-body {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.wallet-option {
-  background: var(--glass);
-  border: 1px solid var(--border-color);
-  color: var(--primary);
-  padding: 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.wallet-option i {
-  font-size: 1.5rem;
-}
-
-.wallet-option:hover {
-  background: var(--rgb-glow);
-  color: var(--dark);
-  box-shadow: 0 0 20px var(--primary);
-  animation: rgbShift 3s linear infinite;
-  transform: translateY(-3px);
-}
-
-/* Tip Machine Overlay */
-.tip-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 2000;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.tip-overlay.active {
-  display: flex;
-  opacity: 1;
-}
-
-.tip-modal {
-  background: var(--glass);
-  /* Fallback */
-  background: rgba(255, 255, 255, 0.1);
-  @supports (backdrop-filter: blur(15px)) {
-    backdrop-filter: blur(15px);
-    background: var(--card-background);
-  }
-  border: 1px solid var(--border-color);
-  border-radius: 15px;
-  padding: 2rem;
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-  box-shadow: 0 0 20px var(--glow);
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
-}
-
-.tip-overlay.active .tip-modal {
-  transform: scale(1);
-}
-
-.tip-modal p {
-  color: var(--text-color);
-  margin-bottom: 1rem;
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-.tip-modal input {
-  background: var(--glass);
-  border: 1px solid var(--primary);
-  border-radius: 5px;
-  color: var(--text-color);
-  padding: 0.5rem;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.tip-modal button {
-  background: var(--primary);
-  color: var(--dark);
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-  margin: 0.5rem;
-}
-
-.tip-modal button:hover {
-  background: var(--secondary);
-  transform: scale(1.05);
-}
-
-.tip-modal .close-btn {
-  background: var(--glass);
-  color: var(--primary);
-}
-
-.tip-modal .close-btn:hover {
-  background: var(--rgb-glow);
-  color: var(--dark);
-  box-shadow: 0 0 20px var(--primary);
-  animation: rgbShift 3s linear infinite;
-}
-
-/* New Shop-Specific Styles for Remodeled shop.html */
-[data-page="shop"] .shop-container {
-  padding: 100px 2rem 4rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-[data-page="shop"] .shop-hero {
-  position: relative;
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 50, 0.8));
-  border-radius: 20px;
-  margin-bottom: 4rem;
-  overflow: hidden;
-  box-shadow: 0 0 40px var(--glow);
-}
-
-[data-page="shop"] .shop-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--rgb-glow);
-  opacity: 0.2;
-  animation: pulseGlow 6s infinite;
-  pointer-events: none; /* Fix to allow clicks on button */
-}
-
-[data-page="shop"] .shop-hero h1 {
-  font-size: 3rem;
-  color: var(--primary);
-  text-shadow: 0 0 15px var(--glow);
-  animation: glitch 3s infinite;
-}
-
-[data-page="shop"] .shop-hero p {
-  font-size: 1.2rem;
-  color: var(--text-color);
-  margin: 1rem 0;
-}
-
-/* Shop Hero Connect Wallet Button */
-[data-page="shop"] .connect-wallet-btn {
-  background: var(--glass);
-  /* Fallback */
-  background: rgba(255, 255, 255, 0.1);
-  @supports (backdrop-filter: blur(15px)) {
-    backdrop-filter: blur(15px);
-    background: var(--glass);
-  }
-  border: 1px solid var(--border-color);
-  color: var(--primary);
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  font-family: 'Syncopate', sans-serif;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px var(--glow);
-  font-size: 1rem;
-  position: relative;
-  z-index: 2; /* Ensure it’s above the pseudo-element */
-}
-
-[data-page="shop"] .connect-wallet-btn:hover {
-  background: var(--rgb-glow);
-  color: var(--dark);
-  transform: scale(1.1);
-  box-shadow: 0 0 30px var(--primary);
-  animation: rgbShift 3s linear infinite;
-}
-
-[data-page="shop"] .connect-wallet-btn.connected {
-  background: linear-gradient(45deg, var(--primary), var(--secondary));
-  color: var(--dark);
-  border-color: var(--primary);
-  box-shadow: 0 0 15px var(--glow);
-}
-
-[data-page="shop"] .shop-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
-}
-
-[data-page="shop"] .shop-card {
-  background: var(--card-background);
-  @supports (backdrop-filter: blur(15px)) {
-    backdrop-filter: blur(15px);
-    background: rgba(255, 255, 255, 0.1);
-  }
-  border: 1px solid var(--border-color);
-  border-radius: 15px;
-  padding: 2rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  position: relative;
-  overflow: hidden;
-}
-
-[data-page="shop"] .shop-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 30px var(--glow);
-  background: var(--rgb-glow);
-  animation: rgbShift 3s linear infinite;
-}
-
-[data-page="shop"] .shop-card i {
-  font-size: 4rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-  animation: float 3s ease-in-out infinite;
-}
-
-[data-page="shop"] .shop-card h2 {
-  font-size: 1.5rem;
-  color: var(--primary);
-  font-family: 'Syncopate', sans-serif;
-  text-transform: uppercase;
-  margin: 0.5rem 0;
-}
-
-[data-page="shop"] .shop-card p {
-  font-size: 1rem;
-  color: var(--text-color);
-  margin: 0;
-}
-
-[data-page="shop"] .countdown-section {
-  text-align: center;
-  margin: 4rem 0;
-}
-
-[data-page="shop"] .countdown-timer {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-[data-page="shop"] .countdown-timer div {
-  background: var(--glass);
-  border: 1px solid var(--primary);
-  padding: 1rem;
-  border-radius: 10px;
-  font-size: 1.5rem;
-  color: var(--primary);
-  min-width: 60px;
-  text-align: center;
-  box-shadow: 0 0 10px var(--glow);
-}
-
-[data-page="shop"] .support-section {
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 50, 0.7));
-  border-radius: 20px;
-  padding: 2rem;
-  margin-bottom: 4rem;
-  box-shadow: 0 0 30px var(--glow);
-}
-
-[data-page="shop"] .crypto-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-[data-page="shop"] .crypto-card {
-  background: var(--glass);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 1.5rem;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-[data-page="shop"] .crypto-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 20px var(--glow);
-}
-
-[data-page="shop"] .crypto-icon {
-  font-size: 2.5rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-}
-
-[data-page="shop"] .wallet-address {
-  font-size: 0.8rem;
-  word-break: break-all;
-  color: var(--text-color);
-  margin: 0.5rem 0;
-}
-
-[data-page="shop"] .copy-address-btn {
-  background: var(--glass);
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-[data-page="shop"] .copy-address-btn:hover {
-  background: var(--rgb-glow);
-  transform: translateY(-2px);
-}
-
-[data-page="shop"] .donate-input {
-  background: var(--glass);
-  border: 1px solid var(--primary);
-  border-radius: 5px;
-  color: var(--text-color);
-  padding: 0.5rem;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-[data-page="shop"] .donate-button {
-  background: var(--primary);
-  color: var(--dark);
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-  width: 100%;
-}
-
-[data-page="shop"] .donate-button:hover {
-  background: var(--secondary);
-  transform: scale(1.05);
-}
-
-/* Responsive adjustments for wallet modal */
-@media (max-width: 768px) {
-  .wallet-modal-content {
-    max-width: 300px;
-    padding: 1.5rem;
-  }
-  .wallet-modal-header h2 {
-    font-size: 1.2rem;
-  }
-  .wallet-modal-header p {
-    font-size: 0.8rem;
-  }
-  .wallet-option {
-    padding: 0.8rem;
-    font-size: 0.9rem;
-  }
-  .wallet-option i {
-    font-size: 1.2rem;
-  }
-}
-
-/* Responsive adjustments for tip overlay */
-@media (max-width: 768px) {
-  .tip-modal {
-    max-width: 300px;
-    padding: 1.5rem;
-  }
-  .tip-modal p {
-    font-size: 0.9rem;
-  }
-  .tip-modal input {
-    padding: 0.4rem;
-  }
-  .tip-modal button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* Additional Keyframes */
-@keyframes slide {
-  0% { transform: translateX(-50px) rotate(-5deg); }
-  100% { transform: translateX(50px) rotate(-5deg); }
-}
-
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.4; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-/* Wallet Connect Button in Dropdown */
-.dropdown-menu .wallet-connect {
-  background: var(--glass);
-  border: 1px solid var(--border-color);
-  color: var(--primary);
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
-  font-family: 'Syncopate', sans-serif;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.8rem;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-  position: relative;
-  padding-left: 2rem; /* Space for light */
-}
-
-.dropdown-menu .wallet-connect::before {
-  content: '';
-  position: absolute;
-  left: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ff0000; /* Red light when disconnected */
-  box-shadow: 0 0 5px #ff0000;
-}
-
-.dropdown-menu .wallet-connect:hover {
-  background: var(--rgb-glow);
-  color: var(--dark);
-  box-shadow: 0 0 15px var(--glow);
-  animation: rgbShift 3s linear infinite;
-  transform: translateY(-3px);
-}
-
-.dropdown-menu .wallet-connect.connected {
-  background: linear-gradient(45deg, var(--primary), var(--secondary));
-  color: var(--dark);
-  border-color: var(--primary);
-  box-shadow: 0 0 10px var(--glow);
-}
-
-.dropdown-menu .wallet-connect.connected::before {
-  background: #00ff00; /* Green light when connected */
-  box-shadow: 0 0 5px #00ff00;
-}
-
-/* Wallet Disconnect Button in Dropdown */
-.dropdown-menu .wallet-disconnect {
-  background: var(--glass);
-  border: 1px solid var(--border-color);
-  color: var(--primary);
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
-  font-family: 'Syncopate', sans-serif;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.8rem;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-  margin-top: 0.5rem;
-}
-
-.dropdown-menu .wallet-disconnect:hover {
-  background: var(--rgb-glow);
-  color: var(--dark);
-  box-shadow: 0 0 15px var(--glow);
-  animation: rgbShift 3s linear infinite;
-  transform: translateY(-3px);
-}
-
-/* Wallet status in dropdown */
-.dropdown-menu .wallet-status {
-  color: var(--text-color);
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  font-family: 'Space Grotesk', sans-serif;
-  display: block;
-}
-
-/* End of Part 3 */
