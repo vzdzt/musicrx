@@ -1,5 +1,10 @@
 console.log("shop.js loaded");
 
+// Ensure Buffer is available in the browser
+if (typeof window.Buffer === 'undefined') {
+    window.Buffer = Buffer;
+}
+
 // Ensure modal and overlay elements exist in the DOM once loaded
 document.addEventListener("DOMContentLoaded", () => {
     // Create wallet modal if it doesn’t exist
@@ -199,20 +204,27 @@ async function sendSol(amount) {
     if (window.connectedChain !== "sol") return alert("Connect a SOL wallet first!");
     const tipOutput = document.getElementById("tipStatus");
     try {
+        if (tipOutput) tipOutput.textContent = `Sending ${amount} SOL...`;
         const transaction = new solanaWeb3.Transaction().add(
             solanaWeb3.SystemProgram.transfer({
-                fromPubkey: window.solana.publicKey,
+                fromPubkey: new solanaWeb3.PublicKey(window.connectedAddress),
                 toPubkey: new solanaWeb3.PublicKey(mySolAddress),
                 lamports: solanaWeb3.LAMPORTS_PER_SOL * amount,
             })
         );
-        if (tipOutput) tipOutput.textContent = `Sending ${amount} SOL...`;
-        const { signature } = await window.solana.signAndSendTransaction(transaction);
+        // Fetch recent blockhash
+        const { blockhash } = await solConnection.getLatestBlockhash();
+        transaction.recentBlockhash = blockhash;
+        transaction.feePayer = new solanaWeb3.PublicKey(window.connectedAddress);
+        // Sign and send transaction using Phantom wallet
+        const signed = await window.solana.signTransaction(transaction);
+        const signature = await solConnection.sendRawTransaction(signed.serialize());
         await solConnection.confirmTransaction(signature);
         if (tipOutput) tipOutput.textContent = `Thanks for donating ${amount} SOL!`;
         alert(`Thanks for donating ${amount} SOL!`);
         createTipEffect();
     } catch (error) {
+        console.error("SOL transaction failed:", error);
         if (tipOutput) tipOutput.textContent = `SOL transaction failed: ${error.message}`;
         alert(`SOL transaction failed: ${error.message}`);
     }
@@ -255,7 +267,6 @@ function attachTipMachineListener() {
                 tipOutput.textContent = `Sending ${amount} ETH...`;
             } else if (window.connectedChain === "sol") {
                 sendSol(amount);
-                tipOutput.textContent = `Sending ${amount} SOL...`;
             } else {
                 tipOutput.textContent = "Unsupported wallet type!";
             }

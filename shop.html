@@ -6,6 +6,8 @@
     <title>MUSICRX - Shop</title>
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7/dist/ethers.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <!-- Add Buffer polyfill for SOL transactions -->
+    <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -72,7 +74,7 @@
             height: 2px;
             background: var(--rgb-glow);
             margin: 0.5rem auto; /* Center it */
-            margin-left: calc(50% - 180px); /* Center and nudge left 8px (90px/2 + 8px) */
+            margin-left: -8px; /* Nudge left 8px */
             animation: heartbeat 1.5s infinite;
             width: 100%; /* Matches the text width */
             max-width: 180px; /* Matches approximate text width */
@@ -261,7 +263,7 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="shop-container">
-            <!-- Title Card (updated: heartbeat line pulsing at -8px) -->
+            <!-- Title Card (updated: heartbeat line position fixed) -->
             <div class="title-card">
                 <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
                 <p class="glitch" data-text="Music is my therapy">Music is my therapy</p>
