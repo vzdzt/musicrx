@@ -32,10 +32,19 @@
             z-index: 10;
             white-space: nowrap;
         }
-        /* Adjust grid spacing */
+        /* Adjust grid spacing and card size */
         [data-page="shop"] .shop-grid {
-            gap: 3rem;
-            padding: 2rem;
+            gap: 2rem;
+            padding: 1.5rem;
+        }
+        [data-page="shop"] .shop-card {
+            max-width: 200px; /* Smaller cards */
+            min-height: 200px; /* Reduced height */
+            padding: 0.8rem; /* Tighter padding */
+        }
+        /* Pulsing heart animation */
+        .fa-pulse-subtle {
+            animation: pulse 4s infinite ease-in-out;
         }
         /* Refine crypto cards for sleekness */
         .crypto-card {
@@ -155,17 +164,20 @@
                 </div>
             </section>
 
-            <!-- Products Teaser Grid (updated: three cards, your text) -->
+            <!-- Products Teaser Grid (updated: smaller cards, add pulsing heart) -->
             <section class="shop-grid">
                 <div class="shop-card">
+                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
                     <h2>Apparel</h2>
                     <p>Official clothing and accessories</p>
                 </div>
                 <div class="shop-card">
+                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
                     <h2>Raffles</h2>
                     <p>Exclusive merch and artist bundles</p>
                 </div>
                 <div class="shop-card">
+                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
                     <h2>NFTs</h2>
                     <p>Mint for early access to drops and events</p>
                 </div>
