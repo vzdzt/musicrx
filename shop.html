@@ -44,9 +44,20 @@
             animation: glitch 3s infinite;
         }
         .title-card p {
+            font-family: 'Syncopate', sans-serif;
             font-size: 1rem;
-            color: #ccc;
+            color: var(--primary);
+            text-shadow: 0 0 8px var(--glow);
+            text-transform: uppercase;
             margin: 0.5rem 0;
+            animation: glitch 3s infinite;
+        }
+        .title-card p::before {
+            content: attr(data-text);
+            position: absolute;
+            color: var(--primary);
+            opacity: 0.5;
+            animation: glitch 3s infinite;
         }
         /* Heartbeat line effect */
         .heartbeat-line {
@@ -106,10 +117,26 @@
             color: #000;
             box-shadow: 0 0 10px var(--glow);
         }
-        /* Mission statement styling */
+        /* Subscriber note styling */
+        .subscriber-note {
+            text-align: center;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.9rem;
+            color: var(--primary);
+            text-shadow: 0 0 5px var(--glow);
+            text-transform: uppercase;
+            margin: 1rem 0;
+            animation: glitch 3s infinite;
+        }
+        /* Mission statement glass card styling */
         .mission-statement {
             text-align: center;
-            margin: 1.5rem 0;
+            margin: 1.5rem auto;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: 1rem;
         }
         .mission-statement h2 {
             font-family: 'Syncopate', sans-serif;
@@ -120,8 +147,7 @@
         .mission-statement p {
             font-size: 1rem;
             color: #ccc;
-            max-width: 800px;
-            margin: 0 auto;
+            margin: 0;
         }
         /* Refine crypto cards for sleekness */
         .crypto-card {
@@ -224,10 +250,10 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="shop-container">
-            <!-- Title Card (unchanged) -->
+            <!-- Title Card (updated: fix heartbeat line, glitch effect, text styling) -->
             <div class="title-card">
                 <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
-                <p>Music is my therapy</p>
+                <p class="glitch" data-text="Music is my therapy">Music is my therapy</p>
                 <div class="heartbeat-line"></div>
             </div>
 
@@ -262,7 +288,7 @@
                 <div class="shop-card">
                     <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
                     <h2>Wellness</h2>
-                    <p>Stay cozy with stress relief essentials</p>
+                    <p>Weighted blankets and stress relief essentials</p>
                 </div>
             </section>
             <div class="content-card-button">
@@ -270,10 +296,10 @@
             </div>
             <p class="subscriber-note">Subscribers get notified first</p>
 
-            <!-- Mission Statement (updated: focus on reviews, blogs, etc.) -->
+            <!-- Mission Statement (updated: glass card) -->
             <div class="mission-statement">
                 <h2>Our Mission</h2>
-                <p>MusicRx dives deep into music culture with reviews, blogs, news, hot takes, and artist features. We’re your hub for aesthetics, exclusive digital collectibles, and a community that thrives on creativity.</p>
+                <p>MusicRx dives deep into music culture with reviews, blogs, news, hot takes, and artist features. We’re your hub for aesthetics, exclusive digital collectibles via Web3, and a community that thrives on creativity.</p>
             </div>
 
             <!-- Support Section (unchanged) -->
@@ -341,4 +367,3 @@
     <script src="shop.js"></script>
 </body>
 </html>
-
