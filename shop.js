@@ -217,13 +217,11 @@ async function sendSol(amount) {
         transaction.recentBlockhash = blockhash;
         transaction.feePayer = fromPubkey;
 
-        // Use Phantom's sendTransaction method to handle signing and sending
-        const signature = await window.solana.request({
-            method: "signAndSendTransaction",
-            params: {
-                message: transaction.serializeMessage().toString('base64'),
-                skipPreflight: true,
-            },
+        // Use sendTransaction to let Phantom handle signing and sending
+        const signature = await solConnection.sendTransaction(transaction, [], {
+            skipPreflight: true,
+            preflightCommitment: 'confirmed',
+            signers: [], // Phantom will handle signing
         });
 
         // Confirm the transaction
