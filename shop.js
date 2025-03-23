@@ -1,10 +1,5 @@
 console.log("shop.js loaded");
 
-// Ensure Buffer is available in the browser
-if (typeof window.Buffer === 'undefined') {
-    window.Buffer = Buffer;
-}
-
 // Ensure modal and overlay elements exist in the DOM once loaded
 document.addEventListener("DOMContentLoaded", () => {
     // Create wallet modal if it doesn’t exist
@@ -212,14 +207,8 @@ async function sendSol(amount) {
                 lamports: solanaWeb3.LAMPORTS_PER_SOL * amount,
             })
         );
-        // Fetch recent blockhash
-        const { blockhash } = await solConnection.getLatestBlockhash();
-        transaction.recentBlockhash = blockhash;
-        transaction.feePayer = new solanaWeb3.PublicKey(window.connectedAddress);
-        // Sign and send transaction using Phantom wallet
-        const signed = await window.solana.signTransaction(transaction);
-        const signature = await solConnection.sendRawTransaction(signed.serialize());
-        await solConnection.confirmTransaction(signature);
+        const { signature } = await window.solana.signAndSendTransaction(transaction, { skipPreflight: true });
+        await solConnection.confirmTransaction(signature, 'confirmed');
         if (tipOutput) tipOutput.textContent = `Thanks for donating ${amount} SOL!`;
         alert(`Thanks for donating ${amount} SOL!`);
         createTipEffect();

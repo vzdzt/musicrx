@@ -8,6 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <!-- Add Buffer polyfill for SOL transactions -->
     <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
+    <!-- Ensure Buffer is globally available -->
+    <script>
+        if (typeof window.Buffer === 'undefined') {
+            window.Buffer = Buffer;
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -47,27 +53,7 @@
             font-size: 2.5rem;
             color: var(--primary);
             text-shadow: 0 0 8px var(--glow);
-            animation: glitch 3s infinite;
-        }
-        .title-card p {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1rem;
-            color: var(--primary);
-            text-shadow: 0 0 8px var(--glow);
-            text-transform: uppercase;
-            margin: 0.5rem auto; /* Center text */
-            animation: glitch 3s infinite;
-            position: relative;
-            display: inline-block; /* Shrinks to text width */
-        }
-        .title-card p::before {
-            content: attr(data-text);
-            position: absolute;
-            color: var(--primary);
-            opacity: 0.5;
-            animation: glitch 3s infinite;
-            left: 0;
-            width: 100%;
+            animation: glitch 3s infinite, colorPulse 6s infinite; /* Add color pulse */
         }
         /* Heartbeat line effect */
         .heartbeat-line {
@@ -91,6 +77,14 @@
             60% { transform: translate(-2px, 0); }
             80% { transform: translate(2px, 0); }
             100% { transform: translate(0); }
+        }
+        /* Color pulse animation for the heart logo */
+        @keyframes colorPulse {
+            0% { color: #ff0000; text-shadow: 0 0 8px #ff6666; } /* Red */
+            25% { color: #ff69b4; text-shadow: 0 0 8px #ff99cc; } /* Pink */
+            50% { color: #800080; text-shadow: 0 0 8px #cc00cc; } /* Purple */
+            75% { color: #0000ff; text-shadow: 0 0 8px #6666ff; } /* Blue */
+            100% { color: #ff0000; text-shadow: 0 0 8px #ff6666; } /* Back to red */
         }
         /* Adjust grid spacing and card size */
         [data-page="shop"] .shop-grid {
@@ -263,10 +257,9 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="shop-container">
-            <!-- Title Card (updated: heartbeat line position fixed) -->
+            <!-- Title Card (updated: removed glitch text, heart logo pulses colors) -->
             <div class="title-card">
                 <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
-                <p class="glitch" data-text="Music is my therapy">Music is my therapy</p>
                 <div class="heartbeat-line"></div>
             </div>
 
