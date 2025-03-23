@@ -19,10 +19,19 @@
             overflow-x: hidden;
         }
 
+        #universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
         .shop-hero {
             text-align: center;
-            padding: 1.5rem 0;
-            height: 25vh;
+            padding: 1rem 0;
+            height: 20vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -63,7 +72,7 @@
 
         .countdown-section {
             text-align: center;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
         }
 
         .countdown-section h2 {
@@ -85,7 +94,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             max-width: 900px;
-            margin: 1.5rem auto;
+            margin: 1rem auto;
             padding: 1.5rem;
             background: rgba(20, 20, 20, 0.8);
             border-radius: 15px;
@@ -126,7 +135,7 @@
 
         .support-section {
             max-width: 900px;
-            margin: 1.5rem auto;
+            margin: 1rem auto;
             text-align: center;
         }
 
@@ -228,6 +237,8 @@
     </style>
 </head>
 <body data-page="shop">
+    <canvas id="universe"></canvas>
+
     <!-- Hero Section -->
     <section class="shop-hero">
         <h1 class="glitch" data-text="MUSICRX SHOP">MUSICRX SHOP</h1>
@@ -311,6 +322,11 @@
                 document.getElementById("countdown-timer").innerText = "Shop is Open!";
             }
         }, 1000);
+
+        // Button functionality test
+        document.getElementById("connectWalletShop").addEventListener("click", () => {
+            alert("Connect Wallet button clicked! Add your wallet connection logic here.");
+        });
     </script>
 </body>
 </html>
