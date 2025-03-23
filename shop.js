@@ -200,15 +200,39 @@ async function sendSol(amount) {
     const tipOutput = document.getElementById("tipStatus");
     try {
         if (tipOutput) tipOutput.textContent = `Sending ${amount} SOL...`;
+        const fromPubkey = new solanaWeb3.PublicKey(window.connectedAddress);
+        const toPubkey = new solanaWeb3.PublicKey(mySolAddress);
+
+        // Create the transaction
         const transaction = new solanaWeb3.Transaction().add(
             solanaWeb3.SystemProgram.transfer({
-                fromPubkey: new solanaWeb3.PublicKey(window.connectedAddress),
-                toPubkey: new solanaWeb3.PublicKey(mySolAddress),
+                fromPubkey: fromPubkey,
+                toPubkey: toPubkey,
                 lamports: solanaWeb3.LAMPORTS_PER_SOL * amount,
             })
         );
-        const { signature } = await window.solana.signAndSendTransaction(transaction, { skipPreflight: true });
-        await solConnection.confirmTransaction(signature, 'confirmed');
+
+        // Fetch recent blockhash
+        const { blockhash, lastValidBlockHeight } = await solConnection.getLatestBlockhash('finalized');
+        transaction.recentBlockhash = blockhash;
+        transaction.feePayer = fromPubkey;
+
+        // Use Phantom's sendTransaction method to handle signing and sending
+        const signature = await window.solana.request({
+            method: "signAndSendTransaction",
+            params: {
+                message: transaction.serializeMessage().toString('base64'),
+                skipPreflight: true,
+            },
+        });
+
+        // Confirm the transaction
+        await solConnection.confirmTransaction({
+            signature: signature,
+            blockhash: blockhash,
+            lastValidBlockHeight: lastValidBlockHeight,
+        }, 'confirmed');
+
         if (tipOutput) tipOutput.textContent = `Thanks for donating ${amount} SOL!`;
         alert(`Thanks for donating ${amount} SOL!`);
         createTipEffect();
