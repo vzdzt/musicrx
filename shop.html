@@ -76,11 +76,11 @@
             width: 100%; /* Matches the text width */
             max-width: 180px; /* Matches approximate text width */
             display: block; /* Ensures centering */
-            transform: translateX(-12px) !important; /* Test with -12px */
+            transform: translateX(-8px) !important; /* Nudge left 8px */
         }
         @keyframes heartbeat {
-            0%, 100% { transform: scaleX(1) translateX(-12px) !important; }
-            50% { transform: scaleX(1.2) translateX(-12px) !important; }
+            0%, 100% { transform: translateX(-8px) scaleX(1); } /* Pulse works, no !important */
+            50% { transform: translateX(-8px) scaleX(1.2); }
         }
         @keyframes glitch {
             0% { transform: translate(0); }
@@ -261,7 +261,7 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="shop-container">
-            <!-- Title Card (updated: heartbeat line at -12px to test) -->
+            <!-- Title Card (updated: heartbeat line pulsing at -8px) -->
             <div class="title-card">
                 <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
                 <p class="glitch" data-text="Music is my therapy">Music is my therapy</p>
@@ -279,25 +279,25 @@
                 </div>
             </section>
 
-            <!-- Products Teaser Grid (unchanged) -->
+            <!-- Products Teaser Grid (updated: heart logos closer to text) -->
             <section class="shop-grid">
                 <div class="shop-card">
-                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.25rem;"></i>
                     <h2>Apparel</h2>
                     <p>Official clothing and accessories</p>
                 </div>
                 <div class="shop-card">
-                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.25rem;"></i>
                     <h2>Raffles</h2>
                     <p>Exclusive merch and artist bundles</p>
                 </div>
                 <div class="shop-card">
-                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.25rem;"></i>
                     <h2>NFTs</h2>
                     <p>Mint for early access to drops and events</p>
                 </div>
                 <div class="shop-card">
-                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                    <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.25rem;"></i>
                     <h2>Wellness</h2>
                     <p>Weighted blankets and stress relief essentials</p>
                 </div>
@@ -307,7 +307,7 @@
             </div>
             <p class="subscriber-note">Subscribers get notified first</p>
 
-            <!-- Mission Statement (unchanged from last) -->
+            <!-- Mission Statement (unchanged) -->
             <div class="mission-statement">
                 <h2>Our Mission</h2>
                 <p>MusicRx is about real talk on music—reviews that cut deep, blogs worth reading, news you need, and takes that don’t hold back. We’re in it for the artists who move us and the fans who get it.</p>
