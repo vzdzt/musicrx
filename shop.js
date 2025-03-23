@@ -1,5 +1,15 @@
 console.log("shop.js loaded");
 
+// Ensure Solana Wallet Adapter namespaces are available
+const { Connection, PublicKey, Transaction, SystemProgram } = solanaWeb3;
+const { WalletNotConnectedError, Adapter } = solanaWalletAdapterBase;
+const { PhantomWalletAdapter } = solanaWalletAdapterWallets;
+
+// Initialize Solana Wallet Adapter
+const network = "https://api.mainnet-beta.solana.com";
+const connection = new Connection(network, 'confirmed');
+const phantomWallet = new PhantomWalletAdapter();
+
 // Ensure modal and overlay elements exist in the DOM once loaded
 document.addEventListener("DOMContentLoaded", () => {
     // Create wallet modal if it doesn’t exist
@@ -61,7 +71,7 @@ function showWalletModal() {
         // Event listeners for wallet options (only attach once)
         const walletOptions = modalOverlay.querySelectorAll(".wallet-option");
         walletOptions.forEach(option => {
-            option.removeEventListener("click", handleWalletOptionClick); // Prevent duplicate listeners
+            option.removeEventListener("click", handleWalletOptionClick);
             option.addEventListener("click", handleWalletOptionClick);
         });
 
@@ -128,9 +138,9 @@ function handleWalletButtonClick(event) {
 
 // Web3 wallet connection logic
 const ethProvider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : null;
-const solConnection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com");
 const myEthAddress = "0x24A77F76fe0CF427f26A9E49F33f7E9287217250"; // Your MetaMask address (ETH)
-const mySolAddress = "7YCdysgzcxuJTrGe5XfyKpobagonNmwT8ygPvpEBwUUr"; // Your Phantom address (SOL)
+// Replace this with a different Solana address you control (not the same as the sender's wallet)
+const mySolAddress = "YOUR_NEW_SOLANA_ADDRESS_HERE"; // Replace with a real address
 window.connectedChain = null;
 window.connectedAddress = null;
 
@@ -163,8 +173,8 @@ async function connectWallet(walletType) {
     } else if (walletType === "sol" && hasSol) {
         try {
             console.log("Attempting to connect Phantom...");
-            await window.solana.connect();
-            const address = window.solana.publicKey.toString();
+            await phantomWallet.connect();
+            const address = phantomWallet.publicKey.toString();
             window.connectedAddress = address;
             window.connectedChain = "sol";
             if (walletStatus) walletStatus.textContent = `SOL: ${address.slice(0, 6)}...`;
@@ -197,38 +207,37 @@ async function sendEth(amount) {
 
 async function sendSol(amount) {
     if (window.connectedChain !== "sol") return alert("Connect a SOL wallet first!");
+    if (!phantomWallet.connected) throw new WalletNotConnectedError();
+
     const tipOutput = document.getElementById("tipStatus");
     try {
         if (tipOutput) tipOutput.textContent = `Sending ${amount} SOL...`;
-        const fromPubkey = new solanaWeb3.PublicKey(window.connectedAddress);
-        const toPubkey = new solanaWeb3.PublicKey(mySolAddress);
+
+        const fromPubkey = new PublicKey(window.connectedAddress);
+        const toPubkey = new PublicKey(mySolAddress);
 
         // Create the transaction
-        const transaction = new solanaWeb3.Transaction().add(
-            solanaWeb3.SystemProgram.transfer({
+        const transaction = new Transaction().add(
+            SystemProgram.transfer({
                 fromPubkey: fromPubkey,
                 toPubkey: toPubkey,
-                lamports: solanaWeb3.LAMPORTS_PER_SOL * amount,
+                lamports: Number(amount) * solanaWeb3.LAMPORTS_PER_SOL,
             })
         );
 
         // Fetch recent blockhash
-        const { blockhash, lastValidBlockHeight } = await solConnection.getLatestBlockhash('finalized');
+        const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash('finalized');
         transaction.recentBlockhash = blockhash;
         transaction.feePayer = fromPubkey;
 
-        // Use sendTransaction to let Phantom handle signing and sending
-        const signature = await solConnection.sendTransaction(transaction, [], {
-            skipPreflight: true,
-            preflightCommitment: 'confirmed',
-            signers: [], // Phantom will handle signing
-        });
+        // Sign and send the transaction using Wallet Adapter
+        const { signature } = await phantomWallet.signAndSendTransaction(transaction, connection);
 
         // Confirm the transaction
-        await solConnection.confirmTransaction({
-            signature: signature,
-            blockhash: blockhash,
-            lastValidBlockHeight: lastValidBlockHeight,
+        await connection.confirmTransaction({
+            signature,
+            blockhash,
+            lastValidBlockHeight,
         }, 'confirmed');
 
         if (tipOutput) tipOutput.textContent = `Thanks for donating ${amount} SOL!`;
