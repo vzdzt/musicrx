@@ -22,9 +22,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(102, 0, 0, 0.25);
+            background: var(--card-background); /* Use theme card background */
             backdrop-filter: blur(15px);
-            border: 2px solid rgba(153, 0, 0, 0.3);
+            border: 2px solid var(--border-color); /* Theme border */
             border-bottom: none;
             border-radius: 15px 15px 0 0;
             margin-bottom: 0;
@@ -36,22 +36,22 @@
             line-height: 1.2;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
-            color: var(--primary, #FF0000);
-            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7));
+            color: var(--primary); /* Use theme primary color */
+            text-shadow: 0 0 10px var(--glow); /* Use theme glow */
         }
         .news-title-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
-            background: linear-gradient(45deg, #FF0000, #E50000, #CC0000);
+            box-shadow: 0 0 20px var(--glow);
+            background: var(--rgb-glow); /* Theme gradient on hover */
             background-size: 200% 200%;
             animation: rgbShift 3s linear infinite;
         }
         /* Specific styling for news content card */
         .news-content-card {
             padding: 1.5rem;
-            background: rgba(102, 0, 0, 0.25);
+            background: var(--card-background); /* Use theme card background */
             backdrop-filter: blur(15px);
-            border: 2px solid rgba(153, 0, 0, 0.3);
+            border: 2px solid var(--border-color); /* Theme border */
             border-top: none;
             border-radius: 0 0 15px 15px;
             margin-top: 0;
@@ -67,18 +67,18 @@
             margin: 0 0 1rem 0; /* Added spacing between paragraphs */
             font-size: 1rem;
             font-family: 'Space Grotesk', sans-serif;
-            color: #FFFFFF;
+            color: var(--text-color); /* Use theme text color */
         }
         .news-content-card .date {
             font-size: 0.9rem;
-            color: var(--secondary, #E50000);
+            color: var(--secondary); /* Use theme secondary color */
             text-align: center;
             margin-bottom: 0.5rem;
             font-family: 'Space Grotesk', sans-serif;
         }
         .news-content-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+            box-shadow: 0 0 20px var(--glow);
         }
         .grid {
             display: grid;

@@ -118,6 +118,13 @@ function attachWalletButtonListeners() {
         connectWalletShopButton.removeEventListener("click", handleWalletButtonClick);
         connectWalletShopButton.addEventListener("click", handleWalletButtonClick);
     }
+
+    const disconnectWalletButton = document.getElementById("disconnectWallet");
+    if (disconnectWalletButton) {
+        console.log("Disconnect Wallet button found, attaching event listener");
+        disconnectWalletButton.removeEventListener("click", disconnectWallet);
+        disconnectWalletButton.addEventListener("click", disconnectWallet);
+    }
 }
 
 // Handle the click event for wallet buttons
@@ -138,6 +145,7 @@ async function connectWallet(walletType) {
     const hasEth = window.ethereum;
     const hasSol = window.solana && window.solana.isPhantom;
     const connectWalletButton = document.getElementById("connectWallet");
+    const disconnectWalletButton = document.getElementById("disconnectWallet");
     const walletStatus = document.getElementById("walletStatus");
 
     if (!hasEth && !hasSol) {
@@ -154,7 +162,8 @@ async function connectWallet(walletType) {
             window.connectedAddress = address;
             window.connectedChain = "eth";
             if (walletStatus) walletStatus.textContent = `ETH: ${address.slice(0, 6)}...`;
-            if (connectWalletButton) connectWalletButton.textContent = "Wallet Connected";
+            if (connectWalletButton) connectWalletButton.style.display = "none";
+            if (disconnectWalletButton) disconnectWalletButton.style.display = "inline-block";
             console.log("MetaMask connected:", address);
         } catch (error) {
             console.error("ETH connection failed:", error);
@@ -168,7 +177,8 @@ async function connectWallet(walletType) {
             window.connectedAddress = address;
             window.connectedChain = "sol";
             if (walletStatus) walletStatus.textContent = `SOL: ${address.slice(0, 6)}...`;
-            if (connectWalletButton) connectWalletButton.textContent = "Wallet Connected";
+            if (connectWalletButton) connectWalletButton.style.display = "none";
+            if (disconnectWalletButton) disconnectWalletButton.style.display = "inline-block";
             console.log("Phantom connected:", address);
         } catch (error) {
             console.error("SOL connection failed:", error);
@@ -239,6 +249,28 @@ async function sendSol(amount) {
         if (tipOutput) tipOutput.textContent = `SOL transaction failed: ${error.message}`;
         alert(`SOL transaction failed: ${error.message}`);
     }
+}
+
+async function disconnectWallet() {
+    if (window.connectedChain === "eth" && window.ethereum) {
+        window.connectedAddress = null;
+        window.connectedChain = null;
+        console.log("MetaMask disconnected");
+    } else if (window.connectedChain === "sol" && window.solana) {
+        await window.solana.disconnect();
+        window.connectedAddress = null;
+        window.connectedChain = null;
+        console.log("Phantom disconnected");
+    }
+    const connectWalletButton = document.getElementById("connectWallet");
+    const disconnectWalletButton = document.getElementById("disconnectWallet");
+    const walletStatus = document.getElementById("walletStatus");
+    if (connectWalletButton) {
+        connectWalletButton.textContent = "Connect Wallet";
+        connectWalletButton.style.display = "inline-block";
+    }
+    if (disconnectWalletButton) disconnectWalletButton.style.display = "none";
+    if (walletStatus) walletStatus.textContent = "";
 }
 
 // Function to attach the event listener to the Tip Machine button
