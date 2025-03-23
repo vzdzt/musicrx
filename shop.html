@@ -32,6 +32,36 @@
             z-index: 10;
             white-space: nowrap;
         }
+        /* Title card styling */
+        .title-card {
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .title-card h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2rem;
+            color: var(--primary);
+            text-shadow: 0 0 8px var(--glow);
+            margin: 0;
+            animation: glitch 3s infinite;
+        }
+        .title-card p {
+            font-size: 1rem;
+            color: #ccc;
+            margin: 0.5rem 0;
+        }
+        /* Heartbeat line effect */
+        .heartbeat-line {
+            width: 100px;
+            height: 2px;
+            background: var(--rgb-glow);
+            margin: 0.5rem auto;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(1.2); }
+        }
         /* Adjust grid spacing and card size */
         [data-page="shop"] .shop-grid {
             gap: 2rem;
@@ -48,6 +78,26 @@
         /* Pulsing heart animation */
         .fa-pulse-subtle {
             animation: pulse 4s infinite ease-in-out;
+        }
+        /* Content card button styling */
+        .content-card-button {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .content-card-button .connect-wallet-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .content-card-button .connect-wallet-btn:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 10px var(--glow);
         }
         /* Refine crypto cards for sleekness */
         .crypto-card {
@@ -110,18 +160,6 @@
             background: var(--secondary);
             transform: scale(1.05);
         }
-        /* Heartbeat line effect */
-        .heartbeat-line {
-            width: 100px;
-            height: 2px;
-            background: var(--rgb-glow);
-            margin: 0.5rem auto;
-            animation: heartbeat 1.5s infinite;
-        }
-        @keyframes heartbeat {
-            0%, 100% { transform: scaleX(1); }
-            50% { transform: scaleX(1.2); }
-        }
     </style>
 </head>
 <body data-page="shop">
@@ -162,13 +200,12 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="shop-container">
-            <!-- Hero Section (updated: no container, add heartbeat line) -->
-            <section class="shop-hero" style="height: 20vh;">
+            <!-- Title Card (replaces shop-hero) -->
+            <div class="title-card">
                 <h1 class="glitch" data-text="MUSICRX SHOP">MUSICRX SHOP</h1>
                 <div class="heartbeat-line"></div>
                 <p>Music is my therapy</p>
-                <button class="connect-wallet-btn" id="connectWalletShop">Connect Wallet</button>
-            </section>
+            </div>
 
             <!-- Countdown Timer (unchanged) -->
             <section class="countdown-section">
@@ -181,7 +218,7 @@
                 </div>
             </section>
 
-            <!-- Products Teaser Grid (updated: larger cards, centered) -->
+            <!-- Products Teaser Grid (content card with button) -->
             <section class="shop-grid">
                 <div class="shop-card">
                     <i class="fas fa-heartbeat fa-pulse-subtle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
@@ -199,12 +236,14 @@
                     <p>Mint for early access to drops and events</p>
                 </div>
             </section>
-            <p class="subscriber-note">Subscribers get notified first</p>
+            <div class="content-card-button">
+                <button class="connect-wallet-btn" id="connectWalletShop">Connect Wallet</button>
+            </div>
 
-            <!-- Support Section (updated: better styling, more content) -->
+            <!-- Support Section (touched up: sleeker cards) -->
             <section class="support-section">
                 <h2 class="section-title">Support MusicRx</h2>
-                <p>Fuel the future of music with your support</p>
+                <p>Fuel the future of MusicRx with your support</p>
                 <div class="crypto-grid">
                     <div class="crypto-card">
                         <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
@@ -266,3 +305,4 @@
     <script src="shop.js"></script>
 </body>
 </html>
+
