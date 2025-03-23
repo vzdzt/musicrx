@@ -76,11 +76,11 @@
             width: 100%; /* Matches the text width */
             max-width: 180px; /* Matches approximate text width */
             display: block; /* Ensures centering */
-            transform: translateX(-8px); /* Nudge left 8px */
+            transform: translateX(-8px) !important; /* Nudge left 8px, force it */
         }
         @keyframes heartbeat {
-            0%, 100% { transform: scaleX(1) translateX(-4px); }
-            50% { transform: scaleX(1.2) translateX(-4px); }
+            0%, 100% { transform: scaleX(1) translateX(-8px) !important; }
+            50% { transform: scaleX(1.2) translateX(-8px) !important; }
         }
         @keyframes glitch {
             0% { transform: translate(0); }
@@ -261,7 +261,7 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="shop-container">
-            <!-- Title Card (updated: heartbeat line nudge) -->
+            <!-- Title Card (updated: heartbeat line at -8px with !important) -->
             <div class="title-card">
                 <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
                 <p class="glitch" data-text="Music is my therapy">Music is my therapy</p>
@@ -307,7 +307,7 @@
             </div>
             <p class="subscriber-note">Subscribers get notified first</p>
 
-            <!-- Mission Statement (updated: authentic, no corn) -->
+            <!-- Mission Statement (unchanged from last) -->
             <div class="mission-statement">
                 <h2>Our Mission</h2>
                 <p>MusicRx is about real talk on music—reviews that cut deep, blogs worth reading, news you need, and takes that don’t hold back. We’re in it for the artists who move us and the fans who get it.</p>
