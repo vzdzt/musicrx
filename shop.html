@@ -181,9 +181,9 @@
             box-shadow: 0 0 10px var(--glow);
             transform: translateY(-3px);
         }
-        .crypto-chip .crypto-icon {
-            font-size: 1.2rem;
-            color: var(--primary);
+        .crypto-chip .crypto-logo {
+            width: 1.2rem;
+            height: 1.2rem;
         }
         .crypto-chip .crypto-label {
             font-size: 0.9rem;
@@ -200,6 +200,7 @@
             cursor: pointer;
             opacity: 0;
             transition: opacity 0.2s ease;
+            z-index: 2;
         }
         .crypto-chip:hover .copy-btn {
             opacity: 1;
@@ -217,8 +218,9 @@
                 width: 100px;
                 padding: 0.4rem 0.8rem;
             }
-            .crypto-chip .crypto-icon {
-                font-size: 1rem;
+            .crypto-chip .crypto-logo {
+                width: 1rem;
+                height: 1rem;
             }
             .crypto-chip .crypto-label {
                 font-size: 0.8rem;
@@ -315,29 +317,29 @@
             </div>
             <br>
 
-            <!-- Support Section (Remodeled) -->
+            <!-- Support Section (Updated with SVG Images) -->
             <section class="support-section">
                 <h2 class="section-title subtle-title">Support MusicRx</h2>
                 <div class="crypto-row">
                     <div class="crypto-chip" data-crypto="eth">
-                        <i class="fab fa-ethereum crypto-icon"></i>
+                        <img src="https://vzdzt.github.io/musicrx/eth.svg.png" alt="ETH Logo" class="crypto-logo">
                         <span class="crypto-label">ETH</span>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
+                        <button class="copy-btn" data-address="0x24A77F76fe0CF427f26A9E49F33f7E9287217250">
                             <i class="fas fa-copy"></i>
                         </button>
                         <span class="web3-hint"></span>
                     </div>
                     <div class="crypto-chip" data-crypto="btc">
-                        <i class="fab fa-bitcoin crypto-icon"></i>
+                        <img src="https://vzdzt.github.io/musicrx/btc.svg.png" alt="BTC Logo" class="crypto-logo">
                         <span class="crypto-label">BTC</span>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
+                        <button class="copy-btn" data-address="bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe">
                             <i class="fas fa-copy"></i>
                         </button>
                     </div>
                     <div class="crypto-chip" data-crypto="sol">
-                        <i class="fas fa-sun crypto-icon"></i>
+                        <img src="https://vzdzt.github.io/musicrx/sol.svg.png" alt="SOL Logo" class="crypto-logo">
                         <span class="crypto-label">SOL</span>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
+                        <button class="copy-btn" data-address="9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z">
                             <i class="fas fa-copy"></i>
                         </button>
                         <span class="web3-hint"></span>
