@@ -142,49 +142,94 @@
             color: #ccc;
             margin: 0;
         }
-        /* Refine crypto cards for sleekness */
-        .crypto-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--primary);
-            border-radius: 8px;
+        /* Remodeled Support Section */
+        .support-section {
+            background: rgba(0, 0, 0, 0.5);
             padding: 1rem;
-            transition: all 0.3s ease;
-        }
-        .crypto-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 10px var(--glow);
-        }
-        .crypto-icon {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        .wallet-address {
-            font-size: 0.75rem;
-            color: #ccc;
-            word-break: break-all;
-            margin: 0.5rem 0;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
-        .copy-address-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--primary);
+        .section-title.subtle-title {
+            font-size: 1.2rem;
             color: var(--primary);
-            padding: 0.3rem 0.6rem;
-            border-radius: 5px;
-            cursor: pointer;
+            opacity: 0.8;
             margin-bottom: 0.5rem;
         }
-        .copy-address-btn:hover {
-            background: var(--primary);
-            color: #000;
+        .crypto-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .crypto-chip {
+            background: var(--glass);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            width: 120px;
+            justify-content: space-between;
+            position: relative;
+        }
+        .crypto-chip:hover {
+            background: var(--rgb-glow);
+            box-shadow: 0 0 10px var(--glow);
+            transform: translateY(-3px);
+        }
+        .crypto-chip .crypto-icon {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        .crypto-chip .crypto-label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+        .crypto-chip .copy-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 0.8rem;
+            padding: 0;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .crypto-chip:hover .copy-btn {
+            opacity: 1;
+        }
+        .crypto-chip .web3-hint {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        @media (max-width: 768px) {
+            .crypto-chip {
+                width: 100px;
+                padding: 0.4rem 0.8rem;
+            }
+            .crypto-chip .crypto-icon {
+                font-size: 1rem;
+            }
+            .crypto-chip .crypto-label {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body data-page="shop">
     <canvas id="universe"></canvas>
 
-    <!-- Navbar (removed connect wallet button from tab) -->
+    <!-- Navbar -->
     <nav class="navbar global-nav">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
@@ -210,7 +255,7 @@
         </div>
     </nav>
 
-    <!-- Fixed Buttons (unchanged) -->
+    <!-- Fixed Buttons -->
     <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
     <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
@@ -270,37 +315,32 @@
             </div>
             <br>
 
-            <!-- Support Section (removed donate inputs/buttons) -->
+            <!-- Support Section (Remodeled) -->
             <section class="support-section">
-                <h2 class="section-title">Support MusicRx</h2>
-                <p>Fuel the future of music with your support</p>
-                <div class="crypto-grid">
-                    <div class="crypto-card">
-                        <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
-                        <h3><span class="web3-hint">ETH</span></h3>
-                        <p>Support with Ethereum to help us grow</p>
-                        <p class="wallet-address">0x24A77F76fe0CF427f26A9E49F33f7E9287217250</p>
-                        <button class="copy-address-btn" onclick="navigator.clipboard.writeText('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
-                            <i class="fas fa-copy"></i> Copy
+                <h2 class="section-title subtle-title">Support MusicRx</h2>
+                <div class="crypto-row">
+                    <div class="crypto-chip" data-crypto="eth">
+                        <i class="fab fa-ethereum crypto-icon"></i>
+                        <span class="crypto-label">ETH</span>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('0x24A77F76fe0CF427f26A9E49F33f7E9287217250')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <span class="web3-hint"></span>
+                    </div>
+                    <div class="crypto-chip" data-crypto="btc">
+                        <i class="fab fa-bitcoin crypto-icon"></i>
+                        <span class="crypto-label">BTC</span>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
+                            <i class="fas fa-copy"></i>
                         </button>
                     </div>
-                    <div class="crypto-card">
-                        <div class="crypto-icon"><i class="fab fa-bitcoin"></i></div>
-                        <h3>BTC</h3>
-                        <p>Contribute with Bitcoin to fuel our mission</p>
-                        <p class="wallet-address">bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe</p>
-                        <button class="copy-address-btn" onclick="navigator.clipboard.writeText('bc1q9mxa6f5lcsl4fegc7yw093a6vn82jxk3kjcjwe')">
-                            <i class="fas fa-copy"></i> Copy
+                    <div class="crypto-chip" data-crypto="sol">
+                        <i class="fas fa-sun crypto-icon"></i>
+                        <span class="crypto-label">SOL</span>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
+                            <i class="fas fa-copy"></i>
                         </button>
-                    </div>
-                    <div class="crypto-card">
-                        <div class="crypto-icon"><i class="fas fa-sun"></i></div>
-                        <h3><span class="web3-hint">SOL</span></h3>
-                        <p>Donate with Solana to support MusicRx</p>
-                        <p class="wallet-address">9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z</p>
-                        <button class="copy-address-btn" onclick="navigator.clipboard.writeText('9ahtvae2NGuvJLV4P4F8rSMKTxh7XEoWZ8wR3wEV3N1Z')">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
+                        <span class="web3-hint"></span>
                     </div>
                 </div>
             </section>
