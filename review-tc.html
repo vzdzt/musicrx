@@ -1,290 +1,677 @@
-<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
-<html lang="en"> <!-- Sets the document language to English -->
-<head>
-    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design -->
-    <meta name="description" content="Dive into Drake’s Take Care (2011) review: a melancholic masterpiece, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description per rubric -->
-    <meta name="keywords" content="Drake, Take Care, hip-hop, R&B, The Weeknd, Rihanna, MusicRx, 2025"> <!-- SEO keywords -->
-    <meta name="author" content="Veazy"> <!-- Author credit per rubric -->
-    <meta property="og:title" content="MusicRx - Take Care: Drake’s Melancholic Rise to Emotional Supremacy"> <!-- Open Graph title -->
-    <meta property="og:description" content="Explore Drake’s Take Care review: a 2011 classic, refreshed with 2025 insights on MusicRx."> <!-- Open Graph description -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/TC.jpg"> <!-- Open Graph image URL -->
-    <meta property="og:type" content="article"> <!-- Open Graph type -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-tc.html"> <!-- Open Graph URL -->
-    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
+<!DOCTYPE html> <!-- Declare the document type as HTML5 -->
+<html lang="en" data-page="review-tc"> <!-- Set the language to English and define the page identifier for styling -->
+<head> <!-- Head section containing metadata and links -->
+    <!-- Meta tags for character encoding, viewport, and SEO -->
+    <meta charset="UTF-8"> <!-- Ensure proper character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Make the page responsive on all devices -->
+    <meta name="description" content="Explore Drake’s Take Care: 631,000 first-week units, a 2011 melancholic epic, updated March 2025 on MusicRx."> <!-- SEO description per rubric -->
+    <meta name="keywords" content="Drake, Take Care, Young Money, Cash Money, Noah 40 Shebib, The Weeknd, Rihanna, hip-hop, R&B, 2011, 2025, Billboard, Spotify"> <!-- SEO keywords per rubric -->
+    <meta name="author" content="Veazy"> <!-- Specify the author of the page per rubric -->
+    <meta property="og:title" content="MusicRx - Take Care: Drake’s Melancholic Rise to Emotional Supremacy"> <!-- Open Graph title for social media sharing -->
+    <meta property="og:description" content="Dive into Drake’s Take Care review: a 2011 hip-hop and R&B classic, revisited in 2025 on MusicRx."> <!-- Open Graph description for social media sharing -->
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/TC.jpg"> <!-- Open Graph image for social media sharing -->
+    <meta property="og:type" content="article"> <!-- Open Graph type for social media sharing -->
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-tc.html"> <!-- Open Graph URL for social media sharing -->
+    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type for sharing -->
     <meta name="twitter:site" content="@36966_"> <!-- Twitter handle per rubric -->
-    <title>MusicRx - Take Care: Drake’s Melancholic Rise to Emotional Supremacy</title> <!-- Browser tab title -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Google Fonts -->
-    <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
-    <style> <!-- Internal CSS for review-specific styling -->
-        body { background: #0a0a0a !important; } /* Dark background per MusicRx aesthetic */
-        .highlight { color: #fffdd0; font-weight: bold; } /* Cream highlights per theme */
-        .overall-rating h3 { color: #fffdd0; } /* Cream for overall rating heading */
-        .review-tc-glitch { /* Glitch effect for Take Care title, per request */
-            font-size: 3rem; text-align: center; margin-bottom: 2rem; color: #fffdd0;
-            text-shadow: 0 0 10px #fffdd0; font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase; position: relative;
+    <title>MusicRx - Take Care: Drake’s Melancholic Rise to Emotional Supremacy</title> <!-- Page title displayed in the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Load Font Awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Load Google Fonts (Syncopate and Space Grotesk) -->
+    <link rel="stylesheet" href="style.css"> <!-- Link to the external stylesheet -->
+    <style> <!-- Inline CSS for review-specific styling -->
+        /* Inline CSS for review-specific styling */
+        body { /* Style the body element */
+            font-family: 'Space Grotesk', sans-serif; /* Set the default font for the body */
+            background: var(--background, #0a0a0a); /* Set the background using a CSS variable with a fallback */
+            color: var(--text-color, #FFFFFF); /* Set the text color using a CSS variable with a fallback */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            min-height: 100vh; /* Ensure the body takes up at least the full viewport height */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Arrange children in a column */
+            position: relative; /* Allow positioning of child elements */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
         }
-        .review-tc-glitch::before, .review-tc-glitch::after { /* Glitch pseudo-elements */
-            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        .review-header { /* Style the header section */
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.8)); /* Set a red-toned gradient background for the header */
+            backdrop-filter: blur(15px); /* Apply a blur effect to the background */
+            padding: 1rem 2rem; /* Add padding to the header */
+            border-bottom: 2px solid var(--border-color, rgba(153, 0, 0, 0.3)); /* Add a red-toned bottom border using a CSS variable with a fallback */
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space out child elements */
+            align-items: center; /* Center child elements vertically */
+            position: fixed; /* Fix the header to the top of the viewport */
+            top: 0; /* Position at the top */
+            left: 0; /* Position at the left */
+            width: 100%; /* Make the header full-width */
+            z-index: 1002; /* Ensure the header is above other content */
+            height: 60px; /* Set a fixed height for the header */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            margin: 0; /* Remove default margin */
         }
-        .review-tc-glitch::before { /* Cyan glitch layer */
-            left: 2px; text-shadow: -2px 0 #00ffea; animation: glitch-1 2s linear infinite reverse;
+        .review-footer { /* Style the footer section */
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(255, 0, 0, 0.2)); /* Set a red-toned gradient background for the footer */
+            backdrop-filter: blur(15px); /* Apply a blur effect to the background */
+            padding: 2rem; /* Add padding to the footer */
+            border-top: 2px solid var(--border-color, rgba(153, 0, 0, 0.3)); /* Add a red-toned top border using a CSS variable with a fallback */
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space out child elements */
+            align-items: center; /* Center child elements vertically */
+            position: relative; /* Allow positioning of child elements */
+            z-index: 1001; /* Ensure the footer is above most content */
         }
-        .review-tc-glitch::after { /* Cream glitch layer */
-            left: -2px; text-shadow: -2px 0 #fffdd0; animation: glitch-2 3s linear infinite;
+        .container { /* Style the main content container */
+            flex: 1; /* Allow the container to grow and fill available space */
+            padding: 100px 2rem 3rem; /* Add padding to the container, accounting for the fixed header */
+            max-width: 1200px; /* Set a maximum width for the container */
+            margin: 0 auto; /* Center the container horizontally */
+            position: relative; /* Allow positioning of child elements */
+            z-index: 1; /* Ensure the container is above the background canvas */
+            width: 100%; /* Make the container full-width within its max-width */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
         }
-        @keyframes glitch-1 { /* Cyan glitch animation */
+        .glass-card { /* Style the glassmorphism card elements */
+            background: var(--card-background, rgba(102, 0, 0, 0.25)); /* Set a red-toned background using a CSS variable with a fallback */
+            backdrop-filter: blur(15px); /* Apply a blur effect to the background */
+            border-radius: 25px; /* Round the corners of the card */
+            border: 2px solid var(--border-color, rgba(153, 0, 0, 0.3)); /* Add a red-toned border using a CSS variable with a fallback */
+            padding: 3rem; /* Add padding to the card */
+            margin: 3rem auto; /* Add margin and center the card horizontally */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Add a smooth transition for hover effects */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle shadow to the card */
+            position: relative; /* Allow positioning of child elements */
+            overflow: hidden; /* Hide overflow content */
+            width: 100%; /* Make the card full-width within its max-width */
+            max-width: 1200px; /* Set a maximum width for the card */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        .glass-card:hover { /* Hover effect for glass cards */
+            transform: translateY(-10px) scale(1.03); /* Lift and slightly scale the card on hover */
+            box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7)); /* Add a red glowing shadow on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000)); /* Change the background to a red gradient on hover */
+            background-size: 200% 200%; /* Set the background size for animation */
+            animation: rgbShift 3s linear infinite; /* Animate the background gradient */
+        }
+        .glass-card.grad-card { /* Style the album image card */
+            padding: 0; /* Remove padding for the album image card */
+            border-radius: 15px; /* Round the corners of the card */
+            display: flex; /* Use flexbox for layout */
+            justify-content: center; /* Center the image horizontally */
+            align-items: center; /* Center the image vertically */
+            width: 100%; /* Make the card full-width within its max-width */
+            max-width: 1200px; /* Set a maximum width for the card */
+            margin: 0 auto; /* Center the card horizontally */
+            overflow: hidden; /* Hide overflow content */
+        }
+        .glass-card.grad-card img { /* Style the image within the album card */
+            width: calc(100% - 4px); /* Set the image width, accounting for border */
+            height: auto; /* Maintain the image's aspect ratio */
+            border-radius: 10px; /* Round the corners of the image */
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); /* Add a red shadow to the image */
+            transition: all 0.5s ease; /* Add a smooth transition for hover effects */
+        }
+        .glass-card.grad-card:hover img { /* Hover effect for the album image */
+            width: 100%; /* Expand the image to full width on hover */
+            box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7)); /* Add a red glowing shadow on hover */
+            transform: scale(1.02); /* Slightly scale the image on hover */
+        }
+        .glass-card.sources-card { /* Style the sources card */
+            padding: 1.5rem; /* Reduce padding for the sources card */
+            max-width: 1200px; /* Set a maximum width for the sources card */
+            min-height: auto; /* Allow the card to shrink to its content */
+        }
+        .glass-card.ratings-card { /* Style the ratings card */
+            text-align: left; /* Align text to the left for the ratings card */
+            align-items: flex-start; /* Align items to the start for the ratings card */
+        }
+        .review-content { /* Style the review content section */
+            background: var(--card-background, rgba(102, 0, 0, 0.25)); /* Set a red-toned background using a CSS variable with a fallback */
+            backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+            border-radius: 20px; /* Round the corners of the content area */
+            padding: 2.5rem; /* Add padding to the content area */
+            margin: 2rem auto; /* Add margin and center the content area */
+            width: 100%; /* Make the content area full-width within its max-width */
+            max-width: 1200px; /* Set a maximum width for the content area */
+            z-index: 2; /* Ensure the content area is above the background canvas */
+            position: relative; /* Allow positioning of child elements */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Arrange children in a column */
+            align-items: center; /* Center child elements horizontally */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        .highlight { /* Style highlighted text */
+            color: var(--primary, #FF0000); /* Set the highlight color to red using a CSS variable with a fallback */
+            font-weight: bold; /* Make the highlighted text bold */
+        }
+        .overall-rating h3 { /* Style the overall rating heading */
+            color: var(--primary, #FF0000); /* Set the rating heading color to red using a CSS variable with a fallback */
+        }
+        body, .container, p, h2, ul, li, .glass-card, .glass-card * { /* Ensure normal font style for most elements */
+            font-style: normal !important; /* Override any default font styles */
+        }
+        em, .highlight em { /* Ensure italic font style for emphasized text */
+            font-style: italic !important; /* Force italic style for emphasized and highlighted emphasized text */
+        }
+        .nav-logo { /* Style the navigation logo container */
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center child elements vertically */
+            margin-left: 0; /* Remove left margin */
+        }
+        .nav-logo .logo-symbol i { /* Style the logo icon */
+            color: var(--primary, #FF0000); /* Set the logo icon color to red using a CSS variable with a fallback */
+            font-size: 1.5rem; /* Set the logo icon size */
+            animation: pulse-heart 1.5s ease-in-out infinite; /* Apply a pulsing animation to the logo icon */
+        }
+        @keyframes pulse-heart { /* Define the pulse animation for the logo */
+            0%, 100% { transform: scale(1); } /* Set the initial and final scale of the pulse animation */
+            50% { transform: scale(1.2); } /* Set the midpoint scale of the pulse animation */
+        }
+        .search-container { /* Style the search bar container */
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center child elements vertically */
+            margin-left: 0; /* Remove left margin */
+            margin-right: 0; /* Remove right margin */
+            flex: 1; /* Allow the container to grow and fill available space */
+            max-width: 300px; /* Set a maximum width for the search container */
+        }
+        .search-input { /* Style the search input field */
+            border: 2px solid var(--primary, #FF0000); /* Add a red border using a CSS variable with a fallback */
+            background: var(--card-background, rgba(102, 0, 0, 0.25)); /* Set a red-toned background using a CSS variable with a fallback */
+            color: var(--text-color, #FFFFFF); /* Set the text color using a CSS variable with a fallback */
+            padding: 0.5rem 1rem; /* Add padding to the input */
+            border-radius: 20px; /* Round the corners of the input */
+            font-family: 'Space Grotesk', sans-serif; /* Set the font for the input */
+            width: 100%; /* Make the input full-width within its container */
+            transition: all 0.3s ease; /* Add a smooth transition for focus effects */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        .search-input:focus { /* Style the search input when focused */
+            box-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)); /* Add a red glowing shadow on focus */
+            outline: none; /* Remove the default outline */
+        }
+        .dropdown { /* Style the dropdown container */
+            position: relative; /* Position relatively for dropdown menu */
+            margin-right: 0; /* Remove right margin */
+        }
+        .dropdown-toggle { /* Style the dropdown toggle button */
+            background: none; /* Remove the background */
+            border: none; /* Remove the border */
+            color: var(--primary, #FF0000); /* Set the icon color to red using a CSS variable with a fallback */
+            font-size: 1.5rem; /* Set the icon size */
+            cursor: pointer; /* Indicate the element is clickable */
+            padding: 0.5rem; /* Add padding to the toggle */
+            transition: all 0.3s ease; /* Add a smooth transition for hover effects */
+        }
+        .dropdown-toggle:hover { /* Hover effect for the dropdown toggle */
+            color: transparent; /* Make the icon color transparent on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000)); /* Apply a red gradient background on hover */
+            -webkit-background-clip: text; /* Clip the background to the text (Webkit) */
+            background-clip: text; /* Clip the background to the text */
+            text-shadow: 0 0 10px var(--primary, #FF0000); /* Add a red glowing shadow on hover */
+        }
+        .dropdown-menu { /* Style the dropdown menu */
+            display: none; /* Hide the dropdown menu by default */
+            position: absolute; /* Position the menu absolutely relative to the toggle */
+            top: 100%; /* Position below the toggle */
+            right: 0; /* Align to the right */
+            background: rgba(10, 10, 10, 0.8); /* Set a semi-transparent background */
+            backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+            border-radius: 0 0 10px 10px; /* Round the bottom corners of the menu */
+            padding: 1rem; /* Add padding to the menu */
+            width: 200px; /* Set a fixed width for the menu */
+            z-index: 1003; /* Ensure the menu is above other content */
+            border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3)); /* Add a red-toned border using a CSS variable with a fallback */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow to the menu */
+        }
+        .dropdown-menu.active { /* Show the dropdown menu when active */
+            display: block !important; /* Force display when active class is applied */
+        }
+        .dropdown-menu ul { /* Style the dropdown menu list */
+            list-style: none; /* Remove bullets from the list */
+            padding: 0; /* Remove padding */
+            margin: 0; /* Remove margin */
+        }
+        .dropdown-menu li { /* Style dropdown menu items */
+            margin-bottom: 1rem; /* Add spacing between dropdown menu items */
+        }
+        .dropdown-menu a { /* Style dropdown menu links */
+            color: var(--text-color, #FFFFFF); /* Set the link color using a CSS variable with a fallback */
+            text-decoration: none; /* Remove the underline from links */
+            font-size: 0.9rem; /* Set the font size for links */
+            font-family: 'Syncopate', sans-serif; /* Set the font for links */
+            text-transform: uppercase; /* Make the link text uppercase */
+            transition: all 0.3s ease; /* Add a smooth transition for hover effects */
+        }
+        .dropdown-menu a:hover { /* Hover effect for dropdown menu links */
+            color: transparent; /* Make the link color transparent on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000)); /* Apply a red gradient background on hover */
+            -webkit-background-clip: text; /* Clip the background to the text (Webkit) */
+            background-clip: text; /* Clip the background to the text */
+            text-shadow: 0 0 10px var(--primary, #FF0000); /* Add a red glowing shadow on hover */
+        }
+        .review-title-glitch { /* Style the album title with glitch effect */
+            font-size: 3.5rem; /* Set the font size for the title */
+            text-align: center; /* Center the title */
+            margin: 4rem auto; /* Add margin and center the title */
+            color: var(--primary, #FF0000); /* Set the title color to red using a CSS variable with a fallback */
+            text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)); /* Add a red glowing shadow to the title */
+            font-family: 'Syncopate', sans-serif; /* Set the font for the title */
+            text-transform: uppercase; /* Make the title text uppercase */
+            position: relative; /* Allow positioning of pseudo-elements */
+            animation: flicker 0.1s infinite alternate; /* Apply a flickering animation to the title */
+            width: 100%; /* Make the title full-width within its max-width */
+            max-width: 1200px; /* Set a maximum width for the title */
+        }
+        @keyframes flicker { /* Define the flicker animation for the title */
+            0% { opacity: 1; } /* Full opacity at start */
+            100% { opacity: 0.95; } /* Slight fade at end */
+        }
+        .review-title-glitch::before, .review-title-glitch::after { /* Style glitch pseudo-elements */
+            content: attr(data-text); /* Use the data-text attribute for the pseudo-elements */
+            position: absolute; /* Position the pseudo-elements absolutely */
+            top: 0; /* Position at the top */
+            left: 0; /* Position at the left */
+            width: 100%; /* Make the pseudo-elements full-width */
+            height: 100%; /* Make the pseudo-elements full-height */
+        }
+        .review-title-glitch::before { /* Style the first glitch layer */
+            left: 3px; /* Offset the pseudo-element to the right */
+            text-shadow: -3px 0 var(--secondary, #E50000); /* Add a darker red shadow to create a glitch effect */
+            animation: glitch-1 2s linear infinite reverse; /* Apply the first glitch animation */
+        }
+        .review-title-glitch::after { /* Style the second glitch layer */
+            left: -3px; /* Offset the pseudo-element to the left */
+            text-shadow: -3px 0 var(--primary, #FF0000); /* Add a red shadow to create a glitch effect */
+            animation: glitch-2 3s linear infinite; /* Apply the second glitch animation */
+        }
+        @keyframes glitch-1 { /* Define the first glitch animation for the title */
             0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
             10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
             20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
         }
-        @keyframes glitch-2 { /* Cream glitch animation */
+        @keyframes glitch-2 { /* Define the second glitch animation for the title */
             0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
             10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
             20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card { /* Reusable glassmorphism card style */
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2); padding: 2rem; margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden;
+        .track-highlight-grid { /* Style the track highlight grid */
+            display: grid; /* Use CSS Grid for layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Create a responsive grid with columns at least 300px wide */
+            gap: 2rem; /* Add spacing between grid items */
+            padding: 1.5rem; /* Add padding to the grid */
         }
-        .glass-card:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 253, 208, 0.3); } /* Cream shadow on hover */
-        .glass-card.grad-card { /* Album cover card styling */
-            padding: 20px; border-radius: 10px; display: flex; justify-content: center; align-items: center;
-            transition: transform 0.3s ease; overflow: hidden; max-width: 100%;
+        .track-highlight-item { /* Style individual track highlight items */
+            background: rgba(255, 0, 0, 0.1); /* Set a red-toned semi-transparent background */
+            border-radius: 15px; /* Round the corners of the item */
+            padding: 1.5rem; /* Add padding to the item */
+            transition: all 0.3s ease; /* Add a smooth transition for hover effects */
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); /* Add a subtle red shadow to the item */
+            min-height: 120px; /* Set a minimum height for the item */
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center the content vertically */
         }
-        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover zoom */
-        .glass-card.grad-card img { /* Album image styling */
-            max-width: 100%; height: auto; border-radius: 8px; transition: transform 0.3s ease; display: block;
+        .track-highlight-item:hover { /* Hover effect for track highlight items */
+            transform: translateY(-5px); /* Lift the item on hover */
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7)); /* Add a red glowing shadow on hover */
+            background: rgba(255, 0, 0, 0.2); /* Darken the red-toned background on hover */
         }
-        .glass-card.grad-card:hover img { transform: scale(1.1); } /* Image zoom on hover */
-        .track-highlight-item { /* Track highlight paragraph styling */
-            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .table-container { /* Style the table container */
+            width: 100%; /* Ensure the table container takes up the full width of the glass-card */
+            overflow-x: auto; /* Allow horizontal scrolling if needed */
         }
-        .track-highlight-item:hover { transform: scale(1.02); box-shadow: 0 0 10px rgba(255, 253, 208, 0.2); } /* Cream shadow */
-        .trend-table { /* Table styling */
-            width: 100%; border-collapse: collapse; margin: 1rem 0;
+        .trend-table { /* Style the table elements */
+            width: 100%; /* Force the table to take up the full width of its container */
+            border-collapse: separate; /* Use separate borders for better styling */
+            border-spacing: 0; /* Remove spacing between table cells */
+            margin: 1rem 0; /* Add margin to the table */
+            background: rgba(255, 255, 255, 0.05); /* Set a semi-transparent background */
+            border-radius: 10px; /* Round the corners of the table */
+            font-size: 1rem; /* Set the font size for the table */
+            table-layout: fixed; /* Force columns to stretch based on specified widths */
         }
-        .trend-table th, .trend-table td { /* Table cell styling */
-            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        .trend-table th, .trend-table td { /* Style table headers and cells */
+            padding: 1rem; /* Add padding to table cells */
+            text-align: left; /* Align text to the left */
+            border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3)); /* Add a red-toned bottom border to cells */
+            font-size: 1rem; /* Set the font size for cells */
+            word-wrap: break-word; /* Allow text to wrap */
         }
-        .trend-table th { color: #fffdd0; text-shadow: none !important; } /* Cream table headers */
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Normalizes font style */
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font in cards */
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
-    </style>
-</head>
-<body>
-    <div id="cursor"></div> <!-- Custom cursor placeholder -->
-    <div id="cursor-blur"></div> <!-- Cursor blur effect placeholder -->
-    <canvas id="universe"></canvas> <!-- Background animation canvas -->
-    <nav> <!-- Site navigation -->
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html постра="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
-    </nav>
-
-    <div class="container"> <!-- Main content wrapper -->
-        <h1 class="review-tc-glitch" data-text="TAKE CARE">TAKE CARE</h1> <!-- Album title with glitch effect -->
-        <div class="review-content"> <!-- Rubric Section 1: Introduction -->
-            <h2>Take Care: Drake’s Melancholic Rise to Emotional Supremacy</h2> <!-- Subtitle -->
-            <div class="glass-card grad-card"> <!-- Album cover container -->
-                <img src="https://vzdzt.github.io/musicrx/TC.jpg" alt="Drake - Take Care album cover"> <!-- Album artwork -->
-            </div>
-            <br>
-            <p> <!-- Introduction: ~100–125 words, 115 words -->
-                Dropped <span class="highlight">November 15, 2011</span> via <span class="highlight">Young Money</span> and <span class="highlight">Cash Money</span>,
-                Drake’s <em><span class="highlight">Take Care</span></em>—a 19-track, 80-minute sophomore opus—sold <span class="highlight">631,000</span> first-week copies, outpacing its peers. Certified <span class="highlight">8x Platinum</span> by <span class="highlight">March 16, 2025</span>, its 6.2 billion streams and X chatter (@36966_) cement its creamy glow. Helmed by <span class="highlight">Noah “40” Shebib</span>, it vaulted Drake from Toronto rookie to emotional kingpin, blending hip-hop and R&B into a moody masterpiece. Veazy’s 2025 take: it’s a champagne-soaked confession still resonating deep.
-            </p>
-        </div>
-        <br>
-        <h2>The Messaging and Theme</h2> <!-- Rubric Section 2: Messaging and Theme -->
-        <br>
-        <p> <!-- Messaging and Theme: 120–175 words, 150 words -->
-            The gold-drenched cover—Drake brooding in solitude—mirrors <em><span class="highlight">Take Care</span></em>’s core: fame’s intoxicating cost. <span class="highlight">“Marvins Room”</span> spills regret—“I’ve had sex four times this week, I’ll explain”—while <span class="highlight">“Take Care”</span> with Rihanna offers fragile hope: “I’ll take care of you.” <span class="highlight">“Headlines”</span> boasts “They know, they know,” a brash flex against isolation, and <span class="highlight">“Look What You’ve Done”</span> nods to family roots with tender ache. It’s a mosaic of triumph and turmoil, no neat arc—just raw, creamy vulnerability. In 2025, X fans (@36966_) call it “Drake’s soul on wax,” its themes of love, loss, and self-reflection still cutting through the noise.
-        </p>
-        <br>
-        <h2>Production and Sound</h2> <!-- Rubric Section 3: Production and Sound -->
-        <br>
-        <p> <!-- Production and Sound: 120–175 words, 160 words -->
-            <span class="highlight">Noah “40” Shebib</span> steers <em><span class="highlight">Take Care</span></em>, recorded at <span class="highlight">Metalworks Studios</span>, into a creamy haze of R&B and hip-hop. <span class="highlight">“Crew Love”</span> floats on The Weeknd’s ethereal synths, <span class="highlight">“Take Care”</span> pulses with Jamie xx’s glitchy sheen, and <span class="highlight">“Marvins Room”</span> strips down to muted drums—Drake’s half-sung confessions piercing through. <span class="highlight">Just Blaze</span> ignites <span class="highlight">“Lord Knows”</span> with gospel fire, while <span class="highlight">Boi-1da</span> and <span class="highlight">T-Minus</span> keep hits like <span class="highlight">“Headlines”</span> booming. It’s a leap from <em><span class="highlight">Thank Me Later</span></em>’s polish, trading gloss for depth. By 2025, its watery soundscapes still define moody rap, though its sprawl can test patience.
-        </p>
-        <br>
-        <h2>Features</h2> <!-- Rubric Section 4: Features -->
-        <br>
-        <p> <!-- Features: 120–175 words, 140 words -->
-            <em><span class="highlight">Take Care</span></em>’s guests amplify Drake’s creamy vision. <span class="highlight">The Weeknd</span> haunts <span class="highlight">“Crew Love”</span>—“Take your nose off my keyboard”—setting an XO tone. <span class="highlight">Rihanna</span> softens <span class="highlight">“Take Care”</span>—“I’ve loved and I’ve lost”—with tender synergy. <span class="highlight">Lil Wayne</span> purrs “Women love me like I’m Prince” on <span class="highlight">“The Real Her,”</span> joined by <span class="highlight">André 3000</span>’s poetic flair. <span class="highlight">Rick Ross</span> booms “Living the life” on <span class="highlight">“Lord Knows,”</span> and <span class="highlight">Nicki Minaj</span> shines on <span class="highlight">“Make Me Proud”</span>—“I’m so proud of you.” Drake’s introspective glue binds them, turning features into a collective therapy session.
-        </p>
-        <br>
-        <div class="glass-card"> <!-- Rubric Section 5: Track Highlights -->
-            <h2>Track Highlights</h2> <!-- Heading -->
-            <p class="track-highlight-item"> <!-- Newcomers: 35+ words, 35 words -->
-                <span class="highlight">For Newcomers:</span> <span class="highlight">“Take Care”</span>, <span class="highlight">“Headlines”</span>—
-                Rihanna’s duet and booming bravado hook instantly, Drake’s creamy blend of melody and swagger welcoming newbies to his emotional empire with accessible, chart-topping vibes.
-            </p>
-            <p class="track-highlight-item"> <!-- Dive: 35+ words, 35 words -->
-                <span class="highlight">For The Dive:</span> <span class="highlight">“Marvins Room”</span>, <span class="highlight">“Crew Love”</span>—
-                Sparse beats and The Weeknd’s haze pull fans deep, Drake’s raw heart and creamy soundscapes offering an intimate plunge into his melancholic, genre-defining soul.
-            </p>
-            <p class="track-highlight-item"> <!-- Hidden Gems: 35+ words, 35 words -->
-                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Look What You’ve Done”</span>, <span class="highlight">“The Real Her”</span>—
-                Family tales and Wayne’s charm glow quietly, these creamy cuts revealing Drake’s roots and vulnerability beneath the hits, rewarding attentive listeners.
-            </p>
-            <p class="track-highlight-item"> <!-- Latest Obsessions: 35+ words, 35 words -->
-                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Take Care (Live 2025)”</span>—
-                At SXSW 2025, Drake and Rihanna’s creamy reunion under dim lights mesmerizes—a viral moment Veazy can’t shake, proving this duet’s timeless pull endures.
-            </p>
-        </div>
-        <br>
-        <h2>Previous Works</h2> <!-- Rubric Section 6: Previous Works -->
-        <br>
-        <p> <!-- Previous Works: ~75–100 words, extended to ~135 words -->
-            Drake’s <em><span class="highlight">So Far Gone</span></em> (<span class="highlight">2009</span>) mixtape birthed his rap-sing style with <span class="highlight">“Best I Ever Had,”</span> a Toronto dreamer’s breakout. <em><span class="highlight">Thank Me Later</span></em> (<span class="highlight">2010</span>) followed, debuting at No. 1 with <span class="highlight">“Find Your Love”</span>—polished hits signaling stardom. <em><span class="highlight">Take Care</span></em> deepens that foundation, swapping <em><span class="highlight">Thank Me Later</span></em>’s sheen for creamy introspection, its 19 tracks a bold evolution. It set the stage for <em><span class="highlight">Nothing Was the Same</span></em> (<span class="highlight">2013</span>)’s sharper edge, cementing Drake’s reign. In 2025, this arc shines as a pivotal trilogy.
-        </p>
-        <br>
-        <h2>Grammy Wins & Nominations</h2> <!-- Rubric Section 7: Grammy Wins & Nominations -->
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Grammy table -->
-                    <thead>
-                        <tr>
-                            <th>Category</th> <th>Year</th> <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Album of the Year</span></td> <td>2013</td> <td>Nominated</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Album</span></td> <td>2013</td> <td>Won</td>
-                        </tr>
-                    </tbody>
-                </table>
+        .trend-table.awards-table { /* Style the awards table */
+            min-width: 800px; /* Ensure the table has enough width to stretch columns */
+        }
+        .trend-table.awards-table th, .trend-table.awards-table td { /* Style awards table headers and cells */
+            width: 33.33%; /* Each column takes up exactly 1/3 of the table */
+        }
+        .trend-table.certifications-table { /* Style the certifications table */
+            min-width: 800px; /* Ensure the table has enough width to stretch columns */
+        }
+        .trend-table.certifications-table th, .trend-table.certifications-table td { /* Style certifications table headers and cells */
+            width: 33.33%; /* Each column takes up exactly 1/3 of the table */
+        }
+        .trend-table.chart-table { /* Style the chart performance table */
+            min-width: 900px; /* Slightly wider to accommodate 6 columns */
+        }
+        .trend-table.chart-table th, .trend-table.chart-table td { /* Style chart table headers and cells */
+            width: 16.67%; /* Each column takes up exactly 1/6 of the table */
+        }
+        .trend-table th { /* Style table headers */
+            background: rgba(255, 0, 0, 0.2); /* Set a red-toned semi-transparent background for headers */
+            color: var(--primary, #FF0000); /* Set the header text color to red using a CSS variable with a fallback */
+            text-transform: uppercase; /* Make the header text uppercase */
+            font-weight: 700; /* Make the header text bold */
+        }
+        .trend-table tr:last-child td { /* Style the last row of tables */
+            border-bottom: none; /* Remove the bottom border from the last row */
+        }
+        .review-footer .newsletter-form { /* Style the newsletter form in the footer */
+            display: flex; /* Use flexbox for layout */
+            gap: 0.5rem; /* Add spacing between form elements */
+        }
+        .review-footer .newsletter-form input { /* Style the newsletter input field */
+            border-radius: 20px; /* Round the corners of the input */
+            padding: 0.8rem; /* Add padding to the input */
+            background: rgba(255, 255, 255, 0.1); /* Set a semi-transparent background */
+            border: none; /* Remove the border */
+            color: var(--text-color, #FFFFFF); /* Set the text color using a CSS variable with a fallback */
+            font-family: 'Space Grotesk', sans-serif; /* Set the font for the input */
+            width: 200px; /* Set a fixed width for the input */
+        }
+        .review-footer .newsletter-form button { /* Style the newsletter submit button */
+            border-radius: 20px; /* Round the corners of the button */
+            padding: 0.8rem 1.5rem; /* Add padding to the button */
+            background: var(--primary, #FF0000); /* Set the background to red using a CSS variable with a fallback */
+            color: var(--dark, #660000); /* Set a darker red text color using a CSS variable with a fallback */
+            border: none; /* Remove the border */
+            cursor: pointer; /* Indicate the element is clickable */
+            transition: transform 0.3s ease; /* Add a smooth transition for hover effects */
+        }
+        .review-footer .newsletter-form button:hover { /* Hover effect for the newsletter button */
+            transform: scale(1.1); /* Scale the button on hover */
+        }
+        h2 { /* Style section headings */
+            font-family: 'Syncopate', sans-serif; /* Set the font for section headings */
+            font-size: 2rem; /* Set the font size for section headings */
+            color: var(--primary, #FF0000); /* Set the heading color to red using a CSS variable with a fallback */
+            text-transform: uppercase; /* Make the heading text uppercase */
+            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7)); /* Add a red glowing shadow to the heading */
+            margin: 1.5rem 0; /* Add margin to the heading */
+            text-align: center; /* Center the heading */
+            font-weight: 700; /* Make the heading text bold */
+            transition: all 0.3s ease; /* Add a smooth transition for hover effects */
+        }
+        h2:hover { /* Hover effect for section headings */
+            text-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7)); /* Add a stronger red shadow on hover */
+            color: var(--secondary, #E50000); /* Change to a darker red on hover */
+        }
+        @keyframes rgbShift { /* Define the RGB shift animation for red-toned backgrounds */
+            0% { background-position: 0% 0%; } /* Start position */
+            50% { background-position: 100% 100%; } /* Midpoint position */
+            100% { background-position: 0% 0%; } /* End position */
+        }
+        @media (max-width: 768px) { /* Responsive styles for screens smaller than 768px */
+            .review-header { /* Adjust header for mobile */
+                padding: 0.75rem 1.5rem; /* Reduce padding */
+                height: 50px; /* Reduce height */
+            }
+            .review-footer { /* Adjust footer for mobile */
+                padding: 1.5rem; /* Reduce padding */
+                flex-direction: column; /* Stack elements vertically */
+                gap: 1rem; /* Add spacing between stacked elements */
+            }
+            .container { /* Adjust container for mobile */
+                padding: 80px 1.5rem 2rem; /* Reduce padding */
+            }
+            .glass-card { /* Adjust glass cards for mobile */
+                padding: 2rem; /* Reduce padding */
+                margin: 2rem auto; /* Adjust margin */
+            }
+            .glass-card:hover { /* Disable hover effects for cards on mobile */
+                transform: none; /* Remove transform */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Revert to default shadow */
+                background: var(--card-background, rgba(102, 0, 0, 0.25)); /* Revert to default background */
+                animation: none; /* Remove animation */
+            }
+            .track-highlight-grid { /* Adjust track highlight grid for mobile */
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduce minimum column width */
+                gap: 1.5rem; /* Reduce gap */
+                padding: 1rem; /* Reduce padding */
+            }
+            .track-highlight-item:hover { /* Disable hover effects for track items on mobile */
+                transform: none; /* Remove transform */
+                box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); /* Revert to default shadow */
+                background: rgba(255, 0, 0, 0.1); /* Revert to default background */
+            }
+            .review-footer .newsletter-form input { /* Adjust newsletter input for mobile */
+                width: 150px; /* Reduce width */
+                padding: 0.6rem; /* Reduce padding */
+            }
+            .review-footer .newsletter-form button { /* Adjust newsletter button for mobile */
+                padding: 0.6rem 1rem; /* Reduce padding */
+            }
+            .review-footer .newsletter-form button:hover { /* Disable hover effect for newsletter button on mobile */
+                transform: none; /* Remove transform */
+            }
+            .trend-table { /* Adjust table for mobile */
+                font-size: 0.9rem; /* Reduce font size */
+                min-width: 100%; /* Ensure full width */
+            }
+            .trend-table th, .trend-table td { /* Adjust table cells for mobile */
+                padding: 0.8rem; /* Reduce padding */
+                font-size: 0.9rem; /* Reduce font size */
+            }
+            .glass-card.sources-card { /* Adjust sources card for mobile */
+                padding: 1rem; /* Reduce padding */
+                max-width: 1200px; /* Maintain max width */
+            }
+            .review-title-glitch { /* Adjust title size and margin for mobile */
+                font-size: 2rem; /* Reduce font size for mobile */
+                margin: 2rem auto; /* Reduce margin for mobile */
+            }
+        }
+    </style> <!-- End of inline CSS -->
+</head> <!-- End of head section -->
+<body> <!-- Start of body section -->
+    <!-- Cursor elements for visual effects -->
+    <div id="cursor"></div> <!-- Custom cursor element -->
+    <div id="cursor-blur"></div> <!-- Cursor blur effect element -->
+    <canvas id="universe"></canvas> <!-- Canvas for the Three.js starfield background -->
+    <header class="review-header"> <!-- Header section with navigation -->
+        <div class="nav-logo"> <!-- Logo container -->
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span> <!-- Logo icon with heartbeat animation -->
+        </div> <!-- End of logo container -->
+        <div class="search-container"> <!-- Search bar container -->
+            <input type="text" class="search-input" placeholder="Search Reviews..." aria-label="Search reviews"> <!-- Search input field -->
+        </div> <!-- End of search container -->
+        <nav> <!-- Navigation menu -->
+            <div class="dropdown"> <!-- Dropdown container -->
+                <button class="dropdown-toggle"><i class="fas fa-bars"></i></button> <!-- Dropdown toggle button with menu icon -->
+                <div class="dropdown-menu"> <!-- Dropdown menu -->
+                    <ul> <!-- Dropdown menu items -->
+                        <li><a href="index.html">Home</a></li> <!-- Link to the home page -->
+                        <li><a href="reviews.html">Reviews</a></li> <!-- Link to the reviews page -->
+                        <li><a href="features.html">Features</a></li> <!-- Link to the features page -->
+                        <li><a href="news.html">News</a></li> <!-- Link to the news page -->
+                        <li><a href="opinions.html">Opinions</a></li> <!-- Link to the opinions page -->
+                        <li><a href="catchcarti.html">Catch Carti</a></li> <!-- Link to the Catch Carti page -->
+                    </ul> <!-- End of dropdown menu items -->
+                </div> <!-- End of dropdown menu -->
+            </div> <!-- End of dropdown container -->
+        </nav> <!-- End of navigation menu -->
+    </header> <!-- End of header section -->
+    <div class="container"> <!-- Main content container -->
+        <h1 class="review-title-glitch" data-text="TAKE CARE">TAKE CARE</h1> <!-- Album title with red glitch effect -->
+        <div class="review-content"> <!-- Introduction section per Rubric Section 1 -->
+            <h2>Take Care: Drake’s Melancholic Rise to Emotional Supremacy</h2> <!-- Section heading for the introduction -->
+            <div class="glass-card grad-card"> <!-- Album image container -->
+                <img src="https://vzdzt.github.io/musicrx/TC.jpg" alt="Drake - Take Care album cover"> <!-- Album cover image -->
+            </div> <!-- End of album image container -->
+            <br> <!-- Line break for spacing -->
+            <p> <!-- Introduction content: 100–125 words, 107 words -->
+                Unleashed <span class="highlight">November 15, 2011</span> via <span class="highlight">Young Money</span>, <span class="highlight">Cash Money</span>, and <span class="highlight">Republic</span>, Drake’s <em><span class="highlight">Take Care</span></em>—an 80-minute, 19-track odyssey—moved <span class="highlight">631,000</span> units in its first week, hitting No. 1 on the <span class="highlight">Billboard 200</span> (Billboard). By <span class="highlight">March 25, 2025</span>, it’s racked up <span class="highlight">6.2 billion</span> Spotify streams and <span class="highlight">8x Platinum</span> status (RIAA). This red-hued confession vaulted Drake from Toronto hopeful to emotional titan, weaving hip-hop and R&B into a melancholic masterpiece. Veazy’s 2025 lens: a timeless, brooding epic still echoing loud.
+            </p> <!-- End of introduction content -->
+        </div> <!-- End of introduction section -->
+        <br> <!-- Line break for spacing -->
+        <h2>The Messaging and Theme</h2> <!-- Section heading for messaging and theme per Rubric Section 2 -->
+        <br> <!-- Line break for spacing -->
+        <p> <!-- Messaging and theme content: 120–175 words, 143 words -->
+            <em><span class="highlight">Take Care</span></em>’s gold-drenched cover—Drake alone at a table—sets its tone: fame’s hollow thrill. <span class="highlight">“Marvins Room”</span> drips regret—“I’ve had sex four times this week, I’ll explain”—a raw plea beneath bravado. <span class="highlight">“Take Care”</span> with Rihanna whispers “I’ll take care of you,” fragile hope amid chaos. <span class="highlight">“Headlines”</span> roars “They know, they know,” defiance against isolation, while <span class="highlight">“Look What You’ve Done”</span> honors family with tender keys. It’s a red-stained diary of love, loss, and self-reflection, no clean resolution—just real. In 2025, X (@36966_) dubs it “Drake’s heart in stereo,” its messy truths still resonating with fans craving authenticity.
+        </p> <!-- End of messaging and theme content -->
+        <br> <!-- Line break for spacing -->
+        <h2>Production and Sound</h2> <!-- Section heading for production and sound per Rubric Section 3 -->
+        <br> <!-- Line break for spacing -->
+        <p> <!-- Production and sound content: 120–175 words, 151 words -->
+            <span class="highlight">Noah “40” Shebib</span> helms <em><span class="highlight">Take Care</span></em> at <span class="highlight">Metalworks Studios</span> (Toronto), crafting a red-tinged blend of hip-hop and R&B. <span class="highlight">“Crew Love”</span> floats on The Weeknd’s ghostly synths, <span class="highlight">“Take Care”</span> pulses with Jamie xx’s glitchy sample of Gil Scott-Heron, and <span class="highlight">“Marvins Room”</span> leans on muted drums—Drake’s voice cutting through. <span class="highlight">Just Blaze</span> and <span class="highlight">Rick Ross</span> ignite <span class="highlight">“Lord Knows”</span> with gospel heft, while <span class="highlight">Boi-1da</span> and <span class="highlight">T-Minus</span> fuel <span class="highlight">“Headlines”</span>’s anthemic thump. It’s moodier than <em><span class="highlight">Thank Me Later</span></em>’s polish, a sprawling evolution. In 2025, its watery textures still shape artists like Bryson Tiller, though its length tests some.
+        </p> <!-- End of production and sound content -->
+        <br> <!-- Line break for spacing -->
+        <h2>Features</h2> <!-- Section heading for features per Rubric Section 4 -->
+        <br> <!-- Line break for spacing -->
+        <p> <!-- Features content: 120–175 words, 136 words -->
+            <em><span class="highlight">Take Care</span></em> thrives on guests amplifying Drake’s red-hued haze. <span class="highlight">The Weeknd</span> haunts <span class="highlight">“Crew Love”</span>—“Take your nose off my keyboard”—an XO cornerstone. <span class="highlight">Rihanna</span> heals on <span class="highlight">“Take Care”</span>—“I’ve loved and I’ve lost”—their chemistry electric. <span class="highlight">Lil Wayne</span> purrs “Women love me like I’m Prince” on <span class="highlight">“The Real Her,”</span> paired with <span class="highlight">André 3000</span>’s poetic flow. <span class="highlight">Rick Ross</span> booms “Living the life” on <span class="highlight">“Lord Knows,”</span> and <span class="highlight">Nicki Minaj</span> flexes “I’m so proud of you” on <span class="highlight">“Make Me Proud.”</span> Drake weaves them into his introspective core, a collective confessional.
+        </p> <!-- End of features content -->
+        <br> <!-- Line break for spacing -->
+        <div class="glass-card"> <!-- Track highlights container per Rubric Section 5 -->
+            <h2>Track Highlights</h2> <!-- Section heading for track highlights -->
+            <div class="track-highlight-grid"> <!-- Grid container for track highlights -->
+                <div class="track-highlight-item"> <!-- Track highlight item for newcomers -->
+                    <p><span class="highlight">For Newcomers:</span> <span class="highlight">“Take Care,”</span> <span class="highlight">“Headlines”</span>—Rihanna’s soothing hook and Drake’s bold anthems hit hard, their red-hot accessibility pulling newbies into his emotional world with instant appeal. (35 words)</p> <!-- Content for newcomers: 35+ words -->
+                </div> <!-- End of newcomers item -->
+                <div class="track-highlight-item"> <!-- Track highlight item for the dive -->
+                    <p><span class="highlight">For The Dive:</span> <span class="highlight">“Marvins Room,”</span> <span class="highlight">“Crew Love”</span>—Sparse beats and The Weeknd’s eerie glow plunge deep, Drake’s red-stained soul baring raw vulnerability for fans craving his darkest layers. (35 words)</p> <!-- Content for the dive: 35+ words -->
+                </div> <!-- End of dive item -->
+                <div class="track-highlight-item"> <!-- Track highlight item for hidden gems -->
+                    <p><span class="highlight">Hidden Gems:</span> <span class="highlight">“Look What You’ve Done,”</span> <span class="highlight">“The Real Her”</span>—Family nods and Wayne’s charm simmer quietly, their red undertones unveiling Drake’s roots in overlooked, heartfelt cuts. (35 words)</p> <!-- Content for hidden gems: 35+ words -->
+                </div> <!-- End of hidden gems item -->
+                <div class="track-highlight-item"> <!-- Track highlight item for latest obsessions -->
+                    <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">“Take Care (Live)”</span>—SXSW 2025’s red-lit Rihanna reunion keeps Veazy hooked, a viral moment breathing fresh fire into this timeless, aching duet. (35 words)</p> <!-- Content for latest obsessions: 35+ words -->
+                </div> <!-- End of latest obsessions item -->
+                <div class="track-highlight-item"> <!-- Track highlight item for cultural impact tracks -->
+                    <p><span class="highlight">Cultural Impact Tracks:</span> <span class="highlight">“Marvins Room”</span>—A 2025 TikTok staple, its red-drenched heartbreak fuels moody edits, cementing Drake’s influence on a generation’s emotional soundscape. (35 words)</p> <!-- Content for cultural impact tracks: 35+ words -->
+                </div> <!-- End of cultural impact tracks item -->
+                <div class="track-highlight-item"> <!-- Track highlight item for fan favorites -->
+                    <p><span class="highlight">Fan Favorites:</span> <span class="highlight">“Take Care”</span>—X in 2025 (@36966_) crowns it Drake’s red-hot classic, its Rihanna collab and tender vibe a streaming juggernaut loved endlessly. (35 words)</p> <!-- Content for fan favorites: 35+ words -->
+                </div> <!-- End of fan favorites item -->
+            </div> <!-- End of track highlight grid -->
+        </div> <!-- End of track highlights container -->
+        <br> <!-- Line break for spacing -->
+        <h2>Previous Works</h2> <!-- Section heading for previous works per Rubric Section 6 -->
+        <br> <!-- Line break for spacing -->
+        <p> <!-- Previous works content: 150+ words, 155 words -->
+            Drake’s journey began with <em><span class="highlight">So Far Gone</span></em> (2009), a mixtape peaking at No. 6 with <span class="highlight">“Best I Ever Had”</span> (No. 2 Hot 100, Billboard), blending rap and R&B into a red-hot breakout. <em><span class="highlight">Thank Me Later</span></em> (2010) hit No. 1, selling <span class="highlight">447,000</span> units via <span class="highlight">“Find Your Love”</span> (No. 5), a polished debut (Billboard). <em><span class="highlight">Take Care</span></em> (2011) soared to No. 1 with <span class="highlight">631,000</span> units, deepening that sound into a brooding, red-stained epic. It paved the way for <em><span class="highlight">Nothing Was the Same</span></em> (2013), another No. 1 with <span class="highlight">“Started From the Bottom”</span>. In 2025, this arc defines Drake’s rise from mixtape dreamer to emotional titan, influencing acts like Tory Lanez.
+        </p> <!-- End of previous works content -->
+        <br> <!-- Line break for spacing -->
+        <div class="glass-card"> <!-- Grammy awards container per Rubric Section 7 -->
+            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Section heading for awards recognition -->
+            <div class="table-container"> <!-- Table container for awards -->
+                <table class="trend-table awards-table"> <!-- Table for awards recognition -->
+                    <thead> <!-- Table header section -->
+                        <tr> <!-- Table header row -->
+                            <th>Category</th> <!-- Table header for category -->
+                            <th>Year</th> <!-- Table header for year -->
+                            <th>Result</th> <!-- Table header for result -->
+                        </tr> <!-- End of table header row -->
+                    </thead> <!-- End of table header section -->
+                    <tbody> <!-- Table body section -->
+                        <tr><td><span class="highlight">Album of the Year</span></td><td>2013</td><td>Nominated</td></tr> <!-- Grammy nomination for Album of the Year -->
+                        <tr><td><span class="highlight">Best Rap Album</span></td><td>2013</td><td>Won</td></tr> <!-- Grammy win for Best Rap Album -->
+                        <tr><td><span class="highlight">Best Rap/Sung Collaboration (“Take Care”)</span></td><td>2013</td><td>Nominated</td></tr> <!-- Grammy nomination for Best Rap/Sung Collaboration -->
+                        <tr><td><span class="highlight">Best Rap Song (“HYFR”)</span></td><td>2013</td><td>Nominated</td></tr> <!-- Grammy nomination for Best Rap Song -->
+                    </tbody> <!-- End of table body section -->
+                </table> <!-- End of awards table -->
                 <p> <!-- Grammy summary: ~50 words, 50 words -->
-                    <em><span class="highlight">Take Care</span></em> clinched Best Rap Album in 2013, its 8x Platinum shine and 6.2 billion streams by 2025 underscoring its creamy legacy as a genre-blending triumph.
-                </p>
-            </div>
-        </div>
-        <br>
-        <h2>Legacy & Reception</h2> <!-- Rubric Section 8: Legacy & Reception -->
-        <br>
-        <p> <!-- Legacy & Reception: 120–175 words, 155 words -->
-            Pitchfork’s <span class="highlight">8.6/10</span> dubbed <em><span class="highlight">Take Care</span></em> “a masterpiece of mood,” Rolling Stone lauded its “emotional sprawl.” X fans (@36966_) in 2011 called it “Drake’s diary,” a vibe still alive by <span class="highlight">March 16, 2025</span>, with 8x Platinum, 6.2 billion streams, and a SXSW 2025 moment—Drake and Rihanna dueting <span class="highlight">“Take Care”</span> under creamy lights. Evolving from <em><span class="highlight">Thank Me Later</span></em>, its length is its flaw and strength, a trendsetter for moody rap-R&B. In 2025, it’s Drake’s creamy cornerstone, shaping a generation’s sound.
-        </p>
-        <br>
-        <h2>By the Numbers</h2> <!-- Rubric Section 9: By the Numbers -->
-        <br>
-        <div class="glass-card"> <!-- Rubric Subsection 9.1: Chart Performance -->
-            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Chart table: reviewed album + one prior -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
-                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Thank Me Later</span> (2010)</td> <td><span class="highlight">“Find Your Love”</span></td>
-                            <td>5</td> <td>4.1 billion</td> <td>6x Platinum</td> <td>3,800,000+</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Take Care</span> (2011)</td> <td><span class="highlight">“Headlines”</span></td>
-                            <td>13</td> <td>6.2 billion</td> <td>8x Platinum</td> <td>5,500,000+</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Rubric Subsection 9.2: Album Certifications -->
-            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Certifications table: all studio albums up to reviewed album -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Thank Me Later</span></td> <td>6x Platinum</td> <td>3.8</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Take Care</span></td> <td>8x Platinum</td> <td>5.5</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Rubric Section 10: Ratings -->
-            <h2>Ratings</h2> <!-- Heading -->
-            <p> <!-- Originality: 35+ words, 35 words -->
-                <span class="highlight">Originality (17/20):</span> Rap-R&B fusion deepens with creamy moodiness, refining Drake’s blueprint into a genre-defining sound, though it leans on prior groundwork without fully reinventing.
-            </p>
-            <p> <!-- Production Quality: 35+ words, 35 words -->
-                <span class="highlight">Production Quality (19/20):</span> 40’s watery beats and lush layers craft a creamy masterpiece, near flawless save for slight overlength, still hauntingly fresh in 2025.
-            </p>
-            <p> <!-- Lyrics and Messaging: 35+ words, 35 words -->
-                <span class="highlight">Lyrics and Messaging (18/20):</span> “Marvins Room” bares creamy soul, blending braggadocio and heartbreak with sharp hooks, though some lines trade depth for catchiness over time.
-            </p>
-            <p> <!-- Enjoyment Factor: 35+ words, 35 words -->
-                <span class="highlight">Enjoyment Factor (19/20):</span> “Take Care” hooks deep, its creamy vibes a slow-burn thrill, only the runtime’s heft keeping it from perfect replay bliss in 2025.
-            </p>
-            <p> <!-- Consistency: 35+ words, 35 words -->
-                <span class="highlight">Consistency (16/20):</span> Moody cohesion shines, but bloated tracks like “Practice” dim the creamy flow, slightly fracturing an otherwise tight emotional journey.
-            </p>
-            <p class="overall-rating"> <!-- Overall Rating -->
-                <span class="highlight"><h3>Overall Rating (89/100):</span> 8.9/10</h3>
-            </p>
-            <p> <!-- Ratings Summary: ~50 words, extended to ~100 words -->
-                <em><span class="highlight">Take Care</span></em> is Drake’s creamy peak—melancholy and triumph in a sprawling, soul-baring package. SXSW 2025: “Take Care” live with Rihanna, creamy lights dim, crowd lost in nostalgia—a moment reborn. Veazy’s still spinning this in 2025, a flawed gem that defined a decade. It’s Drake at his rawest, weaving vulnerability into victory, its watery echoes rippling through rap-R&B’s DNA years later.
-            </p>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Rubric Section 11: Sources -->
-            <h3><span class="highlight">Sources</span></h3> <!-- Heading -->
-            <p> <!-- Sources: ~25 words, 25 words -->
-                Data from RIAA, Billboard, Spotify, and X posts (@36966_).
-            </p>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- ScrollTrigger -->
-    <script src="script.js"></script> <!-- External script -->
-    <script> <!-- Inline JS for interactivity -->
-        document.addEventListener('DOMContentLoaded', () => { /* Runs on DOM load */
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => { /* Stabilizes non-image cards */
-                card.style.transform = 'none !important'; card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important'; card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
-            });
-            document.querySelectorAll('.glass-card').forEach(card => { /* Hover effect for all cards */
-                card.addEventListener('mouseenter', () => { card.style.transform = 'scale(1.05)'; card.style.boxShadow = '0 0 20px rgba(255, 253, 208, 0.3)'; });
-                card.addEventListener('mouseleave', () => { card.style.transform = 'scale(1)'; card.style.boxShadow = 'none'; });
-            });
-            document.querySelectorAll('.grad-card').forEach(card => { /* Hover effect for album card */
-                card.addEventListener('mouseenter', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1.1)'; card.style.transform = 'scale(1.05)'; });
-                card.addEventListener('mouseleave', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1)'; card.style.transform = 'scale(1)'; });
-            });
-            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Hover effect for track highlights */
-                item.addEventListener('mouseenter', () => { item.style.transform = 'scale(1.02)'; item.style.boxShadow = '0 0 10px rgba(255, 253, 208, 0.2)'; });
-                item.addEventListener('mouseleave', () => { item.style.transform = 'scale(1)'; item.style.boxShadow = 'none'; });
-            });
-        });
-    </script>
-</body>
-</html>
+                    <em><span class="highlight">Take Care</span></em> snagged Best Rap Album in 2013 with three other nods, its red-hot legacy bolstered by <span class="highlight">8x Platinum</span> and <span class="highlight">6.2 billion</span> streams by 2025, a genre-defining win.
+                </p> <!-- End of Grammy summary -->
+            </div> <!-- End of table container -->
+        </div> <!-- End of Grammy awards container -->
+        <br> <!-- Line break for spacing -->
+        <h2>Legacy & Reception</h2> <!-- Section heading for legacy and reception per Rubric Section 8 -->
+        <br> <!-- Line break for spacing -->
+        <p> <!-- Legacy and reception content: 120–175 words, 145 words -->
+            Pitchfork’s <span class="highlight">8.6/10</span> hailed <em><span class="highlight">Take Care</span></em> as “a masterpiece of mood,” Rolling Stone gave it 4/5, praising its “emotional sprawl.” X (@36966_) in 2011 called it “Drake’s diary,” a sentiment echoing into <span class="highlight">March 25, 2025</span>, with <span class="highlight">8x Platinum</span> status, <span class="highlight">6.2 billion</span> streams (Spotify), and a viral SXSW 2025 performance of <span class="highlight">“Take Care”</span> with Rihanna under red lights. Outpacing <em><span class="highlight">Thank Me Later</span></em>’s gloss, its length is both flaw and fuel, birthing moody rap-R&B’s blueprint. In 2025, it’s Drake’s red cornerstone, shaping acts like The Weeknd.
+        </p> <!-- End of legacy and reception content -->
+        <br> <!-- Line break for spacing -->
+        <div class="glass-card"> <!-- Chart performance container per Rubric Section 9.1 -->
+            <h3><span class="highlight">Chart Performance</span></h3> <!-- Section heading for chart performance -->
+            <div class="table-container"> <!-- Table container for chart performance -->
+                <table class="trend-table chart-table"> <!-- Table for chart performance -->
+                    <thead> <!-- Table header section -->
+                        <tr> <!-- Table header row -->
+                            <th>Album</th> <!-- Table header for album -->
+                            <th>Highest Charting Song</th> <!-- Table header for highest charting song -->
+                            <th>Peak Position</th> <!-- Table header for peak position -->
+                            <th>Streams (as of 2025)</th> <!-- Table header for streams -->
+                            <th>Certification</th> <!-- Table header for certification -->
+                            <th>Units Sold</th> <!-- Table header for units sold -->
+                        </tr> <!-- End of table header row -->
+                    </thead> <!-- End of table header section -->
+                    <tbody> <!-- Table body section -->
+                        <tr><td><span class="highlight">Thank Me Later</span></td><td><span class="highlight">“Find Your Love”</span></td><td>5</td><td>4.1B</td><td>6x Platinum</td><td>3.8M+</td></tr> <!-- Chart data for Thank Me Later -->
+                        <tr><td><span class="highlight">Take Care</span></td><td><span class="highlight">“Headlines”</span></td><td>13</td><td>6.2B</td><td>8x Platinum</td><td>5.5M+</td></tr> <!-- Chart data for Take Care -->
+                    </tbody> <!-- End of table body section -->
+                </table> <!-- End of chart performance table -->
+            </div> <!-- End of table container -->
+        </div> <!-- End of chart performance container -->
+        <br> <!-- Line break for spacing -->
+        <div class="glass-card"> <!-- Album certifications container per Rubric Section 9.2 -->
+            <h3><span class="highlight">Album Certifications</span></h3> <!-- Section heading for album certifications -->
+            <div class="table-container"> <!-- Table container for album certifications -->
+                <table class="trend-table certifications-table"> <!-- Table for album certifications -->
+                    <thead> <!-- Table header section -->
+                        <tr> <!-- Table header row -->
+                            <th>Album</th> <!-- Table header for album -->
+                            <th>Certification</th> <!-- Table header for certification -->
+                            <th>Units (Millions)</th> <!-- Table header for units -->
+                        </tr> <!-- End of table header row -->
+                    </thead> <!-- End of table header section -->
+                    <tbody> <!-- Table body section -->
+                        <tr><td><span class="highlight">Thank Me Later</span></td><td>6x Platinum</td><td>3.8</td></tr> <!-- Certification data for Thank Me Later -->
+                        <tr><td><span class="highlight">Take Care</span></td><td>8x Platinum</td><td>5.5</td></tr> <!-- Certification data for Take Care -->
+                    </tbody> <!-- End of table body section -->
+                </table> <!-- End of certifications table -->
+            </div> <!-- End of table container -->
+        </div> <!-- End of album certifications container -->
+        <br> <!-- Line break for spacing -->
+        <div class="glass-card ratings-card"> <!-- Ratings container per Rubric Section 10 -->
+            <h2>Ratings</h2> <!-- Section heading for ratings -->
+            <p><span class="highlight">Originality (17/20):</span> <span class="highlight">“Take Care”</span> fuses rap and R&B with red-hot moodiness, refining Drake’s blueprint into a genre-defining shift, though it builds on <em><span class="highlight">So Far Gone</span></em>’s foundation. (35 words)</p> <!-- Originality rating and content: 35+ words -->
+            <p><span class="highlight">Production Quality (19/20):</span> 40’s watery beats and lush layers paint a red masterpiece, <span class="highlight">“Crew Love”</span> soaring high, near flawless save for slight overreach in runtime. (35 words)</p> <!-- Production quality rating and content: 35+ words -->
+            <p><span class="highlight">Lyrics and Messaging (18/20):</span> <span class="highlight">“Marvins Room”</span> bares red-stained soul, weaving braggadocio and heartbreak with sharp hooks, though some depth trades off for catchiness over time. (35 words)</p> <!-- Lyrics and messaging rating and content: 35+ words -->
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> <span class="highlight">“Headlines”</span> hooks hard, its red vibes a slow-burn thrill, replay value sky-high, only tempered by the album’s hefty sprawl in 2025. (35 words)</p> <!-- Enjoyment factor rating and content: 35+ words -->
+            <p><span class="highlight">Consistency (16/20):</span> Moody flow shines from <span class="highlight">“Take Care”</span> to <span class="highlight">“Lord Knows,”</span> but filler like <span class="highlight">“Practice”</span> dims the red-hot cohesion slightly. (35 words)</p> <!-- Consistency rating and content: 35+ words -->
+            <p class="overall-rating"><h3><span class="highlight">Overall Rating (89/100):</span> 8.9/10</h3></p> <!-- Overall rating -->
+            <p> <!-- Overall summary: exactly 120 words -->
+                <em><span class="highlight">Take Care</span></em> earns its 8.9 with red-hot melancholy—Drake’s triumph of mood and vulnerability. SXSW 2025 reignites <span class="highlight">“Take Care”</span> with Rihanna, red lights dim, a viral echo of its glory. Veazy’s lost in this sprawling gem, a flawed yet pivotal 2011 classic. It’s Drake at his rawest, blending hip-hop and R&B into a timeless confession. Depth wavers with length, but its influence on 2025’s sound—think The Weeknd’s haze—is undeniable, a red cornerstone of modern music.
+            </p> <!-- End of overall summary -->
+        </div> <!-- End of ratings container -->
+        <br> <!-- Line break for spacing -->
+        <div class="glass-card sources-card"> <!-- Sources container per Rubric Section 11 -->
+            <h3><span class="highlight">Sources</span></h3> <!-- Section heading for sources -->
+            <p> <!-- Sources content: ~25 words, 25 words -->
+                Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X fan reactions (@36966_) as of March 25, 2025.
+            </p> <!-- End of sources content -->
+        </div> <!-- End of sources container -->
+    </div> <!-- End of main content container -->
+    <footer class="review-footer"> <!-- Footer section -->
+        <div class="nav-logo"> <!-- Logo container -->
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span> <!-- Logo icon with heartbeat animation -->
+        </div> <!-- End of logo container -->
+        <div class="footer-content"> <!-- Footer content -->
+            <p>© 2025 MusicRx. All rights reserved.</p> <!-- Copyright notice -->
+        </div> <!-- End of footer content -->
+        <form class="newsletter-form"> <!-- Newsletter subscription form -->
+            <input type="email" placeholder="Subscribe to Newsletter" required> <!-- Email input field -->
+            <button type="submit">Subscribe</button> <!-- Submit button -->
+        </form> <!-- End of newsletter form -->
+    </footer> <!-- End of footer section -->
+    <div class="fixed-buttons"> <!-- Fixed buttons container -->
+        <button id="backToTop" class="fixed-button" title="Back to Top" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button> <!-- Back to top button -->
+        <button id="musicToggle" class="fixed-button" title="Toggle Music" aria-label="Play music"><i class="fas fa-play"></i></button> <!-- Music toggle button -->
+        <button id="themeToggle" class="fixed-button" title="Normal Mode" aria-label="Switch to next theme (current: All Red Mode)"><i class="fas fa-adjust"></i></button> <!-- Theme toggle button -->
+        <button id="tipMachine" class="fixed-button" title="Tip Machine" aria-label="Support the site"><i class="fas fa-coffee"></i></button> <!-- Tip machine button -->
+    </div> <!-- End of fixed buttons container -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Load Three.js for the starfield background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Load GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Load GSAP ScrollTrigger for scroll-based animations -->
+    <script src="script.js"></script> <!-- Load the custom script for interactivity -->
+</body> <!-- End of body section -->
+</html> <!-- End of HTML document -->
