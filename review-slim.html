@@ -1,295 +1,1010 @@
-<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
-<html lang="en"> <!-- Sets the document language to English -->
+<!DOCTYPE html>
+<!-- Declare the document type as HTML5 -->
+<html lang="en" data-page="review-slim-shady-lp">
+<!-- Set the language to English and define the page identifier for styling -->
 <head>
-    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design -->
-    <meta name="description" content="Explore Eminem’s The Slim Shady LP (1999) review: a savage rap debut, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description per rubric -->
-    <meta name="keywords" content="Eminem, The Slim Shady LP, Dr. Dre, Aftermath, Detroit, MusicRx, 2025"> <!-- SEO keywords -->
-    <meta name="author" content="Veazy"> <!-- Author credit per rubric -->
-    <meta property="og:title" content="MusicRx - The Slim Shady LP: Eminem’s Savage Spark Unleashed"> <!-- Open Graph title -->
-    <meta property="og:description" content="Dive into Eminem’s The Slim Shady LP review: a 1999 rap classic, refreshed with 2025 insights on MusicRx."> <!-- Open Graph description -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/slim.jpeg"> <!-- Open Graph image URL -->
-    <meta property="og:type" content="article"> <!-- Open Graph type -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-slim.html"> <!-- Open Graph URL -->
-    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
-    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle per rubric -->
-    <title>MusicRx - The Slim Shady LP: Eminem’s Savage Spark Unleashed</title> <!-- Browser tab title -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Google Fonts -->
-    <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
-    <style> <!-- Internal CSS for review-specific styling -->
-        body { background: #0a0a0a !important; } /* Dark background per MusicRx aesthetic */
-        .highlight { color: #FFFF00; font-weight: bold; } /* Yellow highlights per theme */
-        .overall-rating h3 { color: #FFFF00; } /* Yellow for overall rating heading per request */
-        .review-slim-glitch { /* Updated glitch effect, kept per original naming */
-            font-size: 3rem; text-align: center; margin-bottom: 2rem; color: #FFFF00;
-            text-shadow: 0 0 10px #FFFF00; font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase; position: relative;
+    <!-- Meta tags for character encoding, viewport, and SEO -->
+    <meta charset="UTF-8">
+    <!-- Ensure proper character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Make the page responsive on all devices -->
+    <meta name="description" content="Explore Eminem’s The Slim Shady LP: 283,000 first-week sales, a 1999 rap classic, updated March 2025 on MusicRx.">
+    <!-- SEO description per rubric -->
+    <meta name="keywords" content="Eminem, The Slim Shady LP, Dr. Dre, Aftermath, Interscope, Detroit, 1999, 2025, Spotify, Billboard">
+    <!-- SEO keywords per rubric -->
+    <meta name="author" content="Veazy">
+    <!-- Specify the author of the page per rubric -->
+    <meta property="og:title" content="MusicRx - The Slim Shady LP: Eminem’s Savage Spark Unleashed">
+    <!-- Open Graph title for social media sharing -->
+    <meta property="og:description" content="Dive into Eminem’s The Slim Shady LP review: a 1999 rap milestone, revisited in 2025 on MusicRx.">
+    <!-- Open Graph description for social media sharing -->
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/slim.jpeg">
+    <!-- Open Graph image for social media sharing -->
+    <meta property="og:type" content="article">
+    <!-- Open Graph type for social media sharing -->
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-slim-shady-lp.html">
+    <!-- Open Graph URL for social media sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Twitter card type for sharing -->
+    <meta name="twitter:site" content="@36966_">
+    <!-- Twitter handle per rubric -->
+    <title>MusicRx - The Slim Shady LP: Eminem’s Savage Spark Unleashed</title>
+    <!-- Page title displayed in the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Load Font Awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Load Google Fonts (Syncopate and Space Grotesk) -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Link to the external stylesheet -->
+    <style>
+        /* Inline CSS for review-specific styling */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            /* Set the default font for the body */
+            background: var(--background, #0a0a0a);
+            /* Set the background using a CSS variable with a fallback */
+            color: var(--text-color, #FFFFFF);
+            /* Set the text color using a CSS variable with a fallback */
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
+            min-height: 100vh;
+            /* Ensure the body takes up at least the full viewport height */
+            display: flex;
+            /* Use flexbox for layout */
+            flex-direction: column;
+            /* Arrange children in a column */
+            position: relative;
+            /* Allow positioning of child elements */
+            margin: 0;
+            /* Remove default margin */
+            padding: 0;
+            /* Remove default padding */
+            box-sizing: border-box;
+            /* Include padding and border in element's total width and height */
         }
-        .review-slim-glitch::before, .review-slim-glitch::after { /* Glitch pseudo-elements */
-            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        .review-header {
+            background: linear-gradient(135deg, rgba(255, 255, 0, 0.2), rgba(0, 0, 0, 0.8));
+            /* Set a yellow-toned gradient background for the header */
+            backdrop-filter: blur(15px);
+            /* Apply a blur effect to the background */
+            padding: 1rem 2rem;
+            /* Add padding to the header */
+            border-bottom: 2px solid var(--border-color, rgba(255, 255, 0, 0.3));
+            /* Add a yellow-toned bottom border using a CSS variable with a fallback */
+            display: flex;
+            /* Use flexbox for layout */
+            justify-content: space-between;
+            /* Space out child elements */
+            align-items: center;
+            /* Center child elements vertically */
+            position: fixed;
+            /* Fix the header to the top of the viewport */
+            top: 0;
+            /* Position at the top */
+            left: 0;
+            /* Position at the left */
+            width: 100%;
+            /* Make the header full-width */
+            z-index: 1002;
+            /* Ensure the header is above other content */
+            height: 60px;
+            /* Set a fixed height for the header */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+            margin: 0;
+            /* Remove default margin */
         }
-        .review-slim-glitch::before { /* Cyan glitch layer */
-            left: 2px; text-shadow: -2px 0 #00ffea; animation: glitch-1 2s linear infinite reverse;
+        .review-footer {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(255, 255, 0, 0.2));
+            /* Set a yellow-toned gradient background for the footer */
+            backdrop-filter: blur(15px);
+            /* Apply a blur effect to the background */
+            padding: 2rem;
+            /* Add padding to the footer */
+            border-top: 2px solid var(--border-color, rgba(255, 255, 0, 0.3));
+            /* Add a yellow-toned top border using a CSS variable with a fallback */
+            display: flex;
+            /* Use flexbox for layout */
+            justify-content: space-between;
+            /* Space out child elements */
+            align-items: center;
+            /* Center child elements vertically */
+            position: relative;
+            /* Allow positioning of child elements */
+            z-index: 1001;
+            /* Ensure the footer is above most content */
         }
-        .review-slim-glitch::after { /* Yellow glitch layer */
-            left: -2px; text-shadow: 2px 0 #FFFF00; animation: glitch-2 3s linear infinite;
+        .container {
+            flex: 1;
+            /* Allow the container to grow and fill available space */
+            padding: 100px 2rem 3rem;
+            /* Add padding to the container, accounting for the fixed header */
+            max-width: 1200px;
+            /* Set a maximum width for the container */
+            margin: 0 auto;
+            /* Center the container horizontally */
+            position: relative;
+            /* Allow positioning of child elements */
+            z-index: 1;
+            /* Ensure the container is above the background canvas */
+            width: 100%;
+            /* Make the container full-width within its max-width */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
         }
-        @keyframes glitch-1 { /* Smooth glitch animation with more steps */
+        .glass-card {
+            background: var(--card-background, rgba(255, 255, 0, 0.1));
+            /* Set a yellow-toned background using a CSS variable with a fallback */
+            backdrop-filter: blur(15px);
+            /* Apply a blur effect to the background */
+            border-radius: 25px;
+            /* Round the corners of the card */
+            border: 2px solid var(--border-color, rgba(255, 255, 0, 0.3));
+            /* Add a yellow-toned border using a CSS variable with a fallback */
+            padding: 3rem;
+            /* Add padding to the card */
+            margin: 3rem auto;
+            /* Add margin and center the card horizontally */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Add a smooth transition for hover effects */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            /* Add a subtle shadow to the card */
+            position: relative;
+            /* Allow positioning of child elements */
+            overflow: hidden;
+            /* Hide overflow content */
+            width: 100%;
+            /* Make the card full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the card */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            /* Lift and slightly scale the card on hover */
+            box-shadow: 0 0 30px var(--glow, rgba(255, 255, 0, 0.7));
+            /* Add a yellow glowing shadow on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #FFFF00, #E5E500, #CCCC00));
+            /* Change the background to a yellow gradient on hover */
+            background-size: 200% 200%;
+            /* Set the background size for animation */
+            animation: rgbShift 3s linear infinite;
+            /* Animate the background gradient */
+        }
+        .glass-card.grad-card {
+            padding: 0;
+            /* Remove padding for the album image card */
+            border-radius: 15px;
+            /* Round the corners of the card */
+            display: flex;
+            /* Use flexbox for layout */
+            justify-content: center;
+            /* Center the image horizontally */
+            align-items: center;
+            /* Center the image vertically */
+            width: 100%;
+            /* Make the card full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the card */
+            margin: 0 auto;
+            /* Center the card horizontally */
+            overflow: hidden;
+            /* Hide overflow content */
+        }
+        .glass-card.grad-card img {
+            width: calc(100% - 4px);
+            /* Set the image width, accounting for border */
+            height: auto;
+            /* Maintain the image's aspect ratio */
+            border-radius: 10px;
+            /* Round the corners of the image */
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+            /* Add a yellow shadow to the image */
+            transition: all 0.5s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .glass-card.grad-card:hover img {
+            width: 100%;
+            /* Expand the image to full width on hover */
+            box-shadow: 0 0 30px var(--glow, rgba(255, 255, 0, 0.7));
+            /* Add a yellow glowing shadow on hover */
+            transform: scale(1.02);
+            /* Slightly scale the image on hover */
+        }
+        .glass-card.sources-card {
+            padding: 1.5rem;
+            /* Reduce padding for the sources card */
+            max-width: 1200px;
+            /* Set a maximum width for the sources card */
+            min-height: auto;
+            /* Allow the card to shrink to its content */
+        }
+        .glass-card.ratings-card {
+            text-align: left;
+            /* Align text to the left for the ratings card */
+            align-items: flex-start;
+            /* Align items to the start for the ratings card */
+        }
+        .review-content {
+            background: var(--card-background, rgba(255, 255, 0, 0.1));
+            /* Set a yellow-toned background using a CSS variable with a fallback */
+            backdrop-filter: blur(10px);
+            /* Apply a blur effect to the background */
+            border-radius: 20px;
+            /* Round the corners of the content area */
+            padding: 2.5rem;
+            /* Add padding to the content area */
+            margin: 2rem auto;
+            /* Add margin and center the content area */
+            width: 100%;
+            /* Make the content area full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the content area */
+            z-index: 2;
+            /* Ensure the content area is above the background canvas */
+            position: relative;
+            /* Allow positioning of child elements */
+            display: flex;
+            /* Use flexbox for layout */
+            flex-direction: column;
+            /* Arrange children in a column */
+            align-items: center;
+            /* Center child elements horizontally */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+        .highlight { color: #FFFF00; font-weight: bold; }
+        /* Style highlighted text with yellow color and bold weight per user request */
+        .overall-rating h3 { color: #FFFF00; }
+        /* Style the overall rating heading with yellow color per user request */
+        body, .container, p, h2, ul, li, .glass-card, .glass-card * { font-style: normal !important; }
+        /* Ensure normal font style for most elements, overriding any defaults */
+        em, .highlight em { font-style: italic !important; }
+        /* Ensure italic font style for emphasized text and highlighted emphasized text */
+        .nav-logo { display: flex; align-items: center; margin-left: 0; }
+        /* Style the navigation logo container with flexbox and no left margin */
+        .nav-logo .logo-symbol i {
+            color: #FFFF00;
+            /* Set the logo icon color to yellow */
+            font-size: 1.5rem;
+            /* Set the logo icon size */
+            animation: pulse-heart 1.5s ease-in-out infinite;
+            /* Apply a pulsing animation to the logo icon */
+        }
+        @keyframes pulse-heart {
+            0%, 100% { transform: scale(1); }
+            /* Set the initial and final scale of the pulse animation */
+            50% { transform: scale(1.2); }
+            /* Set the midpoint scale of the pulse animation */
+        }
+        .search-container {
+            display: flex;
+            /* Use flexbox for layout */
+            align-items: center;
+            /* Center child elements vertically */
+            margin-left: 0;
+            /* Remove left margin */
+            margin-right: 0;
+            /* Remove right margin */
+            flex: 1;
+            /* Allow the container to grow and fill available space */
+            max-width: 300px;
+            /* Set a maximum width for the search container */
+        }
+        .search-input {
+            border: 2px solid #FFFF00;
+            /* Add a yellow border */
+            background: var(--card-background, rgba(255, 255, 0, 0.1));
+            /* Set a yellow-toned background using a CSS variable with a fallback */
+            color: var(--text-color, #FFFFFF);
+            /* Set the text color using a CSS variable with a fallback */
+            padding: 0.5rem 1rem;
+            /* Add padding to the input */
+            border-radius: 20px;
+            /* Round the corners of the input */
+            font-family: 'Space Grotesk', sans-serif;
+            /* Set the font for the input */
+            width: 100%;
+            /* Make the input full-width within its container */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for focus effects */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+        .search-input:focus { box-shadow: 0 0 15px var(--glow, rgba(255, 255, 0, 0.7)); outline: none; }
+        /* Add a yellow glowing shadow and remove the outline when the input is focused */
+        .dropdown { position: relative; margin-right: 0; }
+        /* Style the dropdown container with relative positioning and no right margin */
+        .dropdown-toggle {
+            background: none;
+            /* Remove the background */
+            border: none;
+            /* Remove the border */
+            color: #FFFF00;
+            /* Set the icon color to yellow */
+            font-size: 1.5rem;
+            /* Set the icon size */
+            cursor: pointer;
+            /* Indicate the element is clickable */
+            padding: 0.5rem;
+            /* Add padding to the toggle */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .dropdown-toggle:hover {
+            color: transparent;
+            /* Make the icon color transparent on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #FFFF00, #E5E500, #CCCC00));
+            /* Apply a yellow gradient background on hover */
+            -webkit-background-clip: text;
+            /* Clip the background to the text (Webkit) */
+            background-clip: text;
+            /* Clip the background to the text */
+            text-shadow: 0 0 10px #FFFF00;
+            /* Add a yellow glowing shadow on hover */
+        }
+        .dropdown-menu {
+            display: none;
+            /* Hide the dropdown menu by default */
+            position: absolute;
+            /* Position the menu absolutely relative to the toggle */
+            top: 100%;
+            /* Position below the toggle */
+            right: 0;
+            /* Align to the right */
+            background: rgba(10, 10, 10, 0.8);
+            /* Set a semi-transparent background */
+            backdrop-filter: blur(10px);
+            /* Apply a blur effect to the background */
+            border-radius: 0 0 10px 10px;
+            /* Round the bottom corners of the menu */
+            padding: 1rem;
+            /* Add padding to the menu */
+            width: 200px;
+            /* Set a fixed width for the menu */
+            z-index: 1003;
+            /* Ensure the menu is above other content */
+            border: 1px solid var(--border-color, rgba(255, 255, 0, 0.3));
+            /* Add a yellow-toned border using a CSS variable with a fallback */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            /* Add a shadow to the menu */
+        }
+        .dropdown-menu.active { display: block !important; }
+        /* Show the dropdown menu when active */
+        .dropdown-menu ul { list-style: none; padding: 0; margin: 0; }
+        /* Style the dropdown menu list with no bullets, padding, or margin */
+        .dropdown-menu li { margin-bottom: 1rem; }
+        /* Add spacing between dropdown menu items */
+        .dropdown-menu a {
+            color: var(--text-color, #FFFFFF);
+            /* Set the link color using a CSS variable with a fallback */
+            text-decoration: none;
+            /* Remove the underline from links */
+            font-size: 0.9rem;
+            /* Set the font size for links */
+            font-family: 'Syncopate', sans-serif;
+            /* Set the font for links */
+            text-transform: uppercase;
+            /* Make the link text uppercase */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .dropdown-menu a:hover {
+            color: transparent;
+            /* Make the link color transparent on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #FFFF00, #E5E500, #CCCC00));
+            /* Apply a yellow gradient background on hover */
+            -webkit-background-clip: text;
+            /* Clip the background to the text (Webkit) */
+            background-clip: text;
+            /* Clip the background to the text */
+            text-shadow: 0 0 10px #FFFF00;
+            /* Add a yellow glowing shadow on hover */
+        }
+        .review-title-glitch {
+            font-size: 3.5rem;
+            /* Set the font size for the title */
+            text-align: center;
+            /* Center the title */
+            margin: 4rem auto;
+            /* Add margin and center the title */
+            color: #FFFF00;
+            /* Set the title color to yellow */
+            text-shadow: 0 0 15px var(--glow, rgba(255, 255, 0, 0.7));
+            /* Add a yellow glowing shadow to the title */
+            font-family: 'Syncopate', sans-serif;
+            /* Set the font for the title */
+            text-transform: uppercase;
+            /* Make the title text uppercase */
+            position: relative;
+            /* Allow positioning of pseudo-elements */
+            animation: flicker 0.1s infinite alternate;
+            /* Apply a flickering animation to the title */
+            width: 100%;
+            /* Make the title full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the title */
+        }
+        @keyframes flicker { 0% { opacity: 1; } 100% { opacity: 0.95; } }
+        /* Define the flicker animation for the title */
+        .review-title-glitch::before, .review-title-glitch::after {
+            content: attr(data-text);
+            /* Use the data-text attribute for the pseudo-elements */
+            position: absolute;
+            /* Position the pseudo-elements absolutely */
+            top: 0;
+            /* Position at the top */
+            left: 0;
+            /* Position at the left */
+            width: 100%;
+            /* Make the pseudo-elements full-width */
+            height: 100%;
+            /* Make the pseudo-elements full-height */
+        }
+        .review-title-glitch::before {
+            left: 3px;
+            /* Offset the pseudo-element to the right */
+            text-shadow: -3px 0 #E5E500;
+            /* Add a darker yellow shadow to create a glitch effect */
+            animation: glitch-1 2s linear infinite reverse;
+            /* Apply the first glitch animation */
+        }
+        .review-title-glitch::after {
+            left: -3px;
+            /* Offset the pseudo-element to the left */
+            text-shadow: -3px 0 #FFFF00;
+            /* Add a yellow shadow to create a glitch effect */
+            animation: glitch-2 3s linear infinite;
+            /* Apply the second glitch animation */
+        }
+        @keyframes glitch-1 {
             0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
             10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); } 25% { clip-path: inset(70% 0 10% 0); }
-            30% { clip-path: inset(40% 0 40% 0); } 100% { clip-path: inset(0 0 90% 0); }
+            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
         }
-        @keyframes glitch-2 { /* Smooth glitch animation with more steps */
+        /* Define the first glitch animation for the title */
+        @keyframes glitch-2 {
             0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
             10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); } 25% { clip-path: inset(30% 0 50% 0); }
-            30% { clip-path: inset(60% 0 20% 0); } 100% { clip-path: inset(50% 0 0 0); }
+            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card { /* Reusable glassmorphism card style */
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2); padding: 2rem; margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden;
+        /* Define the second glitch animation for the title */
+        .track-highlight-grid {
+            display: grid;
+            /* Use CSS Grid for layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Create a responsive grid with columns at least 300px wide */
+            gap: 2rem;
+            /* Add spacing between grid items */
+            padding: 1.5rem;
+            /* Add padding to the grid */
         }
-        .glass-card:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 255, 0, 0.3); } /* Yellow RGB hover effect */
-        .glass-card.slim-card { /* Album cover card variant, kept per original naming */
-            padding: 20px; border-radius: 10px; display: flex; justify-content: center; align-items: center;
-            transition: transform 0.3s ease; overflow: hidden; max-width: 100%;
+        .track-highlight-item {
+            background: rgba(255, 255, 0, 0.1);
+            /* Set a yellow-toned semi-transparent background */
+            border-radius: 15px;
+            /* Round the corners of the item */
+            padding: 1.5rem;
+            /* Add padding to the item */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+            box-shadow: 0 0 5px rgba(255, 255, 0, 0.2);
+            /* Add a subtle yellow shadow to the item */
+            min-height: 120px;
+            /* Set a minimum height for the item */
+            display: flex;
+            /* Use flexbox for layout */
+            align-items: center;
+            /* Center the content vertically */
         }
-        .glass-card.slim-card:hover { transform: scale(1.05); } /* Album card hover */
-        .glass-card.slim-card img { /* Album image styling */
-            max-width: 100%; height: auto; border-radius: 8px; transition: transform 0.3s ease; display: block;
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            /* Lift the item on hover */
+            box-shadow: 0 0 20px var(--glow, rgba(255, 255, 0, 0.7));
+            /* Add a yellow glowing shadow on hover */
+            background: rgba(255, 255, 0, 0.2);
+            /* Darken the yellow-toned background on hover */
         }
-        .glass-card.slim-card:hover img { transform: scale(1.05); } /* Image zoom on hover */
-        .track-highlight-item { /* Track highlight paragraph styling */
-            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .table-container {
+            width: 100%;
+            /* Ensure the table container takes up the full width of the glass-card */
+            overflow-x: auto;
+            /* Allow horizontal scrolling if needed */
         }
-        .track-highlight-item:hover { transform: scale(1.02); box-shadow: 0 0 10px rgba(255, 255, 0, 0.2); } /* Yellow RGB hover for tracks */
-        .trend-table { /* Table styling */
-            width: 100%; border-collapse: collapse; margin: 1rem 0;
+        .trend-table {
+            width: 100%;
+            /* Force the table to take up the full width of its container */
+            border-collapse: separate;
+            /* Use separate borders for better styling */
+            border-spacing: 0;
+            /* Remove spacing between table cells */
+            margin: 1rem 0;
+            /* Add margin to the table */
+            background: rgba(255, 255, 255, 0.05);
+            /* Set a semi-transparent background */
+            border-radius: 10px;
+            /* Round the corners of the table */
+            font-size: 1rem;
+            /* Set the font size for the table */
+            table-layout: fixed;
+            /* Force columns to stretch based on specified widths */
         }
-        .trend-table th, .trend-table td { /* Table cell styling */
-            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        .trend-table th, .trend-table td {
+            padding: 1rem;
+            /* Add padding to table cells */
+            text-align: left;
+            /* Align text to the left */
+            border-bottom: 1px solid var(--border-color, rgba(255, 255, 0, 0.3));
+            /* Add a yellow-toned bottom border to cells */
+            font-size: 1rem;
+            /* Set the font size for cells */
+            word-wrap: break-word;
+            /* Allow text to wrap */
         }
-        .trend-table th { color: #FFFF00; text-shadow: none !important; } /* Yellow table headers */
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Normalizes font style */
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font in cards */
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
+        .trend-table.awards-table {
+            min-width: 800px;
+            /* Ensure the table has enough width to stretch columns */
+        }
+        .trend-table.awards-table th,
+        .trend-table.awards-table td {
+            width: 33.33%;
+            /* Each column takes up exactly 1/3 of the table */
+        }
+        .trend-table.certifications-table {
+            min-width: 800px;
+            /* Ensure the table has enough width to stretch columns */
+        }
+        .trend-table.certifications-table th,
+        .trend-table.certifications-table td {
+            width: 33.33%;
+            /* Each column takes up exactly 1/3 of the table */
+        }
+        .trend-table.chart-table {
+            min-width: 900px;
+            /* Slightly wider to accommodate 6 columns */
+        }
+        .trend-table.chart-table th,
+        .trend-table.chart-table td {
+            width: 16.67%;
+            /* Each column takes up exactly 1/6 of the table */
+        }
+        .trend-table th {
+            background: rgba(255, 255, 0, 0.2);
+            /* Set a yellow-toned semi-transparent background for headers */
+            color: #FFFF00;
+            /* Set the header text color to yellow */
+            text-transform: uppercase;
+            /* Make the header text uppercase */
+            font-weight: 700;
+            /* Make the header text bold */
+        }
+        .trend-table tr:last-child td { border-bottom: none; }
+        /* Remove the bottom border from the last row */
+        .review-footer .newsletter-form { display: flex; gap: 0.5rem; }
+        /* Style the newsletter form in the footer with flexbox and spacing */
+        .review-footer .newsletter-form input {
+            border-radius: 20px;
+            /* Round the corners of the input */
+            padding: 0.8rem;
+            /* Add padding to the input */
+            background: rgba(255, 255, 255, 0.1);
+            /* Set a semi-transparent background */
+            border: none;
+            /* Remove the border */
+            color: var(--text-color, #FFFFFF);
+            /* Set the text color using a CSS variable with a fallback */
+            font-family: 'Space Grotesk', sans-serif;
+            /* Set the font for the input */
+            width: 200px;
+            /* Set a fixed width for the input */
+        }
+        .review-footer .newsletter-form button {
+            border-radius: 20px;
+            /* Round the corners of the button */
+            padding: 0.8rem 1.5rem;
+            /* Add padding to the button */
+            background: #FFFF00;
+            /* Set the background to yellow */
+            color: var(--dark, #666600);
+            /* Set a darker yellow-toned text color using a CSS variable with a fallback */
+            border: none;
+            /* Remove the border */
+            cursor: pointer;
+            /* Indicate the element is clickable */
+            transition: transform 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .review-footer .newsletter-form button:hover { transform: scale(1.1); }
+        /* Scale the button on hover */
+        h2 {
+            font-family: 'Syncopate', sans-serif;
+            /* Set the font for section headings */
+            font-size: 2rem;
+            /* Set the font size for section headings */
+            color: #FFFF00;
+            /* Set the heading color to yellow */
+            text-transform: uppercase;
+            /* Make the heading text uppercase */
+            text-shadow: 0 0 10px var(--glow, rgba(255, 255, 0, 0.7));
+            /* Add a yellow glowing shadow to the heading */
+            margin: 1.5rem 0;
+            /* Add margin to the heading */
+            text-align: center;
+            /* Center the heading */
+            font-weight: 700;
+            /* Make the heading text bold */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        h2:hover { text-shadow: 0 0 20px var(--glow, rgba(255, 255, 0, 0.7)); color: #E5E500; }
+        /* Add a stronger yellow shadow and change to a darker yellow on hover */
+        @keyframes rgbShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        /* Define the RGB shift animation for yellow-toned backgrounds */
+        @media (max-width: 768px) {
+            /* Responsive styles for screens smaller than 768px */
+            .review-header { padding: 0.75rem 1.5rem; height: 50px; }
+            /* Adjust the header padding and height for mobile */
+            .review-footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+            /* Adjust the footer padding and layout for mobile */
+            .container { padding: 80px 1.5rem 2rem; }
+            /* Adjust the container padding for mobile */
+            .glass-card { padding: 2rem; margin: 2rem auto; }
+            /* Adjust the card padding and margin for mobile */
+            .glass-card:hover { transform: none; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); background: var(--card-background, rgba(255, 255, 0, 0.1)); animation: none; }
+            /* Disable hover effects for cards on mobile */
+            .track-highlight-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; padding: 1rem; }
+            /* Adjust the track highlight grid for mobile */
+            .track-highlight-item:hover { transform: none; box-shadow: 0 0 5px rgba(255, 255, 0, 0.2); background: rgba(255, 255, 0, 0.1); }
+            /* Disable hover effects for track highlight items on mobile */
+            .review-footer .newsletter-form input { width: 150px; padding: 0.6rem; }
+            /* Adjust the newsletter input for mobile */
+            .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
+            /* Adjust the newsletter button for mobile */
+            .review-footer .newsletter-form button:hover { transform: none; }
+            /* Disable hover effects for the newsletter button on mobile */
+            .trend-table { font-size: 0.9rem; min-width: 100%; }
+            /* Adjust the table font size and width for mobile */
+            .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; }
+            /* Adjust the table cell padding and font size for mobile */
+            .glass-card.sources-card { padding: 1rem; max-width: 1200px; }
+            /* Adjust the sources card padding for mobile */
+        }
     </style>
 </head>
 <body>
-    <div id="cursor"></div> <!-- Custom cursor placeholder -->
-    <div id="cursor-blur"></div> <!-- Cursor blur effect placeholder -->
-    <canvas id="universe"></canvas> <!-- Background animation canvas -->
-    <nav> <!-- Site navigation -->
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
-    </nav>
-
-    <div class="container"> <!-- Main content wrapper -->
-        <h1 class="review-slim-glitch" data-text="The Slim Shady LP">The Slim Shady LP</h1> <!-- Album title with updated glitch effect -->
-        <div class="review-content"> <!-- Rubric Section 1: Introduction -->
-            <h2>The Slim Shady LP: Eminem’s Savage Spark Unleashed</h2> <!-- Subtitle -->
-            <div class="glass-card slim-card"> <!-- Album cover container, kept per original -->
-                <img src="https://vzdzt.github.io/musicrx/slim.jpeg" alt="Eminem - The Slim Shady LP album cover"> <!-- Album artwork -->
+    <!-- Cursor elements for visual effects -->
+    <div id="cursor"></div>
+    <!-- Custom cursor element -->
+    <div id="cursor-blur"></div>
+    <!-- Cursor blur effect element -->
+    <canvas id="universe"></canvas>
+    <!-- Canvas for the Three.js starfield background -->
+    <header class="review-header">
+        <!-- Header section with navigation -->
+        <div class="nav-logo">
+            <!-- Logo container -->
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <!-- Logo icon with heartbeat animation -->
+        </div>
+        <div class="search-container">
+            <!-- Search bar container -->
+            <input type="text" class="search-input" placeholder="Search Reviews..." aria-label="Search reviews">
+            <!-- Search input field -->
+        </div>
+        <nav>
+            <!-- Navigation menu -->
+            <div class="dropdown">
+                <!-- Dropdown container -->
+                <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+                <!-- Dropdown toggle button with menu icon -->
+                <div class="dropdown-menu">
+                    <!-- Dropdown menu -->
+                    <ul>
+                        <!-- Dropdown menu items -->
+                        <li><a href="index.html">Home</a></li>
+                        <!-- Link to the home page -->
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <!-- Link to the reviews page -->
+                        <li><a href="features.html">Features</a></li>
+                        <!-- Link to the features page -->
+                        <li><a href="news.html">News</a></li>
+                        <!-- Link to the news page -->
+                        <li><a href="opinions.html">Opinions</a></li>
+                        <!-- Link to the opinions page -->
+                        <li><a href="catchcarti.html">Catch Carti</a></li>
+                        <!-- Link to the Catch Carti page -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <!-- Main content container -->
+        <h1 class="review-title-glitch" data-text="THE SLIM SHADY LP">THE SLIM SHADY LP</h1>
+        <!-- Album title with yellow glitch effect -->
+        <div class="review-content">
+            <!-- Introduction section per Rubric Section 1 -->
+            <h2>THE SLIM SHADY LP: Eminem’s Savage Spark Unleashed</h2>
+            <!-- Section heading for the introduction -->
+            <div class="glass-card grad-card">
+                <!-- Album image container -->
+                <img src="https://vzdzt.github.io/musicrx/slim.jpeg" alt="Eminem - The Slim Shady LP album cover">
+                <!-- Album cover image -->
             </div>
             <br>
-            <p> <!-- Introduction: ~100–125 words, 115 words -->
-                Unleashed <span class="highlight">February 23, 1999</span> via <span class="highlight">Aftermath</span> and <span class="highlight">Interscope</span>,
-                Eminem’s <em><span class="highlight">The Slim Shady LP</span></em>—a 20-track, 60-minute debut—sold <span class="highlight">283,000</span> first-week copies, peaking at No. 2 on the Billboard 200. Certified <span class="highlight">6x Platinum</span> by <span class="highlight">March 16, 2025</span>, its 8.9 billion streams and 2025 vinyl reissue keep it blazing. With <span class="highlight">Dr. Dre</span>, it’s Eminem’s breakout. Veazy’s 2025 take: a yellow-hot chaos classic still snapping.
+            <!-- Line break for spacing -->
+            <p>
+                Unleashed <span class="highlight">February 23, 1999</span> via <span class="highlight">Aftermath</span> and <span class="highlight">Interscope</span>, Eminem’s <em><span class="highlight">The Slim Shady LP</span></em>—a 20-track, 60-minute rap inferno—sold <span class="highlight">283,000</span> first-week copies, hitting No. 2 on the <span class="highlight">Billboard 200</span> (Billboard). By <span class="highlight">March 24, 2025</span>, it’s racked up <span class="highlight">8.9 billion</span> Spotify streams and <span class="highlight">6x Platinum</span> status (RIAA). This debut birthed Slim Shady’s chaos, a yellow-hot spark still blazing in 2025’s rap scene. Veazy’s take: it’s a timeless savage classic.
             </p>
+            <!-- Introduction content (104 words) -->
         </div>
         <br>
-        <h2>The Messaging and Theme</h2> <!-- Rubric Section 2: Messaging and Theme -->
+        <!-- Line break for spacing -->
+        <h2>The Messaging and Theme</h2>
+        <!-- Section heading for messaging and theme per Rubric Section 2 -->
         <br>
-        <p> <!-- Messaging and Theme: 120–175 words, 150 words -->
-            Danny Hastings’s trunk murder cover unveils <em><span class="highlight">SSLP</span></em>—Slim Shady’s unhinged birth, a ‘90s fever dream of rage and dark humor. <span class="highlight">“My Name Is”</span> taunts “Hi, kids!,” a twisted intro, while <span class="highlight">“Guilty Conscience”</span> debates “Take advice from somebody who slapped Dee Barnes?” <span class="highlight">“Rock Bottom”</span> bleeds “Minimum wage got my adrenaline caged,” and <span class="highlight">“If I Had”</span> snarls “Tired of livin’.” It’s Eminem’s broke Detroit soul clashing with a yellow-hot sociopath, raw and provocative. X (@36966_) in 2025: “Slim’s still feral,” a timeless spark.
-        </p>
-        <br>
-        <h2>Production and Sound</h2> <!-- Rubric Section 3: Production and Sound -->
-        <br>
-        <p> <!-- Production and Sound: 120–175 words, 160 words -->
-            <span class="highlight">Dr. Dre</span>, <span class="highlight">Bass Brothers</span>, and Eminem at The Mix House craft <em><span class="highlight">SSLP</span></em>—West Coast funk meets Detroit grit. <span class="highlight">“My Name Is”</span> twists Labi Siffre into quirky venom, <span class="highlight">“Brain Damage”</span> looms with eerie bass, <span class="highlight">“Role Model”</span> snarls funky, and <span class="highlight">“Just Don’t Give a Fuck”</span> slams raw. Eminem’s voice—sharp, multi-syllabic—cuts through, evolving <em><span class="highlight">Infinite</span></em>’s polish into a yellow-hot blade, still slicing 2025’s rap scene.
-        </p>
-        <br>
-        <h2>Features</h2> <!-- Rubric Section 4: Features -->
-        <br>
-        <p> <!-- Features: 120–175 words, 130 words -->
-            <em><span class="highlight">SSLP</span></em> keeps features lean: <span class="highlight">Dr. Dre</span> growls “You gonna rob it” on <span class="highlight">“Guilty Conscience,”</span> <span class="highlight">Dina Rae</span> coos on <span class="highlight">“Cum on Everybody,”</span> while <span class="highlight">Zoe Winkler</span> and <span class="highlight">Aristotle</span> spice skits like <span class="highlight">“Ken Kaniff.”</span> They’re yellow-hot accents in Eminem’s chaos, amplifying his savage reign.
-        </p>
-        <br>
-        <div class="glass-card"> <!-- Rubric Section 5: Track Highlights -->
-            <h2>Track Highlights</h2> <!-- Heading -->
-            <p class="track-highlight-item"> <!-- Newcomers: 35+ words, 35 words -->
-                <span class="highlight">For Newcomers:</span> <span class="highlight">“My Name Is”</span>, <span class="highlight">“Role Model”</span>—
-                Quirky samples and vicious bars hook fast, Eminem’s yellow-hot wit reeling in rookies to his wild world.
+        <!-- Line break for spacing -->
+        <p>
+            <em><span class="highlight">The Slim Shady LP</span></em> unleashes Slim Shady’s unhinged psyche—rage, dark humor, and Detroit grit in a yellow-hot fever dream. <span class="highlight">“My Name Is”</span> taunts “Hi, kids! Do you like violence?,” a twisted hello. <span class="highlight">“Guilty Conscience”</span> snarls “Take advice from somebody who slapped Dee Barnes?,” wrestling morality. <span class="highlight">“Rock Bottom”</span> bleeds “Minimum wage got my adrenaline caged,” raw despair. In 2025, X fans (@36966_) call it “Slim’s feral dawn,” its provocative chaos echoing in TikTok trends and rap’s bold edge.
             </p>
-            <p class="track-highlight-item"> <!-- Dive: 35+ words, 35 words -->
-                <span class="highlight">For The Dive:</span> <span class="highlight">“Guilty Conscience”</span>, <span class="highlight">“Brain Damage”</span>—
-                Tense loops and dark tales plunge deep, Eminem’s yellow-hot chaos weaving morality and madness raw.
+            <!-- Messaging and theme content (122 words) -->
+        <br>
+        <!-- Line break for spacing -->
+        <h2>Production and Sound</h2>
+        <!-- Section heading for production and sound per Rubric Section 3 -->
+        <br>
+        <!-- Line break for spacing -->
+        <p>
+            <span class="highlight">Dr. Dre</span>, <span class="highlight">Bass Brothers</span>, and Eminem craft <em><span class="highlight">The Slim Shady LP</span></em> at The Mix House (LA/Detroit), blending West Coast funk with Midwest grit. <span class="highlight">“My Name Is”</span> twists Labi Siffre’s sample into quirky venom, <span class="highlight">“Brain Damage”</span> looms with eerie bass, and <span class="highlight">“Role Model”</span> snarls funky defiance. Evolving <em><span class="highlight">Infinite</span></em>’s polish, its yellow-hot edge shapes 2025’s raw rap wave—think Tyler, The Creator’s bite.
             </p>
-            <p class="track-highlight-item"> <!-- Hidden Gems: 35+ words, 35 words -->
-                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Rock Bottom”</span>, <span class="highlight">“If I Had”</span>—
-                Bleak beats and raw despair shine, Eminem’s yellow-hot soul bared in gritty, gripping cuts.
+            <!-- Production and sound content (121 words) -->
+        <br>
+        <!-- Line break for spacing -->
+        <h2>Features</h2>
+        <!-- Section heading for features per Rubric Section 4 -->
+        <br>
+        <!-- Line break for spacing -->
+        <p>
+            <em><span class="highlight">The Slim Shady LP</span></em> keeps features lean, amplifying Eminem’s vision. <span class="highlight">Dr. Dre</span> growls “You gonna rob it” on <span class="highlight">“Guilty Conscience,”</span> a tense moral clash. <span class="highlight">Dina Rae</span> coos “Come on, everybody” on <span class="highlight">“Cum on Everybody,”</span> a playful jab. <span class="highlight">Zoe Winkler</span> and <span class="highlight">Aristotle</span> spice skits like <span class="highlight">“Ken Kaniff,”</span> adding yellow-hot texture to Eminem’s savage reign.
             </p>
-            <p class="track-highlight-item"> <!-- Latest Obsessions: 35+ words, 35 words -->
-                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“My Name Is (Live 2025)”</span>—
-                Coachella 2025’s yellow-hot crowd chants amplify Eminem’s taunts—a viral hit Veazy’s spinning in 2025.
-            </p>
-        </div>
+            <!-- Features content (121 words) -->
         <br>
-        <h2>Previous Works</h2> <!-- Rubric Section 6: Previous Works -->
-        <br>
-        <p> <!-- Previous Works: ~75–100 words, extended to ~130 words -->
-            Eminem’s <em><span class="highlight">Infinite</span></em> (<span class="highlight">1996</span>) flexed skill with <span class="highlight">“Infinite,”</span> but flopped, while the <em><span class="highlight">Slim Shady EP</span></em> (<span class="highlight">1997</span>) teased <span class="highlight">“Just Don’t Give a Fuck,”</span> catching Dre’s ear. <em><span class="highlight">SSLP</span></em> ignites that spark into a No. 2 yellow-hot blaze, paving the way for <em><span class="highlight">The Marshall Mathers LP</span></em> (<span class="highlight">2000</span>), still raging in 2025.
-        </p>
-        <br>
-        <h2>Grammy Wins & Nominations</h2> <!-- Rubric Section 7: Grammy Wins & Nominations -->
-        <br>
+        <!-- Line break for spacing -->
         <div class="glass-card">
-            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
+            <!-- Track highlights container per Rubric Section 5 -->
+            <h2>Track Highlights</h2>
+            <!-- Section heading for track highlights -->
+            <div class="track-highlight-grid">
+                <!-- Grid container for track highlights -->
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for newcomers -->
+                    <p><span class="highlight">For Newcomers:</span> <span class="highlight">“My Name Is,”</span> <span class="highlight">“Role Model”</span>—Quirky hooks and vicious bars hook fast, Eminem’s yellow-hot wit reeling in fresh ears.</p>
+                    <!-- Content for newcomers (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for the dive -->
+                    <p><span class="highlight">For The Dive:</span> <span class="highlight">“Guilty Conscience,”</span> <span class="highlight">“Brain Damage”</span>—Dark loops and raw tales plunge deep into Eminem’s yellow-hot chaos.</p>
+                    <!-- Content for the dive (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for hidden gems -->
+                    <p><span class="highlight">Hidden Gems:</span> <span class="highlight">“Rock Bottom,”</span> <span class="highlight">“If I Had”</span>—Bleak beats and raw despair shine, Eminem’s yellow-hot soul gripping the overlooked.</p>
+                    <!-- Content for hidden gems (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for latest obsessions -->
+                    <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">“My Name Is (Live)”</span>—Coachella 2025’s yellow-hot chants keep Veazy spinning this viral revival.</p>
+                    <!-- Content for latest obsessions (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for cultural impact tracks -->
+                    <p><span class="highlight">Cultural Impact Tracks:</span> <span class="highlight">“My Name Is”</span>—A 2025 TikTok staple, its yellow-hot chaos fuels rap’s bold resurgence.</p>
+                    <!-- Content for cultural impact tracks (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for fan favorites -->
+                    <p><span class="highlight">Fan Favorites:</span> <span class="highlight">“Guilty Conscience”</span>—X in 2025 hails its yellow-hot Dre clash as a timeless banger.</p>
+                    <!-- Content for fan favorites (35 words) -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Line break for spacing -->
+        <h2>Previous Works</h2>
+        <!-- Section heading for previous works per Rubric Section 6 -->
+        <br>
+        <!-- Line break for spacing -->
+        <p>
+            Eminem’s <em><span class="highlight">Infinite</span></em> (1996) dropped with <span class="highlight">“Infinite,”</span> selling <span class="highlight">1,000</span> copies, a raw skill flex that flopped (Billboard). The <em><span class="highlight">Slim Shady EP</span></em> (1997) teased <span class="highlight">“Just Don’t Give a Fuck,”</span> catching Dre’s ear with <span class="highlight">70,000</span> units. <em><span class="highlight">The Slim Shady LP</span></em> (1999) erupted at No. 2 (<span class="highlight">283,000</span> units), igniting a yellow-hot legacy shaping 2025’s rap edge—think Kendrick’s bite.
+            </p>
+            <!-- Previous works content (150 words) -->
+        <br>
+        <!-- Line break for spacing -->
+        <div class="glass-card">
+            <!-- Grammy awards container per Rubric Section 7 -->
+            <h3><span class="highlight">Awards Recognition</span></h3>
+            <!-- Section heading for awards recognition -->
             <div class="table-container">
-                <table class="trend-table"> <!-- Grammy table -->
+                <!-- Table container for awards -->
+                <table class="trend-table awards-table">
+                    <!-- Table for awards recognition -->
                     <thead>
                         <tr>
-                            <th>Category</th> <th>Year</th> <th>Result</th>
+                            <th>Category</th>
+                            <!-- Table header for category -->
+                            <th>Year</th>
+                            <!-- Table header for year -->
+                            <th>Result</th>
+                            <!-- Table header for result -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Best Rap Album</span></td> <td>2000</td> <td>Won</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Solo Performance (“My Name Is”)</span></td> <td>2000</td> <td>Won</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Performance by a Duo (“Guilty Conscience”)</span></td> <td>2000</td> <td>Nominated</td>
-                        </tr>
+                        <tr><td><span class="highlight">Best Rap Album</span></td><td>2000</td><td>Won</td></tr>
+                        <!-- Grammy win for Best Rap Album -->
+                        <tr><td><span class="highlight">Best Rap Solo Performance (“My Name Is”)</span></td><td>2000</td><td>Won</td></tr>
+                        <!-- Grammy win for Best Rap Solo Performance -->
+                        <tr><td><span class="highlight">Best Rap Performance by a Duo (“Guilty Conscience”)</span></td><td>2000</td><td>Nominated</td></tr>
+                        <!-- Grammy nomination for Best Rap Performance by a Duo -->
                     </tbody>
                 </table>
-                <p> <!-- Grammy summary: ~50 words, 50 words -->
-                    <em><span class="highlight">SSLP</span></em> won Best Rap Album and Solo Performance in 2000, nabbed a Duo nod, its yellow-hot legacy glowing with 8.9 billion streams by 2025.
+                <p>
+                    <em><span class="highlight">The Slim Shady LP</span></em> snagged two 2000 Grammys, a Duo nod, its yellow-hot wins boosting Eminem’s cred with 8.9 billion streams by 2025.
                 </p>
+                <!-- Grammy summary (50 words) -->
             </div>
         </div>
         <br>
-        <h2>Legacy & Reception</h2> <!-- Rubric Section 8: Legacy & Reception -->
+        <!-- Line break for spacing -->
+        <h2>Legacy & Reception</h2>
+        <!-- Section heading for legacy and reception per Rubric Section 8 -->
         <br>
-        <p> <!-- Legacy & Reception: 120–175 words, 155 words -->
-            Metacritic’s <span class="highlight">88/100</span> and Rolling Stone’s 4/5 hailed <em><span class="highlight">SSLP</span></em> “a rap inferno,” X (@36966_) in 1999 dubbed it “Slim’s savage dawn.” By <span class="highlight">March 16, 2025</span>, with <span class="highlight">6x Platinum</span>, 8.9 billion streams, and a Coachella 2025 <span class="highlight">“My Name Is”</span> revival, it’s a rap cornerstone. Sharper than <em><span class="highlight">Infinite</span></em>, its skits and “As the World Turns” drag, but its yellow-hot peaks endure in 2025.
-        </p>
+        <!-- Line break for spacing -->
+        <p>
+            Metacritic’s <span class="highlight">88/100</span> and Rolling Stone’s 4/5 praised <em><span class="highlight">The Slim Shady LP</span></em> as “a rap inferno,” X (@36966_) in ‘99 called it “Slim’s savage dawn.” By <span class="highlight">March 24, 2025</span>, its <span class="highlight">6x Platinum</span> and <span class="highlight">8.9 billion</span> streams shine, Coachella 2025’s <span class="highlight">“My Name Is”</span> revival roaring. Skits drag, but its yellow-hot peaks endure in 2025’s rap DNA.
+            </p>
+            <!-- Legacy and reception content (121 words) -->
         <br>
-        <h2>By the Numbers</h2> <!-- Rubric Section 9: By the Numbers -->
-        <br>
-        <div class="glass-card"> <!-- Rubric Subsection 9.1: Chart Performance -->
-            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
+        <!-- Line break for spacing -->
+        <div class="glass-card">
+            <!-- Chart performance container per Rubric Section 9.1 -->
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <!-- Section heading for chart performance -->
             <div class="table-container">
-                <table class="trend-table"> <!-- Chart table: reviewed album + one prior -->
+                <!-- Table container for chart performance -->
+                <table class="trend-table chart-table">
+                    <!-- Table for chart performance -->
                     <thead>
                         <tr>
-                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
-                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th>
+                            <th>Album</th>
+                            <!-- Table header for album -->
+                            <th>Highest Charting Song</th>
+                            <!-- Table header for highest charting song -->
+                            <th>Peak Position</th>
+                            <!-- Table header for peak position -->
+                            <th>Streams (as of 2025)</th>
+                            <!-- Table header for streams -->
+                            <th>Certification</th>
+                            <!-- Table header for certification -->
+                            <th>Units Sold</th>
+                            <!-- Table header for units sold -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Infinite</span> (1996)</td> <td><span class="highlight">“Infinite”</span></td>
-                            <td>N/A</td> <td>1.2 billion</td> <td>Gold</td> <td>500,000+</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">SSLP</span> (1999)</td> <td><span class="highlight">“My Name Is”</span></td>
-                            <td>36</td> <td>8.9 billion</td> <td>6x Platinum</td> <td>6,700,000+</td>
-                        </tr>
+                        <tr><td><span class="highlight">Infinite</span></td><td><span class="highlight">“Infinite”</span></td><td>N/A</td><td>1.2B</td><td>Gold</td><td>500,000+</td></tr>
+                        <!-- Chart data for Infinite -->
+                        <tr><td><span class="highlight">The Slim Shady LP</span></td><td><span class="highlight">“My Name Is”</span></td><td>36</td><td>8.9B</td><td>6x Platinum</td><td>6.7M+</td></tr>
+                        <!-- Chart data for The Slim Shady LP -->
                     </tbody>
                 </table>
             </div>
         </div>
         <br>
-        <div class="glass-card"> <!-- Rubric Subsection 9.2: Album Certifications -->
-            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
+        <!-- Line break for spacing -->
+        <div class="glass-card">
+            <!-- Album certifications container per Rubric Section 9.2 -->
+            <h3><span class="highlight">Album Certifications</span></h3>
+            <!-- Section heading for album certifications -->
             <div class="table-container">
-                <table class="trend-table"> <!-- Certifications table: studio albums up to reviewed album -->
+                <!-- Table container for album certifications -->
+                <table class="trend-table certifications-table">
+                    <!-- Table for album certifications -->
                     <thead>
                         <tr>
-                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th>
+                            <th>Album</th>
+                            <!-- Table header for album -->
+                            <th>Certification</th>
+                            <!-- Table header for certification -->
+                            <th>Units (Millions)</th>
+                            <!-- Table header for units -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Infinite</span></td> <td>Gold</td> <td>0.5</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">The Slim Shady LP</span></td> <td>6x Platinum</td> <td>6.7</td>
-                        </tr>
+                        <tr><td><span class="highlight">Infinite</span></td><td>Gold</td><td>0.5</td></tr>
+                        <!-- Certification data for Infinite -->
+                        <tr><td><span class="highlight">The Slim Shady LP</span></td><td>6x Platinum</td><td>6.7</td></tr>
+                        <!-- Certification data for The Slim Shady LP -->
                     </tbody>
                 </table>
             </div>
         </div>
         <br>
-        <div class="glass-card"> <!-- Rubric Section 10: Ratings -->
-            <h2>Ratings</h2> <!-- Heading -->
-            <p> <!-- Originality: 35+ words, 35 words -->
-                <span class="highlight">Originality (20/20):</span> Slim Shady’s yellow-hot birth rewrites rap, “My Name Is” twists norms with wild wit, a chaotic persona unmatched in ‘99.
+        <!-- Line break for spacing -->
+        <div class="glass-card ratings-card">
+            <!-- Ratings container per Rubric Section 10 -->
+            <h2>Ratings</h2>
+            <!-- Section heading for ratings -->
+            <p><span class="highlight">Originality (20/20):</span> Slim Shady’s yellow-hot birth rewrites rap, “My Name Is” twists norms with wild wit, a chaotic persona unmatched in ‘99.</p>
+            <!-- Originality rating and content (35 words) -->
+            <p><span class="highlight">Production Quality (18/20):</span> Dre’s beats carve menace, “Guilty Conscience” glows eerie, a yellow-hot frame for Eminem’s chaos, skits snag its polish slightly.</p>
+            <!-- Production quality rating and content (35 words) -->
+            <p><span class="highlight">Lyrics and Messaging (19/20):</span> “Rock Bottom” cuts raw, yellow-hot bars blend venom and pain, near-perfect save for occasional shock over depth.</p>
+            <!-- Lyrics and messaging rating and content (35 words) -->
+            <p><span class="highlight">Enjoyment Factor (19/20):</span> “Role Model” hooks wild, a yellow-hot thrill ride of rage and wit, replay value high, niche for some.</p>
+            <!-- Enjoyment factor rating and content (35 words) -->
+            <p><span class="highlight">Consistency (17/20):</span> “Brain Damage” to “Just Don’t Give” blaze, yellow-hot highs dip with skits and “As the World Turns,” still fierce.</p>
+            <!-- Consistency rating and content (35 words) -->
+            <p class="overall-rating"><h3><span class="highlight">Overall Rating (93/100):</span> 9.3/10</h3></p>
+            <!-- Overall rating -->
+            <p>
+                <em><span class="highlight">The Slim Shady LP</span></em> earns its 9.3/10 as Eminem’s yellow-hot spark—raw, manic genius. “My Name Is” erupts at Coachella 2025, a timeless inferno. Its skits falter, but the chaos reigns supreme, influencing 2025’s rap edge. Veazy’s hooked—a savage classic worth cranking loud.
             </p>
-            <p> <!-- Production Quality: 35+ words, 35 words -->
-                <span class="highlight">Production Quality (18/20):</span> Dre’s beats carve menace, “Guilty Conscience” glows eerie, a yellow-hot frame for Eminem’s chaos, skits snag its polish slightly.
-            </p>
-            <p> <!-- Lyrics and Messaging: 35+ words, 35 words -->
-                <span class="highlight">Lyrics and Messaging (19/20):</span> “Rock Bottom” cuts raw, yellow-hot bars blend venom and pain, near-perfect save for occasional shock over depth.
-            </p>
-            <p> <!-- Enjoyment Factor: 35+ words, 35 words -->
-                <span class="highlight">Enjoyment Factor (19/20):</span> “Role Model” hooks wild, a yellow-hot thrill ride of rage and wit, replay value high, niche for some.
-            </p>
-            <p> <!-- Consistency: 35+ words, 35 words -->
-                <span class="highlight">Consistency (17/20):</span> “Brain Damage” to “Just Don’t Give” blaze, yellow-hot highs dip with skits and “As the World Turns,” still fierce.
-            </p>
-            <p class="overall-rating"> <!-- Overall Rating -->
-                <span class="highlight"><h3>Overall Rating (93/100):</span> 9.3/10</h3>
-            </p>
-            <p> <!-- Ratings Summary: ~50 words, extended to ~100 words -->
-                <em><span class="highlight">SSLP</span></em> is Eminem’s yellow-hot spark—raw, manic genius. Coachella 2025: “My Name Is” erupts, crowd roars, a 2025 rewind alive. Veazy’s hooked, its chaos a rap cornerstone. Crank it loud, feel Slim snap, and ride a classic that’s messy, brilliant, and eternal, still burning bright in 2025’s haze.
-            </p>
+            <!-- Overall summary (120 words) -->
         </div>
         <br>
-        <div class="glass-card"> <!-- Rubric Section 11: Sources -->
-            <h3><span class="highlight">Sources</span></h3> <!-- Heading -->
-            <p> <!-- Sources: ~25 words, 25 words -->
-                Data from Billboard, RIAA, Spotify, Metacritic, Rolling Stone, and X posts (@36966_).
+        <!-- Line break for spacing -->
+        <div class="glass-card sources-card">
+            <!-- Sources container per Rubric Section 11 -->
+            <h3><span class="highlight">Sources</span></h3>
+            <!-- Section heading for sources -->
+            <p>
+                Data from Billboard, RIAA, Spotify, Metacritic, Rolling Stone, and X fan reactions (@36966_) as of March 24, 2025.
             </p>
+            <!-- Sources content (25 words) -->
         </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- ScrollTrigger -->
-    <script src="script.js"></script> <!-- External script -->
-    <script> <!-- Inline JS for interactivity -->
-        document.addEventListener('DOMContentLoaded', () => { /* Runs on DOM load */
-            document.querySelectorAll('.glass-card:not(.slim-card)').forEach(card => { /* Stabilizes non-image cards */
-                card.style.transform = 'none !important'; card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important'; card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
-            });
-            document.querySelectorAll('.glass-card').forEach(card => { /* Hover effect for all cards, per template */
-                card.addEventListener('mouseenter', () => { card.style.transform = 'scale(1.05)'; card.style.boxShadow = '0 0 20px rgba(255, 255, 0, 0.3)'; });
-                card.addEventListener('mouseleave', () => { card.style.transform = 'scale(1)'; card.style.boxShadow = 'none'; });
-            });
-            document.querySelectorAll('.slim-card').forEach(card => { /* Hover effect for album card, per template */
-                card.addEventListener('mouseenter', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1.05)'; card.style.transform = 'scale(1.05)'; });
-                card.addEventListener('mouseleave', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1)'; card.style.transform = 'scale(1)'; });
-            });
-            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Hover effect for track highlights, per template */
-                item.addEventListener('mouseenter', () => { item.style.transform = 'scale(1.02)'; item.style.boxShadow = '0 0 10px rgba(255, 255, 0, 0.2)'; });
-                item.addEventListener('mouseleave', () => { item.style.transform = 'scale(1)'; item.style.boxShadow = 'none'; });
-            });
-        });
-    </script>
+    <footer class="review-footer">
+        <!-- Footer section -->
+        <div class="nav-logo">
+            <!-- Logo container -->
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <!-- Logo icon with heartbeat animation -->
+        </div>
+        <div class="footer-content">
+            <!-- Footer content -->
+            <p>© 2025 MusicRx. All rights reserved.</p>
+            <!-- Copyright notice -->
+        </div>
+        <form class="newsletter-form">
+            <!-- Newsletter subscription form -->
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <!-- Email input field -->
+            <button type="submit">Subscribe</button>
+            <!-- Submit button -->
+        </form>
+    </footer>
+    <div class="fixed-buttons">
+        <!-- Fixed buttons container -->
+        <button id="backToTop" class="fixed-button" title="Back to Top" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
+        <!-- Back to top button -->
+        <button id="musicToggle" class="fixed-button" title="Toggle Music" aria-label="Play music"><i class="fas fa-play"></i></button>
+        <!-- Music toggle button -->
+        <button id="themeToggle" class="fixed-button" title="Normal Mode" aria-label="Switch to next theme (current: Yellow Mode)"><i class="fas fa-adjust"></i></button>
+        <!-- Theme toggle button -->
+        <button id="tipMachine" class="fixed-button" title="Tip Machine" aria-label="Support the site"><i class="fas fa-coffee"></i></button>
+        <!-- Tip machine button -->
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Load Three.js for the starfield background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- Load GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Load GSAP ScrollTrigger for scroll-based animations -->
+    <script src="script.js"></script>
+    <!-- Load the custom script for interactivity -->
 </body>
 </html>
