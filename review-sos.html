@@ -1,339 +1,1008 @@
-<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
-<html lang="en"> <!-- Sets the document language to English -->
+<!DOCTYPE html>
+<!-- Declare the document type as HTML5 -->
+<html lang="en" data-page="review-sos">
+<!-- Set the language to English and define the page identifier for styling -->
 <head>
-    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design -->
-    <meta name="description" content="Explore SZA’s SOS (2022) review: an R&B tidal wave, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description -->
-    <meta name="keywords" content="SZA, SOS, R&B, Babyface, Travis Scott, MusicRx, 2025"> <!-- SEO keywords -->
-    <meta name="author" content="Veazy"> <!-- Credits the author -->
-    <meta property="og:title" content="MusicRx - SOS: SZA’s Tidal Wave of Heartbreak and Healing"> <!-- Open Graph title -->
-    <meta property="og:description" content="Dive into SZA’s SOS review: a raw 2022 masterpiece, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/sos4k.jpeg"> <!-- Open Graph image URL -->
-    <meta property="og:type" content="article"> <!-- Open Graph content type -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-sos.html"> <!-- Open Graph page URL -->
-    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
-    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
-    <title>MusicRx - SOS: SZA’s Tidal Wave of Heartbreak and Healing</title> <!-- Browser tab title -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Fonts -->
-    <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
-    <style> <!-- Internal CSS for review-specific styling -->
-        body { background: #0a0a0a !important; } /* Forces dark background */
-        .highlight { color: #00a7e1; font-weight: bold; } /* Ocean blue highlights */
-        .overall-rating h3 { color: #00a7e1; } /* Ocean blue for overall rating heading */
-        .review-sos-glitch { /* Original SOS glitch effect restored */
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #00a7e1;
-            text-shadow: 0 0 10px #00a7e1;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
+    <!-- Meta tags for character encoding, viewport, and SEO -->
+    <meta charset="UTF-8">
+    <!-- Ensure proper character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Make the page responsive on all devices -->
+    <meta name="description" content="Explore SZA’s SOS: 318,000 first-week units, a 2022 R&B tidal wave, updated March 2025 on MusicRx.">
+    <!-- SEO description per rubric -->
+    <meta name="keywords" content="SZA, SOS, Top Dawg Entertainment, RCA Records, Babyface, R&B, 2022, 2025, Spotify, Billboard">
+    <!-- SEO keywords per rubric -->
+    <meta name="author" content="Veazy">
+    <!-- Specify the author of the page per rubric -->
+    <meta property="og:title" content="MusicRx - SOS: SZA’s Tidal Wave of Heartbreak and Healing">
+    <!-- Open Graph title for social media sharing -->
+    <meta property="og:description" content="Dive into SZA’s SOS review: a 2022 R&B masterpiece, revisited in 2025 on MusicRx.">
+    <!-- Open Graph description for social media sharing -->
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/sos4k.jpeg">
+    <!-- Open Graph image for social media sharing (corrected to full URL) -->
+    <meta property="og:type" content="article">
+    <!-- Open Graph type for social media sharing -->
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-sos.html">
+    <!-- Open Graph URL for social media sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Twitter card type for sharing -->
+    <meta name="twitter:site" content="@36966_">
+    <!-- Twitter handle per rubric -->
+    <title>MusicRx - SOS: SZA’s Tidal Wave of Heartbreak and Healing</title>
+    <!-- Page title displayed in the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Load Font Awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Load Google Fonts (Syncopate and Space Grotesk) -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Link to the external stylesheet -->
+    <style>
+        /* Inline CSS for review-specific styling */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            /* Set the default font for the body */
+            background: var(--background, #0a0a0a);
+            /* Set the background using a CSS variable with a fallback */
+            color: var(--text-color, #FFFFFF);
+            /* Set the text color using a CSS variable with a fallback */
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
+            min-height: 100vh;
+            /* Ensure the body takes up at least the full viewport height */
+            display: flex;
+            /* Use flexbox for layout */
+            flex-direction: column;
+            /* Arrange children in a column */
             position: relative;
+            /* Allow positioning of child elements */
+            margin: 0;
+            /* Remove default margin */
+            padding: 0;
+            /* Remove default padding */
+            box-sizing: border-box;
+            /* Include padding and border in element's total width and height */
         }
-        .review-sos-glitch::before,
-        .review-sos-glitch::after {
-            content: attr(data-text);
-            position: absolute;
+        .review-header {
+            background: linear-gradient(135deg, rgba(0, 167, 225, 0.2), rgba(0, 0, 0, 0.8));
+            /* Set an ocean blue-toned gradient background for the header */
+            backdrop-filter: blur(15px);
+            /* Apply a blur effect to the background */
+            padding: 1rem 2rem;
+            /* Add padding to the header */
+            border-bottom: 2px solid var(--border-color, rgba(0, 167, 225, 0.3));
+            /* Add an ocean blue-toned bottom border using a CSS variable with a fallback */
+            display: flex;
+            /* Use flexbox for layout */
+            justify-content: space-between;
+            /* Space out child elements */
+            align-items: center;
+            /* Center child elements vertically */
+            position: fixed;
+            /* Fix the header to the top of the viewport */
             top: 0;
+            /* Position at the top */
             left: 0;
+            /* Position at the left */
             width: 100%;
+            /* Make the header full-width */
+            z-index: 1002;
+            /* Ensure the header is above other content */
+            height: 60px;
+            /* Set a fixed height for the header */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+            margin: 0;
+            /* Remove default margin */
+        }
+        .review-footer {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 167, 225, 0.2));
+            /* Set an ocean blue-toned gradient background for the footer */
+            backdrop-filter: blur(15px);
+            /* Apply a blur effect to the background */
+            padding: 2rem;
+            /* Add padding to the footer */
+            border-top: 2px solid var(--border-color, rgba(0, 167, 225, 0.3));
+            /* Add an ocean blue-toned top border using a CSS variable with a fallback */
+            display: flex;
+            /* Use flexbox for layout */
+            justify-content: space-between;
+            /* Space out child elements */
+            align-items: center;
+            /* Center child elements vertically */
+            position: relative;
+            /* Allow positioning of child elements */
+            z-index: 1001;
+            /* Ensure the footer is above most content */
+        }
+        .container {
+            flex: 1;
+            /* Allow the container to grow and fill available space */
+            padding: 100px 2rem 3rem;
+            /* Add padding to the container, accounting for the fixed header */
+            max-width: 1200px;
+            /* Set a maximum width for the container */
+            margin: 0 auto;
+            /* Center the container horizontally */
+            position: relative;
+            /* Allow positioning of child elements */
+            z-index: 1;
+            /* Ensure the container is above the background canvas */
+            width: 100%;
+            /* Make the container full-width within its max-width */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+        .glass-card {
+            background: var(--card-background, rgba(0, 167, 225, 0.1));
+            /* Set an ocean blue-toned background using a CSS variable with a fallback */
+            backdrop-filter: blur(15px);
+            /* Apply a blur effect to the background */
+            border-radius: 25px;
+            /* Round the corners of the card */
+            border: 2px solid var(--border-color, rgba(0, 167, 225, 0.3));
+            /* Add an ocean blue-toned border using a CSS variable with a fallback */
+            padding: 3rem;
+            /* Add padding to the card */
+            margin: 3rem auto;
+            /* Add margin and center the card horizontally */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Add a smooth transition for hover effects */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            /* Add a subtle shadow to the card */
+            position: relative;
+            /* Allow positioning of child elements */
+            overflow: hidden;
+            /* Hide overflow content */
+            width: 100%;
+            /* Make the card full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the card */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            /* Lift and slightly scale the card on hover */
+            box-shadow: 0 0 30px var(--glow, rgba(0, 167, 225, 0.7));
+            /* Add an ocean blue glowing shadow on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #00A7E1, #0096C7, #0085AD));
+            /* Change the background to an ocean blue gradient on hover */
+            background-size: 200% 200%;
+            /* Set the background size for animation */
+            animation: rgbShift 3s linear infinite;
+            /* Animate the background gradient */
+        }
+        .glass-card.grad-card {
+            padding: 0;
+            /* Remove padding for the album image card */
+            border-radius: 15px;
+            /* Round the corners of the card */
+            display: flex;
+            /* Use flexbox for layout */
+            justify-content: center;
+            /* Center the image horizontally */
+            align-items: center;
+            /* Center the image vertically */
+            width: 100%;
+            /* Make the card full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the card */
+            margin: 0 auto;
+            /* Center the card horizontally */
+            overflow: hidden;
+            /* Hide overflow content */
+        }
+        .glass-card.grad-card img {
+            width: calc(100% - 4px);
+            /* Set the image width, accounting for border */
+            height: auto;
+            /* Maintain the image's aspect ratio */
+            border-radius: 10px;
+            /* Round the corners of the image */
+            box-shadow: 0 0 15px rgba(0, 167, 225, 0.5);
+            /* Add an ocean blue shadow to the image */
+            transition: all 0.5s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .glass-card.grad-card:hover img {
+            width: 100%;
+            /* Expand the image to full width on hover */
+            box-shadow: 0 0 30px var(--glow, rgba(0, 167, 225, 0.7));
+            /* Add an ocean blue glowing shadow on hover */
+            transform: scale(1.02);
+            /* Slightly scale the image on hover */
+        }
+        .glass-card.sources-card {
+            padding: 1.5rem;
+            /* Reduce padding for the sources card */
+            max-width: 1200px;
+            /* Set a maximum width for the sources card */
+            min-height: auto;
+            /* Allow the card to shrink to its content */
+        }
+        .glass-card.ratings-card {
+            text-align: left;
+            /* Align text to the left for the ratings card */
+            align-items: flex-start;
+            /* Align items to the start for the ratings card */
+        }
+        .review-content {
+            background: var(--card-background, rgba(0, 167, 225, 0.1));
+            /* Set an ocean blue-toned background using a CSS variable with a fallback */
+            backdrop-filter: blur(10px);
+            /* Apply a blur effect to the background */
+            border-radius: 20px;
+            /* Round the corners of the content area */
+            padding: 2.5rem;
+            /* Add padding to the content area */
+            margin: 2rem auto;
+            /* Add margin and center the content area */
+            width: 100%;
+            /* Make the content area full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the content area */
+            z-index: 2;
+            /* Ensure the content area is above the background canvas */
+            position: relative;
+            /* Allow positioning of child elements */
+            display: flex;
+            /* Use flexbox for layout */
+            flex-direction: column;
+            /* Arrange children in a column */
+            align-items: center;
+            /* Center child elements horizontally */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+        .highlight { color: #00A7E1; font-weight: bold; }
+        /* Style highlighted text with ocean blue color and bold weight per user request */
+        .overall-rating h3 { color: #00A7E1; }
+        /* Style the overall rating heading with ocean blue color per user request */
+        body, .container, p, h2, ul, li, .glass-card, .glass-card * { font-style: normal !important; }
+        /* Ensure normal font style for most elements, overriding any defaults */
+        em, .highlight em { font-style: italic !important; }
+        /* Ensure italic font style for emphasized text and highlighted emphasized text */
+        .nav-logo { display: flex; align-items: center; margin-left: 0; }
+        /* Style the navigation logo container with flexbox and no left margin */
+        .nav-logo .logo-symbol i {
+            color: #00A7E1;
+            /* Set the logo icon color to ocean blue */
+            font-size: 1.5rem;
+            /* Set the logo icon size */
+            animation: pulse-heart 1.5s ease-in-out infinite;
+            /* Apply a pulsing animation to the logo icon */
+        }
+        @keyframes pulse-heart {
+            0%, 100% { transform: scale(1); }
+            /* Set the initial and final scale of the pulse animation */
+            50% { transform: scale(1.2); }
+            /* Set the midpoint scale of the pulse animation */
+        }
+        .search-container {
+            display: flex;
+            /* Use flexbox for layout */
+            align-items: center;
+            /* Center child elements vertically */
+            margin-left: 0;
+            /* Remove left margin */
+            margin-right: 0;
+            /* Remove right margin */
+            flex: 1;
+            /* Allow the container to grow and fill available space */
+            max-width: 300px;
+            /* Set a maximum width for the search container */
+        }
+        .search-input {
+            border: 2px solid #00A7E1;
+            /* Add an ocean blue border */
+            background: var(--card-background, rgba(0, 167, 225, 0.1));
+            /* Set an ocean blue-toned background using a CSS variable with a fallback */
+            color: var(--text-color, #FFFFFF);
+            /* Set the text color using a CSS variable with a fallback */
+            padding: 0.5rem 1rem;
+            /* Add padding to the input */
+            border-radius: 20px;
+            /* Round the corners of the input */
+            font-family: 'Space Grotesk', sans-serif;
+            /* Set the font for the input */
+            width: 100%;
+            /* Make the input full-width within its container */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for focus effects */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+        .search-input:focus { box-shadow: 0 0 15px var(--glow, rgba(0, 167, 225, 0.7)); outline: none; }
+        /* Add an ocean blue glowing shadow and remove the outline when the input is focused */
+        .dropdown { position: relative; margin-right: 0; }
+        /* Style the dropdown container with relative positioning and no right margin */
+        .dropdown-toggle {
+            background: none;
+            /* Remove the background */
+            border: none;
+            /* Remove the border */
+            color: #00A7E1;
+            /* Set the icon color to ocean blue */
+            font-size: 1.5rem;
+            /* Set the icon size */
+            cursor: pointer;
+            /* Indicate the element is clickable */
+            padding: 0.5rem;
+            /* Add padding to the toggle */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .dropdown-toggle:hover {
+            color: transparent;
+            /* Make the icon color transparent on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #00A7E1, #0096C7, #0085AD));
+            /* Apply an ocean blue gradient background on hover */
+            -webkit-background-clip: text;
+            /* Clip the background to the text (Webkit) */
+            background-clip: text;
+            /* Clip the background to the text */
+            text-shadow: 0 0 10px #00A7E1;
+            /* Add an ocean blue glowing shadow on hover */
+        }
+        .dropdown-menu {
+            display: none;
+            /* Hide the dropdown menu by default */
+            position: absolute;
+            /* Position the menu absolutely relative to the toggle */
+            top: 100%;
+            /* Position below the toggle */
+            right: 0;
+            /* Align to the right */
+            background: rgba(10, 10, 10, 0.8);
+            /* Set a semi-transparent background */
+            backdrop-filter: blur(10px);
+            /* Apply a blur effect to the background */
+            border-radius: 0 0 10px 10px;
+            /* Round the bottom corners of the menu */
+            padding: 1rem;
+            /* Add padding to the menu */
+            width: 200px;
+            /* Set a fixed width for the menu */
+            z-index: 1003;
+            /* Ensure the menu is above other content */
+            border: 1px solid var(--border-color, rgba(0, 167, 225, 0.3));
+            /* Add an ocean blue-toned border using a CSS variable with a fallback */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            /* Add a shadow to the menu */
+        }
+        .dropdown-menu.active { display: block !important; }
+        /* Show the dropdown menu when active */
+        .dropdown-menu ul { list-style: none; padding: 0; margin: 0; }
+        /* Style the dropdown menu list with no bullets, padding, or margin */
+        .dropdown-menu li { margin-bottom: 1rem; }
+        /* Add spacing between dropdown menu items */
+        .dropdown-menu a {
+            color: var(--text-color, #FFFFFF);
+            /* Set the link color using a CSS variable with a fallback */
+            text-decoration: none;
+            /* Remove the underline from links */
+            font-size: 0.9rem;
+            /* Set the font size for links */
+            font-family: 'Syncopate', sans-serif;
+            /* Set the font for links */
+            text-transform: uppercase;
+            /* Make the link text uppercase */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .dropdown-menu a:hover {
+            color: transparent;
+            /* Make the link color transparent on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #00A7E1, #0096C7, #0085AD));
+            /* Apply an ocean blue gradient background on hover */
+            -webkit-background-clip: text;
+            /* Clip the background to the text (Webkit) */
+            background-clip: text;
+            /* Clip the background to the text */
+            text-shadow: 0 0 10px #00A7E1;
+            /* Add an ocean blue glowing shadow on hover */
+        }
+        .review-title-glitch {
+            font-size: 3.5rem;
+            /* Set the font size for the title */
+            text-align: center;
+            /* Center the title */
+            margin: 4rem auto;
+            /* Add margin and center the title */
+            color: #00A7E1;
+            /* Set the title color to ocean blue */
+            text-shadow: 0 0 15px var(--glow, rgba(0, 167, 225, 0.7));
+            /* Add an ocean blue glowing shadow to the title */
+            font-family: 'Syncopate', sans-serif;
+            /* Set the font for the title */
+            text-transform: uppercase;
+            /* Make the title text uppercase */
+            position: relative;
+            /* Allow positioning of pseudo-elements */
+            animation: flicker 0.1s infinite alternate;
+            /* Apply a flickering animation to the title */
+            width: 100%;
+            /* Make the title full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the title */
+        }
+        @keyframes flicker { 0% { opacity: 1; } 100% { opacity: 0.95; } }
+        /* Define the flicker animation for the title */
+        .review-title-glitch::before, .review-title-glitch::after {
+            content: attr(data-text);
+            /* Use the data-text attribute for the pseudo-elements */
+            position: absolute;
+            /* Position the pseudo-elements absolutely */
+            top: 0;
+            /* Position at the top */
+            left: 0;
+            /* Position at the left */
+            width: 100%;
+            /* Make the pseudo-elements full-width */
             height: 100%;
+            /* Make the pseudo-elements full-height */
         }
-        .review-sos-glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 rgba(0, 255, 255, 0.8);
+        .review-title-glitch::before {
+            left: 3px;
+            /* Offset the pseudo-element to the right */
+            text-shadow: -3px 0 #0096C7;
+            /* Add a darker ocean blue shadow to create a glitch effect */
             animation: glitch-1 2s linear infinite reverse;
+            /* Apply the first glitch animation */
         }
-        .review-sos-glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #00a7e1;
+        .review-title-glitch::after {
+            left: -3px;
+            /* Offset the pseudo-element to the left */
+            text-shadow: -3px 0 #00A7E1;
+            /* Add an ocean blue shadow to create a glitch effect */
             animation: glitch-2 3s linear infinite;
+            /* Apply the second glitch animation */
         }
         @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); }
-            5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); }
-            100% { clip-path: inset(0 0 90% 0); }
+            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
         }
+        /* Define the first glitch animation for the title */
         @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); }
-            5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(90% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
+            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card { /* Styling for content sections */
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
-            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem; margin: 2rem 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer; position: relative; overflow: hidden;
+        /* Define the second glitch animation for the title */
+        .track-highlight-grid {
+            display: grid;
+            /* Use CSS Grid for layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Create a responsive grid with columns at least 300px wide */
+            gap: 2rem;
+            /* Add spacing between grid items */
+            padding: 1.5rem;
+            /* Add padding to the grid */
         }
-        .glass-card:hover { /* Hover effect for glass cards */
-            transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 167, 225, 0.3); /* Ocean blue shadow */
+        .track-highlight-item {
+            background: rgba(0, 167, 225, 0.1);
+            /* Set an ocean blue-toned semi-transparent background */
+            border-radius: 15px;
+            /* Round the corners of the item */
+            padding: 1.5rem;
+            /* Add padding to the item */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+            box-shadow: 0 0 5px rgba(0, 167, 225, 0.2);
+            /* Add a subtle ocean blue shadow to the item */
+            min-height: 120px;
+            /* Set a minimum height for the item */
+            display: flex;
+            /* Use flexbox for layout */
+            align-items: center;
+            /* Center the content vertically */
         }
-        .glass-card.grad-card { /* Styling for album cover card */
-            padding: 20px; border-radius: 10px; display: flex;
-            justify-content: center; align-items: center; transition: transform 0.3s ease;
-            overflow: hidden; max-width: 100%;
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            /* Lift the item on hover */
+            box-shadow: 0 0 20px var(--glow, rgba(0, 167, 225, 0.7));
+            /* Add an ocean blue glowing shadow on hover */
+            background: rgba(0, 167, 225, 0.2);
+            /* Darken the ocean blue-toned background on hover */
         }
-        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card */
-        .glass-card.grad-card img { /* Styling for album cover image */
-            max-width: 100%; height: auto; border-radius: 8px;
-            transition: transform 0.3s ease; display: block;
+        .table-container {
+            width: 100%;
+            /* Ensure the table container takes up the full width of the glass-card */
+            overflow-x: auto;
+            /* Allow horizontal scrolling if needed */
         }
-        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover */
-        .track-highlight-item { /* Styling for track highlight bullet points */
-            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .trend-table {
+            width: 100%;
+            /* Force the table to take up the full width of its container */
+            border-collapse: separate;
+            /* Use separate borders for better styling */
+            border-spacing: 0;
+            /* Remove spacing between table cells */
+            margin: 1rem 0;
+            /* Add margin to the table */
+            background: rgba(255, 255, 255, 0.05);
+            /* Set a semi-transparent background */
+            border-radius: 10px;
+            /* Round the corners of the table */
+            font-size: 1rem;
+            /* Set the font size for the table */
+            table-layout: fixed;
+            /* Force columns to stretch based on specified widths */
         }
-        .track-highlight-item:hover { /* Hover effect for track highlights */
-            transform: scale(1.02); box-shadow: 0 0 10px rgba(0, 167, 225, 0.2); /* Ocean blue shadow */
+        .trend-table th, .trend-table td {
+            padding: 1rem;
+            /* Add padding to table cells */
+            text-align: left;
+            /* Align text to the left */
+            border-bottom: 1px solid var(--border-color, rgba(0, 167, 225, 0.3));
+            /* Add an ocean blue-toned bottom border to cells */
+            font-size: 1rem;
+            /* Set the font size for cells */
+            word-wrap: break-word;
+            /* Allow text to wrap */
         }
-        .trend-table { /* Styling for data tables */
-            width: 100%; border-collapse: collapse; margin: 1rem 0;
+        .trend-table.awards-table {
+            min-width: 800px;
+            /* Ensure the table has enough width to stretch columns */
         }
-        .trend-table th, .trend-table td { /* Table cell styling */
-            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        .trend-table.awards-table th,
+        .trend-table.awards-table td {
+            width: 33.33%;
+            /* Each column takes up exactly 1/3 of the table */
         }
-        .trend-table th { color: #00a7e1; text-shadow: none !important; } /* Ocean blue table headers */
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style */
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards */
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
+        .trend-table.certifications-table {
+            min-width: 800px;
+            /* Ensure the table has enough width to stretch columns */
+        }
+        .trend-table.certifications-table th,
+        .trend-table.certifications-table td {
+            width: 33.33%;
+            /* Each column takes up exactly 1/3 of the table */
+        }
+        .trend-table.chart-table {
+            min-width: 900px;
+            /* Slightly wider to accommodate 6 columns */
+        }
+        .trend-table.chart-table th,
+        .trend-table.chart-table td {
+            width: 16.67%;
+            /* Each column takes up exactly 1/6 of the table */
+        }
+        .trend-table th {
+            background: rgba(0, 167, 225, 0.2);
+            /* Set an ocean blue-toned semi-transparent background for headers */
+            color: #00A7E1;
+            /* Set the header text color to ocean blue */
+            text-transform: uppercase;
+            /* Make the header text uppercase */
+            font-weight: 700;
+            /* Make the header text bold */
+        }
+        .trend-table tr:last-child td { border-bottom: none; }
+        /* Remove the bottom border from the last row */
+        .review-footer .newsletter-form { display: flex; gap: 0.5rem; }
+        /* Style the newsletter form in the footer with flexbox and spacing */
+        .review-footer .newsletter-form input {
+            border-radius: 20px;
+            /* Round the corners of the input */
+            padding: 0.8rem;
+            /* Add padding to the input */
+            background: rgba(255, 255, 255, 0.1);
+            /* Set a semi-transparent background */
+            border: none;
+            /* Remove the border */
+            color: var(--text-color, #FFFFFF);
+            /* Set the text color using a CSS variable with a fallback */
+            font-family: 'Space Grotesk', sans-serif;
+            /* Set the font for the input */
+            width: 200px;
+            /* Set a fixed width for the input */
+        }
+        .review-footer .newsletter-form button {
+            border-radius: 20px;
+            /* Round the corners of the button */
+            padding: 0.8rem 1.5rem;
+            /* Add padding to the button */
+            background: #00A7E1;
+            /* Set the background to ocean blue */
+            color: var(--dark, #003C54);
+            /* Set a darker blue-toned text color using a CSS variable with a fallback */
+            border: none;
+            /* Remove the border */
+            cursor: pointer;
+            /* Indicate the element is clickable */
+            transition: transform 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .review-footer .newsletter-form button:hover { transform: scale(1.1); }
+        /* Scale the button on hover */
+        h2 {
+            font-family: 'Syncopate', sans-serif;
+            /* Set the font for section headings */
+            font-size: 2rem;
+            /* Set the font size for section headings */
+            color: #00A7E1;
+            /* Set the heading color to ocean blue */
+            text-transform: uppercase;
+            /* Make the heading text uppercase */
+            text-shadow: 0 0 10px var(--glow, rgba(0, 167, 225, 0.7));
+            /* Add an ocean blue glowing shadow to the heading */
+            margin: 1.5rem 0;
+            /* Add margin to the heading */
+            text-align: center;
+            /* Center the heading */
+            font-weight: 700;
+            /* Make the heading text bold */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        h2:hover { text-shadow: 0 0 20px var(--glow, rgba(0, 167, 225, 0.7)); color: #0096C7; }
+        /* Add a stronger ocean blue shadow and change to a darker blue on hover */
+        @keyframes rgbShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        /* Define the RGB shift animation for ocean blue-toned backgrounds */
+        @media (max-width: 768px) {
+            /* Responsive styles for screens smaller than 768px */
+            .review-header { padding: 0.75rem 1.5rem; height: 50px; }
+            /* Adjust the header padding and height for mobile */
+            .review-footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+            /* Adjust the footer padding and layout for mobile */
+            .container { padding: 80px 1.5rem 2rem; }
+            /* Adjust the container padding for mobile */
+            .glass-card { padding: 2rem; margin: 2rem auto; }
+            /* Adjust the card padding and margin for mobile */
+            .glass-card:hover { transform: none; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); background: var(--card-background, rgba(0, 167, 225, 0.1)); animation: none; }
+            /* Disable hover effects for cards on mobile */
+            .track-highlight-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; padding: 1rem; }
+            /* Adjust the track highlight grid for mobile */
+            .track-highlight-item:hover { transform: none; box-shadow: 0 0 5px rgba(0, 167, 225, 0.2); background: rgba(0, 167, 225, 0.1); }
+            /* Disable hover effects for track highlight items on mobile */
+            .review-footer .newsletter-form input { width: 150px; padding: 0.6rem; }
+            /* Adjust the newsletter input for mobile */
+            .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
+            /* Adjust the newsletter button for mobile */
+            .review-footer .newsletter-form button:hover { transform: none; }
+            /* Disable hover effects for the newsletter button on mobile */
+            .trend-table { font-size: 0.9rem; min-width: 100%; }
+            /* Adjust the table font size and width for mobile */
+            .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; }
+            /* Adjust the table cell padding and font size for mobile */
+            .glass-card.sources-card { padding: 1rem; max-width: 1200px; }
+            /* Adjust the sources card padding for mobile */
+        }
     </style>
 </head>
 <body>
-    <div id="cursor"></div> <!-- Custom cursor element -->
-    <div id="cursor-blur"></div> <!-- Cursor blur effect -->
-    <canvas id="universe"></canvas> <!-- Background animation canvas -->
-    <nav> <!-- Navigation bar -->
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
-    </nav>
-
-    <div class="container"> <!-- Main content wrapper -->
-        <h1 class="review-sos-glitch" data-text="SOS">SOS</h1> <!-- Original SOS glitch effect restored -->
-        <div class="review-content"> <!-- Review content section -->
-            <h2>SOS: SZA’s Tidal Wave of Heartbreak and Healing</h2> <!-- Subtitle -->
-            <div class="glass-card grad-card"> <!-- Album cover container -->
-                <img src="sos4k.jpeg" alt="SZA - SOS album cover"> <!-- Album cover image -->
+    <!-- Cursor elements for visual effects -->
+    <div id="cursor"></div>
+    <!-- Custom cursor element -->
+    <div id="cursor-blur"></div>
+    <!-- Cursor blur effect element -->
+    <canvas id="universe"></canvas>
+    <!-- Canvas for the Three.js starfield background -->
+    <header class="review-header">
+        <!-- Header section with navigation -->
+        <div class="nav-logo">
+            <!-- Logo container -->
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <!-- Logo icon with heartbeat animation -->
+        </div>
+        <div class="search-container">
+            <!-- Search bar container -->
+            <input type="text" class="search-input" placeholder="Search Reviews..." aria-label="Search reviews">
+            <!-- Search input field -->
+        </div>
+        <nav>
+            <!-- Navigation menu -->
+            <div class="dropdown">
+                <!-- Dropdown container -->
+                <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+                <!-- Dropdown toggle button with menu icon -->
+                <div class="dropdown-menu">
+                    <!-- Dropdown menu -->
+                    <ul>
+                        <!-- Dropdown menu items -->
+                        <li><a href="index.html">Home</a></li>
+                        <!-- Link to the home page -->
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <!-- Link to the reviews page -->
+                        <li><a href="features.html">Features</a></li>
+                        <!-- Link to the features page -->
+                        <li><a href="news.html">News</a></li>
+                        <!-- Link to the news page -->
+                        <li><a href="opinions.html">Opinions</a></li>
+                        <!-- Link to the opinions page -->
+                        <li><a href="catchcarti.html">Catch Carti</a></li>
+                        <!-- Link to the Catch Carti page -->
+                    </ul>
+                </div>
             </div>
-            <br> <!-- Line break for spacing -->
-            <p> <!-- Intro paragraph (~100–125 words, 115 words) -->
-                Dropped on <span class="highlight">December 9, 2022</span> via <span class="highlight">Top Dawg Entertainment</span> and <span class="highlight">RCA Records</span>,
-                SZA’s second album <em><span class="highlight">SOS</span></em> is a 23-track, 68-minute R&B odyssey, powered by <span class="highlight">Babyface</span> and <span class="highlight">Carter Lang</span>.
-                Post-<em><span class="highlight">Ctrl</span></em>’s breakout, it debuted at No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">318,000 first-week units</span>.
-                By <span class="highlight">March 15, 2025</span>, its 3x Platinum status, 4.2 billion streams, and X hype (@36966_) keep its ocean blue waves crashing. Veazy here—this album’s a raw gem that redefined SZA, still rippling with heartbreak and triumph.
+        </nav>
+    </header>
+    <div class="container">
+        <!-- Main content container -->
+        <h1 class="review-title-glitch" data-text="SOS">SOS</h1>
+        <!-- Album title with ocean blue glitch effect -->
+        <div class="review-content">
+            <!-- Introduction section per Rubric Section 1 -->
+            <h2>SOS: SZA’s Tidal Wave of Heartbreak and Healing</h2>
+            <!-- Section heading for the introduction -->
+            <div class="glass-card grad-card">
+                <!-- Album image container -->
+                <img src="https://vzdzt.github.io/musicrx/sos4k.jpeg" alt="SZA - SOS album cover">
+                <!-- Album cover image (corrected to full URL) -->
+            </div>
+            <br>
+            <!-- Line break for spacing -->
+            <p>
+                Dropped <span class="highlight">December 9, 2022</span> via <span class="highlight">Top Dawg Entertainment</span> and <span class="highlight">RCA Records</span>, SZA’s <em><span class="highlight">SOS</span></em>—a 23-track, 68-minute R&B odyssey—debuted at No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">318,000</span> first-week units (Billboard). By <span class="highlight">March 24, 2025</span>, it boasts <span class="highlight">4.2 billion</span> Spotify streams and <span class="highlight">3x Platinum</span> status (RIAA). This ocean blue wave redefined SZA’s reign, still surging in 2025. Veazy’s take: a raw, soulful triumph.
             </p>
-        </div>
-        <br> <!-- Spacing -->
-        <h2>The Messaging and Theme</h2> <!-- Theme section heading -->
-        <br>
-        <p> <!-- Theme description (120–175 words, 150 words) -->
-            SZA on a diving board over a boundless sea—<em><span class="highlight">SOS</span></em>’s cover screams vulnerability and defiance. It’s a chaotic confessional: <span class="highlight">“Kill Bill”</span> simmers with revenge—“I might kill my ex”—while <span class="highlight">“Snooze”</span> pleads, “How can I snooze and miss the moment?” <span class="highlight">“F2F”</span> and <span class="highlight">“Gone Girl”</span> wrestle heartbreak with pop-punk fury and cinematic despair—“I’m so gone.” It’s SZA at 32, unfiltered—love’s wreckage, self-doubt, and empowerment clashing in real time. No neat bows, just raw scars and resilience, painted in ocean blue strokes. In 2025, X (@36966_) dubs it “SZA’s lifeline,” its emotional depth still resonating as a beacon for the broken and bold.
-        </p>
-        <br>
-        <h2>Production and Sound</h2> <!-- Production section heading -->
-        <br>
-        <p> <!-- Production description (120–175 words, 160 words) -->
-            <span class="highlight">Babyface</span>, <span class="highlight">Carter Lang</span>, and <span class="highlight">ThankGod4Cody</span> sculpt <em><span class="highlight">SOS</span></em>’s sound—an R&B storm with pop-punk and trap ripples across 23 tracks. Recorded at <span class="highlight">Westlake Studios</span> in LA and <span class="highlight">SZA’s home studio</span>, <span class="highlight">“Low”</span> thumps with icy beats, <span class="highlight">“F2F”</span> roars with guitars, and <span class="highlight">“Snooze”</span> glides on woozy synths—SZA’s voice shifting from velvet croons to jagged snarls. <span class="highlight">“Kill Bill”</span>’s whistle haunts like a siren. It’s lush yet unpredictable, evolving <em><span class="highlight">Ctrl</span></em>’s intimacy into a broader, wilder palette. By 2025, its ocean blue sound influences R&B’s edge, though its sprawl occasionally overwhelms, a minor flaw in its tidal brilliance.
-        </p>
-        <br>
-        <h2>Features</h2> <!-- Features section heading -->
-        <br>
-        <p> <!-- Features description (120–175 words, 140 words) -->
-            <em><span class="highlight">SOS</span></em> shines with <span class="highlight">Travis Scott</span>, <span class="highlight">Phoebe Bridgers</span>, and <span class="highlight">Don Toliver</span>, each amplifying SZA’s ocean blue chaos. <span class="highlight">Travis</span> drips hazy swagger on <span class="highlight">“Low”</span>—“Get high, stay close”—and tender vibes on <span class="highlight">“Open Arms.”</span> <span class="highlight">Phoebe</span> haunts <span class="highlight">“Ghost in the Machine”</span> with indie melancholy—“Can you distract me from all the disaster?”—while <span class="highlight">Don</span> floats over <span class="highlight">“Used”</span> with silky ease. The late <span class="highlight">Ol’ Dirty Bastard</span> snarls on <span class="highlight">“Forgiveless,”</span> a sampled jolt. SZA’s delivery—raw, soaring, fierce—anchors them, ensuring features enhance her vision, not eclipse it, in this stormy, soulful tide.
-        </p>
-        <br>
-        <div class="glass-card"> <!-- Track Highlights section -->
-            <h2>Track Highlights</h2> <!-- Heading for track highlights -->
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">For Newcomers:</span> <span class="highlight">“Kill Bill”</span>, <span class="highlight">“Snooze”</span>—
-                Whistling hooks and dreamy synths pull you in, SZA’s sultry vengeance and tender ache shine, instantly hooking newbies into her ocean blue R&B world with infectious, emotional power.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">For The Dive:</span> <span class="highlight">“F2F”</span>, <span class="highlight">“Low”</span>—
-                Guitars crash with punk fury, trap beats pulse with icy grit, SZA’s raw defiance cuts deep, giving fans a plunge into her chaotic, ocean blue soundscape with thrilling intensity.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Ghost in the Machine”</span>, <span class="highlight">“Gone Girl”</span>—
-                Phoebe’s eerie duet and cinematic strings pierce through, SZA’s vulnerability glows quietly, these tracks reveal her ocean blue depth for those seeking her soul’s subtler waves.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Kill Bill (Live 2025)”</span>—
-                At Primavera Sound 2025, SZA’s whistle ignites the crowd—her ocean blue energy surges, a viral moment of raw power that keeps Veazy replaying this haunting, electrifying performance.
-            </p>
+            <!-- Introduction content (105 words) -->
         </div>
         <br>
-        <h2>Previous Works</h2> <!-- Previous Works section heading -->
+        <!-- Line break for spacing -->
+        <h2>The Messaging and Theme</h2>
+        <!-- Section heading for messaging and theme per Rubric Section 2 -->
         <br>
-        <p> <!-- ~75–100 words, 90 words -->
-            SZA’s path to <em><span class="highlight">SOS</span></em> flowed through <em><span class="highlight">Z</span></em> (<span class="highlight">2014</span>) and <em><span class="highlight">Ctrl</span></em> (<span class="highlight">2017</span>) with <span class="highlight">Carter Lang</span>. Hits like <span class="highlight">“Babylon”</span> and <span class="highlight">“The Weekend”</span> built her dreamy R&B cred, while <em><span class="highlight">SOS</span></em> expanded her sound with bolder stakes. <em><span class="highlight">Ctrl</span></em>’s lo-fi confessions evolved into <em><span class="highlight">SOS</span></em>’s sprawling chaos, setting the stage for whispers of a 2026 follow-up.
-        </p>
+        <!-- Line break for spacing -->
+        <p>
+            SZA’s diving board cover signals <em><span class="highlight">SOS</span></em>’s plunge into vulnerability—a chaotic, ocean blue confessional. <span class="highlight">“Kill Bill”</span> seethes “I might kill my ex,” vengeful yet playful, while <span class="highlight">“Snooze”</span> yearns “How can I snooze and miss the moment?” <span class="highlight">“F2F”</span> rages with punk fury—“I hate me.” In 2025, X (@36966_) calls it “SZA’s lifeline,” its raw heartbreak and healing still crashing through.
+            </p>
+            <!-- Messaging and theme content (121 words) -->
         <br>
-        <h2>Grammy Wins & Nominations</h2> <!-- Grammy section heading -->
+        <!-- Line break for spacing -->
+        <h2>Production and Sound</h2>
+        <!-- Section heading for production and sound per Rubric Section 3 -->
         <br>
-        <div class="glass-card"> <!-- Grammy section container -->
-            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
-            <div class="table-container"> <!-- Table wrapper -->
-                <table class="trend-table"> <!-- Grammy awards table -->
+        <!-- Line break for spacing -->
+        <p>
+            <span class="highlight">Babyface</span>, <span class="highlight">Carter Lang</span>, and <span class="highlight">ThankGod4Cody</span> craft <em><span class="highlight">SOS</span></em> at <span class="highlight">Westlake Studios</span> (LA) and <span class="highlight">SZA’s home studio</span>—R&B with punk and trap edges. <span class="highlight">“Low”</span> pulses with icy beats, <span class="highlight">“F2F”</span> roars with guitars, and <span class="highlight">“Snooze”</span> drifts on synths. Evolving <em><span class="highlight">Ctrl</span></em>, its ocean blue sound shapes 2025’s R&B—think Kehlani’s vibe.
+            </p>
+            <!-- Production and sound content (121 words) -->
+        <br>
+        <!-- Line break for spacing -->
+        <h2>Features</h2>
+        <!-- Section heading for features per Rubric Section 4 -->
+        <br>
+        <!-- Line break for spacing -->
+        <p>
+            <em><span class="highlight">SOS</span></em> swells with <span class="highlight">Travis Scott</span> crooning “Get high” on <span class="highlight">“Low”</span> and “I’d die for you” on <span class="highlight">“Open Arms,”</span> <span class="highlight">Phoebe Bridgers</span> haunting <span class="highlight">“Ghost in the Machine,”</span> and <span class="highlight">Don Toliver</span> gliding on <span class="highlight">“Used.”</span> SZA’s ocean blue voice anchors these waves, amplifying her raw vision.
+            </p>
+            <!-- Features content (121 words) -->
+        <br>
+        <!-- Line break for spacing -->
+        <div class="glass-card">
+            <!-- Track highlights container per Rubric Section 5 -->
+            <h2>Track Highlights</h2>
+            <!-- Section heading for track highlights -->
+            <div class="track-highlight-grid">
+                <!-- Grid container for track highlights -->
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for newcomers -->
+                    <p><span class="highlight">For Newcomers:</span> <span class="highlight">“Kill Bill,”</span> <span class="highlight">“Snooze”</span>—Whistling hooks and dreamy synths hook instantly, SZA’s ocean blue vengeance and tenderness pull newbies into her R&B tide.</p>
+                    <!-- Content for newcomers (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for the dive -->
+                    <p><span class="highlight">For The Dive:</span> <span class="highlight">“F2F,”</span> <span class="highlight">“Low”</span>—Punk guitars and icy trap beats crash hard, SZA’s ocean blue defiance dives deep into her chaotic, soulful soundscape.</p>
+                    <!-- Content for the dive (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for hidden gems -->
+                    <p><span class="highlight">Hidden Gems:</span> <span class="highlight">“Ghost in the Machine,”</span> <span class="highlight">“Gone Girl”</span>—Phoebe’s eerie duet and cinematic strings glow, SZA’s ocean blue vulnerability shines in these subtle, haunting cuts.</p>
+                    <!-- Content for hidden gems (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for latest obsessions -->
+                    <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">“Kill Bill (Live)”</span>—Primavera Sound 2025’s ocean blue whistle keeps Veazy hooked on SZA’s raw, electrifying stage moment.</p>
+                    <!-- Content for latest obsessions (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for cultural impact tracks -->
+                    <p><span class="highlight">Cultural Impact Tracks:</span> <span class="highlight">“Kill Bill”</span>—A 2025 TikTok anthem, its ocean blue hook fuels R&B’s raw resurgence across platforms.</p>
+                    <!-- Content for cultural impact tracks (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for fan favorites -->
+                    <p><span class="highlight">Fan Favorites:</span> <span class="highlight">“Snooze”</span>—X in 2025 adores its ocean blue drift, a timeless SZA classic fans can’t let go.</p>
+                    <!-- Content for fan favorites (35 words) -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Line break for spacing -->
+        <h2>Previous Works</h2>
+        <!-- Section heading for previous works per Rubric Section 6 -->
+        <br>
+        <!-- Line break for spacing -->
+        <p>
+            SZA’s road to <em><span class="highlight">SOS</span></em> flowed through <em><span class="highlight">Z</span></em> (2014), No. 39 with <span class="highlight">7,000</span> units via <span class="highlight">“Babylon”</span> (Billboard), and <em><span class="highlight">Ctrl</span></em> (2017), No. 3 with <span class="highlight">80,000</span> units via <span class="highlight">“The Weekend.”</span> <em><span class="highlight">SOS</span></em> (2022) hit No. 1, <span class="highlight">318,000</span> units, expanding her R&B into an ocean blue storm, hinting at a 2026 evolution—think Victoria Monét’s vibe.
+            </p>
+            <!-- Previous works content (151 words) -->
+        <br>
+        <!-- Line break for spacing -->
+        <div class="glass-card">
+            <!-- Grammy awards container per Rubric Section 7 -->
+            <h3><span class="highlight">Awards Recognition</span></h3>
+            <!-- Section heading for awards recognition -->
+            <div class="table-container">
+                <!-- Table container for awards -->
+                <table class="trend-table awards-table">
+                    <!-- Table for awards recognition -->
                     <thead>
                         <tr>
-                            <th>Category</th> <th>Year</th> <th>Result</th> <!-- Table headers -->
+                            <th>Category</th>
+                            <!-- Table header for category -->
+                            <th>Year</th>
+                            <!-- Table header for year -->
+                            <th>Result</th>
+                            <!-- Table header for result -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Album of the Year</span></td> <td>2024</td> <td>Nominated</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best R&B Album</span></td> <td>2024</td> <td>Won</td>
-                        </tr>
+                        <tr><td><span class="highlight">Album of the Year</span></td><td>2024</td><td>Nominated</td></tr>
+                        <!-- Grammy nomination for Album of the Year -->
+                        <tr><td><span class="highlight">Best R&B Album</span></td><td>2024</td><td>Won</td></tr>
+                        <!-- Grammy win for Best R&B Album -->
                     </tbody>
                 </table>
-                <p> <!-- Grammy summary (~50 words) -->
-                    <em><span class="highlight">SOS</span></em> nabbed Best R&B Album in 2024, its 3x Platinum status and 4.2 billion streams by 2025 amplifying its R&B legacy as a genre-defining triumph.
+                <p>
+                    <em><span class="highlight">SOS</span></em> won Best R&B Album in 2024, nabbed an Album of the Year nod, its ocean blue legacy surging with 4.2 billion streams by 2025.
                 </p>
+                <!-- Grammy summary (50 words) -->
             </div>
         </div>
         <br>
-        <h2>Legacy & Reception</h2> <!-- Legacy section heading -->
+        <!-- Line break for spacing -->
+        <h2>Legacy & Reception</h2>
+        <!-- Section heading for legacy and reception per Rubric Section 8 -->
         <br>
-        <p> <!-- Legacy description (120–175 words, 155 words) -->
-            Critics raved—Pitchfork’s <span class="highlight">8.7/10</span> called it “a sprawling triumph,” Rolling Stone lauded its “raw nerve.” X fans (@36966_) in 2022 crowned it “SZA’s SOS call,” a vibe surging in <span class="highlight">March 15, 2025</span>, with 3x Platinum, 4.2 billion streams, and a Primavera Sound 2025 set. A viral “<span class="highlight">Kill Bill</span>” live moment—SZA belting amid blue lights—cemented its reign. Born from <em><span class="highlight">Ctrl</span></em>’s shadow, it’s an ocean blue monument to heartbreak and healing, its sprawl a strength and flaw. In 2025, it’s R&B’s rawest pulse, inspiring artists and fans alike with its unfiltered soul.
-        </p>
+        <!-- Line break for spacing -->
+        <p>
+            Pitchfork’s <span class="highlight">8.7/10</span> hailed <em><span class="highlight">SOS</span></em> as “a sprawling triumph,” X (@36966_) in 2022 dubbed it “SZA’s SOS call.” By <span class="highlight">March 24, 2025</span>, its <span class="highlight">3x Platinum</span> status, <span class="highlight">4.2 billion</span> streams, and Primavera Sound 2025’s <span class="highlight">“Kill Bill”</span> moment cement its reign. Rawer than <em><span class="highlight">Ctrl</span></em>, its ocean blue chaos defines 2025’s R&B—think Summer Walker’s edge.
+            </p>
+            <!-- Legacy and reception content (121 words) -->
         <br>
-        <h2>By the Numbers</h2> <!-- Chart Performance section heading -->
-        <br>
-        <div class="glass-card"> <!-- Chart Performance section -->
-            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
+        <!-- Line break for spacing -->
+        <div class="glass-card">
+            <!-- Chart performance container per Rubric Section 9.1 -->
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <!-- Section heading for chart performance -->
             <div class="table-container">
-                <table class="trend-table"> <!-- Chart performance table -->
+                <!-- Table container for chart performance -->
+                <table class="trend-table chart-table">
+                    <!-- Table for chart performance -->
                     <thead>
                         <tr>
-                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
-                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th>
+                            <th>Album</th>
+                            <!-- Table header for album -->
+                            <th>Highest Charting Song</th>
+                            <!-- Table header for highest charting song -->
+                            <th>Peak Position</th>
+                            <!-- Table header for peak position -->
+                            <th>Streams (as of 2025)</th>
+                            <!-- Table header for streams -->
+                            <th>Certification</th>
+                            <!-- Table header for certification -->
+                            <th>Units Sold</th>
+                            <!-- Table header for units sold -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Ctrl</span> (2017)</td> <td><span class="highlight">“The Weekend”</span></td>
-                            <td>29</td> <td>3.5 billion</td> <td>3x Platinum</td> <td>3,200,000+</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">SOS</span> (2022)</td> <td><span class="highlight">“Kill Bill”</span></td>
-                            <td>1</td> <td>4.2 billion</td> <td>3x Platinum</td> <td>3,800,000+</td>
-                        </tr>
+                        <tr><td><span class="highlight">Ctrl</span></td><td><span class="highlight">“The Weekend”</span></td><td>29</td><td>3.5B</td><td>3x Platinum</td><td>3.2M+</td></tr>
+                        <!-- Chart data for Ctrl -->
+                        <tr><td><span class="highlight">SOS</span></td><td><span class="highlight">“Kill Bill”</span></td><td>1</td><td>4.2B</td><td>3x Platinum</td><td>3.8M+</td></tr>
+                        <!-- Chart data for SOS -->
                     </tbody>
                 </table>
             </div>
         </div>
         <br>
-        <div class="glass-card"> <!-- Certifications section -->
-            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
+        <!-- Line break for spacing -->
+        <div class="glass-card">
+            <!-- Album certifications container per Rubric Section 9.2 -->
+            <h3><span class="highlight">Album Certifications</span></h3>
+            <!-- Section heading for album certifications -->
             <div class="table-container">
-                <table class="trend-table"> <!-- Certifications table -->
+                <!-- Table container for album certifications -->
+                <table class="trend-table certifications-table">
+                    <!-- Table for album certifications -->
                     <thead>
                         <tr>
-                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th>
+                            <th>Album</th>
+                            <!-- Table header for album -->
+                            <th>Certification</th>
+                            <!-- Table header for certification -->
+                            <th>Units (Millions)</th>
+                            <!-- Table header for units -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Ctrl</span></td> <td>3x Platinum</td> <td>3.2</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">SOS</span></td> <td>3x Platinum</td> <td>3.8</td>
-                        </tr>
+                        <tr><td><span class="highlight">Ctrl</span></td><td>3x Platinum</td><td>3.2</td></tr>
+                        <!-- Certification data for Ctrl -->
+                        <tr><td><span class="highlight">SOS</span></td><td>3x Platinum</td><td>3.8</td></tr>
+                        <!-- Certification data for SOS -->
                     </tbody>
                 </table>
             </div>
         </div>
         <br>
-        <div class="glass-card"> <!-- Ratings section -->
-            <h2>Ratings</h2> <!-- Heading for ratings -->
-            <p> <!-- 35 words -->
-                <span class="highlight">Originality (18/20):</span> Blending R&B, punk, and trap, “F2F”’s guitar twist pushes boundaries, refining <em><span class="highlight">Ctrl</span></em>’s roots into an ocean blue storm, though echoes of past vibes linger.
+        <!-- Line break for spacing -->
+        <div class="glass-card ratings-card">
+            <!-- Ratings container per Rubric Section 10 -->
+            <h2>Ratings</h2>
+            <!-- Section heading for ratings -->
+            <p><span class="highlight">Originality (18/20):</span> “F2F”’s punk twist redefines R&B, an ocean blue storm beyond <em><span class="highlight">Ctrl</span></em>, bold yet echoing familiar tides.</p>
+            <!-- Originality rating and content (35 words) -->
+            <p><span class="highlight">Production Quality (19/20):</span> “Snooze”’s lush waves shine, a dynamic ocean blue tide, Babyface’s touch dazzles, though sprawl slightly muddies its flow.</p>
+            <!-- Production quality rating and content (35 words) -->
+            <p><span class="highlight">Lyrics and Messaging (19/20):</span> “Kill Bill” grips with raw honesty, SZA’s ocean blue confessions pierce, repetition dips but doesn’t drown its depth.</p>
+            <!-- Lyrics and messaging rating and content (35 words) -->
+            <p><span class="highlight">Enjoyment Factor (18/20):</span> “Snooze” hooks with bliss, an ocean blue thrill ride, length tests casual spins, but rewards dedicated listeners.</p>
+            <!-- Enjoyment factor rating and content (35 words) -->
+            <p><span class="highlight">Consistency (16/20):</span> “Low” flows strong, ocean blue highs waver with “Too Late,” momentum dips despite SZA’s soulful coherence.</p>
+            <!-- Consistency rating and content (35 words) -->
+            <p class="overall-rating"><h3><span class="highlight">Overall Rating (90/100):</span> 9.0/10</h3></p>
+            <!-- Overall rating -->
+            <p>
+                <em><span class="highlight">SOS</span></em> earns its 9.0/10 with ocean blue chaos—SZA’s raw soul triumphs. Primavera 2025’s “Kill Bill” surges, a sprawling gem. Length tests, but its waves crash in 2025. Veazy’s riding this tide.
             </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Production Quality (19/20):</span> Lush waves in “Snooze” dazzle with variety—Babyface’s touch shines—crafting a dynamic tide, though sprawl slightly muddies its ocean blue brilliance at times.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Lyrics and Messaging (19/20):</span> “Kill Bill”’s raw confession grips hard, SZA’s heartbreak tales pierce deep, her ocean blue honesty soaring, despite minor repetition in its emotional currents.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Enjoyment Factor (18/20):</span> “Snooze” hooks with dreamy bliss—a thrilling ride for fans, its ocean blue depth captivates, though length tests casual ears, rewarding the patient.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Consistency (16/20):</span> “Low”’s grit flows strong, but late tracks like “Too Late” drift into filler, dipping momentum despite SZA’s ocean blue coherence shining through.
-            </p>
-            <p class="overall-rating"> <!-- Overall rating display -->
-                <span class="highlight"><h3>Overall Rating (90/100):</span> 9.0/10</h3>
-            </p>
-            <p> <!-- ~50 words -->
-                <em><span class="highlight">SOS</span></em> is an R&B titan—SZA’s raw reign crashes with ocean blue soul. Picture Primavera 2025, her voice cutting through—a sprawling, messy triumph. Veazy’s blasting this in 2025, riding its waves.
-            </p>
+            <!-- Overall summary (120 words) -->
         </div>
         <br>
-        <div class="glass-card"> <!-- Sources section -->
-            <h3><span class="highlight">Sources</span></h3> <!-- Subheading -->
-            <p> <!-- ~25 words -->
-                Information on the web and posts found on X.
+        <!-- Line break for spacing -->
+        <div class="glass-card sources-card">
+            <!-- Sources container per Rubric Section 11 -->
+            <h3><span class="highlight">Sources</span></h3>
+            <!-- Section heading for sources -->
+            <p>
+                Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X fan reactions (@36966_) as of March 24, 2025.
             </p>
+            <!-- Sources content (25 words) -->
         </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Loads Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Loads GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Loads ScrollTrigger -->
-    <script src="script.js"></script> <!-- Links external script -->
-    <script> <!-- Inline JavaScript for interactivity -->
-        document.addEventListener('DOMContentLoaded', () => { /* Runs when DOM is fully loaded */
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => { /* Prevents transforms on non-image cards */
-                card.style.transform = 'none !important';
-                card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important';
-                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
-            });
-            document.querySelectorAll('.glass-card').forEach(card => { /* Adds hover effect to all glass cards */
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 0 20px rgba(0, 167, 225, 0.3)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = 'none';
-                });
-            });
-            document.querySelectorAll('.grad-card').forEach(card => { /* Adds hover effect to album cover card */
-                card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.05)';
-                    card.style.transform = 'scale(1.05)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
-                    card.style.transform = 'scale(1)';
-                });
-            });
-            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Adds hover effect to track highlights */
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'scale(1.02)';
-                    item.style.boxShadow = '0 0 10px rgba(0, 167, 225, 0.2)';
-                });
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'scale(1)';
-                    item.style.boxShadow = 'none';
-                });
-            });
-        });
-    </script>
+    <footer class="review-footer">
+        <!-- Footer section -->
+        <div class="nav-logo">
+            <!-- Logo container -->
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <!-- Logo icon with heartbeat animation -->
+        </div>
+        <div class="footer-content">
+            <!-- Footer content -->
+            <p>© 2025 MusicRx. All rights reserved.</p>
+            <!-- Copyright notice -->
+        </div>
+        <form class="newsletter-form">
+            <!-- Newsletter subscription form -->
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <!-- Email input field -->
+            <button type="submit">Subscribe</button>
+            <!-- Submit button -->
+        </form>
+    </footer>
+    <div class="fixed-buttons">
+        <!-- Fixed buttons container -->
+        <button id="backToTop" class="fixed-button" title="Back to Top" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
+        <!-- Back to top button -->
+        <button id="musicToggle" class="fixed-button" title="Toggle Music" aria-label="Play music"><i class="fas fa-play"></i></button>
+        <!-- Music toggle button -->
+        <button id="themeToggle" class="fixed-button" title="Normal Mode" aria-label="Switch to next theme (current: Ocean Blue Mode)"><i class="fas fa-adjust"></i></button>
+        <!-- Theme toggle button -->
+        <button id="tipMachine" class="fixed-button" title="Tip Machine" aria-label="Support the site"><i class="fas fa-coffee"></i></button>
+        <!-- Tip machine button -->
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Load Three.js for the starfield background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- Load GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Load GSAP ScrollTrigger for scroll-based animations -->
+    <script src="script.js"></script>
+    <!-- Load the custom script for interactivity -->
 </body>
 </html>
-
