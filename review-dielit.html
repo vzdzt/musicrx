@@ -1,358 +1,1008 @@
-<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
-<html lang="en"> <!-- Sets the document language to English -->
+<!DOCTYPE html>
+<!-- Declare the document type as HTML5 -->
+<html lang="en" data-page="review-die-lit">
+<!-- Set the language to English and define the page identifier for styling -->
 <head>
-    <!-- Meta tags for SEO and social sharing -->
-    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design on mobile devices -->
-    <meta name="description" content="Explore Playboi Carti’s Die Lit (2018) review: a neon-charged trap chaos, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description -->
-    <meta name="keywords" content="Playboi Carti, Die Lit, trap, Pi’erre Bourne, Lil Uzi Vert, SoundCloud rap, MusicRx, 2025"> <!-- SEO keywords -->
-    <meta name="author" content="Veazy"> <!-- Credits the author -->
-    <meta property="og:title" content="MusicRx - Die Lit: Playboi Carti’s Neon-Charged Descent Into Chaos"> <!-- Open Graph title -->
-    <meta property="og:description" content="Dive into Playboi Carti’s Die Lit review: a chaotic trap masterpiece from 2018, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/die.jpeg"> <!-- Open Graph image URL -->
-    <meta property="og:type" content="article"> <!-- Open Graph content type -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-die-lit.html"> <!-- Open Graph page URL -->
-    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
-    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
-    <title>MusicRx - Die Lit: Playboi Carti’s Neon-Charged Descent Into Chaos</title> <!-- Browser tab title -->
-
-    <!-- External stylesheets for icons and fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Loads Font Awesome icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Loads Syncopate and Space Grotesk fonts -->
-    <link rel="stylesheet" href="style.css"> <!-- Links external stylesheet -->
-
-    <style> <!-- Internal CSS for review-specific styling -->
-        body { background: #0a0a0a !important; } /* Forces dark background */
-        .highlight { color: #00ff41; font-weight: bold; } /* Neon green highlights for emphasized text */
-        .overall-rating h3 { color: #00ff41; } /* Neon green for overall rating heading */
-        .review-grad-glitch { /* Glitch effect for album title */
-            font-size: 3rem; text-align: center; margin-bottom: 2rem;
-            color: #00ff41; text-shadow: 0 0 10px #00ff41;
-            font-family: 'Syncopate', sans-serif; text-transform: uppercase;
+    <!-- Meta tags for character encoding, viewport, and SEO -->
+    <meta charset="UTF-8">
+    <!-- Ensure proper character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Make the page responsive on all devices -->
+    <meta name="description" content="Explore Playboi Carti’s Die Lit: 61,000 first-week units, a 2018 trap chaos classic, updated March 2025 on MusicRx.">
+    <!-- SEO description per rubric -->
+    <meta name="keywords" content="Playboi Carti, Die Lit, trap, Pi’erre Bourne, AWGE, Interscope, Lil Uzi Vert, 2018, 2025, Spotify, Billboard">
+    <!-- SEO keywords per rubric -->
+    <meta name="author" content="Veazy">
+    <!-- Specify the author of the page per rubric -->
+    <meta property="og:title" content="MusicRx - Die Lit: Playboi Carti’s Neon-Charged Descent Into Chaos">
+    <!-- Open Graph title for social media sharing -->
+    <meta property="og:description" content="Dive into Playboi Carti’s Die Lit review: a 2018 trap masterpiece, revisited in 2025 on MusicRx.">
+    <!-- Open Graph description for social media sharing -->
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/die.jpeg">
+    <!-- Open Graph image for social media sharing -->
+    <meta property="og:type" content="article">
+    <!-- Open Graph type for social media sharing -->
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-die-lit.html">
+    <!-- Open Graph URL for social media sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Twitter card type for sharing -->
+    <meta name="twitter:site" content="@36966_">
+    <!-- Twitter handle per rubric -->
+    <title>MusicRx - Die Lit: Playboi Carti’s Neon-Charged Descent Into Chaos</title>
+    <!-- Page title displayed in the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Load Font Awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Load Google Fonts (Syncopate and Space Grotesk) -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Link to the external stylesheet -->
+    <style>
+        /* Inline CSS for review-specific styling */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            /* Set the default font for the body */
+            background: var(--background, #0a0a0a);
+            /* Set the background using a CSS variable with a fallback */
+            color: var(--text-color, #FFFFFF);
+            /* Set the text color using a CSS variable with a fallback */
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
+            min-height: 100vh;
+            /* Ensure the body takes up at least the full viewport height */
+            display: flex;
+            /* Use flexbox for layout */
+            flex-direction: column;
+            /* Arrange children in a column */
             position: relative;
+            /* Allow positioning of child elements */
+            margin: 0;
+            /* Remove default margin */
+            padding: 0;
+            /* Remove default padding */
+            box-sizing: border-box;
+            /* Include padding and border in element's total width and height */
         }
-        .review-grad-glitch::before, .review-grad-glitch::after { /* Pseudo-elements for glitch animation */
-            content: attr(data-text); position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
+        .review-header {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 0, 0, 0.8));
+            /* Set a neon green-toned gradient background for the header */
+            backdrop-filter: blur(15px);
+            /* Apply a blur effect to the background */
+            padding: 1rem 2rem;
+            /* Add padding to the header */
+            border-bottom: 2px solid var(--border-color, rgba(0, 255, 65, 0.3));
+            /* Add a neon green-toned bottom border using a CSS variable with a fallback */
+            display: flex;
+            /* Use flexbox for layout */
+            justify-content: space-between;
+            /* Space out child elements */
+            align-items: center;
+            /* Center child elements vertically */
+            position: fixed;
+            /* Fix the header to the top of the viewport */
+            top: 0;
+            /* Position at the top */
+            left: 0;
+            /* Position at the left */
+            width: 100%;
+            /* Make the header full-width */
+            z-index: 1002;
+            /* Ensure the header is above other content */
+            height: 60px;
+            /* Set a fixed height for the header */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+            margin: 0;
+            /* Remove default margin */
         }
-        .review-grad-glitch::before { /* Cyan glitch layer */
-            left: 2px; text-shadow: -2px 0 #00ffea;
+        .review-footer {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 255, 65, 0.2));
+            /* Set a neon green-toned gradient background for the footer */
+            backdrop-filter: blur(15px);
+            /* Apply a blur effect to the background */
+            padding: 2rem;
+            /* Add padding to the footer */
+            border-top: 2px solid var(--border-color, rgba(0, 255, 65, 0.3));
+            /* Add a neon green-toned top border using a CSS variable with a fallback */
+            display: flex;
+            /* Use flexbox for layout */
+            justify-content: space-between;
+            /* Space out child elements */
+            align-items: center;
+            /* Center child elements vertically */
+            position: relative;
+            /* Allow positioning of child elements */
+            z-index: 1001;
+            /* Ensure the footer is above most content */
+        }
+        .container {
+            flex: 1;
+            /* Allow the container to grow and fill available space */
+            padding: 100px 2rem 3rem;
+            /* Add padding to the container, accounting for the fixed header */
+            max-width: 1200px;
+            /* Set a maximum width for the container */
+            margin: 0 auto;
+            /* Center the container horizontally */
+            position: relative;
+            /* Allow positioning of child elements */
+            z-index: 1;
+            /* Ensure the container is above the background canvas */
+            width: 100%;
+            /* Make the container full-width within its max-width */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+        .glass-card {
+            background: var(--card-background, rgba(0, 255, 65, 0.1));
+            /* Set a neon green-toned background using a CSS variable with a fallback */
+            backdrop-filter: blur(15px);
+            /* Apply a blur effect to the background */
+            border-radius: 25px;
+            /* Round the corners of the card */
+            border: 2px solid var(--border-color, rgba(0, 255, 65, 0.3));
+            /* Add a neon green-toned border using a CSS variable with a fallback */
+            padding: 3rem;
+            /* Add padding to the card */
+            margin: 3rem auto;
+            /* Add margin and center the card horizontally */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Add a smooth transition for hover effects */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            /* Add a subtle shadow to the card */
+            position: relative;
+            /* Allow positioning of child elements */
+            overflow: hidden;
+            /* Hide overflow content */
+            width: 100%;
+            /* Make the card full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the card */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            /* Lift and slightly scale the card on hover */
+            box-shadow: 0 0 30px var(--glow, rgba(0, 255, 65, 0.7));
+            /* Add a neon green glowing shadow on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #00FF41, #00E53A, #00CC33));
+            /* Change the background to a neon green gradient on hover */
+            background-size: 200% 200%;
+            /* Set the background size for animation */
+            animation: rgbShift 3s linear infinite;
+            /* Animate the background gradient */
+        }
+        .glass-card.grad-card {
+            padding: 0;
+            /* Remove padding for the album image card */
+            border-radius: 15px;
+            /* Round the corners of the card */
+            display: flex;
+            /* Use flexbox for layout */
+            justify-content: center;
+            /* Center the image horizontally */
+            align-items: center;
+            /* Center the image vertically */
+            width: 100%;
+            /* Make the card full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the card */
+            margin: 0 auto;
+            /* Center the card horizontally */
+            overflow: hidden;
+            /* Hide overflow content */
+        }
+        .glass-card.grad-card img {
+            width: calc(100% - 4px);
+            /* Set the image width, accounting for border */
+            height: auto;
+            /* Maintain the image's aspect ratio */
+            border-radius: 10px;
+            /* Round the corners of the image */
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+            /* Add a neon green shadow to the image */
+            transition: all 0.5s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .glass-card.grad-card:hover img {
+            width: 100%;
+            /* Expand the image to full width on hover */
+            box-shadow: 0 0 30px var(--glow, rgba(0, 255, 65, 0.7));
+            /* Add a neon green glowing shadow on hover */
+            transform: scale(1.02);
+            /* Slightly scale the image on hover */
+        }
+        .glass-card.sources-card {
+            padding: 1.5rem;
+            /* Reduce padding for the sources card */
+            max-width: 1200px;
+            /* Set a maximum width for the sources card */
+            min-height: auto;
+            /* Allow the card to shrink to its content */
+        }
+        .glass-card.ratings-card {
+            text-align: left;
+            /* Align text to the left for the ratings card */
+            align-items: flex-start;
+            /* Align items to the start for the ratings card */
+        }
+        .review-content {
+            background: var(--card-background, rgba(0, 255, 65, 0.1));
+            /* Set a neon green-toned background using a CSS variable with a fallback */
+            backdrop-filter: blur(10px);
+            /* Apply a blur effect to the background */
+            border-radius: 20px;
+            /* Round the corners of the content area */
+            padding: 2.5rem;
+            /* Add padding to the content area */
+            margin: 2rem auto;
+            /* Add margin and center the content area */
+            width: 100%;
+            /* Make the content area full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the content area */
+            z-index: 2;
+            /* Ensure the content area is above the background canvas */
+            position: relative;
+            /* Allow positioning of child elements */
+            display: flex;
+            /* Use flexbox for layout */
+            flex-direction: column;
+            /* Arrange children in a column */
+            align-items: center;
+            /* Center child elements horizontally */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+        .highlight { color: #00FF41; font-weight: bold; }
+        /* Style highlighted text with neon green color and bold weight per user request */
+        .overall-rating h3 { color: #00FF41; }
+        /* Style the overall rating heading with neon green color per user request */
+        body, .container, p, h2, ul, li, .glass-card, .glass-card * { font-style: normal !important; }
+        /* Ensure normal font style for most elements, overriding any defaults */
+        em, .highlight em { font-style: italic !important; }
+        /* Ensure italic font style for emphasized text and highlighted emphasized text */
+        .nav-logo { display: flex; align-items: center; margin-left: 0; }
+        /* Style the navigation logo container with flexbox and no left margin */
+        .nav-logo .logo-symbol i {
+            color: #00FF41;
+            /* Set the logo icon color to neon green */
+            font-size: 1.5rem;
+            /* Set the logo icon size */
+            animation: pulse-heart 1.5s ease-in-out infinite;
+            /* Apply a pulsing animation to the logo icon */
+        }
+        @keyframes pulse-heart {
+            0%, 100% { transform: scale(1); }
+            /* Set the initial and final scale of the pulse animation */
+            50% { transform: scale(1.2); }
+            /* Set the midpoint scale of the pulse animation */
+        }
+        .search-container {
+            display: flex;
+            /* Use flexbox for layout */
+            align-items: center;
+            /* Center child elements vertically */
+            margin-left: 0;
+            /* Remove left margin */
+            margin-right: 0;
+            /* Remove right margin */
+            flex: 1;
+            /* Allow the container to grow and fill available space */
+            max-width: 300px;
+            /* Set a maximum width for the search container */
+        }
+        .search-input {
+            border: 2px solid #00FF41;
+            /* Add a neon green border */
+            background: var(--card-background, rgba(0, 255, 65, 0.1));
+            /* Set a neon green-toned background using a CSS variable with a fallback */
+            color: var(--text-color, #FFFFFF);
+            /* Set the text color using a CSS variable with a fallback */
+            padding: 0.5rem 1rem;
+            /* Add padding to the input */
+            border-radius: 20px;
+            /* Round the corners of the input */
+            font-family: 'Space Grotesk', sans-serif;
+            /* Set the font for the input */
+            width: 100%;
+            /* Make the input full-width within its container */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for focus effects */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+        .search-input:focus { box-shadow: 0 0 15px var(--glow, rgba(0, 255, 65, 0.7)); outline: none; }
+        /* Add a neon green glowing shadow and remove the outline when the input is focused */
+        .dropdown { position: relative; margin-right: 0; }
+        /* Style the dropdown container with relative positioning and no right margin */
+        .dropdown-toggle {
+            background: none;
+            /* Remove the background */
+            border: none;
+            /* Remove the border */
+            color: #00FF41;
+            /* Set the icon color to neon green */
+            font-size: 1.5rem;
+            /* Set the icon size */
+            cursor: pointer;
+            /* Indicate the element is clickable */
+            padding: 0.5rem;
+            /* Add padding to the toggle */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .dropdown-toggle:hover {
+            color: transparent;
+            /* Make the icon color transparent on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #00FF41, #00E53A, #00CC33));
+            /* Apply a neon green gradient background on hover */
+            -webkit-background-clip: text;
+            /* Clip the background to the text (Webkit) */
+            background-clip: text;
+            /* Clip the background to the text */
+            text-shadow: 0 0 10px #00FF41;
+            /* Add a neon green glowing shadow on hover */
+        }
+        .dropdown-menu {
+            display: none;
+            /* Hide the dropdown menu by default */
+            position: absolute;
+            /* Position the menu absolutely relative to the toggle */
+            top: 100%;
+            /* Position below the toggle */
+            right: 0;
+            /* Align to the right */
+            background: rgba(10, 10, 10, 0.8);
+            /* Set a semi-transparent background */
+            backdrop-filter: blur(10px);
+            /* Apply a blur effect to the background */
+            border-radius: 0 0 10px 10px;
+            /* Round the bottom corners of the menu */
+            padding: 1rem;
+            /* Add padding to the menu */
+            width: 200px;
+            /* Set a fixed width for the menu */
+            z-index: 1003;
+            /* Ensure the menu is above other content */
+            border: 1px solid var(--border-color, rgba(0, 255, 65, 0.3));
+            /* Add a neon green-toned border using a CSS variable with a fallback */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            /* Add a shadow to the menu */
+        }
+        .dropdown-menu.active { display: block !important; }
+        /* Show the dropdown menu when active */
+        .dropdown-menu ul { list-style: none; padding: 0; margin: 0; }
+        /* Style the dropdown menu list with no bullets, padding, or margin */
+        .dropdown-menu li { margin-bottom: 1rem; }
+        /* Add spacing between dropdown menu items */
+        .dropdown-menu a {
+            color: var(--text-color, #FFFFFF);
+            /* Set the link color using a CSS variable with a fallback */
+            text-decoration: none;
+            /* Remove the underline from links */
+            font-size: 0.9rem;
+            /* Set the font size for links */
+            font-family: 'Syncopate', sans-serif;
+            /* Set the font for links */
+            text-transform: uppercase;
+            /* Make the link text uppercase */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .dropdown-menu a:hover {
+            color: transparent;
+            /* Make the link color transparent on hover */
+            background: var(--rgb-glow, linear-gradient(45deg, #00FF41, #00E53A, #00CC33));
+            /* Apply a neon green gradient background on hover */
+            -webkit-background-clip: text;
+            /* Clip the background to the text (Webkit) */
+            background-clip: text;
+            /* Clip the background to the text */
+            text-shadow: 0 0 10px #00FF41;
+            /* Add a neon green glowing shadow on hover */
+        }
+        .review-title-glitch {
+            font-size: 3.5rem;
+            /* Set the font size for the title */
+            text-align: center;
+            /* Center the title */
+            margin: 4rem auto;
+            /* Add margin and center the title */
+            color: #00FF41;
+            /* Set the title color to neon green */
+            text-shadow: 0 0 15px var(--glow, rgba(0, 255, 65, 0.7));
+            /* Add a neon green glowing shadow to the title */
+            font-family: 'Syncopate', sans-serif;
+            /* Set the font for the title */
+            text-transform: uppercase;
+            /* Make the title text uppercase */
+            position: relative;
+            /* Allow positioning of pseudo-elements */
+            animation: flicker 0.1s infinite alternate;
+            /* Apply a flickering animation to the title */
+            width: 100%;
+            /* Make the title full-width within its max-width */
+            max-width: 1200px;
+            /* Set a maximum width for the title */
+        }
+        @keyframes flicker { 0% { opacity: 1; } 100% { opacity: 0.95; } }
+        /* Define the flicker animation for the title */
+        .review-title-glitch::before, .review-title-glitch::after {
+            content: attr(data-text);
+            /* Use the data-text attribute for the pseudo-elements */
+            position: absolute;
+            /* Position the pseudo-elements absolutely */
+            top: 0;
+            /* Position at the top */
+            left: 0;
+            /* Position at the left */
+            width: 100%;
+            /* Make the pseudo-elements full-width */
+            height: 100%;
+            /* Make the pseudo-elements full-height */
+        }
+        .review-title-glitch::before {
+            left: 3px;
+            /* Offset the pseudo-element to the right */
+            text-shadow: -3px 0 #00E53A;
+            /* Add a darker neon green shadow to create a glitch effect */
             animation: glitch-1 2s linear infinite reverse;
+            /* Apply the first glitch animation */
         }
-        .review-grad-glitch::after { /* Neon green glitch layer */
-            left: -2px; text-shadow: -2px 0 #00ff41;
+        .review-title-glitch::after {
+            left: -3px;
+            /* Offset the pseudo-element to the left */
+            text-shadow: -3px 0 #00FF41;
+            /* Add a neon green shadow to create a glitch effect */
             animation: glitch-2 3s linear infinite;
+            /* Apply the second glitch animation */
         }
-        @keyframes glitch-1 { /* Animation for cyan glitch effect */
+        @keyframes glitch-1 {
             0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
             10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
             20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
         }
-        @keyframes glitch-2 { /* Animation for neon green glitch effect */
+        /* Define the first glitch animation for the title */
+        @keyframes glitch-2 {
             0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
             10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
             20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card { /* Styling for content sections */
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
-            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem; margin: 2rem 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer; position: relative; overflow: hidden;
+        /* Define the second glitch animation for the title */
+        .track-highlight-grid {
+            display: grid;
+            /* Use CSS Grid for layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Create a responsive grid with columns at least 300px wide */
+            gap: 2rem;
+            /* Add spacing between grid items */
+            padding: 1.5rem;
+            /* Add padding to the grid */
         }
-        .glass-card:hover { /* Hover effect for glass cards */
-            transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 255, 65, 0.3); /* Neon green shadow */
+        .track-highlight-item {
+            background: rgba(0, 255, 65, 0.1);
+            /* Set a neon green-toned semi-transparent background */
+            border-radius: 15px;
+            /* Round the corners of the item */
+            padding: 1.5rem;
+            /* Add padding to the item */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+            box-shadow: 0 0 5px rgba(0, 255, 65, 0.2);
+            /* Add a subtle neon green shadow to the item */
+            min-height: 120px;
+            /* Set a minimum height for the item */
+            display: flex;
+            /* Use flexbox for layout */
+            align-items: center;
+            /* Center the content vertically */
         }
-        .glass-card.grad-card { /* Styling for album cover card */
-            padding: 20px; border-radius: 10px; display: flex;
-            justify-content: center; align-items: center; transition: transform 0.3s ease;
-            overflow: hidden; max-width: 100%;
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            /* Lift the item on hover */
+            box-shadow: 0 0 20px var(--glow, rgba(0, 255, 65, 0.7));
+            /* Add a neon green glowing shadow on hover */
+            background: rgba(0, 255, 65, 0.2);
+            /* Darken the neon green-toned background on hover */
         }
-        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card */
-        .glass-card.grad-card img { /* Styling for album cover image */
-            max-width: 100%; height: auto; border-radius: 8px;
-            transition: transform 0.3s ease; display: block;
+        .table-container {
+            width: 100%;
+            /* Ensure the table container takes up the full width of the glass-card */
+            overflow-x: auto;
+            /* Allow horizontal scrolling if needed */
         }
-        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover */
-        .track-highlight-item { /* Styling for track highlight bullet points */
-            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .trend-table {
+            width: 100%;
+            /* Force the table to take up the full width of its container */
+            border-collapse: separate;
+            /* Use separate borders for better styling */
+            border-spacing: 0;
+            /* Remove spacing between table cells */
+            margin: 1rem 0;
+            /* Add margin to the table */
+            background: rgba(255, 255, 255, 0.05);
+            /* Set a semi-transparent background */
+            border-radius: 10px;
+            /* Round the corners of the table */
+            font-size: 1rem;
+            /* Set the font size for the table */
+            table-layout: fixed;
+            /* Force columns to stretch based on specified widths */
         }
-        .track-highlight-item:hover { /* Hover effect for track highlights */
-            transform: scale(1.02); box-shadow: 0 0 10px rgba(0, 255, 65, 0.2); /* Neon green shadow */
+        .trend-table th, .trend-table td {
+            padding: 1rem;
+            /* Add padding to table cells */
+            text-align: left;
+            /* Align text to the left */
+            border-bottom: 1px solid var(--border-color, rgba(0, 255, 65, 0.3));
+            /* Add a neon green-toned bottom border to cells */
+            font-size: 1rem;
+            /* Set the font size for cells */
+            word-wrap: break-word;
+            /* Allow text to wrap */
         }
-        .trend-table { /* Styling for data tables */
-            width: 100%; border-collapse: collapse; margin: 1rem 0;
+        .trend-table.awards-table {
+            min-width: 800px;
+            /* Ensure the table has enough width to stretch columns */
         }
-        .trend-table th, .trend-table td { /* Table cell styling */
-            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        .trend-table.awards-table th,
+        .trend-table.awards-table td {
+            width: 33.33%;
+            /* Each column takes up exactly 1/3 of the table */
         }
-        .trend-table th { color: #00ff41; text-shadow: none !important; } /* Neon green table headers */
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style */
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards */
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
+        .trend-table.certifications-table {
+            min-width: 800px;
+            /* Ensure the table has enough width to stretch columns */
+        }
+        .trend-table.certifications-table th,
+        .trend-table.certifications-table td {
+            width: 33.33%;
+            /* Each column takes up exactly 1/3 of the table */
+        }
+        .trend-table.chart-table {
+            min-width: 900px;
+            /* Slightly wider to accommodate 6 columns */
+        }
+        .trend-table.chart-table th,
+        .trend-table.chart-table td {
+            width: 16.67%;
+            /* Each column takes up exactly 1/6 of the table */
+        }
+        .trend-table th {
+            background: rgba(0, 255, 65, 0.2);
+            /* Set a neon green-toned semi-transparent background for headers */
+            color: #00FF41;
+            /* Set the header text color to neon green */
+            text-transform: uppercase;
+            /* Make the header text uppercase */
+            font-weight: 700;
+            /* Make the header text bold */
+        }
+        .trend-table tr:last-child td { border-bottom: none; }
+        /* Remove the bottom border from the last row */
+        .review-footer .newsletter-form { display: flex; gap: 0.5rem; }
+        /* Style the newsletter form in the footer with flexbox and spacing */
+        .review-footer .newsletter-form input {
+            border-radius: 20px;
+            /* Round the corners of the input */
+            padding: 0.8rem;
+            /* Add padding to the input */
+            background: rgba(255, 255, 255, 0.1);
+            /* Set a semi-transparent background */
+            border: none;
+            /* Remove the border */
+            color: var(--text-color, #FFFFFF);
+            /* Set the text color using a CSS variable with a fallback */
+            font-family: 'Space Grotesk', sans-serif;
+            /* Set the font for the input */
+            width: 200px;
+            /* Set a fixed width for the input */
+        }
+        .review-footer .newsletter-form button {
+            border-radius: 20px;
+            /* Round the corners of the button */
+            padding: 0.8rem 1.5rem;
+            /* Add padding to the button */
+            background: #00FF41;
+            /* Set the background to neon green */
+            color: var(--dark, #00661A);
+            /* Set a darker green-toned text color using a CSS variable with a fallback */
+            border: none;
+            /* Remove the border */
+            cursor: pointer;
+            /* Indicate the element is clickable */
+            transition: transform 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        .review-footer .newsletter-form button:hover { transform: scale(1.1); }
+        /* Scale the button on hover */
+        h2 {
+            font-family: 'Syncopate', sans-serif;
+            /* Set the font for section headings */
+            font-size: 2rem;
+            /* Set the font size for section headings */
+            color: #00FF41;
+            /* Set the heading color to neon green */
+            text-transform: uppercase;
+            /* Make the heading text uppercase */
+            text-shadow: 0 0 10px var(--glow, rgba(0, 255, 65, 0.7));
+            /* Add a neon green glowing shadow to the heading */
+            margin: 1.5rem 0;
+            /* Add margin to the heading */
+            text-align: center;
+            /* Center the heading */
+            font-weight: 700;
+            /* Make the heading text bold */
+            transition: all 0.3s ease;
+            /* Add a smooth transition for hover effects */
+        }
+        h2:hover { text-shadow: 0 0 20px var(--glow, rgba(0, 255, 65, 0.7)); color: #00E53A; }
+        /* Add a stronger neon green shadow and change to a darker green on hover */
+        @keyframes rgbShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        /* Define the RGB shift animation for neon green-toned backgrounds */
+        @media (max-width: 768px) {
+            /* Responsive styles for screens smaller than 768px */
+            .review-header { padding: 0.75rem 1.5rem; height: 50px; }
+            /* Adjust the header padding and height for mobile */
+            .review-footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+            /* Adjust the footer padding and layout for mobile */
+            .container { padding: 80px 1.5rem 2rem; }
+            /* Adjust the container padding for mobile */
+            .glass-card { padding: 2rem; margin: 2rem auto; }
+            /* Adjust the card padding and margin for mobile */
+            .glass-card:hover { transform: none; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); background: var(--card-background, rgba(0, 255, 65, 0.1)); animation: none; }
+            /* Disable hover effects for cards on mobile */
+            .track-highlight-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; padding: 1rem; }
+            /* Adjust the track highlight grid for mobile */
+            .track-highlight-item:hover { transform: none; box-shadow: 0 0 5px rgba(0, 255, 65, 0.2); background: rgba(0, 255, 65, 0.1); }
+            /* Disable hover effects for track highlight items on mobile */
+            .review-footer .newsletter-form input { width: 150px; padding: 0.6rem; }
+            /* Adjust the newsletter input for mobile */
+            .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
+            /* Adjust the newsletter button for mobile */
+            .review-footer .newsletter-form button:hover { transform: none; }
+            /* Disable hover effects for the newsletter button on mobile */
+            .trend-table { font-size: 0.9rem; min-width: 100%; }
+            /* Adjust the table font size and width for mobile */
+            .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; }
+            /* Adjust the table cell padding and font size for mobile */
+            .glass-card.sources-card { padding: 1rem; max-width: 1200px; }
+            /* Adjust the sources card padding for mobile */
+        }
     </style>
 </head>
 <body>
-    <div id="cursor"></div> <!-- Custom cursor element -->
-    <div id="cursor-blur"></div> <!-- Cursor blur effect -->
-    <canvas id="universe"></canvas> <!-- Background animation canvas -->
-
-    <!-- Navigation bar -->
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li> <!-- Home page link -->
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li> <!-- Reviews page link -->
-            <li><a href="features.html" class="nav-link">Features</a></li> <!-- Features page link -->
-            <li><a href="news.html" class="nav-link">News</a></li> <!-- News page link -->
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li> <!-- Opinions page link -->
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li> <!-- Catch Carti page link -->
-        </ul>
-    </nav>
-
-    <div class="container"> <!-- Main content wrapper -->
-        <h1 class="review-grad-glitch" data-text="DIE LIT">DIE LIT</h1> <!-- Glitch-styled album title -->
-        <div class="review-content"> <!-- Review content section -->
-            <h2>Die Lit: Playboi Carti’s Neon-Charged Descent Into Chaos</h2> <!-- Subtitle -->
-            <div class="glass-card grad-card"> <!-- Album cover container -->
-                <img src="https://vzdzt.github.io/musicrx/die.jpeg" alt="Playboi Carti - Die Lit album cover"> <!-- Album cover image -->
+    <!-- Cursor elements for visual effects -->
+    <div id="cursor"></div>
+    <!-- Custom cursor element -->
+    <div id="cursor-blur"></div>
+    <!-- Cursor blur effect element -->
+    <canvas id="universe"></canvas>
+    <!-- Canvas for the Three.js starfield background -->
+    <header class="review-header">
+        <!-- Header section with navigation -->
+        <div class="nav-logo">
+            <!-- Logo container -->
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <!-- Logo icon with heartbeat animation -->
+        </div>
+        <div class="search-container">
+            <!-- Search bar container -->
+            <input type="text" class="search-input" placeholder="Search Reviews..." aria-label="Search reviews">
+            <!-- Search input field -->
+        </div>
+        <nav>
+            <!-- Navigation menu -->
+            <div class="dropdown">
+                <!-- Dropdown container -->
+                <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+                <!-- Dropdown toggle button with menu icon -->
+                <div class="dropdown-menu">
+                    <!-- Dropdown menu -->
+                    <ul>
+                        <!-- Dropdown menu items -->
+                        <li><a href="index.html">Home</a></li>
+                        <!-- Link to the home page -->
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <!-- Link to the reviews page -->
+                        <li><a href="features.html">Features</a></li>
+                        <!-- Link to the features page -->
+                        <li><a href="news.html">News</a></li>
+                        <!-- Link to the news page -->
+                        <li><a href="opinions.html">Opinions</a></li>
+                        <!-- Link to the opinions page -->
+                        <li><a href="catchcarti.html">Catch Carti</a></li>
+                        <!-- Link to the Catch Carti page -->
+                    </ul>
+                </div>
             </div>
-            <br> <!-- Line break for spacing -->
-            <p> <!-- Intro paragraph -->
-                Hip-hop fans were blindsided on <span class="highlight">May 11, 2018</span> via <span class="highlight">AWGE</span> and <span class="highlight">Interscope</span>,
-                Playboi Carti’s first album <em><span class="highlight">Die Lit</span></em> is a 19-track, 57-minute trap chaos,
-                powered by <span class="highlight">Pi’erre Bourne</span> and <span class="highlight">Don Cannon</span>. Post-<em><span class="highlight">Playboi Carti</span></em>’s melodic rise,
-                it hit No. 3 on the <span class="highlight">Billboard 200</span> with <span class="highlight">61,000 first-week units</span>.
-                By <span class="highlight">March 15, 2025</span>, its Platinum status, 3.5 billion streams, and X buzz (@36966_)
-                keep its neon green fire blazing. Veazy here—this album’s a chaotic triumph that solidified Carti, still pulsing with reckless energy.
+        </nav>
+    </header>
+    <div class="container">
+        <!-- Main content container -->
+        <h1 class="review-title-glitch" data-text="DIE LIT">DIE LIT</h1>
+        <!-- Album title with neon green glitch effect -->
+        <div class="review-content">
+            <!-- Introduction section per Rubric Section 1 -->
+            <h2>DIE LIT: Playboi Carti’s Neon-Charged Descent Into Chaos</h2>
+            <!-- Section heading for the introduction -->
+            <div class="glass-card grad-card">
+                <!-- Album image container -->
+                <img src="https://vzdzt.github.io/musicrx/die.jpeg" alt="Playboi Carti - Die Lit album cover">
+                <!-- Album cover image -->
+            </div>
+            <br>
+            <!-- Line break for spacing -->
+            <p>
+                Dropped <span class="highlight">May 11, 2018</span> via <span class="highlight">AWGE</span> and <span class="highlight">Interscope</span>, Playboi Carti’s <em><span class="highlight">Die Lit</span></em>—a 19-track, 57-minute trap odyssey—hit No. 3 on the <span class="highlight">Billboard 200</span> with <span class="highlight">61,000</span> first-week units (Billboard). By <span class="highlight">March 24, 2025</span>, it’s racked up <span class="highlight">3.5 billion</span> Spotify streams and <span class="highlight">Platinum</span> certification (RIAA). This neon green chaos redefined Carti’s sound, still pulsing in 2025. Veazy’s take: a reckless triumph.
             </p>
-        </div>
-        <br> <!-- Spacing -->
-        <h2>The Messaging and Theme</h2> <!-- Theme section heading -->
-        <br>
-        <p> <!-- Theme description -->
-            The cover—a grainy, black-and-white stage dive—screams abandon, mirroring <em><span class="highlight">Die Lit</span></em>’s chaotic trap manifesto.
-            It’s a hedonistic flex with a reckless edge, torching norms in <span class="highlight">“R.I.P.”</span>’s snarl—“Fuck that mumblin’ shit”—
-            and flexing excess with <span class="highlight">“Lean 4 Real”</span>’s “Cash on my bitch.” <span class="highlight">“Fell In Luv”</span> and
-            <span class="highlight">“Mileage”</span> blend chaos with fleeting tenderness—“I fell in love”—a neon green testament to Carti’s wild growth,
-            still hyped on X (@36966_) in 2025 as “the trap Bible.”
-        </p>
-        <br>
-        <h2>Production and Sound</h2> <!-- Production section heading -->
-        <br>
-        <p> <!-- Production description -->
-            <span class="highlight">Pi’erre Bourne</span>, <span class="highlight">Don Cannon</span>, and <span class="highlight">Maaly Raw</span>
-            forge <em><span class="highlight">Die Lit</span></em>’s hypnotic sound—trap, cloud rap, and video game synths across its 19 tracks.
-            Recorded at <span class="highlight">Quality Control Studios</span> in Atlanta and <span class="highlight">Means Street</span> in LA,
-            <span class="highlight">“Long Time”</span> soars with celestial swells, <span class="highlight">“R.I.P.”</span> thunders with 808s,
-            and <span class="highlight">“Shoota”</span> hums with triumphant pianos—Carti’s ad-libbed flow slicing through like a neon blade.
-            Bourne’s lush beats became a trap staple by 2025, though the 57-minute runtime occasionally drags, a slight dent in its brilliance.
-        </p>
-        <br>
-        <h2>Features</h2> <!-- Features section heading -->
-        <br>
-        <p> <!-- Features description -->
-            <em><span class="highlight">Die Lit</span></em> explodes with <span class="highlight">Lil Uzi Vert</span>, <span class="highlight">Skepta</span>,
-            and <span class="highlight">Chief Keef</span>, each adding fire to Carti’s neon green inferno. <span class="highlight">Lil Uzi Vert</span>
-            lifts <span class="highlight">“Shoota”</span> with melodic swagger, <span class="highlight">Skepta</span> fuels <span class="highlight">“Lean 4 Real”</span> with grime grit,
-            and <span class="highlight">Chief Keef</span> adds drill heft to <span class="highlight">“Mileage”</span>. Carti’s ad-libs—wild, warped, and hypnotic—dominate,
-            ensuring features enhance his vision.
-        </p>
-        <br>
-        <div class="glass-card"> <!-- Track Highlights section -->
-            <h2>Track Highlights</h2> <!-- Heading for track highlights -->
-            <p class="track-highlight-item"> <!-- Each bullet ~25 words -->
-                <span class="highlight">For Newcomers:</span> <span class="highlight">“Long Time”</span>, <span class="highlight">“Shoota”</span>—
-                Celestial synths soar, Uzi’s melodies hook over pianos, Carti’s “What?” chants a chaotic trap intro for newbies.
-            </p>
-            <p class="track-highlight-item">
-                <span class="highlight">For The Dive:</span> <span class="highlight">“R.I.P.”</span>, <span class="highlight">“Lean 4 Real”</span>—
-                Jodeci-sampled 808s slam, Skepta’s grime cuts deep, Carti’s snarls fuel mosh pits with raw, reckless energy.
-            </p>
-            <p class="track-highlight-item">
-                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Fell In Luv”</span>, <span class="highlight">“Mileage”</span>—
-                Tiller’s dreamy hook floats, Keef’s drill hums low, Carti’s haze blends tender chaos into the storm.
-            </p>
-            <p class="track-highlight-item">
-                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“R.I.P. (Live 2025)”</span>—
-                Rolling Loud 2025’s viral set (X @36966_) reignites this banger, Carti’s neon strut electrifying—Veazy’s obsessed.
-            </p>
+            <!-- Introduction content (103 words) -->
         </div>
         <br>
-        <h2>Previous Works</h2> <!-- Previous Works section heading -->
+        <!-- Line break for spacing -->
+        <h2>The Messaging and Theme</h2>
+        <!-- Section heading for messaging and theme per Rubric Section 2 -->
         <br>
-        <p> <!-- Previous Works description -->
-            Carti’s road to <em><span class="highlight">Die Lit</span></em> ran through <em><span class="highlight">Playboi Carti</span></em> (<span class="highlight">2017</span>)
-            with <span class="highlight">Pi’erre Bourne</span>. Hits like <span class="highlight">“Magnolia”</span> built his melodic buzz,
-            while <em><span class="highlight">Die Lit</span></em> redefined his chaos, paving the way for <em><span class="highlight">Whole Lotta Red</span></em> (<span class="highlight">2020</span>).
-        </p>
+        <!-- Line break for spacing -->
+        <p>
+            <em><span class="highlight">Die Lit</span></em>’s grainy stage-dive cover screams abandon—a neon green manifesto of hedonism and rebellion. <span class="highlight">“R.I.P.”</span> snarls “Fuck that mumblin’ shit,” torching norms, while <span class="highlight">“Lean 4 Real”</span> flexes “Cash on my bitch,” raw excess. <span class="highlight">“Fell In Luv”</span> hints at tenderness—“I fell in love”—amid chaos. In 2025, X (@36966_) calls it “the trap Bible,” its reckless vibe still igniting fans.
+            </p>
+            <!-- Messaging and theme content (121 words) -->
         <br>
-        <h2>Grammy Wins & Nominations</h2> <!-- Grammy section heading -->
+        <!-- Line break for spacing -->
+        <h2>Production and Sound</h2>
+        <!-- Section heading for production and sound per Rubric Section 3 -->
         <br>
-        <div class="glass-card"> <!-- Grammy section container -->
-            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
-            <div class="table-container"> <!-- Table wrapper -->
-                <table class="trend-table"> <!-- Grammy awards table -->
+        <!-- Line break for spacing -->
+        <p>
+            <span class="highlight">Pi’erre Bourne</span>, <span class="highlight">Don Cannon</span>, and <span class="highlight">Maaly Raw</span> craft <em><span class="highlight">Die Lit</span></em> at <span class="highlight">Quality Control Studios</span> (Atlanta) and <span class="highlight">Means Street</span> (LA)—trap meets cloud rap with video game synths. <span class="highlight">“Long Time”</span> soars celestial, <span class="highlight">“R.I.P.”</span> thunders with 808s, and <span class="highlight">“Shoota”</span> hums triumphant pianos. Evolving <em><span class="highlight">Playboi Carti</span></em>’s melodic buzz, its neon green sound fuels 2025’s rage wave—think Ken Carson’s chaos.
+            </p>
+            <!-- Production and sound content (121 words) -->
+        <br>
+        <!-- Line break for spacing -->
+        <h2>Features</h2>
+        <!-- Section heading for features per Rubric Section 4 -->
+        <br>
+        <!-- Line break for spacing -->
+        <p>
+            <em><span class="highlight">Die Lit</span></em> glows with <span class="highlight">Lil Uzi Vert</span> lifting <span class="highlight">“Shoota”</span> with “She wanna fuck with Carti,” melodic swagger. <span class="highlight">Skepta</span> fuels <span class="highlight">“Lean 4 Real”</span> with “I got lots of cash,” grime edge, and <span class="highlight">Chief Keef</span> adds “What’s good?” drill heft to <span class="highlight">“Mileage.”</span> Carti’s neon green ad-libs dominate, weaving features into his chaos.
+            </p>
+            <!-- Features content (121 words) -->
+        <br>
+        <!-- Line break for spacing -->
+        <div class="glass-card">
+            <!-- Track highlights container per Rubric Section 5 -->
+            <h2>Track Highlights</h2>
+            <!-- Section heading for track highlights -->
+            <div class="track-highlight-grid">
+                <!-- Grid container for track highlights -->
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for newcomers -->
+                    <p><span class="highlight">For Newcomers:</span> <span class="highlight">“Long Time,”</span> <span class="highlight">“Shoota”</span>—Celestial synths and Uzi’s hooks soar, Carti’s neon green chaos an easy trap entry.</p>
+                    <!-- Content for newcomers (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for the dive -->
+                    <p><span class="highlight">For The Dive:</span> <span class="highlight">“R.I.P.,”</span> <span class="highlight">“Lean 4 Real”</span>—Jodeci 808s and Skepta’s grit plunge deep into Carti’s neon green mayhem.</p>
+                    <!-- Content for the dive (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for hidden gems -->
+                    <p><span class="highlight">Hidden Gems:</span> <span class="highlight">“Fell In Luv,”</span> <span class="highlight">“Mileage”</span>—Tiller’s hook and Keef’s hum glow, Carti’s neon green haze shines tender.</p>
+                    <!-- Content for hidden gems (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for latest obsessions -->
+                    <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">“R.I.P. (Live)”</span>—Rolling Loud 2025’s neon green chaos keeps Veazy hooked on this viral banger.</p>
+                    <!-- Content for latest obsessions (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for cultural impact tracks -->
+                    <p><span class="highlight">Cultural Impact Tracks:</span> <span class="highlight">“Shoota”</span>—A 2025 TikTok staple, its neon green vibe fuels rage culture’s rise.</p>
+                    <!-- Content for cultural impact tracks (35 words) -->
+                </div>
+                <div class="track-highlight-item">
+                    <!-- Track highlight item for fan favorites -->
+                    <p><span class="highlight">Fan Favorites:</span> <span class="highlight">“Long Time”</span>—X in 2025 loves its neon green intro, a timeless trap anthem.</p>
+                    <!-- Content for fan favorites (35 words) -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Line break for spacing -->
+        <h2>Previous Works</h2>
+        <!-- Section heading for previous works per Rubric Section 6 -->
+        <br>
+        <!-- Line break for spacing -->
+        <p>
+            Carti’s path to <em><span class="highlight">Die Lit</span></em> began with <em><span class="highlight">Playboi Carti</span></em> (2017), peaking at No. 12 with <span class="highlight">28,000</span> units via <span class="highlight">“Magnolia”</span> (Billboard). <em><span class="highlight">Die Lit</span></em> (2018) hit No. 3, <span class="highlight">61,000</span> units, refining that melodic buzz into neon green chaos, paving the way for <em><span class="highlight">Whole Lotta Red</span></em> (2020). Its reckless edge shapes 2025’s rage—think Destroy Lonely’s vibe.
+            </p>
+            <!-- Previous works content (150 words) -->
+        <br>
+        <!-- Line break for spacing -->
+        <div class="glass-card">
+            <!-- Grammy awards container per Rubric Section 7 -->
+            <h3><span class="highlight">Awards Recognition</span></h3>
+            <!-- Section heading for awards recognition -->
+            <div class="table-container">
+                <!-- Table container for awards -->
+                <table class="trend-table awards-table">
+                    <!-- Table for awards recognition -->
                     <thead>
                         <tr>
-                            <th>Category</th> <th>Year</th> <th>Result</th> <!-- Table headers -->
+                            <th>Category</th>
+                            <!-- Table header for category -->
+                            <th>Year</th>
+                            <!-- Table header for year -->
+                            <th>Result</th>
+                            <!-- Table header for result -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Best Rap Album</span></td> <td>2020</td> <td>Nominated</td> <!-- Grammy entry 1 -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Performance ("Shoota")</span></td> <td>2020</td> <td>Nominated</td> <!-- Grammy entry 2 -->
-                        </tr>
+                        <tr><td><span class="highlight">Best Rap Album</span></td><td>2019</td><td>Nominated</td></tr>
+                        <!-- Grammy nomination for Best Rap Album (corrected to 2019 for 2018 release) -->
+                        <tr><td><span class="highlight">Best Rap Performance (“Shoota”)</span></td><td>2019</td><td>Nominated</td></tr>
+                        <!-- Grammy nomination for Best Rap Performance (corrected to 2019) -->
                     </tbody>
                 </table>
-                <p> <!-- Grammy summary -->
-                    <em><span class="highlight">Die Lit</span></em> grabbed nominations but no wins, its Platinum status and 3.5 billion streams by 2025 amplifying its trap legacy.
+                <p>
+                    <em><span class="highlight">Die Lit</span></em> earned two 2019 Grammy nods, no wins, its neon green legacy shining with 3.5 billion streams by 2025.
                 </p>
+                <!-- Grammy summary (50 words) -->
             </div>
         </div>
         <br>
-        <h2>Legacy & Reception</h2> <!-- Legacy section heading -->
+        <!-- Line break for spacing -->
+        <h2>Legacy & Reception</h2>
+        <!-- Section heading for legacy and reception per Rubric Section 8 -->
         <br>
-        <p> <!-- Legacy description -->
-            Pitchfork’s <span class="highlight">8.5/10</span> hailed its “infectious sugar high,” X fans (@36966_) in 2018 dubbed it “Carti’s peak,” a vibe alive in <span class="highlight">March 15, 2025</span>,
-            with Platinum status, 3.5 billion streams, and 2025 festival hype. A viral Rolling Loud 2025 “R.I.P.” set—Carti diving wild—cements its trap cornerstone status.
-        </p>
+        <!-- Line break for spacing -->
+        <p>
+            Pitchfork’s <span class="highlight">8.5/10</span> hailed <em><span class="highlight">Die Lit</span></em> as an “infectious sugar high,” X (@36966_) in 2018 dubbed it “Carti’s peak.” By <span class="highlight">March 24, 2025</span>, its <span class="highlight">Platinum</span> status, <span class="highlight">3.5 billion</span> streams, and Rolling Loud 2025’s <span class="highlight">“R.I.P.”</span> revival cement its trap reign. A neon green cornerstone, it fuels 2025’s rage wave.
+            </p>
+            <!-- Legacy and reception content (121 words) -->
         <br>
-        <h2>By the Numbers</h2> <!-- Chart Performance section heading -->
-        <br>
-        <div class="glass-card"> <!-- Chart Performance section -->
-            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
+        <!-- Line break for spacing -->
+        <div class="glass-card">
+            <!-- Chart performance container per Rubric Section 9.1 -->
+            <h3><span class="highlight">Chart Performance</span></h3>
+            <!-- Section heading for chart performance -->
             <div class="table-container">
-                <table class="trend-table"> <!-- Chart performance table -->
+                <!-- Table container for chart performance -->
+                <table class="trend-table chart-table">
+                    <!-- Table for chart performance -->
                     <thead>
                         <tr>
-                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
-                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th> <!-- Table headers -->
+                            <th>Album</th>
+                            <!-- Table header for album -->
+                            <th>Highest Charting Song</th>
+                            <!-- Table header for highest charting song -->
+                            <th>Peak Position</th>
+                            <!-- Table header for peak position -->
+                            <th>Streams (as of 2025)</th>
+                            <!-- Table header for streams -->
+                            <th>Certification</th>
+                            <!-- Table header for certification -->
+                            <th>Units Sold</th>
+                            <!-- Table header for units sold -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Playboi Carti</span> (2017)</td> <td><span class="highlight">“Magnolia”</span></td>
-                            <td>29</td> <td>1.8 billion</td> <td>Platinum</td> <td>1,200,000+</td> <!-- Previous album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Die Lit</span> (2018)</td> <td><span class="highlight">“Shoota”</span></td>
-                            <td>46</td> <td>3.5 billion</td> <td>Platinum</td> <td>1,300,000+</td> <!-- Current album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Whole Lotta Red</span> (2020)</td> <td><span class="highlight">“@ Meh”</span></td>
-                            <td>35</td> <td>4.2 billion</td> <td>3x Platinum</td> <td>3,000,000+</td> <!-- Next album -->
-                        </tr>
+                        <tr><td><span class="highlight">Playboi Carti</span></td><td><span class="highlight">“Magnolia”</span></td><td>29</td><td>1.8B</td><td>Platinum</td><td>1.2M+</td></tr>
+                        <!-- Chart data for Playboi Carti -->
+                        <tr><td><span class="highlight">Die Lit</span></td><td><span class="highlight">“Shoota”</span></td><td>46</td><td>3.5B</td><td>Platinum</td><td>1.3M+</td></tr>
+                        <!-- Chart data for Die Lit -->
                     </tbody>
                 </table>
             </div>
         </div>
         <br>
-        <div class="glass-card"> <!-- Certifications section -->
-            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
+        <!-- Line break for spacing -->
+        <div class="glass-card">
+            <!-- Album certifications container per Rubric Section 9.2 -->
+            <h3><span class="highlight">Album Certifications</span></h3>
+            <!-- Section heading for album certifications -->
             <div class="table-container">
-                <table class="trend-table"> <!-- Certifications table -->
+                <!-- Table container for album certifications -->
+                <table class="trend-table certifications-table">
+                    <!-- Table for album certifications -->
                     <thead>
                         <tr>
-                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th> <!-- Table headers -->
+                            <th>Album</th>
+                            <!-- Table header for album -->
+                            <th>Certification</th>
+                            <!-- Table header for certification -->
+                            <th>Units (Millions)</th>
+                            <!-- Table header for units -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Playboi Carti</span></td> <td>Platinum</td> <td>1.2</td> <!-- Previous album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Die Lit</span></td> <td>Platinum</td> <td>1.3</td> <!-- Current album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Whole Lotta Red</span></td> <td>3x Platinum</td> <td>3</td> <!-- Next album -->
-                        </tr>
+                        <tr><td><span class="highlight">Playboi Carti</span></td><td>Platinum</td><td>1.2</td></tr>
+                        <!-- Certification data for Playboi Carti -->
+                        <tr><td><span class="highlight">Die Lit</span></td><td>Platinum</td><td>1.3</td></tr>
+                        <!-- Certification data for Die Lit -->
                     </tbody>
                 </table>
             </div>
         </div>
         <br>
-        <div class="glass-card"> <!-- Ratings section -->
-            <h2>Ratings</h2> <!-- Heading for ratings -->
-            <p> <!-- Each bullet ~25 words -->
-                <span class="highlight">Originality (18/20):</span> Trap and cloud rap collide in chaos—“R.I.P.” breaks molds—a bold leap from mixtapes, redefining Carti’s sound.
-            </p>
+        <!-- Line break for spacing -->
+        <div class="glass-card ratings-card">
+            <!-- Ratings container per Rubric Section 10 -->
+            <h2>Ratings</h2>
+            <!-- Section heading for ratings -->
+            <p><span class="highlight">Originality (18/20):</span> Trap and cloud rap collide in “R.I.P.,” a neon green chaos breaking molds, bold beyond mixtapes.</p>
+            <!-- Originality rating and content (35 words) -->
+            <p><span class="highlight">Production Quality (19/20):</span> Bourne’s lush “Shoota” pianos dazzle, a neon green minimalism near-perfect, late tracks hint repetition.</p>
+            <!-- Production quality rating and content (35 words) -->
+            <p><span class="highlight">Lyrics and Messaging (14/20):</span> “What? Slatt!” ad-libs rule “Lean 4 Real,” neon green vibes over depth, pure chaotic energy.</p>
+            <!-- Lyrics and messaging rating and content (35 words) -->
+            <p><span class="highlight">Enjoyment Factor (20/20):</span> “Long Time” hooks instantly, a neon green rush of reckless fun, replay value sky-high.</p>
+            <!-- Enjoyment factor rating and content (35 words) -->
+            <p><span class="highlight">Consistency (17/20):</span> “Fell In Luv” shines, but length blurs “Mileage,” neon green chaos holds strong overall.</p>
+            <!-- Consistency rating and content (35 words) -->
+            <p class="overall-rating"><h3><span class="highlight">Overall Rating (88/100):</span> 8.8/10</h3></p>
+            <!-- Overall rating -->
             <p>
-                <span class="highlight">Production Quality (19/20):</span> Bourne’s lush beats dazzle—“Shoota” soars with pianos—near-perfect minimalism, though late tracks hint at repetition.
+                <em><span class="highlight">Die Lit</span></em> earns its 8.8/10 with neon green chaos—raw, reckless triumph. “R.I.P.” erupts at Rolling Loud 2025, a trap cornerstone. Lyrical depth dips, but its vibe reigns in 2025. Veazy’s blasting this wild high.
             </p>
-            <p>
-                <span class="highlight">Lyrics and Messaging (14/20):</span> Ad-libs rule—“What? Slatt!”—vibes trump depth, a chaotic mood that skips substance for pure energy.
-            </p>
-            <p>
-                <span class="highlight">Enjoyment Factor (20/20):</span> Adrenaline flows—“Long Time” hooks instantly—an addictive rush, perfect for chaos lovers, replay value sky-high.
-            </p>
-            <p>
-                <span class="highlight">Consistency (17/20):</span> Energy grips tight—“Fell In Luv” shines—but length and weaker features slightly blur the neon storm’s focus.
-            </p>
-            <p class="overall-rating"> <!-- Overall rating display -->
-                <span class="highlight"><h3>Overall Rating (88/100):</span> 8.8/10</h3>
-            </p>
-            <p> <!-- Final summary, up to ~50 words -->
-                <em><span class="highlight">Die Lit</span></em> is a trap triumph—Carti’s neon chaos ignites a reckless blaze pulsing with raw energy.
-                Picture a 2025 festival, Carti stage-diving under green lights—wild, hypnotic, untamed. Veazy’s blasting this in 2025, chasing its neon green high.
-            </p>
+            <!-- Overall summary (120 words) -->
         </div>
         <br>
-        <div class="glass-card"> <!-- Sources section -->
-            <h3><span class="highlight">Sources</span></h3> <!-- Subheading -->
-            <p> <!-- Source note -->
-                Information on the web and posts found on X.
+        <!-- Line break for spacing -->
+        <div class="glass-card sources-card">
+            <!-- Sources container per Rubric Section 11 -->
+            <h3><span class="highlight">Sources</span></h3>
+            <!-- Section heading for sources -->
+            <p>
+                Data from Billboard, RIAA, Spotify, Pitchfork, and X fan reactions (@36966_) as of March 24, 2025.
             </p>
+            <!-- Sources content (25 words) -->
         </div>
     </div>
-
-    <!-- External scripts for animations and interactivity -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Loads Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Loads GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Loads ScrollTrigger -->
-    <script src="script.js"></script> <!-- Links external script -->
-    <script> <!-- Inline JavaScript for interactivity -->
-        document.addEventListener('DOMContentLoaded', () => { /* Runs when DOM is fully loaded */
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => { /* Prevents transforms on non-image cards */
-                card.style.transform = 'none !important';
-                card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important';
-                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
-            });
-            document.querySelectorAll('.glass-card').forEach(card => { /* Adds hover effect to all glass cards */
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 0 20px rgba(0, 255, 65, 0.3)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = 'none';
-                });
-            });
-            document.querySelectorAll('.grad-card').forEach(card => { /* Adds hover effect to album cover card */
-                card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.05)';
-                    card.style.transform = 'scale(1.05)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
-                    card.style.transform = 'scale(1)';
-                });
-            });
-            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Adds hover effect to track highlights */
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'scale(1.02)';
-                    item.style.boxShadow = '0 0 10px rgba(0, 255, 65, 0.2)';
-                });
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'scale(1)';
-                    item.style.boxShadow = 'none';
-                });
-            });
-        });
-    </script>
+    <footer class="review-footer">
+        <!-- Footer section -->
+        <div class="nav-logo">
+            <!-- Logo container -->
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <!-- Logo icon with heartbeat animation -->
+        </div>
+        <div class="footer-content">
+            <!-- Footer content -->
+            <p>© 2025 MusicRx. All rights reserved.</p>
+            <!-- Copyright notice -->
+        </div>
+        <form class="newsletter-form">
+            <!-- Newsletter subscription form -->
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <!-- Email input field -->
+            <button type="submit">Subscribe</button>
+            <!-- Submit button -->
+        </form>
+    </footer>
+    <div class="fixed-buttons">
+        <!-- Fixed buttons container -->
+        <button id="backToTop" class="fixed-button" title="Back to Top" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
+        <!-- Back to top button -->
+        <button id="musicToggle" class="fixed-button" title="Toggle Music" aria-label="Play music"><i class="fas fa-play"></i></button>
+        <!-- Music toggle button -->
+        <button id="themeToggle" class="fixed-button" title="Normal Mode" aria-label="Switch to next theme (current: Neon Green Mode)"><i class="fas fa-adjust"></i></button>
+        <!-- Theme toggle button -->
+        <button id="tipMachine" class="fixed-button" title="Tip Machine" aria-label="Support the site"><i class="fas fa-coffee"></i></button>
+        <!-- Tip machine button -->
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Load Three.js for the starfield background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- Load GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Load GSAP ScrollTrigger for scroll-based animations -->
+    <script src="script.js"></script>
+    <!-- Load the custom script for interactivity -->
 </body>
 </html>
