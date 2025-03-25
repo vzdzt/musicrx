@@ -404,27 +404,22 @@
         }
         .review-title-glitch {
             font-size: 3.5rem;
-            /* Set the font size for the title */
             text-align: center;
-            /* Center the title */
             margin: 4rem auto;
-            /* Add margin and center the title */
             color: #90EE90;
-            /* Set the title color to light green */
             text-shadow: 0 0 15px var(--glow, rgba(144, 238, 144, 0.7));
-            /* Add a light green glowing shadow to the title */
             font-family: 'Syncopate', sans-serif;
-            /* Set the font for the title */
             text-transform: uppercase;
-            /* Make the title text uppercase */
             position: relative;
-            /* Allow positioning of pseudo-elements */
             animation: flicker 0.1s infinite alternate;
-            /* Apply a flickering animation to the title */
             width: 100%;
-            /* Make the title full-width within its max-width */
             max-width: 1200px;
-            /* Set a maximum width for the title */
+        }
+        @media (max-width: 768px) {
+            .review-title-glitch {
+                font-size: 2rem;
+                margin: 2rem auto;
+            }
         }
         @keyframes flicker { 0% { opacity: 1; } 100% { opacity: 0.95; } }
         /* Define the flicker animation for the title */
