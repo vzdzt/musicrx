@@ -16,10 +16,11 @@
         }
         /* Specific styling for news title card */
         .news-title-card {
-            padding: 0.3rem 1rem;
+            padding: 0.5rem 1rem; /* Adjusted padding for caption */
             min-height: auto;
             height: auto;
             display: flex;
+            flex-direction: column; /* Stack title and caption vertically */
             align-items: center;
             justify-content: center;
             background: var(--card-background); /* Use theme card background */
@@ -31,13 +32,20 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .news-title-card h2 {
-            margin: 0;
+            margin: 0 0 0.3rem 0; /* Space below title for caption */
             font-size: 1.2rem;
             line-height: 1.2;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
             color: var(--primary); /* Use theme primary color */
             text-shadow: 0 0 10px var(--glow); /* Use theme glow */
+        }
+        .news-title-card .caption {
+            margin: 0;
+            font-size: 0.9rem;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--secondary); /* Use theme secondary color */
+            text-align: center;
         }
         .news-title-card:hover {
             transform: translateY(-5px);
@@ -64,7 +72,7 @@
             margin-bottom: 1rem;
         }
         .news-content-card p {
-            margin: 0 0 1rem 0; /* Added spacing between paragraphs */
+            margin: 0 0 1rem 0; /* Spacing between paragraphs */
             font-size: 1rem;
             font-family: 'Space Grotesk', sans-serif;
             color: var(--text-color); /* Use theme text color */
@@ -97,6 +105,9 @@
             }
             .news-title-card h2 {
                 font-size: 1rem;
+            }
+            .news-title-card .caption {
+                font-size: 0.8rem;
             }
             .news-content-card {
                 padding: 1rem;
@@ -148,126 +159,228 @@
         <div class="container"> <!-- Content container -->
             <h1 class="glitch" data-text="OPINIONS">OPINIONS</h1> <!-- Page title with glitch effect -->
             <div class="grid"> <!-- Grid layout for opinion items -->
-                <!-- Opinion Item 1: AI Drake Better Than Real Drake -->
+                <!-- HOT TAKE #15: AI Drake Better Than Real Drake -->
                 <div class="news-item">
                     <div class="news-title-card">
-                        <h2 class="card-title-container">AI Drake Better Than Real Drake</h2> <!-- Individual take title -->
+                        <h2 class="card-title-container">HOT TAKE #15</h2> <!-- Most recent -->
+                        <p class="caption">AI Drake better than real Drake</p>
                     </div>
                     <div class="news-content-card">
-                        <p class="date">March 20, 2025</p> <!-- Date of the take -->
-                        <img src="images/ai-drake.jpg" alt="AI Drake"> <!-- Image for the take -->
-                        <p>The uncomfortable truth: AI’s bars hit harder than Aubrey’s ghostwriters.</p> <!-- Take content -->
+                        <p class="date">March 20, 2025</p>
+                        <img src="images/aidrake.jpeg" alt="AI Drake">
+                        <p>AI Drake’s bars hit harder than Aubrey’s ghostwriters—tech’s rewriting rap.</p>
+                        <p>Real Drake’s stuck on tired flows—AI’s got fresher rhymes now.</p>
+                        <p>2025 fans vibe to synthetic Drake—human Aubrey’s losing steam.</p>
                     </div>
                 </div>
-                <!-- Opinion Item 2: 90s Rap Overrated -->
+                <!-- HOT TAKE #14: Concerts Are Overpriced -->
                 <div class="news-item">
                     <div class="news-title-card">
-                        <h2 class="card-title-container">90s Rap Overrated</h2> <!-- Individual take title -->
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">March 20, 2025</p> <!-- Date of the take -->
-                        <img src="images/ai-drake.jpg" alt="AI Drake"> <!-- Reusing image as placeholder -->
-                        <p>Nostalgia blinds us; modern beats bury Biggie’s dated flows.</p> <!-- Take content -->
-                    </div>
-                </div>
-                <!-- Opinion Item 3: Underground > Mainstream -->
-                <div class="news-item">
-                    <div class="news-title-card">
-                        <h2 class="card-title-container">Underground > Mainstream</h2> <!-- Individual take title -->
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">March 20, 2025</p> <!-- Date of the take -->
-                        <img src="images/ai-drake.jpg" alt="AI Drake"> <!-- Reusing image as placeholder -->
-                        <p>2025’s best tracks won’t chart—Spotify’s algorithm buries real talent.</p> <!-- Take content -->
-                    </div>
-                </div>
-                <!-- Opinion Item 4: Sampling Is Dying -->
-                <div class="news-item">
-                    <div class="news-title-card">
-                        <h2 class="card-title-container">Sampling Is Dying</h2> <!-- Individual take title -->
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">March 20, 2025</p> <!-- Date of the take -->
-                        <img src="images/ai-drake.jpg" alt="AI Drake"> <!-- Reusing image as placeholder -->
-                        <p>Producers dodge lawsuits, leaving creativity in a chokehold.</p> <!-- Take content -->
-                    </div>
-                </div>
-                <!-- Opinion Item 5: Concerts Are Overpriced -->
-                <div class="news-item">
-                    <div class="news-title-card">
-                        <h2 class="card-title-container">Concerts Are Overpriced</h2> <!-- Individual take title -->
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">March 20, 2025</p> <!-- Date of the take -->
-                        <img src="images/ai-drake.jpg" alt="AI Drake"> <!-- Reusing image as placeholder -->
-                        <p>$200 to see your fave mime to a backing track? Live music’s a scam now.</p> <!-- Take content -->
-                    </div>
-                </div>
-                <!-- Opinion Item 6: Carti's Influence -->
-                <div class="news-item">
-                    <div class="news-title-card">
-                        <h2 class="card-title-container">Carti's Reign Overrated?</h2>
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">March 22, 2025</p>
-                        <img src="images/carti-opinion.jpg" alt="Carti Opinion">
-                        <p>Playboi Carti’s MUSIC is a cultural reset, but his fans overhype him—his mystique relies more on silence than substance.</p>
-                        <p>His punk-trap fusion is innovative, yet half the tracks feel like unfinished demos—genius or lazy?</p>
-                        <p>“BACKR00MS” is a TikTok fluke; Travis Scott carried it—Carti’s ad-libs aren’t enough to claim the crown.</p>
-                    </div>
-                </div>
-                <!-- Opinion Item 7: Festival Fatigue -->
-                <div class="news-item">
-                    <div class="news-title-card">
-                        <h2 class="card-title-container">Festivals Are Dead</h2>
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">March 21, 2025</p>
-                        <img src="images/festival-crowd.jpg" alt="Festival Fatigue">
-                        <p>Rolling Loud’s record attendance proves hype, but $500 tickets for muddy fields and mid sets? Hard pass.</p>
-                        <p>Coachella’s influencer circus killed the vibe—music’s just a backdrop for Instagram now.</p>
-                        <p>Small venues beat festivals in 2025—intimate shows deliver raw energy without the corporate stench.</p>
-                    </div>
-                </div>
-                <!-- Opinion Item 8: Hot Takes (Original) -->
-                <div class="news-item">
-                    <div class="news-title-card">
-                        <h2 class="card-title-container">More Hot Takes</h2>
+                        <h2 class="card-title-container">HOT TAKE #14</h2>
+                        <p class="caption">Concerts are overpriced</p>
                     </div>
                     <div class="news-content-card">
                         <p class="date">March 19, 2025</p>
-                        <img src="images/streaming.jpg" alt="Streaming Impact">
-                        <p>Streaming’s 100 million songs by 2025 turned music into elevator noise—art’s dead, playlists rule.</p>
-                        <p>Drake’s 75 billion streams? Algorithm juice, not skill—Kendrick’s pen still smokes him.</p>
-                        <p>Taylor Swift’s re-records are a $1 billion flex, but her legacy’s a recycled cash cow now.</p>
-                        <p>Hip-hop peaked in the 2010s—trap’s stale, mumble rap’s a graveyard, only 5% of 2024’s top tracks had bars.</p>
-                        <p>Auto-tune’s a game-changer—Kanye and T-Pain made it art, while purists whine about “real vocals.”</p>
+                        <img src="images/concerts.jpeg" alt="Concert Costs">
+                        <p>$200 to watch lip-syncing? Live music’s a scam in 2025.</p>
+                        <p>Ticket fees double the cost—$50 just to park nearby.</p>
+                        <p>Artists mime to tracks—small gigs outshine this mess.</p>
+                        <p>Prices soar for hype—value’s gone, just cash grabs.</p>
+                        <p>Fans pay for clout—real shows don’t cost this much.</p>
                     </div>
                 </div>
-                <!-- Opinion Item 9: Vinyl Revival BS -->
+                <!-- HOT TAKE #13: Sampling Is Dying -->
                 <div class="news-item">
                     <div class="news-title-card">
-                        <h2 class="card-title-container">Vinyl Revival Is Fake</h2>
+                        <h2 class="card-title-container">HOT TAKE #13</h2>
+                        <p class="caption">Sampling is dying</p>
                     </div>
                     <div class="news-content-card">
                         <p class="date">March 18, 2025</p>
-                        <img src="images/vinyl.jpg" alt="Vinyl Revival">
-                        <p>Vinyl’s “comeback” is a hipster scam—$40 for crackly sound when streaming’s free? Nah.</p>
-                        <p>Collectors flex $200 rare presses on TikTok, but 90% don’t even own a turntable.</p>
-                        <p>CDs were better—cheaper, clearer, and didn’t warp in your car. Vinyl’s just nostalgia bait.</p>
+                        <img src="images/sampling.jpeg" alt="Sampling Decline">
+                        <p>Lawsuits choke sampling—producers dodge it, creativity’s stifled.</p>
+                        <p>Classic hip-hop thrived on samples—2025’s beats feel sterile.</p>
+                        <p>Rights holders sue over crumbs—art’s paying the price.</p>
                     </div>
                 </div>
-                <!-- Opinion Item 10: Ye’s Downfall -->
+                <!-- HOT TAKE #12: Underground > Mainstream -->
                 <div class="news-item">
                     <div class="news-title-card">
-                        <h2 class="card-title-container">Ye’s Lost It</h2>
+                        <h2 class="card-title-container">HOT TAKE #12</h2>
+                        <p class="caption">Underground > mainstream</p>
                     </div>
                     <div class="news-content-card">
                         <p class="date">March 17, 2025</p>
+                        <img src="images/kenlone.jpeg" alt="Underground Scene">
+                        <p>2025’s best tracks won’t chart—underground’s where the fire’s at.</p>
+                        <p>Mainstream’s a factory—Spotify buries raw talent deep.</p>
+                        <p>Acts like MIKE shine—charts push generic sludge.</p>
+                        <p>Playlists kill depth—indie scenes keep it real.</p>
+                        <p>Underground’s got soul—mainstream’s just corporate noise.</p>
+                    </div>
+                </div>
+                <!-- HOT TAKE #11: 90s Rap Overrated -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">HOT TAKE #11</h2>
+                        <p class="caption">90s Rap Overrated</p>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 16, 2025</p>
+                        <img src="images/90srap.jpeg" alt="90s Rap">
+                        <p>Nostalgia blinds us—modern beats bury Biggie’s dated flows.</p>
+                        <p>90s production sounds thin—2025’s tech blows it away.</p>
+                        <p>Lyrics were dope, but the hype’s overblown now.</p>
+                    </div>
+                </div>
+                <!-- HOT TAKE #10: Streaming Killed Albums -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">HOT TAKE #10</h2>
+                        <p class="caption">Streaming killed albums</p>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 15, 2025</p>
+                        <img src="images/stream.jpg" alt="Streaming Impact">
+                        <p>Streaming’s 100 million songs turned music into elevator noise—art’s dead, playlists rule.</p>
+                        <p>Albums get diced for singles—cohesion’s a lost cause.</p>
+                        <p>Artists bloat tracks for streams—filler kills the vibe.</p>
+                        <p>Full projects fade—2025’s all about quick playlist hits.</p>
+                        <p>Classic LPs like Illmatic drown—streaming’s short attention wins.</p>
+                    </div>
+                </div>
+                <!-- HOT TAKE #9: Drake’s Algorithm Juice -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">HOT TAKE #9</h2>
+                        <p class="caption">Drake’s streams don’t mean skill.</p>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 14, 2025</p>
+                        <img src="images/drake-streams.jpg" alt="Drake Streams">
+                        <p>Drake’s 75 billion streams? Algorithm juice—Kendrick’s pen smokes him.</p>
+                        <p>Playlists prop him up—real bars take a backseat.</p>
+                        <p>His hooks are catchy, but depth’s missing in 2025.</p>
+                    </div>
+                </div>
+                <!-- HOT TAKE #8: Taylor’s Re-Record Flex -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">HOT TAKE #8</h2>
+                        <p class="caption">Taylor’s re-records are a cash grab.</p>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 13, 2025</p>
+                        <img src="images/taylor-swift.jpg" alt="Taylor Swift">
+                        <p>Taylor’s re-records are a $1 billion flex—smart but greedy.</p>
+                        <p>Fans buy old hits twice—her legacy’s a cash cow.</p>
+                        <p>New music’s scarce—she’s milking nostalgia for profit.</p>
+                        <p>It’s a power move—owns her masters, drains wallets.</p>
+                        <p>Swifties eat it up—genius scam in 2025.</p>
+                    </div>
+                </div>
+                <!-- HOT TAKE #7: Hip-Hop’s Peak Passed -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">HOT TAKE #7</h2>
+                        <p class="caption">Hip-hop peaked in the 2010s.</p>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 12, 2025</p>
+                        <img src="images/hip-hop-2010s.jpg" alt="Hip-Hop Peak">
+                        <p>Hip-hop peaked in the 2010s—trap’s stale, mumble rap’s dead.</p>
+                        <p>Only 5% of 2024’s tracks had bars—vibes took over.</p>
+                        <p>2016’s energy trumps 2025’s tired beats any day.</p>
+                    </div>
+                </div>
+                <!-- HOT TAKE #6: Auto-Tune’s Art -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">HOT TAKE #6</h2>
+                        <p class="caption">Auto-Tune’s a game-changer.</p>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 11, 2025</p>
+                        <img src="images/auto-tune.jpg" alt="Auto-Tune">
+                        <p>Auto-Tune’s a game-changer—Kanye and T-Pain made it art.</p>
+                        <p>Purists whine, but 2025’s hits prove its staying power.</p>
+                        <p>Raw vocals can’t match—tech’s the soul of modern rap.</p>
+                        <p>808s & Heartbreak set the tone—still echoes loud.</p>
+                        <p>It’s not cheating—it’s evolution, deal with it.</p>
+                    </div>
+                </div>
+                <!-- HOT TAKE #5: Ye’s Decline -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">HOT TAKE #5</h2>
+                        <p class="caption">Ye’s genius is fading.</p>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 10, 2025</p>
                         <img src="images/ye-opinion.jpg" alt="Ye Opinion">
-                        <p>VULTURES 2 flopped—Ye’s genius drowned in Ty Dolla $ign’s shadow and rushed mixes.</p>
-                        <p>His “I’m a god” shtick aged poorly—2025 fans want music, not sermons.</p>
-                        <p>MUSIC outshines him—Carti stole Ye’s experimental crown while he’s stuck in 2016.</p>
+                        <p>VULTURES 2 flopped—Ty Dolla $ign outshone Ye’s rushed mixes.</p>
+                        <p>“I’m a god” vibes aged out—fans want songs, not rants.</p>
+                        <p>Carti’s MUSIC stole his edge—Ye’s stuck in 2016.</p>
+                    </div>
+                </div>
+                <!-- HOT TAKE #4: Vinyl Hype -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">HOT TAKE #4</h2>
+                        <p class="caption">Vinyl’s revival is a scam.</p>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 9, 2025</p>
+                        <img src="images/vinyl.jpg" alt="Vinyl Revival">
+                        <p>$40 for crackly vinyl when streaming’s free? Hipster nonsense.</p>
+                        <p>Collectors flex $200 presses—most don’t own turntables.</p>
+                        <p>CDs were better—cheaper, clearer, no nostalgia tax.</p>
+                        <p>It’s a poser trend—sound quality’s a myth here.</p>
+                        <p>Vinyl’s charm’s fake—2025’s tech outshines it easy.</p>
+                    </div>
+                </div>
+                <!-- HOT TAKE #3: Festival Fatigue -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">HOT TAKE #3</h2>
+                        <p class="caption">Festivals lost their soul.</p>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 8, 2025</p>
+                        <img src="images/festival-crowd.jpg" alt="Festival Fatigue">
+                        <p>Rolling Loud’s $500 tickets buy mud and mid sets—pass.</p>
+                        <p>Coachella’s an influencer trap—music’s just a prop now.</p>
+                        <p>Small venues outshine—raw vibes beat corporate hype.</p>
+                    </div>
+                </div>
+                <!-- HOT TAKE #2: Trap’s Decline -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">HOT TAKE #2</h2>
+                        <p class="caption">Trap’s running on fumes.</p>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 7, 2025</p>
+                        <img src="images/trap-beats.jpg" alt="Trap Music">
+                        <p>Trap’s 808s are stale—2025 echoes 2015’s sound.</p>
+                        <p>Mumble rap’s a ghost—bars are rare now.</p>
+                        <p>Future’s king, but the genre’s out of steam.</p>
+                        <p>New acts recycle—innovation’s long gone here.</p>
+                        <p>Trap’s stuck—2025 needs a fresh beat wave.</p>
+                    </div>
+                </div>
+                <!-- HOT TAKE #1: Pop Punk’s Weak Revival -->
+                <div class="news-item">
+                    <div class="news-title-card">
+                        <h2 class="card-title-container">HOT TAKE #1</h2> <!-- Oldest -->
+                        <p class="caption">Pop punk’s comeback lacks edge.</p>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">March 6, 2025</p>
+                        <img src="images/pop-punk.jpg" alt="Pop Punk Revival">
+                        <p>MGK and Olivia can’t match Blink-182’s grit—too soft.</p>
+                        <p>2025’s pop punk is TikTok fluff—no raw punch.</p>
+                        <p>Old school had soul—this is corporate cosplay.</p>
                     </div>
                 </div>
             </div> <!-- End of grid -->
