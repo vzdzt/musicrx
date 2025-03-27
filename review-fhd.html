@@ -450,13 +450,24 @@
                 padding: 1rem; /* Reduce padding */
                 max-width: 1200px; /* Maintain max width */
             }
-            .review-title-glitch { /* Adjust title size for mobile proportional to track highlight text */
-                font-size: 2.8rem; /* Reduced proportionally (3.5rem * 0.8) */
+            .review-title-glitch { /* Adjust title size for mobile to fit max 2 lines */
+                font-size: 1.5rem; /* Reduced to ensure max 2 lines on mobile */
                 margin: 2rem auto; /* Reduce margin for mobile */
+                white-space: normal; /* Allow wrapping */
+                line-height: 1.2; /* Tighten line height to fit 2 lines */
+                max-height: 3.6rem; /* 2 lines at 1.8rem per line (1.5rem * 1.2 * 2) */
+                overflow: hidden; /* Hide excess text beyond 2 lines */
             }
             h2 { /* Adjust section headings for mobile proportional to track highlight text */
                 font-size: 1.6rem; /* Reduced proportionally (2rem * 0.8) */
                 margin: 1rem 0; /* Reduce margin slightly */
+            }
+            .glass-card h2 { /* Adjust h2 inside glass cards to fit max 3 lines */
+                font-size: 1.2rem; /* Reduced further to ensure max 3 lines */
+                line-height: 1.2; /* Tighten line height to fit 3 lines */
+                max-height: 4.32rem; /* 3 lines at 1.44rem per line (1.2rem * 1.2 * 3) */
+                overflow: hidden; /* Hide excess text beyond 3 lines */
+                white-space: normal; /* Allow wrapping */
             }
             p { /* Adjust paragraph text for mobile to match track highlight text */
                 font-size: 0.8rem; /* Match track highlight text size (assumed 1rem default -> 0.8rem) */
