@@ -167,29 +167,6 @@
             0%, 100% { transform: scale(1); } /* Set the initial and final scale of the pulse animation */
             50% { transform: scale(1.2); } /* Set the midpoint scale of the pulse animation */
         }
-        .search-container { /* Style the search bar container */
-            display: flex; /* Use flexbox for layout */
-            align-items: center; /* Center child elements vertically */
-            margin-left: 0; /* Remove left margin */
-            margin-right: 0; /* Remove right margin */
-            flex: 1; /* Allow the container to grow and fill available space */
-            max-width: 300px; /* Set a maximum width for the search container */
-        }
-        .search-input { /* Style the search input field */
-            border: 2px solid var(--primary, #FF0000); /* Add a red border using a CSS variable with a fallback */
-            background: var(--card-background, rgba(102, 0, 0, 0.25)); /* Set a red-toned background using a CSS variable with a fallback */
-            color: var(--text-color, #FFFFFF); /* Set the text color using a CSS variable with a fallback */
-            padding: 0.5rem 1rem; /* Add padding to the input */
-            border-radius: 20px; /* Round the corners of the input */
-            font-family: 'Space Grotesk', sans-serif; /* Set the font for the input */
-            width: 100%; /* Make the input full-width within its container */
-            transition: all 0.3s ease; /* Add a smooth transition for focus effects */
-            box-sizing: border-box; /* Include padding and border in the element's total width and height */
-        }
-        .search-input:focus { /* Style the search input when focused */
-            box-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)); /* Add a red glowing shadow on focus */
-            outline: none; /* Remove the default outline */
-        }
         .dropdown { /* Style the dropdown container */
             position: relative; /* Position relatively for dropdown menu */
             margin-right: 0; /* Remove right margin */
@@ -437,6 +414,10 @@
                 gap: 1.5rem; /* Reduce gap */
                 padding: 1rem; /* Reduce padding */
             }
+            .track-highlight-item { /* Adjust track highlight items for mobile */
+                padding: 1rem; /* Reduce padding */
+                min-height: 100px; /* Reduce min height slightly */
+            }
             .track-highlight-item:hover { /* Disable hover effects for track items on mobile */
                 transform: none; /* Remove transform */
                 box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); /* Revert to default shadow */
@@ -453,20 +434,42 @@
                 transform: none; /* Remove transform */
             }
             .trend-table { /* Adjust table for mobile */
-                font-size: 0.9rem; /* Reduce font size */
+                font-size: 0.5rem; /* Reduce font size to half */
                 min-width: 100%; /* Ensure full width */
             }
             .trend-table th, .trend-table td { /* Adjust table cells for mobile */
                 padding: 0.8rem; /* Reduce padding */
-                font-size: 0.9rem; /* Reduce font size */
+                font-size: 0.5rem; /* Reduce font size to half */
             }
             .glass-card.sources-card { /* Adjust sources card for mobile */
                 padding: 1rem; /* Reduce padding */
                 max-width: 1200px; /* Maintain max width */
             }
             .review-title-glitch { /* Adjust title size and margin for mobile */
-                font-size: 2rem; /* Reduce font size for mobile */
+                font-size: 1.75rem; /* Reduce font size to half (3.5rem -> 1.75rem) */
                 margin: 2rem auto; /* Reduce margin for mobile */
+            }
+            h2 { /* Adjust section headings for mobile */
+                font-size: 1rem; /* Reduce font size to half (2rem -> 1rem) */
+                margin: 1rem 0; /* Reduce margin slightly */
+            }
+            p { /* Adjust paragraph text for mobile */
+                font-size: 0.5rem; /* Reduce font size to half (1rem default -> 0.5rem) */
+            }
+            .overall-rating h3 { /* Adjust overall rating heading for mobile */
+                font-size: 0.75rem; /* Reduce font size to half (assuming 1.5rem default -> 0.75rem) */
+            }
+            h3 { /* Adjust general h3 headings for mobile */
+                font-size: 0.75rem; /* Reduce font size to half (assuming 1.5rem default -> 0.75rem) */
+            }
+            .nav-logo .logo-symbol i { /* Adjust logo icon size for mobile */
+                font-size: 0.75rem; /* Reduce font size to half (1.5rem -> 0.75rem) */
+            }
+            .dropdown-toggle { /* Adjust dropdown toggle icon size for mobile */
+                font-size: 0.75rem; /* Reduce font size to half (1.5rem -> 0.75rem) */
+            }
+            .dropdown-menu a { /* Adjust dropdown menu link size for mobile */
+                font-size: 0.45rem; /* Reduce font size to half (0.9rem -> 0.45rem) */
             }
         }
     </style> <!-- End of inline CSS -->
@@ -480,9 +483,6 @@
         <div class="nav-logo"> <!-- Logo container -->
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span> <!-- Logo icon with heartbeat animation -->
         </div> <!-- End of logo container -->
-        <div class="search-container"> <!-- Search bar container -->
-            <input type="text" class="search-input" placeholder="Search Reviews..." aria-label="Search reviews"> <!-- Search input field -->
-        </div> <!-- End of search container -->
         <nav> <!-- Navigation menu -->
             <div class="dropdown"> <!-- Dropdown container -->
                 <button class="dropdown-toggle"><i class="fas fa-bars"></i></button> <!-- Dropdown toggle button with menu icon -->
