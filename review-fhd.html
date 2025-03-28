@@ -6,14 +6,14 @@
     <meta name="description" content="Explore J. Cole’s 2014 Forest Hills Drive: 353,000 first-week units, a 2014 soulful hip-hop memoir, updated March 2025 on MusicRx."> <!-- SEO desc -->
     <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, Roc Nation, Columbia, Vinylz, Illmind, hip-hop, soulful, 2014, 2025, Billboard, Spotify"> <!-- SEO keywords -->
     <meta name="author" content="Veazy"> <!-- Author -->
-    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: Stark Command Cockpit"> <!-- OG title -->
+    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: Stark Wars Holo-Cockpit"> <!-- OG title -->
     <meta property="og:description" content="Dive into J. Cole’s 2014 Forest Hills Drive review: a 2014 hip-hop memoir, revisited in 2025 on MusicRx."> <!-- OG desc -->
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/colee.jpeg"> <!-- OG image -->
     <meta property="og:type" content="article"> <!-- OG type -->
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-fhd.html"> <!-- OG URL -->
     <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card -->
     <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
-    <title>MusicRx - 2014 Forest Hills Drive: Stark Command Cockpit</title> <!-- Page title -->
+    <title>MusicRx - 2014 Forest Hills Drive: Stark Wars Holo-Cockpit</title> <!-- Page title -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Google Fonts -->
     <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
@@ -80,14 +80,20 @@
             z-index: 20; /* Above panels */
             perspective: 1000px; /* 3D depth */
         }
-        .holo-album { /* Hologram image */
+        .holo-album { /* Star Wars-style hologram */
             width: 100%; /* Full size */
             height: 100%; /* Square */
             background: url('https://vzdzt.github.io/musicrx/colee.jpeg') center/cover no-repeat; /* Image */
+            opacity: 0.7; /* Translucent */
+            filter: brightness(1.5) contrast(1.2) hue-rotate(200deg); /* Blue tint */
             border-radius: 8px; /* Slight curve */
-            box-shadow: 0 0 40px rgba(255, 0, 0, 0.7), 0 0 60px rgba(0, 255, 0, 0.5), 0 0 80px rgba(0, 0, 255, 0.3); /* RGB glow */
+            box-shadow: 0 0 40px rgba(0, 191, 255, 0.7), 0 0 60px rgba(0, 191, 255, 0.5); /* Blue glow */
             transform: translateZ(100px) rotateY(0deg); /* 3D projection */
-            animation: holoWobble 10s infinite ease-in-out; /* Subtle wobble */
+            animation: holoFlicker 0.1s infinite, holoWobble 10s infinite ease-in-out; /* Flicker and wobble */
+        }
+        @keyframes holoFlicker { /* Star Wars flicker */
+            0%, 100% { opacity: 0.7; filter: brightness(1.5) contrast(1.2) hue-rotate(200deg); }
+            50% { opacity: 0.6; filter: brightness(1.4) contrast(1.1) hue-rotate(205deg); }
         }
         @keyframes holoWobble { /* Hologram wobble */
             0%, 100% { transform: translateZ(100px) rotateY(0deg); }
@@ -156,7 +162,7 @@
             padding-bottom: 1rem; /* Space */
         }
         p { /* Paragraphs */
-            font-family: 'Space Grotesk', sans-serif; /* Font */
+            font-family: 'Space+Grotesk', sans-serif; /* Font */
             font-size: 1rem; /* Size */
             color: var(--text-color, #FFFFFF); /* White */
             line-height: 1.6; /* Readable */
