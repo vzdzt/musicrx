@@ -31,42 +31,11 @@
             width: 100%; height: 100%;
             z-index: -2;
         }
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 80px; /* Below navbar */
-            width: 200px;
-            height: calc(100vh - 80px);
-            background: rgba(102, 0, 0, 0.25);
-            backdrop-filter: blur(15px);
-            border-right: 1px solid rgba(153, 0, 0, 0.3);
-            padding: 1rem;
-            z-index: 10;
-        }
-        .sidebar-nav {
-            list-style: none;
-            padding: 0;
-        }
-        .sidebar-nav li {
-            margin-bottom: 1rem;
-        }
-        .sidebar-nav a {
-            color: #FF0000;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-        .sidebar-nav a:hover {
-            color: #FFFFFF;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
-        }
         .review-container {
             flex: 1;
-            max-width: 1000px; /* Adjusted for sidebar */
-            margin: 0 auto 0 200px; /* Shifted right */
-            padding: 80px 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 1rem 2rem 1rem; /* Adjusted padding */
             position: relative;
             box-sizing: border-box;
             z-index: 1;
@@ -84,6 +53,7 @@
         .reactor-header {
             text-align: center;
             margin-bottom: 2rem;
+            position: relative;
         }
         .reactor-image {
             width: 400px;
@@ -93,6 +63,33 @@
             display: block;
             margin: 0 auto;
             z-index: 10;
+        }
+        .social-panel {
+            position: sticky;
+            top: 100px; /* Below navbar */
+            right: 0;
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(102, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border-radius: 10px 0 0 10px;
+            z-index: 10;
+        }
+        .social-panel a, .social-panel button {
+            color: #FF0000;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .social-panel a:hover, .social-panel button:hover {
+            color: #FFFFFF;
+            transform: scale(1.2);
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
         }
         .reactor-card {
             position: relative;
@@ -176,11 +173,7 @@
             padding: 1rem 0;
         }
         @media (max-width: 768px) {
-            .sidebar {
-                display: none; /* Hide sidebar on mobile */
-            }
             .review-container {
-                margin-left: 0; /* Reset margin */
                 padding: 60px 0.5rem 1rem;
             }
             .review-title {
@@ -195,6 +188,9 @@
             }
             .reactor-image {
                 width: 300px;
+            }
+            .social-panel {
+                display: none; /* Hide on mobile */
             }
             .reactor-grid {
                 grid-template-columns: 1fr;
@@ -235,54 +231,44 @@
                 <li><a href="opinions.html">Opinions</a></li><li><a href="catchcarti.html">Catch Carti</a></li>
             </ul></div></div></nav>
     </header>
-    <div class="sidebar">
-        <ul class="sidebar-nav">
-            <li><a href="#intro">Introduction</a></li>
-            <li><a href="#messaging">The Messaging and Theme</a></li>
-            <li><a href="#production">Production and Sound</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#tracks">Track Highlights</a></li>
-            <li><a href="#previous">Previous Works</a></li>
-            <li><a href="#awards">Awards Recognition</a></li>
-            <li><a href="#legacy">Legacy & Reception</a></li>
-            <li><a href="#charts">Chart Performance</a></li>
-            <li><a href="#certifications">Album Certifications</a></li>
-            <li><a href="#ratings">Ratings</a></li>
-            <li><a href="#sources">Sources</a></li>
-        </ul>
-    </div>
     <div class="review-container">
         <h1 class="review-title">2014 FOREST HILLS DRIVE</h1>
         <div class="reactor-header">
             <img class="reactor-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
+            <div class="social-panel">
+                <a href="https://twitter.com/36966_" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://open.spotify.com/album/0vE6mttTRL8S2oQmGIImHb" target="_blank" title="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="https://tiktok.com/@musicrx" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                <button class="share-btn" title="Share"><i class="fas fa-share"></i></button>
+            </div>
         </div>
         <div class="reactor-card">
             <div class="reactor-grid">
-                <div class="reactor-section" id="intro">
+                <div class="reactor-section">
                     <h2>Introduction</h2>
                     <div class="reactor-content">
                         <p>J. Cole’s <em><span class="highlight">2014 Forest Hills Drive</span></em> dropped <span class="highlight">December 9, 2014</span> via <span class="highlight">Roc Nation</span>, <span class="highlight">Columbia</span>, and <span class="highlight">Dreamville</span>. This 13-track, 64-minute memoir moved <span class="highlight">353,000</span> units first week, topping the <span class="highlight">Billboard 200</span>. By <span class="highlight">March 25, 2025</span>, it’s <span class="highlight">3x Platinum</span> (RIAA) with <span class="highlight">4.8 billion</span> Spotify streams. Cooked up with <span class="highlight">Vinylz</span>, it’s a soulful homecoming—Veazy calls it a red-hot classic still blazing in 2025.</p>
                     </div>
                 </div>
-                <div class="reactor-section" id="messaging">
+                <div class="reactor-section">
                     <h2>The Messaging and Theme</h2>
                     <div class="reactor-content">
                         <p>J. Cole’s childhood home on the <em><span class="highlight">2014 Forest Hills Drive</span></em> cover sets a nostalgic tone—self-discovery and realness dominate. <span class="highlight">“Wet Dreamz”</span> drops “She took her shirt off,” a tender throwback, while <span class="highlight">“Love Yourz”</span> hits with “No such thing as a life that’s better than yours.” <span class="highlight">“03’ Adolescence”</span> vows “I’ma do it ‘fore I die,” and <span class="highlight">“January 28th”</span> flexes “I’m real.” It’s a raw hip-hop diary, no fluff—just truth. X (@36966_) in 2025 dubs it “Cole’s rawest soul,” still resonating hard.</p>
                     </div>
                 </div>
-                <div class="reactor-section" id="production">
+                <div class="reactor-section">
                     <h2>Production and Sound</h2>
                     <div class="reactor-content">
                         <p><span class="highlight">J. Cole</span>, <span class="highlight">Vinylz</span>, <span class="highlight">Illmind</span>, and <span class="highlight">Ron Gilmore</span> forged <em><span class="highlight">2014 Forest Hills Drive</span></em> at <span class="highlight">Perfect Sound Studios</span> (LA) and <span class="highlight">Jungle City Studios</span> (NYC). <span class="highlight">“No Role Modelz”</span> loops jazzy brass, <span class="highlight">“Apparently”</span> hums soulful pianos, and <span class="highlight">“Fire Squad”</span> bangs crisp drums—Cole’s flow weaves a red-hot story. Smoother than <em><span class="highlight">Born Sinner</span></em>’s grit, it’s a cohesive vibe. In 2025, its warmth echoes in rap’s introspective wave—some tracks overstay, but it’s Dreamville’s blueprint.</p>
                     </div>
                 </div>
-                <div class="reactor-section" id="features">
+                <div class="reactor-section">
                     <h2>Features</h2>
                     <div class="reactor-content">
                         <p><em><span class="highlight">2014 Forest Hills Drive</span></em> skips features—<span class="highlight">J. Cole</span> goes solo, a gutsy move. <span class="highlight">“January 28th”</span> boasts “I’m real,” <span class="highlight">“03’ Adolescence”</span> grinds “I was tryna make it”—he owns every bar and hook with red-hot soul. No guests muddy his vision; it’s pure, unfiltered Cole, proving his lyrical chops shine brightest alone.</p>
                     </div>
                 </div>
-                <div class="reactor-section" id="tracks">
+                <div class="reactor-section">
                     <h2>Track Highlights</h2>
                     <div class="reactor-content">
                         <div class="track-highlight-grid">
@@ -295,13 +281,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="reactor-section" id="previous">
+                <div class="reactor-section">
                     <h2>Previous Works</h2>
                     <div class="reactor-content">
                         <p>J. Cole’s <em><span class="highlight">The Come Up</span></em> (2007) sparked with <span class="highlight">“Simba,”</span> raw hustle on blast. <em><span class="highlight">Cole World: The Sideline Story</span></em> (2011) hit No. 1 with <span class="highlight">“Work Out”</span> (No. 13 Hot 100), moving <span class="highlight">218,000</span> units first week. <em><span class="highlight">Born Sinner</span></em> (2013) topped charts with <span class="highlight">“Power Trip”</span> (No. 19), selling <span class="highlight">297,000</span>, honed by <span class="highlight">Vinylz</span>. <em><span class="highlight">2014 Forest Hills Drive</span></em> (2014) soared to No. 1 with <span class="highlight">353,000</span> units, paving the way for <em><span class="highlight">KOD</span></em> (2018). In 2025, it’s Cole’s bedrock, shaping rap’s introspective lane.</p>
                     </div>
                 </div>
-                <div class="reactor-section" id="awards">
+                <div class="reactor-section">
                     <h2>Awards Recognition</h2>
                     <div class="reactor-content">
                         <div class="table-container">
@@ -317,13 +303,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="reactor-section" id="legacy">
+                <div class="reactor-section">
                     <h2>Legacy & Reception</h2>
                     <div class="reactor-content">
                         <p>Pitchfork’s <span class="highlight">6.9/10</span> knocked <em><span class="highlight">2014 Forest Hills Drive</span></em>’s length, Rolling Stone’s 4/5 praised its “emotional depth.” X (@36966_) in 2014: “Cole’s soul on wax.” By <span class="highlight">March 25, 2025</span>, with <span class="highlight">3x Platinum</span> (RIAA), <span class="highlight">4.8 billion</span> streams (Spotify), and a Fayetteville 2025 tour reviving <span class="highlight">“Love Yourz,”</span> it’s a hip-hop pillar. Outpacing <em><span class="highlight">Born Sinner</span></em>’s edge, its sprawl’s both flaw and fuel, shaping 2025’s introspective wave—think Bas.</p>
                     </div>
                 </div>
-                <div class="reactor-section" id="charts">
+                <div class="reactor-section">
                     <h2>Chart Performance</h2>
                     <div class="reactor-content">
                         <div class="table-container">
@@ -337,7 +323,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="reactor-section" id="certifications">
+                <div class="reactor-section">
                     <h2>Album Certifications</h2>
                     <div class="reactor-content">
                         <div class="table-container">
@@ -352,7 +338,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="reactor-section" id="ratings">
+                <div class="reactor-section">
                     <h2>Ratings</h2>
                     <div class="reactor-content">
                         <p><span class="highlight">Originality (18/20):</span> <span class="highlight">“January 28th”</span> crafts a solo memoir, Cole’s red-hot authenticity bold in a collab-heavy era, though not genre-shifting. (35 words)</p>
@@ -364,7 +350,7 @@
                         <p><em><span class="highlight">2014 Forest Hills Drive</span></em> earns its 8.6 with red-hot soul—J. Cole’s timeless memoir of youth and truth. Fayetteville 2025’s <span class="highlight">“Love Yourz”</span> live, red lights dim, reignites its glow, a viral moment. Veazy’s still lost in this classic, its warmth enduring in 2025. Some tracks drag, but its raw honesty shines, a hip-hop cornerstone.</p>
                     </div>
                 </div>
-                <div class="reactor-section" id="sources">
+                <div class="reactor-section">
                     <h2>Sources</h2>
                     <div class="reactor-content">
                         <p>Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X fan reactions (@36966_) as of March 25, 2025.</p>
@@ -423,18 +409,10 @@
                 }
             });
 
-            // Smooth scrolling for sidebar links
-            document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    gsap.to(window, { 
-                        scrollTo: { y: targetElement, offsetY: 80 }, 
-                        duration: 1, 
-                        ease: 'power2.out' 
-                    });
-                });
+            // Share button functionality
+            document.querySelector('.share-btn').addEventListener('click', () => {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copied to clipboard!');
             });
         });
     </script>
