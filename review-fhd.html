@@ -26,112 +26,83 @@
             background: var(--background, #0a0a0a); /* Starfield base */
         }
         #universe { /* Starfield */
-            position: fixed; /* Fixed position */
+            position: fixed; /* Fixed */
             top: 0; left: 0; /* Full coverage */
             width: 100%; height: 100%; /* Full size */
             z-index: -2; /* Behind all */
         }
         .review-container { /* Main wrapper */
             flex: 1; /* Fill space */
-            max-width: 1200px; /* Editorial width */
+            max-width: 1400px; /* Wide but controlled */
             margin: 0 auto; /* Center */
             padding: 80px 1rem 2rem; /* Navbar offset */
             position: relative; /* Context */
             box-sizing: border-box; /* Include padding */
             z-index: 1; /* Above starfield */
         }
-        .review-header { /* Header with title and image */
-            text-align: center; /* Centered */
-            margin-bottom: 3rem; /* Spacing */
-        }
-        .review-title-glitch { /* Bold title */
+        .review-title { /* Title */
             font-size: 4rem; /* Big and bold */
             color: var(--primary, #FF0000); /* Theme red */
-            text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)), 0 0 5px rgba(0, 0, 0, 0.5); /* Neon glow */
-            font-family: 'Syncopate', sans-serif; /* Editorial font */
+            text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)); /* Neon glow */
+            font-family: 'Syncopate', sans-serif; /* Font */
             text-transform: uppercase; /* Uppercase */
-            margin: 0 0 1rem; /* Margin */
-            animation: neonFlicker 1.5s infinite alternate; /* Subtle flicker */
-            z-index: 10; /* Above cards */
+            text-align: center; /* Centered */
+            margin: 0 0 2rem; /* Margin */
+            z-index: 10; /* Above matrix */
         }
-        @keyframes neonFlicker { /* Neon flicker */
-            0% { opacity: 1; text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)); }
-            100% { opacity: 0.95; text-shadow: 0 0 20px var(--primary, #FF0000); }
-        }
-        .glass-card.image-card { /* Pinned image */
-            width: 400px; /* Fixed width */
-            margin: 0 auto; /* Center */
-            padding: 0; /* No padding */
-            border-radius: 10px; /* Rounded */
-            box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7)); /* Neon glow */
-            position: sticky; /* Sticky on desktop */
-            top: 80px; /* Below navbar */
-            z-index: 15; /* Above content */
-        }
-        .glass-card.image-card img { /* Image styling */
-            width: 100%; /* Full width */
-            height: auto; /* Maintain aspect */
-            border-radius: 10px; /* Rounded */
-        }
-        .editorial-content { /* Content stack */
+        .matrix-card { /* Big glass card */
             position: relative; /* Context */
-            z-index: 5; /* Above starfield */
-        }
-        .glass-card { /* Editorial cards */
+            width: 100%; /* Full width */
+            min-height: 800px; /* Tall enough for sections */
             background: var(--card-background, rgba(102, 0, 0, 0.25)); /* Glass */
             backdrop-filter: blur(15px); /* Blur */
-            border-radius: 15px; /* Rounded */
+            border-radius: 20px; /* Rounded */
             border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3)); /* Border */
-            padding: 1.5rem; /* Padding */
-            margin-bottom: 2rem; /* Spacing */
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Shadow */
-            transition: all 0.3s ease; /* Smooth */
-        }
-        .glass-card:hover { /* Hover zap */
-            box-shadow: 0 0 30px var(--primary, #FF0000); /* Neon glow */
-            transform: translateY(-5px); /* Lift */
-        }
-        summary { /* Dropdown heading */
-            font-family: 'Syncopate', sans-serif; /* Font */
-            font-size: 1.5rem; /* Bold size */
-            color: var(--primary, #FF0000); /* Red */
-            text-transform: uppercase; /* Uppercase */
-            cursor: pointer; /* Clickable */
-            padding: 1rem; /* Padding */
-            background: rgba(255, 255, 255, 0.05); /* Subtle bg */
-            border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3)); /* Separator */
-            display: flex; /* Flex */
-            justify-content: space-between; /* Space out */
-            align-items: center; /* Center */
-        }
-        summary::-webkit-details-marker { /* Hide marker */
-            display: none; /* Hidden */
-        }
-        summary::after { /* Arrow */
-            content: '\f054'; /* Chevron right */
-            font-family: 'Font Awesome 6 Free'; /* Font Awesome */
-            font-weight: 900; /* Solid */
-            transition: transform 0.3s ease; /* Rotate */
-        }
-        details[open] summary::after { /* Rotate on open */
-            transform: rotate(90deg); /* Down */
-        }
-        .content { /* Dropdown content */
-            padding: 1.5rem; /* Padding */
-            opacity: 0; /* Hidden */
-            height: 0; /* Collapsed */
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Shadow */
             overflow: hidden; /* Hide overflow */
+            z-index: 5; /* Above starfield */
         }
-        details[open] .content { /* Show on open */
-            opacity: 1; /* Visible */
+        .matrix-section { /* Invisible sections */
+            position: absolute; /* Absolute within card */
+            width: 300px; /* Fixed width */
+            height: 100px; /* Base height */
+            padding: 1rem; /* Padding */
+            background: transparent; /* Invisible until hover */
+            border: 1px solid transparent; /* Hidden border */
+            transition: all 0.3s ease; /* Smooth */
+            cursor: pointer; /* Clickable */
+            overflow: hidden; /* Hide content */
+        }
+        .matrix-section:hover { /* Activate on hover */
+            background: rgba(255, 255, 255, 0.1); /* Subtle bg */
+            border: 1px solid var(--primary, #FF0000); /* Neon edge */
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7)); /* Glow */
             height: auto; /* Expand */
+            width: 400px; /* Wider */
+            z-index: 10; /* Above others */
         }
-        h2 { /* Subheadings */
+        .matrix-section h2 { /* Section titles */
             font-family: 'Syncopate', sans-serif; /* Font */
             font-size: 1.5rem; /* Size */
             color: var(--primary, #FF0000); /* Red */
             text-transform: uppercase; /* Uppercase */
-            margin: 0 0 1rem; /* Margin */
+            margin: 0 0 0.5rem; /* Margin */
+            opacity: 0.5; /* Faded until hover */
+            transition: opacity 0.3s ease; /* Fade in */
+        }
+        .matrix-section:hover h2 { /* Full opacity on hover */
+            opacity: 1; /* Bright */
+        }
+        .matrix-content { /* Hidden content */
+            opacity: 0; /* Invisible */
+            height: 0; /* Collapsed */
+            overflow: hidden; /* Hide */
+            transition: opacity 0.3s ease; /* Fade */
+        }
+        .matrix-section:hover .matrix-content { /* Show on hover */
+            opacity: 1; /* Visible */
+            height: auto; /* Expand */
+            padding-bottom: 1rem; /* Space */
         }
         p { /* Paragraphs */
             font-family: 'Space Grotesk', sans-serif; /* Font */
@@ -141,22 +112,47 @@
         }
         .track-highlight-grid { /* Tracks grid */
             display: grid; /* Grid */
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive */
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive */
             gap: 1rem; /* Spacing */
-            padding: 1rem; /* Padding */
+            padding: 1rem 0; /* Padding */
         }
+        /* Section positions */
+        .matrix-section:nth-child(1) { top: 10%; left: 5%; } /* Intro */
+        .matrix-section:nth-child(2) { top: 10%; right: 5%; } /* Messaging */
+        .matrix-section:nth-child(3) { top: 25%; left: 20%; } /* Production */
+        .matrix-section:nth-child(4) { top: 25%; right: 20%; } /* Features */
+        .matrix-section:nth-child(5) { top: 40%; left: 10%; } /* Tracks */
+        .matrix-section:nth-child(6) { top: 40%; right: 10%; } /* Previous */
+        .matrix-section:nth-child(7) { top: 55%; left: 25%; } /* Awards */
+        .matrix-section:nth-child(8) { top: 55%; right: 25%; } /* Legacy */
+        .matrix-section:nth-child(9) { top: 70%; left: 15%; } /* Charts */
+        .matrix-section:nth-child(10) { top: 70%; right: 15%; } /* Certifications */
+        .matrix-section:nth-child(11) { top: 85%; left: 30%; } /* Ratings */
+        .matrix-section:nth-child(12) { top: 85%; right: 30%; } /* Sources */
         @media (max-width: 768px) { /* Mobile */
             .review-container { padding: 60px 0.5rem 1rem; } /* Adjust padding */
-            .review-title-glitch { /* Max 2 lines */
+            .review-title { /* Max 2 lines */
                 font-size: 1.5rem; line-height: 1.2; max-height: 3.6rem; overflow: hidden; white-space: normal;
             }
-            .glass-card.image-card { /* Unstick image */
-                position: relative; top: auto; width: 100%; max-width: 300px;
+            .matrix-card { /* Smaller card */
+                min-height: auto; /* Dynamic height */
+                padding: 1rem; /* Padding */
             }
-            .glass-card { padding: 1rem; margin-bottom: 1rem; } /* Tighten up */
-            summary { font-size: 1.2rem; padding: 0.8rem; } /* Smaller heading */
-            .content { padding: 1rem; } /* Reduced padding */
-            h2 { /* Max 3 lines */
+            .matrix-section { /* Stack vertically */
+                position: relative; /* Relative */
+                top: auto; left: auto; right: auto; /* Reset */
+                width: 100%; /* Full width */
+                height: 80px; /* Smaller base */
+                margin-bottom: 1rem; /* Spacing */
+                border: 1px solid rgba(255, 0, 0, 0.2); /* Faint border */
+            }
+            .matrix-section:hover, .matrix-section.active { /* Tap to activate */
+                width: 100%; /* Full width */
+                height: auto; /* Expand */
+                border: 1px solid var(--primary, #FF0000); /* Neon */
+                box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7)); /* Glow */
+            }
+            .matrix-section h2 { /* Max 3 lines */
                 font-size: 1.2rem; line-height: 1.2; max-height: 4.32rem; overflow: hidden; white-space: normal;
             }
             p { font-size: 0.8rem; } /* Benchmark */
@@ -176,100 +172,121 @@
             </ul></div></div></nav>
     </header>
     <div class="review-container"> <!-- Content wrapper -->
-        <div class="review-header"> <!-- Header -->
-            <h1 class="review-title-glitch" data-text="2014 FOREST HILLS DRIVE">2014 FOREST HILLS DRIVE</h1> <!-- Title -->
-            <div class="glass-card image-card"><img src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover"></div> <!-- Image -->
-        </div>
-        <div class="editorial-content"> <!-- Content stack -->
-            <div class="glass-card"><details open><summary>Introduction</summary><div class="content">
-                <h2>J. Cole’s Soulful Homecoming</h2>
-                <p>Released <span class="highlight">December 9, 2014</span> via <span class="highlight">Roc Nation</span>, <span class="highlight">Columbia</span>, and <span class="highlight">Dreamville</span>, J. Cole’s <em><span class="highlight">2014 Forest Hills Drive</span></em>—a 13-track, 64-minute memoir—sold <span class="highlight">353,000</span> units in its first week, topping the <span class="highlight">Billboard 200</span> (Billboard). By <span class="highlight">March 25, 2025</span>, it’s <span class="highlight">3x Platinum</span> (RIAA) with <span class="highlight">4.8 billion</span> Spotify streams. Crafted with <span class="highlight">Vinylz</span>, it’s Cole’s soulful homecoming. Veazy’s 2025 take: a red-hot classic still burning bright.</p>
-            </div></details></div>
-            <div class="glass-card"><details><summary>The Messaging and Theme</summary><div class="content">
-                <h2>A Nostalgic Hip-Hop Diary</h2>
-                <p>J. Cole atop his childhood home on <em><span class="highlight">2014 Forest Hills Drive</span></em>’s cover sets a nostalgic vibe—self-discovery and authenticity reign. <span class="highlight">“Wet Dreamz”</span> recalls “She took her shirt off,” a tender youth tale, while <span class="highlight">“Love Yourz”</span> preaches “No such thing as a life that’s better than yours.” <span class="highlight">“03’ Adolescence”</span> reflects “I’ma do it ‘fore I die,” and <span class="highlight">“January 28th”</span> asserts “I’m real.” It’s a red-hot hip-hop diary of growth and grit, no flash—just truth. X (@36966_) in 2025 calls it “Cole’s rawest soul,” its lessons still hitting hard.</p>
-            </div></details></div>
-            <div class="glass-card"><details><summary>Production and Sound</summary><div class="content">
-                <h2>Soulful Beats and Crisp Drums</h2>
-                <p><span class="highlight">J. Cole</span>, <span class="highlight">Vinylz</span>, <span class="highlight">Illmind</span>, and <span class="highlight">Ron Gilmore</span> shape <em><span class="highlight">2014 Forest Hills Drive</span></em> at <span class="highlight">Perfect Sound Studios</span> (LA) and <span class="highlight">Jungle City Studios</span> (NYC). <span class="highlight">“No Role Modelz”</span> loops jazzy brass, <span class="highlight">“Apparently”</span> hums with soulful pianos, and <span class="highlight">“Fire Squad”</span> bangs with crisp drums—Cole’s flow ties it into a red-hot narrative. It’s smoother than <em><span class="highlight">Born Sinner</span></em>’s edge, a cohesive memoir vibe. In 2025, its warm sound still echoes in introspective rap—think Dreamville’s heirs—though some tracks linger too long.</p>
-            </div></details></div>
-            <div class="glass-card"><details><summary>Features</summary><div class="content">
-                <h2>A Solo Spotlight</h2>
-                <p><em><span class="highlight">2014 Forest Hills Drive</span></em> goes feature-free—<span class="highlight">J. Cole</span> stands alone, a bold flex. From <span class="highlight">“January 28th”</span>’s “I’m real” bravado to <span class="highlight">“03’ Adolescence”</span>’s “I was tryna make it,” he carries every bar and hook with red-hot soul. No guests dilute his vision—it’s his story, raw and unfiltered, proving his lyrical depth shines solo.</p>
-            </div></details></div>
-            <div class="glass-card"><details><summary>Track Highlights</summary><div class="content">
-                <h2>Standout Cuts</h2>
-                <div class="track-highlight-grid">
-                    <div class="track-highlight-item"><p><span class="highlight">For Newcomers:</span> <span class="highlight">“No Role Modelz,”</span> <span class="highlight">“Love Yourz”</span>—Jazzy loops and warm hooks grab easy, Cole’s red-hot tales of fake love and life lessons reeling newbies in. (35 words)</p></div>
-                    <div class="track-highlight-item"><p><span class="highlight">For The Dive:</span> <span class="highlight">“Wet Dreamz,”</span> <span class="highlight">“03’ Adolescence”</span>—Soulful beats and raw stories dig deep, Cole’s red-tinged youth and dreams hitting fans with introspective weight. (35 words)</p></div>
-                    <div class="track-highlight-item"><p><span class="highlight">Hidden Gems:</span> <span class="highlight">“Fire Squad,”</span> <span class="highlight">“Apparently”</span>—Punchy drums and warm pianos glow, Cole’s red-hot bars weaving depth in cuts that shine for attentive ears. (35 words)</p></div>
-                    <div class="track-highlight-item"><p><span class="highlight">Latest Obsessions:</span> <span class="highlight">“Love Yourz (Live)”</span>—Fayetteville 2025 tour’s red-lit sermon keeps Veazy hooked, Cole’s wisdom reigniting this classic with soulful fire. (35 words)</p></div>
-                    <div class="track-highlight-item"><p><span class="highlight">Cultural Impact Tracks:</span> <span class="highlight">“No Role Modelz”</span>—A 2025 TikTok staple, its red-hot brass fuels introspective rap edits, cementing Cole’s lasting mark on hip-hop. (35 words)</p></div>
-                    <div class="track-highlight-item"><p><span class="highlight">Fan Favorites:</span> <span class="highlight">“Love Yourz”</span>—X (@36966_) in 2025 crowns it Cole’s red-soul anthem, a streaming giant fans cherish for its heartfelt truth. (35 words)</p></div>
+        <h1 class="review-title" data-text="2014 FOREST HILLS DRIVE">2014 FOREST HILLS DRIVE</h1> <!-- Title -->
+        <div class="matrix-card"> <!-- Big glass card -->
+            <div class="matrix-section"> <!-- Intro -->
+                <h2>Introduction</h2>
+                <div class="matrix-content">
+                    <p>J. Cole’s <em><span class="highlight">2014 Forest Hills Drive</span></em> dropped <span class="highlight">December 9, 2014</span> via <span class="highlight">Roc Nation</span>, <span class="highlight">Columbia</span>, and <span class="highlight">Dreamville</span>. This 13-track, 64-minute memoir moved <span class="highlight">353,000</span> units first week, topping the <span class="highlight">Billboard 200</span>. By <span class="highlight">March 25, 2025</span>, it’s <span class="highlight">3x Platinum</span> (RIAA) with <span class="highlight">4.8 billion</span> Spotify streams. Cooked up with <span class="highlight">Vinylz</span>, it’s a soulful homecoming—Veazy calls it a red-hot classic still blazing in 2025.</p>
                 </div>
-            </div></details></div>
-            <div class="glass-card"><details><summary>Previous Works</summary><div class="content">
-                <h2>Cole’s Rise</h2>
-                <p>J. Cole’s <em><span class="highlight">The Come Up</span></em> (2007) mixtape sparked with <span class="highlight">“Simba,”</span> raw ambition on display. <em><span class="highlight">Cole World: The Sideline Story</span></em> (2011) hit No. 1 with <span class="highlight">“Work Out”</span> (No. 13 Hot 100, Billboard), selling <span class="highlight">218,000</span> units first week. <em><span class="highlight">Born Sinner</span></em> (2013) followed at No. 1 with <span class="highlight">“Power Trip”</span> (No. 19), moving <span class="highlight">297,000</span> units (Billboard), sharpening his edge with <span class="highlight">Vinylz</span>. <em><span class="highlight">2014 Forest Hills Drive</span></em> (2014) soared to No. 1 with <span class="highlight">353,000</span> units, a red-hot soulful peak that set up <em><span class="highlight">KOD</span></em> (2018). In 2025, it’s Cole’s cornerstone, influencing introspective rap.</p>
-            </div></details></div>
-            <div class="glass-card"><details><summary>Awards Recognition</summary><div class="content">
-                <h2>Grammy Glory</h2>
-                <div class="table-container">
-                    <table class="trend-table awards-table">
-                        <thead><tr><th>Category</th><th>Year</th><th>Result</th></tr></thead>
-                        <tbody>
-                            <tr><td><span class="highlight">Album of the Year</span></td><td>2016</td><td>Nominated</td></tr>
-                            <tr><td><span class="highlight">Best Rap Album</span></td><td>2016</td><td>Won</td></tr>
-                            <tr><td><span class="highlight">Best Rap Performance (“No Role Modelz”)</span></td><td>2016</td><td>Nominated</td></tr>
-                        </tbody>
-                    </table>
-                    <p><em><span class="highlight">2014 Forest Hills Drive</span></em> clinched Best Rap Album in 2016, its red-hot legacy bolstered by two nods, <span class="highlight">3x Platinum</span>, and <span class="highlight">4.8 billion</span> streams by 2025.</p>
+            </div>
+            <div class="matrix-section"> <!-- Messaging -->
+                <h2>The Messaging and Theme</h2>
+                <div class="matrix-content">
+                    <p>J. Cole’s childhood home on the <em><span class="highlight">2014 Forest Hills Drive</span></em> cover sets a nostalgic tone—self-discovery and realness dominate. <span class="highlight">“Wet Dreamz”</span> drops “She took her shirt off,” a tender throwback, while <span class="highlight">“Love Yourz”</span> hits with “No such thing as a life that’s better than yours.” <span class="highlight">“03’ Adolescence”</span> vows “I’ma do it ‘fore I die,” and <span class="highlight">“January 28th”</span> flexes “I’m real.” It’s a raw hip-hop diary, no fluff—just truth. X (@36966_) in 2025 dubs it “Cole’s rawest soul,” still resonating hard.</p>
                 </div>
-            </div></details></div>
-            <div class="glass-card"><details><summary>Legacy & Reception</summary><div class="content">
-                <h2>A Hip-Hop Cornerstone</h2>
-                <p>Pitchfork’s <span class="highlight">6.9/10</span> critiqued <em><span class="highlight">2014 Forest Hills Drive</span></em>’s length, Rolling Stone’s 4/5 lauded its “emotional depth.” X (@36966_) in 2014: “Cole’s soul on wax.” By <span class="highlight">March 25, 2025</span>, with <span class="highlight">3x Platinum</span> (RIAA), <span class="highlight">4.8 billion</span> streams (Spotify), and a Fayetteville 2025 tour reviving <span class="highlight">“Love Yourz,”</span> it’s a hip-hop cornerstone. Outshining <em><span class="highlight">Born Sinner</span></em>’s edge, its sprawl’s a flaw and strength, shaping 2025’s introspective wave—think Bas.</p>
-            </div></details></div>
-            <div class="glass-card"><details><summary>Chart Performance</summary><div class="content">
-                <h2>Billboard Domination</h2>
-                <div class="table-container">
-                    <table class="trend-table chart-table">
-                        <thead><tr><th>Album</th><th>Highest Charting Song</th><th>Peak Position</th><th>Streams (as of 2025)</th><th>Certification</th><th>Units Sold</th></tr></thead>
-                        <tbody>
-                            <tr><td><span class="highlight">Born Sinner</span></td><td><span class="highlight">“Power Trip”</span></td><td>19</td><td>2.9B</td><td>3x Platinum</td><td>1.9M+</td></tr>
-                            <tr><td><span class="highlight">2014 Forest Hills Drive</span></td><td><span class="highlight">“No Role Modelz”</span></td><td>36</td><td>4.8B</td><td>3x Platinum</td><td>3.2M+</td></tr>
-                        </tbody>
-                    </table>
+            </div>
+            <div class="matrix-section"> <!-- Production -->
+                <h2>Production and Sound</h2>
+                <div class="matrix-content">
+                    <p><span class="highlight">J. Cole</span>, <span class="highlight">Vinylz</span>, <span class="highlight">Illmind</span>, and <span class="highlight">Ron Gilmore</span> forged <em><span class="highlight">2014 Forest Hills Drive</span></em> at <span class="highlight">Perfect Sound Studios</span> (LA) and <span class="highlight">Jungle City Studios</span> (NYC). <span class="highlight">“No Role Modelz”</span> loops jazzy brass, <span class="highlight">“Apparently”</span> hums soulful pianos, and <span class="highlight">“Fire Squad”</span> bangs crisp drums—Cole’s flow weaves a red-hot story. Smoother than <em><span class="highlight">Born Sinner</span></em>’s grit, it’s a cohesive vibe. In 2025, its warmth echoes in rap’s introspective wave—some tracks overstay, but it’s Dreamville’s blueprint.</p>
                 </div>
-            </div></details></div>
-            <div class="glass-card"><details><summary>Album Certifications</summary><div class="content">
-                <h2>Platinum Status</h2>
-                <div class="table-container">
-                    <table class="trend-table certifications-table">
-                        <thead><tr><th>Album</th><th>Certification</th><th>Units (Millions)</th></tr></thead>
-                        <tbody>
-                            <tr><td><span class="highlight">Cole World: The Sideline Story</span></td><td>Platinum</td><td>1.5</td></tr>
-                            <tr><td><span class="highlight">Born Sinner</span></td><td>3x Platinum</td><td>1.9</td></tr>
-                            <tr><td><span class="highlight">2014 Forest Hills Drive</span></td><td>3x Platinum</td><td>3.2</td></tr>
-                        </tbody>
-                    </table>
+            </div>
+            <div class="matrix-section"> <!-- Features -->
+                <h2>Features</h2>
+                <div class="matrix-content">
+                    <p><em><span class="highlight">2014 Forest Hills Drive</span></em> skips features—<span class="highlight">J. Cole</span> goes solo, a gutsy move. <span class="highlight">“January 28th”</span> boasts “I’m real,” <span class="highlight">“03’ Adolescence”</span> grinds “I was tryna make it”—he owns every bar and hook with red-hot soul. No guests muddy his vision; it’s pure, unfiltered Cole, proving his lyrical chops shine brightest alone.</p>
                 </div>
-            </div></details></div>
-            <div class="glass-card"><details><summary>Ratings</summary><div class="content">
-                <h2>Critical Score</h2>
-                <p><span class="highlight">Originality (18/20):</span> <span class="highlight">“January 28th”</span> crafts a solo memoir, Cole’s red-hot authenticity bold in a collab-heavy era, though not genre-shifting. (35 words)</p>
-                <p><span class="highlight">Production Quality (17/20):</span> <span class="highlight">“Apparently”</span>’s soulful pianos shine, a red-tinged vibe—some tracks like <span class="highlight">“St. Tropez”</span> overstay, dulling the polish. (35 words)</p>
-                <p><span class="highlight">Lyrics and Messaging (18/20):</span> <span class="highlight">“Love Yourz”</span> preaches truth, Cole’s red-hot bars weaving youth and fame with weight—rarely stumbles. (35 words)</p>
-                <p><span class="highlight">Enjoyment Factor (17/20):</span> <span class="highlight">“No Role Modelz”</span> hooks deep, its red soul a slow-burn joy—pacing slows some replay thrill in 2025. (35 words)</p>
-                <p><span class="highlight">Consistency (16/20):</span> <span class="highlight">“Fire Squad”</span> to <span class="highlight">“Love Yourz”</span> flows tight, red-hot narrative strong—energy dips like <span class="highlight">“Hello”</span> break the stride. (35 words)</p>
-                <p class="overall-rating"><h3><span class="highlight">Overall Rating (86/100):</span> 8.6/10</h3></p>
-                <p><em><span class="highlight">2014 Forest Hills Drive</span></em> earns its 8.6 with red-hot soul—J. Cole’s timeless memoir of youth and truth. Fayetteville 2025’s <span class="highlight">“Love Yourz”</span> live, red lights dim, reignites its glow, a viral moment. Veazy’s still lost in this classic, its warmth enduring in 2025. Some tracks drag, but its raw honesty shines, a hip-hop cornerstone.</p>
-            </div></details></div>
-            <div class="glass-card"><details><summary>Sources</summary><div class="content">
-                <h2>References</h2>
-                <p>Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X fan reactions (@36966_) as of March 25, 2025.</p>
-            </div></details></div>
-        </div> <!-- End content -->
+            </div>
+            <div class="matrix-section"> <!-- Tracks -->
+                <h2>Track Highlights</h2>
+                <div class="matrix-content">
+                    <div class="track-highlight-grid">
+                        <div class="track-highlight-item"><p><span class="highlight">For Newcomers:</span> <span class="highlight">“No Role Modelz,”</span> <span class="highlight">“Love Yourz”</span>—Jazzy loops and warm hooks grab easy, Cole’s red-hot tales of fake love and life lessons reeling newbies in. (35 words)</p></div>
+                        <div class="track-highlight-item"><p><span class="highlight">For The Dive:</span> <span class="highlight">“Wet Dreamz,”</span> <span class="highlight">“03’ Adolescence”</span>—Soulful beats and raw stories dig deep, Cole’s red-tinged youth and dreams hitting fans with introspective weight. (35 words)</p></div>
+                        <div class="track-highlight-item"><p><span class="highlight">Hidden Gems:</span> <span class="highlight">“Fire Squad,”</span> <span class="highlight">“Apparently”</span>—Punchy drums and warm pianos glow, Cole’s red-hot bars weaving depth in cuts that shine for attentive ears. (35 words)</p></div>
+                        <div class="track-highlight-item"><p><span class="highlight">Latest Obsessions:</span> <span class="highlight">“Love Yourz (Live)”</span>—Fayetteville 2025 tour’s red-lit sermon keeps Veazy hooked, Cole’s wisdom reigniting this classic with soulful fire. (35 words)</p></div>
+                        <div class="track-highlight-item"><p><span class="highlight">Cultural Impact Tracks:</span> <span class="highlight">“No Role Modelz”</span>—A 2025 TikTok staple, its red-hot brass fuels introspective rap edits, cementing Cole’s lasting mark on hip-hop. (35 words)</p></div>
+                        <div class="track-highlight-item"><p><span class="highlight">Fan Favorites:</span> <span class="highlight">“Love Yourz”</span>—X (@36966_) in 2025 crowns it Cole’s red-soul anthem, a streaming giant fans cherish for its heartfelt truth. (35 words)</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="matrix-section"> <!-- Previous -->
+                <h2>Previous Works</h2>
+                <div class="matrix-content">
+                    <p>J. Cole’s <em><span class="highlight">The Come Up</span></em> (2007) sparked with <span class="highlight">“Simba,”</span> raw hustle on blast. <em><span class="highlight">Cole World: The Sideline Story</span></em> (2011) hit No. 1 with <span class="highlight">“Work Out”</span> (No. 13 Hot 100), moving <span class="highlight">218,000</span> units first week. <em><span class="highlight">Born Sinner</span></em> (2013) topped charts with <span class="highlight">“Power Trip”</span> (No. 19), selling <span class="highlight">297,000</span>, honed by <span class="highlight">Vinylz</span>. <em><span class="highlight">2014 Forest Hills Drive</span></em> (2014) soared to No. 1 with <span class="highlight">353,000</span> units, paving the way for <em><span class="highlight">KOD</span></em> (2018). In 2025, it’s Cole’s bedrock, shaping rap’s introspective lane.</p>
+                </div>
+            </div>
+            <div class="matrix-section"> <!-- Awards -->
+                <h2>Awards Recognition</h2>
+                <div class="matrix-content">
+                    <div class="table-container">
+                        <table class="trend-table awards-table">
+                            <thead><tr><th>Category</th><th>Year</th><th>Result</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="highlight">Album of the Year</span></td><td>2016</td><td>Nominated</td></tr>
+                                <tr><td><span class="highlight">Best Rap Album</span></td><td>2016</td><td>Won</td></tr>
+                                <tr><td><span class="highlight">Best Rap Performance (“No Role Modelz”)</span></td><td>2016</td><td>Nominated</td></tr>
+                            </tbody>
+                        </table>
+                        <p><em><span class="highlight">2014 Forest Hills Drive</span></em> snagged Best Rap Album in 2016, its red-hot legacy backed by two nods, <span class="highlight">3x Platinum</span>, and <span class="highlight">4.8 billion</span> streams by 2025.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="matrix-section"> <!-- Legacy -->
+                <h2>Legacy & Reception</h2>
+                <div class="matrix-content">
+                    <p>Pitchfork’s <span class="highlight">6.9/10</span> knocked <em><span class="highlight">2014 Forest Hills Drive</span></em>’s length, Rolling Stone’s 4/5 praised its “emotional depth.” X (@36966_) in 2014: “Cole’s soul on wax.” By <span class="highlight">March 25, 2025</span>, with <span class="highlight">3x Platinum</span> (RIAA), <span class="highlight">4.8 billion</span> streams (Spotify), and a Fayetteville 2025 tour reviving <span class="highlight">“Love Yourz,”</span> it’s a hip-hop pillar. Outpacing <em><span class="highlight">Born Sinner</span></em>’s edge, its sprawl’s both flaw and fuel, shaping 2025’s introspective wave—think Bas.</p>
+                </div>
+            </div>
+            <div class="matrix-section"> <!-- Charts -->
+                <h2>Chart Performance</h2>
+                <div class="matrix-content">
+                    <div class="table-container">
+                        <table class="trend-table chart-table">
+                            <thead><tr><th>Album</th><th>Highest Charting Song</th><th>Peak Position</th><th>Streams (as of 2025)</th><th>Certification</th><th>Units Sold</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="highlight">Born Sinner</span></td><td><span class="highlight">“Power Trip”</span></td><td>19</td><td>2.9B</td><td>3x Platinum</td><td>1.9M+</td></tr>
+                                <tr><td><span class="highlight">2014 Forest Hills Drive</span></td><td><span class="highlight">“No Role Modelz”</span></td><td>36</td><td>4.8B</td><td>3x Platinum</td><td>3.2M+</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="matrix-section"> <!-- Certifications -->
+                <h2>Album Certifications</h2>
+                <div class="matrix-content">
+                    <div class="table-container">
+                        <table class="trend-table certifications-table">
+                            <thead><tr><th>Album</th><th>Certification</th><th>Units (Millions)</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="highlight">Cole World: The Sideline Story</span></td><td>Platinum</td><td>1.5</td></tr>
+                                <tr><td><span class="highlight">Born Sinner</span></td><td>3x Platinum</td><td>1.9</td></tr>
+                                <tr><td><span class="highlight">2014 Forest Hills Drive</span></td><td>3x Platinum</td><td>3.2</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="matrix-section"> <!-- Ratings -->
+                <h2>Ratings</h2>
+                <div class="matrix-content">
+                    <p><span class="highlight">Originality (18/20):</span> <span class="highlight">“January 28th”</span> crafts a solo memoir, Cole’s red-hot authenticity bold in a collab-heavy era, though not genre-shifting. (35 words)</p>
+                    <p><span class="highlight">Production Quality (17/20):</span> <span class="highlight">“Apparently”</span>’s soulful pianos shine, a red-tinged vibe—some tracks like <span class="highlight">“St. Tropez”</span> overstay, dulling the polish. (35 words)</p>
+                    <p><span class="highlight">Lyrics and Messaging (18/20):</span> <span class="highlight">“Love Yourz”</span> preaches truth, Cole’s red-hot bars weaving youth and fame with weight—rarely stumbles. (35 words)</p>
+                    <p><span class="highlight">Enjoyment Factor (17/20):</span> <span class="highlight">“No Role Modelz”</span> hooks deep, its red soul a slow-burn joy—pacing slows some replay thrill in 2025. (35 words)</p>
+                    <p><span class="highlight">Consistency (16/20):</span> <span class="highlight">“Fire Squad”</span> to <span class="highlight">“Love Yourz”</span> flows tight, red-hot narrative strong—energy dips like <span class="highlight">“Hello”</span> break the stride. (35 words)</p>
+                    <p class="overall-rating"><h3><span class="highlight">Overall Rating (86/100):</span> 8.6/10</h3></p>
+                    <p><em><span class="highlight">2014 Forest Hills Drive</span></em> earns its 8.6 with red-hot soul—J. Cole’s timeless memoir of youth and truth. Fayetteville 2025’s <span class="highlight">“Love Yourz”</span> live, red lights dim, reignites its glow, a viral moment. Veazy’s still lost in this classic, its warmth enduring in 2025. Some tracks drag, but its raw honesty shines, a hip-hop cornerstone.</p>
+                </div>
+            </div>
+            <div class="matrix-section"> <!-- Sources -->
+                <h2>Sources</h2>
+                <div class="matrix-content">
+                    <p>Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X fan reactions (@36966_) as of March 25, 2025.</p>
+                </div>
+            </div>
+        </div> <!-- End matrix card -->
     </div> <!-- End container -->
     <footer class="footer"> <!-- Footer -->
         <div class="nav-logo"><span class="logo-symbol"><i class="fas fa-heartbeat"></i></span></div>
@@ -288,33 +305,57 @@
     <script src="script.js"></script> <!-- Custom script -->
     <script> <!-- GSAP animations -->
         document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.glass-card');
-            cards.forEach((card, i) => {
-                gsap.from(card, {
-                    scrollTrigger: { trigger: card, start: 'top 80%', end: 'bottom 20%', toggleActions: 'play none none reverse' },
-                    opacity: 0, y: 50, duration: 0.8, ease: 'power2.out', delay: i * 0.1
+            const sections = document.querySelectorAll('.matrix-section');
+            
+            sections.forEach((section, i) => {
+                gsap.from(section, {
+                    scrollTrigger: { trigger: section, start: 'top 80%', end: 'bottom 20%', toggleActions: 'play none none reverse' },
+                    opacity: 0, scale: 0.9, y: 50, duration: 0.8, ease: 'power2.out', delay: i * 0.1
                 });
 
-                const detail = card.querySelector('details');
-                if (detail) {
-                    detail.addEventListener('toggle', () => {
-                        const content = detail.querySelector('.content');
-                        if (detail.open) {
-                            gsap.to(content, { opacity: 1, height: 'auto', duration: 0.5, ease: 'power2.out' });
-                            gsap.to(content.querySelectorAll('p'), {
-                                opacity: 1, x: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out'
-                            });
+                // Hover (or tap) activation
+                section.addEventListener('mouseenter', () => {
+                    gsap.to(section, { 
+                        scale: 1.05, 
+                        boxShadow: '0 0 30px var(--primary, #FF0000)', 
+                        duration: 0.3, 
+                        ease: 'power2.out' 
+                    });
+                    gsap.to(section.querySelector('.matrix-content'), { 
+                        opacity: 1, 
+                        height: 'auto', 
+                        duration: 0.5, 
+                        ease: 'power2.out' 
+                    });
+                });
+                section.addEventListener('mouseleave', () => {
+                    gsap.to(section, { 
+                        scale: 1, 
+                        boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', 
+                        duration: 0.3, 
+                        ease: 'power2.in' 
+                    });
+                    gsap.to(section.querySelector('.matrix-content'), { 
+                        opacity: 0, 
+                        height: 0, 
+                        duration: 0.5, 
+                        ease: 'power2.in' 
+                    });
+                });
+
+                // Mobile tap toggle
+                if (window.innerWidth <= 768) {
+                    section.addEventListener('click', () => {
+                        const isActive = section.classList.toggle('active');
+                        if (isActive) {
+                            gsap.to(section, { scale: 1.05, boxShadow: '0 0 30px var(--primary, #FF0000)', duration: 0.3 });
+                            gsap.to(section.querySelector('.matrix-content'), { opacity: 1, height: 'auto', duration: 0.5 });
                         } else {
-                            gsap.to(content, { opacity: 0, height: 0, duration: 0.5, ease: 'power2.in' });
-                            gsap.to(content.querySelectorAll('p'), { opacity: 0, x: -20, duration: 0.3 });
+                            gsap.to(section, { scale: 1, boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', duration: 0.3 });
+                            gsap.to(section.querySelector('.matrix-content'), { opacity: 0, height: 0, duration: 0.5 });
                         }
                     });
                 }
-            });
-
-            // Typewriter effect for content
-            document.querySelectorAll('.content p').forEach(p => {
-                gsap.set(p, { opacity: 0, x: -20 });
             });
         });
     </script> <!-- End script -->
