@@ -35,7 +35,7 @@
             flex: 1;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 1rem 2rem 1rem; /* Adjusted padding */
+            padding: 80px 1rem 2rem;
             position: relative;
             box-sizing: border-box;
             z-index: 1;
@@ -53,7 +53,6 @@
         .reactor-header {
             text-align: center;
             margin-bottom: 2rem;
-            position: relative;
         }
         .reactor-image {
             width: 400px;
@@ -64,31 +63,23 @@
             margin: 0 auto;
             z-index: 10;
         }
-        .social-panel {
-            position: sticky;
-            top: 100px; /* Below navbar */
-            right: 0;
-            width: 60px;
+        .stats-banner {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            padding: 1rem;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 600px;
+            margin: 1rem auto;
+            padding: 0.5rem;
             background: rgba(102, 0, 0, 0.25);
             backdrop-filter: blur(15px);
-            border-radius: 10px 0 0 10px;
-            z-index: 10;
+            border-radius: 10px;
+            border: 1px solid rgba(153, 0, 0, 0.3);
         }
-        .social-panel a, .social-panel button {
+        .stats-banner span {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1rem;
             color: #FF0000;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .social-panel a:hover, .social-panel button:hover {
-            color: #FFFFFF;
-            transform: scale(1.2);
+            text-transform: uppercase;
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
         }
         .reactor-card {
@@ -189,8 +180,10 @@
             .reactor-image {
                 width: 300px;
             }
-            .social-panel {
-                display: none; /* Hide on mobile */
+            .stats-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
             }
             .reactor-grid {
                 grid-template-columns: 1fr;
@@ -235,11 +228,11 @@
         <h1 class="review-title">2014 FOREST HILLS DRIVE</h1>
         <div class="reactor-header">
             <img class="reactor-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
-            <div class="social-panel">
-                <a href="https://twitter.com/36966_" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="https://open.spotify.com/album/0vE6mttTRL8S2oQmGIImHb" target="_blank" title="Spotify"><i class="fab fa-spotify"></i></a>
-                <a href="https://tiktok.com/@musicrx" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                <button class="share-btn" title="Share"><i class="fas fa-share"></i></button>
+            <div class="stats-banner">
+                <span>4.8B Streams</span>
+                <span>3x Platinum</span>
+                <span>353K First Week</span>
+                <span>#1 Billboard 200</span>
             </div>
         </div>
         <div class="reactor-card">
@@ -409,10 +402,13 @@
                 }
             });
 
-            // Share button functionality
-            document.querySelector('.share-btn').addEventListener('click', () => {
-                navigator.clipboard.writeText(window.location.href);
-                alert('Link copied to clipboard!');
+            // Animate stats banner
+            gsap.from('.stats-banner span', {
+                opacity: 0,
+                y: 20,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: 'power2.out'
             });
         });
     </script>
