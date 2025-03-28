@@ -1,182 +1,232 @@
-<!DOCTYPE html> <!-- HTML5 declaration -->
-<html lang="en" data-page="review-fhd"> <!-- Language and page ID -->
-<head> <!-- Metadata and links -->
-    <meta charset="UTF-8"> <!-- Encoding -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive viewport -->
-    <meta name="description" content="Explore J. Cole’s 2014 Forest Hills Drive: 353,000 first-week units, a 2014 soulful hip-hop memoir, updated March 2025 on MusicRx."> <!-- SEO desc -->
-    <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, Roc Nation, Columbia, Vinylz, Illmind, hip-hop, soulful, 2014, 2025, Billboard, Spotify"> <!-- SEO keywords -->
-    <meta name="author" content="Veazy"> <!-- Author -->
-    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Soulful Homecoming"> <!-- OG title -->
-    <meta property="og:description" content="Dive into J. Cole’s 2014 Forest Hills Drive review: a 2014 hip-hop memoir, revisited in 2025 on MusicRx."> <!-- OG desc -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/colee.jpeg"> <!-- OG image -->
-    <meta property="og:type" content="article"> <!-- OG type -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-fhd.html"> <!-- OG URL -->
-    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card -->
-    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
-    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Soulful Homecoming</title> <!-- Page title -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Google Fonts -->
-    <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
-    <style> <!-- Inline CSS -->
-        body { /* Base styling */
-            overflow-x: hidden; /* No horizontal scroll */
-            display: flex; /* Flex layout */
-            flex-direction: column; /* Vertical stack */
-            min-height: 100vh; /* Full height */
-            background: var(--background, #0a0a0a); /* Starfield base */
+<!DOCTYPE html>
+<html lang="en" data-page="review-fhd">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore J. Cole’s 2014 Forest Hills Drive: 353,000 first-week units, a 2014 soulful hip-hop memoir, updated March 2025 on MusicRx.">
+    <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, Roc Nation, Columbia, Vinylz, Illmind, hip-hop, soulful, 2014, 2025, Billboard, Spotify">
+    <meta name="author" content="Veazy">
+    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Soulful Homecoming">
+    <meta property="og:description" content="Dive into J. Cole’s 2014 Forest Hills Drive review: a 2014 hip-hop memoir, revisited in 2025 on MusicRx.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/colee.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-fhd.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@36966_">
+    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Soulful Homecoming</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: var(--background, #0a0a0a);
         }
-        #universe { /* Starfield */
-            position: fixed; /* Fixed */
-            top: 0; left: 0; /* Full coverage */
-            width: 100%; height: 100%; /* Full size */
-            z-index: -2; /* Behind all */
+        #universe {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
         }
-        .review-container { /* Main wrapper */
-            flex: 1; /* Fill space */
-            max-width: 1200px; /* Controlled width */
-            margin: 0 auto; /* Center */
-            padding: 80px 1rem 2rem; /* Navbar offset */
-            position: relative; /* Context */
-            box-sizing: border-box; /* Include padding */
-            z-index: 1; /* Above starfield */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 80px; /* Below navbar */
+            width: 200px;
+            height: calc(100vh - 80px);
+            background: rgba(102, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border-right: 1px solid rgba(153, 0, 0, 0.3);
+            padding: 1rem;
+            z-index: 10;
         }
-        .review-title { /* Title */
-            font-size: 4rem; /* Bold */
-            color: var(--primary, #FF0000); /* Theme red */
-            text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)); /* Neon glow */
-            font-family: 'Syncopate', sans-serif; /* Font */
-            text-transform: uppercase; /* Uppercase */
-            text-align: center; /* Centered */
-            margin: 0 0 2rem; /* Margin */
-            z-index: 10; /* Above reactor */
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
         }
-        .reactor-header { /* Header with image */
-            text-align: center; /* Centered */
-            margin-bottom: 2rem; /* Spacing */
+        .sidebar-nav li {
+            margin-bottom: 1rem;
         }
-        .reactor-image { /* Image */
-            width: 400px; /* Fixed width */
-            height: auto; /* Maintain aspect */
-            border-radius: 10px; /* Rounded */
-            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7)); /* Glow */
-            display: block; /* Block */
-            margin: 0 auto; /* Center */
-            z-index: 10; /* Above sections */
+        .sidebar-nav a {
+            color: #FF0000;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
         }
-        .reactor-card { /* Big glass card */
-            position: relative; /* Context */
-            width: 100%; /* Full width */
-            min-height: 600px; /* Adjusted height */
-            background: var(--card-background, rgba(102, 0, 0, 0.25)); /* Glass */
-            backdrop-filter: blur(15px); /* Blur */
-            border-radius: 20px; /* Rounded */
-            border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3)); /* Border */
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Shadow */
-            overflow: hidden; /* Hide overflow */
-            z-index: 5; /* Above starfield */
-            padding: 1rem; /* Minimal padding */
+        .sidebar-nav a:hover {
+            color: #FFFFFF;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
         }
-        .reactor-grid { /* Grid of sections */
-            display: grid; /* Grid */
-            grid-template-columns: repeat(2, 1fr); /* 2 columns */
-            gap: 1rem; /* Spacing */
-            padding: 1rem; /* Padding */
-            position: relative; /* Context */
+        .review-container {
+            flex: 1;
+            max-width: 1000px; /* Adjusted for sidebar */
+            margin: 0 auto 0 200px; /* Shifted right */
+            padding: 80px 1rem 2rem;
+            position: relative;
+            box-sizing: border-box;
+            z-index: 1;
         }
-        .reactor-section { /* Invisible sections */
-            position: relative; /* Context */
-            width: 100%; /* Full width */
-            height: 100px; /* Base height */
-            padding: 1rem; /* Padding */
-            background: transparent; /* Invisible */
-            border: 1px solid transparent; /* Hidden border */
-            transition: all 0.3s ease; /* Smooth */
-            cursor: pointer; /* Clickable */
-            overflow: hidden; /* Hide content */
+        .review-title {
+            font-size: 4rem;
+            color: var(--primary, #FF0000);
+            text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7));
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 0 0 2rem;
+            z-index: 10;
         }
-        .reactor-section:hover { /* Activate on hover */
-            background: rgba(255, 0, 0, 0.9); /* Solid red */
-            border: 1px solid var(--primary, #FF0000); /* Neon edge */
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 0, 255, 0.3); /* RGB glow */
-            height: auto; /* Expand */
-            z-index: 15; /* Above others */
-            animation: rgbPulse 2s infinite; /* RGB animation */
+        .reactor-header {
+            text-align: center;
+            margin-bottom: 2rem;
         }
-        @keyframes rgbPulse { /* RGB glow effect */
+        .reactor-image {
+            width: 400px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
+            display: block;
+            margin: 0 auto;
+            z-index: 10;
+        }
+        .reactor-card {
+            position: relative;
+            width: 100%;
+            min-height: 600px;
+            background: var(--card-background, rgba(102, 0, 0, 0.25));
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            z-index: 5;
+            padding: 1rem;
+        }
+        .reactor-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+            position: relative;
+        }
+        .reactor-section {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            padding: 1rem;
+            background: transparent;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .reactor-section:hover {
+            background: rgba(255, 0, 0, 0.9);
+            border: 1px solid var(--primary, #FF0000);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 0, 255, 0.3);
+            height: auto;
+            z-index: 15;
+            animation: rgbPulse 2s infinite;
+        }
+        @keyframes rgbPulse {
             0% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 0, 255, 0.3); }
             33% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.7), 0 0 30px rgba(0, 0, 255, 0.5), 0 0 40px rgba(255, 0, 0, 0.3); }
             66% { box-shadow: 0 0 20px rgba(0, 0, 255, 0.7), 0 0 30px rgba(255, 0, 0, 0.5), 0 0 40px rgba(0, 255, 0, 0.3); }
             100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 0, 255, 0.3); }
         }
-        .reactor-section h2 { /* Section titles */
-            font-family: 'Syncopate', sans-serif; /* Font */
-            font-size: 1.5rem; /* Size */
-            color: var(--primary, #FF0000); /* Red */
-            text-transform: uppercase; /* Uppercase */
-            margin: 0 0 0.5rem; /* Margin */
-            opacity: 0.7; /* Faded */
-            transition: opacity 0.3s ease; /* Fade */
+        .reactor-section h2 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary, #FF0000);
+            text-transform: uppercase;
+            margin: 0 0 0.5rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
         }
-        .reactor-section:hover h2 { /* Brighten on hover */
-            opacity: 1; /* Full */
-            color: var(--text-color, #FFFFFF); /* White when active */
+        .reactor-section:hover h2 {
+            opacity: 1;
+            color: var(--text-color, #FFFFFF);
         }
-        .reactor-content { /* Hidden content */
-            opacity: 0; /* Invisible */
-            height: 0; /* Collapsed */
-            overflow: hidden; /* Hide */
-            transition: opacity 0.3s ease; /* Fade */
+        .reactor-content {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 0.3s ease;
         }
-        .reactor-section:hover .reactor-content { /* Show on hover */
-            opacity: 1; /* Visible */
-            height: auto; /* Expand */
-            padding-bottom: 1rem; /* Space */
+        .reactor-section:hover .reactor-content {
+            opacity: 1;
+            height: auto;
+            padding-bottom: 1rem;
         }
-        p { /* Paragraphs */
-            font-family: 'Space Grotesk', sans-serif; /* Font */
-            font-size: 1rem; /* Size */
-            color: var(--text-color, #FFFFFF); /* White */
-            line-height: 1.6; /* Readable */
+        p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            color: var(--text-color, #FFFFFF);
+            line-height: 1.6;
         }
-        .track-highlight-grid { /* Tracks grid */
-            display: grid; /* Grid */
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive */
-            gap: 1rem; /* Spacing */
-            padding: 1rem 0; /* Padding */
+        .track-highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            padding: 1rem 0;
         }
-        @media (max-width: 768px) { /* Mobile */
-            .review-container { padding: 60px 0.5rem 1rem; } /* Adjust padding */
-            .review-title { /* Max 2 lines */
-                font-size: 1.5rem; line-height: 1.2; max-height: 3.6rem; overflow: hidden; white-space: normal;
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none; /* Hide sidebar on mobile */
             }
-            .reactor-card { /* Smaller card */
-                min-height: auto; /* Dynamic */
+            .review-container {
+                margin-left: 0; /* Reset margin */
+                padding: 60px 0.5rem 1rem;
             }
-            .reactor-image { /* Smaller image */
-                width: 300px; /* Adjusted */
+            .review-title {
+                font-size: 1.5rem;
+                line-height: 1.2;
+                max-height: 3.6rem;
+                overflow: hidden;
+                white-space: normal;
             }
-            .reactor-grid { /* Single column */
-                grid-template-columns: 1fr; /* Stack */
+            .reactor-card {
+                min-height: auto;
             }
-            .reactor-section { /* Stack vertically */
-                height: 80px; /* Smaller base */
-                margin-bottom: 0.5rem; /* Spacing */
-                border: 1px solid rgba(255, 0, 0, 0.2); /* Faint border */
+            .reactor-image {
+                width: 300px;
             }
-            .reactor-section:hover, .reactor-section.active { /* Tap to activate */
-                height: auto; /* Expand */
+            .reactor-grid {
+                grid-template-columns: 1fr;
             }
-            .reactor-section h2 { /* Max 3 lines */
-                font-size: 1.2rem; line-height: 1.2; max-height: 4.32rem; overflow: hidden; white-space: normal;
+            .reactor-section {
+                height: 80px;
+                margin-bottom: 0.5rem;
+                border: 1px solid rgba(255, 0, 0, 0.2);
             }
-            p { font-size: 0.8rem; } /* Benchmark */
-            .track-highlight-grid { grid-template-columns: 1fr; gap: 0.8rem; } /* Single column */
+            .reactor-section:hover, .reactor-section.active {
+                height: auto;
+            }
+            .reactor-section h2 {
+                font-size: 1.2rem;
+                line-height: 1.2;
+                max-height: 4.32rem;
+                overflow: hidden;
+                white-space: normal;
+            }
+            p {
+                font-size: 0.8rem;
+            }
+            .track-highlight-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
         }
-    </style> <!-- End inline CSS -->
+    </style>
 </head>
-<body> <!-- Body start -->
-    <canvas id="universe"></canvas> <!-- Starfield -->
-    <header class="navbar"> <!-- Navbar -->
+<body>
+    <canvas id="universe"></canvas>
+    <header class="navbar">
         <div class="nav-logo"><span class="logo-symbol"><i class="fas fa-heartbeat"></i></span></div>
         <nav><div class="dropdown"><button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
             <div class="dropdown-menu"><ul>
@@ -185,38 +235,54 @@
                 <li><a href="opinions.html">Opinions</a></li><li><a href="catchcarti.html">Catch Carti</a></li>
             </ul></div></div></nav>
     </header>
-    <div class="review-container"> <!-- Content wrapper -->
-        <h1 class="review-title">2014 FOREST HILLS DRIVE</h1> <!-- Title -->
-        <div class="reactor-header"> <!-- Header with image -->
-            <img class="reactor-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover"> <!-- Image -->
+    <div class="sidebar">
+        <ul class="sidebar-nav">
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#messaging">The Messaging and Theme</a></li>
+            <li><a href="#production">Production and Sound</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#tracks">Track Highlights</a></li>
+            <li><a href="#previous">Previous Works</a></li>
+            <li><a href="#awards">Awards Recognition</a></li>
+            <li><a href="#legacy">Legacy & Reception</a></li>
+            <li><a href="#charts">Chart Performance</a></li>
+            <li><a href="#certifications">Album Certifications</a></li>
+            <li><a href="#ratings">Ratings</a></li>
+            <li><a href="#sources">Sources</a></li>
+        </ul>
+    </div>
+    <div class="review-container">
+        <h1 class="review-title">2014 FOREST HILLS DRIVE</h1>
+        <div class="reactor-header">
+            <img class="reactor-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
         </div>
-        <div class="reactor-card"> <!-- Big glass card -->
-            <div class="reactor-grid"> <!-- Grid of sections -->
-                <div class="reactor-section"> <!-- Intro -->
+        <div class="reactor-card">
+            <div class="reactor-grid">
+                <div class="reactor-section" id="intro">
                     <h2>Introduction</h2>
                     <div class="reactor-content">
                         <p>J. Cole’s <em><span class="highlight">2014 Forest Hills Drive</span></em> dropped <span class="highlight">December 9, 2014</span> via <span class="highlight">Roc Nation</span>, <span class="highlight">Columbia</span>, and <span class="highlight">Dreamville</span>. This 13-track, 64-minute memoir moved <span class="highlight">353,000</span> units first week, topping the <span class="highlight">Billboard 200</span>. By <span class="highlight">March 25, 2025</span>, it’s <span class="highlight">3x Platinum</span> (RIAA) with <span class="highlight">4.8 billion</span> Spotify streams. Cooked up with <span class="highlight">Vinylz</span>, it’s a soulful homecoming—Veazy calls it a red-hot classic still blazing in 2025.</p>
                     </div>
                 </div>
-                <div class="reactor-section"> <!-- Messaging -->
+                <div class="reactor-section" id="messaging">
                     <h2>The Messaging and Theme</h2>
                     <div class="reactor-content">
                         <p>J. Cole’s childhood home on the <em><span class="highlight">2014 Forest Hills Drive</span></em> cover sets a nostalgic tone—self-discovery and realness dominate. <span class="highlight">“Wet Dreamz”</span> drops “She took her shirt off,” a tender throwback, while <span class="highlight">“Love Yourz”</span> hits with “No such thing as a life that’s better than yours.” <span class="highlight">“03’ Adolescence”</span> vows “I’ma do it ‘fore I die,” and <span class="highlight">“January 28th”</span> flexes “I’m real.” It’s a raw hip-hop diary, no fluff—just truth. X (@36966_) in 2025 dubs it “Cole’s rawest soul,” still resonating hard.</p>
                     </div>
                 </div>
-                <div class="reactor-section"> <!-- Production -->
+                <div class="reactor-section" id="production">
                     <h2>Production and Sound</h2>
                     <div class="reactor-content">
                         <p><span class="highlight">J. Cole</span>, <span class="highlight">Vinylz</span>, <span class="highlight">Illmind</span>, and <span class="highlight">Ron Gilmore</span> forged <em><span class="highlight">2014 Forest Hills Drive</span></em> at <span class="highlight">Perfect Sound Studios</span> (LA) and <span class="highlight">Jungle City Studios</span> (NYC). <span class="highlight">“No Role Modelz”</span> loops jazzy brass, <span class="highlight">“Apparently”</span> hums soulful pianos, and <span class="highlight">“Fire Squad”</span> bangs crisp drums—Cole’s flow weaves a red-hot story. Smoother than <em><span class="highlight">Born Sinner</span></em>’s grit, it’s a cohesive vibe. In 2025, its warmth echoes in rap’s introspective wave—some tracks overstay, but it’s Dreamville’s blueprint.</p>
                     </div>
                 </div>
-                <div class="reactor-section"> <!-- Features -->
+                <div class="reactor-section" id="features">
                     <h2>Features</h2>
                     <div class="reactor-content">
                         <p><em><span class="highlight">2014 Forest Hills Drive</span></em> skips features—<span class="highlight">J. Cole</span> goes solo, a gutsy move. <span class="highlight">“January 28th”</span> boasts “I’m real,” <span class="highlight">“03’ Adolescence”</span> grinds “I was tryna make it”—he owns every bar and hook with red-hot soul. No guests muddy his vision; it’s pure, unfiltered Cole, proving his lyrical chops shine brightest alone.</p>
                     </div>
                 </div>
-                <div class="reactor-section"> <!-- Tracks -->
+                <div class="reactor-section" id="tracks">
                     <h2>Track Highlights</h2>
                     <div class="reactor-content">
                         <div class="track-highlight-grid">
@@ -229,13 +295,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="reactor-section"> <!-- Previous -->
+                <div class="reactor-section" id="previous">
                     <h2>Previous Works</h2>
                     <div class="reactor-content">
                         <p>J. Cole’s <em><span class="highlight">The Come Up</span></em> (2007) sparked with <span class="highlight">“Simba,”</span> raw hustle on blast. <em><span class="highlight">Cole World: The Sideline Story</span></em> (2011) hit No. 1 with <span class="highlight">“Work Out”</span> (No. 13 Hot 100), moving <span class="highlight">218,000</span> units first week. <em><span class="highlight">Born Sinner</span></em> (2013) topped charts with <span class="highlight">“Power Trip”</span> (No. 19), selling <span class="highlight">297,000</span>, honed by <span class="highlight">Vinylz</span>. <em><span class="highlight">2014 Forest Hills Drive</span></em> (2014) soared to No. 1 with <span class="highlight">353,000</span> units, paving the way for <em><span class="highlight">KOD</span></em> (2018). In 2025, it’s Cole’s bedrock, shaping rap’s introspective lane.</p>
                     </div>
                 </div>
-                <div class="reactor-section"> <!-- Awards -->
+                <div class="reactor-section" id="awards">
                     <h2>Awards Recognition</h2>
                     <div class="reactor-content">
                         <div class="table-container">
@@ -251,13 +317,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="reactor-section"> <!-- Legacy -->
+                <div class="reactor-section" id="legacy">
                     <h2>Legacy & Reception</h2>
                     <div class="reactor-content">
                         <p>Pitchfork’s <span class="highlight">6.9/10</span> knocked <em><span class="highlight">2014 Forest Hills Drive</span></em>’s length, Rolling Stone’s 4/5 praised its “emotional depth.” X (@36966_) in 2014: “Cole’s soul on wax.” By <span class="highlight">March 25, 2025</span>, with <span class="highlight">3x Platinum</span> (RIAA), <span class="highlight">4.8 billion</span> streams (Spotify), and a Fayetteville 2025 tour reviving <span class="highlight">“Love Yourz,”</span> it’s a hip-hop pillar. Outpacing <em><span class="highlight">Born Sinner</span></em>’s edge, its sprawl’s both flaw and fuel, shaping 2025’s introspective wave—think Bas.</p>
                     </div>
                 </div>
-                <div class="reactor-section"> <!-- Charts -->
+                <div class="reactor-section" id="charts">
                     <h2>Chart Performance</h2>
                     <div class="reactor-content">
                         <div class="table-container">
@@ -271,7 +337,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="reactor-section"> <!-- Certifications -->
+                <div class="reactor-section" id="certifications">
                     <h2>Album Certifications</h2>
                     <div class="reactor-content">
                         <div class="table-container">
@@ -286,7 +352,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="reactor-section"> <!-- Ratings -->
+                <div class="reactor-section" id="ratings">
                     <h2>Ratings</h2>
                     <div class="reactor-content">
                         <p><span class="highlight">Originality (18/20):</span> <span class="highlight">“January 28th”</span> crafts a solo memoir, Cole’s red-hot authenticity bold in a collab-heavy era, though not genre-shifting. (35 words)</p>
@@ -298,31 +364,31 @@
                         <p><em><span class="highlight">2014 Forest Hills Drive</span></em> earns its 8.6 with red-hot soul—J. Cole’s timeless memoir of youth and truth. Fayetteville 2025’s <span class="highlight">“Love Yourz”</span> live, red lights dim, reignites its glow, a viral moment. Veazy’s still lost in this classic, its warmth enduring in 2025. Some tracks drag, but its raw honesty shines, a hip-hop cornerstone.</p>
                     </div>
                 </div>
-                <div class="reactor-section"> <!-- Sources -->
+                <div class="reactor-section" id="sources">
                     <h2>Sources</h2>
                     <div class="reactor-content">
                         <p>Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X fan reactions (@36966_) as of March 25, 2025.</p>
                     </div>
                 </div>
-            </div> <!-- End grid -->
-        </div> <!-- End reactor card -->
-    </div> <!-- End container -->
-    <footer class="footer"> <!-- Footer -->
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
         <div class="nav-logo"><span class="logo-symbol"><i class="fas fa-heartbeat"></i></span></div>
         <div class="footer-content"><p>© 2025 MusicRx. All rights reserved.</p></div>
         <form class="newsletter-form"><input type="email" placeholder="Subscribe to Newsletter" required><button type="submit">Subscribe</button></form>
     </footer>
-    <div class="fixed-buttons"> <!-- Buttons -->
+    <div class="fixed-buttons">
         <button id="backToTop" class="fixed-button" title="Back to Top" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
         <button id="musicToggle" class="fixed-button" title="Toggle Music" aria-label="Play music"><i class="fas fa-play"></i></button>
         <button id="themeToggle" class="fixed-button" title="Normal Mode" aria-label="Switch to next theme (current: All Red Mode)"><i class="fas fa-adjust"></i></button>
         <button id="tipMachine" class="fixed-button" title="Tip Machine" aria-label="Support the site"><i class="fas fa-coffee"></i></button>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- ScrollTrigger -->
-    <script src="script.js"></script> <!-- Custom script -->
-    <script> <!-- GSAP animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const reactor = document.querySelector('.reactor-card');
             gsap.from(reactor, { opacity: 0, y: 100, duration: 1, ease: 'power2.out' });
@@ -334,35 +400,15 @@
                     opacity: 0, scale: 0.9, y: 50, duration: 0.8, ease: 'power2.out', delay: i * 0.1
                 });
 
-                // Hover activation
                 section.addEventListener('mouseenter', () => {
-                    gsap.to(section, { 
-                        scale: 1.05, 
-                        duration: 0.3, 
-                        ease: 'power2.out' 
-                    });
-                    gsap.to(section.querySelector('.reactor-content'), { 
-                        opacity: 1, 
-                        height: 'auto', 
-                        duration: 0.5, 
-                        ease: 'power2.out' 
-                    });
+                    gsap.to(section, { scale: 1.05, duration: 0.3, ease: 'power2.out' });
+                    gsap.to(section.querySelector('.reactor-content'), { opacity: 1, height: 'auto', duration: 0.5, ease: 'power2.out' });
                 });
                 section.addEventListener('mouseleave', () => {
-                    gsap.to(section, { 
-                        scale: 1, 
-                        duration: 0.3, 
-                        ease: 'power2.in' 
-                    });
-                    gsap.to(section.querySelector('.reactor-content'), { 
-                        opacity: 0, 
-                        height: 0, 
-                        duration: 0.5, 
-                        ease: 'power2.in' 
-                    });
+                    gsap.to(section, { scale: 1, duration: 0.3, ease: 'power2.in' });
+                    gsap.to(section.querySelector('.reactor-content'), { opacity: 0, height: 0, duration: 0.5, ease: 'power2.in' });
                 });
 
-                // Mobile tap toggle
                 if (window.innerWidth <= 768) {
                     section.addEventListener('click', () => {
                         const isActive = section.classList.toggle('active');
@@ -376,7 +422,21 @@
                     });
                 }
             });
+
+            // Smooth scrolling for sidebar links
+            document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    gsap.to(window, { 
+                        scrollTo: { y: targetElement, offsetY: 80 }, 
+                        duration: 1, 
+                        ease: 'power2.out' 
+                    });
+                });
+            });
         });
-    </script> <!-- End script -->
+    </script>
 </body>
 </html>
