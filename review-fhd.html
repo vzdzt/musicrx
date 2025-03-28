@@ -54,14 +54,42 @@
             text-align: center;
             margin-bottom: 2rem;
         }
+        .album-frame {
+            position: relative;
+            width: 600px; /* Matches stats banner */
+            margin: 0 auto;
+        }
         .reactor-image {
-            width: 400px;
+            width: 100%; /* Full width of album-frame (600px) */
             height: auto;
             border-radius: 10px;
             box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
             display: block;
-            margin: 0 auto;
             z-index: 10;
+        }
+        .frame-left, .frame-right {
+            position: absolute;
+            top: 50%;
+            width: 150px;
+            padding: 1rem;
+            background: rgba(255, 0, 0, 0.9);
+            color: #FFFFFF;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 15;
+        }
+        .frame-left {
+            left: -160px;
+            transform: translateY(-50%);
+        }
+        .frame-right {
+            right: -160px;
+            transform: translateY(-50%);
+        }
+        .album-frame:hover .frame-left, .album-frame:hover .frame-right {
+            opacity: 1;
         }
         .stats-banner {
             display: flex;
@@ -177,13 +205,17 @@
             .reactor-card {
                 min-height: auto;
             }
-            .reactor-image {
-                width: 300px;
+            .album-frame {
+                width: 300px; /* Matches mobile image size */
+            }
+            .frame-left, .frame-right {
+                display: none; /* Hide frames on mobile */
             }
             .stats-banner {
                 flex-direction: column;
                 text-align: center;
                 gap: 0.5rem;
+                max-width: 300px; /* Matches mobile image size */
             }
             .reactor-grid {
                 grid-template-columns: 1fr;
@@ -227,7 +259,11 @@
     <div class="review-container">
         <h1 class="review-title">2014 FOREST HILLS DRIVE</h1>
         <div class="reactor-header">
-            <img class="reactor-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
+            <div class="album-frame">
+                <img class="reactor-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
+                <div class="frame-left">“No Role Modelz”</div>
+                <div class="frame-right">“Love Yourz”</div>
+            </div>
             <div class="stats-banner">
                 <span>4.8B Streams</span>
                 <span>3x Platinum</span>
