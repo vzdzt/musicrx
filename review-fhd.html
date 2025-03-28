@@ -50,10 +50,23 @@
             margin: 0 0 2rem; /* Margin */
             z-index: 10; /* Above reactor */
         }
+        .reactor-header { /* Header with image */
+            text-align: center; /* Centered */
+            margin-bottom: 2rem; /* Spacing */
+        }
+        .reactor-image { /* Image */
+            width: 400px; /* Fixed width */
+            height: auto; /* Maintain aspect */
+            border-radius: 10px; /* Rounded */
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7)); /* Glow */
+            display: block; /* Block */
+            margin: 0 auto; /* Center */
+            z-index: 10; /* Above sections */
+        }
         .reactor-card { /* Big glass card */
             position: relative; /* Context */
             width: 100%; /* Full width */
-            min-height: 1000px; /* Tall for sections */
+            min-height: 600px; /* Adjusted height */
             background: var(--card-background, rgba(102, 0, 0, 0.25)); /* Glass */
             backdrop-filter: blur(15px); /* Blur */
             border-radius: 20px; /* Rounded */
@@ -61,18 +74,7 @@
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Shadow */
             overflow: hidden; /* Hide overflow */
             z-index: 5; /* Above starfield */
-            padding-top: 400px; /* Space for image */
-        }
-        .reactor-image { /* Image */
-            position: absolute; /* Pinned */
-            top: 2rem; /* Offset from top */
-            left: 50%; /* Center */
-            transform: translateX(-50%); /* Center align */
-            width: 400px; /* Fixed width */
-            height: auto; /* Maintain aspect */
-            border-radius: 10px; /* Rounded */
-            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7)); /* Glow */
-            z-index: 10; /* Above sections */
+            padding: 1rem; /* Minimal padding */
         }
         .reactor-grid { /* Grid of sections */
             display: grid; /* Grid */
@@ -95,9 +97,16 @@
         .reactor-section:hover { /* Activate on hover */
             background: rgba(255, 0, 0, 0.9); /* Solid red */
             border: 1px solid var(--primary, #FF0000); /* Neon edge */
-            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7)); /* Glow */
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 0, 255, 0.3); /* RGB glow */
             height: auto; /* Expand */
             z-index: 15; /* Above others */
+            animation: rgbPulse 2s infinite; /* RGB animation */
+        }
+        @keyframes rgbPulse { /* RGB glow effect */
+            0% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 0, 255, 0.3); }
+            33% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.7), 0 0 30px rgba(0, 0, 255, 0.5), 0 0 40px rgba(255, 0, 0, 0.3); }
+            66% { box-shadow: 0 0 20px rgba(0, 0, 255, 0.7), 0 0 30px rgba(255, 0, 0, 0.5), 0 0 40px rgba(0, 255, 0, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 0, 255, 0.3); }
         }
         .reactor-section h2 { /* Section titles */
             font-family: 'Syncopate', sans-serif; /* Font */
@@ -142,7 +151,6 @@
             }
             .reactor-card { /* Smaller card */
                 min-height: auto; /* Dynamic */
-                padding-top: 250px; /* Space for image */
             }
             .reactor-image { /* Smaller image */
                 width: 300px; /* Adjusted */
@@ -179,8 +187,10 @@
     </header>
     <div class="review-container"> <!-- Content wrapper -->
         <h1 class="review-title">2014 FOREST HILLS DRIVE</h1> <!-- Title -->
-        <div class="reactor-card"> <!-- Big glass card -->
+        <div class="reactor-header"> <!-- Header with image -->
             <img class="reactor-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover"> <!-- Image -->
+        </div>
+        <div class="reactor-card"> <!-- Big glass card -->
             <div class="reactor-grid"> <!-- Grid of sections -->
                 <div class="reactor-section"> <!-- Intro -->
                     <h2>Introduction</h2>
@@ -328,7 +338,6 @@
                 section.addEventListener('mouseenter', () => {
                     gsap.to(section, { 
                         scale: 1.05, 
-                        boxShadow: '0 0 30px var(--primary, #FF0000)', 
                         duration: 0.3, 
                         ease: 'power2.out' 
                     });
@@ -342,7 +351,6 @@
                 section.addEventListener('mouseleave', () => {
                     gsap.to(section, { 
                         scale: 1, 
-                        boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', 
                         duration: 0.3, 
                         ease: 'power2.in' 
                     });
@@ -359,10 +367,10 @@
                     section.addEventListener('click', () => {
                         const isActive = section.classList.toggle('active');
                         if (isActive) {
-                            gsap.to(section, { scale: 1.05, boxShadow: '0 0 30px var(--primary, #FF0000)', duration: 0.3 });
+                            gsap.to(section, { scale: 1.05, duration: 0.3 });
                             gsap.to(section.querySelector('.reactor-content'), { opacity: 1, height: 'auto', duration: 0.5 });
                         } else {
-                            gsap.to(section, { scale: 1, boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', duration: 0.3 });
+                            gsap.to(section, { scale: 1, duration: 0.3 });
                             gsap.to(section.querySelector('.reactor-content'), { opacity: 0, height: 0, duration: 0.5 });
                         }
                     });
