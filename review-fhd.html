@@ -57,10 +57,53 @@
             0%, 100% { text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)); transform: translateZ(0); }
             50% { text-shadow: 0 0 25px var(--primary, #FF0000); transform: translateZ(10px); }
         }
+        .holo-display { /* Hologram container */
+            width: 400px; /* Adjusted base */
+            height: 400px; /* Square */
+            margin: 0 auto 2rem; /* Center above cockpit */
+            position: relative; /* Context */
+            z-index: 20; /* Above panels */
+            perspective: 1000px; /* 3D depth */
+        }
+        .holo-album { /* Star Wars-style hologram */
+            width: 100%; /* Full size */
+            height: 100%; /* Square */
+            background: url('https://vzdzt.github.io/musicrx/colee.jpeg') center/cover no-repeat; /* Image */
+            opacity: 0.6; /* More translucent */
+            filter: brightness(1.8) contrast(1.3) hue-rotate(200deg) blur(1px); /* Blue tint with distortion */
+            border-radius: 8px; /* Slight curve */
+            box-shadow: 0 0 50px rgba(0, 191, 255, 0.8), 0 0 70px rgba(0, 191, 255, 0.5); /* Strong blue glow */
+            transform: translateZ(150px) rotateY(0deg); /* 3D projection */
+            animation: holoFlicker 0.05s infinite, holoWobble 8s infinite ease-in-out; /* Faster flicker, wobble */
+            position: relative; /* For scan lines */
+        }
+        .holo-album::before { /* Scan lines */
+            content: ''; /* Empty */
+            position: absolute; /* Overlay */
+            top: 0; left: 0; /* Full coverage */
+            width: 100%; height: 100%; /* Full size */
+            background: linear-gradient(to bottom, rgba(0, 191, 255, 0.1) 2%, transparent 2%, transparent 98%, rgba(0, 191, 255, 0.1) 98%); /* Scan lines */
+            background-size: 100% 10px; /* Line spacing */
+            animation: scanLines 2s infinite linear; /* Scroll effect */
+        }
+        @keyframes holoFlicker { /* Star Wars flicker */
+            0%, 100% { opacity: 0.6; filter: brightness(1.8) contrast(1.3) hue-rotate(200deg) blur(1px); }
+            20%, 80% { opacity: 0.55; filter: brightness(1.7) contrast(1.2) hue-rotate(205deg) blur(1.2px); }
+            50% { opacity: 0.5; filter: brightness(1.6) contrast(1.1) hue-rotate(210deg) blur(1.5px); }
+        }
+        @keyframes holoWobble { /* Hologram wobble */
+            0%, 100% { transform: translateZ(150px) rotateY(0deg); }
+            25% { transform: translateZ(170px) rotateY(3deg); }
+            75% { transform: translateZ(170px) rotateY(-3deg); }
+        }
+        @keyframes scanLines { /* Scan line scroll */
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
         .cockpit-interface { /* Cockpit dashboard */
             position: relative; /* Context */
             width: 100%; /* Full width */
-            min-height: 1200px; /* Tall for panels */
+            min-height: 1000px; /* Adjusted height */
             background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(50, 0, 0, 0.6)); /* Stark glass */
             backdrop-filter: blur(10px); /* Blur */
             border-radius: 20px; /* Rounded */
@@ -71,38 +114,9 @@
             padding: 2rem; /* Padding */
             transform: rotateX(15deg); /* Cockpit angle */
         }
-        .holo-display { /* Hologram container */
-            position: absolute; /* Center */
-            top: 50%; left: 50%; /* Center position */
-            transform: translate(-50%, -50%) rotateX(-15deg); /* Counter cockpit tilt */
-            width: 600px; /* Large base */
-            height: 600px; /* Square */
-            z-index: 20; /* Above panels */
-            perspective: 1000px; /* 3D depth */
-        }
-        .holo-album { /* Star Wars-style hologram */
-            width: 100%; /* Full size */
-            height: 100%; /* Square */
-            background: url('https://vzdzt.github.io/musicrx/colee.jpeg') center/cover no-repeat; /* Image */
-            opacity: 0.7; /* Translucent */
-            filter: brightness(1.5) contrast(1.2) hue-rotate(200deg); /* Blue tint */
-            border-radius: 8px; /* Slight curve */
-            box-shadow: 0 0 40px rgba(0, 191, 255, 0.7), 0 0 60px rgba(0, 191, 255, 0.5); /* Blue glow */
-            transform: translateZ(100px) rotateY(0deg); /* 3D projection */
-            animation: holoFlicker 0.1s infinite, holoWobble 10s infinite ease-in-out; /* Flicker and wobble */
-        }
-        @keyframes holoFlicker { /* Star Wars flicker */
-            0%, 100% { opacity: 0.7; filter: brightness(1.5) contrast(1.2) hue-rotate(200deg); }
-            50% { opacity: 0.6; filter: brightness(1.4) contrast(1.1) hue-rotate(205deg); }
-        }
-        @keyframes holoWobble { /* Hologram wobble */
-            0%, 100% { transform: translateZ(100px) rotateY(0deg); }
-            25% { transform: translateZ(120px) rotateY(5deg); }
-            75% { transform: translateZ(120px) rotateY(-5deg); }
-        }
         .control-grid { /* Grid of control panels */
             display: grid; /* Grid */
-            grid-template-columns: repeat(3, 1fr); /* 3 columns for wider layout */
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
             gap: 2rem; /* Spacing */
             padding: 2rem; /* Padding */
             position: relative; /* Context */
@@ -162,7 +176,7 @@
             padding-bottom: 1rem; /* Space */
         }
         p { /* Paragraphs */
-            font-family: 'Space+Grotesk', sans-serif; /* Font */
+            font-family: 'Space Grotesk', sans-serif; /* Font */
             font-size: 1rem; /* Size */
             color: var(--text-color, #FFFFFF); /* White */
             line-height: 1.6; /* Readable */
@@ -178,13 +192,13 @@
             .review-title { /* Max 2 lines */
                 font-size: 1.5rem; line-height: 1.2; max-height: 3.6rem; overflow: hidden; white-space: normal;
             }
+            .holo-display { /* Smaller hologram */
+                width: 250px; height: 250px; /* Adjusted */
+            }
             .cockpit-interface { /* Smaller cockpit */
                 min-height: auto; /* Dynamic */
                 padding: 1rem; /* Reduced */
                 transform: rotateX(5deg); /* Less tilt */
-            }
-            .holo-display { /* Smaller hologram */
-                width: 300px; height: 300px; /* Adjusted */
             }
             .control-grid { /* Single column */
                 grid-template-columns: 1fr; /* Stack */
@@ -221,10 +235,10 @@
     </header>
     <div class="review-container"> <!-- Content wrapper -->
         <h1 class="review-title">2014 FOREST HILLS DRIVE</h1> <!-- Title -->
+        <div class="holo-display"> <!-- Hologram display -->
+            <div class="holo-album"></div> <!-- Hologram image -->
+        </div>
         <div class="cockpit-interface"> <!-- Cockpit dashboard -->
-            <div class="holo-display"> <!-- Hologram display -->
-                <div class="holo-album"></div> <!-- Hologram image -->
-            </div>
             <div class="control-grid"> <!-- Grid of control panels -->
                 <div class="control-panel"> <!-- Intro -->
                     <h2>System Status</h2>
