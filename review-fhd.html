@@ -6,14 +6,14 @@
     <meta name="description" content="Explore J. Cole’s 2014 Forest Hills Drive: 353,000 first-week units, a 2014 soulful hip-hop memoir, updated March 2025 on MusicRx."> <!-- SEO desc -->
     <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, Roc Nation, Columbia, Vinylz, Illmind, hip-hop, soulful, 2014, 2025, Billboard, Spotify"> <!-- SEO keywords -->
     <meta name="author" content="Veazy"> <!-- Author -->
-    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: Stark Wars Holo-Cockpit"> <!-- OG title -->
+    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Soulful Homecoming"> <!-- OG title -->
     <meta property="og:description" content="Dive into J. Cole’s 2014 Forest Hills Drive review: a 2014 hip-hop memoir, revisited in 2025 on MusicRx."> <!-- OG desc -->
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/colee.jpeg"> <!-- OG image -->
     <meta property="og:type" content="article"> <!-- OG type -->
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-fhd.html"> <!-- OG URL -->
     <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card -->
     <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
-    <title>MusicRx - 2014 Forest Hills Drive: Stark Wars Holo-Cockpit</title> <!-- Page title -->
+    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Soulful Homecoming</title> <!-- Page title -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Google Fonts -->
     <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
@@ -24,18 +24,16 @@
             flex-direction: column; /* Vertical stack */
             min-height: 100vh; /* Full height */
             background: var(--background, #0a0a0a); /* Starfield base */
-            perspective: 1200px; /* 3D perspective */
         }
-        #universe { /* Starfield with 3D depth */
+        #universe { /* Starfield */
             position: fixed; /* Fixed */
             top: 0; left: 0; /* Full coverage */
             width: 100%; height: 100%; /* Full size */
             z-index: -2; /* Behind all */
-            transform: translateZ(-150px); /* Subtle 3D depth */
         }
         .review-container { /* Main wrapper */
             flex: 1; /* Fill space */
-            max-width: 1800px; /* Wide cockpit */
+            max-width: 1200px; /* Controlled width */
             margin: 0 auto; /* Center */
             padding: 80px 1rem 2rem; /* Navbar offset */
             position: relative; /* Context */
@@ -44,114 +42,73 @@
         }
         .review-title { /* Title */
             font-size: 4rem; /* Bold */
-            color: var(--primary, #FF0000); /* Red */
+            color: var(--primary, #FF0000); /* Theme red */
             text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)); /* Neon glow */
             font-family: 'Syncopate', sans-serif; /* Font */
             text-transform: uppercase; /* Uppercase */
             text-align: center; /* Centered */
             margin: 0 0 2rem; /* Margin */
-            z-index: 10; /* Above all */
-            animation: starkPulse 1.5s infinite; /* Stark pulse */
+            z-index: 10; /* Above reactor */
         }
-        @keyframes starkPulse { /* Title pulse */
-            0%, 100% { text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)); transform: translateZ(0); }
-            50% { text-shadow: 0 0 25px var(--primary, #FF0000); transform: translateZ(10px); }
+        .reactor-header { /* Header with image */
+            text-align: center; /* Centered */
+            margin-bottom: 2rem; /* Spacing */
         }
-        .holo-display { /* Hologram container */
-            width: 400px; /* Adjusted base */
-            height: 400px; /* Square */
-            margin: 0 auto 2rem; /* Center above cockpit */
-            position: relative; /* Context */
-            z-index: 20; /* Above panels */
-            perspective: 1000px; /* 3D depth */
+        .reactor-image { /* Image */
+            width: 400px; /* Fixed width */
+            height: auto; /* Maintain aspect */
+            border-radius: 10px; /* Rounded */
+            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7)); /* Glow */
+            display: block; /* Block */
+            margin: 0 auto; /* Center */
+            z-index: 10; /* Above sections */
         }
-        .holo-album { /* Star Wars-style hologram */
-            width: 100%; /* Full size */
-            height: 100%; /* Square */
-            background: url('https://vzdzt.github.io/musicrx/colee.jpeg') center/cover no-repeat; /* Image */
-            opacity: 0.6; /* More translucent */
-            filter: brightness(1.8) contrast(1.3) hue-rotate(200deg) blur(1px); /* Blue tint with distortion */
-            border-radius: 8px; /* Slight curve */
-            box-shadow: 0 0 50px rgba(0, 191, 255, 0.8), 0 0 70px rgba(0, 191, 255, 0.5); /* Strong blue glow */
-            transform: translateZ(150px) rotateY(0deg); /* 3D projection */
-            animation: holoFlicker 0.05s infinite, holoWobble 8s infinite ease-in-out; /* Faster flicker, wobble */
-            position: relative; /* For scan lines */
-        }
-        .holo-album::before { /* Scan lines */
-            content: ''; /* Empty */
-            position: absolute; /* Overlay */
-            top: 0; left: 0; /* Full coverage */
-            width: 100%; height: 100%; /* Full size */
-            background: linear-gradient(to bottom, rgba(0, 191, 255, 0.1) 2%, transparent 2%, transparent 98%, rgba(0, 191, 255, 0.1) 98%); /* Scan lines */
-            background-size: 100% 10px; /* Line spacing */
-            animation: scanLines 2s infinite linear; /* Scroll effect */
-        }
-        @keyframes holoFlicker { /* Star Wars flicker */
-            0%, 100% { opacity: 0.6; filter: brightness(1.8) contrast(1.3) hue-rotate(200deg) blur(1px); }
-            20%, 80% { opacity: 0.55; filter: brightness(1.7) contrast(1.2) hue-rotate(205deg) blur(1.2px); }
-            50% { opacity: 0.5; filter: brightness(1.6) contrast(1.1) hue-rotate(210deg) blur(1.5px); }
-        }
-        @keyframes holoWobble { /* Hologram wobble */
-            0%, 100% { transform: translateZ(150px) rotateY(0deg); }
-            25% { transform: translateZ(170px) rotateY(3deg); }
-            75% { transform: translateZ(170px) rotateY(-3deg); }
-        }
-        @keyframes scanLines { /* Scan line scroll */
-            0% { background-position: 0 0; }
-            100% { background-position: 0 100%; }
-        }
-        .cockpit-interface { /* Cockpit dashboard */
+        .reactor-card { /* Big glass card */
             position: relative; /* Context */
             width: 100%; /* Full width */
-            min-height: 1000px; /* Adjusted height */
-            background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(50, 0, 0, 0.6)); /* Stark glass */
-            backdrop-filter: blur(10px); /* Blur */
+            min-height: 600px; /* Adjusted height */
+            background: var(--card-background, rgba(102, 0, 0, 0.25)); /* Glass */
+            backdrop-filter: blur(15px); /* Blur */
             border-radius: 20px; /* Rounded */
-            border: 1px solid rgba(255, 0, 0, 0.3); /* Subtle red */
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.7); /* Deep shadow */
+            border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3)); /* Border */
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Shadow */
             overflow: hidden; /* Hide overflow */
             z-index: 5; /* Above starfield */
-            padding: 2rem; /* Padding */
-            transform: rotateX(15deg); /* Cockpit angle */
+            padding: 1rem; /* Minimal padding */
         }
-        .control-grid { /* Grid of control panels */
+        .reactor-grid { /* Grid of sections */
             display: grid; /* Grid */
-            grid-template-columns: repeat(3, 1fr); /* 3 columns */
-            gap: 2rem; /* Spacing */
-            padding: 2rem; /* Padding */
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 1rem; /* Spacing */
+            padding: 1rem; /* Padding */
             position: relative; /* Context */
-            z-index: 10; /* Above hologram */
         }
-        .control-panel { /* Control buttons */
+        .reactor-section { /* Invisible sections */
             position: relative; /* Context */
             width: 100%; /* Full width */
-            height: 180px; /* Base height */
-            padding: 1.5rem; /* Padding */
-            background: rgba(255, 255, 255, 0.1); /* Glass */
-            border: 1px solid rgba(255, 0, 0, 0.3); /* Subtle red */
-            border-radius: 15px; /* Rounded */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Depth */
-            transition: all 0.4s ease; /* Smooth */
+            height: 100px; /* Base height */
+            padding: 1rem; /* Padding */
+            background: transparent; /* Invisible */
+            border: 1px solid transparent; /* Hidden border */
+            transition: all 0.3s ease; /* Smooth */
             cursor: pointer; /* Clickable */
             overflow: hidden; /* Hide content */
-            transform: rotateX(20deg) translateZ(30px); /* 3D tilt */
         }
-        .control-panel:hover { /* Activate on hover */
-            background: rgba(0, 0, 0, 0.9); /* Solid dark */
+        .reactor-section:hover { /* Activate on hover */
+            background: rgba(255, 0, 0, 0.9); /* Solid red */
             border: 1px solid var(--primary, #FF0000); /* Neon edge */
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 0, 255, 0.3); /* RGB glow */
             height: auto; /* Expand */
-            transform: rotateX(0deg) translateZ(80px); /* 3D lift */
-            z-index: 25; /* Above others */
-            animation: rgbGlow 2s infinite; /* RGB animation */
+            z-index: 15; /* Above others */
+            animation: rgbPulse 2s infinite; /* RGB animation */
         }
-        @keyframes rgbGlow { /* RGB glow effect */
+        @keyframes rgbPulse { /* RGB glow effect */
             0% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 0, 255, 0.3); }
             33% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.7), 0 0 30px rgba(0, 0, 255, 0.5), 0 0 40px rgba(255, 0, 0, 0.3); }
             66% { box-shadow: 0 0 20px rgba(0, 0, 255, 0.7), 0 0 30px rgba(255, 0, 0, 0.5), 0 0 40px rgba(0, 255, 0, 0.3); }
             100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 0, 255, 0.3); }
         }
-        .control-panel h2 { /* Panel titles */
+        .reactor-section h2 { /* Section titles */
             font-family: 'Syncopate', sans-serif; /* Font */
             font-size: 1.5rem; /* Size */
             color: var(--primary, #FF0000); /* Red */
@@ -160,17 +117,17 @@
             opacity: 0.7; /* Faded */
             transition: opacity 0.3s ease; /* Fade */
         }
-        .control-panel:hover h2 { /* Brighten on hover */
+        .reactor-section:hover h2 { /* Brighten on hover */
             opacity: 1; /* Full */
             color: var(--text-color, #FFFFFF); /* White when active */
         }
-        .panel-content { /* Hidden content */
+        .reactor-content { /* Hidden content */
             opacity: 0; /* Invisible */
             height: 0; /* Collapsed */
             overflow: hidden; /* Hide */
             transition: opacity 0.3s ease; /* Fade */
         }
-        .control-panel:hover .panel-content { /* Show on hover */
+        .reactor-section:hover .reactor-content { /* Show on hover */
             opacity: 1; /* Visible */
             height: auto; /* Expand */
             padding-bottom: 1rem; /* Space */
@@ -187,34 +144,29 @@
             gap: 1rem; /* Spacing */
             padding: 1rem 0; /* Padding */
         }
-        @media (max-width: 768px) { /* Mobile optimization */
+        @media (max-width: 768px) { /* Mobile */
             .review-container { padding: 60px 0.5rem 1rem; } /* Adjust padding */
             .review-title { /* Max 2 lines */
                 font-size: 1.5rem; line-height: 1.2; max-height: 3.6rem; overflow: hidden; white-space: normal;
             }
-            .holo-display { /* Smaller hologram */
-                width: 250px; height: 250px; /* Adjusted */
-            }
-            .cockpit-interface { /* Smaller cockpit */
+            .reactor-card { /* Smaller card */
                 min-height: auto; /* Dynamic */
-                padding: 1rem; /* Reduced */
-                transform: rotateX(5deg); /* Less tilt */
             }
-            .control-grid { /* Single column */
+            .reactor-image { /* Smaller image */
+                width: 300px; /* Adjusted */
+            }
+            .reactor-grid { /* Single column */
                 grid-template-columns: 1fr; /* Stack */
-                gap: 1rem; /* Spacing */
-                padding: 1rem; /* Reduced */
             }
-            .control-panel { /* Stack vertically */
-                height: 120px; /* Smaller base */
+            .reactor-section { /* Stack vertically */
+                height: 80px; /* Smaller base */
                 margin-bottom: 0.5rem; /* Spacing */
-                transform: rotateX(10deg) translateZ(10px); /* Reduced tilt */
+                border: 1px solid rgba(255, 0, 0, 0.2); /* Faint border */
             }
-            .control-panel:hover, .control-panel.active { /* Tap to activate */
+            .reactor-section:hover, .reactor-section.active { /* Tap to activate */
                 height: auto; /* Expand */
-                transform: rotateX(0deg) translateZ(30px); /* Less lift */
             }
-            .control-panel h2 { /* Max 3 lines */
+            .reactor-section h2 { /* Max 3 lines */
                 font-size: 1.2rem; line-height: 1.2; max-height: 4.32rem; overflow: hidden; white-space: normal;
             }
             p { font-size: 0.8rem; } /* Benchmark */
@@ -235,38 +187,38 @@
     </header>
     <div class="review-container"> <!-- Content wrapper -->
         <h1 class="review-title">2014 FOREST HILLS DRIVE</h1> <!-- Title -->
-        <div class="holo-display"> <!-- Hologram display -->
-            <div class="holo-album"></div> <!-- Hologram image -->
+        <div class="reactor-header"> <!-- Header with image -->
+            <img class="reactor-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover"> <!-- Image -->
         </div>
-        <div class="cockpit-interface"> <!-- Cockpit dashboard -->
-            <div class="control-grid"> <!-- Grid of control panels -->
-                <div class="control-panel"> <!-- Intro -->
-                    <h2>System Status</h2>
-                    <div class="panel-content">
-                        <p>J. Cole’s <em><span class="highlight">2014 Forest Hills Drive</span></em> activated <span class="highlight">December 9, 2014</span> via <span class="highlight">Roc Nation</span>, <span class="highlight">Columbia</span>, and <span class="highlight">Dreamville</span>. This 13-track, 64-minute core system logged <span class="highlight">353,000</span> units first week, securing the <span class="highlight">Billboard 200</span>. By <span class="highlight">March 25, 2025</span>, it’s <span class="highlight">3x Platinum</span> (RIAA) with <span class="highlight">4.8 billion</span> Spotify streams. Calibrated with <span class="highlight">Vinylz</span>, it’s a soulful reboot—Veazy marks it a red-hot classic still operational in 2025.</p>
+        <div class="reactor-card"> <!-- Big glass card -->
+            <div class="reactor-grid"> <!-- Grid of sections -->
+                <div class="reactor-section"> <!-- Intro -->
+                    <h2>Introduction</h2>
+                    <div class="reactor-content">
+                        <p>J. Cole’s <em><span class="highlight">2014 Forest Hills Drive</span></em> dropped <span class="highlight">December 9, 2014</span> via <span class="highlight">Roc Nation</span>, <span class="highlight">Columbia</span>, and <span class="highlight">Dreamville</span>. This 13-track, 64-minute memoir moved <span class="highlight">353,000</span> units first week, topping the <span class="highlight">Billboard 200</span>. By <span class="highlight">March 25, 2025</span>, it’s <span class="highlight">3x Platinum</span> (RIAA) with <span class="highlight">4.8 billion</span> Spotify streams. Cooked up with <span class="highlight">Vinylz</span>, it’s a soulful homecoming—Veazy calls it a red-hot classic still blazing in 2025.</p>
                     </div>
                 </div>
-                <div class="control-panel"> <!-- Messaging -->
-                    <h2>Data Feed</h2>
-                    <div class="panel-content">
-                        <p>J. Cole’s origin node on <em><span class="highlight">2014 Forest Hills Drive</span></em>’s cover transmits nostalgia—self-discovery and integrity dominate. <span class="highlight">“Wet Dreamz”</span> outputs “She took her shirt off,” a soft recall, while <span class="highlight">“Love Yourz”</span> broadcasts “No such thing as a life that’s better than yours.” <span class="highlight">“03’ Adolescence”</span> commits “I’ma do it ‘fore I die,” and <span class="highlight">“January 28th”</span> locks “I’m real.” It’s a raw signal, no static—just truth. X (@36966_) in 2025 flags it “Cole’s rawest soul,” still transmitting strong.</p>
+                <div class="reactor-section"> <!-- Messaging -->
+                    <h2>The Messaging and Theme</h2>
+                    <div class="reactor-content">
+                        <p>J. Cole’s childhood home on the <em><span class="highlight">2014 Forest Hills Drive</span></em> cover sets a nostalgic tone—self-discovery and realness dominate. <span class="highlight">“Wet Dreamz”</span> drops “She took her shirt off,” a tender throwback, while <span class="highlight">“Love Yourz”</span> hits with “No such thing as a life that’s better than yours.” <span class="highlight">“03’ Adolescence”</span> vows “I’ma do it ‘fore I die,” and <span class="highlight">“January 28th”</span> flexes “I’m real.” It’s a raw hip-hop diary, no fluff—just truth. X (@36966_) in 2025 dubs it “Cole’s rawest soul,” still resonating hard.</p>
                     </div>
                 </div>
-                <div class="control-panel"> <!-- Production -->
-                    <h2>Audio Core</h2>
-                    <div class="panel-content">
-                        <p><span class="highlight">J. Cole</span>, <span class="highlight">Vinylz</span>, <span class="highlight">Illmind</span>, and <span class="highlight">Ron Gilmore</span> engineered <em><span class="highlight">2014 Forest Hills Drive</span></em> at <span class="highlight">Perfect Sound Studios</span> (LA) and <span class="highlight">Jungle City Studios</span> (NYC). <span class="highlight">“No Role Modelz”</span> loops jazzy brass, <span class="highlight">“Apparently”</span> hums soulful keys, and <span class="highlight">“Fire Squad”</span> fires crisp beats—Cole’s flow syncs a red-hot matrix. Smoother than <em><span class="highlight">Born Sinner</span></em>’s grid, it’s a unified pulse. In 2025, its frequency drives rap’s introspective core—some tracks overclock, but it’s Dreamville’s blueprint.</p>
+                <div class="reactor-section"> <!-- Production -->
+                    <h2>Production and Sound</h2>
+                    <div class="reactor-content">
+                        <p><span class="highlight">J. Cole</span>, <span class="highlight">Vinylz</span>, <span class="highlight">Illmind</span>, and <span class="highlight">Ron Gilmore</span> forged <em><span class="highlight">2014 Forest Hills Drive</span></em> at <span class="highlight">Perfect Sound Studios</span> (LA) and <span class="highlight">Jungle City Studios</span> (NYC). <span class="highlight">“No Role Modelz”</span> loops jazzy brass, <span class="highlight">“Apparently”</span> hums soulful pianos, and <span class="highlight">“Fire Squad”</span> bangs crisp drums—Cole’s flow weaves a red-hot story. Smoother than <em><span class="highlight">Born Sinner</span></em>’s grit, it’s a cohesive vibe. In 2025, its warmth echoes in rap’s introspective wave—some tracks overstay, but it’s Dreamville’s blueprint.</p>
                     </div>
                 </div>
-                <div class="control-panel"> <!-- Features -->
-                    <h2>Personnel Scan</h2>
-                    <div class="panel-content">
-                        <p><em><span class="highlight">2014 Forest Hills Drive</span></em> operates solo—<span class="highlight">J. Cole</span> commands alone, a bold override. <span class="highlight">“January 28th”</span> locks “I’m real,” <span class="highlight">“03’ Adolescence”</span> grinds “I was tryna make it”—he powers every node and pulse with red-hot soul. No external units disrupt his code; it’s pure, unfiltered Cole, proving his lyrical circuits shine in standalone mode.</p>
+                <div class="reactor-section"> <!-- Features -->
+                    <h2>Features</h2>
+                    <div class="reactor-content">
+                        <p><em><span class="highlight">2014 Forest Hills Drive</span></em> skips features—<span class="highlight">J. Cole</span> goes solo, a gutsy move. <span class="highlight">“January 28th”</span> boasts “I’m real,” <span class="highlight">“03’ Adolescence”</span> grinds “I was tryna make it”—he owns every bar and hook with red-hot soul. No guests muddy his vision; it’s pure, unfiltered Cole, proving his lyrical chops shine brightest alone.</p>
                     </div>
                 </div>
-                <div class="control-panel"> <!-- Tracks -->
-                    <h2>Track Diagnostics</h2>
-                    <div class="panel-content">
+                <div class="reactor-section"> <!-- Tracks -->
+                    <h2>Track Highlights</h2>
+                    <div class="reactor-content">
                         <div class="track-highlight-grid">
                             <div class="track-highlight-item"><p><span class="highlight">For Newcomers:</span> <span class="highlight">“No Role Modelz,”</span> <span class="highlight">“Love Yourz”</span>—Jazzy loops and warm hooks grab easy, Cole’s red-hot tales of fake love and life lessons reeling newbies in. (35 words)</p></div>
                             <div class="track-highlight-item"><p><span class="highlight">For The Dive:</span> <span class="highlight">“Wet Dreamz,”</span> <span class="highlight">“03’ Adolescence”</span>—Soulful beats and raw stories dig deep, Cole’s red-tinged youth and dreams hitting fans with introspective weight. (35 words)</p></div>
@@ -277,15 +229,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="control-panel"> <!-- Previous -->
-                    <h2>Mission History</h2>
-                    <div class="panel-content">
-                        <p>J. Cole’s <em><span class="highlight">The Come Up</span></em> (2007) sparked with <span class="highlight">“Simba,”</span> raw code online. <em><span class="highlight">Cole World: The Sideline Story</span></em> (2011) hit No. 1 with <span class="highlight">“Work Out”</span> (No. 13 Hot 100), logging <span class="highlight">218,000</span> units first week. <em><span class="highlight">Born Sinner</span></em> (2013) peaked with <span class="highlight">“Power Trip”</span> (No. 19), moving <span class="highlight">297,000</span>, optimized by <span class="highlight">Vinylz</span>. <em><span class="highlight">2014 Forest Hills Drive</span></em> (2014) hit No. 1 with <span class="highlight">353,000</span> units, priming <em><span class="highlight">KOD</span></em> (2018). In 2025, it’s Cole’s system core, driving rap’s introspective grid.</p>
+                <div class="reactor-section"> <!-- Previous -->
+                    <h2>Previous Works</h2>
+                    <div class="reactor-content">
+                        <p>J. Cole’s <em><span class="highlight">The Come Up</span></em> (2007) sparked with <span class="highlight">“Simba,”</span> raw hustle on blast. <em><span class="highlight">Cole World: The Sideline Story</span></em> (2011) hit No. 1 with <span class="highlight">“Work Out”</span> (No. 13 Hot 100), moving <span class="highlight">218,000</span> units first week. <em><span class="highlight">Born Sinner</span></em> (2013) topped charts with <span class="highlight">“Power Trip”</span> (No. 19), selling <span class="highlight">297,000</span>, honed by <span class="highlight">Vinylz</span>. <em><span class="highlight">2014 Forest Hills Drive</span></em> (2014) soared to No. 1 with <span class="highlight">353,000</span> units, paving the way for <em><span class="highlight">KOD</span></em> (2018). In 2025, it’s Cole’s bedrock, shaping rap’s introspective lane.</p>
                     </div>
                 </div>
-                <div class="control-panel"> <!-- Awards -->
-                    <h2>Achievement Logs</h2>
-                    <div class="panel-content">
+                <div class="reactor-section"> <!-- Awards -->
+                    <h2>Awards Recognition</h2>
+                    <div class="reactor-content">
                         <div class="table-container">
                             <table class="trend-table awards-table">
                                 <thead><tr><th>Category</th><th>Year</th><th>Result</th></tr></thead>
@@ -295,19 +247,19 @@
                                     <tr><td><span class="highlight">Best Rap Performance (“No Role Modelz”)</span></td><td>2016</td><td>Nominated</td></tr>
                                 </tbody>
                             </table>
-                            <p><em><span class="highlight">2014 Forest Hills Drive</span></em> locked Best Rap Album in 2016, its red-hot legacy secured by two nods, <span class="highlight">3x Platinum</span>, and <span class="highlight">4.8 billion</span> streams by 2025.</p>
+                            <p><em><span class="highlight">2014 Forest Hills Drive</span></em> snagged Best Rap Album in 2016, its red-hot legacy backed by two nods, <span class="highlight">3x Platinum</span>, and <span class="highlight">4.8 billion</span> streams by 2025.</p>
                         </div>
                     </div>
                 </div>
-                <div class="control-panel"> <!-- Legacy -->
-                    <h2>System Legacy</h2>
-                    <div class="panel-content">
-                        <p>Pitchfork’s <span class="highlight">6.9/10</span> flagged <em><span class="highlight">2014 Forest Hills Drive</span></em>’s runtime, Rolling Stone’s 4/5 praised its “emotional depth.” X (@36966_) in 2014: “Cole’s soul on wax.” By <span class="highlight">March 25, 2025</span>, with <span class="highlight">3x Platinum</span> (RIAA), <span class="highlight">4.8 billion</span> streams (Spotify), and a Fayetteville 2025 tour boosting <span class="highlight">“Love Yourz,”</span> it’s a hip-hop nexus. Outpacing <em><span class="highlight">Born Sinner</span></em>’s grid, its sprawl’s both glitch and power, shaping 2025’s introspective network—think Bas.</p>
+                <div class="reactor-section"> <!-- Legacy -->
+                    <h2>Legacy & Reception</h2>
+                    <div class="reactor-content">
+                        <p>Pitchfork’s <span class="highlight">6.9/10</span> knocked <em><span class="highlight">2014 Forest Hills Drive</span></em>’s length, Rolling Stone’s 4/5 praised its “emotional depth.” X (@36966_) in 2014: “Cole’s soul on wax.” By <span class="highlight">March 25, 2025</span>, with <span class="highlight">3x Platinum</span> (RIAA), <span class="highlight">4.8 billion</span> streams (Spotify), and a Fayetteville 2025 tour reviving <span class="highlight">“Love Yourz,”</span> it’s a hip-hop pillar. Outpacing <em><span class="highlight">Born Sinner</span></em>’s edge, its sprawl’s both flaw and fuel, shaping 2025’s introspective wave—think Bas.</p>
                     </div>
                 </div>
-                <div class="control-panel"> <!-- Charts -->
-                    <h2>Performance Metrics</h2>
-                    <div class="panel-content">
+                <div class="reactor-section"> <!-- Charts -->
+                    <h2>Chart Performance</h2>
+                    <div class="reactor-content">
                         <div class="table-container">
                             <table class="trend-table chart-table">
                                 <thead><tr><th>Album</th><th>Highest Charting Song</th><th>Peak Position</th><th>Streams (as of 2025)</th><th>Certification</th><th>Units Sold</th></tr></thead>
@@ -319,9 +271,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="control-panel"> <!-- Certifications -->
-                    <h2>Certification Records</h2>
-                    <div class="panel-content">
+                <div class="reactor-section"> <!-- Certifications -->
+                    <h2>Album Certifications</h2>
+                    <div class="reactor-content">
                         <div class="table-container">
                             <table class="trend-table certifications-table">
                                 <thead><tr><th>Album</th><th>Certification</th><th>Units (Millions)</th></tr></thead>
@@ -334,9 +286,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="control-panel"> <!-- Ratings -->
-                    <h2>System Evaluation</h2>
-                    <div class="panel-content">
+                <div class="reactor-section"> <!-- Ratings -->
+                    <h2>Ratings</h2>
+                    <div class="reactor-content">
                         <p><span class="highlight">Originality (18/20):</span> <span class="highlight">“January 28th”</span> crafts a solo memoir, Cole’s red-hot authenticity bold in a collab-heavy era, though not genre-shifting. (35 words)</p>
                         <p><span class="highlight">Production Quality (17/20):</span> <span class="highlight">“Apparently”</span>’s soulful pianos shine, a red-tinged vibe—some tracks like <span class="highlight">“St. Tropez”</span> overstay, dulling the polish. (35 words)</p>
                         <p><span class="highlight">Lyrics and Messaging (18/20):</span> <span class="highlight">“Love Yourz”</span> preaches truth, Cole’s red-hot bars weaving youth and fame with weight—rarely stumbles. (35 words)</p>
@@ -346,14 +298,14 @@
                         <p><em><span class="highlight">2014 Forest Hills Drive</span></em> earns its 8.6 with red-hot soul—J. Cole’s timeless memoir of youth and truth. Fayetteville 2025’s <span class="highlight">“Love Yourz”</span> live, red lights dim, reignites its glow, a viral moment. Veazy’s still lost in this classic, its warmth enduring in 2025. Some tracks drag, but its raw honesty shines, a hip-hop cornerstone.</p>
                     </div>
                 </div>
-                <div class="control-panel"> <!-- Sources -->
-                    <h2>Data Inputs</h2>
-                    <div class="panel-content">
+                <div class="reactor-section"> <!-- Sources -->
+                    <h2>Sources</h2>
+                    <div class="reactor-content">
                         <p>Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X fan reactions (@36966_) as of March 25, 2025.</p>
                     </div>
                 </div>
             </div> <!-- End grid -->
-        </div> <!-- End cockpit -->
+        </div> <!-- End reactor card -->
     </div> <!-- End container -->
     <footer class="footer"> <!-- Footer -->
         <div class="nav-logo"><span class="logo-symbol"><i class="fas fa-heartbeat"></i></span></div>
@@ -372,42 +324,37 @@
     <script src="script.js"></script> <!-- Custom script -->
     <script> <!-- GSAP animations -->
         document.addEventListener('DOMContentLoaded', () => {
-            const cockpit = document.querySelector('.cockpit-interface');
-            gsap.from(cockpit, { opacity: 0, y: 150, duration: 1.5, ease: 'power2.out' });
-            gsap.from('.holo-display', { opacity: 0, scale: 0.5, translateZ: -200, duration: 2, ease: 'elastic.out(1, 0.3)' });
+            const reactor = document.querySelector('.reactor-card');
+            gsap.from(reactor, { opacity: 0, y: 100, duration: 1, ease: 'power2.out' });
 
-            const panels = document.querySelectorAll('.control-panel');
-            panels.forEach((panel, i) => {
-                gsap.from(panel, {
-                    scrollTrigger: { trigger: panel, start: 'top 80%', end: 'bottom 20%', toggleActions: 'play none none reverse' },
-                    opacity: 0, scale: 0.8, rotateX: 40, translateZ: -50, duration: 1, ease: 'power2.out', delay: i * 0.1
+            const sections = document.querySelectorAll('.reactor-section');
+            sections.forEach((section, i) => {
+                gsap.from(section, {
+                    scrollTrigger: { trigger: section, start: 'top 80%', end: 'bottom 20%', toggleActions: 'play none none reverse' },
+                    opacity: 0, scale: 0.9, y: 50, duration: 0.8, ease: 'power2.out', delay: i * 0.1
                 });
 
                 // Hover activation
-                panel.addEventListener('mouseenter', () => {
-                    gsap.to(panel, { 
+                section.addEventListener('mouseenter', () => {
+                    gsap.to(section, { 
                         scale: 1.05, 
-                        rotateX: 0, 
-                        translateZ: 100, 
-                        duration: 0.4, 
+                        duration: 0.3, 
                         ease: 'power2.out' 
                     });
-                    gsap.to(panel.querySelector('.panel-content'), { 
+                    gsap.to(section.querySelector('.reactor-content'), { 
                         opacity: 1, 
                         height: 'auto', 
                         duration: 0.5, 
                         ease: 'power2.out' 
                     });
                 });
-                panel.addEventListener('mouseleave', () => {
-                    gsap.to(panel, { 
+                section.addEventListener('mouseleave', () => {
+                    gsap.to(section, { 
                         scale: 1, 
-                        rotateX: 20, 
-                        translateZ: 30, 
-                        duration: 0.4, 
+                        duration: 0.3, 
                         ease: 'power2.in' 
                     });
-                    gsap.to(panel.querySelector('.panel-content'), { 
+                    gsap.to(section.querySelector('.reactor-content'), { 
                         opacity: 0, 
                         height: 0, 
                         duration: 0.5, 
@@ -417,14 +364,14 @@
 
                 // Mobile tap toggle
                 if (window.innerWidth <= 768) {
-                    panel.addEventListener('click', () => {
-                        const isActive = panel.classList.toggle('active');
+                    section.addEventListener('click', () => {
+                        const isActive = section.classList.toggle('active');
                         if (isActive) {
-                            gsap.to(panel, { scale: 1.05, rotateX: 0, translateZ: 40, duration: 0.4 });
-                            gsap.to(panel.querySelector('.panel-content'), { opacity: 1, height: 'auto', duration: 0.5 });
+                            gsap.to(section, { scale: 1.05, duration: 0.3 });
+                            gsap.to(section.querySelector('.reactor-content'), { opacity: 1, height: 'auto', duration: 0.5 });
                         } else {
-                            gsap.to(panel, { scale: 1, rotateX: 10, translateZ: 10, duration: 0.4 });
-                            gsap.to(panel.querySelector('.panel-content'), { opacity: 0, height: 0, duration: 0.5 });
+                            gsap.to(section, { scale: 1, duration: 0.3 });
+                            gsap.to(section.querySelector('.reactor-content'), { opacity: 0, height: 0, duration: 0.5 });
                         }
                     });
                 }
