@@ -49,47 +49,32 @@
             text-align: center;
             margin: 0 0 2rem;
             z-index: 10;
+            position: relative;
         }
         .reactor-header {
             text-align: center;
             margin-bottom: 2rem;
-        }
-        .album-frame {
             position: relative;
-            width: 600px; /* Matches stats banner */
-            margin: 0 auto;
+        }
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 500px;
+            background: url('https://vzdzt.github.io/musicrx/colee.jpeg') center/cover no-repeat;
+            opacity: 0.3;
+            z-index: -1;
         }
         .reactor-image {
-            width: 100%; /* Full width of album-frame (600px) */
+            width: 600px; /* Matches stats banner */
             height: auto;
             border-radius: 10px;
             box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
             display: block;
+            margin: 0 auto;
             z-index: 10;
-        }
-        .frame-left, .frame-right {
-            position: absolute;
-            top: 50%;
-            width: 150px;
-            padding: 1rem;
-            background: rgba(255, 0, 0, 0.9);
-            color: #FFFFFF;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 15;
-        }
-        .frame-left {
-            left: -160px;
-            transform: translateY(-50%);
-        }
-        .frame-right {
-            right: -160px;
-            transform: translateY(-50%);
-        }
-        .album-frame:hover .frame-left, .album-frame:hover .frame-right {
-            opacity: 1;
+            position: relative;
         }
         .stats-banner {
             display: flex;
@@ -102,6 +87,8 @@
             backdrop-filter: blur(15px);
             border-radius: 10px;
             border: 1px solid rgba(153, 0, 0, 0.3);
+            position: relative;
+            z-index: 10;
         }
         .stats-banner span {
             font-family: 'Syncopate', sans-serif;
@@ -205,17 +192,17 @@
             .reactor-card {
                 min-height: auto;
             }
-            .album-frame {
-                width: 300px; /* Matches mobile image size */
+            .parallax-bg {
+                height: 300px;
             }
-            .frame-left, .frame-right {
-                display: none; /* Hide frames on mobile */
+            .reactor-image {
+                width: 300px; /* Matches mobile stats banner */
             }
             .stats-banner {
                 flex-direction: column;
                 text-align: center;
                 gap: 0.5rem;
-                max-width: 300px; /* Matches mobile image size */
+                max-width: 300px;
             }
             .reactor-grid {
                 grid-template-columns: 1fr;
@@ -259,11 +246,8 @@
     <div class="review-container">
         <h1 class="review-title">2014 FOREST HILLS DRIVE</h1>
         <div class="reactor-header">
-            <div class="album-frame">
-                <img class="reactor-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
-                <div class="frame-left">“No Role Modelz”</div>
-                <div class="frame-right">“Love Yourz”</div>
-            </div>
+            <div class="parallax-bg"></div>
+            <img class="reactor-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
             <div class="stats-banner">
                 <span>4.8B Streams</span>
                 <span>3x Platinum</span>
@@ -436,6 +420,18 @@
                         }
                     });
                 }
+            });
+
+            // Parallax effect
+            gsap.to('.parallax-bg', {
+                scrollTrigger: {
+                    trigger: '.parallax-bg',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                },
+                y: 100,
+                ease: 'none'
             });
 
             // Animate stats banner
