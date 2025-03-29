@@ -19,12 +19,11 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .review-container {
-            padding: 80px 0 2rem;
-            max-width: 100%;
+            padding: 80px 1rem 2rem;
+            max-width: 1000px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
-            overflow-x: hidden;
         }
         .parallax-bg {
             position: fixed;
@@ -38,16 +37,12 @@
             will-change: transform;
         }
         .review-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 50vh;
             text-align: center;
+            margin-bottom: 3rem;
             position: relative;
         }
         .review-title {
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: var(--primary);
             text-shadow: 0 0 15px var(--glow);
             font-family: 'Syncopate', sans-serif;
@@ -59,6 +54,8 @@
             height: auto;
             border-radius: 15px;
             box-shadow: 0 0 30px var(--glow);
+            display: block;
+            margin: 0 auto;
             position: relative;
             z-index: 2;
         }
@@ -82,73 +79,71 @@
             text-transform: uppercase;
             text-shadow: 0 0 10px var(--glow);
         }
-        .gallery-section {
-            padding: 2rem 0;
-            width: 100%;
-        }
-        .scroll-container {
+        .accordion {
             display: flex;
-            overflow-x: auto;
-            gap: 2rem;
-            padding: 1rem;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) rgba(255, 255, 255, 0.1);
+            flex-direction: column;
+            gap: 1rem;
+            padding: 2rem 0;
         }
-        .scroll-container::-webkit-scrollbar {
-            height: 8px;
-        }
-        .scroll-container::-webkit-scrollbar-thumb {
-            background: var(--primary);
-        }
-        .holo-card {
-            flex: 0 0 400px;
-            min-width: 400px;
+        .accordion-card {
             background: var(--card-background);
             backdrop-filter: blur(15px);
             border: 1px solid var(--border-color);
             border-radius: 15px;
-            padding: 2rem;
-            height: 500px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            scroll-snap-align: start;
-            position: relative;
+            padding: 1.5rem;
+            transition: all 0.5s ease;
+            cursor: pointer;
             overflow: hidden;
-            cursor: grab;
+            position: relative;
+            min-height: 80px;
+            will-change: height, transform, box-shadow;
         }
-        .holo-card:hover {
-            transform: perspective(1000px) rotateY(5deg) translateY(-10px);
-            box-shadow: 0 0 30px var(--glow);
+        .accordion-card.active {
+            min-height: 300px;
+            box-shadow: 0 0 20px var(--glow);
             background: var(--rgb-glow);
             animation: rgbShift 3s linear infinite;
         }
-        .holo-card h2 {
-            font-size: 1.8rem;
+        .accordion-card h2 {
+            font-size: 1.5rem;
             color: var(--primary);
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin: 0 0 1rem;
             text-shadow: 0 0 5px var(--glow);
+            transition: color 0.3s ease;
         }
-        .holo-card p, .holo-card .table-container {
+        .accordion-card.active h2 {
+            color: var(--text-color);
+        }
+        .accordion-content {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease;
+        }
+        .accordion-card.active .accordion-content {
+            opacity: 1;
+            height: auto;
+            padding-bottom: 1rem;
+        }
+        .accordion-content p, .accordion-content .table-container {
             font-size: 0.9rem;
             color: var(--text-color);
             line-height: 1.6;
-            overflow-y: auto;
-            max-height: 400px;
         }
         .track-highlight-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
+            padding: 1rem 0;
         }
         @media (max-width: 768px) {
             .review-container {
-                padding: 60px 0 1rem;
+                padding: 60px 0.5rem 1rem;
             }
             .review-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             .album-image, .stats-banner {
                 width: 300px;
@@ -157,13 +152,14 @@
                 flex-direction: column;
                 gap: 0.5rem;
             }
-            .holo-card {
-                flex: 0 0 300px;
-                min-width: 300px;
-                height: 450px;
+            .accordion-card {
+                padding: 1rem;
             }
-            .holo-card p, .holo-card .table-container {
-                max-height: 350px;
+            .accordion-card.active {
+                min-height: 250px;
+            }
+            .track-highlight-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -200,26 +196,34 @@
                 <span>#1 Billboard 200</span>
             </div>
         </div>
-        <div class="gallery-section">
-            <div class="scroll-container">
-                <div class="holo-card">
-                    <h2>Introduction</h2>
+        <div class="accordion">
+            <div class="accordion-card">
+                <h2>Introduction</h2>
+                <div class="accordion-content">
                     <p>J. Cole’s <em><span class="highlight">2014 Forest Hills Drive</span></em> dropped <span class="highlight">December 9, 2014</span> via <span class="highlight">Roc Nation</span>, <span class="highlight">Columbia</span>, and <span class="highlight">Dreamville</span>. This 13-track, 64-minute memoir moved <span class="highlight">353,000</span> units first week, topping the <span class="highlight">Billboard 200</span>. By <span class="highlight">March 25, 2025</span>, it’s <span class="highlight">3x Platinum</span> (RIAA) with <span class="highlight">4.8 billion</span> Spotify streams. Cooked up with <span class="highlight">Vinylz</span>, it’s a soulful homecoming—Veazy calls it a red-hot classic still blazing in 2025.</p>
                 </div>
-                <div class="holo-card">
-                    <h2>The Messaging and Theme</h2>
+            </div>
+            <div class="accordion-card">
+                <h2>The Messaging and Theme</h2>
+                <div class="accordion-content">
                     <p>J. Cole’s childhood home on the <em><span class="highlight">2014 Forest Hills Drive</span></em> cover sets a nostalgic tone—self-discovery and realness dominate. <span class="highlight">“Wet Dreamz”</span> drops “She took her shirt off,” a tender throwback, while <span class="highlight">“Love Yourz”</span> hits with “No such thing as a life that’s better than yours.” <span class="highlight">“03’ Adolescence”</span> vows “I’ma do it ‘fore I die,” and <span class="highlight">“January 28th”</span> flexes “I’m real.” It’s a raw hip-hop diary, no fluff—just truth. X (@36966_) in 2025 dubs it “Cole’s rawest soul,” still resonating hard.</p>
                 </div>
-                <div class="holo-card">
-                    <h2>Production and Sound</h2>
+            </div>
+            <div class="accordion-card">
+                <h2>Production and Sound</h2>
+                <div class="accordion-content">
                     <p><span class="highlight">J. Cole</span>, <span class="highlight">Vinylz</span>, <span class="highlight">Illmind</span>, and <span class="highlight">Ron Gilmore</span> forged <em><span class="highlight">2014 Forest Hills Drive</span></em> at <span class="highlight">Perfect Sound Studios</span> (LA) and <span class="highlight">Jungle City Studios</span> (NYC). <span class="highlight">“No Role Modelz”</span> loops jazzy brass, <span class="highlight">“Apparently”</span> hums soulful pianos, and <span class="highlight">“Fire Squad”</span> bangs crisp drums—Cole’s flow weaves a red-hot story. Smoother than <em><span class="highlight">Born Sinner</span></em>’s grit, it’s a cohesive vibe. In 2025, its warmth echoes in rap’s introspective wave—some tracks overstay, but it’s Dreamville’s blueprint.</p>
                 </div>
-                <div class="holo-card">
-                    <h2>Features</h2>
+            </div>
+            <div class="accordion-card">
+                <h2>Features</h2>
+                <div class="accordion-content">
                     <p><em><span class="highlight">2014 Forest Hills Drive</span></em> skips features—<span class="highlight">J. Cole</span> goes solo, a gutsy move. <span class="highlight">“January 28th”</span> boasts “I’m real,” <span class="highlight">“03’ Adolescence”</span> grinds “I was tryna make it”—he owns every bar and hook with red-hot soul. No guests muddy his vision; it’s pure, unfiltered Cole, proving his lyrical chops shine brightest alone.</p>
                 </div>
-                <div class="holo-card">
-                    <h2>Track Highlights</h2>
+            </div>
+            <div class="accordion-card">
+                <h2>Track Highlights</h2>
+                <div class="accordion-content">
                     <div class="track-highlight-grid">
                         <div class="track-highlight-item"><p><span class="highlight">For Newcomers:</span> <span class="highlight">“No Role Modelz,”</span> <span class="highlight">“Love Yourz”</span>—Jazzy loops and warm hooks grab easy, Cole’s red-hot tales of fake love and life lessons reeling newbies in.</p></div>
                         <div class="track-highlight-item"><p><span class="highlight">For The Dive:</span> <span class="highlight">“Wet Dreamz,”</span> <span class="highlight">“03’ Adolescence”</span>—Soulful beats and raw stories dig deep, Cole’s red-tinged youth and dreams hitting fans with introspective weight.</p></div>
@@ -229,12 +233,16 @@
                         <div class="track-highlight-item"><p><span class="highlight">Fan Favorites:</span> <span class="highlight">“Love Yourz”</span>—X (@36966_) in 2025 crowns it Cole’s red-soul anthem, a streaming giant fans cherish for its heartfelt truth.</p></div>
                     </div>
                 </div>
-                <div class="holo-card">
-                    <h2>Previous Works</h2>
+            </div>
+            <div class="accordion-card">
+                <h2>Previous Works</h2>
+                <div class="accordion-content">
                     <p>J. Cole’s <em><span class="highlight">The Come Up</span></em> (2007) sparked with <span class="highlight">“Simba,”</span> raw hustle on blast. <em><span class="highlight">Cole World: The Sideline Story</span></em> (2011) hit No. 1 with <span class="highlight">“Work Out”</span> (No. 13 Hot 100), moving <span class="highlight">218,000</span> units first week. <em><span class="highlight">Born Sinner</span></em> (2013) topped charts with <span class="highlight">“Power Trip”</span> (No. 19), selling <span class="highlight">297,000</span>, honed by <span class="highlight">Vinylz</span>. <em><span class="highlight">2014 Forest Hills Drive</span></em> (2014) soared to No. 1 with <span class="highlight">353,000</span> units, paving the way for <em><span class="highlight">KOD</span></em> (2018). In 2025, it’s Cole’s bedrock, shaping rap’s introspective lane.</p>
                 </div>
-                <div class="holo-card">
-                    <h2>Awards Recognition</h2>
+            </div>
+            <div class="accordion-card">
+                <h2>Awards Recognition</h2>
+                <div class="accordion-content">
                     <div class="table-container">
                         <table class="trend-table awards-table">
                             <thead><tr><th>Category</th><th>Year</th><th>Result</th></tr></thead>
@@ -247,12 +255,16 @@
                         <p><em><span class="highlight">2014 Forest Hills Drive</span></em> snagged Best Rap Album in 2016, its red-hot legacy backed by two nods, <span class="highlight">3x Platinum</span>, and <span class="highlight">4.8 billion</span> streams by 2025.</p>
                     </div>
                 </div>
-                <div class="holo-card">
-                    <h2>Legacy & Reception</h2>
+            </div>
+            <div class="accordion-card">
+                <h2>Legacy & Reception</h2>
+                <div class="accordion-content">
                     <p>Pitchfork’s <span class="highlight">6.9/10</span> knocked <em><span class="highlight">2014 Forest Hills Drive</span></em>’s length, Rolling Stone’s 4/5 praised its “emotional depth.” X (@36966_) in 2014: “Cole’s soul on wax.” By <span class="highlight">March 25, 2025</span>, with <span class="highlight">3x Platinum</span> (RIAA), <span class="highlight">4.8 billion</span> streams (Spotify), and a Fayetteville 2025 tour reviving <span class="highlight">“Love Yourz,”</span> it’s a hip-hop pillar. Outpacing <em><span class="highlight">Born Sinner</span></em>’s edge, its sprawl’s both flaw and fuel, shaping 2025’s introspective wave—think Bas.</p>
                 </div>
-                <div class="holo-card">
-                    <h2>Chart Performance</h2>
+            </div>
+            <div class="accordion-card">
+                <h2>Chart Performance</h2>
+                <div class="accordion-content">
                     <div class="table-container">
                         <table class="trend-table chart-table">
                             <thead><tr><th>Album</th><th>Highest Charting Song</th><th>Peak Position</th><th>Streams (2025)</th><th>Certification</th><th>Units Sold</th></tr></thead>
@@ -263,8 +275,10 @@
                         </table>
                     </div>
                 </div>
-                <div class="holo-card">
-                    <h2>Album Certifications</h2>
+            </div>
+            <div class="accordion-card">
+                <h2>Album Certifications</h2>
+                <div class="accordion-content">
                     <div class="table-container">
                         <table class="trend-table certifications-table">
                             <thead><tr><th>Album</th><th>Certification</th><th>Units (Millions)</th></tr></thead>
@@ -276,8 +290,10 @@
                         </table>
                     </div>
                 </div>
-                <div class="holo-card">
-                    <h2>Ratings</h2>
+            </div>
+            <div class="accordion-card">
+                <h2>Ratings</h2>
+                <div class="accordion-content">
                     <p><span class="highlight">Originality (18/20):</span> <span class="highlight">“January 28th”</span> crafts a solo memoir, Cole’s red-hot authenticity bold in a collab-heavy era, though not genre-shifting.</p>
                     <p><span class="highlight">Production Quality (17/20):</span> <span class="highlight">“Apparently”</span>’s soulful pianos shine, a red-tinged vibe—some tracks like <span class="highlight">“St. Tropez”</span> overstay, dulling the polish.</p>
                     <p><span class="highlight">Lyrics and Messaging (18/20):</span> <span class="highlight">“Love Yourz”</span> preaches truth, Cole’s red-hot bars weaving youth and fame with weight—rarely stumbles.</p>
@@ -286,8 +302,10 @@
                     <p class="overall-rating"><h3><span class="highlight">Overall Rating (86/100):</span> 8.6/10</h3></p>
                     <p><em><span class="highlight">2014 Forest Hills Drive</span></em> earns its 8.6 with red-hot soul—J. Cole’s timeless memoir of youth and truth. Fayetteville 2025’s <span class="highlight">“Love Yourz”</span> live, red lights dim, reignites its glow, a viral moment. Veazy’s still lost in this classic, its warmth enduring in 2025. Some tracks drag, but its raw honesty shines, a hip-hop cornerstone.</p>
                 </div>
-                <div class="holo-card">
-                    <h2>Sources</h2>
+            </div>
+            <div class="accordion-card">
+                <h2>Sources</h2>
+                <div class="accordion-content">
                     <p>Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X fan reactions (@36966_) as of March 25, 2025.</p>
                 </div>
             </div>
@@ -321,52 +339,36 @@
                 ease: 'none'
             });
 
-            gsap.from('.album-image', { opacity: 0, scale: 0.8, duration: 1, ease: 'power2.out' });
-            gsap.from('.stats-banner span', { opacity: 0, x: -20, duration: 0.8, stagger: 0.2, ease: 'power2.out', delay: 0.5 });
+            gsap.from('.album-image', { opacity: 0, y: 100, duration: 1, ease: 'power2.out' });
+            gsap.from('.stats-banner span', { opacity: 0, y: 20, duration: 0.8, stagger: 0.2, ease: 'power2.out', delay: 0.5 });
 
-            const cards = document.querySelectorAll('.holo-card');
+            const cards = document.querySelectorAll('.accordion-card');
             cards.forEach((card, i) => {
                 gsap.from(card, {
                     scrollTrigger: {
                         trigger: card,
-                        start: 'left center',
-                        end: 'right center',
-                        scrub: 1,
-                        containerAnimation: gsap.to('.scroll-container', {
-                            x: () => -(document.querySelector('.scroll-container').scrollWidth - window.innerWidth),
-                            ease: 'none',
-                            scrollTrigger: {
-                                trigger: '.scroll-container',
-                                start: 'top 80%',
-                                end: 'bottom 20%',
-                                scrub: true
-                            }
-                        })
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
                     },
                     opacity: 0,
-                    x: 100,
-                    duration: 1,
-                    ease: 'power2.out'
+                    y: 50,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    delay: i * 0.1
                 });
-            });
 
-            // Drag functionality for scroll container
-            const container = document.querySelector('.scroll-container');
-            let isDown = false, startX, scrollLeft;
-            container.addEventListener('mousedown', (e) => {
-                isDown = true;
-                startX = e.pageX - container.offsetLeft;
-                scrollLeft = container.scrollLeft;
-                container.style.cursor = 'grabbing';
-            });
-            container.addEventListener('mouseleave', () => { isDown = false; container.style.cursor = 'grab'; });
-            container.addEventListener('mouseup', () => { isDown = false; container.style.cursor = 'grab'; });
-            container.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - container.offsetLeft;
-                const walk = (x - startX) * 2;
-                container.scrollLeft = scrollLeft - walk;
+                card.addEventListener('click', () => {
+                    const isActive = card.classList.toggle('active');
+                    cards.forEach(otherCard => {
+                        if (otherCard !== card) otherCard.classList.remove('active');
+                    });
+                    gsap.to(card, {
+                        height: isActive ? 'auto' : 80,
+                        duration: 0.5,
+                        ease: 'power2.inOut'
+                    });
+                });
             });
         });
     </script>
