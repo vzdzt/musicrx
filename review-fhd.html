@@ -1,113 +1,118 @@
 <!DOCTYPE html>
 <!-- Declares HTML5 document -->
 <html lang="en" data-page="review-fhd">
-<!-- Sets language to English and identifies page as a review for 2014 Forest Hills Drive -->
+<!-- Sets language to English, identifies page as review for 2014 Forest Hills Drive -->
 <head>
     <!-- Meta tags for SEO and social sharing -->
     <meta charset="UTF-8">
     <!-- Ensures proper character encoding -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Makes page responsive on all devices -->
+    <!-- Makes page responsive -->
     <meta name="description" content="J. Cole’s 2014 Forest Hills Drive: 4.8B streams, 3x Platinum, full review updated March 29, 2025 on MusicRx.">
     <!-- SEO description summarizing album and review -->
     <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, Roc Nation, Columbia, Vinylz, Illmind, hip-hop, 2025, Billboard, Spotify">
-    <!-- Keywords for search engine relevance -->
+    <!-- Keywords for search relevance -->
     <meta name="author" content="Veazy">
-    <!-- Credits reviewer/author -->
-    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: Stellar Codex">
+    <!-- Credits reviewer -->
+    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: Nebula Codex">
     <!-- Open Graph title for social sharing -->
     <meta property="og:description" content="Full review of J. Cole’s 2014 masterpiece with 2025 updates on MusicRx.">
-    <!-- Open Graph description for social platforms -->
+    <!-- Open Graph description -->
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/colee.jpeg">
-    <!-- Open Graph image for previews -->
+    <!-- Open Graph image -->
     <meta property="og:type" content="article">
-    <!-- Specifies content type for social platforms -->
+    <!-- Specifies content type -->
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-fhd.html">
-    <!-- Canonical URL for sharing -->
+    <!-- Canonical URL -->
     <meta name="twitter:card" content="summary_large_image">
-    <!-- Twitter card type for large image previews -->
+    <!-- Twitter card type -->
     <meta name="twitter:site" content="@36966_">
-    <!-- Twitter handle for site attribution -->
-    <title>MusicRx - 2014 Forest Hills Drive: Stellar Codex</title>
-    <!-- Page title displayed in browser tab -->
+    <!-- Twitter handle -->
+    <title>MusicRx - 2014 Forest Hills Drive: Nebula Codex</title>
+    <!-- Browser tab title -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Loads Font Awesome icons for UI elements -->
+    <!-- Loads Font Awesome for icons -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- Imports Orbitron (headers) and IBM Plex Mono (body) fonts -->
     <style>
-        /* CSS variables for consistent theming */
+        /* CSS variables for theming */
         :root {
-            --primary: #ff1e56; /* Main accent color (neon red-pink) */
-            --secondary: #00d4ff; /* Secondary accent (cyan) */
-            --glow: rgba(255, 30, 86, 0.7); /* Glow effect for highlights */
-            --glass: rgba(255, 255, 255, 0.08); /* Glass effect for cards */
-            --border: rgba(255, 255, 255, 0.15); /* Subtle border color */
-            --text: #e0e0e0; /* Main text color */
-            --card-bg: rgba(10, 10, 20, 0.9); /* Card background */
+            --primary: #ff1e56; /* Neon red-pink accent */
+            --secondary: #00d4ff; /* Cyan accent */
+            --glow: rgba(255, 30, 86, 0.7); /* Glow effect */
+            --glass: rgba(255, 255, 255, 0.08); /* Glass effect */
+            --border: rgba(255, 255, 255, 0.15); /* Border color */
+            --text: #e0e0e0; /* Text color */
+            --card-bg: rgba(10, 10, 20, 0.95); /* Card background */
         }
         body {
             background: #000; /* Black background for cosmic theme */
             margin: 0; /* Removes default margins */
             padding: 0; /* Removes default padding */
             overflow-x: hidden; /* Prevents horizontal scroll */
-            font-family: 'IBM Plex Mono', monospace; /* Default font for body text */
-            color: var(--text); /* Applies text color */
+            font-family: 'IBM Plex Mono', monospace; /* Body font */
+            color: var(--text); /* Text color */
         }
         #universe {
-            position: fixed; /* Fixed position for starfield */
-            top: 0; /* Aligns to top */
-            left: 0; /* Aligns to left */
+            position: fixed; /* Fixed starfield layer */
+            top: 0; /* Top aligned */
+            left: 0; /* Left aligned */
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             z-index: -2; /* Behind all content */
+            pointer-events: none; /* Prevents interaction */
         }
         .parallax-bg {
-            position: fixed; /* Fixed for parallax effect */
-            top: 0; /* Aligns to top */
-            left: 0; /* Aligns to left */
+            position: fixed; /* Fixed parallax layer */
+            top: 0; /* Top aligned */
+            left: 0; /* Left aligned */
             width: 100%; /* Full width */
             height: 100vh; /* Full viewport height */
-            background: url('https://vzdzt.github.io/musicrx/colee.jpeg') center/cover no-repeat; /* Album image as watermark */
+            background: url('https://vzdzt.github.io/musicrx/colee.jpeg') center/cover no-repeat; /* Album watermark */
             opacity: 0.1; /* Subtle visibility */
-            z-index: -1; /* Behind content but above starfield */
+            z-index: -1; /* Behind content, above stars */
+            pointer-events: none; /* Prevents interaction */
         }
         .codex-container {
-            max-width: 1300px; /* Caps content width for readability */
+            max-width: 1300px; /* Caps content width */
             margin: 0 auto; /* Centers container */
-            padding: 120px 2rem 5rem; /* Top padding for header, sides, and bottom */
-            position: relative; /* Allows z-index stacking */
+            padding: 120px 2rem 5rem; /* Top, sides, bottom padding */
+            position: relative; /* For z-index stacking */
             z-index: 1; /* Above background layers */
         }
         .codex-header {
-            text-align: center; /* Centers header content */
-            margin-bottom: 5rem; /* Space below header */
+            text-align: center; /* Centers header */
+            margin-bottom: 5rem; /* Space below */
+            position: relative; /* Ensures visibility */
+            z-index: 2; /* Above cards */
         }
         .codex-title {
-            font-family: 'Orbitron', sans-serif; /* Futuristic font for title */
-            font-size: 3.8rem; /* Large, bold title */
+            font-family: 'Orbitron', sans-serif; /* Futuristic font */
+            font-size: 3.8rem; /* Large title */
             color: var(--primary); /* Neon accent */
             text-shadow: 0 0 25px var(--glow); /* Glow effect */
-            letter-spacing: 3px; /* Spacing for style */
+            letter-spacing: 3px; /* Stylish spacing */
             margin: 0; /* Removes default margin */
         }
         .album-image {
-            display: block; /* Ensures image behaves as block */
-            width: 650px; /* Fixed width for consistency */
-            max-width: 100%; /* Responsive scaling */
+            display: block; /* Block behavior */
+            width: 650px; /* Fixed width */
+            max-width: 100%; /* Responsive */
             margin: 2rem auto; /* Centers with spacing */
             border: 3px solid var(--primary); /* Neon border */
             border-radius: 10px; /* Rounded corners */
             box-shadow: 0 0 45px var(--glow); /* Glow effect */
-            transition: transform 0.5s ease; /* Smooth hover animation */
+            transition: transform 0.5s ease; /* Hover animation */
+            z-index: 2; /* Ensures visibility */
         }
         .album-image:hover {
-            transform: scale(1.03); /* Slight scale-up on hover */
+            transform: scale(1.03); /* Scale-up on hover */
         }
         .stats-grid {
-            display: grid; /* Grid layout for stats */
+            display: grid; /* Grid layout */
             grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
             gap: 2rem; /* Space between items */
-            width: 650px; /* Matches album image width */
+            width: 650px; /* Matches image width */
             max-width: 100%; /* Responsive */
             margin: 3rem auto; /* Centers with spacing */
             padding: 2rem; /* Inner padding */
@@ -115,11 +120,13 @@
             backdrop-filter: blur(18px); /* Blur for depth */
             border: 1px solid var(--border); /* Subtle border */
             border-radius: 15px; /* Rounded corners */
+            position: relative; /* Ensures stacking */
+            z-index: 2; /* Above background */
         }
         .stats-item {
             text-align: center; /* Centers text */
             padding: 1rem; /* Inner padding */
-            transition: transform 0.3s ease; /* Smooth hover animation */
+            transition: transform 0.3s ease; /* Hover animation */
         }
         .stats-item:hover {
             transform: scale(1.1); /* Scale-up on hover */
@@ -130,69 +137,74 @@
             color: var(--secondary); /* Cyan accent */
             text-shadow: 0 0 10px var(--glow); /* Glow effect */
             display: block; /* Block for spacing */
-            margin-bottom: 0.7rem; /* Space below label */
+            margin-bottom: 0.7rem; /* Space below */
         }
         .stats-item .counter {
             font-size: 1.6rem; /* Larger for emphasis */
-            color: var(--text); /* Main text color */
+            color: var(--text); /* Text color */
         }
         .flow-section {
-            margin: 5rem 0; /* Vertical spacing for sections */
+            margin: 5rem 0; /* Vertical spacing */
+            position: relative; /* Ensures stacking */
+            z-index: 2; /* Above background */
         }
         .flow-card {
             background: var(--card-bg); /* Dark card background */
-            backdrop-filter: blur(20px); /* Glass blur effect */
+            backdrop-filter: blur(20px); /* Glass blur */
             border: 1px solid var(--border); /* Subtle border */
             border-radius: 20px; /* Rounded corners */
             padding: 3rem; /* Generous padding */
             margin-bottom: 3rem; /* Space between cards */
-            transition: all 0.4s ease; /* Smooth hover transition */
+            transition: all 0.4s ease; /* Hover transition */
+            position: relative; /* Ensures visibility */
+            z-index: 2; /* Above background */
+            opacity: 1; /* Forces visibility */
         }
         .flow-card:hover {
             border-color: var(--primary); /* Neon border on hover */
-            box-shadow: 0 0 30px var(--glow); /* Enhanced glow */
+            box-shadow: 0 0 30px var(--glow); /* Glow effect */
         }
         .flow-card h2 {
             font-family: 'Orbitron', sans-serif; /* Futuristic font */
             font-size: 2.2rem; /* Bold heading */
             color: var(--primary); /* Neon accent */
             text-shadow: 0 0 15px var(--glow); /* Glow effect */
-            margin-bottom: 1.8rem; /* Space below heading */
+            margin-bottom: 1.8rem; /* Space below */
             letter-spacing: 1.5px; /* Stylish spacing */
         }
         .flow-card p, .flow-card .table-container {
             font-size: 1.15rem; /* Readable text */
-            line-height: 1.9; /* Comfortable line spacing */
-            color: var(--text); /* Main text color */
+            line-height: 1.9; /* Comfortable spacing */
+            color: var(--text); /* Text color */
         }
         .annotation {
-            position: relative; /* For tooltip positioning */
+            position: relative; /* For tooltip */
             cursor: help; /* Indicates interactivity */
-            color: var(--secondary); /* Cyan for annotations */
+            color: var(--secondary); /* Cyan accent */
             transition: color 0.3s ease; /* Smooth color change */
         }
         .annotation:hover {
-            color: var(--primary); /* Changes to neon on hover */
+            color: var(--primary); /* Neon on hover */
         }
         .annotation:hover::after {
-            content: attr(data-tip); /* Displays tooltip text */
+            content: attr(data-tip); /* Tooltip text */
             position: absolute; /* Positions tooltip */
             bottom: 100%; /* Above element */
-            left: 50%; /* Centered horizontally */
+            left: 50%; /* Centered */
             transform: translateX(-50%); /* Adjusts centering */
             background: var(--glass); /* Glass effect */
-            padding: 0.6rem 1.2rem; /* Padding for tooltip */
+            padding: 0.6rem 1.2rem; /* Padding */
             border-radius: 10px; /* Rounded corners */
             color: var(--text); /* Text color */
             font-size: 0.95rem; /* Readable size */
-            white-space: nowrap; /* Prevents wrapping */
+            white-space: nowrap; /* No wrapping */
             z-index: 10; /* Above other elements */
             box-shadow: 0 0 15px var(--glow); /* Glow effect */
         }
         .bento-tracks {
-            display: grid; /* Grid for track highlights */
+            display: grid; /* Grid for tracks */
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
-            gap: 2.5rem; /* Space between cards */
+            gap: 2.5rem; /* Space between */
             padding: 2.5rem 0; /* Vertical padding */
         }
         .bento-card {
@@ -200,10 +212,12 @@
             border: 1px solid var(--border); /* Subtle border */
             border-radius: 15px; /* Rounded corners */
             padding: 2rem; /* Inner padding */
-            transition: transform 0.3s ease; /* Smooth hover animation */
+            transition: transform 0.3s ease; /* Hover animation */
+            position: relative; /* Ensures visibility */
+            z-index: 2; /* Above background */
         }
         .bento-card:hover {
-            transform: scale(1.04); /* Slight scale-up on hover */
+            transform: scale(1.04); /* Scale-up on hover */
         }
         .chart-container {
             width: 100%; /* Full width */
@@ -213,6 +227,8 @@
             background: var(--glass); /* Glass effect */
             border-radius: 20px; /* Rounded corners */
             box-shadow: 0 0 20px var(--glow); /* Subtle glow */
+            position: relative; /* Ensures visibility */
+            z-index: 2; /* Above background */
         }
         .ratings-card {
             background: var(--card-bg); /* Dark background */
@@ -220,33 +236,35 @@
             border-radius: 25px; /* Rounded corners */
             padding: 3.5rem; /* Generous padding */
             margin: 5rem 0; /* Vertical spacing */
-            box-shadow: 0 0 60px var(--glow); /* Strong glow effect */
+            box-shadow: 0 0 60px var(--glow); /* Strong glow */
+            position: relative; /* Ensures visibility */
+            z-index: 2; /* Above background */
         }
         .ratings-card h2 {
             font-size: 2.5rem; /* Large heading */
-            text-align: center; /* Centered text */
-            margin-bottom: 2.5rem; /* Space below heading */
+            text-align: center; /* Centered */
+            margin-bottom: 2.5rem; /* Space below */
         }
         .rating-item {
-            display: flex; /* Flex layout for alignment */
-            justify-content: space-between; /* Space between elements */
+            display: flex; /* Flex layout */
+            justify-content: space-between; /* Space between */
             align-items: center; /* Vertically centered */
             margin: 1.8rem 0; /* Vertical spacing */
             padding-bottom: 1.2rem; /* Space below */
-            border-bottom: 1px solid var(--border); /* Subtle divider */
+            border-bottom: 1px solid var(--border); /* Divider */
         }
         .rating-item span {
             font-size: 1.3rem; /* Readable size */
         }
         .progress-circle {
-            position: relative; /* For positioning text */
+            position: relative; /* For text positioning */
             width: 90px; /* Fixed width */
             height: 90px; /* Fixed height */
         }
         .progress-circle svg {
             width: 100%; /* Full width */
             height: 100%; /* Full height */
-            transform: rotate(-90deg); /* Rotates for progress direction */
+            transform: rotate(-90deg); /* Rotates for progress */
         }
         .progress-circle circle {
             fill: none; /* No fill */
@@ -254,7 +272,7 @@
             stroke-linecap: round; /* Rounded ends */
         }
         .progress-circle .bg {
-            stroke: #222; /* Dark background circle */
+            stroke: #222; /* Dark background */
         }
         .progress-circle .progress {
             stroke: var(--secondary); /* Cyan progress */
@@ -282,7 +300,7 @@
             padding: 2.5rem 0; /* Vertical padding */
             display: flex; /* Flex layout */
             flex-direction: column; /* Vertical stacking */
-            gap: 1.5rem; /* Space between tweets */
+            gap: 1.5rem; /* Space between */
         }
         .twitter-tweet {
             margin: 0 auto; /* Centers tweets */
@@ -310,16 +328,16 @@
     </style>
 </head>
 <body>
-    <!-- Canvas for starfield background -->
+    <!-- Starfield canvas -->
     <canvas id="universe"></canvas>
-    <!-- Parallax background with album image -->
+    <!-- Parallax background -->
     <div class="parallax-bg"></div>
     <!-- Main content container -->
     <div class="codex-container">
-        <!-- Header with title, image, and stats -->
+        <!-- Header section -->
         <div class="codex-header">
             <h1 class="codex-title">2014 Forest Hills Drive</h1>
-            <!-- Album cover image -->
+            <!-- Album image -->
             <img class="album-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
             <!-- Stats grid -->
             <div class="stats-grid">
@@ -486,37 +504,38 @@
     </div>
     <!-- External scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-    <!-- Loads Chart.js for stream graph -->
+    <!-- Loads Chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <!-- Loads GSAP for animations -->
+    <!-- Loads GSAP -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Starfield setup
-            const canvas = document.getElementById('universe'); // Gets canvas element
+            const canvas = document.getElementById('universe'); // Gets canvas
             canvas.width = window.innerWidth; // Sets width to viewport
             canvas.height = window.innerHeight; // Sets height to viewport
-            const ctx = canvas.getContext('2d'); // 2D rendering context
-            for (let i = 0; i < 250; i++) { // Loops to create 250 stars
-                ctx.fillStyle = `rgba(255, 255, 255, ${Math.random()})`; // Random opacity
-                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2); // Draws small stars
+            const ctx = canvas.getContext('2d'); // 2D context
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clears canvas
+            for (let i = 0; i < 150; i++) { // Reduced to 150 stars
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2})`; // Random opacity, min 0.2
+                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2); // Draws stars
             }
 
             // Animated counters
-            const counters = document.querySelectorAll('.counter'); // Selects all counter elements
-            counters.forEach(counter => { // Loops through each counter
-                const updateCounter = () => { // Function to animate counter
+            const counters = document.querySelectorAll('.counter'); // Selects counters
+            counters.forEach(counter => { // Loops through counters
+                const updateCounter = () => { // Animation function
                     const target = +counter.getAttribute('data-target'); // Target value
                     const count = +counter.innerText.replace(/[^0-9]/g, ''); // Current value
                     const increment = target / 200; // Increment step
                     if (count < target) { // If not at target
-                        if (counter.innerText.includes('x Platinum')) { // For certification
+                        if (counter.innerText.includes('x Platinum')) {
                             counter.innerText = `${Math.ceil(count + increment)}x Platinum`;
-                        } else if (counter.innerText.includes('#')) { // For chart position
+                        } else if (counter.innerText.includes('#')) {
                             counter.innerText = `#${Math.ceil(count + increment)}`;
-                        } else { // For streams/units
+                        } else {
                             counter.innerText = Math.ceil(count + increment).toLocaleString();
                         }
-                        setTimeout(updateCounter, 10); // Recursive call with delay
+                        setTimeout(updateCounter, 10); // Recursive call
                     } else { // When target reached
                         if (counter.innerText.includes('x Platinum')) {
                             counter.innerText = `${target}x Platinum`;
@@ -527,22 +546,22 @@
                         }
                     }
                 };
-                updateCounter(); // Starts counter animation
+                updateCounter(); // Starts animation
             });
 
             // Chart.js setup
-            const chartCtx = document.getElementById('streamChart').getContext('2d'); // Chart canvas context
-            new Chart(chartCtx, { // Initializes Chart.js
-                type: 'line', // Line graph type
+            const chartCtx = document.getElementById('streamChart').getContext('2d'); // Chart context
+            new Chart(chartCtx, { // Initializes chart
+                type: 'line', // Line graph
                 data: {
                     labels: ['2014', '2018', '2022', '2025'], // X-axis years
                     datasets: [{
                         label: 'Streams (Billions)', // Dataset label
-                        data: [0.1, 1.5, 3.2, 4.8], // Stream data points
+                        data: [0.1, 1.5, 3.2, 4.8], // Stream data
                         borderColor: 'var(--primary)', // Line color
                         backgroundColor: 'rgba(255, 30, 86, 0.3)', // Fill color
                         tension: 0.4, // Smooth curve
-                        fill: true, // Fills area under line
+                        fill: true, // Fills area
                         pointBackgroundColor: 'var(--secondary)', // Point color
                         pointBorderColor: 'var(--primary)', // Point border
                         pointRadius: 5, // Point size
@@ -550,7 +569,7 @@
                     }]
                 },
                 options: {
-                    responsive: true, // Adapts to container size
+                    responsive: true, // Adapts to size
                     scales: {
                         y: {
                             beginAtZero: true, // Starts at 0
@@ -564,7 +583,7 @@
                     },
                     plugins: {
                         legend: { display: false }, // Hides legend
-                        tooltip: { backgroundColor: 'var(--glass)', titleFont: { family: 'Orbitron' }, bodyFont: { family: 'IBM Plex Mono' } } // Tooltip styling
+                        tooltip: { backgroundColor: 'var(--glass)', titleFont: { family: 'Orbitron' }, bodyFont: { family: 'IBM Plex Mono' } } // Tooltip style
                     }
                 }
             });
@@ -573,8 +592,8 @@
             gsap.from('.codex-title', { opacity: 0, y: -40, duration: 1.5, ease: 'power2.out' }); // Title fade-in
             gsap.from('.album-image', { opacity: 0, scale: 0.9, duration: 1.2, delay: 0.5, ease: 'back.out(1.7)' }); // Image pop-in
             gsap.from('.stats-item', { opacity: 0, y: 30, duration: 0.8, stagger: 0.2, delay: 1, ease: 'power2.out' }); // Stats stagger
-            gsap.from('.flow-card', { opacity: 0, y: 40, duration: 1, stagger: 0.3, scrollTrigger: { trigger: '.flow-section', start: 'top 85%' } }); // Card scroll animation
-            gsap.from('.ratings-card', { opacity: 0, scale: 0.95, duration: 1.5, scrollTrigger: { trigger: '.ratings-card', start: 'top 85%' } }); // Ratings card animation
+            gsap.from('.flow-card', { opacity: 0, y: 40, duration: 1, stagger: 0.3, scrollTrigger: { trigger: '.flow-section', start: 'top 85%' } }); // Card scroll
+            gsap.from('.ratings-card', { opacity: 0, scale: 0.95, duration: 1.5, scrollTrigger: { trigger: '.ratings-card', start: 'top 85%' } }); // Ratings animation
         });
     </script>
 </body>
