@@ -6,14 +6,14 @@
     <meta name="description" content="J. Cole’s 2014 Forest Hills Drive: 4.8B streams, 3x Platinum, full review updated March 29, 2025 on MusicRx.">
     <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, Roc Nation, Columbia, Vinylz, Illmind, hip-hop, 2025, Billboard, Spotify">
     <meta name="author" content="Veazy">
-    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Stellar Legacy">
+    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Nebula Pulse">
     <meta property="og:description" content="Full review of J. Cole’s 2014 masterpiece with 2025 updates on MusicRx.">
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/colee.jpeg">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-fhd.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@36966_">
-    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Stellar Legacy</title>
+    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Nebula Pulse</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -45,18 +45,18 @@
             transform: translateZ(0);
             will-change: transform;
         }
-        .galaxy-container {
+        .matrix-container {
             padding: 100px 1rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
-        .galaxy-header {
+        .matrix-header {
             text-align: center;
             margin-bottom: 4rem;
         }
-        .galaxy-title {
+        .matrix-title {
             font-size: 3.5rem;
             color: var(--primary);
             text-shadow: 0 0 20px var(--glow);
@@ -81,9 +81,9 @@
             transform: scale(1.05) rotate(2deg);
         }
         .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             width: 600px;
             margin: 1rem auto;
             padding: 1rem;
@@ -99,45 +99,40 @@
             text-transform: uppercase;
             text-shadow: 0 0 10px var(--glow);
             text-align: center;
+            flex: 1;
             padding: 0.5rem;
             transition: transform 0.3s ease;
         }
         .stats-grid span:hover {
             transform: translateY(-5px);
         }
-        .timeline {
-            position: relative;
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
             padding: 2rem 0;
         }
-        .timeline-axis {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary), transparent);
-            transform: translateX(-50%);
-            z-index: 0;
-        }
-        .timeline-card {
+        .matrix-card {
             background: var(--card-background);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border-color);
             border-radius: 15px;
             padding: 2rem;
-            margin: 2rem 0;
             position: relative;
             z-index: 1;
             transition: all 0.4s ease;
-            transform-style: preserve-3d;
+            animation: pulseCard 3s infinite;
         }
-        .timeline-card:hover {
-            transform: translateZ(20px) scale(1.02);
-            box-shadow: 0 0 30px var(--glow);
+        @keyframes pulseCard {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px var(--glow); }
+            50% { transform: scale(1.02); box-shadow: 0 0 30px var(--glow); }
+        }
+        .matrix-card:hover {
+            transform: scale(1.03);
             background: var(--rgb-glow);
             animation: rgbShift 3s linear infinite;
         }
-        .timeline-card h2 {
+        .matrix-card h2 {
             font-size: 1.8rem;
             color: var(--primary);
             font-family: 'Syncopate', sans-serif;
@@ -145,7 +140,7 @@
             margin-bottom: 1rem;
             text-shadow: 0 0 10px var(--glow);
         }
-        .timeline-card p, .timeline-card .table-container {
+        .matrix-card p, .matrix-card .table-container {
             font-size: 1rem;
             color: var(--text-color);
             line-height: 1.7;
@@ -190,6 +185,11 @@
             width: 100%;
             max-width: 600px;
             margin: 2rem auto;
+            position: relative;
+            z-index: 2;
+        }
+        #streamChart {
+            z-index: 2;
         }
         .ratings-card {
             background: var(--glass);
@@ -255,10 +255,10 @@
             max-width: 550px;
         }
         @media (max-width: 768px) {
-            .galaxy-container {
+            .matrix-container {
                 padding: 80px 0.5rem 1rem;
             }
-            .galaxy-title {
+            .matrix-title {
                 font-size: 2rem;
             }
             .album-image, .stats-grid {
@@ -266,9 +266,10 @@
                 max-width: 400px;
             }
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+                flex-direction: column;
+                gap: 0.5rem;
             }
-            .timeline-card, .ratings-card {
+            .matrix-card, .ratings-card {
                 padding: 1.5rem;
             }
             .bento-tracks {
@@ -298,9 +299,9 @@
             </div>
         </nav>
     </header>
-    <div class="galaxy-container">
-        <div class="galaxy-header">
-            <h1 class="galaxy-title">2014 Forest Hills Drive</h1>
+    <div class="matrix-container">
+        <div class="matrix-header">
+            <h1 class="matrix-title">2014 Forest Hills Drive</h1>
             <img class="album-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
             <div class="stats-grid">
                 <span>4.8B Streams</span>
@@ -309,25 +310,24 @@
                 <span>#1 Billboard 200</span>
             </div>
         </div>
-        <div class="timeline">
-            <div class="timeline-axis"></div>
-            <div class="timeline-card">
+        <div class="matrix-grid">
+            <div class="matrix-card">
                 <h2>Introduction</h2>
                 <p>J. Cole’s <em><span class="annotation" data-tip="Released December 9, 2014">2014 Forest Hills Drive</span></em> dropped via Roc Nation, Columbia, and Dreamville. This 13-track, 64-minute memoir moved <span class="annotation" data-tip="First-week sales">353,000 units</span>, topping the Billboard 200. By <span class="annotation" data-tip="Latest RIAA update">March 29, 2025</span>, it’s <span class="annotation" data-tip="Spotify stats">3x Platinum with 4.8 billion streams</span>. Cooked with Vinylz, it’s a soulful homecoming—Veazy calls it a red-hot classic still blazing in 2025.</p>
             </div>
-            <div class="timeline-card">
+            <div class="matrix-card">
                 <h2>The Messaging & Theme</h2>
                 <p>The childhood home on the cover sets a nostalgic tone—self-discovery and realness dominate. <span class="annotation" data-tip="Tender throwback">“Wet Dreamz”</span> drops “She took her shirt off,” while <span class="annotation" data-tip="Life lesson">“Love Yourz”</span> hits with “No such thing as a life that’s better than yours.” <span class="annotation" data-tip="Ambition">“03’ Adolescence”</span> vows “I’ma do it ‘fore I die,” and <span class="annotation" data-tip="Authenticity">“January 28th”</span> flexes “I’m real.” It’s a raw hip-hop diary, no fluff—just truth.</p>
             </div>
-            <div class="timeline-card">
+            <div class="matrix-card">
                 <h2>Production & Sound</h2>
                 <p>Cole, Vinylz, Illmind, and Ron Gilmore forged this at Perfect Sound Studios (LA) and Jungle City Studios (NYC). <span class="annotation" data-tip="Jazzy brass loop">“No Role Modelz”</span> loops, <span class="annotation" data-tip="Soulful pianos">“Apparently”</span> hums, and <span class="annotation" data-tip="Crisp drums">“Fire Squad”</span> bangs—smoother than <em>Born Sinner</em>’s grit, it’s a cohesive vibe echoing in 2025’s introspective rap wave.</p>
             </div>
-            <div class="timeline-card">
+            <div class="matrix-card">
                 <h2>Features</h2>
                 <p>Cole goes solo—no features. <span class="annotation" data-tip="Bold move">“January 28th”</span> boasts “I’m real,” <span class="annotation" data-tip="Hustle">“03’ Adolescence”</span> grinds “I was tryna make it”—pure, unfiltered Cole proves his lyrical chops shine alone.</p>
             </div>
-            <div class="timeline-card">
+            <div class="matrix-card">
                 <h2>Track Highlights</h2>
                 <div class="bento-tracks">
                     <div class="bento-card"><p><strong>Newcomers:</strong> “No Role Modelz,” “Love Yourz”—jazzy hooks grab easy.</p></div>
@@ -338,11 +338,11 @@
                     <div class="bento-card"><p><strong>Fan Favorite:</strong> “Love Yourz”—streaming giant in 2025.</p></div>
                 </div>
             </div>
-            <div class="timeline-card">
+            <div class="matrix-card">
                 <h2>Previous Works</h2>
                 <p><em>The Come Up</em> (2007) sparked with “Simba,” <em>Cole World: The Sideline Story</em> (2011) hit #1 with “Work Out” (218K first week), <em>Born Sinner</em> (2013) topped with “Power Trip” (297K). <em>2014 Forest Hills Drive</em> (353K) paved for <em>KOD</em> (2018)—Cole’s bedrock in 2025’s rap lane.</p>
             </div>
-            <div class="timeline-card">
+            <div class="matrix-card">
                 <h2>Awards Recognition</h2>
                 <div class="table-container">
                     <table class="trend-table awards-table">
@@ -356,11 +356,11 @@
                     <p>Snagged Best Rap Album in 2016, backed by 3x Platinum and 4.8B streams by 2025.</p>
                 </div>
             </div>
-            <div class="timeline-card">
+            <div class="matrix-card">
                 <h2>Legacy & Reception</h2>
                 <p>Pitchfork’s 6.9/10 knocked length, Rolling Stone’s 4/5 praised depth. By March 29, 2025, with 3x Platinum, 4.8B streams, and a 2025 Fayetteville tour reviving “Love Yourz,” it’s a hip-hop pillar—outpacing <em>Born Sinner</em>, shaping 2025’s introspective wave.</p>
             </div>
-            <div class="timeline-card">
+            <div class="matrix-card">
                 <h2>Chart Performance</h2>
                 <div class="chart-container">
                     <canvas id="streamChart"></canvas>
@@ -427,15 +427,14 @@
                     <strong>Overall: 8.6/10</strong>—Timeless soul, a 2025 cornerstone.
                 </div>
             </div>
-            <div class="timeline-card">
+            <div class="matrix-card">
                 <h2>Recent Buzz</h2>
                 <div class="social-feed">
-                    <blockquote class="twitter-tweet">
-                        <a href="https://x.com/TeamDreamville/status/1905692433738068091"></a>
-                    </blockquote>
+                    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">J. Cole usually drops new music around the time of Dreamville Fest…<br><br>Just saying 🫣</p>— Team DREAMVILLE (@TeamDreamville) <a href="https://twitter.com/TeamDreamville/status/1905692433738068091?ref_src=twsrc%5Etfw">March 28, 2025</a></blockquote>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
             </div>
-            <div class="timeline-card">
+            <div class="matrix-card">
                 <h2>Sources</h2>
                 <p>Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, X reactions as of March 29, 2025.</p>
             </div>
@@ -456,21 +455,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Ensure Starfield Renders Properly
-            const canvas = document.getElementById('universe');
-            canvas.style.background = '#000'; // Fallback
-            if (canvas.getContext) {
-                const ctx = canvas.getContext('2d');
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                // Basic starfield rendering if script.js fails
+            // Starfield Rendering
+            const starCanvas = document.getElementById('universe');
+            starCanvas.style.background = '#000';
+            if (starCanvas.getContext) {
+                const ctx = starCanvas.getContext('2d');
+                starCanvas.width = window.innerWidth;
+                starCanvas.height = window.innerHeight;
                 for (let i = 0; i < 200; i++) {
                     ctx.fillStyle = 'rgba(255, 255, 255, ' + Math.random() + ')';
-                    ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2);
+                    ctx.fillRect(Math.random() * starCanvas.width, Math.random() * starCanvas.height, 2, 2);
                 }
             }
 
@@ -482,17 +479,17 @@
             });
 
             // Header Animations
-            gsap.from('.galaxy-title', { opacity: 0, y: -50, duration: 1, ease: 'power2.out' });
+            gsap.from('.matrix-title', { opacity: 0, y: -50, duration: 1, ease: 'power2.out' });
             gsap.from('.album-image', { opacity: 0, scale: 0.8, duration: 1, ease: 'back.out(1.7)', delay: 0.5 });
             gsap.from('.stats-grid span', { opacity: 0, y: 20, duration: 0.8, stagger: 0.2, ease: 'power2.out', delay: 1 });
 
-            // Timeline Card Animations
-            const cards = document.querySelectorAll('.timeline-card');
+            // Matrix Card Animations
+            const cards = document.querySelectorAll('.matrix-card');
             cards.forEach((card, i) => {
                 gsap.from(card, {
                     scrollTrigger: { trigger: card, start: 'top 80%', end: 'bottom 20%', toggleActions: 'play none none reverse' },
                     opacity: 0,
-                    x: i % 2 === 0 ? -150 : 150,
+                    y: 50,
                     duration: 0.8,
                     ease: 'power2.out',
                     delay: i * 0.1
@@ -509,26 +506,29 @@
             });
 
             // Chart.js Visualization
-            const ctx = document.getElementById('streamChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['2014', '2018', '2022', '2025'],
-                    datasets: [{
-                        label: 'Streams (Billions)',
-                        data: [0.1, 1.5, 3.2, 4.8],
-                        borderColor: 'var(--primary)',
-                        backgroundColor: 'rgba(255, 105, 180, 0.2)',
-                        tension: 0.4,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: { y: { beginAtZero: true, title: { display: true, text: 'Streams (B)' } } },
-                    plugins: { legend: { display: false }, tooltip: { backgroundColor: 'var(--glass)' } }
-                }
-            });
+            const chartCanvas = document.getElementById('streamChart');
+            if (chartCanvas) {
+                const ctx = chartCanvas.getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2014', '2018', '2022', '2025'],
+                        datasets: [{
+                            label: 'Streams (Billions)',
+                            data: [0.1, 1.5, 3.2, 4.8],
+                            borderColor: 'var(--primary)',
+                            backgroundColor: 'rgba(255, 105, 180, 0.2)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: { y: { beginAtZero: true, title: { display: true, text: 'Streams (B)' } } },
+                        plugins: { legend: { display: false }, tooltip: { backgroundColor: 'var(--glass)' } }
+                    }
+                });
+            }
 
             // Voice Commands
             const voiceButton = document.getElementById('voiceCommand');
