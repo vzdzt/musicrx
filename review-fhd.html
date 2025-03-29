@@ -6,14 +6,14 @@
     <meta name="description" content="J. Cole’s 2014 Forest Hills Drive: 4.8B streams, 3x Platinum, full review updated March 29, 2025 on MusicRx.">
     <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, Roc Nation, Columbia, Vinylz, Illmind, hip-hop, 2025, Billboard, Spotify">
     <meta name="author" content="Veazy">
-    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Nebula Pulse">
+    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Cosmic Rhythm">
     <meta property="og:description" content="Full review of J. Cole’s 2014 masterpiece with 2025 updates on MusicRx.">
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/colee.jpeg">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-fhd.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@36966_">
-    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Nebula Pulse</title>
+    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Cosmic Rhythm</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -45,18 +45,18 @@
             transform: translateZ(0);
             will-change: transform;
         }
-        .matrix-container {
+        .flow-container {
             padding: 100px 1rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
-        .matrix-header {
+        .flow-header {
             text-align: center;
             margin-bottom: 4rem;
         }
-        .matrix-title {
+        .flow-title {
             font-size: 3.5rem;
             color: var(--primary);
             text-shadow: 0 0 20px var(--glow);
@@ -92,27 +92,37 @@
             border-radius: 15px;
             border: 1px solid var(--border-color);
         }
-        .stats-grid span {
+        .stats-item {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulseStat 2s infinite;
+        }
+        .stats-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--glow);
+        }
+        @keyframes pulseStat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .stats-item span {
             font-family: 'Syncopate', sans-serif;
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: var(--primary);
             text-transform: uppercase;
             text-shadow: 0 0 10px var(--glow);
-            text-align: center;
-            flex: 1;
-            padding: 0.5rem;
-            transition: transform 0.3s ease;
+            display: block;
         }
-        .stats-grid span:hover {
-            transform: translateY(-5px);
+        .stats-item .counter {
+            font-size: 1.5rem;
+            color: #ffd700;
         }
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            padding: 2rem 0;
+        .flow-section {
+            margin: 2rem 0;
         }
-        .matrix-card {
+        .flow-card {
             background: var(--card-background);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border-color);
@@ -121,18 +131,13 @@
             position: relative;
             z-index: 1;
             transition: all 0.4s ease;
-            animation: pulseCard 3s infinite;
         }
-        @keyframes pulseCard {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 20px var(--glow); }
-            50% { transform: scale(1.02); box-shadow: 0 0 30px var(--glow); }
-        }
-        .matrix-card:hover {
-            transform: scale(1.03);
+        .flow-card:hover {
+            transform: scale(1.02);
             background: var(--rgb-glow);
             animation: rgbShift 3s linear infinite;
         }
-        .matrix-card h2 {
+        .flow-card h2 {
             font-size: 1.8rem;
             color: var(--primary);
             font-family: 'Syncopate', sans-serif;
@@ -140,7 +145,7 @@
             margin-bottom: 1rem;
             text-shadow: 0 0 10px var(--glow);
         }
-        .matrix-card p, .matrix-card .table-container {
+        .flow-card p, .flow-card .table-container {
             font-size: 1rem;
             color: var(--text-color);
             line-height: 1.7;
@@ -227,18 +232,38 @@
             font-size: 1.1rem;
             color: var(--text-color);
         }
-        .stars {
-            display: flex;
-            gap: 0.3rem;
+        .progress-circle {
+            position: relative;
+            width: 60px;
+            height: 60px;
         }
-        .stars i {
-            color: #ffd700;
-            font-size: 1.2rem;
-            opacity: 0;
-            animation: starFade 0.5s forwards;
+        .progress-circle svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
         }
-        @keyframes starFade {
-            to { opacity: 1; }
+        .progress-circle circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+        .progress-circle .bg {
+            stroke: #333;
+        }
+        .progress-circle .progress {
+            stroke: #ffd700;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1s ease;
+        }
+        .progress-circle span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.9rem;
+            color: var(--primary);
+            text-shadow: 0 0 5px var(--glow);
         }
         .overall-rating {
             text-align: center;
@@ -249,16 +274,19 @@
         }
         .social-feed {
             padding: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
         .twitter-tweet {
-            margin: 1rem auto;
+            margin: 0 auto;
             max-width: 550px;
         }
         @media (max-width: 768px) {
-            .matrix-container {
+            .flow-container {
                 padding: 80px 0.5rem 1rem;
             }
-            .matrix-title {
+            .flow-title {
                 font-size: 2rem;
             }
             .album-image, .stats-grid {
@@ -269,7 +297,7 @@
                 flex-direction: column;
                 gap: 0.5rem;
             }
-            .matrix-card, .ratings-card {
+            .flow-card, .ratings-card {
                 padding: 1.5rem;
             }
             .bento-tracks {
@@ -299,35 +327,47 @@
             </div>
         </nav>
     </header>
-    <div class="matrix-container">
-        <div class="matrix-header">
-            <h1 class="matrix-title">2014 Forest Hills Drive</h1>
+    <div class="flow-container">
+        <div class="flow-header">
+            <h1 class="flow-title">2014 Forest Hills Drive</h1>
             <img class="album-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
             <div class="stats-grid">
-                <span>4.8B Streams</span>
-                <span>3x Platinum</span>
-                <span>353K First Week</span>
-                <span>#1 Billboard 200</span>
+                <div class="stats-item">
+                    <span>Streams</span>
+                    <div class="counter" data-target="4800000000">0</div>
+                </div>
+                <div class="stats-item">
+                    <span>Certification</span>
+                    <div class="counter" data-target="3">0x Platinum</div>
+                </div>
+                <div class="stats-item">
+                    <span>First Week</span>
+                    <div class="counter" data-target="353000">0</div>
+                </div>
+                <div class="stats-item">
+                    <span>Billboard 200</span>
+                    <div class="counter" data-target="1">#0</div>
+                </div>
             </div>
         </div>
-        <div class="matrix-grid">
-            <div class="matrix-card">
+        <div class="flow-section">
+            <div class="flow-card">
                 <h2>Introduction</h2>
                 <p>J. Cole’s <em><span class="annotation" data-tip="Released December 9, 2014">2014 Forest Hills Drive</span></em> dropped via Roc Nation, Columbia, and Dreamville. This 13-track, 64-minute memoir moved <span class="annotation" data-tip="First-week sales">353,000 units</span>, topping the Billboard 200. By <span class="annotation" data-tip="Latest RIAA update">March 29, 2025</span>, it’s <span class="annotation" data-tip="Spotify stats">3x Platinum with 4.8 billion streams</span>. Cooked with Vinylz, it’s a soulful homecoming—Veazy calls it a red-hot classic still blazing in 2025.</p>
             </div>
-            <div class="matrix-card">
+            <div class="flow-card">
                 <h2>The Messaging & Theme</h2>
                 <p>The childhood home on the cover sets a nostalgic tone—self-discovery and realness dominate. <span class="annotation" data-tip="Tender throwback">“Wet Dreamz”</span> drops “She took her shirt off,” while <span class="annotation" data-tip="Life lesson">“Love Yourz”</span> hits with “No such thing as a life that’s better than yours.” <span class="annotation" data-tip="Ambition">“03’ Adolescence”</span> vows “I’ma do it ‘fore I die,” and <span class="annotation" data-tip="Authenticity">“January 28th”</span> flexes “I’m real.” It’s a raw hip-hop diary, no fluff—just truth.</p>
             </div>
-            <div class="matrix-card">
+            <div class="flow-card">
                 <h2>Production & Sound</h2>
                 <p>Cole, Vinylz, Illmind, and Ron Gilmore forged this at Perfect Sound Studios (LA) and Jungle City Studios (NYC). <span class="annotation" data-tip="Jazzy brass loop">“No Role Modelz”</span> loops, <span class="annotation" data-tip="Soulful pianos">“Apparently”</span> hums, and <span class="annotation" data-tip="Crisp drums">“Fire Squad”</span> bangs—smoother than <em>Born Sinner</em>’s grit, it’s a cohesive vibe echoing in 2025’s introspective rap wave.</p>
             </div>
-            <div class="matrix-card">
+            <div class="flow-card">
                 <h2>Features</h2>
                 <p>Cole goes solo—no features. <span class="annotation" data-tip="Bold move">“January 28th”</span> boasts “I’m real,” <span class="annotation" data-tip="Hustle">“03’ Adolescence”</span> grinds “I was tryna make it”—pure, unfiltered Cole proves his lyrical chops shine alone.</p>
             </div>
-            <div class="matrix-card">
+            <div class="flow-card">
                 <h2>Track Highlights</h2>
                 <div class="bento-tracks">
                     <div class="bento-card"><p><strong>Newcomers:</strong> “No Role Modelz,” “Love Yourz”—jazzy hooks grab easy.</p></div>
@@ -338,11 +378,11 @@
                     <div class="bento-card"><p><strong>Fan Favorite:</strong> “Love Yourz”—streaming giant in 2025.</p></div>
                 </div>
             </div>
-            <div class="matrix-card">
+            <div class="flow-card">
                 <h2>Previous Works</h2>
                 <p><em>The Come Up</em> (2007) sparked with “Simba,” <em>Cole World: The Sideline Story</em> (2011) hit #1 with “Work Out” (218K first week), <em>Born Sinner</em> (2013) topped with “Power Trip” (297K). <em>2014 Forest Hills Drive</em> (353K) paved for <em>KOD</em> (2018)—Cole’s bedrock in 2025’s rap lane.</p>
             </div>
-            <div class="matrix-card">
+            <div class="flow-card">
                 <h2>Awards Recognition</h2>
                 <div class="table-container">
                     <table class="trend-table awards-table">
@@ -356,11 +396,11 @@
                     <p>Snagged Best Rap Album in 2016, backed by 3x Platinum and 4.8B streams by 2025.</p>
                 </div>
             </div>
-            <div class="matrix-card">
+            <div class="flow-card">
                 <h2>Legacy & Reception</h2>
                 <p>Pitchfork’s 6.9/10 knocked length, Rolling Stone’s 4/5 praised depth. By March 29, 2025, with 3x Platinum, 4.8B streams, and a 2025 Fayetteville tour reviving “Love Yourz,” it’s a hip-hop pillar—outpacing <em>Born Sinner</em>, shaping 2025’s introspective wave.</p>
             </div>
-            <div class="matrix-card">
+            <div class="flow-card">
                 <h2>Chart Performance</h2>
                 <div class="chart-container">
                     <canvas id="streamChart"></canvas>
@@ -370,56 +410,56 @@
                 <h2>Ratings Spotlight</h2>
                 <div class="rating-item">
                     <span>Originality (18/20)</span>
-                    <div class="stars">
-                        <i class="fas fa-star" style="animation-delay: 0s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.1s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.2s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.3s;"></i>
-                        <i class="fas fa-star-half-alt" style="animation-delay: 0.4s;"></i>
+                    <div class="progress-circle">
+                        <svg>
+                            <circle class="bg" cx="30" cy="30" r="25"></circle>
+                            <circle class="progress" cx="30" cy="30" r="25" style="stroke-dashoffset: 28.3;"></circle>
+                        </svg>
+                        <span>90%</span>
                     </div>
                 </div>
                 <p>Solo memoir shines in a collab-heavy era.</p>
                 <div class="rating-item">
                     <span>Production (17/20)</span>
-                    <div class="stars">
-                        <i class="fas fa-star" style="animation-delay: 0s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.1s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.2s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.3s;"></i>
-                        <i class="fas fa-star-half-alt" style="animation-delay: 0.4s;"></i>
+                    <div class="progress-circle">
+                        <svg>
+                            <circle class="bg" cx="30" cy="30" r="25"></circle>
+                            <circle class="progress" cx="30" cy="30" r="25" style="stroke-dashoffset: 42.45;"></circle>
+                        </svg>
+                        <span>85%</span>
                     </div>
                 </div>
                 <p>Soulful pianos glow, some tracks overstay.</p>
                 <div class="rating-item">
                     <span>Lyrics (18/20)</span>
-                    <div class="stars">
-                        <i class="fas fa-star" style="animation-delay: 0s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.1s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.2s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.3s;"></i>
-                        <i class="fas fa-star-half-alt" style="animation-delay: 0.4s;"></i>
+                    <div class="progress-circle">
+                        <svg>
+                            <circle class="bg" cx="30" cy="30" r="25"></circle>
+                            <circle class="progress" cx="30" cy="30" r="25" style="stroke-dashoffset: 28.3;"></circle>
+                        </svg>
+                        <span>90%</span>
                     </div>
                 </div>
                 <p>“Love Yourz” preaches truth—rare stumbles.</p>
                 <div class="rating-item">
                     <span>Enjoyment (17/20)</span>
-                    <div class="stars">
-                        <i class="fas fa-star" style="animation-delay: 0s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.1s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.2s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.3s;"></i>
-                        <i class="fas fa-star-half-alt" style="animation-delay: 0.4s;"></i>
+                    <div class="progress-circle">
+                        <svg>
+                            <circle class="bg" cx="30" cy="30" r="25"></circle>
+                            <circle class="progress" cx="30" cy="30" r="25" style="stroke-dashoffset: 42.45;"></circle>
+                        </svg>
+                        <span>85%</span>
                     </div>
                 </div>
                 <p>“No Role Modelz” hooks deep, pacing slows replay.</p>
                 <div class="rating-item">
                     <span>Consistency (16/20)</span>
-                    <div class="stars">
-                        <i class="fas fa-star" style="animation-delay: 0s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.1s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.2s;"></i>
-                        <i class="fas fa-star" style="animation-delay: 0.3s;"></i>
-                        <i class="far fa-star" style="animation-delay: 0.4s;"></i>
+                    <div class="progress-circle">
+                        <svg>
+                            <circle class="bg" cx="30" cy="30" r="25"></circle>
+                            <circle class="progress" cx="30" cy="30" r="25" style="stroke-dashoffset: 56.6;"></circle>
+                        </svg>
+                        <span>80%</span>
                     </div>
                 </div>
                 <p>Tight narrative, energy dips break stride.</p>
@@ -427,14 +467,16 @@
                     <strong>Overall: 8.6/10</strong>—Timeless soul, a 2025 cornerstone.
                 </div>
             </div>
-            <div class="matrix-card">
+            <div class="flow-card">
                 <h2>Recent Buzz</h2>
                 <div class="social-feed">
                     <blockquote class="twitter-tweet"><p lang="en" dir="ltr">J. Cole usually drops new music around the time of Dreamville Fest…<br><br>Just saying 🫣</p>— Team DREAMVILLE (@TeamDreamville) <a href="https://twitter.com/TeamDreamville/status/1905692433738068091?ref_src=twsrc%5Etfw">March 28, 2025</a></blockquote>
+                    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">J. Cole shooting video at his childhood home in Fayetteville. 👀 <a href="https://t.co/ATBvoyVzI3">pic.twitter.com/ATBvoyVzI3</a></p>— Cole World (@JColeVillle) <a href="https://twitter.com/JColeVillle/status/1904145896041857223?ref_src=twsrc%5Etfw">March 24, 2025</a></blockquote>
+                    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">WOW: Jackson State’s marching band Sonic Boom of the South absolutely killed this rendition of J. Cole’s ‘cLOUDs’ 👏🏼<br><br>And for all the Severance fans out there, this band was one of the influences for Tramell Tillman’s performance in the S2 finale <a href="https://t.co/D1TCsclexV">pic.twitter.com/D1TCsclexV</a></p>— Joey (@gothamhiphop) <a href="https://twitter.com/gothamhiphop/status/1904306585221857640?ref_src=twsrc%5Etfw">March 24, 2025</a></blockquote>
                     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
             </div>
-            <div class="matrix-card">
+            <div class="flow-card">
                 <h2>Sources</h2>
                 <p>Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, X reactions as of March 29, 2025.</p>
             </div>
@@ -454,7 +496,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -478,13 +520,42 @@
                 ease: 'none'
             });
 
-            // Header Animations
-            gsap.from('.matrix-title', { opacity: 0, y: -50, duration: 1, ease: 'power2.out' });
-            gsap.from('.album-image', { opacity: 0, scale: 0.8, duration: 1, ease: 'back.out(1.7)', delay: 0.5 });
-            gsap.from('.stats-grid span', { opacity: 0, y: 20, duration: 0.8, stagger: 0.2, ease: 'power2.out', delay: 1 });
+            // Animated Counters for Stats
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const updateCounter = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText.replace(/[^0-9]/g, '');
+                    const increment = target / 200;
+                    if (count < target) {
+                        if (counter.innerText.includes('x Platinum')) {
+                            counter.innerText = `${Math.ceil(count + increment)}x Platinum`;
+                        } else if (counter.innerText.includes('#')) {
+                            counter.innerText = `#${Math.ceil(count + increment)}`;
+                        } else {
+                            counter.innerText = Math.ceil(count + increment).toLocaleString();
+                        }
+                        setTimeout(updateCounter, 10);
+                    } else {
+                        if (counter.innerText.includes('x Platinum')) {
+                            counter.innerText = `${target}x Platinum`;
+                        } else if (counter.innerText.includes('#')) {
+                            counter.innerText = `#${target}`;
+                        } else {
+                            counter.innerText = target.toLocaleString();
+                        }
+                    }
+                };
+                updateCounter();
+            });
 
-            // Matrix Card Animations
-            const cards = document.querySelectorAll('.matrix-card');
+            // Header Animations
+            gsap.from('.flow-title', { opacity: 0, y: -50, duration: 1, ease: 'power2.out' });
+            gsap.from('.album-image', { opacity: 0, scale: 0.8, duration: 1, ease: 'back.out(1.7)', delay: 0.5 });
+            gsap.from('.stats-item', { opacity: 0, y: 20, duration: 0.8, stagger: 0.2, ease: 'power2.out', delay: 1 });
+
+            // Flow Card Animations
+            const cards = document.querySelectorAll('.flow-card');
             cards.forEach((card, i) => {
                 gsap.from(card, {
                     scrollTrigger: { trigger: card, start: 'top 80%', end: 'bottom 20%', toggleActions: 'play none none reverse' },
