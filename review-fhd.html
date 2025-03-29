@@ -6,20 +6,20 @@
     <meta name="description" content="J. Cole’s 2014 Forest Hills Drive: 4.8B streams, 3x Platinum, full review updated March 29, 2025 on MusicRx.">
     <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, Roc Nation, Columbia, Vinylz, Illmind, hip-hop, 2025, Billboard, Spotify">
     <meta name="author" content="Veazy">
-    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Cosmic Legacy">
+    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Stellar Legacy">
     <meta property="og:description" content="Full review of J. Cole’s 2014 masterpiece with 2025 updates on MusicRx.">
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/colee.jpeg">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-fhd.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@36966_">
-    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Cosmic Legacy</title>
+    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Stellar Legacy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-            background: none;
+            background: #000;
             overflow-x: hidden;
             margin: 0;
             padding: 0;
@@ -31,6 +31,7 @@
             width: 100%;
             height: 100%;
             z-index: -2;
+            background: #000;
         }
         .parallax-bg {
             position: fixed;
@@ -44,18 +45,18 @@
             transform: translateZ(0);
             will-change: transform;
         }
-        .nexus-container {
+        .galaxy-container {
             padding: 100px 1rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
-        .nexus-header {
+        .galaxy-header {
             text-align: center;
             margin-bottom: 4rem;
         }
-        .nexus-title {
+        .galaxy-title {
             font-size: 3.5rem;
             color: var(--primary);
             text-shadow: 0 0 20px var(--glow);
@@ -190,6 +191,62 @@
             max-width: 600px;
             margin: 2rem auto;
         }
+        .ratings-card {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 50px var(--glow);
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .ratings-card h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--glow);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .rating-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .rating-item span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+        .stars {
+            display: flex;
+            gap: 0.3rem;
+        }
+        .stars i {
+            color: #ffd700;
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: starFade 0.5s forwards;
+        }
+        @keyframes starFade {
+            to { opacity: 1; }
+        }
+        .overall-rating {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--glow);
+        }
         .social-feed {
             padding: 2rem 0;
         }
@@ -198,10 +255,10 @@
             max-width: 550px;
         }
         @media (max-width: 768px) {
-            .nexus-container {
+            .galaxy-container {
                 padding: 80px 0.5rem 1rem;
             }
-            .nexus-title {
+            .galaxy-title {
                 font-size: 2rem;
             }
             .album-image, .stats-grid {
@@ -211,7 +268,7 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .timeline-card {
+            .timeline-card, .ratings-card {
                 padding: 1.5rem;
             }
             .bento-tracks {
@@ -241,9 +298,9 @@
             </div>
         </nav>
     </header>
-    <div class="nexus-container">
-        <div class="nexus-header">
-            <h1 class="nexus-title">2014 Forest Hills Drive</h1>
+    <div class="galaxy-container">
+        <div class="galaxy-header">
+            <h1 class="galaxy-title">2014 Forest Hills Drive</h1>
             <img class="album-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
             <div class="stats-grid">
                 <span>4.8B Streams</span>
@@ -309,22 +366,74 @@
                     <canvas id="streamChart"></canvas>
                 </div>
             </div>
-            <div class="timeline-card">
-                <h2>Recent Buzz</h2>
-                <div class="social-feed">
-                    <!-- Embedded Tweet Example with URL -->
-                    <blockquote class="twitter-tweet"><a href="https://twitter.com/JColeNC/status/1769876543210987654"></a></blockquote>
-                    <p><em>Note: Replace with a real J. Cole tweet URL from 2025 when available. With X API v2 access (e.g., $100/month Basic tier), we’d pull live tweets dynamically here instead.</em></p>
+            <div class="ratings-card" id="ratings">
+                <h2>Ratings Spotlight</h2>
+                <div class="rating-item">
+                    <span>Originality (18/20)</span>
+                    <div class="stars">
+                        <i class="fas fa-star" style="animation-delay: 0s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.1s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.2s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.3s;"></i>
+                        <i class="fas fa-star-half-alt" style="animation-delay: 0.4s;"></i>
+                    </div>
+                </div>
+                <p>Solo memoir shines in a collab-heavy era.</p>
+                <div class="rating-item">
+                    <span>Production (17/20)</span>
+                    <div class="stars">
+                        <i class="fas fa-star" style="animation-delay: 0s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.1s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.2s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.3s;"></i>
+                        <i class="fas fa-star-half-alt" style="animation-delay: 0.4s;"></i>
+                    </div>
+                </div>
+                <p>Soulful pianos glow, some tracks overstay.</p>
+                <div class="rating-item">
+                    <span>Lyrics (18/20)</span>
+                    <div class="stars">
+                        <i class="fas fa-star" style="animation-delay: 0s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.1s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.2s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.3s;"></i>
+                        <i class="fas fa-star-half-alt" style="animation-delay: 0.4s;"></i>
+                    </div>
+                </div>
+                <p>“Love Yourz” preaches truth—rare stumbles.</p>
+                <div class="rating-item">
+                    <span>Enjoyment (17/20)</span>
+                    <div class="stars">
+                        <i class="fas fa-star" style="animation-delay: 0s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.1s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.2s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.3s;"></i>
+                        <i class="fas fa-star-half-alt" style="animation-delay: 0.4s;"></i>
+                    </div>
+                </div>
+                <p>“No Role Modelz” hooks deep, pacing slows replay.</p>
+                <div class="rating-item">
+                    <span>Consistency (16/20)</span>
+                    <div class="stars">
+                        <i class="fas fa-star" style="animation-delay: 0s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.1s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.2s;"></i>
+                        <i class="fas fa-star" style="animation-delay: 0.3s;"></i>
+                        <i class="far fa-star" style="animation-delay: 0.4s;"></i>
+                    </div>
+                </div>
+                <p>Tight narrative, energy dips break stride.</p>
+                <div class="overall-rating">
+                    <strong>Overall: 8.6/10</strong>—Timeless soul, a 2025 cornerstone.
                 </div>
             </div>
             <div class="timeline-card">
-                <h2>Ratings</h2>
-                <p><strong>Originality (18/20):</strong> Solo memoir shines in a collab-heavy era.<br>
-                <strong>Production (17/20):</strong> Soulful pianos glow, some tracks overstay.<br>
-                <strong>Lyrics (18/20):</strong> “Love Yourz” preaches truth—rare stumbles.<br>
-                <strong>Enjoyment (17/20):</strong> “No Role Modelz” hooks deep, pacing slows replay.<br>
-                <strong>Consistency (16/20):</strong> Tight narrative, energy dips break stride.<br>
-                <strong>Overall: 8.6/10</strong>—Timeless soul, a 2025 cornerstone.</p>
+                <h2>Recent Buzz</h2>
+                <div class="social-feed">
+                    <blockquote class="twitter-tweet">
+                        <a href="https://x.com/TeamDreamville/status/1905692433738068091"></a>
+                    </blockquote>
+                </div>
             </div>
             <div class="timeline-card">
                 <h2>Sources</h2>
@@ -351,6 +460,20 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Ensure Starfield Renders Properly
+            const canvas = document.getElementById('universe');
+            canvas.style.background = '#000'; // Fallback
+            if (canvas.getContext) {
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                // Basic starfield rendering if script.js fails
+                for (let i = 0; i < 200; i++) {
+                    ctx.fillStyle = 'rgba(255, 255, 255, ' + Math.random() + ')';
+                    ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2);
+                }
+            }
+
             // Parallax Background
             gsap.to('.parallax-bg', {
                 scrollTrigger: { trigger: '.parallax-bg', start: 'top top', end: 'bottom top', scrub: true },
@@ -359,7 +482,7 @@
             });
 
             // Header Animations
-            gsap.from('.nexus-title', { opacity: 0, y: -50, duration: 1, ease: 'power2.out' });
+            gsap.from('.galaxy-title', { opacity: 0, y: -50, duration: 1, ease: 'power2.out' });
             gsap.from('.album-image', { opacity: 0, scale: 0.8, duration: 1, ease: 'back.out(1.7)', delay: 0.5 });
             gsap.from('.stats-grid span', { opacity: 0, y: 20, duration: 0.8, stagger: 0.2, ease: 'power2.out', delay: 1 });
 
@@ -374,6 +497,15 @@
                     ease: 'power2.out',
                     delay: i * 0.1
                 });
+            });
+
+            // Ratings Card Animation
+            gsap.from('.ratings-card', {
+                scrollTrigger: { trigger: '.ratings-card', start: 'top 80%', toggleActions: 'play none none reverse' },
+                opacity: 0,
+                scale: 0.9,
+                duration: 1,
+                ease: 'elastic.out(1, 0.5)'
             });
 
             // Chart.js Visualization
@@ -408,8 +540,8 @@
 
                 recognition.onresult = (event) => {
                     const command = event.results[0][0].transcript.toLowerCase();
-                    if (command.includes('scroll to tracks')) {
-                        document.querySelector('.bento-tracks').scrollIntoView({ behavior: 'smooth' });
+                    if (command.includes('scroll to ratings')) {
+                        document.getElementById('ratings').scrollIntoView({ behavior: 'smooth' });
                     } else if (command.includes('play music')) {
                         document.getElementById('musicToggle').click();
                     }
