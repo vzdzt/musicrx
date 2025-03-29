@@ -6,32 +6,32 @@
     <meta name="description" content="J. Cole’s 2014 Forest Hills Drive: 4.8B streams, 3x Platinum, full review updated March 29, 2025 on MusicRx.">
     <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, Roc Nation, Columbia, Vinylz, Illmind, hip-hop, 2025, Billboard, Spotify">
     <meta name="author" content="Veazy">
-    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: Cosmic Arcade Review">
-    <meta property="og:description" content="Level up with J. Cole’s 2014 masterpiece in this 2025 MusicRx review.">
+    <meta property="og:title" content="მოლ0" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Celestial Gallery">
+    <meta property="og:description" content="Full review of J. Cole’s 2014 masterpiece with 2025 updates on MusicRx.">
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/colee.jpeg">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-fhd.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@36966_">
-    <title>MusicRx - 2014 Forest Hills Drive: Cosmic Arcade Review</title>
+    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Celestial Gallery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #ff00ff;
-            --glow: rgba(255, 0, 255, 0.7);
-            --glass: rgba(255, 255, 255, 0.1);
-            --border-color: rgba(255, 255, 255, 0.2);
-            --text-color: #fff;
-            --card-background: rgba(20, 20, 20, 0.8);
+            --primary: #ff007a;
+            --secondary: #00eaff;
+            --glow: rgba(255, 0, 122, 0.6);
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.2);
+            --text: #f0f0f0;
         }
         body {
             background: #000;
-            overflow-x: hidden;
             margin: 0;
             padding: 0;
-            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text);
         }
         #universe {
             position: fixed;
@@ -49,139 +49,162 @@
             width: 100%;
             height: 100vh;
             background: url('https://vzdzt.github.io/musicrx/colee.jpeg') center/cover no-repeat;
-            opacity: 0.15;
+            opacity: 0.12;
             z-index: -1;
         }
-        .arcade-container {
-            padding: 120px 1rem 3rem;
-            max-width: 1200px;
+        .gallery-container {
+            max-width: 1280px;
             margin: 0 auto;
+            padding: 100px 2rem 4rem;
             position: relative;
             z-index: 1;
         }
-        .arcade-header {
+        .gallery-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
-        .arcade-title {
-            font-size: 3rem;
+        .gallery-title {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
             color: var(--primary);
-            text-shadow: 0 0 15px var(--glow);
-            font-family: 'Press Start 2P', cursive;
-            text-transform: uppercase;
-            animation: glitch 1s infinite;
+            text-shadow: 0 0 20px var(--glow);
+            letter-spacing: 2px;
+            margin: 0;
+            animation: fadeIn 1.5s ease-in-out;
         }
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(2px, -2px); }
-            60% { transform: translate(-2px, 0); }
-            80% { transform: translate(2px, 0); }
-            100% { transform: translate(0); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .album-image {
-            width: 500px;
-            height: auto;
-            border: 4px solid var(--primary);
-            border-radius: 10px;
-            box-shadow: 0 0 30px var(--glow);
-            margin: 1rem auto;
-            transition: transform 0.3s ease;
+            display: block;
+            width: 600px;
+            max-width: 100%;
+            margin: 2rem auto;
+            border: 2px solid var(--border);
+            border-radius: 15px;
+            box-shadow: 0 0 40px var(--glow);
+            transition: transform 0.4s ease;
         }
         .album-image:hover {
-            transform: scale(1.05) rotate(1deg);
+            transform: scale(1.04);
         }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            width: 500px;
+            gap: 1.5rem;
+            width: 600px;
+            max-width: 100%;
             margin: 2rem auto;
-            padding: 1rem;
+            padding: 1.5rem;
             background: var(--glass);
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
         }
         .stats-item {
             text-align: center;
-            padding: 0.5rem;
+            padding: 0.8rem;
             transition: transform 0.3s ease;
         }
         .stats-item:hover {
-            transform: scale(1.1);
+            transform: translateY(-5px);
         }
         .stats-item span {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.9rem;
-            color: var(--primary);
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--secondary);
             text-shadow: 0 0 10px var(--glow);
             display: block;
+            margin-bottom: 0.5rem;
         }
         .stats-item .counter {
-            font-size: 1.2rem;
-            color: #00ffff;
+            font-size: 1.4rem;
+            color: var(--text);
         }
-        .arcade-section {
-            margin: 3rem 0;
+        .flow-section {
+            margin: 4rem 0;
         }
-        .arcade-card {
-            background: var(--card-background);
-            backdrop-filter: blur(15px);
-            border: 2px solid var(--border-color);
+        .flow-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
             border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            transition: all 0.4s ease;
         }
-        .arcade-card:hover {
+        .flow-card:hover {
             border-color: var(--primary);
-            box-shadow: 0 0 20px var(--glow);
+            box-shadow: 0 0 25px var(--glow);
         }
-        .arcade-card h2 {
-            font-size: 1.5rem;
+        .flow-card h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
             color: var(--primary);
-            font-family: 'Press Start 2P', cursive;
-            text-shadow: 0 0 10px var(--glow);
-            margin-bottom: 1rem;
+            text-shadow: 0 0 15px var(--glow);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
         }
-        .arcade-card p {
-            font-size: 1rem;
-            color: var(--text-color);
-            line-height: 1.6;
+        .flow-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+        .annotation {
+            position: relative;
+            cursor: help;
+            color: var(--secondary);
+        }
+        .annotation:hover::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            z-index: 10;
         }
         .bento-tracks {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             padding: 2rem 0;
         }
         .bento-card {
-            background: var(--card-background);
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             padding: 1.5rem;
             transition: transform 0.3s ease;
         }
         .bento-card:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         .chart-container {
             width: 100%;
-            max-width: 600px;
-            margin: 2rem auto;
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 1rem;
+            background: var(--glass);
+            border-radius: 15px;
         }
         .ratings-card {
             background: var(--glass);
-            border: 3px solid var(--primary);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 3rem 0;
-            box-shadow: 0 0 40px var(--glow);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: 0 0 50px var(--glow);
+            position: relative;
         }
         .ratings-card h2 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            text-shadow: 0 0 15px var(--glow);
+            font-size: 2.2rem;
             text-align: center;
             margin-bottom: 2rem;
         }
@@ -189,17 +212,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 1rem 0;
-            padding: 0.5rem;
+            margin: 1.5rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
         }
         .rating-item span {
-            font-size: 1rem;
-            color: var(--text-color);
+            font-size: 1.2rem;
         }
         .progress-circle {
             position: relative;
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
         }
         .progress-circle svg {
             width: 100%;
@@ -215,8 +238,8 @@
             stroke: #333;
         }
         .progress-circle .progress {
-            stroke: #00ffff;
-            stroke-dasharray: 188.4;
+            stroke: var(--secondary);
+            stroke-dasharray: 251.2; /* 2 * π * 40 */
             transition: stroke-dashoffset 1s ease;
         }
         .progress-circle span {
@@ -224,29 +247,25 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--primary);
             text-shadow: 0 0 5px var(--glow);
         }
         .overall-rating {
             text-align: center;
             margin-top: 2rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
-            text-shadow: 0 0 15px var(--glow);
+            text-shadow: 0 0 15px var(--glow quei);
         }
         @media (max-width: 768px) {
-            .arcade-title {
-                font-size: 2rem;
-            }
-            .album-image, .stats-grid {
-                width: 100%;
-                max-width: 350px;
+            .gallery-title {
+                font-size: 2.5rem;
             }
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .arcade-card {
+            .flow-card {
                 padding: 1.5rem;
             }
             .bento-tracks {
@@ -258,9 +277,9 @@
 <body>
     <canvas id="universe"></canvas>
     <div class="parallax-bg"></div>
-    <div class="arcade-container">
-        <div class="arcade-header">
-            <h1 class="arcade-title">2014 Forest Hills Drive</h1>
+    <div class="gallery-container">
+        <div class="gallery-header">
+            <h1 class="gallery-title">2014 Forest Hills Drive</h1>
             <img class="album-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
             <div class="stats-grid">
                 <div class="stats-item">
@@ -276,93 +295,125 @@
                     <div class="counter" data-target="353000">0</div>
                 </div>
                 <div class="stats-item">
-                    <span>Billboard</span>
+                    <span>Billboard 200</span>
                     <div class="counter" data-target="1">#0</div>
                 </div>
             </div>
         </div>
-        <div class="arcade-section">
-            <div class="arcade-card">
-                <h2>Game Start</h2>
-                <p>J. Cole’s <em>2014 Forest Hills Drive</em> dropped in 2014 via Roc Nation and Columbia. A 13-track, 64-minute journey, it sold 353,000 units first week and hit #1 on Billboard 200. By March 29, 2025, it’s 3x Platinum with 4.8B streams. A cosmic classic!</p>
+        <div class="flow-section">
+            <div class="flow-card">
+                <h2>Introduction</h2>
+                <p>J. Cole’s <em><span class="annotation" data-tip="Released December 9, 2014">2014 Forest Hills Drive</span></em> dropped via Roc Nation, Columbia, and Dreamville. This 13-track, 64-minute memoir moved <span class="annotation" data-tip="First-week sales">353,000 units</span>, topping the Billboard 200. By <span class="annotation" data-tip="Latest RIAA update">March 29, 2025</span>, it’s <span class="annotation" data-tip="Spotify stats">3x Platinum with 4.8 billion streams</span>. Cooked with Vinylz, it’s a soulful homecoming—Veazy calls it a red-hot classic still blazing in 2025.</p>
             </div>
-            <div class="arcade-card">
-                <h2>Core Levels</h2>
-                <p>Nostalgia drives the vibe—self-discovery in “Wet Dreamz,” life lessons in “Love Yourz.” Raw ambition (“03’ Adolescence”) and authenticity (“January 28th”) make it a hip-hop gem.</p>
+            <div class="flow-card">
+                <h2>The Messaging & Theme</h2>
+                <p>The childhood home on the cover sets a nostalgic tone—self-discovery and realness dominate. <span class="annotation" data-tip="Tender throwback">“Wet Dreamz”</span> drops “She took her shirt off,” while <span class="annotation" data-tip="Life lesson">“Love Yourz”</span> hits with “No such thing as a life that’s better than yours.” <span class="annotation" data-tip="Ambition">“03’ Adolescence”</span> vows “I’ma do it ‘fore I die,” and <span class="annotation" data-tip="Authenticity">“January 28th”</span> flexes “I’m real.” It’s a raw hip-hop diary, no fluff—just truth.</p>
             </div>
-            <div class="arcade-card">
-                <h2>Sound Engine</h2>
-                <p>Cole, Vinylz, and Illmind craft soulful beats—jazzy loops in “No Role Modelz,” crisp drums in “Fire Squad.” Smoother than <em>Born Sinner</em>, it’s a 2025 vibe.</p>
+            <div class="flow-card">
+                <h2>Production & Sound</h2>
+                <p>Cole, Vinylz, Illmind, and Ron Gilmore forged this at Perfect Sound Studios (LA) and Jungle City Studios (NYC). <span class="annotation" data-tip="Jazzy brass loop">“No Role Modelz”</span> loops, <span class="annotation" data-tip="Soulful pianos">“Apparently”</span> hums, and <span class="annotation" data-tip="Crisp drums">“Fire Squad”</span> bangs—smoother than <em>Born Sinner</em>’s grit, it’s a cohesive vibe echoing in 2025’s introspective rap wave.</p>
             </div>
-            <div class="arcade-card">
-                <h2>Track Select</h2>
+            <div class="flow-card">
+                <h2>Features</h2>
+                <p>Cole goes solo—no features. <span class="annotation" data-tip="Bold move">“January 28th”</span> boasts “I’m real,” <span class="annotation" data-tip="Hustle">“03’ Adolescence”</span> grinds “I was tryna make it”—pure, unfiltered Cole proves his lyrical chops shine alone.</p>
+            </div>
+            <div class="flow-card">
+                <h2>Track Highlights</h2>
                 <div class="bento-tracks">
-                    <div class="bento-card"><p><strong>Easy Mode:</strong> “No Role Modelz”</p></div>
-                    <div class="bento-card"><p><strong>Hard Mode:</strong> “03’ Adolescence”</p></div>
-                    <div class="bento-card"><p><strong>Bonus Level:</strong> “Love Yourz (Live)”</p></div>
+                    <div class="bento-card"><p><strong>Newcomers:</strong> “No Role Modelz,” “Love Yourz”—jazzy hooks grab easy.</p></div>
+                    <div class="bento-card"><p><strong>Deep Dive:</strong> “Wet Dreamz,” “03’ Adolescence”—raw stories hit hard.</p></div>
+                    <div class="bento-card"><p><strong>Gems:</strong> “Fire Squad,” “Apparently”—punchy depth shines.</p></div>
+                    <div class="bento-card"><p><strong>2025 Obsession:</strong> “Love Yourz (Live)”—Fayetteville tour fire.</p></div>
+                    <div class="bento-card"><p><strong>Cultural Impact:</strong> “No Role Modelz”—2025 TikTok staple.</p></div>
+                    <div class="bento-card"><p><strong>Fan Favorite:</strong> “Love Yourz”—streaming giant in 2025.</p></div>
                 </div>
             </div>
-            <div class="arcade-card">
-                <h2>Score Chart</h2>
+            <div class="flow-card">
+                <h2>Previous Works</h2>
+                <p><em>The Come Up</em> (2007) sparked with “Simba,” <em>Cole World: The Sideline Story</em> (2011) hit #1 with “Work Out” (218K first week), <em>Born Sinner</em> (2013) topped with “Power Trip” (297K). <em>2014 Forest Hills Drive</em> (353K) paved for <em>KOD</em> (2018)—Cole’s bedrock in 2025’s rap lane.</p>
+            </div>
+            <div class="flow-card">
+                <h2>Awards Recognition</h2>
+                <p>Snagged Best Rap Album in 2016, backed by 3x Platinum and 4.8B streams by 2025.</p>
+            </div>
+            <div class="flow-card">
+                <h2>Legacy & Reception</h2>
+                <p>Pitchfork’s 6.9/10 knocked length, Rolling Stone’s 4/5 praised depth. By March 29, 2025, with 3x Platinum, 4.8B streams, and a 2025 Fayetteville tour reviving “Love Yourz,” it’s a hip-hop pillar—outpacing <em>Born Sinner</em>, shaping 2025’s introspective wave.</p>
+            </div>
+            <div class="flow-card">
+                <h2>Chart Performance</h2>
                 <div class="chart-container">
                     <canvas id="streamChart"></canvas>
                 </div>
             </div>
             <div class="ratings-card">
-                <h2>Player Stats</h2>
+                <h2>Ratings Spotlight</h2>
                 <div class="rating-item">
                     <span>Originality (18/20)</span>
                     <div class="progress-circle">
                         <svg>
-                            <circle class="bg" cx="35" cy="35" r="30"></circle>
-                            <circle class="progress" cx="35" cy="35" r="30" style="stroke-dashoffset: 37.68;"></circle>
+                            <circle class="bg" cx="40" cy="40" r="40"></circle>
+                            <circle class="progress" cx="40" cy="40" r="40" style="stroke-dashoffset: 25.12;"></circle>
                         </svg>
                         <span>90%</span>
                     </div>
                 </div>
+                <p>Solo memoir shines in a collab-heavy era.</p>
                 <div class="rating-item">
                     <span>Production (17/20)</span>
                     <div class="progress-circle">
                         <svg>
-                            <circle class="bg" cx="35" cy="35" r="30"></circle>
-                            <circle class="progress" cx="35" cy="35" r="30" style="stroke-dashoffset: 56.52;"></circle>
+                            <circle class="bg" cx="40" cy="40" r="40"></circle>
+                            <circle class="progress" cx="40" cy="40" r="40" style="stroke-dashoffset: 37.68;"></circle>
                         </svg>
                         <span>85%</span>
                     </div>
                 </div>
+                <p>Soulful pianos glow, some tracks overstay.</p>
                 <div class="rating-item">
                     <span>Lyrics (18/20)</span>
                     <div class="progress-circle">
                         <svg>
-                            <circle class="bg" cx="35" cy="35" r="30"></circle>
-                            <circle class="progress" cx="35" cy="35" r="30" style="stroke-dashoffset: 37.68;"></circle>
+                            <circle class="bg" cx="40" cy="40" r="40"></circle>
+                            <circle class="progress" cx="40" cy="40" r="40" style="stroke-dashoffset: 25.12;"></circle>
                         </svg>
                         <span>90%</span>
                     </div>
                 </div>
+                <p>“Love Yourz” preaches truth—rare stumbles.</p>
                 <div class="rating-item">
                     <span>Enjoyment (17/20)</span>
                     <div class="progress-circle">
                         <svg>
-                            <circle class="bg" cx="35" cy="35" r="30"></circle>
-                            <circle class="progress" cx="35" cy="35" r="30" style="stroke-dashoffset: 56.52;"></circle>
+                            <circle class="bg" cx="40" cy="40" r="40"></circle>
+                            <circle class="progress" cx="40" cy="40" r="40" style="stroke-dashoffset: 37.68;"></circle>
                         </svg>
                         <span>85%</span>
                     </div>
                 </div>
+                <p>“No Role Modelz” hooks deep, pacing slows replay.</p>
                 <div class="rating-item">
                     <span>Consistency (16/20)</span>
                     <div class="progress-circle">
                         <svg>
-                            <circle class="bg" cx="35" cy="35" r="30"></circle>
-                            <circle class="progress" cx="35" cy="35" r="30" style="stroke-dashoffset: 75.36;"></circle>
+                            <circle class="bg" cx="40" cy="40" r="40"></circle>
+                            <circle class="progress" cx="40" cy="40" r="40" style="stroke-dashoffset: 50.24;"></circle>
                         </svg>
                         <span>80%</span>
                     </div>
                 </div>
+                <p>Tight narrative, energy dips break stride.</p>
                 <div class="overall-rating">
-                    <strong>High Score: 8.6/10</strong>
+                    <strong>Overall: 8.6/10</strong>—Timeless soul, a 2025 cornerstone.
                 </div>
+            </div>
+            <div class="flow-card">
+                <h2>Recent Buzz</h2>
+                <p>X posts from March 2025 highlight J. Cole’s Fayetteville tour and “Love Yourz” resurgence.</p>
+            </div>
+            <div class="flow-card">
+                <h2>Sources</h2>
+                <p>Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, X reactions as of March 29, 2025.</p>
             </div>
         </div>
     </div>
@@ -371,16 +422,16 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Starfield
-            const starCanvas = document.getElementById('universe');
-            starCanvas.width = window.innerWidth;
-            starCanvas.height = window.innerHeight;
-            const ctx = starCanvas.getContext('2d');
+            const canvas = document.getElementById('universe');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const ctx = canvas.getContext('2d');
             for (let i = 0; i < 200; i++) {
-                ctx.fillStyle = 'rgba(255, 255, 255, ' + Math.random() + ')';
-                ctx.fillRect(Math.random() * starCanvas.width, Math.random() * starCanvas.height, 2, 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.random()})`;
+                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2);
             }
 
-            // Stats Counters
+            // Counters
             const counters = document.querySelectorAll('.counter');
             counters.forEach(counter => {
                 const updateCounter = () => {
@@ -418,8 +469,8 @@
                     datasets: [{
                         label: 'Streams (Billions)',
                         data: [0.1, 1.5, 3.2, 4.8],
-                        borderColor: '#ff00ff',
-                        backgroundColor: 'rgba(255, 0, 255, 0.2)',
+                        borderColor: 'var(--primary)',
+                        backgroundColor: 'rgba(255, 0, 122, 0.2)',
                         tension: 0.4,
                         fill: true
                     }]
@@ -427,7 +478,8 @@
                 options: {
                     responsive: true,
                     scales: {
-                        y: { beginAtZero: true, title: { display: true, text: 'Streams (B)' } }
+                        y: { beginAtZero: true, title: { display: true, text: 'Streams (B)', color: 'var(--text)' } },
+                        x: { title: { display: true, text: 'Year', color: 'var(--text)' } }
                     },
                     plugins: {
                         legend: { display: false }
@@ -436,11 +488,11 @@
             });
 
             // GSAP Animations
-            gsap.from('.arcade-title', { opacity: 0, y: -50, duration: 1 });
-            gsap.from('.album-image', { opacity: 0, scale: 0.8, duration: 1, delay: 0.5 });
+            gsap.from('.gallery-title', { opacity: 0, y: -30, duration: 1.5 });
+            gsap.from('.album-image', { opacity: 0, scale: 0.9, duration: 1, delay: 0.5 });
             gsap.from('.stats-item', { opacity: 0, y: 20, duration: 0.8, stagger: 0.2, delay: 1 });
-            gsap.from('.arcade-card', { opacity: 0, y: 50, duration: 0.8, stagger: 0.2, scrollTrigger: { trigger: '.arcade-section', start: 'top 80%' } });
-            gsap.from('.ratings-card', { opacity: 0, scale: 0.9, duration: 1, scrollTrigger: { trigger: '.ratings-card', start: 'top 80%' } });
+            gsap.from('.flow-card', { opacity: 0, y: 30, duration: 1, stagger: 0.2, scrollTrigger: { trigger: '.flow-section', start: 'top 80%' } });
+            gsap.from('.ratings-card', { opacity: 0, scale: 0.95, duration: 1.2, scrollTrigger: { trigger: '.ratings-card', start: 'top 80%' } });
         });
     </script>
 </body>
