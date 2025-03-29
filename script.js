@@ -437,3 +437,147 @@ window.addEventListener('resize', () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
 });
+// 31. WebGPU Particle System
+async function initWebGPU() {
+    if (!navigator.gpu) return console.warn('WebGPU not supported');
+    const adapter = await navigator.gpu.requestAdapter();
+    const device = await adapter.requestDevice();
+    const canvas = document.getElementById('gpu-particles');
+    if (!canvas) return;
+    const context = canvas.getContext('webgpu');
+    context.configure({ device, format: 'bgra8unorm', alphaMode: 'premultiplied' });
+    console.log('WebGPU initialized');
+    // Add particle rendering logic here
+}
+initWebGPU();
+
+// 32. IntersectionObserver v2 for Hover Tracking
+const hoverObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && entry.isVisible) {
+            entry.target.classList.add('glow-transition');
+        } else {
+            entry.target.classList.remove('glow-transition');
+        }
+    });
+}, { threshold: 0.5, trackVisibility: true, delay: 100 });
+document.querySelectorAll('.glass-card').forEach(card => hoverObserver.observe(card));
+
+// 33. Web Audio API Visualizer
+function audioVisualizer() {
+    const audio = document.getElementById('bgMusic');
+    if (!audio) return;
+    const context = new AudioContext();
+    const source = context.createMediaElementSource(audio);
+    const analyser = context.createAnalyser();
+    source.connect(analyser);
+    analyser.connect(context.destination);
+    analyser.fftSize = 256;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    const canvas = document.createElement('canvas');
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    function draw() {
+        requestAnimationFrame(draw);
+        analyser.getByteFrequencyData(dataArray);
+        ctx.fillStyle = 'var(--dark)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const barWidth = (canvas.width / bufferLength) * 2.5;
+        let x = 0;
+        for (let i = 0; i < bufferLength; i++) {
+            const barHeight = dataArray[i];
+            ctx.fillStyle = `hsl(${i * 2}, 70%, 50%)`;
+            ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+            x += barWidth + 1;
+        }
+    }
+    draw();
+}
+document.getElementById('musicToggle')?.addEventListener('click', audioVisualizer);
+
+// 34. Scroll Timeline API
+if ('ScrollTimeline' in window) {
+    const scrollTimeline = new ScrollTimeline({
+        source: document.documentElement,
+        orientation: 'block',
+    });
+    document.querySelectorAll('.scroll-glow').forEach(el => {
+        el.animate({ transform: ['scale(1)', 'scale(1.1)'] }, { timeline: scrollTimeline });
+    });
+}
+
+// 35. ResizeObserver for Dynamic Layout
+const resizeObserver = new ResizeObserver(entries => {
+    entries.forEach(entry => {
+        const width = entry.contentRect.width;
+        entry.target.style.setProperty('--container-width', `${width}px`);
+    });
+});
+document.querySelectorAll('.responsive-card').forEach(card => resizeObserver.observe(card));
+
+// 36. Pointer Lock for Immersive Navigation
+document.getElementById('universe')?.addEventListener('click', () => {
+    document.body.requestPointerLock();
+    document.addEventListener('mousemove', (e) => {
+        if (document.pointerLockElement) {
+            starField.rotation.x += e.movementY * 0.001;
+            starField.rotation.y += e.movementX * 0.001;
+        }
+    });
+});
+
+// 37. Vibration API Feedback
+document.querySelectorAll('.glass-card').forEach(card => {
+    card.addEventListener('click', () => {
+        if ('vibrate' in navigator) navigator.vibrate(50);
+    });
+});
+
+// 38. Clipboard API for Theme Sharing
+document.getElementById('themeToggle')?.addEventListener('click', () => {
+    const currentTheme = localStorage.getItem('currentTheme');
+    navigator.clipboard.writeText(`Current theme: ${currentTheme}`);
+});
+
+// 39. Web Share API
+function shareTheme() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'My Theme',
+            text: `Check out my current theme: ${localStorage.getItem('currentThemeTitle')}`,
+            url: window.location.href,
+        });
+    }
+}
+document.getElementById('themeToggle')?.addEventListener('dblclick', shareTheme);
+
+// 40. Motion Sensors
+if ('DeviceMotionEvent' in window) {
+    window.addEventListener('devicemotion', (e) => {
+        const accel = e.accelerationIncludingGravity;
+        starField.rotation.x += accel.y * 0.0001;
+        starField.rotation.y += accel.x * 0.0001;
+    });
+}
+
+// 41. Speech Synthesis for Theme Announcements
+function announceTheme() {
+    const msg = new SpeechSynthesisUtterance(`Theme changed to ${localStorage.getItem('currentThemeTitle')}`);
+    msg.pitch = 1.2;
+    msg.rate = 1.1;
+    window.speechSynthesis.speak(msg);
+}
+document.getElementById('themeToggle')?.addEventListener('click', announceTheme);
+
+// 42. Eye Tracking (WebGazer.js or similar required)
+if (typeof webgazer !== 'undefined') {
+    webgazer.setGazeListener((data) => {
+        if (data) {
+            const x = data.x / window.innerWidth - 0.5;
+            const y = data.y / window.innerHeight - 0.5;
+            starField.rotation.y = x * 0.5;
+            starField.rotation.x = y * 0.5;
+        }
+    }).begin();
+}

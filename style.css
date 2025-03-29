@@ -2978,3 +2978,230 @@ textarea.form-control {
   font-family: 'Space Grotesk', sans-serif;
   display: block;
 }
+/* 1. Custom Paint API Neon Drip */
+@property --drip-offset {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0px;
+}
+.neon-drip {
+    --drip-offset: 0px;
+    background: paint(neon-drip); /* Requires custom Houdini paint worklet */
+    animation: drip-flow 3s infinite linear;
+}
+@keyframes drip-flow {
+    100% { --drip-offset: 50px; }
+}
+
+/* 2. Scroll-Driven Animation */
+.scroll-glow {
+    animation: glow-shift linear both;
+    animation-timeline: scroll();
+}
+@keyframes glow-shift {
+    from { box-shadow: 0 0 10px var(--glow); }
+    to { box-shadow: 0 0 30px var(--primary); }
+}
+
+/* 3. Container Query Units */
+.responsive-card {
+    container-type: inline-size;
+    padding: calc(1rem + 10cqw);
+    border-radius: 10cqi;
+}
+
+/* 4. Color-Function Mix */
+.color-mix-text {
+    color: color-mix(in srgb, var(--primary) 70%, var(--secondary));
+    text-shadow: 0 0 15px color-mix(in lch, var(--glow), black 20%);
+}
+
+/* 5. Subgrid Layout */
+.grid-sub {
+    display: grid;
+    grid-template-columns: 1fr minmax(200px, 2fr) 1fr;
+    gap: 1rem;
+}
+.grid-sub > * {
+    display: grid;
+    grid: subgrid;
+}
+
+/* 6. Backdrop Blend Mode */
+.glass-blend {
+    backdrop-filter: blur(15px) saturate(150%);
+    background-blend-mode: overlay;
+    background: linear-gradient(135deg, var(--glass), color-mix(in hsl, var(--primary), white 50%));
+}
+
+/* 7. Motion Path */
+.orbit-path {
+    offset-path: path('M 0 0 A 50 50 0 0 1 100 0 A 50 50 0 0 1 0 0');
+    animation: orbit 4s infinite linear;
+}
+@keyframes orbit {
+    100% { offset-distance: 100%; }
+}
+
+/* 8. Mask Layering */
+.masked-cyber {
+    mask: url(#cyber-mask) layer, linear-gradient(45deg, transparent 40%, black);
+    -webkit-mask-composite: source-in;
+}
+
+/* 9. Custom Property Transitions */
+@property --glow-intensity {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+}
+.glow-transition {
+    --glow-intensity: 0;
+    transition: --glow-intensity 0.5s ease;
+}
+.glow-transition:hover {
+    --glow-intensity: 1;
+    box-shadow: 0 0 calc(var(--glow-intensity) * 20px) var(--glow);
+}
+
+/* 10. Viewport Units with Clamp */
+.dynamic-height {
+    height: clamp(50dvh, calc(60vh + var(--scroll-offset, 0px)), 100dvh);
+}
+
+/* 11. Accent Color Customization */
+.accent-shift {
+    accent-color: var(--primary);
+    outline: 2px solid color-mix(in oklab, var(--accent), transparent 50%);
+}
+
+/* 12. Trigonometric Functions */
+.wave-border {
+    border-radius: calc(12px + sin(var(--time, 0deg)) * 5px);
+    animation: wave-time 2s infinite;
+}
+@keyframes wave-time {
+    100% { --time: 360deg; }
+}
+
+/* 13. Scroll Snap Points */
+.snap-section {
+    scroll-snap-type: y mandatory;
+    overflow-y: auto;
+    height: 100dvh;
+}
+.snap-section > * {
+    scroll-snap-align: center;
+}
+
+/* 14. Advanced Blend Mode */
+.holo-blend {
+    background: var(--rgb-glow);
+    mix-blend-mode: difference;
+    isolation: isolate;
+}
+
+/* 15. Layered Shadows */
+.depth-shadow {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 0 20px color-mix(in lab, var(--dark), transparent 80%);
+}
+
+/* 16. Dynamic Clip Path */
+.clip-reveal {
+    clip-path: polygon(0 0, calc(var(--reveal, 0%) * 2) 0, 100% 100%, 0 100%);
+    transition: --reveal 0.5s ease;
+}
+.clip-reveal:hover { --reveal: 100%; }
+
+/* 17. Focus Within Styling */
+.focus-glow:focus-within {
+    outline: 3px solid var(--primary);
+    box-shadow: 0 0 15px var(--glow);
+}
+
+/* 18. Overscroll Behavior */
+.no-bounce {
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+}
+
+/* 19. Custom Cursor */
+.cyber-cursor {
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><circle cx="16" cy="16" r="10" fill="none" stroke="cyan"/></svg>') 16 16, auto;
+}
+
+/* 20. Text Gradient Fill */
+.gradient-text {
+    background: var(--rgb-glow);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* 21. Scrollbar Customization */
+.fancy-scroll {
+    scrollbar-color: var(--primary) var(--dark);
+    scrollbar-width: thin;
+}
+.fancy-scroll::-webkit-scrollbar-thumb {
+    background: var(--rgb-glow);
+    border-radius: 10px;
+}
+
+/* 22. Perspective Transform */
+.3d-flip {
+    transform: perspective(1000px) rotateY(var(--flip-angle, 0deg));
+    transition: --flip-angle 0.5s ease;
+}
+.3d-flip:hover { --flip-angle: 180deg; }
+
+/* 23. Environment Blend */
+.env-blend {
+    background: env(safe-area-inset-top) var(--dark);
+    mix-blend-mode: screen;
+}
+
+/* 24. Logical Properties */
+.logical-pad {
+    padding-inline: 2rem;
+    margin-block: 1rem;
+}
+
+/* 25. Aspect Ratio */
+.square-ratio {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+/* 26. Color Contrast */
+.contrast-text {
+    color: color-contrast(var(--background) vs white, black to AA);
+}
+
+/* 27. Sticky Hover */
+.sticky-hover {
+    position: sticky;
+    top: 10px;
+    transition: background 0.3s ease;
+}
+.sticky-hover:hover { background: var(--glass); }
+
+/* 28. Gap with Flex */
+.flex-gap {
+    display: flex;
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+/* 29. Filter Stack */
+.filter-stack {
+    filter: blur(2px) hue-rotate(var(--hue, 0deg)) brightness(1.2);
+    animation: hue-cycle 5s infinite;
+}
+@keyframes hue-cycle { 100% { --hue: 360deg; } }
+
+/* 30. Container Style Queries */
+@container (min-width: 300px) {
+    .adaptive-text {
+        font-size: clamp(1rem, 5cqi, 2rem);
+    }
+}
