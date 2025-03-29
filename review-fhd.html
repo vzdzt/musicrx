@@ -6,31 +6,32 @@
     <meta name="description" content="J. Cole’s 2014 Forest Hills Drive: 4.8B streams, 3x Platinum, full review updated March 29, 2025 on MusicRx.">
     <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, Roc Nation, Columbia, Vinylz, Illmind, hip-hop, 2025, Billboard, Spotify">
     <meta name="author" content="Veazy">
-    <meta property="og:title" content="მოლ0" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Celestial Gallery">
+    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: Astral Codex">
     <meta property="og:description" content="Full review of J. Cole’s 2014 masterpiece with 2025 updates on MusicRx.">
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/colee.jpeg">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-fhd.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@36966_">
-    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Celestial Gallery</title>
+    <title>MusicRx - 2014 Forest Hills Drive: Astral Codex</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #ff007a;
-            --secondary: #00eaff;
-            --glow: rgba(255, 0, 122, 0.6);
-            --glass: rgba(255, 255, 255, 0.05);
-            --border: rgba(255, 255, 255, 0.2);
-            --text: #f0f0f0;
+            --primary: #ff1e56;
+            --secondary: #00d4ff;
+            --glow: rgba(255, 30, 86, 0.7);
+            --glass: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.15);
+            --text: #e0e0e0;
+            --card-bg: rgba(10, 10, 20, 0.9);
         }
         body {
             background: #000;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            font-family: 'Roboto Mono', monospace;
+            font-family: 'IBM Plex Mono', monospace;
             color: var(--text);
         }
         #universe {
@@ -40,7 +41,6 @@
             width: 100%;
             height: 100%;
             z-index: -2;
-            background: #000;
         }
         .parallax-bg {
             position: fixed;
@@ -49,112 +49,111 @@
             width: 100%;
             height: 100vh;
             background: url('https://vzdzt.github.io/musicrx/colee.jpeg') center/cover no-repeat;
-            opacity: 0.12;
+            opacity: 0.1;
             z-index: -1;
         }
-        .gallery-container {
-            max-width: 1280px;
+        .codex-container {
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 100px 2rem 4rem;
+            padding: 120px 2rem 5rem;
             position: relative;
             z-index: 1;
         }
-        .gallery-header {
+        .codex-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
-        .gallery-title {
-            font-family: 'Cinzel', serif;
-            font-size: 4rem;
+        .codex-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.8rem;
             color: var(--primary);
-            text-shadow: 0 0 20px var(--glow);
-            letter-spacing: 2px;
+            text-shadow: 0 0 25px var(--glow);
+            letter-spacing: 3px;
             margin: 0;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         .album-image {
             display: block;
-            width: 600px;
+            width: 650px;
             max-width: 100%;
             margin: 2rem auto;
-            border: 2px solid var(--border);
-            border-radius: 15px;
-            box-shadow: 0 0 40px var(--glow);
-            transition: transform 0.4s ease;
+            border: 3px solid var(--primary);
+            border-radius: 10px;
+            box-shadow: 0 0 45px var(--glow);
+            transition: transform 0.5s ease;
         }
         .album-image:hover {
-            transform: scale(1.04);
+            transform: scale(1.03);
         }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            width: 600px;
+            gap: 2rem;
+            width: 650px;
             max-width: 100%;
-            margin: 2rem auto;
-            padding: 1.5rem;
+            margin: 3rem auto;
+            padding: 2rem;
             background: var(--glass);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(18px);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 15px;
         }
         .stats-item {
             text-align: center;
-            padding: 0.8rem;
+            padding: 1rem;
             transition: transform 0.3s ease;
         }
         .stats-item:hover {
-            transform: translateY(-5px);
+            transform: scale(1.1);
         }
         .stats-item span {
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
             color: var(--secondary);
             text-shadow: 0 0 10px var(--glow);
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.7rem;
         }
         .stats-item .counter {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             color: var(--text);
         }
         .flow-section {
-            margin: 4rem 0;
+            margin: 5rem 0;
         }
         .flow-card {
-            background: var(--glass);
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 2.5rem;
-            margin-bottom: 2.5rem;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
             transition: all 0.4s ease;
         }
         .flow-card:hover {
             border-color: var(--primary);
-            box-shadow: 0 0 25px var(--glow);
+            box-shadow: 0 0 30px var(--glow);
         }
         .flow-card h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
             color: var(--primary);
             text-shadow: 0 0 15px var(--glow);
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
+            margin-bottom: 1.8rem;
+            letter-spacing: 1.5px;
         }
-        .flow-card p {
-            font-size: 1.1rem;
-            line-height: 1.8;
+        .flow-card p, .flow-card .table-container {
+            font-size: 1.15rem;
+            line-height: 1.9;
             color: var(--text);
         }
         .annotation {
             position: relative;
             cursor: help;
             color: var(--secondary);
+            transition: color 0.3s ease;
+        }
+        .annotation:hover {
+            color: var(--primary);
         }
         .annotation:hover::after {
             content: attr(data-tip);
@@ -163,66 +162,67 @@
             left: 50%;
             transform: translateX(-50%);
             background: var(--glass);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
             color: var(--text);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             white-space: nowrap;
             z-index: 10;
+            box-shadow: 0 0 15px var(--glow);
         }
         .bento-tracks {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            padding: 2.5rem 0;
         }
         .bento-card {
-            background: var(--glass);
+            background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
+            border-radius: 15px;
+            padding: 2rem;
             transition: transform 0.3s ease;
         }
         .bento-card:hover {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
         .chart-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             margin: 3rem auto;
-            padding: 1rem;
+            padding: 2rem;
             background: var(--glass);
-            border-radius: 15px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px var(--glow);
         }
         .ratings-card {
-            background: var(--glass);
+            background: var(--card-bg);
             border: 2px solid var(--primary);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 4rem 0;
-            box-shadow: 0 0 50px var(--glow);
-            position: relative;
+            border-radius: 25px;
+            padding: 3.5rem;
+            margin: 5rem 0;
+            box-shadow: 0 0 60px var(--glow);
         }
         .ratings-card h2 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
         .rating-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 1.5rem 0;
-            padding-bottom: 1rem;
+            margin: 1.8rem 0;
+            padding-bottom: 1.2rem;
             border-bottom: 1px solid var(--border);
         }
         .rating-item span {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
         .progress-circle {
             position: relative;
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
         }
         .progress-circle svg {
             width: 100%;
@@ -231,15 +231,15 @@
         }
         .progress-circle circle {
             fill: none;
-            stroke-width: 6;
+            stroke-width: 8;
             stroke-linecap: round;
         }
         .progress-circle .bg {
-            stroke: #333;
+            stroke: #222;
         }
         .progress-circle .progress {
             stroke: var(--secondary);
-            stroke-dasharray: 251.2; /* 2 * π * 40 */
+            stroke-dasharray: 282.6; /* 2 * π * 45 */
             transition: stroke-dashoffset 1s ease;
         }
         .progress-circle span {
@@ -247,29 +247,48 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--primary);
-            text-shadow: 0 0 5px var(--glow);
+            text-shadow: 0 0 8px var(--glow);
         }
         .overall-rating {
             text-align: center;
-            margin-top: 2rem;
-            font-size: 1.8rem;
+            margin-top: 3rem;
+            font-size: 2rem;
             color: var(--primary);
-            text-shadow: 0 0 15px var(--glow quei);
+            text-shadow: 0 0 20px var(--glow);
+            font-family: 'Orbitron', sans-serif;
+        }
+        .social-feed {
+            padding: 2.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .twitter-tweet {
+            margin: 0 auto;
+            max-width: 550px;
         }
         @media (max-width: 768px) {
-            .gallery-title {
+            .codex-title {
                 font-size: 2.5rem;
+            }
+            .album-image, .stats-grid {
+                width: 100%;
+                max-width: 450px;
             }
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
             }
             .flow-card {
-                padding: 1.5rem;
+                padding: 2rem;
             }
             .bento-tracks {
                 grid-template-columns: 1fr;
+            }
+            .ratings-card {
+                padding: 2.5rem;
             }
         }
     </style>
@@ -277,9 +296,9 @@
 <body>
     <canvas id="universe"></canvas>
     <div class="parallax-bg"></div>
-    <div class="gallery-container">
-        <div class="gallery-header">
-            <h1 class="gallery-title">2014 Forest Hills Drive</h1>
+    <div class="codex-container">
+        <div class="codex-header">
+            <h1 class="codex-title">2014 Forest Hills Drive</h1>
             <img class="album-image" src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
             <div class="stats-grid">
                 <div class="stats-item">
@@ -311,7 +330,7 @@
             </div>
             <div class="flow-card">
                 <h2>Production & Sound</h2>
-                <p>Cole, Vinylz, Illmind, and Ron Gilmore forged this at Perfect Sound Studios (LA) and Jungle City Studios (NYC). <span class="annotation" data-tip="Jazzy brass loop">“No Role Modelz”</span> loops, <span class="annotation" data-tip="Soulful pianos">“Apparently”</span> hums, and <span class="annotation" data-tip="Crisp drums">“Fire Squad”</span> bangs—smoother than <em>Born Sinner</em>’s grit, it’s a cohesive vibe echoing in 2025’s introspective rap wave.</p>
+                <p>Cole, Vinylz, Illmind, and Ron Gilmore forged this at Perfect Sound Studios (LA) and Jungle City Studios (NYC). <span class="annotation" data-tip="Jazz brass loop">“No Role Modelz”</span> loops, <span class="annotation" data-tip="Soulful pianos">“Apparently”</span> hums, and <span class="annotation" data-tip="Crisp drums">“Fire Squad”</span> bangs—smoother than <em>Born Sinner</em>’s grit, it’s a cohesive vibe echoing in 2025’s introspective rap wave.</p>
             </div>
             <div class="flow-card">
                 <h2>Features</h2>
@@ -334,7 +353,17 @@
             </div>
             <div class="flow-card">
                 <h2>Awards Recognition</h2>
-                <p>Snagged Best Rap Album in 2016, backed by 3x Platinum and 4.8B streams by 2025.</p>
+                <div class="table-container">
+                    <table class="trend-table awards-table" style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
+                        <thead><tr><th style="padding: 0.8rem; color: var(--primary);">Category</th><th style="padding: 0.8rem; color: var(--primary);">Year</th><th style="padding: 0.8rem; color: var(--primary);">Result</th></tr></thead>
+                        <tbody>
+                            <tr><td style="padding: 0.8rem;">Album of the Year</td><td style="padding: 0.8rem;">2016</td><td style="padding: 0.8rem;">Nominated</td></tr>
+                            <tr><td style="padding: 0.8rem;">Best Rap Album</td><td style="padding: 0.8rem;">2016</td><td style="padding: 0.8rem;">Won</td></tr>
+                            <tr><td style="padding: 0.8rem;">Best Rap Performance (“No Role Modelz”)</td><td style="padding: 0.8rem;">2016</td><td style="padding: 0.8rem;">Nominated</td></tr>
+                        </tbody>
+                    </table>
+                    <p>Snagged Best Rap Album in 2016, backed by 3x Platinum and 4.8B streams by 2025.</p>
+                </div>
             </div>
             <div class="flow-card">
                 <h2>Legacy & Reception</h2>
@@ -352,8 +381,8 @@
                     <span>Originality (18/20)</span>
                     <div class="progress-circle">
                         <svg>
-                            <circle class="bg" cx="40" cy="40" r="40"></circle>
-                            <circle class="progress" cx="40" cy="40" r="40" style="stroke-dashoffset: 25.12;"></circle>
+                            <circle class="bg" cx="45" cy="45" r="45"></circle>
+                            <circle class="progress" cx="45" cy="45" r="45" style="stroke-dashoffset: 28.26;"></circle>
                         </svg>
                         <span>90%</span>
                     </div>
@@ -363,8 +392,8 @@
                     <span>Production (17/20)</span>
                     <div class="progress-circle">
                         <svg>
-                            <circle class="bg" cx="40" cy="40" r="40"></circle>
-                            <circle class="progress" cx="40" cy="40" r="40" style="stroke-dashoffset: 37.68;"></circle>
+                            <circle class="bg" cx="45" cy="45" r="45"></circle>
+                            <circle class="progress" cx="45" cy="45" r="45" style="stroke-dashoffset: 42.39;"></circle>
                         </svg>
                         <span>85%</span>
                     </div>
@@ -374,8 +403,8 @@
                     <span>Lyrics (18/20)</span>
                     <div class="progress-circle">
                         <svg>
-                            <circle class="bg" cx="40" cy="40" r="40"></circle>
-                            <circle class="progress" cx="40" cy="40" r="40" style="stroke-dashoffset: 25.12;"></circle>
+                            <circle class="bg" cx="45" cy="45" r="45"></circle>
+                            <circle class="progress" cx="45" cy="45" r="45" style="stroke-dashoffset: 28.26;"></circle>
                         </svg>
                         <span>90%</span>
                     </div>
@@ -385,8 +414,8 @@
                     <span>Enjoyment (17/20)</span>
                     <div class="progress-circle">
                         <svg>
-                            <circle class="bg" cx="40" cy="40" r="40"></circle>
-                            <circle class="progress" cx="40" cy="40" r="40" style="stroke-dashoffset: 37.68;"></circle>
+                            <circle class="bg" cx="45" cy="45" r="45"></circle>
+                            <circle class="progress" cx="45" cy="45" r="45" style="stroke-dashoffset: 42.39;"></circle>
                         </svg>
                         <span>85%</span>
                     </div>
@@ -396,8 +425,8 @@
                     <span>Consistency (16/20)</span>
                     <div class="progress-circle">
                         <svg>
-                            <circle class="bg" cx="40" cy="40" r="40"></circle>
-                            <circle class="progress" cx="40" cy="40" r="40" style="stroke-dashoffset: 50.24;"></circle>
+                            <circle class="bg" cx="45" cy="45" r="45"></circle>
+                            <circle class="progress" cx="45" cy="45" r="45" style="stroke-dashoffset: 56.52;"></circle>
                         </svg>
                         <span>80%</span>
                     </div>
@@ -409,7 +438,12 @@
             </div>
             <div class="flow-card">
                 <h2>Recent Buzz</h2>
-                <p>X posts from March 2025 highlight J. Cole’s Fayetteville tour and “Love Yourz” resurgence.</p>
+                <div class="social-feed">
+                    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">J. Cole usually drops new music around the time of Dreamville Fest…<br><br>Just saying 🫣</p>— Team DREAMVILLE (@TeamDreamville) <a href="https://twitter.com/TeamDreamville/status/1905692433738068091?ref_src=twsrc%5Etfw">March 28, 2025</a></blockquote>
+                    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">J. Cole shooting video at his childhood home in Fayetteville. 👀 <a href="https://t.co/ATBvoyVzI3">pic.twitter.com/ATBvoyVzI3</a></p>— Cole World (@JColeVillle) <a href="https://twitter.com/JColeVillle/status/1904145896041857223?ref_src=twsrc%5Etfw">March 24, 2025</a></blockquote>
+                    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">WOW: Jackson State’s marching band Sonic Boom of the South absolutely killed this rendition of J. Cole’s ‘cLOUDs’ 👏🏼<br><br>And for all the Severance fans out there, this band was one of the influences for Tramell Tillman’s performance in the S2 finale <a href="https://t.co/D1TCsclexV">pic.twitter.com/D1TCsclexV</a></p>— Joey (@gothamhiphop) <a href="https://twitter.com/gothamhiphop/status/1904306585221857640?ref_src=twsrc%5Etfw">March 24, 2025</a></blockquote>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
             </div>
             <div class="flow-card">
                 <h2>Sources</h2>
@@ -426,7 +460,7 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             const ctx = canvas.getContext('2d');
-            for (let i = 0; i < 200; i++) {
+            for (let i = 0; i < 250; i++) {
                 ctx.fillStyle = `rgba(255, 255, 255, ${Math.random()})`;
                 ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2);
             }
@@ -470,29 +504,41 @@
                         label: 'Streams (Billions)',
                         data: [0.1, 1.5, 3.2, 4.8],
                         borderColor: 'var(--primary)',
-                        backgroundColor: 'rgba(255, 0, 122, 0.2)',
+                        backgroundColor: 'rgba(255, 30, 86, 0.3)',
                         tension: 0.4,
-                        fill: true
+                        fill: true,
+                        pointBackgroundColor: 'var(--secondary)',
+                        pointBorderColor: 'var(--primary)',
+                        pointRadius: 5,
+                        pointHoverRadius: 8
                     }]
                 },
                 options: {
                     responsive: true,
                     scales: {
-                        y: { beginAtZero: true, title: { display: true, text: 'Streams (B)', color: 'var(--text)' } },
-                        x: { title: { display: true, text: 'Year', color: 'var(--text)' } }
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Streams (B)', color: 'var(--text)', font: { family: 'Orbitron' } },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        x: {
+                            title: { display: true, text: 'Year', color: 'var(--text)', font: { family: 'Orbitron' } },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        }
                     },
                     plugins: {
-                        legend: { display: false }
+                        legend: { display: false },
+                        tooltip: { backgroundColor: 'var(--glass)', titleFont: { family: 'Orbitron' }, bodyFont: { family: 'IBM Plex Mono' } }
                     }
                 }
             });
 
             // GSAP Animations
-            gsap.from('.gallery-title', { opacity: 0, y: -30, duration: 1.5 });
-            gsap.from('.album-image', { opacity: 0, scale: 0.9, duration: 1, delay: 0.5 });
-            gsap.from('.stats-item', { opacity: 0, y: 20, duration: 0.8, stagger: 0.2, delay: 1 });
-            gsap.from('.flow-card', { opacity: 0, y: 30, duration: 1, stagger: 0.2, scrollTrigger: { trigger: '.flow-section', start: 'top 80%' } });
-            gsap.from('.ratings-card', { opacity: 0, scale: 0.95, duration: 1.2, scrollTrigger: { trigger: '.ratings-card', start: 'top 80%' } });
+            gsap.from('.codex-title', { opacity: 0, y: -40, duration: 1.5, ease: 'power2.out' });
+            gsap.from('.album-image', { opacity: 0, scale: 0.9, duration: 1.2, delay: 0.5, ease: 'back.out(1.7)' });
+            gsap.from('.stats-item', { opacity: 0, y: 30, duration: 0.8, stagger: 0.2, delay: 1, ease: 'power2.out' });
+            gsap.from('.flow-card', { opacity: 0, y: 40, duration: 1, stagger: 0.3, scrollTrigger: { trigger: '.flow-section', start: 'top 85%' } });
+            gsap.from('.ratings-card', { opacity: 0, scale: 0.95, duration: 1.5, scrollTrigger: { trigger: '.ratings-card', start: 'top 85%' } });
         });
     </script>
 </body>
