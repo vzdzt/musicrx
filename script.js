@@ -581,3 +581,204 @@ if (typeof webgazer !== 'undefined') {
         }
     }).begin();
 }
+// 43. Custom Paint API for Neon Drip Effect with Theme Sync
+if ('paintWorklet' in CSS) {
+    const neonDripWorklet = `
+        class NeonDripPainter {
+            static get inputProperties() {
+                return ['--drip-offset', '--primary', '--glow'];
+            }
+            paint(ctx, size, properties) {
+                const dripOffset = parseFloat(properties.get('--drip-offset')) || 0;
+                const primaryColor = properties.get('--primary').toString() || 'rgba(0, 255, 255, 0.5)';
+                const glowColor = properties.get('--glow').toString() || 'rgba(0, 247, 255, 0.5)';
+                const { width, height } = size;
+
+                ctx.fillStyle = primaryColor;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = glowColor;
+
+                ctx.beginPath();
+                for (let x = 0; x < width; x += 5) {
+                    const y = Math.sin(x * 0.05 + dripOffset * 0.1) * 30 + height / 2;
+                    ctx.arc(x, y, 4, 0, Math.PI * 2);
+                }
+                ctx.fill();
+            }
+        }
+        registerPaint('neon-drip', NeonDripPainter);
+    `;
+    const blob = new Blob([neonDripWorklet], { type: 'application/javascript' });
+    const url = URL.createObjectURL(blob);
+    CSS.paintWorklet.addModule(url).then(() => {
+        console.log('Neon Drip Paint Worklet loaded with theme support.');
+    }).catch(err => {
+        console.error('Failed to load Neon Drip Worklet:', err);
+    });
+} else {
+    console.warn('Custom Paint API not supported.');
+}
+
+// 44. Enhanced Starfield with Theme-Driven Colors
+function syncStarfieldWithTheme() {
+    if (!starField || !starField.geometry.attributes.color) return;
+    const rootStyle = getComputedStyle(document.documentElement);
+    const primary = rootStyle.getPropertyValue('--primary').trim();
+    const secondary = rootStyle.getPropertyValue('--secondary').trim();
+    const colorArray = starField.geometry.attributes.color.array;
+
+    for (let i = 0; i < colorArray.length; i += 3) {
+        const color = new THREE.Color(i % 6 === 0 ? primary : secondary);
+        colorArray[i] = color.r;
+        colorArray[i + 1] = color.g;
+        colorArray[i + 2] = color.b;
+    }
+    starField.geometry.attributes.color.needsUpdate = true;
+}
+document.getElementById('themeToggle')?.addEventListener('click', syncStarfieldWithTheme);
+
+// 45. Audio Visualizer with Theme Colors
+function enhancedAudioVisualizer() {
+    const audio = document.getElementById('bgMusic');
+    if (!audio) return;
+    const context = new AudioContext();
+    const source = context.createMediaElementSource(audio);
+    const analyser = context.createAnalyser();
+    source.connect(analyser);
+    analyser.connect(context.destination);
+    analyser.fftSize = 512; // Higher resolution
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    const canvas = document.createElement('canvas');
+    canvas.className = 'audio-visualizer';
+    document.body.appendChild(canvas);
+    canvas.width = window.innerWidth * 0.8;
+    canvas.height = 200;
+    const ctx = canvas.getContext('2d');
+
+    function draw() {
+        requestAnimationFrame(draw);
+        const rootStyle = getComputedStyle(document.documentElement);
+        const primary = rootStyle.getPropertyValue('--primary').trim();
+        const glow = rootStyle.getPropertyValue('--glow').trim();
+
+        analyser.getByteFrequencyData(dataArray);
+        ctx.fillStyle = 'var(--dark)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const barWidth = (canvas.width / bufferLength) * 2;
+        let x = 0;
+        for (let i = 0; i < bufferLength; i++) {
+            const barHeight = dataArray[i] * 1.5;
+            ctx.fillStyle = `color-mix(in srgb, ${primary}, ${glow} ${i % 2 ? 70 : 30}%)`;
+            ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+            x += barWidth + 1;
+        }
+    }
+    draw();
+}
+document.getElementById('musicToggle')?.removeEventListener('click', audioVisualizer); // Replace old version
+document.getElementById('musicToggle')?.addEventListener('click', enhancedAudioVisualizer);
+
+// 46. Expanded Scroll Timeline Effects
+if ('ScrollTimeline' in window) {
+    const scrollTimeline = new ScrollTimeline({
+        source: document.documentElement,
+        orientation: 'block',
+    });
+    document.querySelectorAll('.glass-card').forEach(el => {
+        el.animate(
+            { transform: ['translateY(50px)', 'translateY(0)'], opacity: [0, 1] },
+            { timeline: scrollTimeline, duration: 1, fill: 'both' }
+        );
+    });
+    document.querySelectorAll('.navbar').forEach(el => {
+        el.animate(
+            { backgroundColor: ['var(--card-background)', 'color-mix(in srgb, var(--primary), transparent 80%)'] },
+            { timeline: scrollTimeline, duration: 1 }
+        );
+    });
+}
+
+// 47. WebGPU Particle System Upgrade
+async function enhancedWebGPU() {
+    if (!navigator.gpu) return console.warn('WebGPU not supported');
+    const adapter = await navigator.gpu.requestAdapter();
+    const device = await adapter.requestDevice();
+    const canvas = document.getElementById('gpu-particles') || document.createElement('canvas');
+    canvas.id = 'gpu-particles';
+    document.body.appendChild(canvas);
+    const context = canvas.getContext('webgpu');
+    context.configure({ device, format: 'bgra8unorm', alphaMode: 'premultiplied' });
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particleCount = 10000;
+    const particles = new Float32Array(particleCount * 4); // x, y, vx, vy
+    for (let i = 0; i < particleCount * 4; i += 4) {
+        particles[i] = Math.random() * canvas.width;
+        particles[i + 1] = Math.random() * canvas.height;
+        particles[i + 2] = (Math.random() - 0.5) * 2;
+        particles[i + 3] = (Math.random() - 0.5) * 2;
+    }
+
+    const particleBuffer = device.createBuffer({
+        size: particles.byteLength,
+        usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST,
+    });
+    device.queue.writeBuffer(particleBuffer, 0, particles);
+
+    // Placeholder for shader and render pipeline (simplified)
+    console.log('WebGPU particle system initialized. Add shaders for rendering.');
+}
+initWebGPU = enhancedWebGPU; // Override the original
+initWebGPU();
+
+// 48. Optimized Hover Glow with CSS Variables
+document.querySelectorAll('.glass-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.setProperty('--glow-intensity', '1');
+    });
+    card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--glow-intensity', '0');
+    });
+});
+
+// 49. Polished Speech Synthesis with Theme Voices
+function enhancedAnnounceTheme() {
+    const theme = localStorage.getItem('currentTheme');
+    const msg = new SpeechSynthesisUtterance(`Theme changed to ${localStorage.getItem('currentThemeTitle')}`);
+    const voices = speechSynthesis.getVoices();
+    const voiceMap = {
+        'neon-future': voices.find(v => v.name.includes('Google US')) || voices[0],
+        'cyber-punk': voices.find(v => v.name.includes('Microsoft')) || voices[1],
+        'normal': voices.find(v => v.name.includes('Samantha')) || voices[2],
+    };
+    msg.voice = voiceMap[theme] || voices[Math.floor(Math.random() * voices.length)];
+    msg.pitch = theme.includes('neon') ? 1.4 : 1.2;
+    msg.rate = theme.includes('cyber') ? 1.3 : 1.1;
+    window.speechSynthesis.speak(msg);
+}
+document.getElementById('themeToggle')?.removeEventListener('click', announceTheme);
+document.getElementById('themeToggle')?.addEventListener('click', enhancedAnnounceTheme);
+
+// 50. Performance Tweaks
+window.addEventListener('resize', debounce(() => {
+    if (renderer && camera) {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+}, 100));
+
+// Optimize Three.js render loop
+function optimizedAnimate() {
+    requestAnimationFrame(optimizedAnimate);
+    const time = Date.now() * 0.001;
+    starField.rotation.x += 0.0002;
+    starField.rotation.y += 0.0003;
+    starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+    renderer.render(scene, camera);
+}
+if (starField) {
+    optimizedAnimate(); // Replace the original animate call
+}
