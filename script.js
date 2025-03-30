@@ -782,3 +782,20 @@ function optimizedAnimate() {
 if (starField) {
     optimizedAnimate(); // Replace the original animate call
 }
+// 51. Optimize Subpage Loading
+if (window.location.pathname.includes('reviews.html')) {
+    // Disable Scroll Timeline for reviews page
+    if ('ScrollTimeline' in window) {
+        document.querySelectorAll('.glass-card').forEach(el => {
+            el.getAnimations().forEach(anim => anim.cancel()); // Cancel Scroll Timeline animations
+        });
+        console.log('Scroll Timeline disabled for reviews.html');
+    }
+    // Skip WebGPU on reviews page
+    initWebGPU = () => console.log('WebGPU skipped on reviews.html');
+    // Simplify audio visualizer
+    document.getElementById('musicToggle')?.removeEventListener('click', enhancedAudioVisualizer);
+    document.getElementById('musicToggle')?.addEventListener('click', () => {
+        console.log('Simplified audio toggle on reviews.html');
+    });
+}
