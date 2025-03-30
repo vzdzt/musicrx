@@ -636,7 +636,7 @@ function syncStarfieldWithTheme() {
     starField.geometry.attributes.color.needsUpdate = true;
 }
 document.getElementById('themeToggle')?.addEventListener('click', syncStarfieldWithTheme);
-
+/*
 // 45. Audio Visualizer with Theme Colors
 function enhancedAudioVisualizer() {
     const audio = document.getElementById('bgMusic');
@@ -678,7 +678,8 @@ function enhancedAudioVisualizer() {
 }
 document.getElementById('musicToggle')?.removeEventListener('click', audioVisualizer); // Replace old version
 document.getElementById('musicToggle')?.addEventListener('click', enhancedAudioVisualizer);
-
+*/
+/*
 // 46. Expanded Scroll Timeline Effects
 if ('ScrollTimeline' in window) {
     const scrollTimeline = new ScrollTimeline({
@@ -698,7 +699,8 @@ if ('ScrollTimeline' in window) {
         );
     });
 }
-
+*/
+/*
 // 47. WebGPU Particle System Upgrade
 async function enhancedWebGPU() {
     if (!navigator.gpu) return console.warn('WebGPU not supported');
@@ -732,7 +734,8 @@ async function enhancedWebGPU() {
 }
 initWebGPU = enhancedWebGPU; // Override the original
 initWebGPU();
-
+*/
+/*
 // 48. Optimized Hover Glow with CSS Variables
 document.querySelectorAll('.glass-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
@@ -742,7 +745,7 @@ document.querySelectorAll('.glass-card').forEach(card => {
         card.style.setProperty('--glow-intensity', '0');
     });
 });
-
+*/
 // 49. Polished Speech Synthesis with Theme Voices
 function enhancedAnnounceTheme() {
     const theme = localStorage.getItem('currentTheme');
@@ -769,7 +772,7 @@ window.addEventListener('resize', debounce(() => {
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
 }, 100));
-
+/*
 // Optimize Three.js render loop
 function optimizedAnimate() {
     requestAnimationFrame(optimizedAnimate);
@@ -782,6 +785,7 @@ function optimizedAnimate() {
 if (starField) {
     optimizedAnimate(); // Replace the original animate call
 }
+*/
 // 51. Optimize Subpage Loading
 if (window.location.pathname.includes('reviews.html')) {
     // Disable Scroll Timeline for reviews page
