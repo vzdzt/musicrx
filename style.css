@@ -862,7 +862,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2;
+  z-index: -1;
 }
 
 /* Reset default margins, padding, and box-sizing */
@@ -902,6 +902,7 @@ body {
 .container {
   flex: 1;
   padding: 80px 1rem 2rem;
+  padding-bottom: 70px; /* Slightly more than footer height to avoid tight squeeze */
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
@@ -1083,101 +1084,39 @@ body {
 }
 
 /* Footer styling */
+
 .footer {
-  background: var(--dark);
-  background: rgba(10, 10, 10, 0.8);
-  @supports (backdrop-filter: blur(10px)) {
-    backdrop-filter: blur(10px);
-    background: var(--dark);
-  }
-  padding: 1rem 2rem;
-  border-top: 1px solid var(--border-color);
-  margin-top: auto;
-  z-index: 1001;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 60px;
-  width: 100%;
-  box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card-background);
+    padding: 0.5rem 1rem;
+    max-height: 60px;
+    overflow: hidden;
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
 }
-
-/* Footer logo container */
-.footer .nav-logo {
-  flex: 0 0 auto;
-  margin-left: 0;
+.footer .nav-logo, .footer .footer-content, .footer .newsletter-form {
+    flex: 1;
 }
-
-/* Footer logo symbol icon styling */
-.footer .logo-symbol i {
-  color: var(--primary);
-  font-size: 1.5rem;
-  animation: pulse-heart 1.5s ease-in-out infinite;
-}
-
-/* Footer content container */
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  text-align: center;
-  margin: 0 1rem;
-}
-
-/* Footer paragraph styling */
-.footer-content p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text-color);
-}
-
-/* Footer newsletter form styling */
 .footer .newsletter-form {
-  flex: 0 0 auto;
-  display: flex;
-  gap: 0.5rem;
-  margin-right: 0;
+    display: flex;
+    gap: 0.5rem;
 }
-
-/* Newsletter input styling */
 .footer .newsletter-form input {
-  padding: 0.5rem;
-  border: 1px solid var(--border-color);
-  background: var(--glass);
-  color: var(--text-color);
-  border-radius: 5px;
-  font-family: 'Space Grotesk', sans-serif;
-  width: 150px;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
+    flex-grow: 1;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
 }
-
-/* Hover effect for newsletter input */
-.footer .newsletter-form input:hover {
-  box-shadow: 0 0 10px var(--primary);
-}
-
-/* Newsletter input placeholder styling */
-.footer .newsletter-form input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-/* Newsletter button styling */
 .footer .newsletter-form button {
-  background: var(--glass);
-  border: 1px solid var(--border-color);
-  color: var(--primary);
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  font-family: 'Syncopate', sans-serif;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1rem;
 }
-
 /* Hover effect for newsletter button */
 .footer .newsletter-form button:hover {
   background: var(--rgb-glow);
@@ -1217,6 +1156,26 @@ body {
 /* Search input placeholder styling */
 .search-input::placeholder {
   color: rgba(255, 255, 255, 0.5);
+}
+.dropdown {
+    position: relative; /* Ensure it’s a stacking context */
+    z-index: 1100; /* Higher than navbar and canvas */
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Aligns below toggle */
+    right: 0;
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    z-index: 1100; /* Match or exceed .dropdown */
+    min-width: 200px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.dropdown-menu.active {
+    display: block; /* Ensure it shows when toggled */
 }
 
 /* Dropdown container styling */
