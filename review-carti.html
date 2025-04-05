@@ -1,359 +1,828 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="review-carti">
 <head>
-    <!-- Meta tags for SEO and social sharing -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore Playboi Carti’s self-titled mixtape (2017) review: a trap awakening, updated to March 2025 with track highlights on MusicRx.">
-    <meta name="keywords" content="Playboi Carti, Playboi Carti Mixtape, trap, Pi’erre Bourne, Harry Fraud, Southside, MusicRx, 2025">
-    <meta name="author" content="Veazy">
-    <meta property="og:title" content="MusicRx - Playboi Carti: A Raw Awakening in the Trap Abyss">
-    <meta property="og:description" content="Dive into Playboi Carti’s self-titled mixtape review: a raw trap revolution from 2017, refreshed with 2025 updates on MusicRx.">
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/selff.jpg">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-carti.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@36966_">
     <title>MusicRx - Playboi Carti: A Raw Awakening in the Trap Abyss</title>
-
-    <!-- External stylesheets for icons and fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <style>
-        /* Ensure dark background for the entire page */
-        body {
-            background: #0a0a0a !important;
+        :root[data-theme="normal"] {
+            --primary: #797070; /* Grayish Fuchsia */
+            --secondary: #666060; /* Slightly darker shade */
+            --accent: #8C8080; /* Lighter variant */
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(121, 112, 112, 0.8);
+            --glass: rgba(121, 112, 112, 0.1);
+            --border: rgba(153, 144, 144, 0.3);
+            --glow: rgba(121, 112, 112, 0.7);
+            --rgb-glow: linear-gradient(45deg, #797070, #8C8080);
+            --dark: #403C3C;
         }
 
-        /* Highlight color for emphasized text (e.g., album titles, artists) */
-        .highlight {
-            color: #797070; /* Grayish Fuchsia */
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
+        }
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: var(--background);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
             font-weight: bold;
         }
 
-        /* Highlight color for overall rating heading */
-        .overall-rating h3 {
-            color: #797070;
+        .dropdown {
+            position: relative;
+            z-index: 1000;
         }
 
-        /* Glitch effect for the album title at the top */
-        .review-grad-glitch {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #797070;
-            text-shadow: 0 0 10px #797070;
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            transform: scale(1.1);
+            outline: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--background);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
-            position: relative;
+            display: block;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
         }
 
-        /* Pseudo-elements for glitch effect */
-        .review-grad-glitch::before,
-        .review-grad-glitch::after {
-            content: attr(data-text);
-            position: absolute;
+        .dropdown-menu a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-        }
-
-        /* Cyan glitch effect */
-        .review-grad-glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #00ffea;
-            animation: glitch-1 2s linear infinite reverse;
-        }
-
-        /* Highlight color glitch effect */
-        .review-grad-glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #797070;
-            animation: glitch-2 3s linear infinite;
-        }
-
-        /* Glitch animation keyframes */
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); }
-            5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); }
-            15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); }
-            100% { clip-path: inset(0 0 90% 0); }
-        }
-
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); }
-            5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); }
-            15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
-        }
-
-        /* Glass card styling for all sections (e.g., Track Highlights, Ratings) */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Hover effect for glass cards */
-        .glass-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(121, 112, 112, 0.3); /* Grayish Fuchsia in RGB for hover shadow */
-        }
-
-        /* Glass card styling specifically for the album cover image */
-        .glass-card.grad-card {
-            padding: 20px;
-            border-radius: 10px;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            transition: transform 0.3s ease;
+        }
+
+        .nav-logo {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
             overflow: hidden;
-            max-width: 100%;
         }
 
-        /* Hover effect for album cover card */
-        .glass-card.grad-card:hover {
-            transform: scale(1.05);
-        }
-
-        /* Album cover image styling */
-        .glass-card.grad-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            display: block;
-        }
-
-        /* Zoom effect for album cover image on hover */
-        .glass-card.grad-card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Styling for individual track highlight items */
-        .track-highlight-item {
-            padding: 0.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* Hover effect for track highlight items */
-        .track-highlight-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 10px rgba(121, 112, 112, 0.2);
-        }
-
-        /* Table styling for charts, certifications, and awards */
-        .trend-table {
+        .hero-image {
+            position: absolute;
             width: 100%;
-            border-collapse: collapse;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        .hero-content {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .album-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .album-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .album-title {
+            font-size: clamp(1rem, 1.5vw, 1.75rem);
+            color: var(--text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
+        }
+
+        .album-quote {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+        .album-image {
+            width: 100%;
+            height: auto;
+            max-width: calc(900px - 4rem - 10px);
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--primary-rgb), 0.3);
+            transition: all 0.4s ease;
+            object-fit: contain;
+        }
+
+        .album-image:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--primary-rgb), 0.4);
+        }
+
+        .album-intro-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 800px) {
+            .album-card, .album-intro-container {
+                max-width: 90vw;
+                padding: 1.5rem;
+            }
+            .album-image {
+                max-width: calc(90vw - 3rem - 10px);
+            }
+            .album-title {
+                font-size: clamp(1.5rem, 5vw, 3rem);
+            }
+            .album-quote {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                max-width: calc(900px - 4rem - 10px);
+            }
+        }
+
+        .album-intro {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .album-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(var(--primary-rgb), 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, var(--background));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-container h2 {
+            margin: 0 0 1rem 0;
+            padding: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .chart-container canvas {
+            max-height: 250px;
+            width: 100%;
+        }
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .rating-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .rating-score {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--glass);
+            border-radius: 5px;
+            overflow: hidden;
             margin: 1rem 0;
         }
 
-        /* Table cell styling */
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 1s ease;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .trend-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
         .trend-table th, .trend-table td {
-            padding: 0.8rem;
+            padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid var(--border);
         }
 
-        /* Table header styling with highlight color and no shadow */
         .trend-table th {
-            color: #797070;
-            text-shadow: none !important;
+            background: rgba(121, 112, 112, 0.2);
+            color: var(--primary);
+            text-transform: uppercase;
         }
 
-        /* Ensure normal font style for most elements */
-        body, .container, p, h2, ul, li {
-            font-style: normal !important;
+        .trend-table tr:last-child td {
+            border-bottom: none;
         }
 
-        /* Normal font style for glass cards and their content */
-        .glass-card, .glass-card * {
-            font-style: normal !important;
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .content-section {
+                max-width: 90vw;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                max-width: 90vw;
+            }
+
+            .album-card {
+                max-width: 90vw;
+            }
+
+            .stats-container {
+                max-width: 90vw;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .shero {
+                padding: 120px 1rem;
+                min-height: 100vh;
+            }
+
+            .album-image {
+                width: 100%;
+                height: auto;
+                max-width: 90vw;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .review-card {
+                padding: 1rem;
+            }
+
+            .rating-card {
+                padding: 1rem;
+            }
+
+            .chart-container {
+                max-height: 250px;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .chart-container canvas {
+                max-height: 200px;
+            }
+
+            .dropdown-toggle {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .dropdown-menu {
+                width: 180px;
+                right: -10px;
+            }
+
+            .theme-toggle {
+                right: 1rem;
+            }
         }
 
-        /* Italic style for emphasized text and highlights */
-        em, .highlight em {
-            font-style: italic !important;
+        .track-highlights {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(121, 112, 112, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(121, 112, 112, 0.1);
+        }
+
+        .track-highlight-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
+        }
+
+        @keyframes rgbShift {
+            0% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .nav {
+            background: var(--background);
+        }
+
+        .dropdown-menu {
+            background: var(--background);
+        }
+
+        .album-card {
+            background: var(--background);
         }
     </style>
 </head>
 <body>
-    <!-- Cursor and background effects -->
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
 
-    <!-- Navigation bar -->
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="reviews.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
-        <!-- Glitch title for the mixtape -->
-        <h1 class="review-grad-glitch" data-text="PLAYBOI CARTI">PLAYBOI CARTI</h1>
-        <div class="review-content">
-            <!-- Subtitle and album cover -->
-            <h2>Playboi Carti: A Raw Awakening in the Trap Abyss</h2>
-            <div class="glass-card grad-card">
-                <img src="https://vzdzt.github.io/musicrx/selff.jpg" alt="Playboi Carti - Playboi Carti mixtape cover">
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/selftitled.jpeg" alt="Playboi Carti - Playboi Carti" class="hero-image">
+        <div class="hero-content">
+            <div class="album-header">
+                <h1 class="album-title">Playboi Carti</h1>
+                <p class="album-quote">"A Raw Awakening in the Trap Abyss"</p>
             </div>
-            <br>
-            <!-- Intro paragraph with key details -->
-            <p>Dropped on <span class="highlight">April 14, 2017</span> via <span class="highlight">AWGE</span> and <span class="highlight">Interscope</span>, Playboi Carti’s debut mixtape <em><span class="highlight">Playboi Carti</span></em> is a 15-track, 41-minute trap surge, produced by <span class="highlight">Pi’erre Bourne</span> and <span class="highlight">Southside</span>. Post-SoundCloud buzz from <span class="highlight">“Broke Boi”</span>, it peaked at No. 12 on the <span class="highlight">Billboard 200</span> with <span class="highlight">28,000 first-week units</span>. By <span class="highlight">March 15, 2025</span>, it’s Platinum-certified with over 1 million units, its cult status and a 2025 remix keeping its grayish glow alive. Veazy here—this raw awakening still pulses with trap’s unpolished spirit.</p>
+            <img src="https://vzdzt.github.io/musicrx/selftitled.jpeg" alt="Playboi Carti - Playboi Carti mixtape cover" class="album-image">
         </div>
-        <br>
-        <!-- Messaging and Theme section -->
-        <h2>The Messaging and Theme</h2>
-        <br>
-        <p>The cover—Carti sprawled with women, a pillow hiding his face, stamped <span class="highlight">“Parental Advisory”</span>—oozes hedonism, mirroring <em><span class="highlight">Playboi Carti</span></em>’s trap manifesto. It’s a defiant flex with a lean-soaked edge, flaunting excess in <span class="highlight">“Magnolia”</span>’s swagger—“I’m the big homie”—and hinting romance in <span class="highlight">“Half & Half”</span>’s fleeting vibe—“She my baby.” <span class="highlight">“wokeuplikethis*”</span> and <span class="highlight">“Location”</span> amplify street hustle—“Flexin’ on my exes”—blending bravado with mood. It’s a raw Atlanta pulse, unfiltered and addictive, a grayish testament to Carti’s rise that still resonates on X in 2025, where fans call it “the trap blueprint.”</p>
-        <br>
-        <!-- Production and Sound section -->
-        <h2>Production and Sound</h2>
-        <br>
-        <p><span class="highlight">Pi’erre Bourne</span>, <span class="highlight">Harry Fraud</span>, and <span class="highlight">Southside</span> craft <em><span class="highlight">Playboi Carti</span></em>’s hypnotic sound—minimalist trap with ethereal and pounding beats across its 15 tracks. Recorded at <span class="highlight">Tree Sound Studios</span> in Atlanta, <span class="highlight">“Magnolia”</span> rides a viral flute riff, <span class="highlight">“Location”</span> floats with dreamy synths, and <span class="highlight">“New Choppa”</span> thumps with ominous 808s—Carti’s mumbled, ad-lib-heavy flow, from playful to gritty, weaving a mood-driven tapestry. Pi’erre’s signature minimalist beats, born here, became a trap staple by 2025, though the 41-minute runtime’s repetition slightly dulls its edge, a minor flaw in its raw charm.</p>
-        <br>
-        <!-- Features section -->
-        <h2>Features</h2>
-        <br>
-        <p><em><span class="highlight">Playboi Carti</span></em> features <span class="highlight">Lil Uzi Vert</span> and <span class="highlight">A$AP Rocky</span>, adding electric sparks to Carti’s trap vision. <span class="highlight">Lil Uzi Vert</span> ignites <span class="highlight">“wokeuplikethis*”</span> and <span class="highlight">“Lookin”</span> with fiery verses, while <span class="highlight">A$AP Rocky</span> brings sleek menace to <span class="highlight">“New Choppa”</span>’s grit. Carti’s ad-lib-drenched delivery—playful chants, raw tones—dominates, ensuring features amplify without stealing his spotlight.</p>
-        <br>
-        <!-- Track Highlights section -->
-        <div class="glass-card">
-            <h2>Track Highlights</h2>
-            <!-- Each bullet point must be ~25 words -->
-            <p class="track-highlight-item"><span class="highlight">For Newcomers:</span> <span class="highlight">“Magnolia”</span>, <span class="highlight">“wokeuplikethis*”</span>—Flute riff and Uzi’s fire ignite a trap anthem, Carti’s slurred flex—“I’m the big homie”—a perfect entry to his SoundCloud rise.</p>
-            <p class="track-highlight-item"><span class="highlight">For The Dive:</span> <span class="highlight">“Location”</span>, <span class="highlight">“Half & Half”</span>—Dreamy synths and fleeting romance—“She my baby”—reveal Carti’s mood-driven depth beneath the trap surface.</p>
-            <p class="track-highlight-item"><span class="highlight">Hidden Gems:</span> <span class="highlight">“New Choppa”</span>, <span class="highlight">“dothatshit!”</span>—Rocky’s menace and playful skips—Carti’s 808 thumps and ad-libs shine, offering underrated trap grit and charm.</p>
-            <p class="track-highlight-item"><span class="highlight">Latest Obsessions:</span> <span class="highlight">“Magnolia (Remix 2025)”</span>—Coachella 2025’s hyped remix revives this classic, Carti’s energy electrifying—Veazy’s looping it nonstop.</p>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">1.8B</div>
+            <div class="stat-label">Streams</div>
         </div>
-        <br>
-        <!-- Previous Works section -->
-        <h2>Previous Works</h2>
-        <br>
-        <p>Carti’s path to <em><span class="highlight">Playboi Carti</span></em> included SoundCloud singles like <span class="highlight">“Broke Boi”</span> (<span class="highlight">2015</span>) and A$AP Mob ties. Early projects—<em><span class="highlight">THC: The High Chronical</span></em> (<span class="highlight">2011</span>) and <em><span class="highlight">Young Misfit</span></em> (<span class="highlight">2012</span>)—were lo-fi experiments. This mixtape refined his punk-trap chaos, paving the way for <em><span class="highlight">Die Lit</span></em> (<span class="highlight">2018</span>) and his 2025 festival resurgence with <em><span class="highlight">I Am Music</span></em>.</p>
-        <br>
-        <!-- Awards Recognition section -->
-        <h2>Grammy Wins & Nominations</h2>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Awards Recognition</span></h3>
-            <div class="table-container">
-                <table class="trend-table">
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Year</th>
-                            <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Best Rap Album</span></td>
-                            <td>2018</td>
-                            <td>Nominated</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Performance ("Magnolia")</span></td>
-                            <td>2018</td>
-                            <td>Nominated</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Song ("wokeuplikethis*")</span></td>
-                            <td>2018</td>
-                            <td>Nominated</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p><em><span class="highlight">Playboi Carti</span></em> earned nominations but no wins, its cultural impact enduring with Platinum status by 2025 and a lasting influence on SoundCloud trap’s evolution.</p>
+        <div class="stat-card">
+            <div class="stat-number">1x</div>
+            <div class="stat-label">Platinum</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">28K</div>
+            <div class="stat-label">First Week</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">#12</div>
+            <div class="stat-label">Billboard 200</div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Dropped April 14, 2017 via AWGE and Interscope, Playboi Carti’s debut mixtape <em>Playboi Carti</em> is a 15-track, 41-minute trap surge, produced by Pi’erre Bourne and Southside. It peaked at No. 12 on the Billboard 200 with 28,000 first-week units (Billboard). By April 5, 2025, it’s Platinum-certified (RIAA) with 1.8 billion Spotify streams, its cult status fueled by a 2025 remix. Veazy’s take: a raw trap awakening still pulsing.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p>Pi’erre Bourne, Harry Fraud, and Southside craft <em>Playboi Carti</em>’s hypnotic sound—minimalist trap with ethereal beats. Recorded at Tree Sound Studios in Atlanta, “Magnolia” rides a viral flute riff, “Location” floats with dreamy synths, and “New Choppa” thumps with 808s. Carti’s mumbled flow weaves a mood-driven tapestry, though repetition slightly dulls its 41-minute edge.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p>The cover—Carti sprawled with women, face hidden—sets a hedonistic tone for <em>Playboi Carti</em>’s trap manifesto. “Magnolia” swaggers “I’m the big homie,” “Half & Half” hints romance—“She my baby”—while “wokeuplikethis*” flexes “Flexin’ on my exes.” It’s a raw Atlanta pulse blending bravado and mood, lauded by Pitchfork as vibe-driven.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p><em>Playboi Carti</em> features Lil Uzi Vert and A$AP Rocky. Uzi ignites “wokeuplikethis*” and “Lookin” with fiery verses—“I was born to flex”—while Rocky adds sleek menace to “New Choppa.” Carti’s ad-lib-heavy delivery keeps the spotlight, amplifying features without losing his raw edge.</p>
             </div>
         </div>
-        <br>
-        <!-- Legacy & Reception section -->
-        <h2>Legacy & Reception</h2>
-        <br>
-        <p>Critics were mixed—Pitchfork’s <span class="highlight">7.8/10</span> lauded its vibe, while Rolling Stone’s 3.5/5 noted its simplicity. Fans on X in 2017 hailed it “trap’s new king,” echoing into <span class="highlight">March 15, 2025</span>, with a cult following, a 2025 anniversary remix, and streaming spikes. A viral Coachella 2025 “Magnolia” set—Carti in a gray suit commanding the crowd—reignited its legacy, cementing its role as a trap cornerstone.</p>
-        <br>
-        <!-- Chart Performance section -->
-        <h2>By the Numbers</h2>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Chart Performance</span></h3>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p>“Magnolia,” “wokeuplikethis*”—Flute riff and Uzi’s fire make trap anthems, Carti’s “I’m the big homie” a gateway to his SoundCloud rise.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For The Dive</h3>
+                    <p>“Location,” “Half & Half”—Dreamy synths and “She my baby” reveal Carti’s mood-driven depth beneath the trap surface.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p>“New Choppa,” “dothatshit!”—Rocky’s menace and playful skips shine, Carti’s 808s and ad-libs delivering underrated trap grit.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Latest Obsessions</h3>
+                    <p>“Magnolia (Remix 2025)”—Coachella 2025’s remix revives this classic, Carti’s energy electrifying, Veazy’s looping it in 2025.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p>Before <em>Playboi Carti</em>, SoundCloud singles like “Broke Boi” (2015) and A$AP Mob ties built buzz. Early lo-fi projects—<em>THC: The High Chronical</em> (2011), <em>Young Misfit</em> (2012)—hinted at his style. This mixtape refined his trap chaos, leading to <em>Die Lit</em> (2018) and <em>I Am Music</em> (2025, Billboard).</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p>Pitchfork’s 7.8/10 praised its vibe, Rolling Stone’s 3.5/5 noted simplicity. Platinum by 2025 (RIAA) and a viral Coachella 2025 “Magnolia” set cement its trap cornerstone status.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
+            <p><em>Playboi Carti</em> earned three 2018 Grammy nods—Best Rap Album, Best Rap Performance (“Magnolia”), Best Rap Song (“wokeuplikethis*”)—but no wins (Billboard), its impact enduring.</p>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Originality</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>Ad-lib trap reinvents Atlanta’s sound—Carti’s vibe carves a unique path, fresh for SoundCloud’s wave.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>Hypnotic beats weave a flawless trap tapestry—Pi’erre’s riffs shine, though repetition nudges it from perfection.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.0</div>
+                <h3>Lyrics</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%"></div>
+                </div>
+                <p>Vibe trumps depth—Carti’s ad-libs dazzle—but substance lags, delivering mood over meaning.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Enjoyment</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>Lean-drenched energy hooks every spin—minor lulls fade fast—a thrilling trap ride.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Consistency</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>Cohesive trap mood holds—some tracks blur into haze—but peaks keep it tight.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.9</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 89%"></div>
+                </div>
+                <p><em>Playboi Carti</em> ignites a raw trap storm—unpolished brilliance pulsing in 2025 with 1.8B streams. Veazy’s chasing its grayish glow.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Chart Performance</h2>
             <div class="table-container">
                 <table class="trend-table">
                     <thead>
                         <tr>
                             <th>Album</th>
                             <th>Highest Charting Song</th>
-                            <th>Peak Position (Billboard Hot 100)</th>
-                            <th>Streams (as of March 2025)</th>
+                            <th>Peak Position</th>
+                            <th>Streams (as of 04/05/2025)</th>
                             <th>Certification</th>
                             <th>Units Sold</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Playboi Carti</span> (2017)</td>
-                            <td><span class="highlight">“Magnolia”</span></td>
-                            <td>29</td>
-                            <td>1.8 billion</td>
-                            <td>Platinum</td>
-                            <td>1,200,000+</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Die Lit</span> (2018)</td>
-                            <td><span class="highlight">“Shoota”</span> (feat. Lil Uzi Vert)</td>
-                            <td>46</td>
-                            <td>2.5 billion</td>
-                            <td>Platinum</td>
-                            <td>1,100,000+</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Whole Lotta Red</span> (2020)</td>
-                            <td><span class="highlight">“@ Meh”</span></td>
-                            <td>35</td>
-                            <td>4.2 billion</td>
-                            <td>3x Platinum</td>
-                            <td>3,000,000+</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">I Am Music</span> (2025)</td>
-                            <td><span class="highlight">“All Red”</span></td>
-                            <td>15</td>
-                            <td>450 million</td>
-                            <td>Gold</td>
-                            <td>600,000+</td>
-                        </tr>
+                        <tr><td><em>Playboi Carti</em> (2017)</td><td>“Magnolia”</td><td>29</td><td>1.8B</td><td>Platinum</td><td>1.2M+</td></tr>
+                        <tr><td><em>Die Lit</em> (2018)</td><td>“Shoota”</td><td>46</td><td>2.5B</td><td>Platinum</td><td>1.1M+</td></tr>
+                        <tr><td><em>Whole Lotta Red</em> (2020)</td><td>“@ Meh”</td><td>35</td><td>4.2B</td><td>3x Platinum</td><td>3M+</td></tr>
+                        <tr><td><em>I Am Music</em> (2025)</td><td>“All Red”</td><td>15</td><td>450M</td><td>Gold</td><td>600K+</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <br>
-        <!-- Album Certifications section -->
-        <div class="glass-card">
-            <h3><span class="highlight">Album Certifications</span></h3>
+
+        <div class="review-card">
+            <h2 class="section-title">Album Certifications</h2>
             <div class="table-container">
                 <table class="trend-table">
                     <thead>
@@ -364,106 +833,174 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Playboi Carti</span></td>
-                            <td>Platinum</td>
-                            <td>1.2</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Die Lit</span></td>
-                            <td>Platinum</td>
-                            <td>1.1</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Whole Lotta Red</span></td>
-                            <td>3x Platinum</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">I Am Music</span></td>
-                            <td>Gold</td>
-                            <td>0.6</td>
-                        </tr>
+                        <tr><td><em>Playboi Carti</em></td><td>Platinum</td><td>1.2</td></tr>
+                        <tr><td><em>Die Lit</em></td><td>Platinum</td><td>1.1</td></tr>
+                        <tr><td><em>Whole Lotta Red</em></td><td>3x Platinum</td><td>3</td></tr>
+                        <tr><td><em>I Am Music</em></td><td>Gold</td><td>0.6</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <br>
-        <!-- Ratings section -->
-        <div class="glass-card">
-            <h2>Ratings</h2>
-            <!-- Each rating description must be ~25 words -->
-            <p><span class="highlight">Originality (18/20):</span> Ad-lib trap reinvents Atlanta’s sound—Carti’s vibe carves a unique path, rooted in tradition yet fresh for the SoundCloud wave.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> Hypnotic beats weave a flawless trap tapestry—Pi’erre’s riffs shine, though slight repetition nudges it from perfection.</p>
-            <p><span class="highlight">Lyrics and Messaging (16/20):</span> Vibe trumps depth—Carti’s ad-libs dazzle—but substance lags, delivering mood over meaning with lean-soaked energy.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> Lean-drenched energy hooks every spin—minor lulls fade fast—a thrilling ride that captures trap’s raw essence.</p>
-            <p><span class="highlight">Consistency (17/20):</span> Cohesive trap mood holds strong—some tracks blur into haze—but the peaks keep it a tight, unpolished gem.</p>
-            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (89/100):</span> 8.9/10</h3></p>
-            <!-- Final summary paragraph can be up to ~50 words -->
-            <p><em><span class="highlight">Playboi Carti</span></em> is a trap awakening—Carti’s raw energy ignites a lean-soaked storm that pulses with unpolished brilliance. Picture a neon-lit stage, Carti’s mumbled flow commanding the abyss—vibrant, revolutionary, unfiltered. Veazy’s replaying this in 2025, chasing that grayish glow of a trap icon’s genesis.</p>
-        </div>
-        <br>
-        <!-- Sources section -->
-        <div class="glass-card">
-            <h3><span class="highlight">Sources</span></h3>
-            <p>
-                Information on the web and posts found on X.
-            </p>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data from Billboard, RIAA, Spotify, and Pitchfork as of April 5, 2025.</p>
         </div>
     </div>
 
-    <!-- External scripts for animations and interactivity -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <div class="button-container"> 
+    <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+        <i class="fas fa-adjust"></i>
+    </button>
+    </div>
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            /* Prevent default transforms on non-image glass cards */
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
-                card.style.transform = 'none !important';
-                card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important';
-                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
+        document.addEventListener('DOMContentLoaded', function() {
+            // Starfield
+            let camera, renderer, starField, scene = null;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY= 0;
+            const canvas = document.getElementById('universe');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 1000;
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const starCount = 15000;
+
+            for (let i = 0; i < starCount; i++) {
+                vertices.push(
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000
+                );
+                const color = new THREE.Color();
+                color.setHSL(Math.random(), 0.7, 0.7);
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
             });
 
-            /* Hover effect for all glass cards */
-            document.querySelectorAll('.glass-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 0 20px rgba(121, 112, 112, 0.3)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = 'none';
-                });
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
             });
 
-            /* Hover effect for album cover card (grad-card) */
-            document.querySelectorAll('.grad-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.05)';
-                    card.style.transform = 'scale(1.05)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
-                    card.style.transform = 'scale(1)';
-                });
+            function animate() {
+                requestAnimationFrame(animate);
+                if (starField) {
+                    targetX += (mouseX - targetX) * 0.02;
+                    targetY += (mouseY - targetY) * 0.02;
+                    starField.rotation.x += 0.0002 + targetY * 0.05;
+                    starField.rotation.y += 0.0003 + targetX * 0.05;
+                    const time = Date.now() * 0.001;
+                    starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+                }
+               renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
             });
 
-            /* Hover effect for track highlight items */
-            document.querySelectorAll('.track-highlight-item').forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'scale(1.02)';
-                    item.style.boxShadow = '0 0 10px rgba(121, 112, 112, 0.2)';
-                });
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'scale(1)';
-                    item.style.boxShadow = 'none';
-                });
+            // Improved Dropdown functionality
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
+            });
+
+            // Chart
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2017', '2018', '2019', '2020', '2021', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [0.05, 0.3, 0.7, 1.0, 1.4, 1.8],
+                        borderColor: '#797070',
+                        backgroundColor: 'rgba(121, 112, 112, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
             });
         });
     </script>
