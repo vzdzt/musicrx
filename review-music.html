@@ -3,176 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dive into Playboi Carti’s MUSIC (2025) review: 302,000 first-week sales projected, a 30-track rap titan, updated March 2025 on MusicRx.">
-    <meta name="keywords" content="Playboi Carti, MUSIC, I AM MUSIC, Whole Lotta Red, 2025, Interscope, AWGE, Rolling Loud, Spotify">
-    <meta name="author" content="Veazy">
-    <meta property="og:title" content="MusicRx - MUSIC: Playboi Carti’s Chaotic Triumph Unleashed">
-    <meta property="og:description" content="Explore Playboi Carti’s MUSIC review: a 2025 rap juggernaut with 302,000 projected sales, dissected on MusicRx.">
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/iammusic.jpg">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-music.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@musicrx">
     <title>MusicRx - MUSIC: Playboi Carti’s Chaotic Triumph Unleashed</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <style>
+        :root[data-theme="normal"] {
+            --primary: #FF0000;
+            --secondary: #E50000;
+            --accent: #CC0000;
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(102, 0, 0, 0.8);
+            --glass: rgba(255, 0, 0, 0.1);
+            --border: rgba(153, 0, 0, 0.3);
+            --glow: rgba(255, 0, 0, 0.7);
+            --rgb-glow: linear-gradient(45deg, #FF0000, #E50000);
+            --dark: #660000;
+        }
+
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
+        }
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
+        }
+
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--background, #0a0a0a);
-            color: var(--text-color, #FFFFFF);
+            background: var(--background);
+            color: var(--text);
             overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
         }
-        .review-header {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
-            backdrop-filter: blur(15px);
-            padding: 1rem 2rem;
-            border-bottom: 2px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1002;
-            height: 60px;
-            box-sizing: border-box;
-            margin: 0;
-        }
-        .review-footer {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(255, 0, 0, 0.2));
-            backdrop-filter: blur(15px);
-            padding: 2rem;
-            border-top: 2px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 1001;
-        }
-        .container {
-            flex: 1;
-            padding: 100px 2rem 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            box-sizing: border-box;
-        }
+
         .glass-card {
-            background: var(--card-background, rgba(102, 0, 0, 0.25));
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            border: 2px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            padding: 3rem;
-            margin: 3rem auto;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 1200px;
-            box-sizing: border-box;
-        }
-        .glass-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7));
-            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000));
-            background-size: 200% 200%;
-            animation: rgbShift 3s linear infinite;
-        }
-        .glass-card.grad-card {
-            padding: 0;
+            background: var(--background);
             border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            overflow: hidden;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
         }
-        .glass-card.grad-card img {
-            width: calc(100% - 4px);
-            height: auto;
+
+        .track-highlight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-            transition: all 0.5s ease;
-        }
-        .glass-card.grad-card:hover img {
-            width: 100%;
-            box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7));
-            transform: scale(1.02);
-        }
-        .glass-card.sources-card {
-            padding: 1.5rem;
-            max-width: 1200px;
-            min-height: auto;
-        }
-        .glass-card.ratings-card {
-            text-align: left;
-            align-items: flex-start;
-        }
-        .review-content {
-            background: var(--card-background, rgba(102, 0, 0, 0.25));
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin: 2rem auto;
-            width: 100%;
-            max-width: 1200px;
-            z-index: 2;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box;
-        }
-        .highlight { color: var(--primary); font-weight: bold; }
-        .overall-rating h3 { color: var(--primary); }
-        body, .container, p, h2, ul, li, .glass-card, .glass-card * { font-style: normal !important; }
-        em, .highlight em { font-style: italic !important; }
-        .nav-logo { display: flex; align-items: center; margin-left: 0; }
-        .nav-logo .logo-symbol i {
-            color: var(--primary);
-            font-size: 1.5rem;
-            animation: pulse-heart 1.5s ease-in-out infinite;
-        }
-        @keyframes pulse-heart {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-        .search-container {
-            display: flex;
-            align-items: center;
-            margin-left: 0;
-            margin-right: 0;
-            flex: 1;
-            max-width: 300px;
-        }
-        .search-input {
-            border: 2px solid var(--primary);
-            background: var(--card-background, rgba(102, 0, 0, 0.25));
-            color: var(--text-color, #FFFFFF);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-family: 'Space Grotesk', sans-serif;
-            width: 100%;
+            margin: 0.5rem 0;
             transition: all 0.3s ease;
-            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .search-input:focus { box-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7)); outline: none; }
-        .dropdown { position: relative; margin-right: 0; }
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .dropdown {
+            position: relative;
+            z-index: 1000;
+        }
+
         .dropdown-toggle {
             background: none;
             border: none;
@@ -180,413 +87,919 @@
             font-size: 1.5rem;
             cursor: pointer;
             padding: 0.5rem;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease;
         }
-        .dropdown-toggle:hover {
-            color: transparent;
-            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000));
-            -webkit-background-clip: text;
-            background-clip: text;
-            text-shadow: 0 0 10px var(--primary);
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            transform: scale(1.1);
+            outline: none;
         }
+
         .dropdown-menu {
             display: none;
             position: absolute;
             top: 100%;
             right: 0;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 0 0 10px 10px;
+            background: var(--background);
+            border-radius: 10px;
             padding: 1rem;
             width: 200px;
-            z-index: 1003;
-            border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
-        .dropdown-menu.active { display: block !important; }
-        .dropdown-menu ul { list-style: none; padding: 0; margin: 0; }
-        .dropdown-menu li { margin-bottom: 1rem; }
+
+        .dropdown-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            margin-bottom: 0.5rem;
+        }
+
         .dropdown-menu a {
-            color: var(--text-color, #FFFFFF);
+            color: var(--text);
             text-decoration: none;
             font-size: 0.9rem;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
+            display: block;
+            padding: 0.5rem;
             transition: all 0.3s ease;
         }
+
         .dropdown-menu a:hover {
-            color: transparent;
-            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000));
-            -webkit-background-clip: text;
-            background-clip: text;
-            text-shadow: 0 0 10px var(--primary);
-        }
-        .review-title-glitch {
-            font-size: 3.5rem;
-            text-align: center;
-            margin: 4rem auto;
             color: var(--primary);
-            text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7));
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            position: relative;
-            animation: flicker 0.1s infinite alternate;
-            width: 100%;
-            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
         }
-        @keyframes flicker { 0% { opacity: 1; } 100% { opacity: 0.95; } }
-        .review-title-glitch::before, .review-title-glitch::after {
-            content: attr(data-text);
-            position: absolute;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-        }
-        .review-title-glitch::before {
-            left: 3px;
-            text-shadow: -3px 0 var(--secondary, #E50000);
-            animation: glitch-1 2s linear infinite reverse;
-        }
-        .review-title-glitch::after {
-            left: -3px;
-            text-shadow: -3px 0 var(--primary);
-            animation: glitch-2 3s linear infinite;
-        }
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
-        }
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
-        }
-        .track-highlight-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 1.5rem;
-        }
-        .track-highlight-item {
-            background: rgba(255, 0, 0, 0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
-            min-height: 120px;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
-        .track-highlight-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
-            background: rgba(255, 0, 0, 0.2);
+
+        .nav-logo {
+            color: var(--primary);
+            font-size: 1.5rem;
         }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        .hero-content {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .album-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .album-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .album-title {
+            font-size: clamp(1rem, 1.5vw, 1.75rem);
+            color: var(--text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
+        }
+
+        .album-quote {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+        .album-image {
+            width: 100%;
+            height: auto;
+            max-width: calc(900px - 4rem - 10px);
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--primary-rgb), 0.3);
+            transition: all 0.4s ease;
+            object-fit: contain;
+        }
+
+        .album-image:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--primary-rgb), 0.4);
+        }
+
+        .album-intro-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 800px) {
+            .album-card, .album-intro-container {
+                max-width: 90vw;
+                padding: 1.5rem;
+            }
+            .album-image {
+                max-width: calc(90vw - 3rem - 10px);
+            }
+            .album-title {
+                font-size: clamp(1.5rem, 5vw, 3rem);
+            }
+            .album-quote {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                max-width: calc(900px - 4rem - 10px);
+            }
+        }
+
+        .album-intro {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .album-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(var(--primary-rgb), 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, var(--background));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-container h2 {
+            margin: 0 0 1rem 0;
+            padding: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .chart-container canvas {
+            max-height: 250px;
+            width: 100%;
+        }
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .rating-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .rating-score {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--glass);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 1s ease;
+        }
+
         .table-container {
             width: 100%;
             overflow-x: auto;
+            margin: 2rem 0;
         }
+
         .trend-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            margin: 1rem 0;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             font-size: 1rem;
-            table-layout: fixed;
         }
+
         .trend-table th, .trend-table td {
             padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            font-size: 1rem;
-            word-wrap: break-word;
+            border-bottom: 1px solid var(--border);
         }
-        .trend-table.awards-table {
-            min-width: 800px;
-        }
-        .trend-table.awards-table th,
-        .trend-table.awards-table td {
-            width: 33.33%;
-        }
-        .trend-table.certifications-table {
-            min-width: 800px;
-        }
-        .trend-table.certifications-table th,
-        .trend-table.certifications-table td {
-            width: 33.33%;
-        }
-        .trend-table.chart-table {
-            min-width: 900px;
-        }
-        .trend-table.chart-table th,
-        .trend-table.chart-table td {
-            width: 16.67%;
-        }
+
         .trend-table th {
-            background: rgba(255, 0, 0, 0.2);
+            background: rgba(255, 0, 102, 0.2);
             color: var(--primary);
             text-transform: uppercase;
-            font-weight: 700;
         }
-        .trend-table tr:last-child td { border-bottom: none; }
-        .review-footer .newsletter-form { display: flex; gap: 0.5rem; }
-        .review-footer .newsletter-form input {
-            border-radius: 20px;
-            padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: var(--text-color, #FFFFFF);
-            font-family: 'Space Grotesk', sans-serif;
-            width: 200px;
+
+        .trend-table tr:last-child td {
+            border-bottom: none;
         }
-        .review-footer .newsletter-form button {
-            border-radius: 20px;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary);
-            color: var(--dark, #660000);
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .review-footer .newsletter-form button:hover { transform: scale(1.1); }
-        h2 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 2rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7));
-            margin: 1.5rem 0;
-            text-align: center;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-        h2:hover { text-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7)); color: var(--secondary, #E50000); }
-        @keyframes rgbShift {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
+
         @media (max-width: 768px) {
-            .review-header { padding: 0.75rem 1.5rem; height: 50px; }
-            .review-footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
-            .container { padding: 80px 1.5rem 2rem; }
-            .glass-card { padding: 2rem; margin: 2rem auto; }
-            .glass-card:hover { transform: none; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); background: var(--card-background, rgba(102, 0, 0, 0.25)); animation: none; }
-            .track-highlight-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; padding: 1rem; }
-            .track-highlight-item:hover { transform: none; box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); background: rgba(255, 0, 0, 0.1); }
-            .review-footer .newsletter-form input { width: 150px; padding: 0.6rem; }
-            .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
-            .review-footer .newsletter-form button:hover { transform: none; }
-            .trend-table { font-size: 0.9rem; min-width: 100%; }
-            .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; }
-            .glass-card.sources-card { padding: 1rem; max-width: 1200px; }
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .content-section {
+                max-width: 90vw;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                max-width: 90vw;
+            }
+
+            .album-card {
+                max-width: 90vw;
+            }
+
+            .stats-container {
+                max-width: 90vw;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .shero {
+                padding: 120px 1rem;
+                min-height: 100vh;
+            }
+
+            .album-image {
+                width: 100%;
+                height: auto;
+                max-width: 90vw;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .review-card {
+                padding: 1rem;
+            }
+
+            .rating-card {
+                padding: 1rem;
+            }
+
+            .chart-container {
+                max-height: 250px;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .chart-container canvas {
+                max-height: 200px;
+            }
+
+            .dropdown-toggle {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .dropdown-menu {
+                width: 180px;
+                right: -10px;
+            }
+
+            .theme-toggle {
+                right: 1rem;
+            }
+        }
+
+        .track-highlights {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(255, 0, 0, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 0, 0, 0.1);
+        }
+
+        .track-highlight-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
+        }
+
+        @keyframes rgbShift {
+            0% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .nav {
+            background: var(--background);
+        }
+
+        .dropdown-menu {
+            background: var(--background);
+        }
+
+        .album-card {
+            background: var(--background);
         }
     </style>
 </head>
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-    <header class="review-header">
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
         </div>
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search Reviews..." aria-label="Search reviews">
-        </div>
-        <nav>
-            <div class="dropdown">
-                <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
-                <div class="dropdown-menu">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="reviews.html">Reviews</a></li>
-                        <li><a href="features.html">Features</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="opinions.html">Opinions</a></li>
-                        <li><a href="catchcarti.html">Catch Carti</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <h1 class="review-title-glitch" data-text="MUSIC">MUSIC</h1>
-        <div class="review-content">
-            <h2>MUSIC: Playboi Carti’s Chaotic Triumph Unleashed</h2>
-            <div class="glass-card grad-card">
-                <img src="https://vzdzt.github.io/musicrx/iammusic.jpg" alt="Playboi Carti - MUSIC album cover">
-            </div>
-            <br>
-            <p>
-                Released <span class="highlight">March 14, 2025</span> via <span class="highlight">AWGE</span> and <span class="highlight">Interscope</span>, Playboi Carti’s <em><span class="highlight">MUSIC</span></em>—a 30-track, 78-minute rap odyssey—is projected to sell <span class="highlight">302,000</span> units in its first week (excluding bundles), per HITS Daily Double, eyeing a No. 1 <span class="highlight">Billboard 200</span> debut. By <span class="highlight">March 21, 2025</span>, it’s racked up <span class="highlight">228.7 million</span> Spotify streams, the year’s biggest single-day haul (139.3 million). Carti’s red-hot reign peaks here, debuted live at Rolling Loud LA. Veazy’s take: this chaotic titan owns 2025’s soundscape, its raw intensity a seismic shift from past works.
-            </p>
-        </div>
-        <br>
-        <h2>The Messaging and Theme</h2>
-        <br>
-        <p>
-            <em><span class="highlight">MUSIC</span></em> is Carti’s red-hot declaration of sonic supremacy and defiance. <span class="highlight">“EVIL J0RDAN”</span> taunts “I’m so high, gotta hide my face,” reveling in reckless abandon, while <span class="highlight">“RATHER LIE”</span> with The Weeknd muses “Lost my soul in the night,” blending existential haze with bravado. <span class="highlight">“CHARGE DEM HOES A FEE”</span> boasts “I’m charging fees for the vibe,” doubling down on his untouchable persona. Themes of rebellion, identity, and chaos roar through its 30 tracks. In 2025, fans on X call it “the soundtrack to anarchy,” with Rolling Loud LA clips and TikTok trends amplifying its cultural quake—a raw, unfiltered Carti unleashed.
-        </p>
-        <br>
-        <h2>Production and Sound</h2>
-        <br>
-        <p>
-            <span class="highlight">F1LTHY</span>, <span class="highlight">Cardo</span>, and <span class="highlight">Bnyx</span> shape <em><span class="highlight">MUSIC</span></em>’s 30 tracks, primarily recorded in a cave-like studio in Paris, with <span class="highlight">Swamp Izzo</span>’s ad-libs punctuating the chaos. Rumors circulating online suggest that Carti used AI on <span class="highlight">“FINE SH*T”</span> and <span class="highlight">“RATHER LIE,”</span> leaving fans with mixed reactions, many in shock. Trap’s booming 808s meet punk’s jagged edges in <span class="highlight">“HBA,”</span> <span class="highlight">“CRUSH,”</span> and <span class="highlight">“BACKR00MS”</span> (by Bnyx and F1LTHY). Refining <em><span class="highlight">Whole Lotta Red</span></em>, it’s a red-hot assault that echoes in 2025’s underground via Yeat and Ken Carson.
-        </p>
-        <br>
-        <h2>Features</h2>
-        <br>
-        <p>
-            <em><span class="highlight">MUSIC</span></em>’s 30 tracks boast heavy hitters amplifying Carti’s red-hot vision. <span class="highlight">The Weeknd</span> croons “Tell me lies, I’ll believe” on <span class="highlight">“RATHER LIE,”</span> his ethereal tone cutting through distortion. <span class="highlight">Travis Scott</span> growls “Backrooms, we don’t play” on <span class="highlight">“BACKR00MS,”</span> syncing with Carti’s frenetic flow. <span class="highlight">Kendrick Lamar</span> taunts “I’m a trickster, watch me move” on <span class="highlight">“MOJO JOJO,”</span> adding Compton edge. <span class="highlight">Young Thug</span> slimes through <span class="highlight">“GOOD CREDIT,”</span> while Carti keeps them as fuel for his chaos, not spotlights, weaving their voices into his warped tapestry.
-        </p>
-        <br>
-        <div class="glass-card">
-            <h2>Track Highlights</h2>
-            <div class="track-highlight-grid">
-                <div class="track-highlight-item">
-                    <p><span class="highlight">For Newcomers:</span> <span class="highlight">“CRUSH,”</span> <span class="highlight">“HBA”</span>—Catchy hooks and booming beats make Carti’s red-hot chaos instantly gripping for fresh ears.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <p><span class="highlight">For The Dive:</span> <span class="highlight">“EVIL J0RDAN,”</span> <span class="highlight">“COCAINE NOSE”</span>—Raw distortion and wild flows plunge deep into Carti’s red-hot psyche.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <p><span class="highlight">Hidden Gems:</span> <span class="highlight">“MOJO JOJO,”</span> <span class="highlight">“GOOD CREDIT”</span>—Kendrick’s flair and Thug’s slime shine as red-hot sleeper hits.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">“OPM BABI (Live)”</span>—Rolling Loud LA 2025’s red-hot debut is Veazy’s March repeat.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <p><span class="highlight">Cultural Impact Tracks:</span> <span class="highlight">“BACKR00MS”</span>—TikTok 2025 blew up with its red-hot beat, a viral juggernaut.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <p><span class="highlight">Fan Favorites:</span> <span class="highlight">“RATHER LIE”</span>—Fans in 2025 love The Weeknd’s red-hot assist, topping streams.</p>
-                </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="reviews.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
         </div>
-        <br>
-        <h2>Previous Works</h2>
-        <br>
-        <p>
-            Carti’s road to <em><span class="highlight">MUSIC</span></em> started with 2017’s <em><span class="highlight">Playboi Carti</span></em> (No. 12, 28,000 units), led by <span class="highlight">“Magnolia.”</span> <em><span class="highlight">Die Lit</span></em> (2018) hit No. 3 with 61,000 units, its trap minimalism shining via <span class="highlight">“Shoota.”</span> <em><span class="highlight">Whole Lotta Red</span></em> (2020) took No. 1, 100,000 units, with punk-rap chaos like <span class="highlight">“Sky.”</span> <em><span class="highlight">MUSIC</span></em> (2025), projected at 302,000 units, refines that edge into a red-hot behemoth, dwarfing past debuts. Its 30-track sprawl shapes 2025’s underground, influencing acts like Destroy Lonely.
-        </p>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Awards Recognition</span></h3>
-            <div class="table-container">
-                <table class="trend-table awards-table">
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Year</th>
-                            <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><span class="highlight">Best Rap Album</span></td><td>2026</td><td>Pending</td></tr>
-                        <tr><td><span class="highlight">Best Rap Song (“CRUSH”)</span></td><td>2026</td><td>Pending</td></tr>
-                    </tbody>
-                </table>
-                <p>
-                    <em><span class="highlight">MUSIC</span></em>’s red-hot 302,000-unit projection and 228.7 million streams by March 21, 2025, signal 2026 Grammy nods, boosting Carti’s legacy.
-                </p>
+    </nav>
+
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/iammusic.jpg" alt="Playboi Carti - MUSIC" class="hero-image">
+        <div class="hero-content">
+            <div class="album-header">
+                <h1 class="album-title">MUSIC</h1>
+                <p class="album-quote">"Playboi Carti’s Chaotic Triumph Unleashed"</p>
             </div>
+            <img src="https://vzdzt.github.io/musicrx/iammusic.jpg" alt="Playboi Carti - MUSIC album cover" class="album-image">
         </div>
-        <br>
-        <h2>Legacy & Reception</h2>
-        <br>
-        <p>
-            Fans on X crown <em><span class="highlight">MUSIC</span></em> “rap’s 2025 king,” yet rumors circulating online suggest that Carti used AI on <span class="highlight">“FINE SH*T”</span> and <span class="highlight">“RATHER LIE,”</span> leaving fans with mixed reactions, many in shock—some decry fakery, others vibe regardless. By <span class="highlight">March 21, 2025</span>, its <span class="highlight">228.7 million</span> streams top 2025’s single-day record (139.3 million). Rolling Loud LA’s debut fuels hype, though its 30-track sprawl splits opinions versus <em><span class="highlight">Die Lit</span></em>. Its red-hot punk-trap fusion drives 2025’s distortion wave.
-        </p>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Chart Performance</span></h3>
-            <div class="table-container">
-                <table class="trend-table chart-table">
-                    <thead>
-                        <tr>
-                            <th>Album</th>
-                            <th>Highest Charting Song</th>
-                            <th>Peak Position</th>
-                            <th>Streams (as of 2025)</th>
-                            <th>Certification</th>
-                            <th>Units Sold</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><span class="highlight">Whole Lotta Red</span></td><td><span class="highlight">“Sky”</span></td><td>44</td><td>3.8B</td><td>2x Platinum</td><td>2.2M+</td></tr>
-                        <tr><td><span class="highlight">MUSIC</span></td><td><span class="highlight">“EVIL J0RDAN”</span></td><td>7</td><td>228.7M</td><td>TBD</td><td>302,000+ (proj.)</td></tr>
-                    </tbody>
-                </table>
-            </div>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">650M</div>
+            <div class="stat-label">Streams</div>
         </div>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Album Certifications</span></h3>
-            <div class="table-container">
-                <table class="trend-table certifications-table">
-                    <thead>
-                        <tr>
-                            <th>Album</th>
-                            <th>Certification</th>
-                            <th>Units (Millions)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><span class="highlight">Playboi Carti</span></td><td>Platinum</td><td>1.5</td></tr>
-                        <tr><td><span class="highlight">Die Lit</span></td><td>Platinum</td><td>1.8</td></tr>
-                        <tr><td><span class="highlight">Whole Lotta Red</span></td><td>2x Platinum</td><td>2.2</td></tr>
-                        <tr><td><span class="highlight">MUSIC</span></td><td>TBD</td><td>0.302 (proj.)</td></tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">TBD</div>
+            <div class="stat-label">Certification</div>
         </div>
-        <br>
-        <div class="glass-card ratings-card">
-            <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> Carti’s 30-track punk-trap epic pushes boundaries with a chaotic sonic palette, evolving <em>Whole Lotta Red</em>’s blueprint into a sprawling, genre-blending odyssey—though it doesn’t fully break new ground, its ambition is undeniable.</p>
-            <p><span class="highlight">Production Quality (19/20):</span> F1LTHY, Cardo, and Bnyx deliver a pristine mix of booming 808s, glitchy synths, and jagged punk edges, especially on “BACKR00MS” and “CRUSH.” The Paris cave-like studio setting adds a raw, experimental sheen, with minor mixing hiccups barely noticeable amidst the sonic intensity.</p>
-            <p><span class="highlight">Lyrics and Messaging (16/20):</span> “EVIL J0RDAN” roars with attitude, but the album’s focus on vibe over depth means lyrical substance takes a backseat. While tracks like “RATHER LIE” hint at emotional complexity, the lack of <em>Die Lit</em>’s quirky flair holds it back slightly.</p>
-            <p><span class="highlight">Enjoyment Factor (19/20):</span> “BACKR00MS” slams with replayable energy, its TikTok virality a testament to its infectious chaos. From “CRUSH”’s hooks to “OPM BABI”’s live intensity, the highs are electrifying—though the lengthy runtime can drag if not in the right mood.</p>
-            <p><span class="highlight">Consistency (17/20):</span> Standouts like “HBA” and “CRUSH” maintain a fiery thread, but 30 tracks breed filler, with some cuts feeling redundant. Still, the album’s cohesive chaotic vision ensures the dips don’t derail its overall impact.</p>
-            <p class="overall-rating"><h3><span class="highlight">Overall Rating (89/100):</span> 8.9/10</h3></p>
-            <p>
-                <em><span class="highlight">MUSIC</span></em> earns its 8.9/10 through its fearless ambition and cultural resonance, delivering a punk-trap odyssey that electrifies with tracks like “EVIL J0RDAN” and “BACKR00MS.” The production’s raw intensity, paired with impactful features from The Weeknd and Kendrick Lamar, creates a chaotic masterpiece that dominates 2025’s soundscape. Despite some lyrical shallowness and occasional filler, its replay value and influence on the underground make it a triumph worth celebrating.
-            </p>
+        <div class="stat-card">
+            <div class="stat-number">298K</div>
+            <div class="stat-label">First Week</div>
         </div>
-        <br>
-        <div class="glass-card sources-card">
-            <h3><span class="highlight">Sources</span></h3>
-            <p>
-                Data from HITS Daily Double, Spotify, Billboard, Hypebeast, RapTV, Numéro Berlin, and Rolling Loud LA reports as of March 21, 2025.
-            </p>
+        <div class="stat-card">
+            <div class="stat-number">#1</div>
+            <div class="stat-label">Billboard 200</div>
         </div>
     </div>
-    <footer class="review-footer">
-        <div class="nav-logo">
-            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Released March 14, 2025, via AWGE and Interscope Records, Playboi Carti’s <em>MUSIC</em>—a 30-track, 79-minute trap opus—debuted at No. 1 on the Billboard 200 with 298,000 equivalent album units, including 384 million streams in its first week, per Billboard. By April 5, 2025, it has amassed 650 million streams on Spotify, with a record-breaking 139 million streams on release day, the highest single-day total for a rap album in 2025 per Spotify data.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p>Helmed by Ojivolta, Cardo, and F1LTHY, with contributions from Kanye West, Metro Boomin, and Mike Dean, <em>MUSIC</em> was recorded in Paris and Atlanta, including a cave-like studio. It blends trap’s booming 808s with rage music’s distortion, as heard in “Evil J0rdan” and “Pop Out,” evolving Carti’s <em>Whole Lotta Red</em> sound into a raw, varied 2025 aesthetic.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p><em>MUSIC</em> embodies Carti’s chaotic rebellion and excess. “Evil J0rdan” boasts “First I go whip out the boat / No, I can’t hit on no brakes,” reflecting an unstoppable lifestyle, while “Rather Lie” with The Weeknd croons “Tell me lies, I’ll believe,” blending bravado with vulnerability. The 30 tracks deliver a relentless punk-trap assault.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p>The album boasts Travis Scott on “Backr00ms” and “Crush,” Kendrick Lamar on “Good Credit,” The Weeknd on “Rather Lie,” and Young Thug on “We Need All Da Vibes.” Additional stars like Future, Lil Uzi Vert, and Skepta amplify Carti’s vision, with standout moments like Lamar’s sharp delivery on “Good Credit.”</p>
+            </div>
         </div>
-        <div class="footer-content">
-            <p>© 2025 MusicRx. All rights reserved.</p>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
         </div>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Subscribe to Newsletter" required>
-            <button type="submit">Subscribe</button>
-        </form>
-    </footer>
-    <div class="fixed-buttons">
-        <button id="backToTop" class="fixed-button" title="Back to Top" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
-        <button id="musicToggle" class="fixed-button" title="Toggle Music" aria-label="Play music"><i class="fas fa-play"></i></button>
-        <button id="themeToggle" class="fixed-button" title="Normal Mode" aria-label="Switch to next theme (current: All Red Mode)"><i class="fas fa-adjust"></i></button>
-        <button id="tipMachine" class="fixed-button" title="Tip Machine" aria-label="Support the site"><i class="fas fa-coffee"></i></button>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
-</body>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>OPM Baby</h3>
+                    <p>A rage-infused standout with DJ Swamp Izzo’s tag, touching on substance and defiance, peaking at No. 75 on the Hot 100.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Evil J0rdan</h3>
+                    <p>Deep-voiced chaos with 130 million streams by April 5, 2025, debuting at No. 2 on the Hot 100, per Billboard.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>FOMDJ</h3>
+                    <p>Featured on the deluxe <em>Music - Sorry 4 Da Wait</em>, its glitchy energy debuted at No. 20 on the NZ Hot Singles Chart.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Rather Lie</h3>
+                    <p>The Weeknd’s haunting hook drives this hit to No. 4 on the Hot 100, a club-ready anthem.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p>Carti’s path includes <em>Playboi Carti</em> (2017, No. 12, 28,000 units), <em>Die Lit</em> (2018, No. 3, 61,000 units), and <em>Whole Lotta Red</em> (2020, No. 1, 100,000 units), per Billboard. <em>MUSIC</em>’s 298,000-unit debut and 30 Hot 100 entries mark his commercial zenith, refining his punk-trap legacy.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p><em>MUSIC</em> hit No. 1 with 298,000 units and 650 million streams by April 5, 2025, per Billboard and Spotify. All 30 tracks charted on the Hot 100, a first for a rapper. Critics praise its production (NME: “moments of brilliance”), though its length divides fans, cementing Carti’s 2025 influence.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Awards Recognition</h2>
+                <p>As of April 5, 2025, <em>MUSIC</em> has no confirmed Grammy nods, but its chart dominance and critical buzz suggest potential for 2026 consideration (speculative).</p>
+            </div>
+
+            <div class="rating-section">
+                <div class="rating-card">
+                    <div class="rating-score">9.0</div>
+                    <h3>Originality</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                    <p><em>MUSIC</em> pushes punk-trap with a 30-track sprawl, evolving Carti’s sound distinctively.</p>
+                </div>
+                <div class="rating-card">
+                    <div class="rating-score">9.5</div>
+                    <h3>Production</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%"></div>
+                    </div>
+                    <p>Ojivolta and Metro Boomin’s glitchy beats on “Evil J0rdan” shine, with slight late-album dips.</p>
+                </div>
+                <div class="rating-card">
+                    <div class="rating-score">8.0</div>
+                    <h3>Lyrics</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                    <p>“Rather Lie” offers swagger, but lyrics lean on vibe over substance, typical of Carti.</p>
+                </div>
+                <div class="rating-card">
+                    <div class="rating-score">9.5</div>
+                    <h3>Enjoyment</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%"></div>
+                    </div>
+                    <p>“OPM Baby” and “FOMDJ” keep the energy high, though 30 tracks test casual fans.</p>
+                </div>
+                <div class="rating-card">
+                    <div class="rating-score">8.5</div>
+                    <h3>Consistency</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                    <p>“Evil J0rdan” excels, but some tracks feel like filler in the expansive runtime.</p>
+                </div>
+                <div class="rating-card">
+                    <div class="rating-score">8.9</div>
+                    <h3>Overall</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 89%"></div>
+                    </div>
+                    <p><em>MUSIC</em> scores 8.9/10 for its bold evolution, chart feat, and 650 million streams by April 5, 2025.</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <h2 class="section-title">Chart Performance</h2>
+                <div class="table-container">
+                    <table class="trend-table">
+                        <thead>
+                            <tr>
+                                <th>Album</th>
+                                <th>Highest Charting Song</th>
+                                <th>Peak Position</th>
+                                <th>Streams (as of 04/05/2025)</th>
+                                <th>Certification</th>
+                                <th>Units Sold</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><em>Whole Lotta Red</em></td><td>“Sky”</td><td>44</td><td>1.5B</td><td>Platinum</td><td>1.0M+</td></tr>
+                            <tr><td><em>MUSIC</em></td><td>“Evil J0rdan”</td><td>2</td><td>650M</td><td>TBD</td><td>298,000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <h2 class="section-title">Album Certifications</h2>
+                <div class="table-container">
+                    <table class="trend-table">
+                        <thead>
+                            <tr>
+                                <th>Album</th>
+                                <th>Certification</th>
+                                <th>Units (Millions)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><em>Playboi Carti</em></td><td>3x Platinum</td><td>3.0</td></tr>
+                            <tr><td><em>Die Lit</em></td><td>Platinum</td><td>1.0</td></tr>
+                            <tr><td><em>Whole Lotta Red</em></td><td>Platinum</td><td>1.0</td></tr>
+                            <tr><td><em>MUSIC</em></td><td>TBD</td><td>0.298</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <h2 class="section-title">Sources</h2>
+                <p>Data from Billboard, Spotify, HITS Daily Double, NME, and Genius, verified as of April 5, 2025.</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="nav-logo">
+                <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            </div>
+            <div class="footer-content">
+                <p>© 2025 MusicRx. All rights reserved.</p>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Subscribe to Newsletter" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </footer>
+        <div class="button-container"> 
+            <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+                <i class="fas fa-adjust"></i>
+            </button>
+        </div>
+        <script src="script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Starfield
+                let camera, renderer, starField, scene = null;
+                let mouseX = 0, mouseY = 0;
+                let targetX = 0, targetY= 0;
+                const canvas = document.getElementById('universe');
+
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                camera.position.z = 1000;
+
+                const geometry = new THREE.BufferGeometry();
+                const vertices = [];
+                const colors = [];
+                const starCount = 15000;
+
+                for (let i = 0; i < starCount; i++) {
+                    vertices.push(
+                        Math.random() * 2000 - 1000,
+                        Math.random() * 2000 - 1000,
+                        Math.random() * 2000 - 1000
+                    );
+                    const color = new THREE.Color();
+                    color.setHSL(Math.random(), 0.7, 0.7);
+                    colors.push(color.r, color.g, color.b);
+                }
+
+                geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+                geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+                const material = new THREE.PointsMaterial({
+                    size: 1.5,
+                    vertexColors: true,
+                    transparent: true,
+                    opacity: 0.8,
+                    sizeAttenuation: true
+                });
+
+                starField = new THREE.Points(geometry, material);
+                scene.add(starField);
+
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                    mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
+                });
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    if (starField) {
+                        targetX += (mouseX - targetX) * 0.02;
+                        targetY += (mouseY - targetY) * 0.02;
+                        starField.rotation.x += 0.0002 + targetY * 0.05;
+                        starField.rotation.y += 0.0003 + targetX * 0.05;
+                        const time = Date.now() * 0.001;
+                        starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+                    }
+                    renderer.render(scene, camera);
+                }
+
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+
+                // Improved Dropdown functionality
+                const dropdownToggle = document.querySelector('.dropdown-toggle');
+                const dropdownMenu = document.querySelector('.dropdown-menu');
+                let isOpen = false;
+
+                function toggleDropdown(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    isOpen = !isOpen;
+                    dropdownMenu.classList.toggle('active', isOpen);
+                }
+
+                dropdownToggle.addEventListener('click', toggleDropdown);
+                dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+                document.addEventListener('click', (e) => {
+                    if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        isOpen = false;
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+
+                document.addEventListener('touchstart', (e) => {
+                    if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        isOpen = false;
+                        dropdownMenu.classList.remove('active');
+                    }
+                }, { passive: true });
+
+                dropdownToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleDropdown(e);
+                    }
+                });
+
+                // Chart
+                const ctx = document.getElementById('streamingChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Mar 14', 'Mar 31', 'Apr 5'],
+                        datasets: [{
+                            label: 'Streams (Millions)',
+                            data: [139, 384, 650],
+                            borderColor: '#FF0000',
+                            backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                            x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                        },
+                        plugins: { legend: { labels: { color: '#ffffff' } } }
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>
