@@ -13,9 +13,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- External stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Custom cursor effect
+            const cursor = document.getElementById('cursor');
+            const cursorBlur = document.getElementById('cursor-blur');
+
+            document.addEventListener('mousemove', (e) => {
+                if (cursor && cursorBlur) {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                    cursorBlur.style.left = e.clientX - 200 + 'px';
+                    cursorBlur.style.top = e.clientY - 200 + 'px';
+                }
+            });
+            // Add hover effects for glass cards
+            document.querySelectorAll('.glass-card').forEach(card => {
+                // Set initial clear state
+                card.style.background = 'rgba(255, 255, 255, 0.1)';
+                card.style.backdropFilter = 'blur(10px)';
+                
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 20px var(--glow)';
+                    card.style.background = 'var(--rgb-glow)';
+                    card.style.backgroundSize = '200% 200%';
+                    card.style.animation = 'rgbShift 3s linear infinite';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                    card.style.background = 'rgba(255, 255, 255, 0.1)';
+                    card.style.animation = 'none';
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-    
+    <div id="cursor"></div> <!-- Custom cursor -->
+    <div id="cursor-blur"></div> <!-- Cursor blur -->
     <!-- Universe starfield canvas -->
     <canvas id="universe"></canvas>
 
@@ -369,7 +407,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <!-- ScrollTrigger for scroll-based animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- Main script -->
-    <script src="script.js"></script>
+    
 </body>
 </html>
