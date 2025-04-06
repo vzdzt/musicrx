@@ -264,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    document.addEventListener('DOMContentLoaded', () => {
     // Cursor functionality
     const cursor = document.getElementById('cursor');
     const cursorBlur = document.getElementById('cursor-blur');
@@ -277,6 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cursorBlur.style.top = `${e.clientY - 200}px`;
         }
     });
+});
 
     // Spotlight effect on card hover
     document.querySelectorAll('.glass-card, .news-title-card, .news-content-card, .track-highlight-item').forEach(card => {
@@ -470,14 +472,19 @@ function scroll(sectionId, distance) {
         container.scrollBy({ left: distance, behavior: 'smooth' });
     }
 }
-document.addEventListener('mousemove', (e) => {
-    if (cursor && cursorBlur) {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
-        cursorBlur.style.left = `${e.clientX - 50}px`; // Adjusted offset
-        cursorBlur.style.top = `${e.clientY - 50}px`;
-        // Optional pulse effect
-        cursor.style.animation = 'pulse 1.5s infinite';
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.getElementById('cursor');
+    const cursorBlur = document.getElementById('cursor-blur');
+
+    document.addEventListener('mousemove', (e) => {
+        if (cursor && cursorBlur) {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            cursorBlur.style.left = `${e.clientX - 50}px`; // Adjusted offset
+            cursorBlur.style.top = `${e.clientY - 50}px`;
+            // Optional pulse effect
+            cursor.style.animation = 'pulse 1.5s infinite';
+        }
+    });
 });
 
