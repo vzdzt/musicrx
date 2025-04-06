@@ -263,6 +263,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Cursor functionality
+    const cursor = document.getElementById('cursor');
+    const cursorBlur = document.getElementById('cursor-blur');
+
+    // Cursor movement tracking
+    document.addEventListener('mousemove', (e) => {
+        if (cursor && cursorBlur) {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            cursorBlur.style.left = `${e.clientX - 200}px`;
+            cursorBlur.style.top = `${e.clientY - 200}px`;
+        }
+    });
+
+    // Spotlight effect on card hover
+    document.querySelectorAll('.glass-card, .news-title-card, .news-content-card, .track-highlight-item').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            if (cursor) cursor.style.transform = 'scale(2)';
+            if (cursorBlur) cursorBlur.style.transform = 'scale(2)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            if (cursor) cursor.style.transform = 'scale(1)';
+            if (cursorBlur) cursorBlur.style.transform = 'scale(1)';
+        });
+    });
 });
 
 // Update starfield colors based on theme
@@ -436,9 +463,21 @@ if (backToTop) {
 } else {
     console.warn('Back to top button not found.');
 }
+
 function scroll(sectionId, distance) {
-  const container = document.getElementById(`${sectionId}-scroll`);
-  if (container) {
-    container.scrollBy({ left: distance, behavior: 'smooth' });
-  }
+    const container = document.getElementById(`${sectionId}-scroll`);
+    if (container) {
+        container.scrollBy({ left: distance, behavior: 'smooth' });
+    }
 }
+document.addEventListener('mousemove', (e) => {
+    if (cursor && cursorBlur) {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+        cursorBlur.style.left = `${e.clientX - 50}px`; // Adjusted offset
+        cursorBlur.style.top = `${e.clientY - 50}px`;
+        // Optional pulse effect
+        cursor.style.animation = 'pulse 1.5s infinite';
+    }
+});
+
