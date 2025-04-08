@@ -3,545 +3,851 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore J. Cole’s 2014 Forest Hills Drive: 353,000 first-week units, a 2014 soulful hip-hop memoir, updated March 2025 on MusicRx.">
-    <meta name="keywords" content="J. Cole, 2014 Forest Hills Drive, Roc Nation, Columbia, Vinylz, Illmind, hip-hop, soulful, 2014, 2025, Billboard, Spotify">
-    <meta name="author" content="Veazy">
-    <meta property="og:title" content="MusicRx - 2014 Forest Hills Drive: J. Cole’s Soulful Homecoming">
-    <meta property="og:description" content="Dive into J. Cole’s 2014 Forest Hills Drive review: a 2014 hip-hop memoir, revisited in 2025 on MusicRx.">
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/colee.jpeg">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-fhd.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@36966_">
-    <title>MusicRx - 2014 Forest Hills Drive: J. Cole’s Soulful Homecoming</title>
+    <title>MusicRx - 2014 Forest Hills Drive Review</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <style>
+        :root[data-theme="normal"] {
+            --primary: #00f7ff;
+            --secondary: #9147ff;
+            --accent: #ff0066;
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(20, 20, 20, 0.8);
+            --glass: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.2);
+            --glow: rgba(0, 247, 255, 0.5);
+            --rgb-glow: linear-gradient(45deg, #00f7ff, #9147ff);
+            --dark: #000;
+        }
+
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
+        }
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
+        }
+
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--background, #0a0a0a);
-            color: var(--text-color, #FFFFFF);
+            background: var(--background);
+            color: var(--text);
             overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
         }
-        .review-header {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
-            backdrop-filter: blur(15px);
-            padding: 1rem 2rem;
-            border-bottom: 2px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1002;
-            height: 60px;
-            box-sizing: border-box;
-            margin: 0;
+
+        @property --drip-offset {
+            syntax: '<number>';
+            inherits: false;
+            initial-value: 0;
         }
-        .review-footer {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(255, 0, 0, 0.2));
-            backdrop-filter: blur(15px);
-            padding: 2rem;
-            border-top: 2px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 1001;
-        }
-        .container {
-            flex: 1;
-            padding: 100px 2rem 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            box-sizing: border-box;
-        }
+
         .glass-card {
-            background: var(--card-background, rgba(102, 0, 0, 0.25));
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
-            border-radius: 25px;
-            border: 2px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            padding: 3rem;
-            margin: 3rem auto;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 1200px;
-            box-sizing: border-box;
-            color: color-mix(in srgb, var(--primary) 70%, var(--secondary));
-        }
-        .glass-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7));
-            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000));
-            background-size: 200% 200%;
-            animation: rgbShift 3s linear infinite;
-        }
-        .glass-card.grad-card {
-            padding: 0;
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        .glass-card.grad-card img {
-            width: calc(100% - 4px);
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-            transition: all 0.5s ease;
-        }
-        .glass-card.grad-card:hover img {
-            width: 100%;
-            box-shadow: 0 0 30px var(--glow, rgba(255, 0, 0, 0.7));
-            transform: scale(1.02);
-        }
-        .glass-card.sources-card {
-            padding: 1.5rem;
-            max-width: 1200px;
-            min-height: auto;
-        }
-        .glass-card.ratings-card {
-            text-align: left;
-            align-items: flex-start;
-        }
-        .review-content {
-            background: var(--card-background, rgba(102, 0, 0, 0.25));
-            backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 2.5rem;
-            margin: 2rem auto;
-            width: 100%;
-            max-width: 1200px;
-            z-index: 2;
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box;
+            overflow: hidden;
+            border: 1px solid var(--primary);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                inset 0 0 40px rgba(var(--primary-rgb), 0.2),
+                0 0 20px var(--glow);
+            --drip-offset: 0;
+            --drip-color: var(--primary);
+            animation: drip 3s linear infinite;
         }
-        .highlight {
-            color: var(--primary, #FF0000);
+
+        @keyframes drip {
+            to { --drip-offset: 100; }
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: paint(neon-drip);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.6),
+                inset 0 0 60px rgba(var(--primary-rgb), 0.3),
+                0 0 30px var(--glow);
+            --drip-color: var(--accent);
+            animation: drip 1.5s linear infinite;
+        }
+
+        .track-highlight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
             font-weight: bold;
         }
-        .overall-rating h3 {
-            color: var(--primary, #FF0000);
-        }
-        body, .container, p, h2, ul, li, .glass-card, .glass-card * {
-            font-style: normal !important;
-        }
-        em, .highlight em {
-            font-style: italic !important;
-        }
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            margin-left: 0;
-        }
-        .nav-logo .logo-symbol i {
-            color: var(--primary, #FF0000);
-            font-size: 1.5rem;
-            animation: pulse-heart 1.5s ease-in-out infinite;
-        }
-        @keyframes pulse-heart {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
+
         .dropdown {
             position: relative;
-            margin-right: 0;
+            z-index: 1000;
         }
+
         .dropdown-toggle {
             background: none;
             border: none;
-            color: var(--primary, #FF0000);
+            color: var(--primary);
             font-size: 1.5rem;
             cursor: pointer;
             padding: 0.5rem;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease;
         }
-        .dropdown-toggle:hover {
-            color: transparent;
-            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000));
-            -webkit-background-clip: text;
-            background-clip: text;
-            text-shadow: 0 0 10px var(--primary, #FF0000);
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            transform: scale(1.1);
+            outline: none;
         }
+
         .dropdown-menu {
             display: none;
             position: absolute;
             top: 100%;
             right: 0;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 0 0 10px 10px;
+            background: var(--background);
+            border-radius: 10px;
             padding: 1rem;
             width: 200px;
-            z-index: 1003;
-            border: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
+
         .dropdown-menu.active {
-            display: block !important;
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
+
         .dropdown-menu ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
+
         .dropdown-menu li {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
+
         .dropdown-menu a {
-            color: var(--text-color, #FFFFFF);
+            color: var(--text);
             text-decoration: none;
             font-size: 0.9rem;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
+            display: block;
+            padding: 0.5rem;
             transition: all 0.3s ease;
         }
+
         .dropdown-menu a:hover {
-            color: transparent;
-            background: var(--rgb-glow, linear-gradient(45deg, #FF0000, #E50000, #CC0000));
-            -webkit-background-clip: text;
-            background-clip: text;
-            text-shadow: 0 0 10px var(--primary, #FF0000);
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
         }
-        .review-title-glitch {
-            font-size: 3.5rem;
-            text-align: center;
-            margin: 4rem auto;
-            color: var(--primary, #FF0000);
-            text-shadow: 0 0 15px var(--glow, rgba(255, 0, 0, 0.7));
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            position: relative;
-            animation: flicker 0.1s infinite alternate, glow-shift linear both;
-            animation-timeline: scroll();
-            background: paint(neon-drip);
-            width: 100%;
-            max-width: 1200px;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        @keyframes flicker {
-            0% { opacity: 1; }
-            100% { opacity: 0.95; }
-        }
-        .review-title-glitch::before, .review-title-glitch::after {
-            content: attr(data-text);
-            position: absolute;
+
+        .nav {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-        }
-        .review-title-glitch::before {
-            left: 3px;
-            text-shadow: -3px 0 var(--secondary, #E50000);
-            animation: glitch-1 2s linear infinite reverse;
-        }
-        .review-title-glitch::after {
-            left: -3px;
-            text-shadow: -3px 0 var(--primary, #FF0000);
-            animation: glitch-2 3s linear infinite;
-        }
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
-        }
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
-        }
-        .track-highlight-grid {
-            display: grid;
-            grid: subgrid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 1.5rem;
-            filter: blur(2px) hue-rotate(var(--hue, 0deg)) brightness(1.2);
-            animation: hue-cycle 5s infinite;
-        }
-        @keyframes hue-cycle { 100% { --hue: 360deg; } }
-        .track-highlight-item {
-            background: rgba(255, 0, 0, 0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
-            min-height: 120px;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
-        .track-highlight-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
-            background: rgba(255, 0, 0, 0.2);
+
+        .nav-logo {
+            color: var(--primary);
+            font-size: 1.5rem;
         }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        .hero-content {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .album-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--card);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .album-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                var(--primary) 60deg,
+                transparent 120deg
+            );
+            opacity: 0.1;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .album-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .album-title {
+            font-size: clamp(1rem, 1.5vw, 1.75rem);
+            color: var(--text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
+        }
+
+        .album-quote {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+        .album-image {
+            width: 100%;
+            height: auto;
+            max-width: calc(900px - 4rem - 10px);
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--primary-rgb), 0.3);
+            transition: all 0.4s ease;
+            object-fit: contain;
+        }
+
+        .album-image:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--primary-rgb), 0.4);
+        }
+
+        .album-intro-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 800px) {
+            .album-card, .album-intro-container {
+                max-width: 90vw;
+                padding: 1.5rem;
+            }
+            .album-image {
+                max-width: calc(90vw - 3rem - 10px);
+            }
+            .album-title {
+                font-size: clamp(1.5rem, 5vw, 3rem);
+            }
+            .album-quote {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                max-width: calc(900px - 4rem - 10px);
+            }
+        } 0, 0, 0.5),
+                        0 0 45px rgba(var(--primary-rgb), 0.4);
+        }
+
+        @media (max-width: 800px) {
+            .album-image {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+        }
+
+        .album-intro {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .album-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(var(--primary-rgb), 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, var(--background));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-container h2 {
+            margin: 0 0 1rem 0;
+            padding: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .chart-container canvas {
+            max-height: 250px;
+            width: 100%;
+        }
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .rating-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .rating-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        .rating-score {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            text-shadow: 0 0 10px var(--glow);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--glass);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 1s ease;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
         .table-container {
             width: 100%;
             overflow-x: auto;
+            margin: 2rem 0;
         }
+
         .trend-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            margin: 1rem 0;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             font-size: 1rem;
-            table-layout: fixed;
         }
+
         .trend-table th, .trend-table td {
             padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid var(--border-color, rgba(153, 0, 0, 0.3));
-            font-size: 1rem;
-            word-wrap: break-word;
+            border-bottom: 1px solid var(--border);
         }
-        .trend-table.awards-table {
-            min-width: 800px;
-        }
-        .trend-table.awards-table th, .trend-table.awards-table td {
-            width: 33.33%;
-        }
-        .trend-table.certifications-table {
-            min-width: 800px;
-        }
-        .trend-table.certifications-table th, .trend-table.certifications-table td {
-            width: 33.33%;
-        }
-        .trend-table.chart-table {
-            min-width: 900px;
-        }
-        .trend-table.chart-table th, .trend-table.chart-table td {
-            width: 16.67%;
-        }
+
         .trend-table th {
-            background: rgba(255, 0, 0, 0.2);
-            color: var(--primary, #FF0000);
+            background: rgba(255, 0, 102, 0.2);
+            colorA: var(--primary);
             text-transform: uppercase;
-            font-weight: 700;
         }
+
         .trend-table tr:last-child td {
             border-bottom: none;
         }
-        .review-footer .newsletter-form {
-            display: flex;
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .content-section {
+                max-width: 90vw;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                max-width: 90vw;
+            }
+
+            .album-card {
+                max-width: 90vw;
+            }
+
+            .stats-container {
+                max-width: 90vw;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .shero {
+                padding: 120px 1rem;
+                min-height: 100vh;
+            }
+
+            .album-image {
+                width: 100%;
+                height: auto;
+                max-width: 90vw;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .review-card {
+                padding: 1rem;
+            }
+
+            .rating-card {
+                padding: 1rem;
+            }
+
+            .chart-container {
+                max-height: 250px;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .chart-container canvas {
+                max-height: 200px;
+            }
+
+            .dropdown-toggle {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .dropdown-menu {
+                width: 180px;
+                right: -10px;
+            }
+
+            .theme-toggle {
+                right: 1rem;
+            }
+        }
+
+        .track-highlights {
+            display: grid;
             gap: 0.5rem;
+            margin: 1rem 0;
         }
-        .review-footer .newsletter-form input {
-            border-radius: 20px;
+
+        .track-highlight-item {
+            background: rgba(0,247,255,0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0,247,255,0.1);
+        }
+
+        .track-highlight-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--primary);
             padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: var(--text-color, #FFFFFF);
-            font-family: 'Space Grotesk', sans-serif;
-            width: 200px;
-        }
-        .review-footer .newsletter-form button {
-            border-radius: 20px;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary, #FF0000);
-            color: var(--dark, #660000);
-            border: none;
+            border-radius: 50%;
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .review-footer .newsletter-form button:hover {
-            transform: scale(1.1);
-        }
-        h2 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 2rem;
-            color: var(--primary, #FF0000);
-            text-transform: uppercase;
-            text-shadow: 0 0 10px var(--glow, rgba(255, 0, 0, 0.7));
-            margin: 1.5rem 0;
-            text-align: center;
-            font-weight: 700;
             transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
         }
-        h2:hover {
-            text-shadow: 0 0 20px var(--glow, rgba(255, 0, 0, 0.7));
-            color: var(--secondary, #E50000);
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
         }
+
         @keyframes rgbShift {
             0% { background-position: 0% 0%; }
             50% { background-position: 100% 100%; }
             100% { background-position: 0% 0%; }
         }
-        @media (max-width: 768px) {
-            .review-header {
-                padding: 0.75rem 1.5rem;
-                height: 50px;
-            }
-            .review-footer {
-                padding: 1.5rem;
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .container {
-                padding: 80px 1.5rem 2rem;
-            }
-            .glass-card {
-                padding: 2rem;
-                margin: 2rem auto;
-            }
-            .glass-card:hover {
-                transform: none;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-                background: var(--card-background, rgba(102, 0, 0, 0.25));
-                animation: none;
-            }
-            .track-highlight-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1.5rem;
-                padding: 1rem;
-            }
-            .track-highlight-item:hover {
-                transform: none;
-                box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
-                background: rgba(255, 0, 0, 0.1);
-            }
-            .review-footer .newsletter-form input {
-                width: 150px;
-                padding: 0.6rem;
-            }
-            .review-footer .newsletter-form button {
-                padding: 0.6rem 1rem;
-            }
-            .review-footer .newsletter-form button:hover {
-                transform: none;
-            }
-            .trend-table {
-                font-size: 0.9rem;
-                min-width: 100%;
-            }
-            .trend-table th, .trend-table td {
-                padding: 0.8rem;
-                font-size: 0.9rem;
-            }
-            .glass-card.sources-card {
-                padding: 1rem;
-                max-width: 1200px;
-            }
-            .review-title-glitch {
-                font-size: 2rem;
-                margin: 2rem auto;
-            }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        @keyframes heatwave {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        @keyframes neon-flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+
+        .nav {
+            background: var(--background);
+        }
+
+        .dropdown-menu {
+            background: var(--background);
+        }
+
+        .album-card {
+            background: var(--background);
         }
     </style>
 </head>
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-    <header class="review-header">
+    <div id="cursor"></div> <!-- Custom cursor -->
+    <div id="cursor-blur"></div> <!-- Cursor blur -->
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
         </div>
-        <nav>
-            <div class="dropdown">
-                <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
-                <div class="dropdown-menu">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="reviews.html">Reviews</a></li>
-                        <li><a href="features.html">Features</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="opinions.html">Opinions</a></li>
-                        <li><a href="catchcarti.html">Catch Carti</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <h1 class="review-title-glitch" data-text="2014 FOREST HILLS DRIVE">2014 FOREST HILLS DRIVE</h1>
-        <div class="review-content">
-            <h2>2014 Forest Hills Drive: J. Cole’s Soulful Homecoming</h2>
-            <div class="glass-card grad-card">
-                <img src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover">
-            </div>
-            <br>
-            <p>
-                Released <span class="highlight">December 9, 2014</span> via <span class="highlight">Roc Nation</span>, <span class="highlight">Columbia</span>, and <span class="highlight">Dreamville</span>, J. Cole’s <em><span class="highlight">2014 Forest Hills Drive</span></em>—a 13-track, 64-minute memoir—sold <span class="highlight">353,000</span> units in its first week, topping the <span class="highlight">Billboard 200</span> (Billboard). By <span class="highlight">March 25, 2025</span>, it’s <span class="highlight">3x Platinum</span> (RIAA) with <span class="highlight">4.8 billion</span> Spotify streams. Crafted with <span class="highlight">Vinylz</span>, it’s Cole’s soulful homecoming. Veazy’s 2025 take: a red-hot classic still burning bright.
-            </p>
-        </div>
-        <br>
-        <h2>The Messaging and Theme</h2>
-        <br>
-        <p>
-            J. Cole atop his childhood home on <em><span class="highlight">2014 Forest Hills Drive</span></em>’s cover sets a nostalgic vibe—self-discovery and authenticity reign. <span class="highlight">“Wet Dreamz”</span> recalls “She took her shirt off,” a tender youth tale, while <span class="highlight">“Love Yourz”</span> preaches “No such thing as a life that’s better than yours.” <span class="highlight">“03’ Adolescence”</span> reflects “I’ma do it ‘fore I die,” and <span class="highlight">“January 28th”</span> asserts “I’m real.” It’s a red-hot hip-hop diary of growth and grit, no flash—just truth. X (@36966_) in 2025 calls it “Cole’s rawest soul,” its lessons still hitting hard.
-        </p>
-        <br>
-        <h2>Production and Sound</h2>
-        <br>
-        <p>
-            <span class="highlight">J. Cole</span>, <span class="highlight">Vinylz</span>, <span class="highlight">Illmind</span>, and <span class="highlight">Ron Gilmore</span> shape <em><span class="highlight">2014 Forest Hills Drive</span></em> at <span class="highlight">Perfect Sound Studios</span> (LA) and <span class="highlight">Jungle City Studios</span> (NYC). <span class="highlight">“No Role Modelz”</span> loops jazzy brass, <span class="highlight">“Apparently”</span> hums with soulful pianos, and <span class="highlight">“Fire Squad”</span> bangs with crisp drums—Cole’s flow ties it into a red-hot narrative. It’s smoother than <em><span class="highlight">Born Sinner</span></em>’s edge, a cohesive memoir vibe. In 2025, its warm sound still echoes in introspective rap—think Dreamville’s heirs—though some tracks linger too long.
-        </p>
-        <br>
-        <h2>Features</h2>
-        <br>
-        <p>
-            <em><span class="highlight">2014 Forest Hills Drive</span></em> goes feature-free—<span class="highlight">J. Cole</span> stands alone, a bold flex. From <span class="highlight">“January 28th”</span>’s “I’m real” bravado to <span class="highlight">“03’ Adolescence”</span>’s “I was tryna make it,” he carries every bar and hook with red-hot soul. No guests dilute his vision—it’s his story, raw and unfiltered, proving his lyrical depth shines solo.
-        </p>
-        <br>
-        <div class="glass-card">
-            <h2>Track Highlights</h2>
-            <div class="track-highlight-grid">
-                <div class="track-highlight-item">
-                    <p><span class="highlight">For Newcomers:</span> <span class="highlight">“No Role Modelz,”</span> <span class="highlight">“Love Yourz”</span>—Jazzy loops and warm hooks grab easy, Cole’s red-hot tales of fake love and life lessons reeling newbies in.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <p><span class="highlight">For The Dive:</span> <span class="highlight">“Wet Dreamz,”</span> <span class="highlight">“03’ Adolescence”</span>—Soulful beats and raw stories dig deep, Cole’s red-tinged youth and dreams hitting fans with introspective weight.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <p><span class="highlight">Hidden Gems:</span> <span class="highlight">“Fire Squad,”</span> <span class="highlight">“Apparently”</span>—Punchy drums and warm pianos glow, Cole’s red-hot bars weaving depth in cuts that shine for attentive ears.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">“Love Yourz (Live)”</span>—Fayetteville 2025 tour’s red-lit sermon keeps Veazy hooked, Cole’s wisdom reigniting this classic with soulful fire.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <p><span class="highlight">Cultural Impact Tracks:</span> <span class="highlight">“No Role Modelz”</span>—A 2025 TikTok staple, its red-hot brass fuels introspective rap edits, cementing Cole’s lasting mark on hip-hop.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <p><span class="highlight">Fan Favorites:</span> <span class="highlight">“Love Yourz”</span>—X (@36966_) in 2025 crowns it Cole’s red-soul anthem, a streaming giant fans cherish for its heartfelt truth.</p>
-                </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="reviews.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
         </div>
-        <br>
-        <h2>Previous Works</h2>
-        <br>
-        <p>
-            J. Cole’s <em><span class="highlight">The Come Up</span></em> (2007) mixtape sparked with <span class="highlight">“Simba,”</span> raw ambition on display. <em><span class="highlight">Cole World: The Sideline Story</span></em> (2011) hit No. 1 with <span class="highlight">“Work Out”</span> (No. 13 Hot 100, Billboard), selling <span class="highlight">218,000</span> units first week. <em><span class="highlight">Born Sinner</span></em> (2013) followed at No. 1 with <span class="highlight">“Power Trip”</span> (No. 19), moving <span class="highlight">297,000</span> units (Billboard), sharpening his edge with <span class="highlight">Vinylz</span>. <em><span class="highlight">2014 Forest Hills Drive</span></em> (2014) soared to No. 1 with <span class="highlight">353,000</span> units, a red-hot soulful peak that set up <em><span class="highlight">KOD</span></em> (2018). In 2025, it’s Cole’s cornerstone, influencing introspective rap.
-        </p>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Awards Recognition</span></h3>
+    </nav>
+
+    <section class="hero">
+        <img src="colee.jpeg" alt="2014 Forest Hills Drive" class="hero-image">
+        <div class="hero-content">
+            <div class="album-card">
+                <div class="album-header">
+                    <h1 class="album-title">2014 Forest Hills Drive</h1>
+                    <p class="album-quote">"Forest Hills Drive: J. Cole's Timeless Journey Home"</p>
+                </div>
+                <img src="https://vzdzt.github.io/musicrx/colee.jpeg" alt="J. Cole - 2014 Forest Hills Drive album cover" class="album-image">
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">4.8B</div>
+            <div class="stat-label">Streams</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">3x</div>
+            <div class="stat-label">Platinum</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">353K</div>
+            <div class="stat-label">First Week</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">#1</div>
+            <div class="stat-label">Billboard 200</div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Released December 9, 2014 via Roc Nation, Columbia, and Dreamville, J. Cole's <em>2014 Forest Hills Drive</em>—a 13-track, 64-minute memoir—sold 353,000 units in its first week, topping the Billboard 200. By March 25, 2025, it's 3x Platinum (RIAA) with 4.8 billion Spotify streams.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p>J. Cole, Vinylz, Illmind, and Ron Gilmore shape <em>2014 Forest Hills Drive</em> at Perfect Sound Studios (LA) and Jungle City Studios (NYC). "No Role Modelz" loops jazzy brass, "Apparently" hums with soulful pianos—Cole's flow ties it into a cohesive narrative echoing in 2025's introspective rap wave.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p>J. Cole atop his childhood home on the cover sets a nostalgic vibe—self-discovery and authenticity reign. “Wet Dreamz” recalls youth, “Love Yourz” preaches truth—it’s a hip-hop diary of growth and grit, still resonating in 2025.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p><em>2014 Forest Hills Drive</em> goes feature-free—J. Cole stands alone, a bold flex. From “January 28th”’s bravado to “03’ Adolescence”’s reflection, he carries every bar with soul, proving his lyrical depth shines solo.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="section-title">Stream Related</h2>
+            <canvas id="streamingChart"></canvas>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p>"No Role Modelz," "Love Yourz"—jazzy loops and warm hooks grab easy.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For The Dive</h3>
+                    <p>"Wet Dreamz," "03' Adolescence"—soulful beats and raw stories dig deep.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p>"Fire Squad," "Apparently"—punchy drums and warm pianos glow.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p><em>Cole World: The Sideline Story</em> (2011) hit No. 1 with 218,000 units. <em>Born Sinner</em> (2013) followed with 297,000 units. <em>2014 Forest Hills Drive</em> soared to 353,000, a soulful peak influencing 2025’s introspective rap.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p>Pitchfork’s 6.9/10 critiqued its length, Rolling Stone’s 4/5 lauded its depth. By March 25, 2025, with 3x Platinum and 4.8 billion streams, it’s a hip-hop cornerstone shaping 2025’s introspective wave.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
             <div class="table-container">
-                <table class="trend-table awards-table">
+                <table class="trend-table">
                     <thead>
                         <tr>
                             <th>Category</th>
@@ -550,86 +856,71 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><span class="highlight">Album of the Year</span></td><td>2016</td><td>Nominated</td></tr>
-                        <tr><td><span class="highlight">Best Rap Album</span></td><td>2016</td><td>Won</td></tr>
-                        <tr><td><span class="highlight">Best Rap Performance (“No Role Modelz”)</span></td><td>2016</td><td>Nominated</td></tr>
-                    </tbody>
-                </table>
-                <p>
-                    <em><span class="highlight">2014 Forest Hills Drive</span></em> clinched Best Rap Album in 2016, its red-hot legacy bolstered by two nods, <span class="highlight">3x Platinum</span>, and <span class="highlight">4.8 billion</span> streams by 2025.
-                </p>
-            </div>
-        </div>
-        <br>
-        <h2>Legacy & Reception</h2>
-        <br>
-        <p>
-            Pitchfork’s <span class="highlight">6.9/10</span> critiqued <em><span class="highlight">2014 Forest Hills Drive</span></em>’s length, Rolling Stone’s 4/5 lauded its “emotional depth.” X (@36966_) in 2014: “Cole’s soul on wax.” By <span class="highlight">March 25, 2025</span>, with <span class="highlight">3x Platinum</span> (RIAA), <span class="highlight">4.8 billion</span> streams (Spotify), and a Fayetteville 2025 tour reviving <span class="highlight">“Love Yourz,”</span> it’s a hip-hop cornerstone. Outshining <em><span class="highlight">Born Sinner</span></em>’s edge, its sprawl’s a flaw and strength, shaping 2025’s introspective wave—think Bas.
-        </p>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Chart Performance</span></h3>
-            <div class="table-container">
-                <table class="trend-table chart-table">
-                    <thead>
-                        <tr>
-                            <th>Album</th>
-                            <th>Highest Charting Song</th>
-                            <th>Peak Position</th>
-                            <th>Streams (as of 2025)</th>
-                            <th>Certification</th>
-                            <th>Units Sold</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><span class="highlight">Born Sinner</span></td><td><span class="highlight">“Power Trip”</span></td><td>19</td><td>2.9B</td><td>3x Platinum</td><td>1.9M+</td></tr>
-                        <tr><td><span class="highlight">2014 Forest Hills Drive</span></td><td><span class="highlight">“No Role Modelz”</span></td><td>36</td><td>4.8B</td><td>3x Platinum</td><td>3.2M+</td></tr>
+                        <tr><td>Album of the Year</td><td>2016</td><td>Nominated</td></tr>
+                        <tr><td>Best Rap Album</td><td>2016</td><td>Won</td></tr>
+                        <tr><td>Best Rap Performance (“No Role Modelz”)</td><td>2016</td><td>Nominated</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Album Certifications</span></h3>
-            <div class="table-container">
-                <table class="trend-table certifications-table">
-                    <thead>
-                        <tr>
-                            <th>Album</th>
-                            <th>Certification</th>
-                            <th>Units (Millions)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><span class="highlight">Cole World: The Sideline Story</span></td><td>Platinum</td><td>1.5</td></tr>
-                        <tr><td><span class="highlight">Born Sinner</span></td><td>3x Platinum</td><td>1.9</td></tr>
-                        <tr><td><span class="highlight">2014 Forest Hills Drive</span></td><td>3x Platinum</td><td>3.2</td></tr>
-                    </tbody>
-                </table>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Originality</h3><div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>“January 28th” crafts a solo memoir, bold in a collab-heavy era.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>“Apparently”’s soulful pianos shine, though some tracks overstay.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Lyrics</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>“Love Yourz” preaches truth withdeeply personal storytelling.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Enjoyment</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>“No Role Modelz” hooks deep, though pacing slows some replay.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.0</div>
+                <h3>Consistency</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%"></div>
+                </div>
+                <p>“Fire Squad” to “Love Yourz” flows tight, with minor dips.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.6</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 86%"></div>
+                </div>
+                <p>A timeless memoir of youth and truth, enduring in 2025.</p>
             </div>
         </div>
-        <br>
-        <div class="glass-card ratings-card">
-            <h2>Ratings</h2>
-            <p><span class="highlight">Originality (18/20):</span> <span class="highlight">“January 28th”</span> crafts a solo memoir, Cole’s red-hot authenticity bold in a collab-heavy era, though not genre-shifting.</p>
-            <p><span class="highlight">Production Quality (17/20):</span> <span class="highlight">“Apparently”</span>’s soulful pianos shine, a red-tinged vibe—some tracks like <span class="highlight">“St. Tropez”</span> overstay, dulling the polish.</p>
-            <p><span class="highlight">Lyrics and Messaging (18/20):</span> <span class="highlight">“Love Yourz”</span> preaches truth, Cole’s red-hot bars weaving youth and fame with weight—rarely stumbles.</p>
-            <p><span class="highlight">Enjoyment Factor (17/20):</span> <span class="highlight">“No Role Modelz”</span> hooks deep, its red soul a slow-burn joy—pacing slows some replay thrill in 2025.</p>
-            <p><span class="highlight">Consistency (16/20):</span> <span class="highlight">“Fire Squad”</span> to <span class="highlight">“Love Yourz”</span> flows tight, red-hot narrative strong—energy dips like <span class="highlight">“Hello”</span> break the stride.</p>
-            <p class="overall-rating"><h3><span class="highlight">Overall Rating (86/100):</span> 8.6/10</h3></p>
-            <p>
-                <em><span class="highlight">2014 Forest Hills Drive</span></em> earns its 8.6 with red-hot soul—J. Cole’s timeless memoir of youth and truth. Fayetteville 2025’s <span class="highlight">“Love Yourz”</span> live, red lights dim, reignites its glow, a viral moment. Veazy’s still lost in this classic, its warmth enduring in 2025. Some tracks drag, but its raw honesty shines, a hip-hop cornerstone.
-            </p>
-        </div>
-        <br>
-        <div class="glass-card sources-card">
-            <h3><span class="highlight">Sources</span></h3>
-            <p>
-                Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X fan reactions (@36966_) as of March 25, 2025.
-            </p>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X fan reactions (@36966_) as of March 25, 2025.</p>
         </div>
     </div>
-    <footer class="review-footer">
+
+    <footer class="footer">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
         </div>
@@ -641,32 +932,162 @@
             <button type="submit">Subscribe</button>
         </form>
     </footer>
-    <div class="fixed-buttons">
-        <button id="backToTop" class="fixed-button" title="Back to Top" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
-        <button id="musicToggle" class="fixed-button" title="Toggle Music" aria-label="Play music"><i class="fas fa-play"></i></button>
-        <button id="themeToggle" class="fixed-button" title="Normal Mode" aria-label="Switch to next theme (current: All Red Mode)"><i class="fas fa-adjust"></i></button>
-        <button id="tipMachine" class="fixed-button" title="Tip Machine" aria-label="Support the site"><i class="fas fa-coffee"></i></button>
+    <div class="button-container"> 
+    <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+        <i class="fas fa-adjust"></i>
+    </button>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if ('ScrollTimeline' in window) {
-                document.querySelector('.review-content').animate(
-                    { transform: ['scale(1)', 'scale(1.05)'] },
-                    { timeline: new ScrollTimeline({ source: document.documentElement }) }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Starfield temporarily disabled
+            /*
+            let camera, renderer, starField, scene = null;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY= 0;
+            const canvas = document.getElementById('universe');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 1000;
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const starCount = 1000;
+
+            for (let i = 0; i < starCount; i++) {
+                vertices.push(
+                    Math.random() * 1000 - 500,
+                    Math.random() * 1000 - 500,
+                    Math.random() * 1000 - 500
                 );
+                colors.push(1, 1, 1);
             }
-            document.querySelectorAll('.track-highlight-item').forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    const text = item.textContent;
-                    const msg = new SpeechSynthesisUtterance(text);
-                    window.speechSynthesis.speak(msg);
-                });
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
+            });
+
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (starField) {
+                    starField.rotation.x += 0.0001;
+                    starField.rotation.y += 0.0001;
+                }
+                renderer.render(scene, camera);
+            }
+
+            animate();
+            */
+
+            // Starfield resize handler disabled
+            window.addEventListener('resize', () => {
+                // Resize handling will be re-enabled when starfield is active
+            });
+
+            // Improved Dropdown functionality
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
+            });
+
+            // Chart
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2014', '2016', '2018', '2020', '2022', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [0.1, 1.2, 2.5, 3.4, 4.2, 4.8],
+                        borderColor: '#00f7ff',
+                        backgroundColor: 'rgba(0, 247, 255, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
             });
         });
+        const errorMessageWrapper = document.createElement('div');
+        errorMessageWrapper.style.position = 'fixed';
+        errorMessageWrapper.style.bottom = '20px';
+        errorMessageWrapper.style.right = '20px';
+        errorMessageWrapper.style.background = 'var(--card)';
+        errorMessageWrapper.style.border = '1px solid var(--border)';
+        errorMessageWrapper.style.color = 'var(--accent)';
+        errorMessageWrapper.style.padding = '1rem';
+        errorMessageWrapper.style.borderRadius = '8px';
+        errorMessageWrapper.style.boxShadow = '0 10px 20px rgba(0, 247, 255, 0.5)';
+        errorMessageWrapper.textContent = `FOLLOW ME ON TWITTER @36966_`;
+        errorMessageWrapper.style.fontFamily = 'Syncopate, sans-serif';
+        errorMessageWrapper.style.zIndex = '1002';
+        document.body.appendChild(errorMessageWrapper);
+
+        setTimeout(() => {
+            errorMessageWrapper.remove();
+        }, 5000);
     </script>
 </body>
 </html>

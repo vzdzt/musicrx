@@ -51,8 +51,9 @@ function initThreeJS() {
                 Math.random() * 2000 - 1000,
                 Math.random() * 2000 - 1000
             );
-            const color = new THREE.Color();
-            color.setHSL(Math.random(), 0.7, 0.7);
+            const color = new THREE.Color(0.3, 0.3, 0.5);
+            const luminance = 0.3 + Math.random() * 0.2; // Keep stars visible but not too bright
+            color.multiplyScalar(luminance);
             colors.push(color.r, color.g, color.b);
         }
 
@@ -63,8 +64,11 @@ function initThreeJS() {
             size: 1.5,
             vertexColors: true,
             transparent: true,
-            opacity: 0.8,
-            sizeAttenuation: true
+            opacity: 0.6,
+            sizeAttenuation: true,
+            fog: false,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
         });
 
         starField = new THREE.Points(geometry, material);
@@ -105,17 +109,23 @@ function initThreeJS() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('script.js loaded');
 
-    // Cursor functionality
+    // Cursor functionality with Safari compatibility
     const cursor = document.getElementById('cursor');
     const cursorBlur = document.getElementById('cursor-blur');
-    document.addEventListener('mousemove', (e) => {
-        if (cursor && cursorBlur) {
-            cursor.style.left = `${e.clientX}px`;
-            cursor.style.top = `${e.clientY}px`;
-            cursorBlur.style.left = `${e.clientX - 200}px`; // Consistent offset
-            cursorBlur.style.top = `${e.clientY - 200}px`;
-        }
-    });
+
+    if (cursor && cursorBlur) {
+        cursor.style.visibility = 'visible';
+        cursorBlur.style.visibility = 'visible';
+
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                cursor.style.left = `${e.clientX}px`;
+                cursor.style.top = `${e.clientY}px`;
+                cursorBlur.style.left = `${e.clientX - 200}px`;
+                cursorBlur.style.top = `${e.clientY - 200}px`;
+            });
+        });
+    }
 
     // Glass card hover effects (for Reviews subpage and others)
     document.querySelectorAll('.glass-card, .track-highlight-item').forEach(card => {
@@ -380,19 +390,32 @@ if ('paintWorklet' in CSS) {
                 const dripOffset = parseFloat(properties.get('--drip-offset')) || 0;
                 const dripSpeed = parseFloat(properties.get('--drip-speed')) || 1;
                 const dripColor = properties.get('--drip-color').toString() || properties.get('--primary').toString();
+                const glowColor = properties.get('--glow').toString();
                 const { width, height } = size;
-                ctx.fillStyle = dripColor;
+
+                // Create gradient for better visual effect
+                const gradient = ctx.createLinearGradient(0, 0, 0, height);
+                gradient.addColorStop(0, dripColor);
+                gradient.addColorStop(1, glowColor);
+                
+                ctx.fillStyle = gradient;
                 ctx.globalAlpha = 0.6;
-                for (let x = 0; x < width; x += 20) {
-                    const wave = Math.sin(x * 0.05 + dripOffset) * 10;
+                
+                const spacing = Math.max(10, width / 100);
+                for (let x = 0; x < width; x += spacing) {
+                    const wave = Math.sin(x * 0.05 + dripOffset) * 15;
                     const y = height / 2 + wave;
+                    
+                    // Main drip
                     ctx.beginPath();
                     ctx.arc(x, y, 2, 0, Math.PI * 2);
                     ctx.fill();
+                    
+                    // Glow effect
                     for (let i = 1; i <= 3; i++) {
-                        ctx.globalAlpha = 0.2 / i;
+                        ctx.globalAlpha = 0.15 / i;
                         ctx.beginPath();
-                        ctx.arc(x, y - i * 10, 1.5, 0, Math.PI * 2);
+                        ctx.arc(x, y - i * 10, 2, 0, Math.PI * 2);
                         ctx.fill();
                     }
                 }

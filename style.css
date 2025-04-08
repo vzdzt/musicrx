@@ -1,3 +1,21 @@
+
+@property --drip-offset {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0px;
+}
+
+.neon-drip {
+    --drip-offset: 0px;
+    --drip-speed: 1;
+    background: paint(neon-drip);
+    animation: drip-flow 3s infinite linear;
+}
+
+@keyframes drip-flow {
+    to { --drip-offset: 50px; }
+}
+
 /* Define root variables for default fallbacks */
 :root {
   --primary: #00f7ff;
