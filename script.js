@@ -107,6 +107,10 @@ function initThreeJS() {
 
 // Main event listener
 document.addEventListener('DOMContentLoaded', () => {
+    if ('paintWorklet' in CSS) {
+        CSS.paintWorklet.addModule('cyber-effects.js');
+        CSS.paintWorklet.addModule('neon-drip.js');
+    }
     console.log('script.js loaded');
 
     // Cursor functionality with Safari compatibility
