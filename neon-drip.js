@@ -1,33 +1,19 @@
 registerPaint('neon-drip', class {
-    static get inputProperties() {
-        return ['--drip-offset', '--drip-color'];
+  static get inputProperties() {
+    return ['--drip-color', '--drip-speed', '--drip-size'];
+  }
+
+  paint(ctx, size, properties) {
+    const color = properties.get('--drip-color').toString() || '#00ff00';
+    const speed = properties.get('--drip-speed') || 1;
+    const dropSize = properties.get('--drip-size') || 5;
+
+    ctx.fillStyle = color;
+
+    for (let x = 0; x < size.width; x += 20) {
+      const offset = Math.sin(x * 0.1) * 10;
+      const height = (Math.sin(x * 0.05 + speed) + 1) * dropSize;
+      ctx.fillRect(x, offset, 2, height);
     }
-
-    paint(ctx, size, properties) {
-        const dripOffset = parseFloat(properties.get('--drip-offset')) || 0;
-        const dripColor = properties.get('--drip-color').toString() || '#00f7ff';
-        const { width, height } = size;
-
-        ctx.shadowColor = dripColor;
-        ctx.shadowBlur = 10;
-        ctx.fillStyle = dripColor;
-        ctx.globalAlpha = 0.6;
-
-        // Reduced number of drips and simplified effects
-        const spacing = Math.max(20, width / 20);
-        for (let x = 0; x < width; x += spacing) {
-            const wave = Math.sin(x * 0.03 + dripOffset) * 15;
-            const y = height / 2 + wave;
-
-            ctx.beginPath();
-            ctx.moveTo(x, 0);
-            ctx.lineTo(x, y);
-            ctx.lineWidth = 1;
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.arc(x, y, 2, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
+  }
 });
