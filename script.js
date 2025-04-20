@@ -1,3 +1,19 @@
+
+// Footer visibility control
+window.addEventListener('scroll', () => {
+  const footer = document.querySelector('footer');
+  if (footer) {
+    const scrollPosition = Math.ceil(window.scrollY + window.innerHeight);
+    const documentHeight = document.documentElement.scrollHeight;
+    
+    if (scrollPosition >= documentHeight) {
+      footer.classList.add('visible');
+    } else {
+      footer.classList.remove('visible');
+    }
+  }
+});
+
 // Global variables for starfield
 window.isStarfieldActive = localStorage.getItem('starfieldEnabled') === 'true';
 window.scene = null;
@@ -227,6 +243,20 @@ function updateStarfieldColors() {
 
 // Main event listener
 document.addEventListener('DOMContentLoaded', () => {
+  // Footer visibility logic
+  const footer = document.querySelector('.footer');
+  window.addEventListener('scroll', () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = window.scrollY;
+    const clientHeight = document.documentElement.clientHeight;
+
+    if (scrollTop + clientHeight >= scrollHeight - 10) {
+      footer.classList.add('visible');
+    } else {
+      footer.classList.remove('visible');
+    }
+  });
+
     const supportsWebGL = (function() {
         try {
             return !!window.WebGLRenderingContext && 
@@ -277,29 +307,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const cursorBlur = document.getElementById('cursor-blur');
-    if (cursorBlur && !isMobile) {
-        cursorBlur.style.visibility = 'visible';
-        document.addEventListener('mousemove', (e) => {
-            requestAnimationFrame(() => {
-                cursorBlur.style.left = `${e.clientX - 200}px`;
-                cursorBlur.style.top = `${e.clientY - 200}px`;
-            });
-        });
-    } else if (cursorBlur) {
-        cursorBlur.style.display = 'none';
-    }
+    // const cursorBlur = document.getElementById('cursor-blur');
+    // if (cursorBlur && !isMobile) {
+    //     cursorBlur.style.visibility = 'visible';
+    //     document.addEventListener('mousemove', (e) => {
+    //         requestAnimationFrame(() => {
+    //             cursorBlur.style.left = `${e.clientX - 200}px`;
+    //             cursorBlur.style.top = `${e.clientY - 200}px`;
+    //         });
+    //     });
+    // } else if (cursorBlur) {
+    //     cursorBlur.style.display = 'none';
+    // }
 
     function updateCursorForTheme(theme) {
-        if (!cursorBlur || isMobile) return;
-        const lowContrastThemes = ['black', 'all-black'];
-        if (lowContrastThemes.includes(theme)) {
-            cursorBlur.style.opacity = '1';
-            cursorBlur.style.background = 'rgba(255, 255, 255, 0.2)';
-        } else {
-            cursorBlur.style.opacity = '0.8';
-            cursorBlur.style.background = '';
-        }
+        // Cursor theme handling removed
     }
 
     document.querySelectorAll('.glass-card, .track-highlight-item').forEach(card => {
@@ -312,14 +334,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.background = 'var(--rgb-glow)';
                 card.style.backgroundSize = '200% 200%';
                 card.style.animation = 'rgbShift 3s linear infinite';
-                if (cursorBlur) cursorBlur.style.transform = 'scale(1.5)';
             });
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'scale(1)';
                 card.style.boxShadow = 'none';
                 card.style.background = 'rgba(255, 255, 255, 0.2)';
                 card.style.animation = 'none';
-                if (cursorBlur) cursorBlur.style.transform = 'scale(1)';
             });
         } else {
             card.addEventListener('touchstart', () => {
@@ -335,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const themeToggle = document.getElementById('themeToggle');
     const htmlElement = document.documentElement;
-    const defaultTheme = 'black';
+    const defaultTheme = 'black'; // Default theme for all users
 
     if (themeToggle) {
         if (!localStorage.getItem('currentTheme')) {
@@ -352,8 +372,11 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(`Initial theme applied: ${savedTheme}`);
 
         const themes = [
-            'primary', 'mirror-glass', 'ultra-glass', 'normal', 'satin', 'frosted', 'veazy', 'white', 'black',
-            'all-white', 'all-red', 'all-blue', 'pink-rose', 'blue-sky',
+            'black', 'all-white'
+            // Commented out themes
+            /*
+            'primary', 'mirror-glass', 'ultra-glass', 'normal', 'satin', 'frosted', 'veazy', 'white',
+            'all-red', 'all-blue', 'pink-rose', 'blue-sky',
             'yellow-beige', 'green', 'purple-lavender', 'vogue', 'neon-future',
             'midnight-gold', 'desert-oasis', 'cyber-punk', 'aurora-breeze', 'glass-morphism',
             'galactic-nebula', 'electric-storm', 'void-pulse', 'prism-shard',
@@ -361,11 +384,15 @@ document.addEventListener('DOMContentLoaded', () => {
             'holo-abyss', 'spectral-surge', 'starforge-nebula', 'thunder-vortex',
             'abyss-echo', 'crystal-prism', 'magma-forge', 'dimensional-veil',
             'shadow-pulse', 'flux-horizon', 'holo-vortex', 'waveform-surge'
+            */
         ];
 
         const themeTitles = [
-            'Primary Mode', 'Mirror Glass Mode', 'Ultra Glass Mode', 'Normal Mode', 'Satin Mode', 'Frosted Mode', 'Veazy Mode', 'White Mode', 'Black Mode',
-            'All White Mode', 'All Red Mode', 'All Blue Mode', 'Pink Rose Mode', 'Blue Sky Mode',
+            'Black Mode', 'All White Mode'
+            // Commented out theme titles
+            /*
+            'Primary Mode', 'Mirror Glass Mode', 'Ultra Glass Mode', 'Normal Mode', 'Satin Mode', 'Frosted Mode', 'Veazy Mode', 'White Mode',
+            'All Red Mode', 'All Blue Mode', 'Pink Rose Mode', 'Blue Sky Mode',
             'Yellow Beige Mode', 'Green Mode', 'Purple Lavender Mode', 'Vogue Mode', 'Neon Future Mode',
             'Midnight Gold Mode', 'Desert Oasis Mode', 'Cyber Punk Mode', 'Aurora Breeze Mode', 'Glass Morphism Mode',
             'Galactic Nebula Mode', 'Electric Storm Mode', 'Void Pulse Mode', 'Prism Shard Mode',
@@ -373,6 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Holo Abyss Mode', 'Spectral Surge Mode', 'Starforge Nebula Mode', 'Thunder Vortex Mode',
             'Abyss Echo Mode', 'Crystal Prism Mode', 'Magma Forge Mode', 'Dimensional Veil Mode',
             'Shadow Pulse Mode', 'Flux Horizon Mode', 'Holo Vortex Mode', 'Waveform Surge Mode'
+            */
         ];
 
         let currentThemeIndex = themes.indexOf(savedTheme);
@@ -386,6 +414,46 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggle.setAttribute('title', newThemeTitle);
             themeToggle.setAttribute('aria-label', `Switch to next theme (current: ${newThemeTitle})`);
             updateCursorForTheme(newTheme);
+
+// Search functionality for reviews and features pages
+function initializeSearch() {
+  const reviewSearch = document.getElementById('reviewSearch');
+  const featureSearch = document.getElementById('featureSearch');
+  
+  if (reviewSearch) {
+    const cards = document.querySelectorAll('.glass-card');
+    reviewSearch.addEventListener('input', debounce((e) => {
+      const searchTerm = e.target.value.toLowerCase().trim();
+      cards.forEach(card => {
+        const artistName = card.querySelector('h2')?.textContent.toLowerCase() || '';
+        const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+        const shouldShow = artistName.includes(searchTerm) || description.includes(searchTerm);
+        card.style.display = shouldShow ? 'block' : 'none';
+        card.style.opacity = shouldShow ? '1' : '0';
+        card.style.transition = 'opacity 0.3s ease';
+      });
+    }, 300));
+  }
+
+  if (featureSearch) {
+    const cards = document.querySelectorAll('.glass-card');
+    featureSearch.addEventListener('input', debounce((e) => {
+      const searchTerm = e.target.value.toLowerCase().trim();
+      cards.forEach(card => {
+        const artistName = card.querySelector('h2')?.textContent.toLowerCase() || '';
+        const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+        const shouldShow = artistName.includes(searchTerm) || description.includes(searchTerm);
+        card.style.display = shouldShow ? 'block' : 'none';
+        card.style.opacity = shouldShow ? '1' : '0';
+        card.style.transition = 'opacity 0.3s ease';
+      });
+    }, 300));
+  }
+}
+
+// Call the search initialization when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeSearch);
+
             updateStarfieldColors();
             console.log(`Theme changed to: ${newTheme}`);
         });
@@ -394,23 +462,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const modals = document.querySelectorAll('.wallet-modal-overlay, .tip-overlay');
-    modals.forEach(modal => {
-        modal.addEventListener('transitionend', () => {
-            if (modal.classList.contains('active')) {
-                if (cursorBlur) cursorBlur.style.display = 'none';
+    if (modals.length > 0) {
+        modals.forEach(modal => {
+            if (modal) {
+                modal.addEventListener('transitionend', () => {
+                    if (modal.classList.contains('active')) {
+                //if (cursorBlur) cursorBlur.style.display = 'none';
                 window.isStarfieldActive = false;
                 universe.style.opacity = '0';
             } else {
-                if (cursorBlur && !isMobile) cursorBlur.style.display = 'block';
+                //if (cursorBlur && !isMobile) cursorBlur.style.display = 'block';
                 window.isStarfieldActive = localStorage.getItem('starfieldEnabled') === 'true';
                 universe.style.opacity = window.isStarfieldActive ? (isMobile ? '0.7' : '1') : '0';
             }
-            document.querySelectorAll('.scroll-container, .glass-card').forEach(el => {
-                el.style.visibility = 'visible';
-                el.style.opacity = '1';
-            });
+                    document.querySelectorAll('.scroll-container, .glass-card').forEach(el => {
+                        if (el) {
+                            el.style.visibility = 'visible';
+                            el.style.opacity = '1';
+                        }
+                    });
+                });
+            }
         });
-    });
+    }
 
     document.querySelectorAll('.scroll-container, .glass-card').forEach(el => {
         el.style.visibility = 'visible';
@@ -428,12 +502,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const wordSpan = document.createElement('span');
           wordSpan.className = 'word';
 
-          word.split('').forEach((char, charIndex) => {
+          // Commented out letter glitch effect
+/*word.split('').forEach((char, charIndex) => {
             const span = document.createElement('span');
             span.className = 'char glitch-hover';
             span.textContent = char;
             wordSpan.appendChild(span);
-          });
+          });*/
+wordSpan.textContent = word;
 
           element.appendChild(wordSpan);
 
@@ -451,21 +527,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// Search functionality (for Reviews subpage)
-const reviewSearch = document.getElementById('reviewSearch');
-if (reviewSearch) {
-    const cards = document.querySelectorAll('.glass-card');
-    reviewSearch.addEventListener('input', debounce((e) => {
-        const searchTerm = e.target.value.toLowerCase().trim();
+// Search functionality for reviews and features pages
+function initializeSearch() {
+    const reviewSearch = document.getElementById('reviewSearch');
+    const featureSearch = document.getElementById('featureSearch');
+    
+    function handleSearch(input, cards) {
+        const searchTerm = input.value.toLowerCase().trim();
         cards.forEach(card => {
-            const artistName = card.querySelector('h2')?.textContent.toLowerCase() || '';
-            const shouldShow = artistName.includes(searchTerm);
-            card.style.display = shouldShow ? 'block' : 'none';
+            const title = card.querySelector('h2, h3')?.textContent.toLowerCase() || '';
+            const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+            const shouldShow = title.includes(searchTerm) || description.includes(searchTerm);
+            card.style.display = shouldShow ? 'flex' : 'none';
             card.style.opacity = shouldShow ? '1' : '0';
-            card.style.transition = 'opacity 0.3s ease';
         });
-    }, 300));
+    }
+
+    if (reviewSearch) {
+        const reviewCards = document.querySelectorAll('.glass-card');
+        reviewSearch.addEventListener('input', debounce((e) => {
+            handleSearch(reviewSearch, reviewCards);
+        }, 300));
+    }
+
+    if (featureSearch) {
+        const featureCards = document.querySelectorAll('.glass-card');
+        featureSearch.addEventListener('input', debounce((e) => {
+            handleSearch(featureSearch, featureCards);
+        }, 300));
+    }
 }
+
+// Initialize search when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeSearch);
 
 // Dropdown Functionality
 document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
