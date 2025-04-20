@@ -1,86 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Set character encoding to UTF-8 -->
     <meta charset="UTF-8">
-    <!-- Ensure responsive viewport scaling -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Page title -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MusicRx - Just A Music Blog</title>
-    <!-- Three.js for starfield background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <!-- ScrollTrigger for scroll-based animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- Web3 dependencies for wallet connectivity -->
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7/dist/ethers.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for typography -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <!-- External stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Wallet Connect Button in Navbar */
-        .navbar .wallet-connect {
-            background: var(--glass);
-            border: 1px solid var(--border-color);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.8rem;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        .navbar .wallet-connect:hover {
-            background: var(--rgb-glow);
-            color: var(--dark);
-            box-shadow: 0 0 15px var(--glow);
-            animation: rgbShift 3s linear infinite;
-            transform: scale(1.05);
-        }
-        .navbar .wallet-status {
-            color: var(--text-color);
-            font-size: 0.8rem;
-            margin-left: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-    </style>
 </head>
 <body class="home">
-    <!-- Background music element -->
+    <div id="cursor-blur"></div>
     <audio id="bgMusic" loop>
         <source src="https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3" type="audio/mpeg">
     </audio>
-
-    <!-- Fixed buttons -->
-    <!-- Music toggle button -->
     <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
-    <!-- Theme toggle button -->
     <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
-    <!-- Tip machine button - commented out -->
-    <!-- <button id="tipMachine" title="Get a Tip"><i class="fas fa-donate"></i></button> -->
-    <!-- Back to top button -->
+    <button id="starfieldToggle" title="Toggle Starfield"><i class="fas fa-stars"></i></button>
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
-
-    <!-- Starfield canvas -->
     <canvas id="universe"></canvas>
-
-    <!-- Navigation bar -->
     <nav class="navbar">
-        <!-- Logo with heartbeat animation -->
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <p class="heartbeat-text">MUSIC IS MY THERAPY</p>
+            <span class="heartbeat-line"></span>
+            
         </div>
-        <!-- Dropdown menu toggle -->
+        
         <div class="dropdown">
             <button class="dropdown-toggle" type="button"><i class="fas fa-bars"></i></button>
-            <!-- Dropdown menu content -->
             <div class="dropdown-menu">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -89,295 +41,313 @@
                     <li><a href="news.html">News</a></li>
                     <li><a href="opinions.html">Opinions</a></li>
                     <li><a href="underground.html">Underground</a></li>
+                    <li><a href="oracle.html">Music Oracle</a></li>
                     <li><a href="catchcarti.html">Catch Carti</a></li>
                     <li><a href="shop.html">Shop</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <!-- Wallet Controls -->
-                    <li>
-                        <button class="wallet-connect" id="connectWallet">Connect Wallet</button>
-                        <button class="wallet-disconnect" id="disconnectWallet" style="display: none;">Disconnect</button>
-                        <span class="wallet-status" id="walletStatus"></span>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-
-    <!-- Main content wrapper -->
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <span>🏆 TOP 100 RAPPERS (1994-2024): 1. Jay-Z • 2. Kendrick Lamar • 3. Drake • 4. Kanye West • 5. Eminem • 6. Lil Wayne • 7. Nas • 8. OutKast • 9. Tupac Shakur • 10. The Notorious B.I.G. • 11. Nicki Minaj • 12. Future • 13. Missy Elliott • 14. Lauryn Hill • 15. J. Cole • 16. 50 Cent • 17. DMX • 18. Travis Scott • 19. Lil Uzi Vert • 20. Young Thug • 21. Busta Rhymes • 22. Pusha T • 23. Tyler, The Creator • 24. Rick Ross • 25. T.I. • 26. A$AP Rocky • 27. Mac Miller • 28. Chief Keef • 29. Lil Baby • 30. 21 Savage • 31. Playboi Carti • 32. Megan Thee Stallion • 33. Cardi B • 34. Doja Cat • 35. Childish Gambino • 36. Big Sean • 37. Chance The Rapper • 38. Meek Mill • 39. Gunna • 40. Freddie Gibbs • 41. Pop Smoke • 42. Juice WRLD • 43. Lil Durk • 44. NBA YoungBoy • 45. Roddy Ricch • 46. Baby Keem • 47. JID • 48. Denzel Curry • 49. Benny The Butcher • 50. Conway The Machine • 51. Westside Gunn • 52. Polo G • 53. Cordae • 54. Don Toliver • 55. Lil Tjay • 56. Rod Wave • 57. Moneybagg Yo • 58. Big K.R.I.T. • 59. Rapsody • 60. Ice Spice • 61. GloRilla • 62. Flo Milli • 63. Latto • 64. Rico Nasty • 65. City Girls • 66. Trippie Redd • 67. Ski Mask The Slump God • 68. XXXTentacion • 69. Offset • 70. Quavo • 71. Takeoff • 72. Post Malone • 73. Jack Harlow • 74. Young Dolph • 75. Key Glock • 76. Maxo Kream • 77. EST Gee • 78. 42 Dugg • 79. Yeat • 80. Ken Carson • 81. Destroy Lonely • 82. Lucki • 83. Central Cee • 84. Dave • 85. Anderson .Paak • 86. ScHoolboy Q • 87. Ab-Soul • 88. Isaiah Rashad • 89. Vince Staples • 90. Earl Sweatshirt • 91. Mach-Hommy • 92. Action Bronson • 93. Danny Brown • 94. Kid Cudi • 95. Logic • 96. DaBaby • 97. G Herbo • 98. Joey Bada$$ • 99. King Von • 100. MF DOOM
+            </span>
+        </div>
+    </div>
     <div class="main-content">
-        <!-- Hero section -->
-        <section class="hero">
-            <!-- Heartbeat text with animated line -->
-            <p class="heartbeat-text">
-                MUSIC IS MY THERAPY
-                <span class="heartbeat-line"></span>
-            </p>
-            <!-- Magic search bar -->
-            <div class="magic-search">
-                <div class="magic-search-bar">
-                    <input type="text" id="magicInput" placeholder="Ask the Music Oracle...">
-                    <button id="magicButton"><i class="fas fa-search"></i></button>
-                </div>
-                <p id="magicAnswer"></p>
-            </div>
-        </section>        
-
-        <!-- Featured Artists section -->
-        <section class="scroll-section" id="featured-artists">
-            <div class="section-header">
-                <h2 class="section-title">Featured Artists</h2>
-                <div class="scroll-nav">
-                    <button class="scroll-button prev" onclick="scroll('featured-artists', -300)">←</button>
-                    <button class="scroll-button next" onclick="scroll('featured-artists', 300)">→</button>
-                </div>
-            </div>
-            <div class="scroll-container" id="featured-artists-scroll">
-                <a href="features-kendrick.html" class="scroll-item">
-                    <img src="kdot.jpeg" alt="Kendrick Lamar">
-                    <h3>Kendrick Lamar</h3>
-                    <p>Hip-Hop Legend</p>
-                </a>
-                <a href="features-drake.html" class="scroll-item">
-                    <img src="drizzy.jpeg" alt="Drake">
-                    <h3>Drake</h3>
-                    <p>Chart-Topping Star</p>
-                </a>
-                <a href="features-travis.html" class="scroll-item">
-                    <img src="flame.jpeg" alt="Travis Scott">
-                    <h3>Travis Scott</h3>
-                    <p>Rap Innovator</p>
-                </a>
-                <a href="features-carti.html" class="scroll-item">
-                    <img src="carti.jpg" alt="Playboi Carti">
-                    <h3>PLAYBOI CARTI</h3>
-                    <p>Enigmatic Hitmaker</p>
-                </a>
-                <a href="features-50.html" class="scroll-item">
-                    <img src="50.jpeg" alt="50 Cent">
-                    <h3>50 Cent</h3>
-                    <p>King of New York</p>
-                </a>
-                <a href="features-billie.html" class="scroll-item">
-                    <img src="billie.jpg" alt="Billie Eilish">
-                    <h3>Billie Eilish</h3>
-                    <p>Mesmerizing Pop Star</p>
-                </a>
-                <a href="features-eminem.html" class="scroll-item">
-                    <img src="eminem.jpeg" alt="Eminem">
-                    <h3>Eminem</h3>
-                    <p>Rap God</p>
-                </a>
-                <a href="features-tyler.html" class="scroll-item">
-                    <img src="tyler.jpeg" alt="Tyler, the Creator">
-                    <h3>Tyler, the Creator</h3>
-                    <p>Bold and Vibrant</p>
-                </a>
-                <a href="features-nicki.html" class="scroll-item">
-                    <img src="nicki.jpeg" alt="Nicki Minaj">
-                    <h3>Nicki Minaj</h3>
-                    <p>The Queen of Rap</p>
-                </a>
-            </div>
-        </section>
-
-        <!-- Album Reviews section -->
+        </div>
+    </div>
+    <div class="main-content">
         <section class="scroll-section" id="album-reviews">
             <div class="section-header">
-                <h2 class="section-title">Album Reviews</h2>
+                <h2 class="section-title"><a href="reviews.html" style="text-decoration: none; color: inherit;">Album Reviews</a></h2>
                 <div class="scroll-nav">
-                    <button class="scroll-button prev" onclick="scroll('album-reviews', -300)">←</button>
-                    <button class="scroll-button next" onclick="scroll('album-reviews', 300)">→</button>
+                    <button class="scroll-button prev" onclick="scrollSection('album-reviews', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('album-reviews', 300)">→</button>
                 </div>
             </div>
             <div class="scroll-container" id="album-reviews-scroll">
-                <a href="review-music.html" class="scroll-item">
+                <a href="review-music.html" class="scroll-item glass-card">
                     <img src="iammusic.jpg" alt="MUSIC">
-                    <h3>MUSIC</h3>
+                    <h3 data-text="MUSIC">MUSIC</h3>
                     <p>Playboi Carti</p>
-                </a>		
-                <a href="review-mmlp.html" class="scroll-item">
+                </a>
+                <a href="review-mmlp.html" class="scroll-item glass-card">
                     <img src="marshallmathers.jpeg" alt="The Marshall Mathers LP">
-                    <h3>The Marshall Mathers LP</h3>
+                    <h3 data-text="The Marshall Mathers LP">The Marshall Mathers LP</h3>
                     <p>Eminem</p>
                 </a>
-                <a href="review-mbdtf.html" class="scroll-item">
+                <a href="review-mbdtf.html" class="scroll-item glass-card">
                     <img src="mbdtff.jpeg" alt="My Beautiful Dark Twisted Fantasy">
                     <h3>My Beautiful Dark Twisted Fantasy</h3>
                     <p>Ye</p>
                 </a>
-                <a href="review-dielit.html" class="scroll-item">
+                <a href="review-dielit.html" class="scroll-item glass-card">
                     <img src="die.jpeg" alt="Die Lit">
                     <h3>Die Lit</h3>
                     <p>Playboi Carti</p>
                 </a>
-                <a href="review-callme.html" class="scroll-item">
+                <a href="review-callme.html" class="scroll-item glass-card">
                     <img src="callme.jpg" alt="Call Me If You Get Lost">
                     <h3>Call Me If You Get Lost</h3>
                     <p>Tyler, the Creator</p>
                 </a>
-                <a href="review-astro.html" class="scroll-item">
+                <a href="review-astro.html" class="scroll-item glass-card">
                     <img src="astro.jpeg" alt="Astroworld">
                     <h3>Astroworld</h3>
                     <p>Travis Scott</p>
                 </a>
-                <a href="review-asap.html" class="scroll-item">
+                <a href="review-asap.html" class="scroll-item glass-card">
                     <img src="asap.jpeg" alt="At Long Last A$AP">
                     <h3>At Long Last A$AP</h3>
                     <p>A$AP Rocky</p>
                 </a>
-                <a href="review-gkmc.html" class="scroll-item">
+                <a href="review-gkmc.html" class="scroll-item glass-card">
                     <img src="gkmc3.jpeg" alt="GOOD KID, M.A.A.D. City">
                     <h3>GOOD KID, M.A.A.D CITY</h3>
                     <p>Kendrick Lamar</p>
                 </a>
-                <a href="review-sos.html" class="scroll-item">
+                <a href="review-sos.html" class="scroll-item glass-card">
                     <img src="sos4k.jpeg" alt="SOS">
                     <h3>SOS</h3>
                     <p>SZA</p>
                 </a>
-                <a href="review-nwts.html" class="scroll-item">
+                <a href="review-nwts.html" class="scroll-item glass-card">
                     <img src="nwts.jpeg" alt="Nothing Was The Same">
                     <h3>Nothing Was The Same</h3>
                     <p>Drake</p>
                 </a>
-                <a href="#" class="scroll-item">
+                <a href="#" class="scroll-item glass-card">
                     <img src="iammusic.jpg" alt="MUSIC">
                     <h3>MUSIC</h3>
                     <p>PLAYBOI CARTI</p>
                 </a>
             </div>
         </section>
-
-        <!-- Opinions & Trending section -->
+        <section class="scroll-section" id="featured-artists">
+            <div class="section-header">
+                <h2 class="section-title"><a href="features.html" style="text-decoration: none; color: inherit;">Featured Artists</a></h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('featured-artists', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('featured-artists', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="featured-artists-scroll">
+                <a href="features-kendrick.html" class="scroll-item glass-card">
+                    <img src="kdot.jpeg" alt="Kendrick Lamar">
+                    <h3 data-text="Kendrick Lamar">Kendrick Lamar</h3>
+                </a>
+                <a href="features-drake.html" class="scroll-item glass-card">
+                    <img src="drizzy.jpeg" alt="Drake">
+                    <h3>Drake</h3>
+                </a>
+                <a href="features-travis.html" class="scroll-item glass-card">
+                    <img src="flame.jpeg" alt="Travis Scott">
+                    <h3>Travis Scott</h3>
+                </a>
+                <a href="features-carti.html" class="scroll-item glass-card">
+                    <img src="carti.jpg" alt="Playboi Carti">
+                    <h3>PLAYBOI CARTI</h3>
+                </a>
+                <a href="features-50.html" class="scroll-item glass-card">
+                    <img src="50.jpeg" alt="50 Cent">
+                    <h3>50 Cent</h3>
+                </a>
+                <a href="features-billie.html" class="scroll-item glass-card">
+                    <img src="billie.jpg" alt="Billie Eilish">
+                    <h3>Billie Eilish</h3>
+                </a>
+                <a href="features-eminem.html" class="scroll-item glass-card">
+                    <img src="eminem.jpeg" alt="Eminem">
+                    <h3>Eminem</h3>
+                </a>
+                <a href="features-tyler.html" class="scroll-item glass-card">
+                    <img src="tyler.jpeg" alt="Tyler, the Creator">
+                    <h3>Tyler, the Creator</h3>
+                </a>
+                <a href="features-nicki.html" class="scroll-item glass-card">
+                    <img src="nicki.jpeg" alt="Nicki Minaj">
+                    <h3>Nicki Minaj</h3>
+                </a>
+            </div>
+        </section>
         <section class="scroll-section" id="opinions">
             <div class="section-header">
-                <h2 class="section-title">Opinions & Trending</h2>
+                <h2 class="section-title"><a href="opinions.html" style="text-decoration: none; color: inherit;">Opinions & Trending</a></h2>
                 <div class="scroll-nav">
-                    <button class="scroll-button prev" onclick="scroll('opinions', -300)">←</button>
-                    <button class="scroll-button next" onclick="scroll('opinions', 300)">→</button>
+                    <button class="scroll-button prev" onclick="scrollSection('opinions', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('opinions', 300)">→</button>
                 </div>
             </div>
             <div class="scroll-container" id="opinions-scroll">
-                <a href="opinions.html" class="scroll-item">
+                <a href="opinions.html" class="scroll-item glass-card">
                     <img src="aidrake.jpeg" alt="AI Drake">
                     <h3>AI Drake Better Than Real Drake</h3>
                     <p>The uncomfortable truth about AI music.</p>
                 </a>
-                <a href="opinions.html" class="scroll-item">
+                <a href="opinions.html" class="scroll-item glass-card">
                     <img src="90srap.jpeg" alt="Old Heads">
                     <h3>90s Rap Overrated</h3>
                     <p>Why modern production trumps nostalgia.</p>
                 </a>
-                <a href="opinions.html" class="scroll-item">
+                <a href="opinions.html" class="scroll-item glass-card">
                     <img src="loneken.jpeg" alt="Mainstream">
                     <h3>Underground > Mainstream</h3>
                     <p>The death of authentic music.</p>
                 </a>
-                <a href="opinions.html" class="scroll-item">
+                <a href="opinions.html" class="scroll-item glass-card">
                     <img src="sampling.jpeg" alt="Sampling">
                     <h3>Sampling Is Dying</h3>
                     <p>Why producers avoid samples in 2024.</p>
                 </a>
-                <a href="opinions.html" class="scroll-item">
+                <a href="hot-take-8.html" class="scroll-item glass-card">
                     <img src="concerts.jpeg" alt="Concerts">
                     <h3>Concerts Are Overpriced</h3>
                     <p>The unsustainable future of live music.</p>
                 </a>
-                <a href="opinions.html" class="scroll-item">
+                <a href="opinions.html" class="scroll-item glass-card">
                     <img src="stream.jpg" alt="Streaming Killed Albums">
                     <h3>Streaming Killed Albums</h3>
                     <p>Why singles dominate the music industry.</p>
                 </a>
-                <a href="opinions.html" class="scroll-item">
+                <a href="opinions.html" class="scroll-item glass-card">
                     <img src="images/ai.jpg" alt="AI in Music">
                     <h3>AI in Music</h3>
                     <p>Is artificial intelligence the future of creativity?</p>
                 </a>
-                <a href="#" class="scroll-item">
+                <a href="#" class="scroll-item glass-card">
                     <img src="images/eviljordan.jpg" alt="Evil Jordan">
                     <h3>Evil Jordan</h3>
                     <p>Playboi Carti</p>
                 </a>
-                <a href="#" class="scroll-item">
+                <a href="#" class="scroll-item glass-card">
                     <img src="images/thegiver.jpg" alt="The Giver">
                     <h3>The Giver</h3>
                     <p>Chappell Roan</p>
                 </a>
-                <a href="#" class="scroll-item">
+                <a href="#" class="scroll-item glass-card">
                     <img src="images/darkthoughts.jpg" alt="Dark Thoughts">
                     <h3>Dark Thoughts</h3>
                     <p>Lil Tecca</p>
                 </a>
             </div>
         </section>
-
-        <!-- News section -->
         <section class="scroll-section" id="news">
             <div class="section-header">
-                <h2 class="section-title">News</h2>
+                <h2 class="section-title"><a href="news.html" style="text-decoration: none; color: inherit;">News</a></h2>
                 <div class="scroll-nav">
-                    <button class="scroll-button prev" onclick="scroll('news', -300)">←</button>
-                    <button class="scroll-button next" onclick="scroll('news', 300)">→</button>
+                    <button class="scroll-button prev" onclick="scrollSection('news', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('news', 300)">→</button>
                 </div>
             </div>
             <div class="scroll-container" id="news-scroll">
-                <a href="news.html" class="scroll-item">
+                <a href="news.html" class="scroll-item glass-card">
                     <img src="images/carti-projections.jpg" alt="Carti Sales">
                     <h3>Carti Projected 300K First Week</h3>
                     <p>March 18, 2024</p>
                 </a>
-                <a href="news.html" class="scroll-item">
+                <a href="news.html" class="scroll-item glass-card">
                     <img src="images/ye-news.jpg" alt="Ye News">
                     <h3>Ye's Controversial Vultures Comments</h3>
                     <p>March 17, 2024</p>
                 </a>
-                <a href="news.html" class="scroll-item">
+                <a href="news.html" class="scroll-item glass-card">
                     <img src="images/future-metro.jpg" alt="Future & Metro">
                     <h3>Future & Metro Album Announcement</h3>
                     <p>March 16, 2024</p>
                 </a>
-                <a href="news.html" class="scroll-item">
+                <a href="news.html" class="scroll-item glass-card">
                     <img src="images/rolling-loud.jpg" alt="Rolling Loud">
                     <h3>Rolling Loud Miami 2024 Lineup</h3>
                     <p>March 15, 2024</p>
                 </a>
-                <a href="news.html" class="scroll-item">
+                <a href="news.html" class="scroll-item glass-card">
                     <img src="images/drake-announcement.jpg" alt="Drake News">
                     <h3>Drake Hints at Summer Album</h3>
                     <p>March 14, 2024</p>
                 </a>
-                <a href="news.html" class="scroll-item">
+                <a href="news.html" class="scroll-item glass-card">
                     <img src="images/cole-kendrick.jpg" alt="Cole x Kendrick">
                     <h3>Cole x Kendrick Album?</h3>
                     <p>March 4, 2025</p>
                 </a>
-                <a href="news.html" class="scroll-item">
+                <a href="news.html" class="scroll-item glass-card">
                     <img src="images/travis-news.jpg" alt="Travis Scott News">
                     <h3>Travis Scott Announces Album</h3>
                     <p>February 25, 2025</p>
                 </a>
             </div>
         </section>
+        <section class="scroll-section" id="underground">
+            <div class="section-header">
+                <h2 class="section-title"><a href="underground.html" style="text-decoration: none; color: inherit;">Underground Artists</a></h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('underground', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('underground', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="underground-scroll">
+                <a href="underground.html" class="scroll-item glass-card">
+                    <img src="barto.jpeg" alt="Xroz - Project 202">
+                    <h3>Xroz - Project 202</h3>
+                    <p>Dark synths and thundering bass collide in this dystopian soundscape.</p>
+                    <audio controls>
+                        <source src="https://od.lk/s/MzhfMjkxNDc0OTJf/Project_202.mp3" type="audio/mpeg">
+                    </audio>
+                </a>
+                <a href="underground.html" class="scroll-item glass-card">
+                    <img src="barto3.jpeg" alt="Xroz - Zone V2">
+                    <h3>Xroz - Zone V2</h3>
+                    <p>Ethereal melodies float through a maze of glitched-out beats.</p>
+                    <audio controls>
+                        <source src="https://od.lk/s/MzhfMjkxNDc0OThf/zone%20v2.mp3" type="audio/mpeg">
+                    </audio>
+                </a>
+                <a href="underground.html" class="scroll-item glass-card">
+                    <img src="barto4.jpeg" alt="Xroz - Project 191">
+                    <h3>Xroz - Project 191</h3>
+                    <p>Raw energy meets digital chaos in this bass-heavy anthem.</p>
+                    <audio controls>
+                        <source src="https://od.lk/s/MzhfMjkxNDc0OTNf/Project_191.mp3" type="audio/mpeg">
+                    </audio>
+                </a>
+                <a href="underground.html" class="scroll-item glass-card">
+                    <img src="barto6.jpeg" alt="Xroz - Loaf">
+                    <h3>Xroz - Loaf</h3>
+                    <p>Dreamy atmospheres swirl through crystalline percussion waves.</p>
+                    <audio controls>
+                        <source src="https://od.lk/s/MzhfMjkxNDc0OTZf/loaf%20by%20xrozk.mp3" type="audio/mpeg">
+                    </audio>
+                </a>
+                <a href="underground.html" class="scroll-item glass-card">
+                    <img src="barto7.jpeg" alt="Xroz - Lazy V1">
+                    <h3>Xroz - Lazy V1</h3>
+                    <p>Hazy soundscapes drift through clouds of ambient texture.</p>
+                    <audio controls>
+                        <source src="https://od.lk/s/MzhfMjkxNDc0OTdf/lazy%20finished%20v1.mp3" type="audio/mpeg">
+                    </audio>
+                </a>
+            </div>
+        </section>
     </div>
-
-    <!-- Footer matching reviews.html and features.html -->
     <footer class="footer">
-        <!-- Logo with heartbeat animation -->
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
         </div>
-        <!-- Copyright notice -->
         <div class="footer-content">
             <p>© 2025 MusicRx. All rights reserved.</p>
+            <span class="heartbeat-line"></span>
         </div>
-        <!-- Newsletter subscription form -->
         <form class="newsletter-form">
             <input type="email" placeholder="Subscribe to Newsletter" required>
             <button type="submit">Subscribe</button>
         </form>
     </footer>
-
+    <script src="animations/theme-effects.js"></script>
+    <script src="animations/hover-effects.js"></script>
+    <script src="animations/scroll-effects.js"></script>
     <script src="script.js"></script>
     <script src="shop.js"></script>
 </body>
