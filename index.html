@@ -13,15 +13,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="keyframes.css">
+    <style>
+        .main-content {
+            width: 100%;
+            height: auto;
+            margin-bottom: 60px;
+            margin-top: 90px;
+            padding: 0 1rem;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            transform: none;
+        }
+    </style>
 </head>
 <body class="home">
-    <div id="cursor-blur"></div>
-    <audio id="bgMusic" loop>
+    <!-- <div id="cursor-blur"></div> -->
+    <!-- <audio id="bgMusic" loop>
         <source src="https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3" type="audio/mpeg">
     </audio>
-    <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
+    <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button> -->
     <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
-    <button id="starfieldToggle" title="Toggle Starfield"><i class="fas fa-stars"></i></button>
+    <!-- <button id="starfieldToggle" title="Toggle Starfield"><i class="fas fa-stars"></i></button> -->
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
     <canvas id="universe"></canvas>
     <nav class="navbar">
@@ -29,9 +46,7 @@
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
             <p class="heartbeat-text">MUSIC IS MY THERAPY</p>
             <span class="heartbeat-line"></span>
-            
         </div>
-        
         <div class="dropdown">
             <button class="dropdown-toggle" type="button"><i class="fas fa-bars"></i></button>
             <div class="dropdown-menu">
@@ -53,11 +68,10 @@
     </nav>
     <div class="news-ticker">
         <div class="ticker-content">
-            <span>🏆 TOP 100 RAPPERS (1994-2024): 1. Jay-Z • 2. Kendrick Lamar • 3. Drake • 4. Kanye West • 5. Eminem • 6. Lil Wayne • 7. Nas • 8. OutKast • 9. Tupac Shakur • 10. The Notorious B.I.G. • 11. Nicki Minaj • 12. Future • 13. Missy Elliott • 14. Lauryn Hill • 15. J. Cole • 16. 50 Cent • 17. DMX • 18. Travis Scott • 19. Lil Uzi Vert • 20. Young Thug • 21. Busta Rhymes • 22. Pusha T • 23. Tyler, The Creator • 24. Rick Ross • 25. T.I. • 26. A$AP Rocky • 27. Mac Miller • 28. Chief Keef • 29. Lil Baby • 30. 21 Savage • 31. Playboi Carti • 32. Megan Thee Stallion • 33. Cardi B • 34. Doja Cat • 35. Childish Gambino • 36. Big Sean • 37. Chance The Rapper • 38. Meek Mill • 39. Gunna • 40. Freddie Gibbs • 41. Pop Smoke • 42. Juice WRLD • 43. Lil Durk • 44. NBA YoungBoy • 45. Roddy Ricch • 46. Baby Keem • 47. JID • 48. Denzel Curry • 49. Benny The Butcher • 50. Conway The Machine • 51. Westside Gunn • 52. Polo G • 53. Cordae • 54. Don Toliver • 55. Lil Tjay • 56. Rod Wave • 57. Moneybagg Yo • 58. Big K.R.I.T. • 59. Rapsody • 60. Ice Spice • 61. GloRilla • 62. Flo Milli • 63. Latto • 64. Rico Nasty • 65. City Girls • 66. Trippie Redd • 67. Ski Mask The Slump God • 68. XXXTentacion • 69. Offset • 70. Quavo • 71. Takeoff • 72. Post Malone • 73. Jack Harlow • 74. Young Dolph • 75. Key Glock • 76. Maxo Kream • 77. EST Gee • 78. 42 Dugg • 79. Yeat • 80. Ken Carson • 81. Destroy Lonely • 82. Lucki • 83. Central Cee • 84. Dave • 85. Anderson .Paak • 86. ScHoolboy Q • 87. Ab-Soul • 88. Isaiah Rashad • 89. Vince Staples • 90. Earl Sweatshirt • 91. Mach-Hommy • 92. Action Bronson • 93. Danny Brown • 94. Kid Cudi • 95. Logic • 96. DaBaby • 97. G Herbo • 98. Joey Bada$$ • 99. King Von • 100. MF DOOM
-            </span>
-        </div>
-    </div>
-    <div class="main-content">
+            <span>🏆 TOP 100 RAPPERS (1994-2024): 1. Kendrick Lamar • 2. Jay-Z • 3. Nas • 4. Eminem • 5. Tupac Shakur • 6. The Notorious B.I.G. • 7. André 3000 • 8. Kanye West • 9. Lil Wayne • 10. Drake • 11. Rakim • 12. Black Thought • 13. Ice Cube • 14. Lauryn Hill • 15. J. Cole • 16. MF DOOM • 17. Ghostface Killah • 18. Method Man • 19. Missy Elliott • 20. Future • 21. DMX • 22. Nicki Minaj • 23. Common • 24. Travis Scott • 25. Young Thug • 26. Tyler, The Creator • 27. Big Pun • 28. OutKast (Duo) • 29. Redman • 30. 50 Cent • 31. Busta Rhymes • 32. Mos Def • 33. Pusha T • 34. GZA • 35. Playboi Carti • 36. Rick Ross • 37. T.I. • 38. Q-Tip • 39. Mac Miller • 40. Chief Keef • 41. A$AP Rocky • 42. Lil Baby • 43. 21 Savage • 44. Raekwon • 45. Freddie Gibbs • 46. Scarface • 47. Big L • 48. Prodigy • 49. Snoop Dogg • 50. Royce da 5'9" • 51. Childish Gambino • 52. Kid Cudi • 53. Danny Brown • 54. JID • 55. Earl Sweatshirt • 56. Big Sean • 57. ScHoolboy Q • 58. Meek Mill • 59. Chance The Rapper • 60. Joey Bada$$ • 61. Lil Uzi Vert • 62. Denzel Curry • 63. Pop Smoke • 64. Juice WRLD • 65. Rapsody • 66. Megan Thee Stallion • 67. Cardi B • 68. XXXTentacion • 69. Griselda (Group) • 70. Curren$y • 71. Action Bronson • 72. Run The Jewels (Duo) • 73. Ab-Soul • 74. Isaiah Rashad • 75. Vince Staples • 76. Big K.R.I.T. • 77. Open Mike Eagle • 78. Baby Keem • 79. Aesop Rock • 80. Mach-Hommy • 81. billy woods • 82. Ka • 83. Your Old Droog • 84. Conway The Machine • 85. King Von • 86. Boldy James • 87. Roc Marciano • 88. JPEGMAFIA • 89. Dave • 90. Little Simz • 91. Logic • 92. G Herbo • 93. Gunna • 94. Rod Wave • 95. Polo G • 96. Don Toliver • 97. Ice Spice • 98. Central Cee • 99. Yeat • 100. Ken Carson</span>
+            <span>🎤 TOP 100 RAPPERS (2004-2024): 1. Kendrick Lamar • 2. Drake • 3. J. Cole • 4. Kanye West • 5. Lil Wayne • 6. Future • 7. Travis Scott • 8. Tyler, The Creator • 9. Nicki Minaj • 10. Young Thug • 11. Playboi Carti • 12. Eminem • 13. Rick Ross • 14. A$AP Rocky • 15. Mac Miller • 16. Chief Keef • 17. Pusha T • 18. 21 Savage • 19. Lil Baby • 20. Freddie Gibbs • 21. Big Sean • 22. Kid Cudi • 23. Meek Mill • 24. JID • 25. Earl Sweatshirt • 26. ScHoolboy Q • 27. Denzel Curry • 28. Chance The Rapper • 29. Joey Bada$$ • 30. Lil Uzi Vert • 31. Megan Thee Stallion • 32. Cardi B • 33. Pop Smoke • 34. Juice WRLD • 35. Rapsody • 36. XXXTentacion • 37. Baby Keem • 38. Gunna • 39. Polo G • 40. Ice Spice • 41. Central Cee • 42. Yeat • 43. DaBaby • 44. Roddy Ricch • 45. Dave • 46. Little Simz • 47. Logic • 48. G Herbo • 49. King Von • 50. Lil Durk • 51. NBA YoungBoy • 52. SZA • 53. Doja Cat • 54. Jack Harlow • 55. Trippie Redd • 56. Don Toliver • 57. Rod Wave • 58. Conway The Machine • 59. Benny The Butcher • 60. Westside Gunn • 61. Cordae • 62. Latto • 63. GloRilla • 64. Flo Milli • 65. Rico Nasty • 66. 42 Dugg • 67. EST Gee • 68. Lil Tjay • 69. NLE Choppa • 70. Key Glock • 71. Maxo Kream • 72. BabyTron • 73. Ken Carson • 74. Destroy Lonely • 75. SoFaygo • 76. Lancey Foux • 77. Lucki • 78. MIKE • 79. Navy Blue • 80. Pink Siifu • 81. Mavi • 82. Boldy James • 83. Rome Streetz • 84. Stove God Cooks • 85. Larry June • 86. Roc Marciano • 87. Your Old Droog • 88. billy woods • 89. Armand Hammer • 90. JPEGMAFIA • 91. Danny Brown • 92. Open Mike Eagle • 93. Quelle Chris • 94. R.A.P. Ferreira • 95. Cities Aviv • 96. Wiki • 97. Azealia Banks • 98. Mach-Hommy • 99. Ka • 100. Rx Nephew</span>
+            <span>🌟 TOP 100 RAPPERS (2014-2024): 1. Kendrick Lamar • 2. Drake • 3. J. Cole • 4. Travis Scott • 5. Future • 6. Tyler, The Creator • 7. Playboi Carti • 8. 21 Savage • 9. Lil Baby • 10. Young Thug • 11. Lil Uzi Vert • 12. JID • 13. Baby Keem • 14. Megan Thee Stallion • 15. Cardi B • 16. Ice Spice • 17. Central Cee • 18. Yeat • 19. NBA YoungBoy • 20. Pop Smoke • 21. Juice WRLD • 22. Gunna • 23. Polo G • 24. DaBaby • 25. Roddy Ricch • 26. Don Toliver • 27. SZA • 28. Doja Cat • 29. Jack Harlow • 30. Lil Durk • 31. Rod Wave • 32. Trippie Redd • 33. Dave • 34. Little Simz • 35. GloRilla • 36. Latto • 37. Flo Milli • 38. Rico Nasty • 39. King Von • 40. EST Gee • 41. 42 Dugg • 42. Key Glock • 43. Ken Carson • 44. Destroy Lonely • 45. SoFaygo • 46. Lancey Foux • 47. Lucki • 48. BabyTron • 49. NLE Choppa • 50. Lil Tjay • 51. Cordae • 52. Maxo Kream • 53. Conway The Machine • 54. Benny The Butcher • 55. Westside Gunn • 56. MIKE • 57. Navy Blue • 58. Pink Siifu • 59. Mavi • 60. Boldy James • 61. Rome Streetz • 62. Stove God Cooks • 63. Larry June • 64. JPEGMAFIA • 65. Roc Marciano • 66. Your Old Droog • 67. billy woods • 68. Armand Hammer • 69. Rx Nephew • 70. Nardo Wick • 71. Cochise • 72. SSGKobe • 73. Ken Car$on • 74. Yung Lean • 75. Bladee • 76. Summrs • 77. Autumn! • 78. Ka • 79. Mach-Hommy • 80. MIKE • 81. Quelle Chris • 82. Cities Aviv • 83. Wiki • 84. Dean Blunt • 85. ANKHLEJOHN • 86. Rx Papi • 87. Tony Shhnow • 88. 03 Greedo • 89. Drakeo the Ruler • 90. Sahbabii • 91. RXK Nephew • 92. MIKE • 93. Earl Sweatshirt • 94. Danny Brown • 95. ZelooperZ • 96. Baby Smoove • 97. Babyface Ray • 98. Veeze • 99. ShittyBoyz • 100. Babytron</span>
+            <span>💫 TOP 100 RAPPERS (2019-2024): 1. Playboi Carti • 2. Travis Scott • 3. Lil Baby • 4. 21 Savage • 5. Ice Spice • 6. Drake • 7. Central Cee • 8. Yeat • 9. Baby Keem • 10. JID • 11. NBA YoungBoy • 12. SZA • 13. Doja Cat • 14. Megan Thee Stallion • 15. Lil Uzi Vert • 16. Don Toliver • 17. Gunna • 18. Ken Carson • 19. Destroy Lonely • 20. GloRilla • 21. Latto • 22. EST Gee • 23. 42 Dugg • 24. Lil Durk • 25. Rod Wave • 26. BabyTron • 27. Nardo Wick • 28. Lucki • 29. SoFaygo • 30. Lancey Foux • 31. Cochise • 32. SSGKobe • 33. Dave • 34. Little Simz • 35. Flo Milli • 36. Rico Nasty • 37. Key Glock • 38. NLE Choppa • 39. Lil Tjay • 40. Maxo Kream • 41. Conway The Machine • 42. Benny The Butcher • 43. Westside Gunn • 44. MIKE • 45. Navy Blue • 46. Pink Siifu • 47. Mavi • 48. Boldy James • 49. Rome Streetz • 50. Stove God Cooks • 51. Larry June • 52. JPEGMAFIA • 53. Roc Marciano • 54. Your Old Droog • 55. billy woods • 56. Armand Hammer • 57. Rx Nephew • 58. Yung Lean • 59. Bladee • 60. Summrs • 61. Autumn! • 62. Slump6s • 63. KanKan • 64. Homixide Gang • 65. DC The Don • 66. Trippie Redd • 67. Veeze • 68. Babyface Ray • 69. Rx Papi • 70. Tony Shhnow • 71. OhGeesy • 72. BlueBucksClan • 73. Drakeo the Ruler • 74. Real Boston Richey • 75. BigXthaPlug • 76. Lil Gotit • 77. Lil Keed • 78. Cash Cobain • 79. BigKayBeezy • 80. Luh Tyler • 81. OTX Ocho • 82. 30 Deep Grimeyy • 83. CEO Trayle • 84. FN DaDealer • 85. ZaeHD • 86. CEO • 87. TiaCorine • 88. Jeleel! • 89. ICYTWAT • 90. Yeat • 91. Playboi Carti • 92. SeptembersRich • 93. Rot Ken • 94. BigBabyGucci • 95. TyFontaine • 96. Lil Tecca • 97. K Suave • 98. KayCyy • 99. Yung Kayo • 100. D Savage</span>
         </div>
     </div>
     <div class="main-content">
@@ -121,9 +135,44 @@
                     <p>Drake</p>
                 </a>
                 <a href="#" class="scroll-item glass-card">
-                    <img src="iammusic.jpg" alt="MUSIC">
-                    <h3>MUSIC</h3>
-                    <p>PLAYBOI CARTI</p>
+                    <img src="iammusic.jpg" alt="Evil Jordan">
+                    <h3>Evil Jordan</h3>
+                    <p>Playboi Carti</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="dot.jpeg" alt="Heart Part 6">
+                    <h3>Heart Part 6</h3>
+                    <p>Kendrick Lamar</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="drizzy.jpeg" alt="For All The Dogs 2">
+                    <h3>For All The Dogs 2</h3>
+                    <p>Drake</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="colee.jpeg" alt="The Fall Off">
+                    <h3>The Fall Off</h3>
+                    <p>J. Cole</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="festival.jpeg" alt="Utopia Deluxe">
+                    <h3>Utopia Deluxe</h3>
+                    <p>Travis Scott</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="ap-drake2.jpeg" alt="Culture 4">
+                    <h3>Culture 4</h3>
+                    <p>Migos</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="mbdtff.jpeg" alt="Vultures 2">
+                    <h3>Vultures 2</h3>
+                    <p>Ye</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="marshallmathers.jpeg" alt="Marshall Mathers II">
+                    <h3>Marshall Mathers II</h3>
+                    <p>Eminem</p>
                 </a>
             </div>
         </section>
@@ -332,6 +381,170 @@
                 </a>
             </div>
         </section>
+
+        <!-- Commented out Events & Festivals section
+        <section class="scroll-section" id="events">
+            <div class="section-header">
+                <h2 class="section-title"><a href="events.html" style="text-decoration: none; color: inherit;">Events & Festivals</a></h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('events', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('events', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="events-scroll">
+                <a href="#" class="scroll-item glass-card">
+                    <img src="festival.jpeg" alt="Rolling Loud">
+                    <h3>Rolling Loud Miami</h3>
+                    <p>July 19-21, 2025</p>
+                    <p>Featuring Playboi Carti, Travis Scott, Future</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="colee.jpeg" alt="Coachella">
+                    <h3>Coachella</h3>
+                    <p>April 11-20, 2025</p>
+                    <p>Featuring Tyler, the Creator, Doja Cat, Bad Bunny</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="dot.jpeg" alt="Kendrick Tour">
+                    <h3>Kendrick Lamar World Tour</h3>
+                    <p>Starting May 2025</p>
+                    <p>Global stadium tour across 30 cities</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="ap-drake2.jpeg" alt="Drake Tour">
+                    <h3>Drake: It's All A Blur 2</h3>
+                    <p>Summer 2025</p>
+                    <p>North American arena tour with J. Cole</p>
+                </a>
+            </div>
+        </section>
+        -->
+
+        <!-- Commented out Trending Songs section
+        <section class="scroll-section" id="trending">
+            <div class="section-header">
+                <h2 class="section-title"><a href="trending.html" style="text-decoration: none; color: inherit;">Trending Songs</a></h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('trending', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('trending', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="trending-scroll">
+                <a href="#" class="scroll-item glass-card">
+                    <img src="iammusic.jpg" alt="Evil Jordan">
+                    <h3>Evil Jordan</h3>
+                    <p>Playboi Carti</p>
+                    <p>55M+ streams this week</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="mbdtff.jpeg" alt="Vultures">
+                    <h3>Vultures 1.5</h3>
+                    <p>Ye & Ty Dolla $ign</p>
+                    <p>45M+ streams this week</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="festival.jpeg" alt="UTOPIA PHONE">
+                    <h3>UTOPIA PHONE</h3>
+                    <p>Travis Scott</p>
+                    <p>42M+ streams this week</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="dot.jpeg" alt="Heart Part 6">
+                    <h3>Heart Part 6</h3>
+                    <p>Kendrick Lamar</p>
+                    <p>40M+ streams this week</p>
+                </a>
+            </div>
+        </section>
+        -->
+
+        <!-- Commented out Leak of the Week section
+        <section class="scroll-section" id="leaks">
+            <div class="section-header">
+                <h2 class="section-title"><a href="leaks.html" style="text-decoration: none; color: inherit;">Leak of the Week</a></h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('leaks', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('leaks', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="leaks-scroll">
+                <a href="#" class="scroll-item glass-card">
+                    <img src="iammusic.jpg" alt="U Kan Get It">
+                    <h3>U Kan Get It</h3>
+                    <p>Playboi Carti</p>
+                    <p>2M+ Discord plays</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="kdot.jpeg" alt="Prayer">
+                    <h3>Prayer</h3>
+                    <p>Kendrick Lamar</p>
+                    <p>500K+ Discord plays</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="drizzy.jpeg" alt="Lucky Me">
+                    <h3>Lucky Me</h3>
+                    <p>Drake</p>
+                    <p>1.5M+ Discord plays</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="dot.jpeg" alt="Freestyle 2.0">
+                    <h3>Freestyle 2.0</h3>
+                    <p>Travis Scott</p>
+                    <p>800K+ Discord plays</p>
+                </a>
+            </div>
+        </section>
+        -->
+
+        <!-- Commented out Upcoming Projects section
+        <section class="scroll-section" id="upcoming">
+            <div class="section-header">
+                <h2 class="section-title"><a href="upcoming.html" style="text-decoration: none; color: inherit;">Upcoming Projects</a></h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('upcoming', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('upcoming', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="upcoming-scroll">
+                <a href="#" class="scroll-item glass-card">
+                    <img src="kdot.jpeg" alt="Black Panther 3">
+                    <h3>Black Panther 3</h3>
+                    <p>Kendrick Lamar</p>
+                    <p>Expected: Summer 2025</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="drizzy.jpeg" alt="What's Next">
+                    <h3>What's Next</h3>
+                    <p>Drake</p>
+                    <p>Expected: Fall 2025</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="mbdtff.jpeg" alt="Vultures 2">
+                    <h3>Vultures 2</h3>
+                    <p>Ye & Ty Dolla $ign</p>
+                    <p>Expected: April 2025</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="colee.jpeg" alt="The Fall Off">
+                    <h3>The Fall Off</h3>
+                    <p>J. Cole</p>
+                    <p>Expected: Late 2025</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="festival.jpeg" alt="Utopia Deluxe">
+                    <h3>Utopia Deluxe</h3>
+                    <p>Travis Scott</p>
+                    <p>Expected: May 2025</p>
+                </a>
+                <a href="#" class="scroll-item glass-card">
+                    <img src="iammusic.jpg" alt="Music Deluxe">
+                    <h3>Music Deluxe</h3>
+                    <p>Playboi Carti</p>
+                    <p>Expected: June 2025</p>
+                </a>
+            </div>
+        </section>
+        -->
     </div>
     <footer class="footer">
         <div class="nav-logo">
