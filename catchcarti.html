@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
     <title>Catch Carti</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Catch Carti - MusicRx">
@@ -14,6 +21,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        body {
+            touch-action: manipulation;
+            -webkit-overflow-scrolling: touch;
+        }
+        #catch-carti-container {
+            touch-action: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        button {
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
         /* Main styling from style.css */
         :root {
             --primary: #00f7ff;
@@ -125,7 +147,7 @@
             transition: all 0.3s ease;
             position: relative;
         }
-        
+
         #catch-carti-container::before {
             content: '';
             position: absolute;
@@ -137,15 +159,15 @@
             pointer-events: none;
             z-index: 2;
         }
-        
+
         #catch-carti-container:hover {
             box-shadow: 0 0 50px rgba(255, 0, 247, 0.9);
         }
-        
+
         #catch-carti-container:hover::before {
             background: linear-gradient(135deg, rgba(255, 0, 247, 0.25), transparent 70%);
         }
-        
+
         .game-section {
             display: flex;
             justify-content: center;
@@ -153,12 +175,12 @@
             margin: 2rem auto;
             max-width: 800px;
         }
-        
+
         .game-container {
             width: 100%;
             position: relative;
         }
-        
+
         .game-info {
             margin-top: 1rem;
             font-family: 'Space Grotesk', sans-serif;
@@ -167,14 +189,14 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         #game-score {
             font-size: 24px;
             color: #00f7ff;
             text-shadow: 0 0 10px #00f7ff;
             font-weight: bold;
         }
-        
+
         .pixel-border {
             image-rendering: pixelated;
             border: 4px solid;
@@ -182,7 +204,7 @@
             border-radius: 0;
             padding: 5px;
         }
-        
+
         .carti-title {
             font-size: 3.5rem;
             font-family: 'Syncopate', sans-serif;
@@ -197,7 +219,7 @@
             text-shadow: 0 0 20px rgba(255, 0, 247, 0.8);
             position: relative;
         }
-        
+
         .carti-title::after {
             content: 'CATCH CARTI';
             position: absolute;
@@ -210,13 +232,13 @@
             z-index: -1;
             animation: textGlitch 3s infinite alternate;
         }
-        
+
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        
+
         @keyframes textGlitch {
             0%, 100% { transform: translate(0); }
             20% { transform: translate(-3px, 2px); }
@@ -224,7 +246,7 @@
             60% { transform: translate(-2px, -1px); }
             80% { transform: translate(1px, 2px); }
         }
-        
+
         .game-instructions {
             width: 90%;
             max-width: 800px;
@@ -239,7 +261,7 @@
             overflow: hidden;
             box-shadow: 0 0 30px rgba(255, 0, 247, 0.5);
         }
-        
+
         .game-instructions::before {
             content: '';
             position: absolute;
@@ -259,12 +281,12 @@
             z-index: 1;
             pointer-events: none;
         }
-        
+
         @keyframes mirrorEffect {
             0% { left: -200%; }
             100% { left: 100%; }
         }
-        
+
         .starfield-background {
             position: fixed;
             top: 0;
@@ -274,33 +296,33 @@
             z-index: -1;
             overflow: hidden;
         }
-        
+
         .star {
             position: absolute;
             background-color: #fff;
             border-radius: 50%;
             animation: starTwinkle linear infinite;
         }
-        
+
         @keyframes starTwinkle {
             0% { opacity: 0; }
             50% { opacity: 1; }
             100% { opacity: 0; }
         }
-        
+
         .game-instructions p {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
             line-height: 1.6;
         }
-        
+
         .character-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 1rem;
             margin-top: 1.5rem;
         }
-        
+
         .character-item {
             display: flex;
             flex-direction: column;
@@ -310,30 +332,30 @@
             border-radius: 10px;
             border: 1px solid rgba(255, 0, 247, 0.2);
         }
-        
+
         .character-emoji {
             font-size: 2rem;
             margin-bottom: 0.5rem;
         }
-        
+
         .character-desc {
             font-size: 0.9rem;
             text-align: center;
         }
-        
+
         .controls-section {
             margin-top: 1.5rem;
             padding-top: 1.5rem;
             border-top: 1px dashed rgba(255, 0, 247, 0.3);
         }
-        
+
         .controls-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
             margin-top: 1rem;
         }
-        
+
         .control-item {
             background: rgba(0, 0, 0, 0.4);
             padding: 0.8rem;
@@ -342,7 +364,7 @@
             align-items: center;
             gap: 0.8rem;
         }
-        
+
         .control-key {
             background: rgba(255, 0, 247, 0.2);
             padding: 0.3rem 0.6rem;
@@ -351,7 +373,7 @@
             font-size: 0.9rem;
             border: 1px solid rgba(255, 0, 247, 0.5);
         }
-        
+
         .sound-toggle {
             position: absolute;
             bottom: 15px;
@@ -370,70 +392,43 @@
             font-size: 18px;
             transition: all 0.3s ease;
         }
-        
+
         .sound-toggle:hover {
             background: rgba(255, 0, 247, 0.7);
         }
     </style>
 </head>
 <body>
+
+.home-logo:hover {
+    color: var(--secondary);
+    transform: scale(1.1);
+    text-shadow: 0 0 10px var(--glow);
+}
+
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
     <canvas id="universe"></canvas>
-    <div class="starfield-background" id="starfield"></div>
-    <script>
-        // Create starfield background
-        function createStarfield() {
-            const starfield = document.getElementById('starfield');
-            if (!starfield) return;
-            
-            const count = 200;
-            
-            for (let i = 0; i < count; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                // Random size
-                const size = Math.random() * 3;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                
-                // Random position
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                
-                // Random animation duration
-                const duration = Math.random() * 3 + 2;
-                star.style.animationDuration = duration + 's';
-                
-                // Random delay
-                star.style.animationDelay = Math.random() * 5 + 's';
-                
-                starfield.appendChild(star);
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', createStarfield);
-    </script>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="reviews.html">Reviews</a></li>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="opinions.html">Opinions</a></li>
-        </ul>
+
+    <nav class="navbar" style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; position: fixed; top: 0; left: 0; right: 0; z-index: 1000;">
+        <a href="index.html" class="home-logo" style="color: var(--primary); font-size: 1.5rem; transition: all 0.3s ease; padding: 10px;">
+            <i class="fas fa-home"></i>
+        </a>
     </nav>
 
-    <div class="container">
-        <div style="display: flex; justify-content: center; width: 100%;">
+    
+    
+    
+
+    <div class="container" style="padding-top: 100px;">
+        <div style="display: flex; justify-content: center; width: 100%; margin-bottom: 2rem;">
             <h1 class="glitch carti-title" data-text="CATCH CARTI" style="width: 100%; max-width: 800px; margin: 0 auto 2rem; text-align: center;">CATCH CARTI</h1>
         </div>
-        
+
         <div class="game-instructions">
             <p>You are Playboi Carti (🧛🏿‍♂️), the vampire king of rap! Collect hearts (❤️) and money bags (💰) 
             while shooting down haters (🧟‍♂️) and avoiding dropping mid music (💿). Pick up special power-ups to enhance your abilities!</p>
-            
+
             <div class="character-grid">
                 <div class="character-item">
                     <div class="character-emoji">🧛🏿‍♂️</div>
@@ -456,7 +451,7 @@
                     <div class="character-desc">CDs<br>-2 points if hit</div>
                 </div>
             </div>
-            
+
             <div class="controls-section">
                 <h3>Controls</h3>
                 <div class="controls-list">
@@ -479,7 +474,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="game-section">
             <div class="game-container pixel-border">
                 <div id="catch-carti-container"></div>
@@ -493,6 +488,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"></script>
+    <script src="script.js" type="module"></script>
     <script src="catchcarti.js"></script>
     <script>
         // Custom cursor
