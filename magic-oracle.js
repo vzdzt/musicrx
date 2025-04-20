@@ -61,7 +61,7 @@ const magicOracle = {
     `;
 
     if (history.children.length >= 5) {
-      history.removeChild(history.lastChild);
+      history.removeChild(history.lastChild); // Remove oldest before adding new
     }
 
     history.insertBefore(prophecy, history.firstChild);
@@ -69,6 +69,7 @@ const magicOracle = {
 
   updateVibeCheck() {
     const vibeIndicator = document.querySelector('.vibe-indicator');
+    if (!vibeIndicator) return;
     const vibes = [
       "i know what you are",
       "get a job",
@@ -85,9 +86,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const magicInput = document.getElementById('magicInput');
   const magicAnswer = document.getElementById('magicAnswer');
 
-  magicButton?.addEventListener('click', () => {
-    if (magicInput?.value.trim()) {
-      const response = magicOracle.getRandomResponse();
+  if (!magicButton || !magicInput || !magicAnswer) {
+    console.error('Missing critical elements: magicButton, magicInput, or magicAnswer');
+    if (magicAnswer) {
+      magicAnswer.textContent = 'Oracle broken, check console for errors';
+    }
+    return;
+  }
+
+  magicButton.addEventListener('click', () => {
+    if (magicInput.value.trim()) {
+      let response;
+      if (magicOracle.currentMode === 'fortune') {
+        response = magicOracle.getRandomResponse();
+      } else if (magicOracle.currentMode === 'recommendation') {
+        const genreSelect = document.getElementById('genreSelect');
+        const selectedGenre = genreSelect?.value;
+        if (selectedGenre && magicOracle.genreRecommendations[selectedGenre]) {
+          const recommendations = magicOracle.genreRecommendations[selectedGenre];
+          response = recommendations[Math.floor(Math.random() * recommendations.length)];
+        } else {
+          response = "Select a valid genre, twin!";
+        }
+      } else if (magicOracle.currentMode === 'compatibility') {
+        const artist1 = document.getElementById('artist1')?.value.trim();
+        const artist2 = document.getElementById('artist2')?.value.trim();
+        if (artist1 && artist2) {
+          response = magicOracle.compatibilityResults[Math.floor(Math.random() * magicOracle.compatibilityResults.length)];
+        } else {
+          response = "Enter both artists, fr!";
+        }
+      } else {
+        response = "Invalid mode, twin!";
+      }
       magicAnswer.textContent = response;
       magicOracle.addToProphecyHistory(magicInput.value, response);
       magicOracle.updateVibeCheck();
@@ -97,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  magicInput?.addEventListener('keypress', (e) => {
+  magicInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter' && magicInput.value.trim()) {
       magicButton.click();
     }
@@ -105,26 +136,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.mode-btn').forEach(btn => {
     btn.addEventListener('click', () => {
+      const mode = btn.getAttribute('data-mode');
+      if (!mode) {
+        console.warn('Mode button missing data-mode attribute');
+        return;
+      }
+
       document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      magicOracle.currentMode = btn.getAttribute('data-mode');
-      
-      // Toggle visibility of options based on mode
+      magicOracle.currentMode = mode;
+
       const genreSelect = document.getElementById('genreSelect');
       const compatibilityInputs = document.querySelector('.compatibility-inputs');
-      
-      genreSelect.style.display = 'none';
-      compatibilityInputs.style.display = 'none';
-      
-      if (magicOracle.currentMode === 'recommendation') {
-        genreSelect.style.display = 'block';
-      } else if (magicOracle.currentMode === 'compatibility') {
-        compatibilityInputs.style.display = 'flex';
+
+      if (genreSelect) {
+        genreSelect.style.display = magicOracle.currentMode === 'recommendation' ? 'block' : 'none';
       }
-      
+      if (compatibilityInputs) {
+        compatibilityInputs.style.display = magicOracle.currentMode === 'compatibility' ? 'flex' : 'none';
+      }
+
       magicOracle.updateVibeCheck();
     });
   });
 });
 
-export default magicOracle;
+// Attach to global scope for non-module browser context
+window.magicOracle = magicOracle;
