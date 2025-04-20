@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="feature-drake">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore the rise of Drake, the Canadian icon who redefined hip-hop with his blend of rap, R&B, and cultural influence, updated to March 2025.">
+    <meta name="description" content="Explore the rise of Drake, the Canadian icon who redefined hip-hop with his blend of rap, R&B, and cultural influence, updated to April 2025.">
     <meta name="keywords" content="Drake, Aubrey Graham, hip-hop, R&B, OVO, Degrassi, MusicRx">
     <meta name="author" content="Veazy">
-    <!-- Open Graph Tags for Twitter Sharing -->
     <meta property="og:title" content="MusicRx - Drake Feature">
-    <meta property="og:description" content="Dive into Drake’s journey from Degrassi to global superstar, with insights into his music, style, and cultural impact as of March 2025.">
+    <meta property="og:description" content="Dive into Drake’s journey from Degrassi to global superstar, with insights into his music, style, and cultural impact as of April 2025.">
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/drizzy.jpeg">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://vzdzt.github.io/musicrx/features-drake.html">
@@ -18,279 +17,873 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <style>
+        :root[data-theme="normal"] {
+            --primary: #00f7ff;
+            --secondary: #9147ff;
+            --accent: #ff0066;
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(20, 20, 20, 0.8);
+            --glass: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.2);
+            --glow: rgba(0, 247, 255, 0.5);
+            --rgb-glow: linear-gradient(45deg, #00f7ff, #9147ff);
+            --dark: #000;
+        }
+
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
+        }
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
+        }
+
         body {
-            background: #0a0a0a !important;
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
         }
-        .highlight {
-            color: #0088ff;
-            font-weight: bold;
+
+        @property --drip-offset {
+            syntax: '<number>';
+            inherits: false;
+            initial-value: 0;
         }
-        .feature-drake-glitch {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #0088ff;
-            text-shadow: 0 0 10px #0088ff;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            position: relative;
-        }
-        .feature-drake-glitch::before,
-        .feature-drake-glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .feature-drake-glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #00ffea;
-            animation: glitch-1 2s linear infinite reverse;
-        }
-        .feature-drake-glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #0088ff;
-            animation: glitch-2 3s linear infinite;
-        }
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); }
-            5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); }
-            15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); }
-            100% { clip-path: inset(0 0 90% 0); }
-        }
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); }
-            5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); }
-            15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
-        }
+
         .glass-card {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            margin: 2rem 0;
+            padding: 1.75rem; /* Increased from 1.5rem */
+            margin: 1.75rem auto; /* Increased from 1.5rem */
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
-        }
-        .glass-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 136, 255, 0.3); /* Match highlight blue */
-        }
-        /* New Drake image card class, mirroring Carti's approach */
-        .drake-image-card {
-            padding: 0; /* Image touches edges */
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
-            overflow: hidden; /* Prevent overflow */
-            max-width: 100%; /* Ensure container doesn't exceed parent */
-        }
-        .drake-image-card:hover {
-            transform: scale(1.05);
-        }
-        .drake-image-card img {
+            border: 1px solid var(--primary);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                inset 0 0 40px rgba(var(--primary-rgb), 0.2),
+                0 0 20px var(--glow);
+            --drip-offset: 0;
+            --drip-color: var(--primary);
+            animation: drip 3s linear infinite;
+            max-width: 800px; /* Increased from 700px */
             width: 100%;
-            height: auto;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            display: block; /* Remove inline bottom margin */
+            box-sizing: border-box;
         }
-        .drake-image-card:hover img {
+
+        @keyframes drip {
+            to { --drip-offset: 100; }
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: paint(neon-drip);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.6),
+                inset 0 0 60px rgba(var(--primary-rgb), 0.3),
+                0 0 30px var(--glow);
+            --drip-color: var(--accent);
+            animation: drip 1.5s linear infinite;
+        }
+
+        .track-highlight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .dropdown {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            transform: scale(1.1);
+            outline: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--background);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            display: block;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
             transform: scale(1.1);
         }
-        /* Fix for unwanted italicization */
-        body, .container, p, h2, ul, li {
-            font-style: normal !important;
+
+        .hero-content {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
         }
-        .glass-card, .glass-card * {
-            font-style: normal !important;
+
+        .album-card {
+            max-width: 800px;
+            width: 100%;
+            background: var(--card);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            padding: 1rem;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            contain: content;
         }
-        em, .highlight em {
-            font-style: italic !important; /* Preserve intended italics */
+
+        .album-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                var(--primary) 60deg,
+                transparent 120deg
+            );
+            opacity: 0.1;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .album-header {
+            text-align: center;
+            margin-bottom: 1.25rem; /* Increased from 1rem */
+        }
+
+        .album-title {
+            font-size: clamp(1.2rem, 1.75vw, 1.75rem); /* Increased from 1.5rem max */
+            color: var(--text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
+        }
+
+        .album-quote {
+            font-size: 1.1rem; /* Increased from 1rem */
+            color: var(--secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+        .album-image {
+            width: 100%;
+            max-width: 500px; /* Increased from 400px */
+            height: auto;
+            max-height: 500px; /* Increased from 400px */
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--primary-rgb), 0.3);
+            transition: all 0.4s ease;
+            object-fit: contain;
+            margin: 0 auto;
+            overflow: hidden;
+            contain: content;
+        }
+
+        .album-image:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--primary-rgb), 0.4);
+        }
+
+        .album-intro-container {
+            max-width: 800px; /* Increased from 700px */
+            width: 100%;
+            padding: 1.75rem; /* Increased from 1.5rem */
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 800px) {
+            .album-card, .album-intro-container {
+                max-width: 90vw;
+                padding: 1.25rem; /* Increased from 1rem */
+            }
+            .album-image {
+                max-width: 100%;
+                max-height: 350px; /* Increased from 300px */
+            }
+            .album-title {
+                font-size: clamp(1.3rem, 4.5vw, 2.25rem); /* Increased from 2rem max */
+            }
+            .album-quote {
+                font-size: 1rem; /* Increased from 0.9rem */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .album-image {
+                max-height: 300px; /* Increased from 250px */
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                max-width: 500px;
+                max-height: 500px;
+            }
+            .album-card, .album-intro-container {
+                max-width: 800px;
+            }
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, var(--background));
+            max-width: 800px; /* Increased from 700px */
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 800px; /* Increased from 700px */
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-container h2 {
+            margin: 0 0 1rem 0;
+            padding: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .chart-container canvas {
+            max-height: 250px;
+            width: 100%;
+        }
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .rating-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .rating-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        .rating-score {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            text-shadow: 0 0 10px var(--glow);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--glass);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 1s ease;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .trend-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .trend-table th, .trend-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trend-table th {
+            background: rgba(255, 0, 102, 0.2);
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .trend-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .content-section {
+                max-width: 90vw;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                max-width: 90vw;
+            }
+
+            .album-card {
+                max-width: 90vw;
+            }
+
+            .stats-container {
+                max-width: 90vw;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 120px 1rem;
+                min-height: 100vh;
+            }
+
+            .album-image {
+                max-width: 100%;
+                max-height: 350px;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .review-card {
+                padding: 1rem;
+            }
+
+            .rating-card {
+                padding: 1rem;
+            }
+
+            .chart-container {
+                max-height: 250px;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .chart-container canvas {
+                max-height: 200px;
+            }
+
+            .dropdown-toggle {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .dropdown-menu {
+                width: 180px;
+                right: -10px;
+            }
+
+            .theme-toggle {
+                right: 1rem;
+            }
+        }
+
+        .track-highlights {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(0,247,255,0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0,247,255,0.1);
+        }
+
+        .track-highlight-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
+        }
+
+        @keyframes rgbShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes heatwave {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes neon-flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+
+        .nav {
+            background: var(--background);
+        }
+
+        .dropdown-menu {
+            background: var(--background);
+        }
+
+        .album-card {
+            background: var(--background);
         }
     </style>
 </head>
 <body>
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="reviews.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
-        <h1 class="feature-drake-glitch" data-text="DRAKE">DRAKE</h1>
-        <div class="review-content">
-            <h2>The Evolution of a Global Icon: <span class="highlight">Drake</span>’s Ascendancy</h2>
-            <div class="drake-image-card">
-                <img src="drizzy.jpeg" alt="Drake artist image">
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/drizzy.jpeg" alt="Drake" class="hero-image">
+        <div class="hero-content">
+            <div class="album-card">
+                <div class="album-header">
+                    <h1 class="album-title">Drake</h1>
+                    <p class="album-quote">"From Degrassi to Global Dominance"</p>
+                </div>
+                <img src="https://vzdzt.github.io/musicrx/drizzy.jpeg" alt="Drake artist image" class="album-image">
             </div>
-            <br>
-            <p>From his early acting role as <span class="highlight">Jimmy Brooks</span> on <span class="highlight">Degrassi: The Next Generation</span> to becoming one of the most streamed artists in history with over <span class="highlight">170 million records sold worldwide</span>, <span class="highlight">Aubrey Drake Graham</span> has redefined hip-hop for the streaming era. Born on <span class="highlight">October 24, 1986</span>, in <span class="highlight">Toronto, Canada</span>, this multifaceted artist blends rap, R&B, and cultural entrepreneurship, cementing his status as a global icon as of <span class="highlight">March 15, 2025</span>.</p>
         </div>
-        <br>
-        <h2>Rise to Fame</h2>
-        <br>
-        <p>Drake’s journey ignited with the 2009 mixtape <span class="highlight">So Far Gone</span>, a groundbreaking fusion of hip-hop and R&B that introduced hits like <span class="highlight">"Best I Ever Had"</span> and <span class="highlight">"Successful"</span>. This caught the eye of <span class="highlight">Lil Wayne</span>, leading to a pivotal signing with <span class="highlight">Young Money Entertainment</span>. His debut album, <span class="highlight">Thank Me Later</span> (2010), debuted at number one on the <span class="highlight">Billboard 200</span>, marking the start of a career defined by innovation and commercial dominance.</p>
-        <br>
-        <div class="glass-card">
-            <h2>Career Milestones</h2>
-            <ul>
-                <li><span class="highlight">2009:</span> Released <em><span class="highlight">So Far Gone</span></em>, his breakout mixtape, with <span class="highlight">"Best I Ever Had"</span> hitting <span class="highlight">No. 2</span> on the <span class="highlight">Billboard Hot 100</span>, earning a <span class="highlight">Juno Award</span> for Rap Recording of the Year.</li>
-                <br>
-                <li><span class="highlight">2011:</span> Dropped <em><span class="highlight">Take Care</span></em>, a critical and commercial triumph, winning the <span class="highlight">Grammy for Best Rap Album</span> and featuring the chart-topping <span class="highlight">"Take Care"</span> with <span class="highlight">Rihanna</span>.</li>
-                <br>
-                <li><span class="highlight">2015:</span> Unleashed the surprise mixtape <em><span class="highlight">If You’re Reading This It’s Too Late</span></em>, breaking streaming records with over <span class="highlight">500 million streams</span> in its first week, and launched <span class="highlight">OVO Sound Radio</span> on Beats 1.</li>
-                <br>
-                <li><span class="highlight">2016:</span> Released <em><span class="highlight">Views</span></em>, his highest-selling album to date, spending <span class="highlight">13 weeks</span> at <span class="highlight">No. 1</span> on the <span class="highlight">Billboard 200</span>, with <span class="highlight">"One Dance"</span> becoming his first solo <span class="highlight">No. 1</span> hit globally.</li>
-                <br>
-                <li><span class="highlight">2018:</span> Dropped <em><span class="highlight">Scorpion</span></em>, breaking streaming records with <span class="highlight">732 million streams</span> in its first week, featuring <span class="highlight">"God’s Plan"</span> and <span class="highlight">"In My Feelings"</span>, both hitting <span class="highlight">No. 1</span>.</li>
-                <br>
-                <li><span class="highlight">2021:</span> Released <em><span class="highlight">Certified Lover Boy</span></em>, setting a record with <span class="highlight">9 top-10 hits</span> on the <span class="highlight">Billboard Hot 100</span> in one week, and expanded <span class="highlight">OVO</span> with new fashion lines.</li>
-                <br>
-                <li><span class="highlight">2022:</span> Collaborated with <span class="highlight">21 Savage</span> on <em><span class="highlight">Her Loss</span></em>, debuting at <span class="highlight">No. 1</span> with <span class="highlight">404,000 units</span>, and headlined the <span class="highlight">Aubrey & the Three Migos Tour</span>.</li>
-                <br>
-                <li><span class="highlight">2023:</span> Surpassed <span class="highlight">75 billion streams</span> across platforms, released <em><span class="highlight">For All the Dogs</span></em> (debuting at <span class="highlight">No. 1</span> with <span class="highlight">402,000 units</span>), and was named <span class="highlight">Billboard’s Artist of the 2010s Decade</span>.</li>
-                <br>
-                <li><span class="highlight">2025:</span> Released <em><span class="highlight">Some Sexy Songs 4 U</span></em> with <span class="highlight">PartyNextDoor</span> on <span class="highlight">February 14</span>, debuting at <span class="highlight">No. 1</span> on the <span class="highlight">Billboard 200</span>, and announced a historic three-day headline at the <span class="highlight">2025 Wireless Festival</span>, selling out in minutes.</li>
-            </ul>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Grammy Wins</div>
         </div>
-        <br>
-        <h2>Musical Style & Impact</h2>
-        <br>
-        <p>Drake’s musical alchemy lies in his seamless fusion of <span class="highlight">rap</span>, <span class="highlight">R&B</span>, <span class="highlight">pop</span>, and <span class="highlight">dancehall</span>, creating a sound that’s uniquely his yet widely emulated. His pioneering use of <span class="highlight">emotional vulnerability</span>—evident in tracks like <span class="highlight">"Marvin’s Room"</span> and <span class="highlight">"Jungle"</span>—paved the way for a new wave of introspective hip-hop artists, including <span class="highlight">The Weeknd</span> and <span class="highlight">Bryson Tiller</span>. His production, often crafted with longtime collaborator <span class="highlight">Noah “40” Shebib</span>, introduces a moody, atmospheric <span class="highlight">Toronto sound</span> that blends soulful samples with cutting-edge beats. Beyond music, Drake’s <span class="highlight">OVO Sound</span> label has launched talents like <span class="highlight">PartyNextDoor</span> and <span class="highlight">Majid Jordan</span>, while his <span class="highlight">OVO</span> brand extends into fashion, with <span class="highlight">Yeezy</span>-like collaborations, and media, including <span class="highlight">OVO Sound Radio</span>. His influence on language—coining phrases like <span class="highlight">"6ix"</span> and <span class="highlight">"YOLO"</span>—and dance trends, like the <span class="highlight">"In My Feelings" challenge</span>, has reshaped pop culture, making him a cultural entrepreneur par excellence.</p>
-        <br>
-        <div class="glass-card">
-            <h2>Essential Listening</h2>
-            <p><span class="highlight">For Newcomers:</span> <span class="highlight">"Hotline Bling"</span>, <span class="highlight">"God’s Plan"</span>, <span class="highlight">"Started From The Bottom"</span>, <span class="highlight">"One Dance"</span>—these tracks pulse with Drake’s infectious hooks and chart-dominating energy, offering a perfect entry into his melodic mastery and global appeal.</p>
-            <p><span class="highlight">For The Dive:</span> <span class="highlight">"Marvin’s Room"</span>, <span class="highlight">"Jungle"</span>, <span class="highlight">"Pound Cake"</span> (feat. <span class="highlight">Jay-Z</span>), <span class="highlight">"Do Not Disturb"</span>, <span class="highlight">"Take Care"</span> (feat. <span class="highlight">Rihanna</span>)—dive deep into his emotional landscapes, where haunting melodies and introspective lyrics reveal the soul behind the superstar, backed by lush production.</p>
-            <p><span class="highlight">Hidden Gems:</span> <span class="highlight">"Paris Morton Music"</span>, <span class="highlight">"Days In The East"</span>, <span class="highlight">"Club Paradise"</span>, <span class="highlight">4PM in Calabasas"</span>, <span class="highlight">"Furthest Thing"</span>—these underappreciated tracks showcase his raw lyricism and early Toronto vibes, offering a glimpse into his unpolished brilliance.</p>
-            <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">"Nokia"</span>, <span class="highlight">"Gimme A Hug"</span>, <span class="highlight">"Crying In Chanel"</span> (from <em><span class="highlight">Some Sexy Songs 4 U</span></em>)—2025’s releases blend R&B swagger with club-ready beats, hinting at a new chapter of vulnerability and resilience post-beef.</p>
+        <div class="stat-card">
+            <div class="stat-number">170M</div>
+            <div class="stat-label">Records Sold</div>
         </div>
-        <br>
-        <h2>Drama & Controversies</h2>
-        <br>
-        <p>Drake’s career has been as dramatic as his music. Early tensions with <span class="highlight">Chris Brown</span> escalated into a 2012 nightclub brawl, though they later reconciled with a comedic <span class="highlight">2014 ESPY Awards</span> skit. His 2016 feud with <span class="highlight">Meek Mill</span>—sparked by ghostwriting allegations—produced diss tracks like <span class="highlight">"Back to Back"</span>, cementing Drake’s lyrical prowess. The 2018 clash with <span class="highlight">Pusha T</span> exposed personal details, including his son <span class="highlight">Adonis</span>, via <span class="highlight">"The Story of Adidon"</span>, prompting Drake to lean into fatherhood publicly. More recently, his 2024 beef with <span class="highlight">Kendrick Lamar</span>—ignited by <span class="highlight">"Like That"</span> and escalated with <span class="highlight">"Not Like Us"</span>—saw Lamar’s Super Bowl halftime jab and Drake’s legal action against <span class="highlight">Universal Music Group (UMG)</span> for allegedly boosting Lamar’s track, settled in <span class="highlight">February 2025</span>. As of <span class="highlight">March 2025</span>, Drake’s X posts criticize the industry’s “enslavement” of artists, reigniting his feud with <span class="highlight">Drake</span> over alleged corporate agendas, while his <span class="highlight">Anita Max Wynn Tour</span> in Australia faced fan boos, adding to his polarizing image.</p>
-        <br>
-        <h2>Legacy</h2>
-        <br>
-        <p>Drake’s legacy as a trailblazer is etched in hip-hop history. Evolving from a <span class="highlight">Degrassi</span> actor to a <span class="highlight">Billboard</span>-named <span class="highlight">Artist of the 2010s Decade</span>, he’s sold <span class="highlight">170 million records</span> and amassed <span class="highlight">75 billion streams</span>, outpacing legends like <span class="highlight">2Pac</span> and <span class="highlight">Jay-Z</span> in the streaming era. His innovation—merging <span class="highlight">R&B sensibilities</span> with rap—has inspired a generation, from <span class="highlight">Post Malone</span> to <span class="highlight">Rod Wave</span>. Cultural milestones like the <span class="highlight">"In My Feelings" challenge</span> and phrases like <span class="highlight">"6ix"</span> have permeated global pop culture. Despite controversies, his ability to turn personal setbacks into art—seen in <em><span class="highlight">Some Sexy Songs 4 U</span></em>’s pivot from the Lamar beef—ensures his enduring relevance. As he headlines the <span class="highlight">2025 Wireless Festival</span> and teases new projects, Drake’s legacy as a cultural shapeshifter remains secure, poised to evolve with each release.</p>
-        <br>
-        <h2>By the Numbers</h2>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Chart Performance</span></h3>
+        <div class="stat-card">
+            <div class="stat-number">75B</div>
+            <div class="stat-label">Streams</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">#1</div>
+            <div class="stat-label">Billboard 200</div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Born October 24, 1986, in Toronto, Aubrey Drake Graham sold 170 million records and amassed 75 billion streams, redefining hip-hop with R&B flair as of April 2025.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Rise to Fame</h2>
+                <p>From <em>Degrassi</em> to 2009’s <em>So Far Gone</em> mixtape, Drake’s Young Money signing and <em>Thank Me Later</em> (2010) No. 1 debut launched his global ascent.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Musical Style</h2>
+                <p>Blending rap, R&B, and dancehall, Drake’s moody Toronto sound with Noah “40” Shebib pioneered emotional hip-hop, influencing The Weeknd and Bryson Tiller.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Cultural Impact</h2>
+                <p>OVO Sound, fashion, and viral trends like the “In My Feelings” challenge made Drake a cultural force, coining “6ix” and “YOLO.”</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p>“Hotline Bling”, “God’s Plan”, “One Dance”—catchy hooks and global hits.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For The Dive</h3>
+                    <p>“Marvin’s Room”, “Jungle”, “Take Care”—emotional depth with lush production.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p>“Paris Morton Music”, “Days In The East”, “Club Paradise”—raw Toronto vibes.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Latest Obsessions</h3>
+                    <p>“Nokia”, “Gimme A Hug”, “Crying In Chanel”—2025’s R&B-infused resilience.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Career Milestones</h2>
+            <p><em>Take Care</em> (2011) won a Grammy, <em>Scorpion</em> (2018) broke streaming records, and <em>Some Sexy Songs 4 U</em> (2025) hit No. 1, headlining Wireless Festival.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Controversies</h2>
+            <p>Feuds with Meek Mill, Pusha T, and Kendrick Lamar (2024) stirred drama, with legal battles and tour boos, yet Drake’s art thrives post-conflict.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p>Named Billboard’s Artist of the 2010s, Drake’s 170M sales and 75B streams inspire Post Malone and Rod Wave, shaping pop culture with OVO’s reach.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Year</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Best Rap Album (<em>Take Care</em>)</td><td>2013</td><td>Won</td></tr>
+                        <tr><td>Record of the Year (“God’s Plan”)</td><td>2019</td><td>Won</td></tr>
+                        <tr><td>Best Rap Song (“God’s Plan”)</td><td>2019</td><td>Won</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Chart Performance</h2>
             <div class="table-container">
                 <table class="trend-table">
                     <thead>
                         <tr>
                             <th>Title</th>
                             <th>Year</th>
-                            <th>Billboard Hot 100 (US)</th>
-                            <th>Canadian Hot 100 (CAN)</th>
-                            <th>UK Singles Chart (UK)</th>
+                            <th>Billboard Hot 100</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">"Best I Ever Had"</span></td>
-                            <td>2009</td>
-                            <td>2</td>
-                            <td>24</td>
-                            <td>123</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">"Over"</span></td>
-                            <td>2010</td>
-                            <td>14</td>
-                            <td>17</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">"Take Care"</span> (feat. <span class="highlight">Rihanna</span>)</td>
-                            <td>2012</td>
-                            <td>7</td>
-                            <td>15</td>
-                            <td>9</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">"Started from the Bottom"</span></td>
-                            <td>2013</td>
-                            <td>6</td>
-                            <td>36</td>
-                            <td>25</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">"Hotline Bling"</span></td>
-                            <td>2015</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">"One Dance"</span> (feat. <span class="highlight">Wizkid</span> & <span class="highlight">Kyla</span>)</td>
-                            <td>2016</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">"God’s Plan"</span></td>
-                            <td>2018</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">"In My Feelings"</span></td>
-                            <td>2018</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">"Wait for U"</span> (with <span class="highlight">Future</span> feat. <span class="highlight">Tems</span>)</td>
-                            <td>2022</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">"Nokia"</span> (with <span class="highlight">PartyNextDoor</span>)</td>
-                            <td>2025</td>
-                            <td>3</td>
-                            <td>2</td>
-                            <td>4</td>
-                        </tr>
+                        <tr><td>“God’s Plan”</td><td>2018</td><td>1</td></tr>
+                        <tr><td>“In My Feelings”</td><td>2018</td><td>1</td></tr>
+                        <tr><td>“Nokia” (with PartyNextDoor)</td><td>2025</td><td>3</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Album Certifications</span></h3>
+
+        <div class="review-card">
+            <h2 class="section-title">Album Certifications</h2>
             <div class="table-container">
                 <table class="trend-table">
                     <thead>
@@ -301,98 +894,176 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Take Care</span></td>
-                            <td>5× Platinum</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Views</span></td>
-                            <td>5× Platinum</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Scorpion</span></td>
-                            <td>4× Platinum</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Certified Lover Boy</span></td>
-                            <td>3× Platinum</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Her Loss</span> (with <span class="highlight">21 Savage</span>)</td>
-                            <td>3× Platinum</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">For All the Dogs</span></td>
-                            <td>2× Platinum</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Some Sexy Songs 4 U</span> (with <span class="highlight">PartyNextDoor</span>)</td>
-                            <td>Platinum</td>
-                            <td>1</td>
-                        </tr>
+                        <tr><td><em>Take Care</em></td><td>5× Platinum</td><td>5</td></tr>
+                        <tr><td><em>Views</em></td><td>5× Platinum</td><td>5</td></tr>
+                        <tr><td><em>Some Sexy Songs 4 U</em></td><td>Platinum</td><td>1</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Sources</span></h3>
-            <p>
-                <a href="https://en.wikipedia.org/wiki/Drake_albums_discography">Drake albums discography (Wikipedia)</a> | 
-                <a href="https://en.wikipedia.org/wiki/Drake_(musician)">Drake musician (Wikipedia)</a> | 
-                <a href="https://www.billboard.com/artist/drake/">Billboard artist page</a> | 
-                <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> | 
-                <a href="https://chartmasters.org/drake-albums-and-songs-sales/">ChartMasters sales data</a> | 
-                <a href="https://www.nytimes.com/2025/02/14/arts/music/drake-partynextdoor-some-sexy-songs-4-u.html">NY Times on 2025 album</a>
-            </p>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Melodic Appeal</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>“Hotline Bling” hooks with infectious melodies.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.0</div>
+                <h3>Lyrical Depth</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%"></div>
+                </div>
+                <p>“Marvin’s Room” offers raw emotion, though less complex.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Commercial Success</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>170M records sold dominate charts.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Cultural Impact</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>“In My Feelings” sparked global trends.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Influence</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>Inspired Post Malone, Rod Wave.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.7</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 87%"></div>
+                </div>
+                <p>A cultural shapeshifter, thriving in 2025.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data from <a href="https://en.wikipedia.org/wiki/Drake_albums_discography">Wikipedia Discography</a>, <a href="https://www.billboard.com/artist/drake/">Billboard</a>, <a href="https://www.riaa.com/gold-platinum/">RIAA</a>, <a href="https://chartmasters.org/drake-albums-and-songs-sales/">ChartMasters</a>, <a href="https://www.nytimes.com/2025/02/14/arts/music/drake-partynextdoor-some-sexy-songs-4-u.html">NY Times</a>, and X (@36966_) as of April 19, 2025.</p>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <div class="button-container"> 
+        <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+            <i class="fas fa-adjust"></i>
+        </button>
+    </div>
     <script src="script.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Style for glass cards (excluding the image container)
-            document.querySelectorAll('.glass-card:not(.drake-image-card)').forEach(card => {
-                card.style.transform = 'none !important';
-                card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important';
-                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dropdown functionality
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
             });
-            // Add hover effects for glass cards
-            document.querySelectorAll('.glass-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 0 20px rgba(0, 136, 255, 0.3)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = 'none';
-                });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
             });
-            // Add hover effects for the image container, matching Carti behavior
-            document.querySelectorAll('.drake-image-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.1)';
-                    card.style.transform = 'scale(1.05)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
-                    card.style.transform = 'scale(1)';
-                });
+
+            // Chart for Drake's Streaming Growth
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2010', '2013', '2016', '2019', '2022', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [2.0, 10.0, 25.0, 50.0, 70.0, 75.0],
+                        borderColor: '#00f7ff',
+                        backgroundColor: 'rgba(0, 247, 255, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
             });
+
+            // Twitter popup
+            const errorMessageWrapper = document.createElement('div');
+            errorMessageWrapper.style.position = 'fixed';
+            errorMessageWrapper.style.bottom = '20px';
+            errorMessageWrapper.style.right = '20px';
+            errorMessageWrapper.style.background = 'var(--card)';
+            errorMessageWrapper.style.border = '1px solid var(--border)';
+            errorMessageWrapper.style.color = 'var(--accent)';
+            errorMessageWrapper.style.padding = '1rem';
+            errorMessageWrapper.style.borderRadius = '8px';
+            errorMessageWrapper.style.boxShadow = '0 10px 20px rgba(0, 247, 255, 0.5)';
+            errorMessageWrapper.textContent = `FOLLOW ME ON TWITTER @36966_`;
+            errorMessageWrapper.style.fontFamily = 'Syncopate, sans-serif';
+            errorMessageWrapper.style.zIndex = '1002';
+            document.body.appendChild(errorMessageWrapper);
+
+            setTimeout(() => {
+                errorMessageWrapper.remove();
+            }, 5000);
         });
     </script>
 </body>
