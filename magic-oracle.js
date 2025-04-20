@@ -108,6 +108,20 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       magicOracle.currentMode = btn.getAttribute('data-mode');
+      
+      // Toggle visibility of options based on mode
+      const genreSelect = document.getElementById('genreSelect');
+      const compatibilityInputs = document.querySelector('.compatibility-inputs');
+      
+      genreSelect.style.display = 'none';
+      compatibilityInputs.style.display = 'none';
+      
+      if (magicOracle.currentMode === 'recommendation') {
+        genreSelect.style.display = 'block';
+      } else if (magicOracle.currentMode === 'compatibility') {
+        compatibilityInputs.style.display = 'flex';
+      }
+      
       magicOracle.updateVibeCheck();
     });
   });
