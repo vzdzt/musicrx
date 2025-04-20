@@ -135,7 +135,7 @@ function loadSounds() {
 // Play a sound with error handling
 function playSound(soundName) {
     if (soundsMuted) return;
-    
+
     try {
         if (sounds[soundName]) {
             // Clone the sound to allow overlapping playback
@@ -162,10 +162,15 @@ function initCatchCarti() {
     // Load sounds
     loadSounds();
 
-    // Set up game elements
+    // Set up game elements with responsive height
     gameContainer.style.position = 'relative';
     gameContainer.style.width = '100%';
-    gameContainer.style.height = '600px';
+    gameContainer.style.height = window.innerHeight < 600 ? '400px' : '600px';
+    
+    // Update container size on window resize
+    window.addEventListener('resize', () => {
+        gameContainer.style.height = window.innerHeight < 600 ? '400px' : '600px';
+    });
     gameContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
     gameContainer.style.backgroundImage = 'none';
     gameContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
@@ -189,7 +194,7 @@ function initCatchCarti() {
 // Create a start menu
 function createMainMenu() {
     if (!gameContainer) return;
-    
+
     // Clear container
     gameContainer.innerHTML = '';
 
@@ -336,7 +341,7 @@ function createMenuButton(text) {
 // Show high scores screen
 function showHighScores() {
     if (!gameContainer) return;
-    
+
     // Clear container
     gameContainer.innerHTML = '';
 
@@ -421,7 +426,7 @@ function showHighScores() {
 // Show instructions screen
 function showInstructions() {
     if (!gameContainer) return;
-    
+
     // Clear container
     gameContainer.innerHTML = '';
 
@@ -508,7 +513,7 @@ function showInstructions() {
 // Start game function
 function startGame() {
     if (!gameContainer) return;
-    
+
     // Clear game container
     gameContainer.innerHTML = '';
 
@@ -571,7 +576,7 @@ function startGame() {
 // Create game HUD
 function createHUD() {
     if (!gameContainer) return;
-    
+
     // Create score display
     const scoreDisplay = document.createElement('div');
     scoreDisplay.id = 'game-score';
@@ -679,7 +684,7 @@ function updatePowerupIndicators() {
 // Create starfield background
 function createStarfield() {
     if (!gameContainer) return;
-    
+
     const starCount = 150;
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
@@ -718,7 +723,7 @@ function updateStarfield() {
 // Create falling hearts and money bags
 function spawnItem() {
     if (!gameContainer) return;
-    
+
     const currentTime = Date.now();
     if (currentTime - lastSpawnTime < Math.max(800, 1500 - (gameLevel * 100))) return; // Level-based spawn rate
     lastSpawnTime = currentTime;
@@ -740,7 +745,7 @@ function spawnItem() {
 // Create enemy (fans or CDs)
 function spawnEnemy() {
     if (!gameContainer) return;
-    
+
     const currentTime = Date.now();
     if (currentTime - lastEnemyTime < Math.max(800, 2000 - (gameLevel * 150))) return; // Level-based spawn rate
     lastEnemyTime = currentTime;
@@ -768,7 +773,7 @@ function spawnEnemy() {
 // Spawn a powerup
 function spawnPowerup() {
     if (!gameContainer) return;
-    
+
     const currentTime = Date.now();
     if (currentTime - lastPowerupTime < 10000) return; // 10 seconds between powerups
     lastPowerupTime = currentTime;
@@ -850,7 +855,7 @@ function shoot() {
 // Create a single bullet
 function createBullet(x, y, xVelocity = 0) {
     if (!gameContainer) return;
-    
+
     const bullet = document.createElement('div');
     bullet.innerHTML = '🔥'; // Fire emoji for bullet
     bullet.style.position = 'absolute';
@@ -866,7 +871,7 @@ function createBullet(x, y, xVelocity = 0) {
 // Create a laser beam
 function createLaserBeam(x, y) {
     if (!gameContainer) return;
-    
+
     const laser = document.createElement('div');
     laser.classList.add('laser-beam');
     laser.style.position = 'absolute';
@@ -903,9 +908,9 @@ function createLaserBeam(x, y) {
 
     // Check for collisions with enemies
     if (enemies.length === 0) return;
-    
+
     const containerRect = gameContainer.getBoundingClientRect();
-    
+
     for (let i = enemies.length - 1; i >= 0; i--) {
         const enemy = enemies[i];
         const enemyRect = enemy.getBoundingClientRect();
@@ -945,7 +950,7 @@ function createLaserBeam(x, y) {
 // Spawn a group of enemies or collectibles
 function spawnGroup() {
     if (!gameContainer) return;
-    
+
     const currentTime = Date.now();
     if (currentTime - lastGroupTime < Math.max(5000, 10000 - (gameLevel * 500))) return; // Level-based timing
     lastGroupTime = currentTime;
@@ -1027,7 +1032,7 @@ function spawnGroup() {
 // Move falling items down the screen
 function moveItems() {
     if (!gameContainer) return;
-    
+
     const speedMultiplier = 1 + (gameLevel * 0.15); // Speed increases with level
 
     for (let i = fallingItems.length - 1; i >= 0; i--) {
@@ -1067,7 +1072,7 @@ function moveItems() {
 // Move enemies down the screen
 function moveEnemies() {
     if (!gameContainer || !carti) return;
-    
+
     const speedMultiplier = 1 + (gameLevel * 0.15); // Speed increases with level
 
     for (let i = enemies.length - 1; i >= 0; i--) {
@@ -1153,7 +1158,7 @@ function moveEnemies() {
 // Move powerups down the screen
 function movePowerups() {
     if (!gameContainer || !carti) return;
-    
+
     for (let i = powerups.length - 1; i >= 0; i--) {
         const powerup = powerups[i];
         const top = parseInt(powerup.style.top) || 0;
@@ -1185,7 +1190,7 @@ function movePowerups() {
 // Apply a powerup effect
 function applyPowerup(type) {
     if (!carti) return;
-    
+
     const duration = 10000; // 10 seconds for most powerups
 
     switch (type) {
@@ -1228,7 +1233,7 @@ function applyPowerup(type) {
 // Show powerup activation effect
 function showPowerupEffect(powerup) {
     if (!gameContainer) return;
-    
+
     const effect = document.createElement('div');
     effect.textContent = 'POWER UP!';
     effect.style.position = 'absolute';
@@ -1264,7 +1269,7 @@ function showPowerupEffect(powerup) {
 // Move bullets up the screen and check for collisions
 function moveBullets() {
     if (!gameContainer) return;
-    
+
     for (let i = bullets.length - 1; i >= 0; i--) {
         const bullet = bullets[i];
 
@@ -1362,7 +1367,7 @@ function updateScore() {
 // Level up function
 function levelUp() {
     if (!gameContainer) return;
-    
+
     gameLevel++;
 
     // Update level display
@@ -1448,7 +1453,7 @@ function levelUp() {
 // Show score effect
 function showScoreEffect(item, text, color = 'white') {
     if (!gameContainer) return;
-    
+
     const effect = document.createElement('div');
     effect.textContent = text;
     effect.style.position = 'absolute';
@@ -1484,7 +1489,7 @@ function showScoreEffect(item, text, color = 'white') {
 // Create explosion effect
 function createExplosion(x, y, type) {
     if (!gameContainer) return;
-    
+
     const particleCount = 12;
     const particles = [];
 
@@ -1518,7 +1523,7 @@ function createExplosion(x, y, type) {
 // Update explosions
 function updateExplosions() {
     if (!gameContainer) return;
-    
+
     for (let i = explosions.length - 1; i >= 0; i--) {
         const explosion = explosions[i];
 
@@ -1557,6 +1562,97 @@ function updateExplosions() {
 }
 
 // Handle keyboard controls for Carti
+// Touch variables
+let touchStartX = 0;
+let touchStartY = 0;
+let isShooting = false;
+let touchThreshold = 10; // Reduced threshold for more responsive movement
+let lastTapTime = 0;
+const doubleTapDelay = 300; // Milliseconds between taps for double tap
+let touchEnabled = true; // Flag to enable touch controls
+
+// Prevent default touch behaviors except for scrolling
+document.addEventListener('touchstart', (e) => {
+    if (e.target.closest('#catch-carti-container')) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+document.addEventListener('touchmove', (e) => {
+    if (e.target.closest('#catch-carti-container')) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+// Handle touch controls
+document.addEventListener('touchstart', (e) => {
+    const gameContainer = document.getElementById('catch-carti-container');
+    if (!gameContainer) return;
+
+    // Only prevent default for elements inside game container
+    if (e.target.closest('#catch-carti-container')) {
+        e.preventDefault();
+        
+        // Handle menu buttons
+        if (e.target.tagName === 'BUTTON') {
+            e.target.click();
+            return;
+        }
+
+        const touch = e.touches[0];
+        const containerRect = gameContainer.getBoundingClientRect();
+        touchStartX = touch.clientX - containerRect.left;
+        touchStartY = touch.clientY - containerRect.top;
+        
+        // Start auto-shooting
+        enableAutoShoot();
+    }
+}, { passive: false });
+
+document.addEventListener('touchmove', (e) => {
+    const gameContainer = document.getElementById('catch-carti-container');
+    if (!gameContainer || !carti || gamePaused || gameOver) return;
+
+    // Only handle touches inside game container
+    if (e.target.closest('#catch-carti-container')) {
+        e.preventDefault();
+        
+        const touch = e.touches[0];
+        const containerRect = gameContainer.getBoundingClientRect();
+        const currentX = touch.clientX - containerRect.left;
+        
+        // Direct touch positioning with bounds checking
+        const cartiWidth = 50;
+        const maxX = containerRect.width - cartiWidth;
+        const newX = Math.max(0, Math.min(currentX - cartiWidth/2, maxX));
+        carti.style.left = `${newX}px`;
+    }
+}, { passive: false });
+
+gameContainer?.addEventListener('touchend', (e) => {
+    moveLeft = false;
+    moveRight = false;
+    isShooting = false;
+});
+
+// Add auto-shooting for mobile
+function enableAutoShoot() {
+    if (!isShooting && gameState === "playing" && !gamePaused && !gameOver) {
+        isShooting = true;
+        const autoShootInterval = setInterval(() => {
+            if (gameState !== "playing" || gamePaused || gameOver) {
+                clearInterval(autoShootInterval);
+                isShooting = false;
+                return;
+            }
+            shoot();
+        }, rapidFire ? shootCooldown/3 : shootCooldown);
+    }
+}
+
+// Enable auto-shoot when game starts
+gameContainer?.addEventListener('touchstart', enableAutoShoot);
+
 document.addEventListener('keydown', (event) => {
     // Prevent default scrolling with arrow keys and space
     if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.code)) {
@@ -1765,7 +1861,7 @@ function endGame() {
 // Show game over screen
 function showGameOverScreen() {
     if (!gameContainer) return;
-    
+
     // Create game over container
     const gameOverScreen = document.createElement('div');
     gameOverScreen.style.position = 'absolute';
@@ -1925,4 +2021,3 @@ function animate() {
 
 // Start the game when the page loads
 document.addEventListener('DOMContentLoaded', initCatchCarti);
-
