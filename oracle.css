@@ -1,0 +1,199 @@
+/* Magic Oracle Specific Styles */
+.oracle-container {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.oracle-subtitle {
+  font-size: 1.2rem;
+  color: #aaa;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.magic-search {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.oracle-modes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mode-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.mode-btn.active {
+  background: var(--primary);
+}
+
+.mode-btn:hover {
+  background: #333;
+}
+
+.oracle-intro {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.magic-search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#magicInput {
+  flex: 1;
+  max-width: 400px;
+  padding: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(17, 17, 17, 0.8);
+  color: #fff;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.1);
+}
+
+#magicInput:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+#magicInput::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
+}
+
+#magicButton {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#magicButton:hover {
+  background: #cc0052;
+}
+
+.oracle-options {
+  margin-bottom: 20px;
+}
+
+.oracle-vibe-check {
+  margin: 20px 0;
+}
+
+.vibe-indicator {
+  font-style: italic;
+  color: #aaa;
+}
+
+.vibe-meter {
+  height: 5px;
+  background: #444;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.oracle-answer {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--primary);
+  margin: 20px 0;
+}
+
+.oracle-history {
+  margin: 30px 0;
+  text-align: left;
+}
+
+.prophecy-item {
+  background: #222;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #444;
+}
+
+.oracle-disclaimer {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 20px;
+}
+
+#artist1,
+#artist2 {
+  flex: 1;
+  max-width: 200px;
+  padding: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(17, 17, 17, 0.8);
+  color: #fff;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.1);
+}
+
+#artist1:focus,
+#artist2:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+#artist1::placeholder,
+#artist2::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .compatibility-inputs {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #artist1,
+  #artist2 {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .magic-search-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #magicInput {
+    max-width: 100%;
+  }
+}
