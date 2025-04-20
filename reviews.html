@@ -18,12 +18,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Custom cursor effect
             const cursor = document.getElementById('cursor');
-            const cursorBlur = document.getElementById('cursor-blur');
-            
+            //const cursorBlur = document.getElementById('cursor-blur');
+
             // Dropdown menu functionality
             const dropdownToggle = document.querySelector('.dropdown-toggle');
             const dropdownMenu = document.querySelector('.dropdown-menu');
-            
+
             if (dropdownToggle && dropdownMenu) {
                 dropdownToggle.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -40,11 +40,11 @@
             }
 
             document.addEventListener('mousemove', (e) => {
-                if (cursor && cursorBlur) {
+                if (cursor) {
                     cursor.style.left = e.clientX + 'px';
                     cursor.style.top = e.clientY + 'px';
-                    cursorBlur.style.left = e.clientX - 200 + 'px';
-                    cursorBlur.style.top = e.clientY - 200 + 'px';
+                    //cursorBlur.style.left = e.clientX - 200 + 'px';
+                    //cursorBlur.style.top = e.clientY - 200 + 'px';
                 }
             });
             // Add hover effects for glass cards
@@ -72,12 +72,12 @@
 </head>
 <body>
     <div id="cursor"></div> <!-- Custom cursor -->
-    <div id="cursor-blur"></div> <!-- Cursor blur -->
+    <!-- <div id="cursor-blur"></div> --> <!-- Cursor blur -->
     <!-- Universe starfield canvas -->
     <canvas id="universe"></canvas>
 
     <!-- Fixed buttons -->
-    <button id="starfieldToggle" title="Toggle Starfield"><i class="fas fa-stars"></i></button>
+    <!-- <button id="starfieldToggle" title="Toggle Starfield"><i class="fas fa-stars"></i></button> -->
 
     <!-- Navigation bar -->
     <nav class="navbar global-nav">
@@ -114,7 +114,7 @@
     <!-- Back to top button -->
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
     <!-- Music toggle button -->
-    <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
+    <!-- <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button> -->
     <!-- Tip machine button - commented out -->
     <!-- <button id="tipMachine" title="Get a Tip"><i class="fas fa-lightbulb"></i></button> -->
 
