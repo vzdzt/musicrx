@@ -1,330 +1,505 @@
-<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
-<html lang="en"> <!-- Sets the document language to English -->
+<!DOCTYPE html>
+<html lang="en" data-page="review-eternal-atake">
 <head>
-    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design on mobile devices -->
-    <meta name="description" content="Explore Lil Uzi Vert’s Eternal Atake (2020) review: a trap masterpiece, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description -->
-    <meta name="keywords" content="Lil Uzi Vert, Eternal Atake, trap, Chief Keef, Brandon Finessin, MusicRx, 2025"> <!-- SEO keywords -->
-    <meta name="author" content="Veazy"> <!-- Credits the author -->
-    <meta property="og:title" content="MusicRx - Eternal Atake: Uzi’s Galactic Rise to Stardom"> <!-- Open Graph title -->
-    <meta property="og:description" content="Dive into Lil Uzi Vert’s Eternal Atake review: a cosmic triumph from 2020, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/eternal.jpeg"> <!-- Open Graph image URL -->
-    <meta property="og:type" content="article"> <!-- Open Graph content type -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-eternal.html"> <!-- Open Graph page URL -->
-    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
-    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
-    <title>MusicRx - Eternal Atake: Uzi’s Galactic Rise to Stardom</title> <!-- Browser tab title -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Loads Font Awesome icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Loads Syncopate and Space Grotesk fonts -->
-    <link rel="stylesheet" href="style.css"> <!-- Links external stylesheet -->
-    <style> <!-- Internal CSS for review-specific styling -->
-        body { background: #0a0a0a !important; } /* Forces dark background */
-        .highlight { color: #b967ff; font-weight: bold; } /* Light purple highlights for emphasized text */
-        .overall-rating h3 { color: #b967ff; } /* Light purple for overall rating heading */
-        .review-grad-glitch { /* Glitch effect for album title */
-            font-size: 3rem; text-align: center; margin-bottom: 2rem;
-            color: #b967ff; text-shadow: 0 0 10px #b967ff;
-            font-family: 'Syncopate', sans-serif; text-transform: uppercase;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Lil Uzi Vert’s Eternal Atake (2020) review: a trap masterpiece, updated to March 2025 with track highlights on MusicRx.">
+    <meta name="keywords" content="Lil Uzi Vert, Eternal Atake, trap, Chief Keef, Brandon Finessin, MusicRx, 2025">
+    <meta name="author" content="Veazy">
+    <meta property="og:title" content="MusicRx - Eternal Atake: Uzi’s Galactic Rise to Stardom">
+    <meta property="og:description" content="Dive into Lil Uzi Vert’s Eternal Atake review: a cosmic triumph from 2020, refreshed with 2025 updates on MusicRx.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/eternal.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-eternal.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@36966_">
+    <title>MusicRx - Eternal Atake: Uzi’s Galactic Rise to Stardom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        :root[data-theme="normal"] {
+            --primary: #b967ff;
+            --secondary: #cc99ff;
+            --accent: #e6ccff;
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(20, 20, 20, 0.8);
+            --glass: rgba(185, 103, 255, 0.1);
+            --border: rgba(185, 103, 255, 0.3);
+            --glow: rgba(185, 103, 255, 0.7);
+            --rgb-glow: linear-gradient(45deg, #b967ff, #00ffea);
+            --dark: #3c1a5b;
+        }
+
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
+        }
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: var(--background);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(185, 103, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .dropdown {
             position: relative;
+            z-index: 1000;
         }
-        .review-grad-glitch::before, .review-grad-glitch::after { /* Pseudo-elements for glitch animation */
-            content: attr(data-text); position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s ease;
         }
-        .review-grad-glitch::before { /* Cyan glitch layer */
-            left: 2px; text-shadow: -2px 0 #00ffea;
-            animation: glitch-1 2s linear infinite reverse;
-        }
-        .review-grad-glitch::after { /* Light purple glitch layer */
-            left: -2px; text-shadow: -2px 0 #b967ff;
-            animation: glitch-2 3s linear infinite;
-        }
-        @keyframes glitch-1 { /* Animation for cyan glitch effect */
-            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
-        }
-        @keyframes glitch-2 { /* Animation for light purple glitch effect */
-            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
-        }
-        .glass-card { /* Styling for content sections */
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
-            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem; margin: 2rem 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer; position: relative; overflow: hidden;
-        }
-        .glass-card:hover { /* Hover effect for glass cards */
-            transform: scale(1.05); box-shadow: 0 0 20px rgba(185, 103, 255, 0.3); /* Light purple shadow */
-        }
-        .glass-card.grad-card { /* Styling for album cover card, per template */
-            padding: 20px; border-radius: 10px; display: flex;
-            justify-content: center; align-items: center; transition: transform 0.3s ease;
-            overflow: hidden; max-width: 100%;
-        }
-        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card */
-        .glass-card.grad-card img { /* Styling for album cover image */
-            max-width: 100%; height: auto; border-radius: 8px;
-            transition: transform 0.3s ease; display: block;
-        }
-        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover */
-        .track-highlight-item { /* Styling for track highlight bullet points */
-            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .track-highlight-item:hover { /* Hover effect for track highlights */
-            transform: scale(1.02); box-shadow: 0 0 10px rgba(185, 103, 255, 0.2); /* Light purple shadow */
-        }
-        .trend-table { /* Styling for data tables */
-            width: 100%; border-collapse: collapse; margin: 1rem 0;
-        }
-        .trend-table th, .trend-table td { /* Table cell styling */
-            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .trend-table th { color: #b967ff; text-shadow: none !important; } /* Light purple table headers */
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style */
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards */
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
     </style>
 </head>
 <body>
-    <div id="cursor"></div> <!-- Custom cursor element -->
-    <div id="cursor-blur"></div> <!-- Cursor blur effect -->
-    <canvas id="universe"></canvas> <!-- Background animation canvas -->
-    <nav> <!-- Navigation bar -->
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li> <!-- Home page link -->
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li> <!-- Reviews page link -->
-            <li><a href="features.html" class="nav-link">Features</a></li> <!-- Features page link -->
-            <li><a href="news.html" class="nav-link">News</a></li> <!-- News page link -->
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li> <!-- Opinions page link -->
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li> <!-- Catch Carti page link -->
-        </ul>
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <!--<li><a href="features.html">Features</a></li>-->
+                    <li><a href="news.html">News</a></li>
+                    <!--<li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>-->
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container"> <!-- Main content wrapper -->
-        <h1 class="review-grad-glitch" data-text="ETERNAL ATAKE">ETERNAL ATAKE</h1> <!-- Glitch-styled album title -->
-        <div class="review-content"> <!-- Review content section -->
-            <h2>Eternal Atake: Uzi’s Galactic Rise to Stardom</h2> <!-- Subtitle -->
-            <div class="glass-card grad-card"> <!-- Album cover container -->
-                <img src="https://vzdzt.github.io/musicrx/eternal.jpeg" alt="Lil Uzi Vert - Eternal Atake album cover"> <!-- Updated album cover image -->
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/eternal.jpeg" alt="Lil Uzi Vert - Eternal Atake" class="hero-image">
+        <div class="hero-content">
+            <div class="album-header">
+                <h1 class="album-title">Eternal Atake</h1>
+                <p class="album-quote">"Uzi’s Galactic Rise to Stardom"</p>
             </div>
-            <br> <!-- Line break for spacing -->
-            <p> <!-- Intro paragraph (~100–125 words) -->
-                Dropped on <span class="highlight">March 6, 2020</span> via <span class="highlight">Generation Now</span> and <span class="highlight">Atlantic</span>,
-                Lil Uzi Vert’s second album <em><span class="highlight">Eternal Atake</span></em> is an 18-track, 54-minute trap odyssey, powered by <span class="highlight">Chief Keef</span> and <span class="highlight">Brandon Finessin</span>.
-                Post-<em><span class="highlight">Luv Is Rage 2</span></em>’s breakout success, it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">288,000 first-week units</span>.
-                By <span class="highlight">March 15, 2025</span>, its 2x Platinum status, 3.2 billion streams, and X hype (@36966_) keep its purple fire blazing. Veazy here—this album’s a cosmic gem that reshaped Uzi, still pulsing with otherworldly energy.
-            </p>
+            <img src="https://vzdzt.github.io/musicrx/eternal.jpeg" alt="Lil Uzi Vert - Eternal Atake album cover" class="album-image">
         </div>
-        <br> <!-- Spacing -->
-        <h2>The Messaging and Theme</h2> <!-- Theme section heading -->
-        <br>
-        <p> <!-- Theme description (120–175 words, 149 words) -->
-            The cover—a cult-like UFO key logo—sets an intergalactic tone, mirroring <em><span class="highlight">Eternal Atake</span></em>’s cosmic escape narrative. Uzi crafts an alien mythology, blending hedonism, heartbreak, and transcendence in a vibe-driven odyssey. <span class="highlight">“Baby Pluto”</span> boasts extraterrestrial swagger—“I’m out this world”—while <span class="highlight">“Lo Mein”</span> flexes with chaotic energy—“I got a new chick!” Tracks like <span class="highlight">“Homecoming”</span> and <span class="highlight">“Celebration Station”</span> reveal vulnerability—“I just wanna be loved”—amid the galactic frenzy. It’s not a linear story but a space-faring rockstar’s diary, with Uzi evading earthly struggles through diamonds and lean. This purple-hued testament to his bold persona still resonates on X (@36966_) in 2025, dubbed “Uzi’s starship manifesto,” a mythology that keeps fans orbiting his universe.
-        </p>
-        <br>
-        <h2>Production and Sound</h2> <!-- Production section heading -->
-        <br>
-        <p> <!-- Production description (120–175 words, 154 words) -->
-            <span class="highlight">Chief Keef</span>, <span class="highlight">Brandon Finessin</span>, and <span class="highlight">Bugz Ronin</span> helm <em><span class="highlight">Eternal Atake</span></em>’s sound—a trap spaceship soaring across 18 tracks. Recorded at <span class="highlight">Quality Control Studios</span> in Atlanta and <span class="highlight">Uzi’s home studio</span> amid label battles, <span class="highlight">“Baby Pluto”</span> thumps with glitchy 808s, <span class="highlight">“That Way”</span> transforms a Backstreet Boys sample into a euphoric banger, and <span class="highlight">“Silly Watch”</span> pulses with video game synths—Uzi’s high-pitched, Auto-Tuned flow slicing through like a laser. <span class="highlight">“Prices”</span> drips with eerie menace, showcasing a polished leap from <em><span class="highlight">Luv Is Rage 2</span></em>’s raw chaos. Finessin’s futuristic beats became a trap staple by 2025, though the album’s cohesive aesthetic occasionally lacks variety, a minor dent in its stellar orbit.
-        </p>
-        <br>
-        <h2>Features</h2> <!-- Features section heading -->
-        <br>
-        <p> <!-- Features description (120–175 words, 132 words) -->
-            <em><span class="highlight">Eternal Atake</span></em> is a near-solo journey, with Uzi commanding the spotlight and only one guest: <span class="highlight">Syd</span> from The Internet, whose sultry hook on <span class="highlight">“Urgency”</span>—“Need you right now”—adds a serene contrast to Uzi’s frenetic energy. This scarcity of features keeps the focus on Uzi’s versatility, from the chaotic flex of <span class="highlight">“Lo Mein”</span> to the reflective tones of <span class="highlight">“P2”</span>. It’s a bold choice that pays off, amplifying his purple-hued charisma across the album’s galactic soundscape. Uzi’s delivery—playful, emotive, commanding—ensures the lone feature enhances rather than overshadows his cosmic vision, cementing this as his universe alone.
-        </p>
-        <br>
-        <div class="glass-card"> <!-- Track Highlights section -->
-            <h2>Track Highlights</h2> <!-- Heading for track highlights -->
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">For Newcomers:</span> <span class="highlight">“Baby Pluto”</span>, <span class="highlight">“That Way”</span>—
-                Glitchy 808s launch Uzi’s cosmic flex, paired with a euphoric Backstreet Boys sample, his playful energy shines, instantly hooking new listeners into his otherworldly trap universe with soaring, vibrant beats.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">For The Dive:</span> <span class="highlight">“Lo Mein”</span>, <span class="highlight">“Silly Watch”</span>—
-                Chaotic beats ignite Uzi’s unpredictable flows, video game synths pulse with frenetic energy, offering fans a deep dive into his galactic, high-octane soundscape with raw intensity and unfiltered cosmic swagger.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Homecoming”</span>, <span class="highlight">“Celebration Station”</span>—
-                Melodic undertones pierce through trap beats, Uzi’s yearning vocals reveal raw vulnerability, these underrated tracks glow with emotional depth, resonating with listeners seeking his softer side beneath the galactic flex.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“That Way (Live 2025)”</span>—
-                At Rolling Loud 2025, Uzi belts “I want it that way!”—his purple energy electrifies the crowd, a viral moment of euphoric power that keeps Veazy replaying this stellar performance.
-            </p>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">3.2B</div>
+            <div class="stat-label">Streams</div>
         </div>
-        <br>
-        <h2>Previous Works</h2> <!-- Previous Works section heading -->
-        <br>
-        <p> <!-- ~75–100 words, 92 words -->
-            Uzi’s journey to <em><span class="highlight">Eternal Atake</span></em> began with <em><span class="highlight">Luv Is Rage</span></em> (<span class="highlight">2015</span>) and peaked with <em><span class="highlight">Luv Is Rage 2</span></em> (<span class="highlight">2017</span>), featuring Chief Keef. Hits like <span class="highlight">“XO TOUR Llif3”</span> and <span class="highlight">“Money Longer”</span> built his emo-rap buzz, while mixtapes like <em><span class="highlight">The Perfect LUV Tape</span></em> (<span class="highlight">2016</span>) honed his melodic trap style. <em><span class="highlight">Eternal Atake</span></em> elevated his sound, paving the way for <em><span class="highlight">Pink Tape</span></em> (<span class="highlight">2023</span>).
-        </p>
-        <br>
-        <h2>Grammy Wins & Nominations</h2> <!-- Grammy section heading -->
-        <br>
-        <div class="glass-card"> <!-- Grammy section container -->
-            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
-            <div class="table-container"> <!-- Table wrapper -->
-                <table class="trend-table"> <!-- Grammy awards table -->
-                    <thead>
-                        <tr>
-                            <th>Category</th> <th>Year</th> <th>Result</th> <!-- Table headers -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Best Rap Album</span></td> <td>2021</td> <td>Nominated</td> <!-- Grammy nomination -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Song ("That Way")</span></td> <td>2021</td> <td>Nominated</td> <!-- Grammy nomination -->
-                        </tr>
-                    </tbody>
-                </table>
-                <p> <!-- Grammy summary (~50 words) -->
-                    <em><span class="highlight">Eternal Atake</span></em> nabbed two 2021 nods, its 2x Platinum status and 3.2 billion streams by 2025 amplifying its trap legacy.
-                </p>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">2x</div>
+            <div class="stat-label">Platinum</div>
         </div>
-        <br>
-        <h2>Legacy & Reception</h2> <!-- Legacy section heading -->
-        <br>
-        <p> <!-- Legacy description (120–175 words, 141 words) -->
-            Critics lauded its ambition—Pitchfork’s <span class="highlight">7.2/10</span> called it “Uzi’s cosmic leap,” while Rolling Stone praised its “futuristic sheen.” X fans (@36966_) in 2020 dubbed it “a purple classic,” a vibe alive in <span class="highlight">March 15, 2025</span>, with 2x Platinum certification, 3.2 billion streams, and a Rolling Loud 2025 set. A viral “<span class="highlight">That Way</span>” performance—Uzi soaring through the crowd—cements its trap reign. Despite delays and leaks, <em><span class="highlight">Eternal Atake</span></em> delivered on hype, solidifying Uzi as a genre-bending force whose galactic influence endures.
-        </p>
-        <br>
-        <h2>By the Numbers</h2> <!-- Chart Performance section heading -->
-        <br>
-        <div class="glass-card"> <!-- Chart Performance section -->
-            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Chart performance table -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
-                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th> <!-- Table headers -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Luv Is Rage 2</span> (2017)</td> <td><span class="highlight">“XO TOUR Llif3”</span></td>
-                            <td>7</td> <td>4.1 billion</td> <td>3x Platinum</td> <td>2,500,000+</td> <!-- Previous album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Eternal Atake</span> (2020)</td> <td><span class="highlight">“That Way”</span></td>
-                            <td>20</td> <td>3.2 billion</td> <td>2x Platinum</td> <td>2,000,000+</td> <!-- Current album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Pink Tape</span> (2023)</td> <td><span class="highlight">“Endless Fashion”</span></td>
-                            <td>15</td> <td>2.5 billion</td> <td>Platinum</td> <td>1,600,000+</td> <!-- Next album -->
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">288K</div>
+            <div class="stat-label">First Week</div>
         </div>
-        <br>
-        <div class="glass-card"> <!-- Certifications section -->
-            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Certifications table -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th> <!-- Table headers -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Luv Is Rage 2</span></td> <td>3x Platinum</td> <td>2.5</td> <!-- Previous album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Eternal Atake</span></td> <td>2x Platinum</td> <td>2.0</td> <!-- Current album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Pink Tape</span></td> <td>Platinum</td> <td>1.6</td> <!-- Next album -->
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Ratings section -->
-            <h2>Ratings</h2> <!-- Heading for ratings -->
-            <p> <!-- 35 words -->
-                <span class="highlight">Originality (18/20):</span> Sci-fi flair elevates Uzi’s trap roots, “Baby Pluto”’s cosmic twist pushes boundaries, blending his melodic style with a bold galactic narrative, creating a fresh, immersive soundscape.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Production Quality (19/20):</span> Futuristic beats like “Silly Watch”’s video game synths shine with cohesion, Chief Keef’s polished touch dazzles, though minor variety dips in mid-tier tracks slightly dull the album’s sonic orbit.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Lyrics and Messaging (17/20):</span> Emotive hooks in “P2” resonate deeply, Uzi’s cosmic tales grip listeners, but vibe-heavy lyrics sometimes lack depth, limiting the album’s emotional range despite its bold thematic ambition.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Enjoyment Factor (19/20):</span> Thrilling energy hooks hard—“That Way” soars with euphoria—a cosmic ride for fans, though lengthy runtime tests casual listeners’ attention, still delivering high replay value with its vibrant beats.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Consistency (17/20):</span> Stellar peaks like “Lo Mein” deliver chaotic fire, but filler tracks like “Bust Me” drag mid-album, causing momentum to dip despite Uzi’s consistently playful and energetic flow throughout.
-            </p>
-            <p class="overall-rating"> <!-- Overall rating display -->
-                <span class="highlight"><h3>Overall Rating (90/100):</span> 9.0/10</h3>
-            </p>
-            <p> <!-- ~50 words -->
-                <em><span class="highlight">Eternal Atake</span></em> is a trap titan—Uzi’s cosmic reign ignites a purple blaze pulsing with flair. Picture a 2025 Rolling Loud stage, his soaring voice commanding a hyped crowd—bold, flawed, replayable. Veazy’s blasting this in 2025, chasing its purple glow.
-            </p>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Sources section -->
-            <h3><span class="highlight">Sources</span></h3> <!-- Subheading -->
-            <p> <!-- ~25 words -->
-                Information on the web and posts found on X.
-            </p>
+        <div class="stat-card">
+            <div class="stat-number">#1</div>
+            <div class="stat-label">Billboard 200</div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Loads Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Loads GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Loads ScrollTrigger -->
-    <script src="script.js"></script> <!-- Links external script -->
-    <script> <!-- Inline JavaScript for interactivity -->
-        document.addEventListener('DOMContentLoaded', () => { /* Runs when DOM is fully loaded */
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => { /* Prevents transforms on non-image cards */
-                card.style.transform = 'none !important';
-                card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important';
-                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Dropped March 6, 2020, via Generation Now and Atlantic, Lil Uzi Vert’s <em>Eternal Atake</em>—an 18-track, 54-minute trap odyssey—hit No. 1 on the Billboard 200 with 288,000 first-week units. Powered by Chief Keef and Brandon Finessin, it’s 2x Platinum by March 2025 with 3.2 billion streams. Rolling Loud 2025 keeps it trending on X (@36966_).</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p>Chief Keef, Brandon Finessin, and Bugz Ronin craft a trap spaceship in Quality Control Studios and Uzi’s home studio. “Baby Pluto” thumps with glitchy 808s, “That Way” flips Backstreet Boys, and “Silly Watch” pulses with video game synths. Finessin’s futuristic beats shine, though variety dips slightly.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p>The UFO key logo cover sets a cosmic tone. <em>Eternal Atake</em> blends hedonism and heartbreak: “Baby Pluto” boasts alien swagger, “Lo Mein” flexes chaos, and “Homecoming” reveals vulnerability. X fans (@36966_) in 2025 call it “Uzi’s starship manifesto.”</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p><em>Eternal Atake</em> is near-solo, with only Syd’s sultry hook on “Urgency” contrasting Uzi’s frenetic energy. His versatile flow—chaotic in “Lo Mein,” reflective in “P2”—keeps the focus on his purple-hued charisma, amplifying his cosmic vision.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p><span class="highlight">“Baby Pluto”</span>, <span class="highlight">“That Way”</span>—Glitchy 808s and a euphoric Backstreet Boys sample hook new listeners with Uzi’s playful, cosmic energy.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For Deep Cuts</h3>
+                    <p><span class="highlight">“Lo Mein”</span>, <span class="highlight">“Silly Watch”</span>—Chaotic beats and video game synths ignite Uzi’s frenetic flows for fans craving his high-octane trap.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p><span class="highlight">“Homecoming”</span>, <span class="highlight">“Celebration Station”</span>—Melodic undertones and yearning vocals reveal Uzi’s emotional depth beneath the galactic flex.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>2025 Obsession</h3>
+                    <p><span class="highlight">“That Way (Live 2025)”</span>—Rolling Loud 2025’s viral set (X @36966_) electrifies with Uzi’s soaring, euphoric performance.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p>Uzi’s <em>Luv Is Rage</em> (2015) and <em>Luv Is Rage 2</em> (2017) built his emo-rap buzz with “XO TOUR Llif3.” <em>Eternal Atake</em> elevated his melodic trap, paving the way for <em>Pink Tape</em> (2023).</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p>Pitchfork’s 7.2/10 called it “Uzi’s cosmic leap,” Rolling Stone praised its sheen. X fans (@36966_) in 2025 hail “a purple classic,” with 2x Platinum status and a viral Rolling Loud 2025 “That Way” set.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
+            <p><em>Eternal Atake</em> earned 2021 Grammy nominations for Best Rap Album and Best Rap Song (“That Way”), per Grammy records.</p>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Originality</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>Sci-fi flair elevates Uzi’s trap roots, blending melodic style with a bold galactic narrative.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>Futuristic beats shine with cohesion, though minor variety dips slightly dull the orbit.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Lyrics</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>Emotive hooks resonate, but vibe-heavy lyrics sometimes lack deeper emotional range.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Enjoyment</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>Thrilling energy hooks hard, though lengthy runtime tests casual listeners’ attention.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Consistency</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>Stellar peaks deliver fire, but filler tracks drag mid-album momentum slightly.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p><em>Eternal Atake</em> is Uzi’s cosmic reign—a purple blaze of flair, earning a 9.0/10.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Chart Performance</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Highest Charting Song</th>
+                            <th>Peak Position (Billboard Hot 100)</th>
+                            <th>Streams (as of March 2025)</th>
+                            <th>Certification</th>
+                            <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Luv Is Rage 2</span></td>
+                            <td><span class="highlight">“XO TOUR Llif3”</span></td>
+                            <td>7</td>
+                            <td>4.1B</td>
+                            <td>3x Platinum</td>
+                            <td>2.5M+</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Eternal Atake</span></td>
+                            <td><span class="highlight">“That Way”</span></td>
+                            <td>20</td>
+                            <td>3.2B</td>
+                            <td>2x Platinum</td>
+                            <td>2.0M+</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Pink Tape</span></td>
+                            <td><span class="highlight">“Endless Fashion”</span></td>
+                            <td>15</td>
+                            <td>2.5B</td>
+                            <td>Platinum</td>
+                            <td>1.6M+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Album Certifications</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Luv Is Rage 2</span></td>
+                            <td>3x Platinum</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Eternal Atake</span></td>
+                            <td>2x Platinum</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Pink Tape</span></td>
+                            <td>Platinum</td>
+                            <td>1.6</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data from <a href="https://en.wikipedia.org/wiki/Eternal_Atake">Wikipedia</a>, <a href="https://www.billboard.com/artist/lil-uzi-vert/">Billboard</a>, <a href="https://www.riaa.com/gold-platinum/">RIAA</a>, <a href="https://pitchfork.com/reviews/albums/lil-uzi-vert-eternal-atake/">Pitchfork</a>, <a href="https://www.rollingstone.com/music/music-album-reviews/lil-uzi-vert-eternal-atake-964857/">Rolling Stone</a>, and X posts (@36966_).</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+        <i class="fas fa-adjust"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let camera, renderer, starField, scene = null;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY = 0;
+            const canvas = document.getElementById('universe');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 1000;
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const starCount = 15000;
+
+            for (let i = 0; i < starCount; i++) {
+                vertices.push(
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000
+                );
+                const color = new THREE.Color();
+                color.setHSL(Math.random(), 0.7, 0.7);
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
             });
-            document.querySelectorAll('.glass-card').forEach(card => { /* Adds hover effect to all glass cards */
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 0 20px rgba(185, 103, 255, 0.3)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = 'none';
-                });
+
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
             });
-            document.querySelectorAll('.grad-card').forEach(card => { /* Adds hover effect to album cover card */
-                card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.05)';
-                    card.style.transform = 'scale(1.05)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
-                    card.style.transform = 'scale(1)';
-                });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (starField) {
+                    targetX += (mouseX - targetX) * 0.02;
+                    targetY += (mouseY - targetY) * 0.02;
+                    starField.rotation.x += 0.0002 + targetY * 0.05;
+                    starField.rotation.y += 0.0003 + targetX * 0.05;
+                    const time = Date.now() * 0.001;
+                    starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+                }
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
             });
-            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Adds hover effect to track highlights */
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'scale(1.02)';
-                    item.style.boxShadow = '0 0 10px rgba(185, 103, 255, 0.2)';
-                });
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'scale(1)';
-                    item.style.boxShadow = 'none';
-                });
+
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
+            });
+
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [0.5, 1.2, 1.8, 2.4, 2.9, 3.2],
+                        borderColor: '#b967ff',
+                        backgroundColor: 'rgba(185, 103, 255, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
             });
         });
     </script>
