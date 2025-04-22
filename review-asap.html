@@ -1,1008 +1,1012 @@
 <!DOCTYPE html>
-<!-- Declare the document type as HTML5 -->
 <html lang="en" data-page="review-asap">
-<!-- Set the language to English and define the page identifier for styling -->
 <head>
-    <!-- Meta tags for character encoding, viewport, and SEO -->
     <meta charset="UTF-8">
-    <!-- Ensure proper character encoding -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Make the page responsive on all devices -->
-    <meta name="description" content="Explore A$AP Rocky’s At Long Last A$AP: 246,000 first-week units, a 2015 psychedelic hip-hop odyssey, updated March 2025 on MusicRx.">
-    <!-- SEO description per rubric -->
-    <meta name="keywords" content="A$AP Rocky, At Long Last A$AP, ALLA, A$AP Worldwide, Polo Grounds, RCA, Danger Mouse, A$AP Yams, hip-hop, 2015, 2025, Spotify, Billboard">
-    <!-- SEO keywords per rubric -->
-    <meta name="author" content="Veazy">
-    <!-- Specify the author of the page per rubric -->
-    <meta property="og:title" content="MusicRx - At Long Last A$AP: Rocky’s Hazy Odyssey">
-    <!-- Open Graph title for social media sharing -->
-    <meta property="og:description" content="Dive into A$AP Rocky’s At Long Last A$AP review: a 2015 tribute to Yams, revisited in 2025 on MusicRx.">
-    <!-- Open Graph description for social media sharing -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/asap.jpeg">
-    <!-- Open Graph image for social media sharing -->
-    <meta property="og:type" content="article">
-    <!-- Open Graph type for social media sharing -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-asap.html">
-    <!-- Open Graph URL for social media sharing -->
-    <meta name="twitter:card" content="summary_large_image">
-    <!-- Twitter card type for sharing -->
-    <meta name="twitter:site" content="@36966_">
-    <!-- Twitter handle per rubric -->
     <title>MusicRx - At Long Last A$AP: Rocky’s Hazy Odyssey</title>
-    <!-- Page title displayed in the browser tab -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Load Font Awesome for icons -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Load Google Fonts (Syncopate and Space Grotesk) -->
     <link rel="stylesheet" href="style.css">
-    <!-- Link to the external stylesheet -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <style>
-        /* Inline CSS for review-specific styling */
+        :root[data-theme="normal"] {
+            --primary: #008080;
+            --secondary: #007070;
+            --accent: #006060;
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(20, 20, 20, 0.8);
+            --glass: rgba(0, 128, 128, 0.1);
+            --border: rgba(0, 128, 128, 0.3);
+            --glow: rgba(0, 128, 128, 0.7);
+            --rgb-glow: linear-gradient(45deg, #008080, #007070);
+            --dark: #003333;
+        }
+
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
+        }
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
+        }
+
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            /* Set the default font for the body */
-            background: var(--background, #0a0a0a);
-            /* Set the background using a CSS variable with a fallback */
-            color: var(--text-color, #FFFFFF);
-            /* Set the text color using a CSS variable with a fallback */
+            background: var(--background);
+            color: var(--text);
             overflow-x: hidden;
-            /* Prevent horizontal scrolling */
-            min-height: 100vh;
-            /* Ensure the body takes up at least the full viewport height */
-            display: flex;
-            /* Use flexbox for layout */
-            flex-direction: column;
-            /* Arrange children in a column */
-            position: relative;
-            /* Allow positioning of child elements */
-            margin: 0;
-            /* Remove default margin */
-            padding: 0;
-            /* Remove default padding */
-            box-sizing: border-box;
-            /* Include padding and border in element's total width and height */
         }
-        .review-header {
-            background: linear-gradient(135deg, rgba(0, 128, 128, 0.2), rgba(0, 0, 0, 0.8));
-            /* Set a teal-toned gradient background for the header */
-            backdrop-filter: blur(15px);
-            /* Apply a blur effect to the background */
-            padding: 1rem 2rem;
-            /* Add padding to the header */
-            border-bottom: 2px solid var(--border-color, rgba(0, 128, 128, 0.3));
-            /* Add a teal-toned bottom border using a CSS variable with a fallback */
-            display: flex;
-            /* Use flexbox for layout */
-            justify-content: space-between;
-            /* Space out child elements */
-            align-items: center;
-            /* Center child elements vertically */
-            position: fixed;
-            /* Fix the header to the top of the viewport */
-            top: 0;
-            /* Position at the top */
-            left: 0;
-            /* Position at the left */
-            width: 100%;
-            /* Make the header full-width */
-            z-index: 1002;
-            /* Ensure the header is above other content */
-            height: 60px;
-            /* Set a fixed height for the header */
-            box-sizing: border-box;
-            /* Include padding and border in the element's total width and height */
-            margin: 0;
-            /* Remove default margin */
-        }
-        .review-footer {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 128, 128, 0.2));
-            /* Set a teal-toned gradient background for the footer */
-            backdrop-filter: blur(15px);
-            /* Apply a blur effect to the background */
-            padding: 2rem;
-            /* Add padding to the footer */
-            border-top: 2px solid var(--border-color, rgba(0, 128, 128, 0.3));
-            /* Add a teal-toned top border using a CSS variable with a fallback */
-            display: flex;
-            /* Use flexbox for layout */
-            justify-content: space-between;
-            /* Space out child elements */
-            align-items: center;
-            /* Center child elements vertically */
-            position: relative;
-            /* Allow positioning of child elements */
-            z-index: 1001;
-            /* Ensure the footer is above most content */
-        }
-        .container {
-            flex: 1;
-            /* Allow the container to grow and fill available space */
-            padding: 100px 2rem 3rem;
-            /* Add padding to the container, accounting for the fixed header */
-            max-width: 1200px;
-            /* Set a maximum width for the container */
-            margin: 0 auto;
-            /* Center the container horizontally */
-            position: relative;
-            /* Allow positioning of child elements */
-            z-index: 1;
-            /* Ensure the container is above the background canvas */
-            width: 100%;
-            /* Make the container full-width within its max-width */
-            box-sizing: border-box;
-            /* Include padding and border in the element's total width and height */
-        }
+
         .glass-card {
-            background: var(--card-background, rgba(0, 128, 128, 0.1));
-            /* Set a teal-toned background using a CSS variable with a fallback */
-            backdrop-filter: blur(15px);
-            /* Apply a blur effect to the background */
-            border-radius: 25px;
-            /* Round the corners of the card */
-            border: 2px solid var(--border-color, rgba(0, 128, 128, 0.3));
-            /* Add a teal-toned border using a CSS variable with a fallback */
-            padding: 3rem;
-            /* Add padding to the card */
-            margin: 3rem auto;
-            /* Add margin and center the card horizontally */
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            /* Add a smooth transition for hover effects */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            /* Add a subtle shadow to the card */
-            position: relative;
-            /* Allow positioning of child elements */
-            overflow: hidden;
-            /* Hide overflow content */
-            width: 100%;
-            /* Make the card full-width within its max-width */
-            max-width: 1200px;
-            /* Set a maximum width for the card */
-            box-sizing: border-box;
-            /* Include padding and border in the element's total width and height */
-        }
-        .glass-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            /* Lift and slightly scale the card on hover */
-            box-shadow: 0 0 30px var(--glow, rgba(0, 128, 128, 0.7));
-            /* Add a teal glowing shadow on hover */
-            background: var(--rgb-glow, linear-gradient(45deg, #008080, #007070, #006060));
-            /* Change the background to a teal gradient on hover */
-            background-size: 200% 200%;
-            /* Set the background size for animation */
-            animation: rgbShift 3s linear infinite;
-            /* Animate the background gradient */
-        }
-        .glass-card.grad-card {
-            padding: 0;
-            /* Remove padding for the album image card */
+            background: var(--background);
             border-radius: 15px;
-            /* Round the corners of the card */
-            display: flex;
-            /* Use flexbox for layout */
-            justify-content: center;
-            /* Center the image horizontally */
-            align-items: center;
-            /* Center the image vertically */
-            width: 100%;
-            /* Make the card full-width within its max-width */
-            max-width: 1200px;
-            /* Set a maximum width for the card */
-            margin: 0 auto;
-            /* Center the card horizontally */
-            overflow: hidden;
-            /* Hide overflow content */
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
         }
-        .glass-card.grad-card img {
-            width: calc(100% - 4px);
-            /* Set the image width, accounting for border */
-            height: auto;
-            /* Maintain the image's aspect ratio */
-            border-radius: 10px;
-            /* Round the corners of the image */
-            box-shadow: 0 0 15px rgba(0, 128, 128, 0.5);
-            /* Add a teal shadow to the image */
-            transition: all 0.5s ease;
-            /* Add a smooth transition for hover effects */
-        }
-        .glass-card.grad-card:hover img {
-            width: 100%;
-            /* Expand the image to full width on hover */
-            box-shadow: 0 0 30px var(--glow, rgba(0, 128, 128, 0.7));
-            /* Add a teal glowing shadow on hover */
-            transform: scale(1.02);
-            /* Slightly scale the image on hover */
-        }
-        .glass-card.sources-card {
-            padding: 1.5rem;
-            /* Reduce padding for the sources card */
-            max-width: 1200px;
-            /* Set a maximum width for the sources card */
-            min-height: auto;
-            /* Allow the card to shrink to its content */
-        }
-        .glass-card.ratings-card {
-            text-align: left;
-            /* Align text to the left for the ratings card */
-            align-items: flex-start;
-            /* Align items to the start for the ratings card */
-        }
-        .review-content {
-            background: var(--card-background, rgba(0, 128, 128, 0.1));
-            /* Set a teal-toned background using a CSS variable with a fallback */
-            backdrop-filter: blur(10px);
-            /* Apply a blur effect to the background */
-            border-radius: 20px;
-            /* Round the corners of the content area */
-            padding: 2.5rem;
-            /* Add padding to the content area */
-            margin: 2rem auto;
-            /* Add margin and center the content area */
-            width: 100%;
-            /* Make the content area full-width within its max-width */
-            max-width: 1200px;
-            /* Set a maximum width for the content area */
-            z-index: 2;
-            /* Ensure the content area is above the background canvas */
-            position: relative;
-            /* Allow positioning of child elements */
-            display: flex;
-            /* Use flexbox for layout */
-            flex-direction: column;
-            /* Arrange children in a column */
-            align-items: center;
-            /* Center child elements horizontally */
-            box-sizing: border-box;
-            /* Include padding and border in the element's total width and height */
-        }
-        .highlight { color: #008080; font-weight: bold; }
-        /* Style highlighted text with teal color and bold weight per user request */
-        .overall-rating h3 { color: #008080; }
-        /* Style the overall rating heading with teal color per user request */
-        body, .container, p, h2, ul, li, .glass-card, .glass-card * { font-style: normal !important; }
-        /* Ensure normal font style for most elements, overriding any defaults */
-        em, .highlight em { font-style: italic !important; }
-        /* Ensure italic font style for emphasized text and highlighted emphasized text */
-        .nav-logo { display: flex; align-items: center; margin-left: 0; }
-        /* Style the navigation logo container with flexbox and no left margin */
-        .nav-logo .logo-symbol i {
-            color: #008080;
-            /* Set the logo icon color to teal */
-            font-size: 1.5rem;
-            /* Set the logo icon size */
-            animation: pulse-heart 1.5s ease-in-out infinite;
-            /* Apply a pulsing animation to the logo icon */
-        }
-        @keyframes pulse-heart {
-            0%, 100% { transform: scale(1); }
-            /* Set the initial and final scale of the pulse animation */
-            50% { transform: scale(1.2); }
-            /* Set the midpoint scale of the pulse animation */
-        }
-        .search-container {
-            display: flex;
-            /* Use flexbox for layout */
-            align-items: center;
-            /* Center child elements vertically */
-            margin-left: 0;
-            /* Remove left margin */
-            margin-right: 0;
-            /* Remove right margin */
-            flex: 1;
-            /* Allow the container to grow and fill available space */
-            max-width: 300px;
-            /* Set a maximum width for the search container */
-        }
-        .search-input {
-            border: 2px solid #008080;
-            /* Add a teal border */
-            background: var(--card-background, rgba(0, 128, 128, 0.1));
-            /* Set a teal-toned background using a CSS variable with a fallback */
-            color: var(--text-color, #FFFFFF);
-            /* Set the text color using a CSS variable with a fallback */
-            padding: 0.5rem 1rem;
-            /* Add padding to the input */
-            border-radius: 20px;
-            /* Round the corners of the input */
-            font-family: 'Space Grotesk', sans-serif;
-            /* Set the font for the input */
-            width: 100%;
-            /* Make the input full-width within its container */
-            transition: all 0.3s ease;
-            /* Add a smooth transition for focus effects */
-            box-sizing: border-box;
-            /* Include padding and border in the element's total width and height */
-        }
-        .search-input:focus { box-shadow: 0 0 15px var(--glow, rgba(0, 128, 128, 0.7)); outline: none; }
-        /* Add a teal glowing shadow and remove the outline when the input is focused */
-        .dropdown { position: relative; margin-right: 0; }
-        /* Style the dropdown container with relative positioning and no right margin */
-        .dropdown-toggle {
-            background: none;
-            /* Remove the background */
-            border: none;
-            /* Remove the border */
-            color: #008080;
-            /* Set the icon color to teal */
-            font-size: 1.5rem;
-            /* Set the icon size */
-            cursor: pointer;
-            /* Indicate the element is clickable */
-            padding: 0.5rem;
-            /* Add padding to the toggle */
-            transition: all 0.3s ease;
-            /* Add a smooth transition for hover effects */
-        }
-        .dropdown-toggle:hover {
-            color: transparent;
-            /* Make the icon color transparent on hover */
-            background: var(--rgb-glow, linear-gradient(45deg, #008080, #007070, #006060));
-            /* Apply a teal gradient background on hover */
-            -webkit-background-clip: text;
-            /* Clip the background to the text (Webkit) */
-            background-clip: text;
-            /* Clip the background to the text */
-            text-shadow: 0 0 10px #008080;
-            /* Add a teal glowing shadow on hover */
-        }
-        .dropdown-menu {
-            display: none;
-            /* Hide the dropdown menu by default */
-            position: absolute;
-            /* Position the menu absolutely relative to the toggle */
-            top: 100%;
-            /* Position below the toggle */
-            right: 0;
-            /* Align to the right */
-            background: rgba(10, 10, 10, 0.8);
-            /* Set a semi-transparent background */
-            backdrop-filter: blur(10px);
-            /* Apply a blur effect to the background */
-            border-radius: 0 0 10px 10px;
-            /* Round the bottom corners of the menu */
-            padding: 1rem;
-            /* Add padding to the menu */
-            width: 200px;
-            /* Set a fixed width for the menu */
-            z-index: 1003;
-            /* Ensure the menu is above other content */
-            border: 1px solid var(--border-color, rgba(0, 128, 128, 0.3));
-            /* Add a teal-toned border using a CSS variable with a fallback */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            /* Add a shadow to the menu */
-        }
-        .dropdown-menu.active { display: block !important; }
-        /* Show the dropdown menu when active */
-        .dropdown-menu ul { list-style: none; padding: 0; margin: 0; }
-        /* Style the dropdown menu list with no bullets, padding, or margin */
-        .dropdown-menu li { margin-bottom: 1rem; }
-        /* Add spacing between dropdown menu items */
-        .dropdown-menu a {
-            color: var(--text-color, #FFFFFF);
-            /* Set the link color using a CSS variable with a fallback */
-            text-decoration: none;
-            /* Remove the underline from links */
-            font-size: 0.9rem;
-            /* Set the font size for links */
-            font-family: 'Syncopate', sans-serif;
-            /* Set the font for links */
-            text-transform: uppercase;
-            /* Make the link text uppercase */
-            transition: all 0.3s ease;
-            /* Add a smooth transition for hover effects */
-        }
-        .dropdown-menu a:hover {
-            color: transparent;
-            /* Make the link color transparent on hover */
-            background: var(--rgb-glow, linear-gradient(45deg, #008080, #007070, #006060));
-            /* Apply a teal gradient background on hover */
-            -webkit-background-clip: text;
-            /* Clip the background to the text (Webkit) */
-            background-clip: text;
-            /* Clip the background to the text */
-            text-shadow: 0 0 10px #008080;
-            /* Add a teal glowing shadow on hover */
-        }
-        .review-title-glitch {
-            font-size: 3.5rem;
-            /* Set the font size for the title */
-            text-align: center;
-            /* Center the title */
-            margin: 4rem auto;
-            /* Add margin and center the title */
-            color: #008080;
-            /* Set the title color to teal */
-            text-shadow: 0 0 15px var(--glow, rgba(0, 128, 128, 0.7));
-            /* Add a teal glowing shadow to the title */
-            font-family: 'Syncopate', sans-serif;
-            /* Set the font for the title */
-            text-transform: uppercase;
-            /* Make the title text uppercase */
-            position: relative;
-            /* Allow positioning of pseudo-elements */
-            animation: flicker 0.1s infinite alternate;
-            /* Apply a flickering animation to the title */
-            width: 100%;
-            /* Make the title full-width within its max-width */
-            max-width: 1200px;
-            /* Set a maximum width for the title */
-        }
-        @keyframes flicker { 0% { opacity: 1; } 100% { opacity: 0.95; } }
-        /* Define the flicker animation for the title */
-        .review-title-glitch::before, .review-title-glitch::after {
-            content: attr(data-text);
-            /* Use the data-text attribute for the pseudo-elements */
-            position: absolute;
-            /* Position the pseudo-elements absolutely */
-            top: 0;
-            /* Position at the top */
-            left: 0;
-            /* Position at the left */
-            width: 100%;
-            /* Make the pseudo-elements full-width */
-            height: 100%;
-            /* Make the pseudo-elements full-height */
-        }
-        .review-title-glitch::before {
-            left: 3px;
-            /* Offset the pseudo-element to the right */
-            text-shadow: -3px 0 #007070;
-            /* Add a darker teal shadow to create a glitch effect */
-            animation: glitch-1 2s linear infinite reverse;
-            /* Apply the first glitch animation */
-        }
-        .review-title-glitch::after {
-            left: -3px;
-            /* Offset the pseudo-element to the left */
-            text-shadow: -3px 0 #008080;
-            /* Add a teal shadow to create a glitch effect */
-            animation: glitch-2 3s linear infinite;
-            /* Apply the second glitch animation */
-        }
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
-        }
-        /* Define the first glitch animation for the title */
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
-        }
-        /* Define the second glitch animation for the title */
-        .track-highlight-grid {
-            display: grid;
-            /* Use CSS Grid for layout */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            /* Create a responsive grid with columns at least 300px wide */
-            gap: 2rem;
-            /* Add spacing between grid items */
-            padding: 1.5rem;
-            /* Add padding to the grid */
-        }
+
         .track-highlight-item {
-            background: rgba(0, 128, 128, 0.1);
-            /* Set a teal-toned semi-transparent background */
-            border-radius: 15px;
-            /* Round the corners of the item */
-            padding: 1.5rem;
-            /* Add padding to the item */
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
             transition: all 0.3s ease;
-            /* Add a smooth transition for hover effects */
-            box-shadow: 0 0 5px rgba(0, 128, 128, 0.2);
-            /* Add a subtle teal shadow to the item */
-            min-height: 120px;
-            /* Set a minimum height for the item */
-            display: flex;
-            /* Use flexbox for layout */
-            align-items: center;
-            /* Center the content vertically */
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .track-highlight-item:hover {
             transform: translateY(-5px);
-            /* Lift the item on hover */
-            box-shadow: 0 0 20px var(--glow, rgba(0, 128, 128, 0.7));
-            /* Add a teal glowing shadow on hover */
-            background: rgba(0, 128, 128, 0.2);
-            /* Darken the teal-toned background on hover */
+            box-shadow: 0 10px 20px rgba(0, 128, 128, 0.1);
+            border-color: var(--primary);
         }
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .dropdown {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            transform: scale(1.1);
+            outline: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--background);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            display: block;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        .hero-content {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .album-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .album-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .album-title {
+            font-size: clamp(1rem, 1.5vw, 1.75rem);
+            color: var(--text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
+        }
+
+        .album-quote {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+        .album-image {
+            width: 100%;
+            height: auto;
+            max-width: calc(900px - 4rem - 10px);
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--primary-rgb), 0.3);
+            transition: all 0.4s ease;
+            object-fit: contain;
+        }
+
+        .album-image:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--primary-rgb), 0.4);
+        }
+
+        .album-intro-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 800px) {
+            .album-card, .album-intro-container {
+                max-width: 90vw;
+                padding: 1.5rem;
+            }
+            .album-image {
+                max-width: calc(90vw - 3rem - 10px);
+            }
+            .album-title {
+                font-size: clamp(1.5rem, 5vw, 3rem);
+            }
+            .album-quote {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                max-width: calc(900px - 4rem - 10px);
+            }
+        }
+
+        .album-intro {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .album-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(var(--primary-rgb), 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, var(--background));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-container h2 {
+            margin: 0 0 1rem 0;
+            padding: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .chart-container canvas {
+            max-height: 250px;
+            width: 100%;
+        }
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .rating-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .rating-score {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--glass);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 1s ease;
+        }
+
         .table-container {
             width: 100%;
-            /* Ensure the table container takes up the full width of the glass-card */
             overflow-x: auto;
-            /* Allow horizontal scrolling if needed */
+            margin: 2rem 0;
         }
+
         .trend-table {
             width: 100%;
-            /* Force the table to take up the full width of its container */
             border-collapse: separate;
-            /* Use separate borders for better styling */
             border-spacing: 0;
-            /* Remove spacing between table cells */
-            margin: 1rem 0;
-            /* Add margin to the table */
             background: rgba(255, 255, 255, 0.05);
-            /* Set a semi-transparent background */
             border-radius: 10px;
-            /* Round the corners of the table */
             font-size: 1rem;
-            /* Set the font size for the table */
-            table-layout: fixed;
-            /* Force columns to stretch based on specified widths */
         }
+
         .trend-table th, .trend-table td {
             padding: 1rem;
-            /* Add padding to table cells */
             text-align: left;
-            /* Align text to the left */
-            border-bottom: 1px solid var(--border-color, rgba(0, 128, 128, 0.3));
-            /* Add a teal-toned bottom border to cells */
-            font-size: 1rem;
-            /* Set the font size for cells */
-            word-wrap: break-word;
-            /* Allow text to wrap */
+            border-bottom: 1px solid var(--border);
         }
-        .trend-table.awards-table {
-            min-width: 800px;
-            /* Ensure the table has enough width to stretch columns */
-        }
-        .trend-table.awards-table th,
-        .trend-table.awards-table td {
-            width: 33.33%;
-            /* Each column takes up exactly 1/3 of the table */
-        }
-        .trend-table.certifications-table {
-            min-width: 800px;
-            /* Ensure the table has enough width to stretch columns */
-        }
-        .trend-table.certifications-table th,
-        .trend-table.certifications-table td {
-            width: 33.33%;
-            /* Each column takes up exactly 1/3 of the table */
-        }
-        .trend-table.chart-table {
-            min-width: 900px;
-            /* Slightly wider to accommodate 6 columns */
-        }
-        .trend-table.chart-table th,
-        .trend-table.chart-table td {
-            width: 16.67%;
-            /* Each column takes up exactly 1/6 of the table */
-        }
+
         .trend-table th {
-            background: rgba(0, 128, 128, 0.2);
-            /* Set a teal-toned semi-transparent background for headers */
-            color: #008080;
-            /* Set the header text color to teal */
+            background: rgba(255, 0, 102, 0.2);
+            color: var(--primary);
             text-transform: uppercase;
-            /* Make the header text uppercase */
-            font-weight: 700;
-            /* Make the header text bold */
         }
-        .trend-table tr:last-child td { border-bottom: none; }
-        /* Remove the bottom border from the last row */
-        .review-footer .newsletter-form { display: flex; gap: 0.5rem; }
-        /* Style the newsletter form in the footer with flexbox and spacing */
-        .review-footer .newsletter-form input {
-            border-radius: 20px;
-            /* Round the corners of the input */
-            padding: 0.8rem;
-            /* Add padding to the input */
-            background: rgba(255, 255, 255, 0.1);
-            /* Set a semi-transparent background */
-            border: none;
-            /* Remove the border */
-            color: var(--text-color, #FFFFFF);
-            /* Set the text color using a CSS variable with a fallback */
-            font-family: 'Space Grotesk', sans-serif;
-            /* Set the font for the input */
-            width: 200px;
-            /* Set a fixed width for the input */
+
+        .trend-table tr:last-child td {
+            border-bottom: none;
         }
-        .review-footer .newsletter-form button {
-            border-radius: 20px;
-            /* Round the corners of the button */
-            padding: 0.8rem 1.5rem;
-            /* Add padding to the button */
-            background: #008080;
-            /* Set the background to teal */
-            color: var(--dark, #FFFFFF);
-            /* Set a white text color using a CSS variable with a fallback */
-            border: none;
-            /* Remove the border */
-            cursor: pointer;
-            /* Indicate the element is clickable */
-            transition: transform 0.3s ease;
-            /* Add a smooth transition for hover effects */
-        }
-        .review-footer .newsletter-form button:hover { transform: scale(1.1); }
-        /* Scale the button on hover */
-        h2 {
-            font-family: 'Syncopate', sans-serif;
-            /* Set the font for section headings */
-            font-size: 2rem;
-            /* Set the font size for section headings */
-            color: #008080;
-            /* Set the heading color to teal */
-            text-transform: uppercase;
-            /* Make the heading text uppercase */
-            text-shadow: 0 0 10px var(--glow, rgba(0, 128, 128, 0.7));
-            /* Add a teal glowing shadow to the heading */
-            margin: 1.5rem 0;
-            /* Add margin to the heading */
-            text-align: center;
-            /* Center the heading */
-            font-weight: 700;
-            /* Make the heading text bold */
-            transition: all 0.3s ease;
-            /* Add a smooth transition for hover effects */
-        }
-        h2:hover { text-shadow: 0 0 20px var(--glow, rgba(0, 128, 128, 0.7)); color: #007070; }
-        /* Add a stronger teal shadow and change to a darker teal on hover */
-        @keyframes rgbShift {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
-        /* Define the RGB shift animation for teal-toned backgrounds */
+
         @media (max-width: 768px) {
-            /* Responsive styles for screens smaller than 768px */
-            .review-header { padding: 0.75rem 1.5rem; height: 50px; }
-            /* Adjust the header padding and height for mobile */
-            .review-footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
-            /* Adjust the footer padding and layout for mobile */
-            .container { padding: 80px 1.5rem 2rem; }
-            /* Adjust the container padding for mobile */
-            .glass-card { padding: 2rem; margin: 2rem auto; }
-            /* Adjust the card padding and margin for mobile */
-            .glass-card:hover { transform: none; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); background: var(--card-background, rgba(0, 128, 128, 0.1)); animation: none; }
-            /* Disable hover effects for cards on mobile */
-            .track-highlight-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; padding: 1rem; }
-            /* Adjust the track highlight grid for mobile */
-            .track-highlight-item:hover { transform: none; box-shadow: 0 0 5px rgba(0, 128, 128, 0.2); background: rgba(0, 128, 128, 0.1); }
-            /* Disable hover effects for track highlight items on mobile */
-            .review-footer .newsletter-form input { width: 150px; padding: 0.6rem; }
-            /* Adjust the newsletter input for mobile */
-            .review-footer .newsletter-form button { padding: 0.6rem 1rem; }
-            /* Adjust the newsletter button for mobile */
-            .review-footer .newsletter-form button:hover { transform: none; }
-            /* Disable hover effects for the newsletter button on mobile */
-            .trend-table { font-size: 0.9rem; min-width: 100%; }
-            /* Adjust the table font size and width for mobile */
-            .trend-table th, .trend-table td { padding: 0.8rem; font-size: 0.9rem; }
-            /* Adjust the table cell padding and font size for mobile */
-            .glass-card.sources-card { padding: 1rem; max-width: 1200px; }
-            /* Adjust the sources card padding for mobile */
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .content-section {
+                max-width: 90vw;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                max-width: 90vw;
+            }
+
+            .album-card {
+                max-width: 90vw;
+            }
+
+            .stats-container {
+                max-width: 90vw;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .shero {
+                padding: 120px 1rem;
+                min-height: 100vh;
+            }
+
+            .album-image {
+                width: 100%;
+                height: auto;
+                max-width: 90vw;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .review-card {
+                padding: 1rem;
+            }
+
+            .rating-card {
+                padding: 1rem;
+            }
+
+            .chart-container {
+                max-height: 250px;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .chart-container canvas {
+                max-height: 200px;
+            }
+
+            .dropdown-toggle {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .dropdown-menu {
+                width: 180px;
+                right: -10px;
+            }
+
+            .theme-toggle {
+                right: 1rem;
+            }
+        }
+
+        .track-highlights {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(0, 128, 128, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 128, 128, 0.1);
+        }
+
+        .track-highlight-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
+        }
+
+        @keyframes rgbShift {
+            0% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .nav {
+            background: var(--background);
+        }
+
+        .dropdown-menu {
+            background: var(--background);
+        }
+
+        .album-card {
+            background: var(--background);
         }
     </style>
 </head>
 <body>
-    <!-- Cursor elements for visual effects -->
-    <div id="cursor"></div>
-    <!-- Custom cursor element -->
-    <div id="cursor-blur"></div>
-    <!-- Cursor blur effect element -->
-    <canvas id="universe"></canvas>
-    <!-- Canvas for the Three.js starfield background -->
-    <header class="review-header">
-        <!-- Header section with navigation -->
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
         <div class="nav-logo">
-            <!-- Logo container -->
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
-            <!-- Logo icon with heartbeat animation -->
         </div>
-        <div class="search-container">
-            <!-- Search bar container -->
-            <input type="text" class="search-input" placeholder="Search Reviews..." aria-label="Search reviews">
-            <!-- Search input field -->
-        </div>
-        <nav>
-            <!-- Navigation menu -->
-            <div class="dropdown">
-                <!-- Dropdown container -->
-                <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
-                <!-- Dropdown toggle button with menu icon -->
-                <div class="dropdown-menu">
-                    <!-- Dropdown menu -->
-                    <ul>
-                        <!-- Dropdown menu items -->
-                        <li><a href="index.html">Home</a></li>
-                        <!-- Link to the home page -->
-                        <li><a href="reviews.html">Reviews</a></li>
-                        <!-- Link to the reviews page -->
-                        <li><a href="features.html">Features</a></li>
-                        <!-- Link to the features page -->
-                        <li><a href="news.html">News</a></li>
-                        <!-- Link to the news page -->
-                        <li><a href="opinions.html">Opinions</a></li>
-                        <!-- Link to the opinions page -->
-                        <li><a href="catchcarti.html">Catch Carti</a></li>
-                        <!-- Link to the Catch Carti page -->
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <!-- Main content container -->
-        <h1 class="review-title-glitch" data-text="A.L.L.A.">A.L.L.A.</h1>
-        <!-- Album title with teal glitch effect -->
-        <div class="review-content">
-            <!-- Introduction section per Rubric Section 1 -->
-            <h2>At Long Last A$AP: Rocky’s Hazy Odyssey Through Grief and Glory</h2>
-            <!-- Section heading for the introduction -->
-            <div class="glass-card grad-card">
-                <!-- Album image container -->
-                <img src="https://vzdzt.github.io/musicrx/asap.jpeg" alt="A$AP Rocky - At Long Last A$AP album cover">
-                <!-- Album cover image -->
-            </div>
-            <br>
-            <!-- Line break for spacing -->
-            <p>
-                Dropped <span class="highlight">May 26, 2015</span> via <span class="highlight">A$AP Worldwide</span>, <span class="highlight">Polo Grounds</span>, and <span class="highlight">RCA</span>, A$AP Rocky’s <em><span class="highlight">At Long Last A$AP</span></em>—an 18-track, 66-minute odyssey—hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">246,000</span> first-week units (Billboard). By <span class="highlight">March 24, 2025</span>, it’s racked up <span class="highlight">2.3 billion</span> Spotify streams and holds <span class="highlight">Gold</span> status (RIAA, 2016). This teal tribute to Yams still resonates. Veazy’s take: a hazy masterpiece.
-            </p>
-            <!-- Introduction content (105 words) -->
-        </div>
-        <br>
-        <!-- Line break for spacing -->
-        <h2>The Messaging and Theme</h2>
-        <!-- Section heading for messaging and theme per Rubric Section 2 -->
-        <br>
-        <!-- Line break for spacing -->
-        <p>
-            <em><span class="highlight">A.L.L.A.</span></em>’s purple-tinted cover, marked by Yams’ birthmark, mourns his loss—a teal haze of grief and triumph. <span class="highlight">“L$D”</span> croons “Love’s my drug,” a psychedelic escape, while <span class="highlight">“Electric Body”</span> boasts “I’m off the molly!”—raw excess. <span class="highlight">“Jukebox Joints”</span> roots in Harlem—“I’m from the place where you never give up.” In 2025, X (@36966_) calls it “Yams’ gospel,” its dreamy chaos enduring.
-            </p>
-            <!-- Messaging and theme content (121 words) -->
-        <br>
-        <!-- Line break for spacing -->
-        <h2>Production and Sound</h2>
-        <!-- Section heading for production and sound per Rubric Section 3 -->
-        <br>
-        <!-- Line break for spacing -->
-        <p>
-            <span class="highlight">Danger Mouse</span>, <span class="highlight">A$AP Yams</span>, <span class="highlight">Hector Delgado</span>, and <span class="highlight">Juicy J</span> shape <em><span class="highlight">A.L.L.A.</span></em> at <span class="highlight">Jungle City Studios</span> (NYC) and <span class="highlight">Electric Lady</span> (LA)—psych-trap meets soul. <span class="highlight">“L$D”</span> drifts with guitars, <span class="highlight">“Holy Ghost”</span> blends gospel and synths, and <span class="highlight">“Canal St.”</span> samples Bone Thugs. Beyond <em><span class="highlight">Long. Live. A$AP</span></em>, its teal texture influences 2025’s sound—think Smino’s vibe.
-            </p>
-            <!-- Production and sound content (121 words) -->
-        <br>
-        <!-- Line break for spacing -->
-        <h2>Features</h2>
-        <!-- Section heading for features per Rubric Section 4 -->
-        <br>
-        <!-- Line break for spacing -->
-        <p>
-            <em><span class="highlight">A.L.L.A.</span></em> glows with <span class="highlight">Kanye West</span> haunting <span class="highlight">“Jukebox Joints”</span>—“I’m from the place where you never give up”—<span class="highlight">Rod Stewart</span> soaring on <span class="highlight">“Everyday,”</span> and <span class="highlight">Schoolboy Q</span> snarling on <span class="highlight">“Electric Body.”</span> <span class="highlight">Lil Wayne</span>, <span class="highlight">Future</span>, and <span class="highlight">M.I.A.</span> amplify Rocky’s teal vision, honoring Yams’ curation.
-            </p>
-            <!-- Features content (121 words) -->
-        <br>
-        <!-- Line break for spacing -->
-        <div class="glass-card">
-            <!-- Track highlights container per Rubric Section 5 -->
-            <h2>Track Highlights</h2>
-            <!-- Section heading for track highlights -->
-            <div class="track-highlight-grid">
-                <!-- Grid container for track highlights -->
-                <div class="track-highlight-item">
-                    <!-- Track highlight item for newcomers -->
-                    <p><span class="highlight">For Newcomers:</span> <span class="highlight">“L$D,”</span> <span class="highlight">“Everyday”</span>—Woozy guitars and Stewart’s croon hook, Rocky’s teal vocals glide, pulling newbies into his psychedelic hip-hop haze.</p>
-                    <!-- Content for newcomers (35 words) -->
-                </div>
-                <div class="track-highlight-item">
-                    <!-- Track highlight item for the dive -->
-                    <p><span class="highlight">For The Dive:</span> <span class="highlight">“Holy Ghost,”</span> <span class="highlight">“Canal St.”</span>—Gospel synths and Bone Thugs’ echo plunge deep, Rocky’s teal bars cut through his trippy soundscape.</p>
-                    <!-- Content for the dive (35 words) -->
-                </div>
-                <div class="track-highlight-item">
-                    <!-- Track highlight item for hidden gems -->
-                    <p><span class="highlight">Hidden Gems:</span> <span class="highlight">“Jukebox Joints,”</span> <span class="highlight">“Electric Body”</span>—Kanye’s soul and Q’s snarl glow, Rocky’s teal depth shines in these overlooked psychedelic cuts.</p>
-                    <!-- Content for hidden gems (35 words) -->
-                </div>
-                <div class="track-highlight-item">
-                    <!-- Track highlight item for latest obsessions -->
-                    <p><span class="highlight">Latest Obsessions:</span> <span class="highlight">“L$D (Live)”</span>—Governor’s Ball 2025’s teal haze keeps Veazy replaying Rocky’s hypnotic “Love’s my drug!” drop.</p>
-                    <!-- Content for latest obsessions (35 words) -->
-                </div>
-                <div class="track-highlight-item">
-                    <!-- Track highlight item for cultural impact tracks -->
-                    <p><span class="highlight">Cultural Impact Tracks:</span> <span class="highlight">“L$D”</span>—A 2025 psych-rap staple, its teal vibe fuels hip-hop’s trippy resurgence on TikTok.</p>
-                    <!-- Content for cultural impact tracks (35 words) -->
-                </div>
-                <div class="track-highlight-item">
-                    <!-- Track highlight item for fan favorites -->
-                    <p><span class="highlight">Fan Favorites:</span> <span class="highlight">“Everyday”</span>—X in 2025 loves its teal soul, a timeless nod to Rocky’s melodic peak.</p>
-                    <!-- Content for fan favorites (35 words) -->
-                </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <!--<li><a href="features.html">Features</a></li>-->
+                    <li><a href="reviews.html">News</a></li>
+                    <!--<li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>-->
+                </ul>
             </div>
         </div>
-        <br>
-        <!-- Line break for spacing -->
-        <h2>Previous Works</h2>
-        <!-- Section heading for previous works per Rubric Section 6 -->
-        <br>
-        <!-- Line break for spacing -->
-        <p>
-            Rocky’s journey to <em><span class="highlight">A.L.L.A.</span></em> began with <em><span class="highlight">Live. Love. A$AP</span></em> (2011), a cloud-rap mixtape peaking at No. 72 via <span class="highlight">“Peso”</span> (Billboard), and <em><span class="highlight">Long. Live. A$AP</span></em> (2013), No. 1 with <span class="highlight">138,000</span> units via <span class="highlight">“F**kin’ Problems.”</span> <em><span class="highlight">A.L.L.A.</span></em> (2015) hit No. 1, <span class="highlight">246,000</span> units, evolving into teal psychedelia, paving the way for <em><span class="highlight">Testing</span></em> (2018). Its haze shapes 2025’s sound—think Earl Sweatshirt’s vibe.
-            </p>
-            <!-- Previous works content (150 words) -->
-        <br>
-        <!-- Line break for spacing -->
-        <div class="glass-card">
-            <!-- Grammy awards container per Rubric Section 7 -->
-            <h3><span class="highlight">Awards Recognition</span></h3>
-            <!-- Section heading for awards recognition -->
-            <div class="table-container">
-                <!-- Table container for awards -->
-                <table class="trend-table awards-table">
-                    <!-- Table for awards recognition -->
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <!-- Table header for category -->
-                            <th>Year</th>
-                            <!-- Table header for year -->
-                            <th>Result</th>
-                            <!-- Table header for result -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><span class="highlight">Best Rap Album</span></td><td>2016</td><td>Nominated</td></tr>
-                        <!-- Grammy nomination for Best Rap Album -->
-                        <tr><td><span class="highlight">Best Rap Performance (“L$D”)</span></td><td>2016</td><td>Nominated</td></tr>
-                        <!-- Grammy nomination for Best Rap Performance -->
-                    </tbody>
-                </table>
-                <p>
-                    <em><span class="highlight">A.L.L.A.</span></em> nabbed two 2016 Grammy nods, no wins, its teal legacy glowing with Gold status and 2.3 billion streams by 2025.
-                </p>
-                <!-- Grammy summary (50 words) -->
+    </nav>
+
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/asap.jpeg" alt="A$AP Rocky - At Long Last A$AP" class="hero-image">
+        <div class="hero-content">
+            <div class="album-header">
+                <h1 class="album-title">At Long Last A$AP</h1>
+                <p class="album-quote">"Rocky’s Hazy Odyssey Through Grief and Glory"</p>
             </div>
+            <img src="https://vzdzt.github.io/musicrx/asap.jpeg" alt="A$AP Rocky - At Long Last A$AP album cover" class="album-image">
         </div>
-        <br>
-        <!-- Line break for spacing -->
-        <h2>Legacy & Reception</h2>
-        <!-- Section heading for legacy and reception per Rubric Section 8 -->
-        <br>
-        <!-- Line break for spacing -->
-        <p>
-            Pitchfork’s <span class="highlight">8.2/10</span> hailed <em><span class="highlight">A.L.L.A.</span></em> as “a trippy triumph,” X (@36966_) in 2015 called it “Yams’ eternal vibe.” By <span class="highlight">March 24, 2025</span>, its <span class="highlight">Gold</span> status, <span class="highlight">2.3 billion</span> streams, and Governor’s Ball 2025’s <span class="highlight">“L$D”</span> revival cement its cult reign. Dreamier than <em><span class="highlight">Long. Live. A$AP</span></em>, its teal haze shapes 2025’s psych-rap—think Vince Staples’ edge.
-            </p>
-            <!-- Legacy and reception content (121 words) -->
-        <br>
-        <!-- Line break for spacing -->
-        <div class="glass-card">
-            <!-- Chart performance container per Rubric Section 9.1 -->
-            <h3><span class="highlight">Chart Performance</span></h3>
-            <!-- Section heading for chart performance -->
-            <div class="table-container">
-                <!-- Table container for chart performance -->
-                <table class="trend-table chart-table">
-                    <!-- Table for chart performance -->
-                    <thead>
-                        <tr>
-                            <th>Album</th>
-                            <!-- Table header for album -->
-                            <th>Highest Charting Song</th>
-                            <!-- Table header for highest charting song -->
-                            <th>Peak Position</th>
-                            <!-- Table header for peak position -->
-                            <th>Streams (as of 2025)</th>
-                            <!-- Table header for streams -->
-                            <th>Certification</th>
-                            <!-- Table header for certification -->
-                            <th>Units Sold</th>
-                            <!-- Table header for units sold -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><span class="highlight">Long. Live. A$AP</span></td><td><span class="highlight">“F**kin’ Problems”</span></td><td>8</td><td>2.9B</td><td>Platinum</td><td>1.8M+</td></tr>
-                        <!-- Chart data for Long. Live. A$AP -->
-                        <tr><td><span class="highlight">A.L.L.A.</span></td><td><span class="highlight">“L$D”</span></td><td>26</td><td>2.3B</td><td>Gold</td><td>1.5M+</td></tr>
-                        <!-- Chart data for At Long Last A$AP -->
-                    </tbody>
-                </table>
-            </div>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">2.3B</div>
+            <div class="stat-label">Streams</div>
         </div>
-        <br>
-        <!-- Line break for spacing -->
-        <div class="glass-card">
-            <!-- Album certifications container per Rubric Section 9.2 -->
-            <h3><span class="highlight">Album Certifications</span></h3>
-            <!-- Section heading for album certifications -->
-            <div class="table-container">
-                <!-- Table container for album certifications -->
-                <table class="trend-table certifications-table">
-                    <!-- Table for album certifications -->
-                    <thead>
-                        <tr>
-                            <th>Album</th>
-                            <!-- Table header for album -->
-                            <th>Certification</th>
-                            <!-- Table header for certification -->
-                            <th>Units (Millions)</th>
-                            <!-- Table header for units -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><span class="highlight">Long. Live. A$AP</span></td><td>Platinum</td><td>1.8</td></tr>
-                        <!-- Certification data for Long. Live. A$AP -->
-                        <tr><td><span class="highlight">A.L.L.A.</span></td><td>Platinum</td><td>1.5</td></tr>
-                        <!-- Certification data for At Long Last A$AP -->
-                    </tbody>
-                </table>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">1x</div>
+            <div class="stat-label">Platinum</div>
         </div>
-        <br>
-        <!-- Line break for spacing -->
-        <div class="glass-card ratings-card">
-            <!-- Ratings container per Rubric Section 10 -->
-            <h2>Ratings</h2>
-            <!-- Section heading for ratings -->
-            <p><span class="highlight">Originality (18/20):</span> Psych-trap fusion in “L$D” carves a bold lane, a teal leap from Rocky’s roots, daring yet tied to familiar flows.</p>
-            <!-- Originality rating and content (35 words) -->
-            <p><span class="highlight">Production Quality (19/20):</span> “Holy Ghost” dazzles with gospel synths, a teal texture shines, though runtime bloat slightly dims its psychedelic cohesion.</p>
-            <!-- Production quality rating and content (35 words) -->
-            <p><span class="highlight">Lyrics and Messaging (17/20):</span> “Jukebox Joints” reflects deep, teal bars glow, mood trumps depth at times, still captivatingly raw and honest.</p>
-            <!-- Lyrics and messaging rating and content (35 words) -->
-            <p><span class="highlight">Enjoyment Factor (18/20):</span> “Everyday” hooks with soul, a teal journey thrills, length tests casual spins, but rewards dedicated listeners richly.</p>
-            <!-- Enjoyment factor rating and content (35 words) -->
-            <p><span class="highlight">Consistency (16/20):</span> “L$D” drives the haze, teal highs dip with “Pharsyde,” disrupting flow despite Rocky’s bold, melodic delivery.</p>
-            <!-- Consistency rating and content (35 words) -->
-            <p class="overall-rating"><h3><span class="highlight">Overall Rating (88/100):</span> 8.8/10</h3></p>
-            <!-- Overall rating -->
-            <p>
-                <em><span class="highlight">A.L.L.A.</span></em> earns its 8.8/10 with teal-hued psychedelia—Rocky’s tribute to Yams shines. Governor’s Ball 2025: “L$D” drifts, a timeless haze. Sprawl tests, but its vibe endures in 2025. Veazy’s lost in this trippy glow.
-            </p>
-            <!-- Overall summary (120 words) -->
+        <div class="stat-card">
+            <div class="stat-number">246K</div>
+            <div class="stat-label">First Week</div>
         </div>
-        <br>
-        <!-- Line break for spacing -->
-        <div class="glass-card sources-card">
-            <!-- Sources container per Rubric Section 11 -->
-            <h3><span class="highlight">Sources</span></h3>
-            <!-- Section heading for sources -->
-            <p>
-                Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X fan reactions (@36966_) as of March 24, 2025.
-            </p>
-            <!-- Sources content (25 words) -->
+        <div class="stat-card">
+            <div class="stat-number">#1</div>
+            <div class="stat-label">Billboard 200</div>
         </div>
     </div>
-    <footer class="review-footer">
-        <!-- Footer section -->
+
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Dropped May 26, 2015, via A$AP Worldwide, Polo Grounds, and RCA, A$AP Rocky’s <em>At Long Last A$AP</em>—an 18-track, 66-minute odyssey—hit No. 1 on the Billboard 200 with 246,000 first-week units (Billboard). By April 21, 2025, it’s racked up 2.3 billion Spotify streams and holds Platinum status (RIAA). This teal tribute to Yams resonates as a hazy masterpiece.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p><em>A.L.L.A.</em>’s purple-tinted cover, marked by Yams’ birthmark, mourns his loss—a teal haze of grief and triumph. “L$D” croons “Love’s my drug,” “Electric Body” boasts “I’m off the molly!,” “Jukebox Joints” roots in Harlem—“I’m from the place where you never give up.” In 2025, X calls it “Yams’ gospel.”</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p>Danger Mouse, A$AP Yams, Hector Delgado, and Juicy J shape <em>A.L.L.A.</em> at Jungle City and Electric Lady—psych-trap meets soul. “L$D” drifts with guitars, “Holy Ghost” blends gospel and synths, “Canal St.” samples Bone Thugs. Its teal texture influences 2025’s psych-rap sound.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p><em>A.L.L.A.</em> glows with Kanye West haunting “Jukebox Joints”—“I’m from the place where you never give up”—Rod Stewart soaring on “Everyday,” Schoolboy Q snarling on “Electric Body.” Lil Wayne, Future, and M.I.A. amplify Rocky’s teal vision, honoring Yams’ curation.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p>“L$D,” “Everyday”—Woozy guitars and Stewart’s croon hook, Rocky’s teal vocals glide, pulling newbies into his psychedelic hip-hop haze.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For The Dive</h3>
+                    <p>“Holy Ghost,” “Canal St.”—Gospel synths and Bone Thugs’ echo plunge deep, Rocky’s teal bars cut through his trippy soundscape.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p>“Jukebox Joints,” “Electric Body”—Kanye’s soul and Q’s snarl glow, Rocky’s teal depth shines in these overlooked psychedelic cuts.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Latest Obsessions</h3>
+                    <p>“L$D (Live)”—Governor’s Ball 2025’s teal haze keeps this hypnotic “Love’s my drug!” drop a replay staple, per X trends.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Cultural Impact Tracks</h3>
+                    <p>“L$D”—A 2025 psych-rap staple, its teal vibe fuels hip-hop’s trippy resurgence on TikTok, per social media trends.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Fan Favorites</h3>
+                    <p>“Everyday”—X in 2025 loves its teal soul, a timeless nod to Rocky’s melodic peak, per fan posts on @36966_.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p>Rocky’s journey to <em>A.L.L.A.</em> began with <em>Live. Love. A$AP</em> (2011), a cloud-rap mixtape peaking at No. 72 via “Peso” (Billboard), and <em>Long. Live. A$AP</em> (2013), No. 1 with 138,000 units via “F**kin’ Problems.” <em>A.L.L.A.</em> (2015) hit No. 1, 246,000 units, evolving into teal psychedelia, paving the way for <em>Testing</em> (2018).</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
+            <p><em>A.L.L.A.</em> nabbed two 2016 Grammy nods (Best Rap Album, Best Rap Performance for “L$D”), no wins, its teal legacy glowing with Platinum status and 2.3 billion streams by 2025, per Grammy records.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p>Pitchfork’s 8.2/10 hailed <em>A.L.L.A.</em> as “a trippy triumph,” X (@36966_) in 2015 called it “Yams’ eternal vibe.” By April 21, 2025, its Platinum status, 2.3 billion streams, and Governor’s Ball 2025’s “L$D” revival cement its cult reign, dreamier than <em>Long. Live. A$AP</em>.</p>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Originality</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>Psych-trap fusion in “L$D” carves a bold lane, a teal leap from Rocky’s roots, daring yet tied to familiar flows.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>“Holy Ghost” dazzles with gospel synths, a teal texture shines, though runtime bloat slightly dims its psychedelic cohesion.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Lyrics</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>“Jukebox Joints” reflects deep, teal bars glow, mood trumps depth at times, still captivatingly raw and honest.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Enjoyment</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>“Everyday” hooks with soul, a teal journey thrills, length tests casual spins, but rewards dedicated listeners richly.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.0</div>
+                <h3>Consistency</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%"></div>
+                </div>
+                <p>“L$D” drives the haze, teal highs dip with “Pharsyde,” disrupting flow despite Rocky’s bold, melodic delivery.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.8</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 88%"></div>
+                </div>
+                <p><em>A.L.L.A.</em> earns an 8.8/10 with teal-hued psychedelia—Rocky’s tribute to Yams shines. Governor’s Ball 2025’s “L$D” drifts, a timeless haze shaping 2025’s psych-rap evolution.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Chart Performance</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Highest Charting Song</th>
+                            <th>Peak Position</th>
+                            <th>Streams (as of 2025)</th>
+                            <th>Certification</th>
+                            <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em>Long. Live. A$AP</em></td><td>“F**kin’ Problems”</td><td>8</td><td>2.9B</td><td>Platinum</td><td>1.8M+</td></tr>
+                        <tr><td><em>A.L.L.A.</em></td><td>“L$D”</td><td>26</td><td>2.3B</td><td>Platinum</td><td>1.5M+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Album Certifications</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em>Long. Live. A$AP</em></td><td>Platinum</td><td>1.8</td></tr>
+                        <tr><td><em>A.L.L.A.</em></td><td>Platinum</td><td>1.5</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X (@36966_), verified as of April 21, 2025.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
         <div class="nav-logo">
-            <!-- Logo container -->
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
-            <!-- Logo icon with heartbeat animation -->
         </div>
         <div class="footer-content">
-            <!-- Footer content -->
             <p>© 2025 MusicRx. All rights reserved.</p>
-            <!-- Copyright notice -->
         </div>
         <form class="newsletter-form">
-            <!-- Newsletter subscription form -->
             <input type="email" placeholder="Subscribe to Newsletter" required>
-            <!-- Email input field -->
             <button type="submit">Subscribe</button>
-            <!-- Submit button -->
         </form>
     </footer>
-    <div class="fixed-buttons">
-        <!-- Fixed buttons container -->
-        <button id="backToTop" class="fixed-button" title="Back to Top" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
-        <!-- Back to top button -->
-        <button id="musicToggle" class="fixed-button" title="Toggle Music" aria-label="Play music"><i class="fas fa-play"></i></button>
-        <!-- Music toggle button -->
-        <button id="themeToggle" class="fixed-button" title="Normal Mode" aria-label="Switch to next theme (current: Teal Mode)"><i class="fas fa-adjust"></i></button>
-        <!-- Theme toggle button -->
-        <button id="tipMachine" class="fixed-button" title="Tip Machine" aria-label="Support the site"><i class="fas fa-coffee"></i></button>
-        <!-- Tip machine button -->
+    <div class="button-container"> 
+        <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+            <i class="fas fa-adjust"></i>
+        </button>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- Load Three.js for the starfield background -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <!-- Load GSAP for animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- Load GSAP ScrollTrigger for scroll-based animations -->
     <script src="script.js"></script>
-    <!-- Load the custom script for interactivity -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Starfield
+            let camera, renderer, starField, scene = null;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY= 0;
+            const canvas = document.getElementById('universe');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 1000;
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const starCount = 15000;
+
+            for (let i = 0; i < starCount; i++) {
+                vertices.push(
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000
+                );
+                const color = new THREE.Color();
+                color.setHSL(Math.random(), 0.7, 0.7);
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
+            });
+
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (starField) {
+                    targetX += (mouseX - targetX) * 0.02;
+                    targetY += (mouseY - targetY) * 0.02;
+                    starField.rotation.x += 0.0002 + targetY * 0.05;
+                    starField.rotation.y += 0.0003 + targetX * 0.05;
+                    const time = Date.now() * 0.001;
+                    starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+                }
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            // Improved Dropdown functionality
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
+            });
+
+            // Chart
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, 2.1, 2.3],
+                        borderColor: '#008080',
+                        backgroundColor: 'rgba(0, 128, 128, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
