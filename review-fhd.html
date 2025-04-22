@@ -344,16 +344,6 @@
             .album-image {
                 max-width: calc(900px - 4rem - 10px);
             }
-        } 0, 0, 0.5),
-                        0 0 45px rgba(var(--primary-rgb), 0.4);
-        }
-
-        @media (max-width: 800px) {
-            .album-image {
-                width: 100%;
-                height: auto;
-                object-fit: contain;
-            }
         }
 
         .album-intro {
@@ -560,7 +550,7 @@
 
         .trend-table th {
             background: rgba(255, 0, 102, 0.2);
-            colorA: var(--primary);
+            color: var(--primary);
             text-transform: uppercase;
         }
 
@@ -816,6 +806,67 @@
             <canvas id="streamingChart"></canvas>
         </div>
 
+        <div class="chart-container">
+            <h2 class="section-title">PTFRI Star Matrix</h2>
+            <canvas id="ptfriChart"></canvas>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">4.5</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>"Apparently"'s soulful pianos shine, though some tracks overstay.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">5.0</div>
+                <h3>Theme & Messaging</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                </div>
+                <p>"Love Yourz" preaches truth with deeply personal storytelling.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">4.0</div>
+                <h3>Features</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%"></div>
+                </div>
+                <p>Feature-free, a bold solo flex, but lacks collaborative spark.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">4.5</div>
+                <h3>Reception</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>3x Platinum, 4.8B streams, a cornerstone despite mixed reviews.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">4.5</div>
+                <h3>Innovation</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>Solo memoir shapes introspective rap, refining 90s roots.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Vibe Pulse</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>Timeless resonance with 4.8B streams, shaping 2025's rap.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">What the PTFRI Matrix Says</h2>
+            <p>The PTFRI Star Matrix for <em>2014 Forest Hills Drive</em> reveals a balanced, high-performing album with a 4.5/5 overall score. The radar chart forms a large pentagon, with Theme & Messaging (5.0) as the standout, driven by J. Cole's profound storytelling in tracks like "Love Yourz." Production(4.5) and Reception (4.5) are near-perfect, reflecting soulful beats and 4.8 billion streams, though minor pacing issues and mixed reviews (e.g., Pitchfork's 6.9/10) slightly temper these. Innovation (4.5) highlights the bold solo memoir, refining 90s rap for 2025's introspective wave. The dip at Features (4.0) shows the trade-off of a feature-free approach, missing collaborative energy. The Vibe Pulse (8.5/10) underscores the album's enduring cultural impact, cementing its status as a hip-hop cornerstone.</p>
+        </div>
+
         <div class="review-card">
             <h2 class="section-title">Track Highlights</h2>
             <div class="track-highlights">
@@ -861,56 +912,6 @@
                         <tr><td>Best Rap Performance (“No Role Modelz”)</td><td>2016</td><td>Nominated</td></tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-
-        <div class="rating-section">
-            <div class="rating-card">
-                <div class="rating-score">9.0</div>
-                <h3>Originality</h3><div class="progress-bar">
-                    <div class="progress-fill" style="width: 90%"></div>
-                </div>
-                <p>“January 28th” crafts a solo memoir, bold in a collab-heavy era.</p>
-            </div>
-            <div class="rating-card">
-                <div class="rating-score">8.5</div>
-                <h3>Production</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 85%"></div>
-                </div>
-                <p>“Apparently”’s soulful pianos shine, though some tracks overstay.</p>
-            </div>
-            <div class="rating-card">
-                <div class="rating-score">9.0</div>
-                <h3>Lyrics</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 90%"></div>
-                </div>
-                <p>“Love Yourz” preaches truth withdeeply personal storytelling.</p>
-            </div>
-            <div class="rating-card">
-                <div class="rating-score">8.5</div>
-                <h3>Enjoyment</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 85%"></div>
-                </div>
-                <p>“No Role Modelz” hooks deep, though pacing slows some replay.</p>
-            </div>
-            <div class="rating-card">
-                <div class="rating-score">8.0</div>
-                <h3>Consistency</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 80%"></div>
-                </div>
-                <p>“Fire Squad” to “Love Yourz” flows tight, with minor dips.</p>
-            </div>
-            <div class="rating-card">
-                <div class="rating-score">8.6</div>
-                <h3>Overall</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 86%"></div>
-                </div>
-                <p>A timeless memoir of youth and truth, enduring in 2025.</p>
             </div>
         </div>
 
@@ -1044,9 +1045,9 @@
                 }
             });
 
-            // Chart
-            const ctx = document.getElementById('streamingChart').getContext('2d');
-            new Chart(ctx, {
+            // Streaming Chart
+            const streamingCtx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(streamingCtx, {
                 type: 'line',
                 data: {
                     labels: ['2014', '2016', '2018', '2020', '2022', '2025'],
@@ -1069,7 +1070,42 @@
                     plugins: { legend: { labels: { color: '#ffffff' } } }
                 }
             });
+
+            // PTFRI Radar Chart
+            const ptfriCtx = document.getElementById('ptfriChart').getContext('2d');
+            new Chart(ptfriCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Production', 'Theme & Messaging', 'Features', 'Reception', 'Innovation'],
+                    datasets: [{
+                        label: 'PTFRI Star Matrix',
+                        data: [4.5, 5.0, 4.0, 4.5, 4.5],
+                        backgroundColor: 'rgba(0, 247, 255, 0.2)',
+                        borderColor: '#00f7ff',
+                        pointBackgroundColor: '#ff0066',
+                        pointBorderColor: '#ffffff',
+                        pointHoverBackgroundColor: '#ffffff',
+                        pointHoverBorderColor: '#ff0066'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                            ticks: { beginAtZero: true, max: 5, stepSize: 1, color: '#ffffff', backdropColor: 'transparent' },
+                            pointLabels: { font: { size: 12, family: 'Syncopate, sans-serif' }, color: '#ffffff' }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#ffffff' } }
+                    }
+                }
+            });
         });
+
         const errorMessageWrapper = document.createElement('div');
         errorMessageWrapper.style.position = 'fixed';
         errorMessageWrapper.style.bottom = '20px';
