@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="review-the-pinkprint">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,227 +17,259 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <style>
-        body {
-            background: #0a0a0a !important;
+        :root[data-theme="normal"] {
+            --primary: #e848db;
+            --secondary: #ff66e0;
+            --accent: #ff99e6;
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(20, 20, 20, 0.8);
+            --glass: rgba(232, 72, 219, 0.1);
+            --border: rgba(232, 72, 219, 0.3);
+            --glow: rgba(232, 72, 219, 0.7);
+            --rgb-glow: linear-gradient(45deg, #e848db, #00ffea);
+            --dark: #4b1a44;
         }
-        .highlight {
-            color: #e848db; /* Fuchsia */
+
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
+        }
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: var(--background);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(232, 72, 219, 0.1);
+            border-color: var(--primary);
+        }
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
             font-weight: bold;
         }
-        .overall-rating h3 {
-            color: #e848db;
-        }
-        .review-grad-glitch {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #e848db;
-            text-shadow: 0 0 10px #e848db;
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
+
+        .dropdown {
             position: relative;
+            z-index: 1000;
         }
-        .review-grad-glitch::before,
-        .review-grad-glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .review-grad-glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #00ffea;
-            animation: glitch-1 2s linear infinite reverse;
-        }
-        .review-grad-glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #e848db;
-            animation: glitch-2 3s linear infinite;
-        }
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); }
-            5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); }
-            15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); }
-            100% { clip-path: inset(0 0 90% 0); }
-        }
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); }
-            5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); }
-            15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        .glass-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(232, 72, 219, 0.3);
-        }
-        .glass-card.grad-card {
-            padding: 20px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
-            overflow: hidden;
-            max-width: 100%;
-        }
-        .glass-card.grad-card:hover {
-            transform: scale(1.05);
-        }
-        .glass-card.grad-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            display: block;
-        }
-        .glass-card.grad-card:hover img {
-            transform: scale(1.05);
-        }
-        .track-highlight-item {
             padding: 0.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .track-highlight-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 10px rgba(232, 72, 219, 0.2);
-        }
-        .trend-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-        .trend-table th, .trend-table td {
-            padding: 0.8rem;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .trend-table th {
-            color: #e848db;
-            text-shadow: none !important;
-        }
-        body, .container, p, h2, ul, li {
-            font-style: normal !important;
-        }
-        .glass-card, .glass-card * {
-            font-style: normal !important;
-        }
-        em, .highlight em {
-            font-style: italic !important;
-        }
-    </style>
+            transition: transform 0.2s ease_heap
+        </style>
 </head>
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="universe"></canvas>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <!-- <li><a href="features.html">Features</a></li>-->
+                    <li><a href="news.html">News</a></li>
+                   <!-- <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>-->
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
-        <h1 class="review-grad-glitch" data-text="THE PINKPRINT">THE PINKPRINT</h1>
-        <div class="review-content">
-            <h2>The Pinkprint: Nicki Minaj’s Personal Evolution Triumph</h2>
-            <div class="glass-card grad-card">
-                <img src="https://vzdzt.github.io/musicrx/pink.jpeg" alt="Nicki Minaj - The Pinkprint album cover">
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/pink.jpeg" alt="Nicki Minaj - The Pinkprint" class="hero-image">
+        <div class="hero-content">
+            <div class="album-header">
+                <h1 class="album-title">The Pinkprint</h1>
+                <p class="album-quote">"Nicki Minaj’s Personal Evolution Triumph"</p>
             </div>
-            <br>
-            <p>Dropped on <span class="highlight">December 15, 2014</span> via <span class="highlight">Young Money</span> and <span class="highlight">Cash Money/Republic</span>, Nicki Minaj’s third album <em><span class="highlight">The Pinkprint</span></em> is a 23-track, 68-minute personal plunge into hip-hop’s wild frontier, powered by <span class="highlight">Dr. Luke</span>, <span class="highlight">Boi-1da</span>, and <span class="highlight">Detail</span>. Post-<em><span class="highlight">Pink Friday</span></em>’s pop shift, it hit No. 2 on the <span class="highlight">Billboard 200</span> with <span class="highlight">198,000 first-week units</span>. By <span class="highlight">March 11, 2025</span>, its 2x Platinum status, a 2025 anniversary tour, and renewed fan love on X (@36966_) keep its pink fire blazing. Veazy here—this album’s a raw evolution that redefined Nicki, and a decade later, it still pulses with unfiltered resilience and emotional depth.</p>
+            <img src="https://vzdzt.github.io/musicrx/pink.jpeg" alt="Nicki Minaj - The Pinkprint album cover" class="album-image">
         </div>
-        <br>
-        <h2>The Messaging and Theme</h2>
-        <br>
-        <p>The cover—a bold pink-and-black portrait by <span class="highlight">Brett Ratner</span>—radiates empowerment, mirroring <em><span class="highlight">The Pinkprint</span></em>’s vulnerability-soaked hip-hop diary. It’s a resilient flex with an honest edge, unveiling pain in <span class="highlight">“All Things Go”</span>’s abortion confession—“My child with Aaron would’ve been sixteen”—and reclaiming dominance with <span class="highlight">“Anaconda”</span>’s unapologetic swagger. <span class="highlight">“I Lied”</span> and <span class="highlight">“Only”</span> peel back heartbreak—“I gave you all of me”—blending bravado with soul, while <span class="highlight">“The Crying Game”</span> mourns lost love with haunting clarity. It’s a fierce hip-hop pulse, unfiltered and alive, a fuchsia testament to Nicki’s growth that still resonates on X (@36966_) in 2025, where fans call it “her most real work.”</p>
-        <br>
-        <h2>Production and Sound</h2>
-        <br>
-        <p><span class="highlight">Dr. Luke</span>, <span class="highlight">Boi-1da</span>, <span class="highlight">Detail</span>, and <span class="highlight">Hit-Boy</span> lace <em><span class="highlight">The Pinkprint</span></em> with vibrant beats—trap, pop, and hip-hop that pulse like a heartbeat across its 23 tracks. Recorded across <span class="highlight">Conway Studios</span> in LA and <span class="highlight">Glenwood Place</span> in Burbank, <span class="highlight">“Anaconda”</span> flips “Baby Got Back” into a twerk anthem with booming bass, <span class="highlight">“Pills N Potions”</span> layers moody synths over a somber piano, and <span class="highlight">“Feeling Myself”</span> grooves with minimal drums—Nicki’s versatile flow, from fierce to tender, riding it all like a queen. Boi-1da’s signature snares, born here, became a hip-hop staple by 2025, though the 68-minute runtime feels overstuffed with a few filler tracks, a minor flaw in its polished production.</p>
-        <br>
-        <h2>Features</h2>
-        <br>
-        <p><em><span class="highlight">The Pinkprint</span></em> rolls deep with <span class="highlight">Beyoncé</span>, <span class="highlight">Drake</span>, <span class="highlight">Lil Wayne</span>, <span class="highlight">Chris Brown</span>, <span class="highlight">Meek Mill</span>, and <span class="highlight">Ariana Grande</span>, each adding distinct flavors to Nicki’s vision. <span class="highlight">Beyoncé</span> and <span class="highlight">Drake</span> elevate <span class="highlight">“Feeling Myself”</span> and <span class="highlight">“Only”</span> with their commanding verses, while <span class="highlight">Meek Mill</span> adds emotional depth to <span class="highlight">“Buy a Heart”</span>’s longing tone, and <span class="highlight">Ariana Grande</span> brings pop shimmer to <span class="highlight">“Get On Your Knees.”</span> Nicki’s delivery—bold bars, raw tones, and melodic hooks—dominates, though some features, like Beyoncé’s, occasionally steal her spotlight.</p>
-        <br>
-        <div class="glass-card">
-            <h2>Track Highlights</h2>
-            <p class="track-highlight-item"><span class="highlight">For Newcomers:</span> <span class="highlight">“Anaconda”</span>, <span class="highlight">“Feeling Myself”</span>—Twerk-ready bass and Beyoncé’s fierce flex set a throne ablaze, Nicki’s bold flow—“My anaconda don’t”—riding Boi-1da’s groove for hip-hop newcomers.</p>
-            <p class="track-highlight-item"><span class="highlight">For The Dive:</span> <span class="highlight">“Pills N Potions”</span>, <span class="highlight">“All Things Go”</span>—Moody synths, tender keys spark raw emotion, Nicki’s confessional bars—“My child with Aaron”—digging deep into her vulnerable core.</p>
-            <p class="track-highlight-item"><span class="highlight">Hidden Gems:</span> <span class="highlight">“I Lied”</span>, <span class="highlight">“Buy a Heart”</span>—Haunting melodies, Meek Mill’s depth float over Nicki’s heartbreak—“I gave you all of me”—peeling back her emotional layers.</p>
-            <p class="track-highlight-item"><span class="highlight">Latest Obsessions:</span> <span class="highlight">“Anaconda (Live 2025)”</span>—Coachella 2025’s electrifying set (clips on X @36966_) reignites this anthem, Nicki’s commanding strut captivating the crowd—Veazy loops it endlessly.</p>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">1.4B</div>
+            <div class="stat-label">Streams</div>
         </div>
-        <br>
-        <h2>Previous Works</h2>
-        <br>
-        <p>Nicki’s path to <em><span class="highlight">The Pinkprint</span></em> blazed through <em><span class="highlight">Beam Me Up Scotty</span></em> (<span class="highlight">2009</span>), <em><span class="highlight">Pink Friday</span></em> (<span class="highlight">2010</span>), and <em><span class="highlight">Roman Reloaded</span></em> (<span class="highlight">2012</span>) with Boi-1da and Dr. Luke. Hits like <span class="highlight">“Super Bass”</span> and <span class="highlight">“Starships”</span> built her pop-rap buzz, while <em><span class="highlight">The Pinkprint</span></em> refined her versatility, balancing raw emotion with fierce bravado, paving the way for <em><span class="highlight">Queen</span></em> (<span class="highlight">2018</span>) and her 2025 resurgence.</p>
-        <br>
-        <h2>Grammy Wins & Nominations</h2>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Awards Recognition</span></h3>
-            <div class="table-container">
-                <table class="trend-table">
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Year</th>
-                            <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Best Rap Album</span></td>
-                            <td>2015</td>
-                            <td>Nominated</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Song ("Anaconda")</span></td>
-                            <td>2015</td>
-                            <td>Nominated</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Pop Duo/Group Performance ("Bang Bang")</span></td>
-                            <td>2015</td>
-                            <td>Nominated</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p><em><span class="highlight">The Pinkprint</span></em> earned nominations but no wins, its cultural impact outshining awards with 2x Platinum status by 2025 and a lasting influence on female rap.</p>
+        <div class="stat-card">
+            <div class="stat-number">2x</div>
+            <div class="stat-label">Platinum</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">198K</div>
+            <div class="stat-label">First Week</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">#2</div>
+            <div class="stat-label">Billboard 200</div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Dropped December 15, 2014, via Young Money and Cash Money/Republic, Nicki Minaj’s <em>The Pinkprint</em>—a 23-track, 68-minute hip-hop odyssey—hit No. 2 on the Billboard 200 with 198,000 first-week units. Powered by Dr. Luke, Boi-1da, and Detail, it’s 2x Platinum by March 2025 with 1.4 billion Spotify streams. A 2024 anniversary edition and Coachella 2025 performance keep it trending on X (@36966_).</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p>Dr. Luke, Boi-1da, Detail, and Hit-Boy craft a trap-pop-hip-hop pulse in Conway and Glenwood studios. “Anaconda” flips “Baby Got Back” with booming bass, “Pills N Potions” weaves moody synths, and “Feeling Myself” thrives on minimal drums. Boi-1da’s snares, a 2025 staple, shine, though the 68-minute runtime includes filler like “Favorite.”</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p>Brett Ratner’s pink-black cover sets a fierce, vulnerable tone. <em>The Pinkprint</em> blends pain and power: “All Things Go” confesses a teenage abortion, “Anaconda” owns sexuality, and “I Lied” mourns love’s scars. “Win Again” reclaims dominance. X fans in 2025 (@36966_) call it “Nicki’s soul bared,” a fuchsia-lit testament to growth.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p>Beyoncé, Drake, Lil Wayne, Ariana Grande, and Meek Mill amplify Nicki’s vision. Beyoncé’s bold verse on “Feeling Myself” and Drake’s slick bars on “Only” shine, while Meek Mill adds depth to “Buy a Heart.” Nicki’s commanding delivery holds the crown, though Beyoncé occasionally steals the spotlight.</p>
             </div>
         </div>
-        <br>
-        <h2>Legacy & Reception</h2>
-        <br>
-        <p>Critics were mixed—Pitchfork’s <span class="highlight">7.5/10</span> praised its emotional depth, while Rolling Stone’s 3.5/5 noted its sprawling length. Fans on X (@36966_) in 2014 called it “Nicki’s soul laid bare,” a sentiment echoing into <span class="highlight">March 11, 2025</span>, with a 2x Platinum milestone, a 2025 anniversary tour, and renewed streaming spikes. A viral Coachella 2025 “Anaconda” performance—Nicki commanding the stage in a pink bodysuit—reignited its legacy, cementing its role as a blueprint for female rappers in 2025.</p>
-        <br>
-        <h2>By the Numbers</h2>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Chart Performance</span></h3>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p><span class="highlight">“Anaconda”</span>, <span class="highlight">“Feeling Myself”</span>—Bass-heavy anthems with Beyoncé’s flex and Nicki’s bold bars draw in casual listeners.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For Deep Cuts</h3>
+                    <p><span class="highlight">“All Things Go”</span>, <span class="highlight">“Pills N Potions”</span>—Confessional lyrics and moody production reveal Nicki’s emotional core.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p><span class="highlight">“The Crying Game”</span>, <span class="highlight">“Win Again”</span>—Haunting melodies and triumphant bars showcase her range.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>2025 Obsession</h3>
+                    <p><span class="highlight">“Anaconda (Live 2025)”</span>—Coachella 2025’s viral set (X @36966_) reignites the anthem with Nicki’s electric stage presence.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p>Nicki’s <em>Beam Me Up Scotty</em> (2009), <em>Pink Friday</em> (2010), and <em>Roman Reloaded</em> (2012) built her pop-rap throne with “Super Bass” and “Starships.” <em>The Pinkprint</em> refined her versatility, balancing emotion and bravado, paving the way for <em>Queen</em> (2018) and her 2025 resurgence.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p>Pitchfork’s 7.5/10 praised its depth, Rolling Stone’s 3.5/5 noted its length. X fans (@36966_) in 2025 hail “Nicki’s soul laid bare,” with 2x Platinum status, a 2024 anniversary tour, and a viral Coachella 2025 “Anaconda” set cementing its blueprint for female rappers.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
+            <p><em>The Pinkprint</em> earned 2015 Grammy nominations for Best Rap Album, Best Rap Song (“Anaconda”), and Best Pop Duo/Group Performance (“Bang Bang”), per Grammy records.</p>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">8.0</div>
+                <h3>Originality</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%"></div>
+                </div>
+                <p>Daring pivot blends raw emotion with pop-rap—familiar tropes linger, yet Nicki’s personal twist shines.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>Vibrant trap-pop fusion dazzles with polish—overstuffed length and pacing slightly dim its shine.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Lyrics</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>Confessional depth meets brash flexes—jarring shifts between vulnerability and bravado keep it imperfect.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.0</div>
+                <h3>Enjoyment</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%"></div>
+                </div>
+                <p>Thrilling highs captivate Nicki fans—sprawl and filler tracks test casual listeners’ patience.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">7.5</div>
+                <h3>Consistency</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <p>Standout hits soar, but uneven energy across 23 tracks disrupts its cohesive flow.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.1</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 81%"></div>
+                </div>
+                <p><em>The Pinkprint</em> is Nicki’s raw reinvention—a fuchsia-lit storm of heartbreak and triumph, earning an 8.1/10.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Chart Performance</h2>
             <div class="table-container">
                 <table class="trend-table">
                     <thead>
@@ -250,41 +282,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">“Anaconda”</span></td>
-                            <td>2014</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">“Pills N Potions”</span></td>
-                            <td>2014</td>
-                            <td>27</td>
-                            <td>31</td>
-                            <td>33</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">“Feeling Myself”</span></td>
-                            <td>2014</td>
-                            <td>39</td>
-                            <td>45</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">“Anaconda (Live 2025)”</span></td>
-                            <td>2025</td>
-                            <td>72</td>
-                            <td>78</td>
-                            <td>85</td>
-                        </tr>
+                        <tr><td><span class="highlight">“Anaconda”</span></td><td>2014</td><td>2</td><td>3</td><td>4</td></tr>
+                        <tr><td><span class="highlight">“Pills N Potions”</span></td><td>2014</td><td>27</td><td>31</td><td>33</td></tr>
+                        <tr><td><span class="highlight">“Feeling Myself”</span></td><td>2014</td><td>39</td><td>45</td><td>50</td></tr>
+                        <tr><td><span class="highlight">“Anaconda (Live 2025)”</span></td><td>2025</td><td>72</td><td>78</td><td>85</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Album Certifications</span></h3>
+
+        <div class="review-card">
+            <h2 class="section-title">Album Certifications</h2>
             <div class="table-container">
                 <table class="trend-table">
                     <thead>
@@ -295,84 +303,167 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">The Pinkprint</span></td>
-                            <td>2x Platinum</td>
-                            <td>2</td>
-                        </tr>
+                        <tr><td><span class="highlight">The Pinkprint</span></td><td>2x Platinum</td><td>2</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <br>
-        <div class="glass-card">
-            <h2>Ratings</h2>
-            <p><span class="highlight">Originality (16/20):</span> Daring pivot blends raw emotion with pop-rap—familiar tropes linger, yet Nicki’s personal twist shines.</p>
-            <p><span class="highlight">Production Quality (17/20):</span> Vibrant trap-pop fusion dazzles with polish—overstuffed length and pacing slightly dim its shine.</p>
-            <p><span class="highlight">Lyrics and Messaging (17/20):</span> Confessional depth meets brash flexes—jarring shifts between vulnerability and bravado keep it imperfect.</p>
-            <p><span class="highlight">Enjoyment Factor (16/20):</span> Thrilling highs captivate Nicki fans—sprawl and filler tracks test casual listeners’ patience.</p>
-            <p><span class="highlight">Consistency (15/20):</span> Standout hits soar, but uneven energy across 23 tracks disrupts its cohesive flow.</p>
-            <p class="overall-rating"><span class="highlight"><h3>Overall Rating (81/100):</span> 8.1/10</h3></p>
-            <p><em><span class="highlight">The Pinkprint</span></em> is a hip-hop odyssey—Nicki’s raw reinvention ignites a resilient storm that pulses with soul. Picture a fuchsia-lit stage, Nicki’s voice slicing the air like a queen’s decree, bars baring her heart in a whirlwind of heartbreak and triumph—bold, vibrant, unapologetically real. Veazy’s chasing that fiery pink energy in 2025.</p>
-        </div>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Sources</span></h3>
-            <p>
-                <a href="https://en.wikipedia.org/wiki/The_Pinkprint">The Pinkprint (Wikipedia)</a> |
-                <a href="https://en.wikipedia.org/wiki/Nicki_Minaj_discography">Nicki Minaj discography (Wikipedia)</a> |
-                <a href="https://www.billboard.com/artist/nicki-minaj/">Billboard artist page</a> |
-                <a href="https://www.riaa.com/gold-platinum/">RIAA certifications</a> |
-                <a href="https://pitchfork.com/reviews/albums/19895-nicki-minaj-the-pinkprint/">Pitchfork review</a> |
-                <a href="https://www.rollingstone.com/music/music-album-reviews/nicki-minaj-the-pinkprint-167678/">Rolling Stone review</a>
-            </p>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data from <a href="https://en.wikipedia.org/wiki/The_Pinkprint">Wikipedia</a>, <a href="https://www.billboard.com/artist/nicki-minaj/">Billboard</a>, <a href="https://www.riaa.com/gold-platinum/">RIAA</a>, <a href="https://pitchfork.com/reviews/albums/19895-nicki-minaj-the-pinkprint/">Pitchfork</a>, <a href="https://www.rollingstone.com/music/music-album-reviews/nicki-minaj-the-pinkprint-167678/">Rolling Stone</a>, and X posts (@36966_).</p>
         </div>
     </div>
 
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+        <i class="fas fa-adjust"></i>
+    </button>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => {
-                card.style.transform = 'none !important';
-                card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important';
-                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
+        document.addEventListener('DOMContentLoaded', function() {
+            let camera, renderer, starField, scene = null;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY = 0;
+            const canvas = document.getElementById('universe');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 1000;
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const starCount = 15000;
+
+            for (let i = 0; i < starCount; i++) {
+                vertices.push(
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000
+                );
+                const color = new THREE.Color();
+                color.setHSL(Math.random(), 0.7, 0.7);
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
             });
-            document.querySelectorAll('.glass-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 0 20px rgba(232, 72, 219, 0.3)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = 'none';
-                });
+
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
             });
-            document.querySelectorAll('.grad-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.05)';
-                    card.style.transform = 'scale(1.05)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
-                    card.style.transform = 'scale(1)';
-                });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (starField) {
+                    targetX += (mouseX - targetX) * 0.02;
+                    targetY += (mouseY - targetY) * 0.02;
+                    starField.rotation.x += 0.0002 + targetY * 0.05;
+                    starField.rotation.y += 0.0003 + targetX * 0.05;
+                    const time = Date.now() * 0.001;
+                    starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+                }
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
             });
-            document.querySelectorAll('.track-highlight-item').forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'scale(1.02)';
-                    item.style.boxShadow = '0 0 10px rgba(232, 72, 219, 0.2)';
-                });
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'scale(1)';
-                    item.style.boxShadow = 'none';
-                });
+
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
+            });
+
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2014', '2016', '2018', '2020', '2022', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [0.1, 0.4, 0.7, 0.9, 1.2, 1.4],
+                        borderColor: '#e848db',
+                        backgroundColor: 'rgba(232, 72, 219, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
             });
         });
     </script>
