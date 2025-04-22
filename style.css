@@ -1406,7 +1406,7 @@ position: relative;
 /* Grid layout for cards */
 .grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 25vw, 300px), 1fr));
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 gap: 2rem;
 padding: 1rem;
 width: 100%;
@@ -1414,6 +1414,28 @@ max-width: 1200px;
 margin: 0 auto;
 justify-items: center;
 box-sizing: border-box;
+}
+
+.grid .scroll-item {
+width: 100%;
+text-decoration: none;
+}
+
+.grid .news-title-card {
+min-height: auto;
+padding: 0.5rem 1rem;
+}
+
+.grid .news-content-card {
+padding: 1rem;
+}
+
+.grid .news-content-card img {
+width: 100%;
+height: 260px;
+object-fit: cover;
+border-radius: 8px;
+margin-bottom: 1rem;
 }
 
 /* Card pair for title and content */
@@ -2658,7 +2680,6 @@ border-radius: 4px;
 .scroll-item {
 flex: 0 0 300px;
 min-width: 300px;
-
 display: flex;
 flex-direction: column;
 text-decoration: none;
@@ -2933,33 +2954,19 @@ animation: glitch-2 3s linear infinite;
 
 /* Standard glass card styling */
 .glass-card {
-/* Commented out scroll animations */
-/* container-type: inline-size;
-container-name: card;
-view-timeline-name: --card-scroll;
-view-timeline-axis: block;
-animation: reveal linear both;
-animation-timeline: --card-scroll;
-animation-range: entry 20% cover 30%; */
 background: linear-gradient(135deg,
-  rgba(255, 255, 255, 0.25),
-  rgba(255, 255, 255, 0.15) 35%,
+  rgba(255, 255, 255, 0.15),
+  rgba(255, 255, 255, 0.1) 35%,
   rgba(255, 255, 255, 0.05) 50%,
-  rgba(255, 255, 255, 0.15) 65%,
-  rgba(255, 255, 255, 0.25)
+  rgba(255, 255, 255, 0.1) 65%,
+  rgba(255, 255, 255, 0.15)
 );
-backdrop-filter: blur(10px) saturate(180%);
-background-blend-mode: soft-light;
-border-radius: calc(12px + sin(var(--time)) * 5px);
-padding: 1rem;
-border: 1px solid rgba(255, 255, 255, 0.4);
-box-shadow: 
-  0 4px 15px rgba(0,0,0,0.3),
-  inset 0 0 40px rgba(255, 255, 255, 0.2),
-  inset 0 0 100px rgba(255, 255, 255, 0.1),
-  0 0 30px var(--glow);
-opacity: 1;
-transition: all 0.3s ease, --glow-intensity 0.5s ease;
+backdrop-filter: blur(10px);
+border-radius: 15px;
+padding: 1.5rem;
+border: 1px solid var(--border-color);
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+transition: all 0.3s ease;
 cursor: pointer;
 display: flex;
 flex-direction: column;
@@ -2970,31 +2977,15 @@ width: 100%;
 max-width: 300px;
 margin: 0 auto;
 box-sizing: border-box;
-will-change: transform, box-shadow, opacity;
-z-index: 3;
 position: relative;
-animation: wave-time 4s infinite;
-
-transform: translateZ(0);
-backface-visibility: hidden;
 }
 
 .glass-card:hover {
---glow-intensity: 1;
-box-shadow: 
-  0 8px 32px rgba(0,0,0,0.3),
-  inset 0 0 60px rgba(255, 255, 255, 0.3),
-  0 0 40px var(--glow);
-transform: translateY(-5px) translateZ(0);
-background: linear-gradient(135deg,
-  rgba(255, 255, 255, 0.4),
-  rgba(255, 255, 255, 0.2) 35%,
-  rgba(255, 255, 255, 0.1) 50%,
-  rgba(255, 255, 255, 0.2) 65%,
-  rgba(255, 255, 255, 0.4)
-);
+transform: translateY(-5px);
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 20px var(--glow);
+background: var(--rgb-glow);
 background-size: 200% 200%;
-border-color: rgba(255, 255, 255, 0.6);
+animation: rgbShift 3s linear infinite;
 }
 
 .glass-card:hover {
@@ -3264,15 +3255,26 @@ line-height: 1.4;
 /* Glass card description styling */
 .glass-card .description {
 flex-grow: 1;
-margin: 1rem 0;
-overflow: hidden;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-line-clamp: 5;
-line-clamp: 5;
--webkit-box-orient: vertical;
-line-height: 1.4;
-font-size: 0.9rem;
+margin: 0.8rem 0;
+line-height: 1.35;
+font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+}
+
+@media (max-width: 768px) {
+  .glass-card h2 {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    margin: 0.3rem 0;
+  }
+  
+  .glass-card .rating {
+    font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+    margin: 0.3rem 0;
+  }
+  
+  .glass-card {
+    padding: 1rem;
+    min-height: auto;
+  }
 }
 
 /* Modern Rating Card Styles */
