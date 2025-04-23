@@ -1,36 +1,654 @@
-<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
-<html lang="en"> <!-- Sets the document language to English -->
+<!DOCTYPE html>
+<html lang="en" data-page="review-graduation">
 <head>
-    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design -->
-    <meta name="description" content="Explore Kanye West’s Graduation (2007) review: a neon-charged triumph, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description -->
-    <meta name="keywords" content="Kanye West, Graduation, hip-hop, T-Pain, Daft Punk, MusicRx, 2025"> <!-- SEO keywords -->
-    <meta name="author" content="Veazy"> <!-- Credits the author -->
-    <meta property="og:title" content="MusicRx - Graduation: Kanye West’s Neon-Charged Leap to Iconic Heights"> <!-- Open Graph title -->
-    <meta property="og:description" content="Dive into Kanye West’s Graduation review: a 2007 masterpiece, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/graduation.jpg"> <!-- Open Graph image URL -->
-    <meta property="og:type" content="article"> <!-- Open Graph content type -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-graduation.html"> <!-- Open Graph page URL -->
-    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
-    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
-    <title>MusicRx - Graduation: Kanye West’s Neon-Charged Leap to Iconic Heights</title> <!-- Browser tab title -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Fonts -->
-    <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
-    <style> <!-- Internal CSS for review-specific styling -->
-        body { background: #0a0a0a !important; } /* Forces dark background */
-        .highlight { color: #FF00FF; font-weight: bold; } /* Fuchsia highlights */
-        .overall-rating h3 { color: #FF00FF; } /* Fuchsia for overall rating heading */
-        .review-grad-glitch { /* Original Graduation glitch effect */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Kanye West’s Graduation (2007) review: a neon-charged triumph, updated to March 2025 with track highlights on MusicRx.">
+    <meta name="keywords" content="Kanye West, Graduation, hip-hop, T-Pain, Daft Punk, MusicRx, 2025">
+    <meta name="author" content="Veazy">
+    <meta property="og:title" content="MusicRx - Graduation: Kanye West’s Neon-Charged Leap to Iconic Heights">
+    <meta property="og:description" content="Dive into Kanye West’s Graduation review: a 2007 masterpiece, refreshed with 2025 updates on MusicRx.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/graduation.jpg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-graduation.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@MusicRx">
+    <title>MusicRx - Graduation: Kanye West’s Neon-Charged Leap to Iconic Heights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        :root[data-theme="normal"] {
+            --primary: #FF00FF;
+            --secondary: #FF33FF;
+            --accent: #FF66FF;
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(20, 20, 20, 0.8);
+            --glass: rgba(255, 0, 255, 0.1);
+            --border: rgba(255, 0, 255, 0.3);
+            --glow: rgba(255, 0, 255, 0.7);
+            --rgb-glow: linear-gradient(45deg, #FF00FF, #FF33FF);
+            --dark: #660066;
+        }
+
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
+        }
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: var(--background);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .dropdown {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            transform: scale(1.1);
+            outline: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--background);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            display: block;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        .hero-content {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .album-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px\A: var(--border);
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .album-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .album-title {
+            font-size: clamp(1rem, 1.5vw, 1.75rem);
+            color: var(--text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
+        }
+
+        .album-quote {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+        .album-image {
+            width: 100%;
+            height: auto;
+            max-width: calc(900px - 4rem - 10px);
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--primary-rgb), 0.3);
+            transition: all 0.4s ease;
+            object-fit: contain;
+        }
+
+        .album-image:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--primary-rgb), 0.4);
+        }
+
+        .album-intro-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 800px) {
+            .album-card, .album-intro-container {
+                max-width: 90vw;
+                padding: 1.5rem;
+            }
+            .album-image {
+                max-width: calc(90vw - 3rem - 10px);
+            }
+            .album-title {
+                font-size: clamp(1.5rem, 5vw, 3rem);
+            }
+            .album-quote {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                max-width: calc(900px - 4rem - 10px);
+            }
+        }
+
+        .album-intro {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .album-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(var(--primary-rgb), 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, var(--background));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-container h2 {
+            margin: 0 0 1rem 0;
+            padding: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .chart-container canvas {
+            max-height: 250px;
+            width: 100%;
+        }
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .rating-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .rating-score {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--glass);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 1s ease;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .trend-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .trend-table th, .trend-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trend-table th {
+            background: rgba(255, 0, 102, 0.2);
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .trend-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .content-section {
+                max-width: 90vw;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                max-width: 90vw;
+            }
+
+            .album-card {
+                max-width: 90vw;
+            }
+
+            .stats-container {
+                max-width: 90vw;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .shero {
+                padding: 120px 1rem;
+                min-height: 100vh;
+            }
+
+            .album-image {
+                width: 100%;
+                height: auto;
+                max-width: 90vw;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .review-card {
+                padding: 1rem;
+            }
+
+            .rating-card {
+                padding: 1rem;
+            }
+
+            .chart-container {
+                max-height: 250px;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .chart-container canvas {
+                max-height: 200px;
+            }
+
+            .dropdown-toggle {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .dropdown-menu {
+                width: 180px;
+                right: -10px;
+            }
+
+            .theme-toggle {
+                right: 1rem;
+            }
+        }
+
+        .track-highlights {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(255, 0, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 0, 255, 0.1);
+        }
+
+        .track-highlight-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
+        }
+
+        @keyframes rgbShift {
+            0% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .nav {
+            background: var(--background);
+        }
+
+        .dropdown-menu {
+            background: var(--background);
+        }
+
+        .album-card {
+            background: var(--background);
+        }
+
+        .review-grad-glitch {
             font-size: 3rem;
             text-align: center;
             margin-bottom: 2rem;
-            color: #FF00FF;
-            text-shadow: 0 0 10px #FF00FF;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
             position: relative;
         }
+
         .review-grad-glitch::before,
         .review-grad-glitch::after {
             content: attr(data-text);
@@ -40,16 +658,19 @@
             width: 100%;
             height: 100%;
         }
+
         .review-grad-glitch::before {
             left: 2px;
-            text-shadow: -2px 0 #00ffea; /* Cyan shadow */
+            text-shadow: -2px 0 #00ffea;
             animation: glitch-1 2s linear infinite reverse;
         }
+
         .review-grad-glitch::after {
             left: -2px;
-            text-shadow: -2px 0 #FF00FF; /* Fuchsia shadow */
+            text-shadow: -2px 0 var(--primary);
             animation: glitch-2 3s linear infinite;
         }
+
         @keyframes glitch-1 {
             0% { clip-path: inset(0 0 90% 0); }
             5% { clip-path: inset(10% 0 70% 0); }
@@ -58,6 +679,7 @@
             20% { clip-path: inset(50% 0 30% 0); }
             100% { clip-path: inset(0 0 90% 0); }
         }
+
         @keyframes glitch-2 {
             0% { clip-path: inset(50% 0 0 0); }
             5% { clip-path: inset(70% 0 10% 0); }
@@ -66,277 +688,409 @@
             20% { clip-path: inset(90% 0 0 0); }
             100% { clip-path: inset(50% 0 0 0); }
         }
-        .glass-card { /* Styling for content sections */
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
-            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem; margin: 2rem 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer; position: relative; overflow: hidden;
+
+        .highlight {
+            color: var(--primary);
+            font-weight: bold;
         }
-        .glass-card:hover { /* Hover effect for glass cards */
-            transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 0, 255, 0.3); /* Fuchsia shadow */
+
+        .overall-rating h3 {
+            color: var(--primary);
         }
-        .glass-card.grad-card { /* Styling for album cover card */
-            padding: 20px; border-radius: 10px; display: flex;
-            justify-content: center; align-items: center; transition: transform 0.3s ease;
-            overflow: hidden; max-width: 100%;
-        }
-        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card */
-        .glass-card.grad-card img { /* Styling for album cover image */
-            max-width: 100%; height: auto; border-radius: 8px;
-            transition: transform 0.3s ease; display: block;
-        }
-        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover */
-        .track-highlight-item { /* Styling for track highlight bullet points */
-            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .track-highlight-item:hover { /* Hover effect for track highlights */
-            transform: scale(1.02); box-shadow: 0 0 10px rgba(255, 0, 255, 0.2); /* Fuchsia shadow */
-        }
-        .trend-table { /* Styling for data tables */
-            width: 100%; border-collapse: collapse; margin: 1rem 0;
-        }
-        .trend-table th, .trend-table td { /* Table cell styling */
-            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .trend-table th { color: #FF00FF; text-shadow: none !important; } /* Fuchsia table headers */
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style */
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards */
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
     </style>
 </head>
 <body>
-    <div id="cursor"></div> <!-- Custom cursor element -->
-    <div id="cursor-blur"></div> <!-- Cursor blur effect -->
-    <canvas id="universe"></canvas> <!-- Background animation canvas -->
-    <nav> <!-- Navigation bar -->
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <!--<li><a href="features.html">Features</a></li>-->
+                    <li><a href="reviews.html">News</a></li>
+                    <!--<li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>-->
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container"> <!-- Main content wrapper -->
-        <h1 class="review-grad-glitch" data-text="Graduation">Graduation</h1> <!-- Original Graduation glitch effect -->
-        <div class="review-content"> <!-- Review content section -->
-            <h2>Graduation: Kanye West’s Neon-Charged Leap to Iconic Heights</h2> <!-- Subtitle -->
-            <div class="glass-card grad-card"> <!-- Album cover container -->
-                <img src="https://vzdzt.github.io/musicrx/graduation.jpg" alt="Kanye West - Graduation album cover"> <!-- Album cover image -->
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/graduation.jpg" alt="Kanye West - Graduation" class="hero-image">
+        <div class="hero-content">
+            <div class="album-header">
+                <h1 class="album-title review-grad-glitch" data-text="Graduation">Graduation</h1>
+                <p class="album-quote">"Kanye West’s Neon-Charged Leap to Iconic Heights"</p>
             </div>
-            <br> <!-- Line break for spacing -->
-            <p> <!-- Intro paragraph (~100–125 words, 115 words) -->
-                Released <span class="highlight">September 11, 2007</span> via <span class="highlight">Roc-A-Fella</span> and <span class="highlight">Def Jam</span>,
-                Kanye West’s <em><span class="highlight">Graduation</span></em>—a 13-track, 51-minute cap to his college trilogy—crushed 50 Cent’s <em><span class="highlight">Curtis</span></em> with <span class="highlight">957,000 first-week sales</span>.
-                Certified <span class="highlight">7x Platinum</span> by <span class="highlight">March 16, 2025</span>, its 5.8 billion streams keep its neon fuchsia glow alive. Produced with <span class="highlight">Mike Dean</span>, it launched Kanye from Chicago dreamer to global titan. Veazy’s take: this album’s a time capsule of ambition still blazing bright.
-            </p>
+            <img src="https://vzdzt.github.io/musicrx/graduation.jpg" alt="Kanye West - Graduation album cover" class="album-image">
         </div>
-        <br> <!-- Spacing -->
-        <h2>The Messaging and Theme</h2> <!-- Theme section heading -->
-        <br>
-        <p> <!-- Theme description (120–175 words, 150 words) -->
-            Takashi Murakami’s bear blasting into a neon abyss on <em><span class="highlight">Graduation</span></em>’s cover mirrors Kanye’s leap from underdog to icon. <span class="highlight">“Stronger”</span> roars “I need you right now,” a synth-charged victory cry, while <span class="highlight">“Good Life”</span> basks in success—“Welcome to the good life.” Yet, <span class="highlight">“Everything I Am”</span> whispers self-doubt—“I’m just not the hero”—and <span class="highlight">“Big Brother”</span> honors Jay-Z with a competitive edge. It’s Kanye at 30, straddling brash triumph and quiet reflection, shedding soul samples for a fuchsia-lit future. In 2025, X calls it “Kanye’s graduation to GOAT,” its themes of ambition and vulnerability still electrifying.
-        </p>
-        <br>
-        <h2>Production and Sound</h2> <!-- Production section heading -->
-        <br>
-        <p> <!-- Production description (120–175 words, 160 words) -->
-            <span class="highlight">Kanye West</span>, <span class="highlight">Mike Dean</span>, and <span class="highlight">Jon Brion</span> craft <em><span class="highlight">Graduation</span></em>’s sound—a sleek, synth-heavy evolution recorded at <span class="highlight">Sony Music Studios</span> and <span class="highlight">Record Plant</span>. <span class="highlight">“Stronger”</span> remolds Daft Punk into a robotic anthem, <span class="highlight">“Flashing Lights”</span> glimmers with haunting strings, and <span class="highlight">“I Wonder”</span> soars on dreamy pianos—Kanye’s voice cutting through with crisp swagger. <span class="highlight">“Good Morning”</span> pulses with futuristic beats, trading <em><span class="highlight">Late Registration</span></em>’s orchestras for a pop-rap sheen. By 2025, its fuchsia-drenched production still shapes hip-hop’s bold edges, though its polish can feel too safe next to Kanye’s later risks.
-        </p>
-        <br>
-        <h2>Features</h2> <!-- Features section heading -->
-        <br>
-        <p> <!-- Features description (120–175 words, 140 words) -->
-            <em><span class="highlight">Graduation</span></em>’s features amplify Kanye’s neon vision. <span class="highlight">T-Pain</span> laces <span class="highlight">“Good Life”</span> with Auto-Tune joy—“I’ma get on this TV, mama”—while <span class="highlight">Lil Wayne</span> flexes on <span class="highlight">“Barry Bonds”</span>—“I’m high like a pitcher.” <span class="highlight">Dwele</span> adds soul to <span class="highlight">“Flashing Lights,”</span> <span class="highlight">Mos Def</span> croons darkly on <span class="highlight">“Drunk and Hot Girls,”</span> and <span class="highlight">Chris Martin</span> brings tender piano to <span class="highlight">“Homecoming”</span>—“Do you think about me now?” Kanye’s sharp delivery ties it together, keeping the spotlight on his fuchsia ascent from Chicago to the world stage.
-        </p>
-        <br>
-        <div class="glass-card"> <!-- Track Highlights section -->
-            <h2>Track Highlights</h2> <!-- Heading for track highlights -->
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">For Newcomers:</span> <span class="highlight">“Stronger”</span>, <span class="highlight">“Good Life”</span>—
-                Synth beats and T-Pain’s hooks hit hard, Kanye’s confidence shines in fuchsia glory, pulling new listeners into his electrifying world with instant, stadium-ready anthems.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">For The Dive:</span> <span class="highlight">“Flashing Lights”</span>, <span class="highlight">“I Wonder”</span>—
-                Strings and pianos weave hypnotic vibes, Kanye’s introspective edge cuts deep, offering fans a fuchsia-lit plunge into his soulful ambition with cinematic, timeless flair.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Everything I Am”</span>, <span class="highlight">“Big Brother”</span>—
-                Raw bars and Jay-Z nods reveal Kanye’s heart, these quiet fuchsia moments glow with vulnerability, rewarding those craving depth beneath the album’s glossy surface.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Stronger (Live 2025)”</span>—
-                At Coachella 2025, Kanye’s robotic roar under fuchsia lights reignites the crowd—a viral clip Veazy can’t stop replaying, proving this anthem’s neon charge still rules.
-            </p>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">5.8B</div>
+            <div class="stat-label">Streams</div>
         </div>
-        <br>
-        <h2>Previous Works</h2> <!-- Previous Works section heading -->
-        <br>
-        <p> <!-- Extended to ~160 words -->
-            Kanye’s path to <em><span class="highlight">Graduation</span></em> kicked off with <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>), a soul-drenched debut born from a near-fatal crash, with <span class="highlight">“Through the Wire”</span> spitting raw defiance through a wired jaw. <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>) upped the ante, blending <span class="highlight">Jon Brion</span>’s orchestral sweep with hits like <span class="highlight">“Gold Digger”</span>—a No. 1 banger that flexed his knack for flipping samples into gold. Both albums, steeped in Chicago’s hustle, marked Kanye as a producer-rapper rewriting hip-hop’s rules, from classroom skits to lush strings. <em><span class="highlight">Graduation</span></em> caps this trilogy, trading soul chops for fuchsia synths and stadium swagger, a bold leap that crowned his rise. It paved the way for <em><span class="highlight">808s & Heartbreak</span></em> (<span class="highlight">2008</span>)’s icy shift, cementing Kanye’s restless genius. In 2025, this arc still echoes as a cornerstone of modern rap.
-        </p>
-        <br>
-        <h2>Grammy Wins & Nominations</h2> <!-- Grammy section heading -->
-        <br>
-        <div class="glass-card"> <!-- Grammy section container -->
-            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
-            <div class="table-container"> <!-- Table wrapper -->
-                <table class="trend-table"> <!-- Grammy awards table -->
-                    <thead>
-                        <tr>
-                            <th>Category</th> <th>Year</th> <th>Result</th> <!-- Table headers -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Album of the Year</span></td> <td>2008</td> <td>Nominated</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Album</span></td> <td>2008</td> <td>Won</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p> <!-- Grammy summary (~50 words) -->
-                    <em><span class="highlight">Graduation</span></em> snagged Best Rap Album in 2008, its 7x Platinum status and 5.8 billion streams by 2025 cementing its hip-hop legacy as a neon-charged classic.
-                </p>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">7x</div>
+            <div class="stat-label">Platinum</div>
         </div>
-        <br>
-        <h2>Legacy & Reception</h2> <!-- Legacy section heading -->
-        <br>
-        <p> <!-- Legacy description (120–175 words, 155 words) -->
-            Pitchfork’s <span class="highlight">8.7/10</span> hailed <em><span class="highlight">Graduation</span></em> as “a widescreen triumph,” Rolling Stone praised its “stadium-sized vision.” X fans (@36966_) in 2007 dubbed it “Kanye’s glow-up,” a hype still blazing by <span class="highlight">March 16, 2025</span>, with 7x Platinum, 5.8 billion streams, and a Coachella 2025 moment—Kanye spitting <span class="highlight">“Stronger”</span> under fuchsia lights. Born from <em><span class="highlight">Late Registration</span></em>, it’s a neon bridge to his future, its polish a strength and occasional limit. In 2025, it’s hip-hop’s fuchsia beacon, inspiring beats and bravado worldwide.
-        </p>
-        <br>
-        <h2>By the Numbers</h2> <!-- Chart Performance section heading -->
-        <br>
-        <div class="glass-card"> <!-- Chart Performance section -->
-            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Chart performance table -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
-                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Late Registration</span> (2005)</td> <td><span class="highlight">“Gold Digger”</span></td>
-                            <td>1</td> <td>4.9 billion</td> <td>5x Platinum</td> <td>4,500,000+</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Graduation</span> (2007)</td> <td><span class="highlight">“Stronger”</span></td>
-                            <td>1</td> <td>5.8 billion</td> <td>7x Platinum</td> <td>5,200,000+</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">957K</div>
+            <div class="stat-label">First Week</div>
         </div>
-        <br>
-        <div class="glass-card"> <!-- Certifications section -->
-            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Certifications table, includes all pre-Graduation albums -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">The College Dropout</span></td> <td>4x Platinum</td> <td>4.0</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Late Registration</span></td> <td>5x Platinum</td> <td>4.5</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Graduation</span></td> <td>7x Platinum</td> <td>5.2</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Ratings section -->
-            <h2>Ratings</h2> <!-- Heading for ratings -->
-            <p> <!-- 35 words -->
-                <span class="highlight">Originality (18/20):</span> Synth-rap fusion and Daft Punk flips redefine Kanye’s sound, pushing hip-hop into fuchsia territory, though it builds on his past without fully breaking free.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Production Quality (20/20):</span> Mike Dean’s polish and Jon Brion’s touch make every beat gleam, a fuchsia masterpiece of crisp synths and strings that still sounds futuristic in 2025.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Lyrics and Messaging (18/20):</span> “I Wonder” digs deep, Kanye’s brash and tender bars hit hard, though some fuchsia flair outshines substance, leaving a few lines less timeless.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Enjoyment Factor (19/20):</span> “Stronger” electrifies, the fuchsia energy hooks you tight—pure stadium vibes thrill fans, with only “Drunk and Hot Girls” slightly dimming the shine.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Consistency (17/20):</span> “Good Life” flows seamless, but weaker cuts like “Barry Bonds” stumble, slightly cracking the fuchsia polish of Kanye’s tightest triumph to date.
-            </p>
-            <p class="overall-rating"> <!-- Overall rating display -->
-                <span class="highlight"><h3>Overall Rating (92/100):</span> 9.2/10</h3>
-            </p>
-            <p> <!-- Extended to ~100 words -->
-                <em><span class="highlight">Graduation</span></em> is Kanye’s fuchsia peak—neon ambition crashing into raw soul, a sonic graduation from dropout dreams to rap royalty. Picture Coachella 2025: “Stronger” drops, fuchsia lights pulse, the crowd erupts—a timeless banger reborn. Veazy’s still cranking this in 2025, a hip-hop crown jewel that refuses to fade. It’s the trilogy’s grand finale, a bold leap from Chicago streets to global stages, blending pop sheen with heartfelt grit. Nearly two decades on, it’s Kanye at his most electric, a testament to his vision that still reverberates through rap’s DNA.
-            </p>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Sources section -->
-            <h3><span class="highlight">Sources</span></h3> <!-- Subheading -->
-            <p> <!-- ~25 words -->
-                Data from web sources and X posts (@36966_).
-            </p>
+        <div class="stat-card">
+            <div class="stat-number">#1</div>
+            <div class="stat-label">Billboard 200</div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Loads Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Loads GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Loads ScrollTrigger -->
-    <script src="script.js"></script> <!-- Links external script -->
-    <script> <!-- Inline JavaScript for interactivity -->
-        document.addEventListener('DOMContentLoaded', () => { /* Runs when DOM is fully loaded */
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => { /* Prevents transforms on non-image cards */
-                card.style.transform = 'none !important';
-                card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important';
-                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Released <span class="highlight">September 11, 2007</span> via <span class="highlight">Roc-A-Fella</span> and <span class="highlight">Def Jam</span>, Kanye West’s <em><span class="highlight">Graduation</span></em>—a 13-track, 51-minute cap to his college trilogy—crushed 50 Cent’s <em><span class="highlight">Curtis</span></em> with <span class="highlight">957,000 first-week sales</span>. Certified <span class="highlight">7x Platinum</span> by <span class="highlight">March 16, 2025</span>, its 5.8 billion streams keep its neon fuchsia glow alive. Produced with <span class="highlight">Mike Dean</span>, it launched Kanye from Chicago dreamer to global titan. This review’s take: this album’s a time capsule of ambition still blazing bright.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p><span class="highlight">Kanye West</span>, <span class="highlight">Mike Dean</span>, and <span class="highlight">Jon Brion</span> craft <em><span class="highlight">Graduation</span></em>’s sound—a sleek, synth-heavy evolution recorded at <span class="highlight">Sony Music Studios</span> and <span class="highlight">Record Plant</span>. <span class="highlight">“Stronger”</span> remolds Daft Punk into a robotic anthem, <span class="highlight">“Flashing Lights”</span> glimmers with haunting strings, and <span class="highlight">“I Wonder”</span> soars on dreamy pianos—Kanye’s voice cutting through with crisp swagger. <span class="highlight">“Good Morning”</span> pulses with futuristic beats, trading <em><span class="highlight">Late Registration</span></em>’s orchestras for a pop-rap sheen. By 2025, its fuchsia-drenched production still shapes hip-hop’s bold edges, though its polish can feel too safe next to Kanye’s later risks.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p>Takashi Murakami’s bear blasting into a neon abyss on <em><span class="highlight">Graduation</span></em>’s cover mirrors Kanye’s leap from underdog to icon. <span class="highlight">“Stronger”</span> roars “I need you right now,” a synth-charged victory cry, while <span class="highlight">“Good Life”</span> basks in success—“Welcome to the good life.” Yet, <span class="highlight">“Everything I Am”</span> whispers self-doubt—“I’m just not the hero”—and <span class="highlight">“Big Brother”</span> honors Jay-Z with a competitive edge. It’s Kanye at 30, straddling brash triumph and quiet reflection, shedding soul samples for a fuchsia-lit future. In 2025, fans call it “Kanye’s graduation to GOAT,” its themes of ambition and vulnerability still electrifying.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p><em><span class="highlight">Graduation</span></em>’s features amplify Kanye’s neon vision. <span class="highlight">T-Pain</span> laces <span class="highlight">“Good Life”</span> with Auto-Tune joy—“I’ma get on this TV, mama”—while <span class="highlight">Lil Wayne</span> flexes on <span class="highlight">“Barry Bonds”</span>—“I’m high like a pitcher.” <span class="highlight">Dwele</span> adds soul to <span class="highlight">“Flashing Lights,”</span> <span class="highlight">Mos Def</span> croons darkly on <span class="highlight">“Drunk and Hot Girls,”</span> and <span class="highlight">Chris Martin</span> brings tender piano to <span class="highlight">“Homecoming”</span>—“Do you think about me now?” Kanye’s sharp delivery ties it together, keeping the spotlight on his fuchsia ascent from Chicago to the world stage.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p><span class="highlight">“Stronger”</span>, <span class="highlight">“Good Life”</span>—Synth beats and T-Pain’s hooks hit hard, Kanye’s confidence shines in fuchsia glory, pulling new listeners into his electrifying world with instant, stadium-ready anthems.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For The Dive</h3>
+                    <p><span class="highlight">“Flashing Lights”</span>, <span class="highlight">“I Wonder”</span>—Strings and pianos weave hypnotic vibes, Kanye’s introspective edge cuts deep, offering fans a fuchsia-lit plunge into his soulful ambition with cinematic, timeless flair.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p><span class="highlight">“Everything I Am”</span>, <span class="highlight">“Big Brother”</span>—Raw bars and Jay-Z nods reveal Kanye’s heart, these quiet fuchsia moments glow with vulnerability, rewarding those craving depth beneath the album’s glossy surface.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Latest Obsessions</h3>
+                    <p><span class="highlight">“Stronger (Live 2025)”</span>—At Coachella 2025, Kanye’s robotic roar under fuchsia lights reignites the crowd—a viral clip this review can’t stop replaying, proving this anthem’s neon charge still rules.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p>Kanye’s path to <em><span class="highlight">Graduation</span></em> kicked off with <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>), a soul-drenched debut born from a near-fatal crash, with <span class="highlight">“Through the Wire”</span> spitting raw defiance through a wired jaw. <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>) upped the ante, blending <span class="highlight">Jon Brion</span>’s orchestral sweep with hits like <span class="highlight">“Gold Digger”</span>—a No. 1 banger that flexed his knack for flipping samples into gold. Both albums, steeped in Chicago’s hustle, marked Kanye as a producer-rapper rewriting hip-hop’s rules, from classroom skits to lush strings. <em><span class="highlight">Graduation</span></em> caps this trilogy, trading soul chops for fuchsia synths and stadium swagger, a bold leap that crowned his rise. It paved the way for <em><span class="highlight">808s & Heartbreak</span></em> (<span class="highlight">2008</span>)’s icy shift, cementing Kanye’s restless genius. In 2025, this arc still echoes as a cornerstone of modern rap.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p>Pitchfork’s <span class="highlight">8.7/10</span> hailed <em><span class="highlight">Graduation</span></em> as “a widescreen triumph,” Rolling Stone praised its “stadium-sized vision.” Fans in 2007 dubbed it “Kanye’s glow-up,” a hype still blazing by <span class="highlight">March 16, 2025</span>, with 7x Platinum, 5.8 billion streams, and a Coachella 2025 moment—Kanye spitting <span class="highlight">“Stronger”</span> under fuchsia lights. Born from <em><span class="highlight">Late Registration</span></em>, it’s a neon bridge to his future, its polish a strength and occasional limit. In 2025, it’s hip-hop’s fuchsia beacon, inspiring beats and bravado worldwide.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Year</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">Album of the Year</span></td>
+                            <td>2008</td>
+                            <td>Nominated</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">Best Rap Album</span></td>
+                            <td>2008</td>
+                            <td>Won</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><em><span class="highlight">Graduation</span></em> snagged Best Rap Album in 2008, its 7x Platinum status and 5.8 billion streams by 2025 cementing its hip-hop legacy as a neon-charged classic.</p>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Originality</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>Synth-rap fusion and Daft Punk flips redefine Kanye’s sound, pushing hip-hop into fuchsia territory, though it builds on his past without fully breaking free.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">10.0</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                </div>
+                <p>Mike Dean’s polish and Jon Brion’s touch make every beat gleam, a fuchsia masterpiece of crisp synths and strings that still sounds futuristic in 2025.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Lyrics</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>“I Wonder” digs deep, Kanye’s brash and tender bars hit hard, though some fuchsia flair outshines substance, leaving a few lines less timeless.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Enjoyment</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>“Stronger” electrifies, the fuchsia energy hooks you tight—pure stadium vibes thrill fans, with only “Drunk and Hot Girls” slightly dimming the shine.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Consistency</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>“Good Life” flows seamless, but weaker cuts like “Barry Bonds” stumble, slightly cracking the fuchsia polish of Kanye’s tightest triumph to date.</p>
+            </div>
+            <div class="rating-card overall-rating">
+                <div class="rating-score">9.2</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 92%"></div>
+                </div>
+                <p><em><span class="highlight">Graduation</span></em> is Kanye’s fuchsia peak—neon ambition crashing into raw soul, a sonic graduation from dropout dreams to rap royalty. Picture Coachella 2025: “Stronger” drops, fuchsia lights pulse, the crowd erupts—a timeless banger reborn. This review’s still cranking this in 2025, a hip-hop crown jewel that refuses to fade. It’s the trilogy’s grand finale, a bold leap from Chicago streets to global stages, blending pop sheen with heartfelt grit. Nearly two decades on, it’s Kanye at his most electric, a testament to his vision that still reverberates through rap’s DNA.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Chart Performance</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Highest Charting Song</th>
+                            <th>Peak Position</th>
+                            <th>Streams (as of 2025)</th>
+                            <th>Certification</th>
+                            <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em><span class="highlight">Late Registration</span></em></td><td><span class="highlight">“Gold Digger”</span></td><td>1</td><td>4.9B</td><td>5x Platinum</td><td>4.5M+</td></tr>
+                        <tr><td><em><span class="highlight">Graduation</span></em></td><td><span class="highlight">“Stronger”</span></td><td>1</td><td>5.8B</td><td>7x Platinum</td><td>5.2M+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Album Certifications</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em><span class="highlight">The College Dropout</span></em></td><td>4x Platinum</td><td>4.0</td></tr>
+                        <tr><td><em><span class="highlight">Late Registration</span></em></td><td>5x Platinum</td><td>4.5</td></tr>
+                        <tr><td><em><span class="highlight">Graduation</span></em></td><td>7x Platinum</td><td>5.2</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data sourced from Billboard, RIAA, Spotify, and Pitchfork, verified as of March 16, 2025.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <div class="button-container"> 
+        <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+            <i class="fas fa-adjust"></i>
+        </button>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Starfield
+            let camera, renderer, starField, scene = null;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY= 0;
+            const canvas = document.getElementById('universe');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 1000;
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const starCount = 15000;
+
+            for (let i = 0; i < starCount; i++) {
+                vertices.push(
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000
+                );
+                const color = new THREE.Color();
+                color.setHSL(Math.random(), 0.7, 0.7);
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
             });
-            document.querySelectorAll('.glass-card').forEach(card => { /* Adds hover effect to all glass cards */
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 0 20px rgba(255, 0, 255, 0.3)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = 'none';
-                });
+
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
             });
-            document.querySelectorAll('.grad-card').forEach(card => { /* Adds hover effect to album cover card */
-                card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.05)';
-                    card.style.transform = 'scale(1.05)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
-                    card.style.transform = 'scale(1)';
-                });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (starField) {
+                    targetX += (mouseX - targetX) * 0.02;
+                    targetY += (mouseY - targetY) * 0.02;
+                    starField.rotation.x += 0.0002 + targetY * 0.05;
+                    starField.rotation.y += 0.0003 + targetX * 0.05;
+                    const time = Date.now() * 0.001;
+                    starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+                }
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
             });
-            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Adds hover effect to track highlights */
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'scale(1.02)';
-                    item.style.boxShadow = '0 0 10px rgba(255, 0, 255, 0.2)';
-                });
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'scale(1)';
-                    item.style.boxShadow = 'none';
-                });
+
+            // Improved Dropdown functionality
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
+            });
+
+            // Chart
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2007', '2010', '2015', '2020', '2023', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [0.5, 1.5, 3.0, 4.5, 5.2, 5.8],
+                        borderColor: '#FF00FF',
+                        backgroundColor: 'rgba(255, 0, 255, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
             });
         });
     </script>
