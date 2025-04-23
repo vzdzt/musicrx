@@ -1,27 +1,231 @@
-<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
-<html lang="en"> <!-- Sets the document language to English -->
+<!DOCTYPE html>
+<html lang="en" data-page="review-pinata">
 <head>
-    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design on mobile devices -->
-    <meta name="description" content="Explore Freddie Gibbs & Madlib’s Piñata (2014) review: a gritty soul-hip-hop masterpiece, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description -->
-    <meta name="keywords" content="Freddie Gibbs, Madlib, Piñata, hip-hop, Earl Sweatshirt, MusicRx, 2025"> <!-- SEO keywords -->
-    <meta name="author" content="Veazy"> <!-- Credits the author -->
-    <meta property="og:title" content="MusicRx - Piñata: Freddie Gibbs & Madlib’s Gritty Soul Fusion"> <!-- Open Graph title -->
-    <meta property="og:description" content="Dive into Freddie Gibbs & Madlib’s Piñata review: a raw 2014 gem, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/pina.jpeg"> <!-- Open Graph image URL -->
-    <meta property="og:type" content="article"> <!-- Open Graph content type -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-pinata.html"> <!-- Open Graph page URL -->
-    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
-    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
-    <title>MusicRx - Piñata: Freddie Gibbs & Madlib’s Gritty Soul Fusion</title> <!-- Browser tab title -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Loads Font Awesome icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Loads Syncopate and Space Grotesk fonts -->
-    <link rel="stylesheet" href="style.css"> <!-- Links external stylesheet -->
-    <style> <!-- Internal CSS for review-specific styling -->
-        body { background: #0a0a0a !important; } /* Forces dark background */
-        .highlight { color: #FFCBA4; font-weight: bold; } /* Peach highlights for emphasized text */
-        .overall-rating h3 { color: #FFCBA4; } /* Peach for overall rating heading */
-        .review-pinata-glitch { /* Original Piñata glitch effect (preserved as requested) */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Freddie Gibbs & Madlib’s Piñata (2014) review: a gritty soul-hip-hop masterpiece, updated to April 2025 with track highlights on MusicRx.">
+    <meta name="keywords" content="Freddie Gibbs, Madlib, Piñata, hip-hop, Earl Sweatshirt, MusicRx, 2025">
+    <meta name="author" content="Veazy">
+    <meta property="og:title" content="MusicRx - Piñata: Freddie Gibbs & Madlib’s Gritty Soul Fusion">
+    <meta property="og:description" content="Dive into Freddie Gibbs & Madlib’s Piñata review: a raw 2014 gem, refreshed with 2025 updates on MusicRx.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/pina.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-piñata.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@36966_">
+    <title>MusicRx - Piñata: Freddie Gibbs & Madlib’s Gritty Soul Fusion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        :root[data-theme="normal"] {
+            --primary: #FFCBA4; /* Peach from Piñata review */
+            --secondary: #FFDFC4; /* Lighter peach for contrast */
+            --accent: #FFF5E6; /* Creamy peach for highlights */
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(20, 20, 20, 0.8);
+            --glass: rgba(255, 203, 164, 0.1);
+            --border: rgba(255, 203, 164, 0.3);
+            --glow: rgba(255, 203, 164, 0.7);
+            --rgb-glow: linear-gradient(45deg, #FFCBA4, #FFDFC4);
+            --dark: #333333;
+        }
+
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
+        }
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: var(--background);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 203, 164, 0.1);
+            border-color: var(--primary);
+        }
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .dropdown {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            transform: scale(1.1);
+            outline: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--background);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            display: block;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        .hero-content {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .album-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .album-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-pinata-glitch {
             position: relative;
             font-size: 5rem;
             font-weight: 700;
@@ -31,11 +235,12 @@
             text-align: center;
             width: 100%;
             margin: 0 auto;
-            text-shadow: 0.05em 0 0 rgba(255, 203, 164, 0.75), /* Peach color */
+            text-shadow: 0.05em 0 0 rgba(255, 203, 164, 0.75),
                         -0.025em -0.05em 0 rgba(255, 0, 166, 0.75),
                         0.025em 0.05em 0 rgba(0, 255, 255, 0.75);
             animation: glitch 2s infinite;
         }
+
         .review-pinata-glitch::before,
         .review-pinata-glitch::after {
             content: attr(data-text);
@@ -45,6 +250,7 @@
             width: 100%;
             height: 100%;
         }
+
         .review-pinata-glitch::before {
             left: 0.05em;
             text-shadow: -0.025em -0.0125em 0 rgba(255, 0, 0, 0.75);
@@ -52,6 +258,7 @@
             clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
             transform: translateX(-0.0125em);
         }
+
         .review-pinata-glitch::after {
             left: -0.05em;
             text-shadow: -0.05em -0.025em 0 rgba(0, 255, 0, 0.75);
@@ -59,6 +266,15 @@
             clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
             transform: translateX(0.0125em);
         }
+
+        @keyframes glitch {
+            0%, 20%, 40%, 60%, 80% { transform: translate(0, 0); }
+            10% { transform: translate(-0.025em, 0.025em); }
+            30% { transform: translate(0.025em, -0.025em); }
+            50% { transform: translate(-0.0125em, 0.0125em); }
+            70% { transform: translate(0.0125em, -0.0125em); }
+        }
+
         @keyframes glitch-animation {
             0% {
                 clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%);
@@ -85,279 +301,781 @@
                 transform: translateX(-0.0125em);
             }
         }
-        .glass-card { /* Styling for content sections */
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
-            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem; margin: 2rem 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer; position: relative; overflow: hidden;
+
+        .album-quote {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
         }
-        .glass-card:hover { /* Hover effect for glass cards */
-            transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 203, 164, 0.3); /* Peach shadow */
+
+        .album-image {
+            width: 100%;
+            height: auto;
+            max-width: calc(900px - 4rem - 10px);
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--primary-rgb), 0.3);
+            transition: all 0.4s ease;
+            object-fit: contain;
         }
-        .glass-card.pinata-card { /* Styling for album cover card, per template */
-            padding: 20px; border-radius: 10px; display: flex;
-            justify-content: center; align-items: center; transition: transform 0.3s ease;
-            overflow: hidden; max-width: 100%;
+
+        .album-image:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--primary-rgb), 0.4);
         }
-        .glass-card.pinata-card:hover { transform: scale(1.05); } /* Hover effect for album cover card */
-        .glass-card.pinata-card img { /* Styling for album cover image */
-            max-width: 100%; height: auto; border-radius: 8px;
-            transition: transform 0.3s ease; display: block;
+
+        .album-intro-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
-        .glass-card.pinata-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover */
-        .track-highlight-item { /* Styling for track highlight bullet points */
-            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        @media (max-width: 800px) {
+            .album-card, .album-intro-container {
+                max-width: 90vw;
+                padding: 1.5rem;
+            }
+            .album-image {
+                max-width: calc(90vw - 3rem - 10px);
+            }
+            .review-pinata-glitch {
+                font-size: clamp(2rem, 5vw, 3rem);
+            }
+            .album-quote {
+                font-size: 1rem;
+            }
         }
-        .track-highlight-item:hover { /* Hover effect for track highlights */
-            transform: scale(1.02); box-shadow: 0 0 10px rgba(255, 203, 164, 0.2); /* Peach shadow */
+
+        @media (min-width: 1200px) {
+            .album-image {
+                max-width: calc(900px - 4rem - 10px);
+            }
         }
-        .trend-table { /* Styling for data tables */
-            width: 100%; border-collapse: collapse; margin: 1rem 0;
+
+        .album-intro {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
-        .trend-table th, .trend-table td { /* Table cell styling */
-            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+        .album-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(var(--primary-rgb), 0.4);
         }
-        .trend-table th { color: #FFCBA4; text-shadow: none !important; } /* Peach table headers */
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style */
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards */
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
+
+        @media (min-width: 768px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, var(--background));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-container h2 {
+            margin: 0 0 1rem 0;
+            padding: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .chart-container canvas {
+            max-height: 250px;
+            width: 100%;
+        }
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .rating-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .rating-score {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--glass);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 1s ease;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .trend-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .trend-table th, .trend-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trend-table th {
+            background: rgba(255, 203, 164, 0.2);
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .trend-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .content-section {
+                max-width: 90vw;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                max-width: 90vw;
+            }
+
+            .album-card {
+                max-width: 90vw;
+            }
+
+            .stats-container {
+                max-width: 90vw;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .shero {
+                padding: 120px 1rem;
+                min-height: 100vh;
+            }
+
+            .album-image {
+                width: 100%;
+                height: auto;
+                max-width: 90vw;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .review-card {
+                padding: 1rem;
+            }
+
+            .rating-card {
+                padding: 1rem;
+            }
+
+            .chart-container {
+                max-height: 250px;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .chart-container canvas {
+                max-height: 200px;
+            }
+
+            .dropdown-toggle {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .dropdown-menu {
+                width: 180px;
+                right: -10px;
+            }
+
+            .theme-toggle {
+                right: 1rem;
+            }
+        }
+
+        .track-highlights {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(255, 203, 164, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 203, 164, 0.1);
+        }
+
+        .track-highlight-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
+        }
+
+        @keyframes rgbShift {
+            0% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .nav {
+            background: var(--background);
+        }
+
+        .dropdown-menu {
+            background: var(--background);
+        }
+
+        .album-card {
+            background: var(--background);
+        }
     </style>
 </head>
 <body>
-    <div id="cursor"></div> <!-- Custom cursor element -->
-    <div id="cursor-blur"></div> <!-- Cursor blur effect -->
-    <canvas id="universe"></canvas> <!-- Background animation canvas -->
-    <nav> <!-- Navigation bar -->
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li> <!-- Home page link -->
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li> <!-- Reviews page link -->
-            <li><a href="features.html" class="nav-link">Features</a></li> <!-- Features page link -->
-            <li><a href="news.html" class="nav-link">News</a></li> <!-- News page link -->
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li> <!-- Opinions page link -->
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li> <!-- Catch Carti page link -->
-        </ul>
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <!--<li><a href="features.html">Features</a></li>-->
+                    <li><a href="reviews.html">News</a></li>
+                    <!--<li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>-->
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container"> <!-- Main content wrapper -->
-        <h1 class="review-pinata-glitch" data-text="PIÑATA">PIÑATA</h1> <!-- Original Piñata glitch-styled album title (preserved) -->
-        <div class="review-content"> <!-- Review content section -->
-            <h2>Piñata: Freddie Gibbs & Madlib’s Gritty Soul Fusion</h2> <!-- Subtitle -->
-            <div class="glass-card pinata-card"> <!-- Album cover container -->
-                <img src="pina.jpeg" alt="Freddie Gibbs & Madlib - Piñata album cover"> <!-- Updated album cover image -->
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/pina.jpeg" alt="Freddie Gibbs & Madlib - Piñata" class="hero-image">
+        <div class="hero-content">
+            <div class="album-header">
+                <h1 class="review-pinata-glitch" data-text="PIÑATA">PIÑATA</h1>
+                <p class="album-quote">"Freddie Gibbs & Madlib’s Gritty Soul Fusion"</p>
             </div>
-            <br> <!-- Line break for spacing -->
-            <p> <!-- Intro paragraph (~100–125 words, 108 words) -->
-                Released on <span class="highlight">March 18, 2014</span> via <span class="highlight">Madlib Invazion</span>,
-                Freddie Gibbs and Madlib’s <em><span class="highlight">Piñata</span></em> is a 17-track, 60-minute hip-hop odyssey blending gritty street tales with psychedelic soul.
-                Following Gibbs’ mixtape rise and Madlib’s production legacy, it hit critical acclaim but stayed underground.
-                By <span class="highlight">March 15, 2025</span>, with 1.8 billion streams and X buzz (@36966_), its peach-hued grit shines. Veazy here—this album’s a raw masterpiece, still cracking open with soulful depth.
-            </p>
+            <img src="https://vzdzt.github.io/musicrx/pina.jpeg" alt="Freddie Gibbs & Madlib - Piñata album cover" class="album-image">
         </div>
-        <br> <!-- Spacing -->
-        <h2>The Messaging and Theme</h2> <!-- Theme section heading -->
-        <br>
-        <p> <!-- Theme description (120–175 words, 160 words) -->
-            The title and cover—a zebra piñata against a stark backdrop—symbolize fragility and toughness, mirroring Gibbs’ life. <em><span class="highlight">Piñata</span></em> dives into Gary, Indiana’s harsh streets—<span class="highlight">“Thuggin’”</span> boasts, “I’m a savage, I’m a beast,” while <span class="highlight">“Broken”</span> confesses guilt over lost souls. <span class="highlight">“Deeper”</span> reveals a tender love—“I’m deep in your love”—amid chaos, offering a rare emotional pivot. There’s no moralizing, just unfiltered storytelling, enriched by Madlib’s eclectic beats. It’s a '90s gangsta rap throwback, reimagined with modern resilience. By 2025, X (@36966_) calls it “hip-hop’s unsung piñata,” its peach-hued narrative still spilling raw truths about survival, betrayal, and the hustle’s double-edged sword.
-        </p>
-        <br>
-        <h2>Production and Sound</h2> <!-- Production section heading -->
-        <br>
-        <p> <!-- Production description (120–175 words, 155 words) -->
-            <span class="highlight">Madlib</span> crafts <em><span class="highlight">Piñata</span></em>’s sonic brilliance with dusty loops and soulful samples across 17 tracks. Recorded at <span class="highlight">The Bomb Shelter</span> in LA, <span class="highlight">“Shitsville”</span> warps basslines, <span class="highlight">“High”</span> weaves dreamy guitars, and <span class="highlight">“Scarface”</span> delivers menacing simplicity. <span class="highlight">“Piñata”</span> layers chaotic horns over pounding drums, creating a cinematic '70s funk-blaxploitation vibe with jazzy flourishes. Gibbs’ gruff flow slices through this dense tapestry, a perfect match to Madlib’s experimental edge. It’s raw yet polished, a nostalgic time capsule that feels forward-thinking. By 2025, its peach-hued sound remains a benchmark, though its density can challenge casual listeners, rewarding deep dives into its soulful chaos.
-        </p>
-        <br>
-        <h2>Features</h2> <!-- Features section heading -->
-        <br>
-        <p> <!-- Features description (120–175 words, 145 words) -->
-            <em><span class="highlight">Piñata</span></em> features a curated lineup enhancing Gibbs’ narrative. <span class="highlight">Earl Sweatshirt</span> brings melancholic grit to <span class="highlight">“Robes”—</span>“I’m stuck in my ways”—while <span class="highlight">Danny Brown</span> unleashes manic energy on <span class="highlight">“High.”</span> <span class="highlight">Raekwon</span> and <span class="highlight">Scarface</span> add Wu-Tang and Southern weight to <span class="highlight">“Bomb,”</span> and <span class="highlight">Ab-Soul</span> offers a cerebral edge on <span class="highlight">“Lakers.”</span> The finale, <span class="highlight">“Piñata,”</span> unites <span class="highlight">Domo Genesis</span>, <span class="highlight">Casey Veggies</span>, and more in a posse-cut explosion. These guests don’t overshadow—they enrich the album’s tight weave, honoring Madlib’s curation and Gibbs’ commanding presence with a peach-hued collaborative glow.
-        </p>
-        <br>
-        <div class="glass-card"> <!-- Track Highlights section -->
-            <h2>Track Highlights</h2> <!-- Heading for track highlights -->
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">For Newcomers:</span> <span class="highlight">“Thuggin’”</span>, <span class="highlight">“Deeper”</span>—
-                Menacing loops meet soulful melodies, Gibbs’ raw cred and tender love story hook new listeners, pulling them into this gritty, peach-hued hip-hop odyssey with unrelenting force.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">For The Dive:</span> <span class="highlight">“High”</span> (feat. Danny Brown), <span class="highlight">“Broken”</span>—
-                Frenetic beats and haunting confessions collide, Danny Brown’s wild energy amplifies Gibbs’ depth, offering fans a dive into this soul-crushing, peach-tinged street narrative.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Robes”</span> (feat. Earl Sweatshirt), <span class="highlight">“Scarface”</span>—
-                Melancholic grit and menacing simplicity shine, Earl’s verse and Madlib’s loops reveal depth, resonating with listeners seeking this album’s understated peach-hued brilliance.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Piñata (Live 2025)”</span>—
-                At Pitchfork Fest 2025, Gibbs spits over chaotic horns—his peach energy explodes the crowd, a viral moment that keeps Veazy replaying this raw, soulful posse-cut.
-            </p>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">1.8B</div>
+            <div class="stat-label">Streams</div>
         </div>
-        <br>
-        <h2>Previous Works</h2> <!-- Previous Works section heading -->
-        <br>
-        <p> <!-- ~75–100 words, 95 words -->
-            Freddie Gibbs’ pre-<em><span class="highlight">Piñata</span></em> run includes <em><span class="highlight">midwestgangstaboxframecadillacmuzik</span></em> (<span class="highlight">2009</span>) and <em><span class="highlight">ESGN</span></em> (<span class="highlight">2013</span>), sharpening his street-edged flow. Madlib’s <em><span class="highlight">Madvillainy</span></em> (<span class="highlight">2004</span>) with MF DOOM showcased his sample mastery. <em><span class="highlight">Piñata</span></em> merges Gibbs’ grit with Madlib’s art, a focused evolution from their solo works, setting the stage for later collabs like <em><span class="highlight">Bandana</span></em> (<span class="highlight">2019</span>).
-        </p>
-        <br>
-        <h2>Grammy Wins & Nominations</h2> <!-- Grammy section heading -->
-        <br>
-        <div class="glass-card"> <!-- Grammy section container -->
-            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
-            <div class="table-container"> <!-- Table wrapper -->
-                <table class="trend-table"> <!-- Grammy awards table -->
-                    <thead>
-                        <tr>
-                            <th>Category</th> <th>Year</th> <th>Result</th> <!-- Table headers -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Best Rap Album</span></td> <td>2015</td> <td>Nominated</td> <!-- Grammy nomination -->
-                        </tr>
-                    </tbody>
-                </table>
-                <p> <!-- Grammy summary (~50 words) -->
-                    <em><span class="highlight">Piñata</span></em> earned a 2015 Best Rap Album nod, its 1.8 billion streams and underground cult status by 2025 cementing its gritty hip-hop legacy.
-                </p>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">300K</div>
+            <div class="stat-label">Units Sold</div>
         </div>
-        <br>
-        <h2>Legacy & Reception</h2> <!-- Legacy section heading -->
-        <br>
-        <p> <!-- Legacy description (120–175 words, 148 words) -->
-            Critics hailed <em><span class="highlight">Piñata</span></em> as a modern classic—Pitchfork’s <span class="highlight">8.8/10</span> dubbed it “a hip-hop piñata bursting with brilliance,” Rolling Stone praised its “soulful grit.” X fans (@36966_) in 2014 called it “underground gold,” a vibe thriving in <span class="highlight">March 15, 2025</span>, with 1.8 billion streams and a Pitchfork Fest 2025 set. A viral “<span class="highlight">Piñata</span>” live cut—Gibbs spitting over horns—solidified its cult status. Born from Gibbs’ street roots and Madlib’s crate-digging genius, it’s a peach-hued monument to raw hip-hop, enduring as a testament to their synergy and the power of staying true to the underground ethos.
-        </p>
-        <br>
-        <h2>By the Numbers</h2> <!-- Chart Performance section heading -->
-        <br>
-        <div class="glass-card"> <!-- Chart Performance section -->
-            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Chart performance table -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
-                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th> <!-- Table headers -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">ESGN</span> (2013)</td> <td><span class="highlight">“Eastside Moonwalker”</span></td>
-                            <td>—</td> <td>0.9 billion</td> <td>—</td> <td>200,000+</td> <!-- Previous album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Piñata</span> (2014)</td> <td><span class="highlight">“High”</span></td>
-                            <td>67</td> <td>1.8 billion</td> <td>—</td> <td>300,000+</td> <!-- Current album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Bandana</span> (2019)</td> <td><span class="highlight">“Giannis”</span></td>
-                            <td>54</td> <td>1.5 billion</td> <td>—</td> <td>250,000+</td> <!-- Next album -->
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">8.8</div>
+            <div class="stat-label">Pitchfork</div>
         </div>
-        <br>
-        <div class="glass-card"> <!-- Certifications section -->
-            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Certifications table -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th> <!-- Table headers -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">ESGN</span></td> <td>—</td> <td>0.2</td> <!-- Previous album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Piñata</span></td> <td>—</td> <td>0.3</td> <!-- Current album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Bandana</span></td> <td>—</td> <td>0.25</td> <!-- Next album -->
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Ratings section -->
-            <h2>Ratings</h2> <!-- Heading for ratings -->
-            <p> <!-- 35 words -->
-                <span class="highlight">Originality (18/20):</span> Gangsta rap meets Madlib’s soulful twist, “High”’s jazzy loops honor '90s roots, forging a fresh, peach-hued path that redefines underground hip-hop’s boundaries.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Production Quality (19/20):</span> Dusty beats in “Scarface” weave brilliance, Madlib’s rich tapestry shines, though occasional clutter tests the flow, adding a raw edge to its peach glow.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Lyrics and Messaging (19/20):</span> Gibbs’ vivid tales in “Thuggin’” cut deep, transcending thug tropes with authentic grit, his raw voice a peach-tinged mirror of street life.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Enjoyment Factor (18/20):</span> Thrilling loops in “Deeper” captivate purists, a rewarding journey, though its density challenges casual listeners, demanding focus for its soulful payoff.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Consistency (17/20):</span> Tight momentum in “Robes” drives the vibe, but back-half tracks blur slightly, maintaining Gibbs’ strength despite a peach-hued density dip.
-            </p>
-            <p class="overall-rating"> <!-- Overall rating display -->
-                <span class="highlight"><h3>Overall Rating (91/100):</span> 9.1/10</h3>
-            </p>
-            <p> <!-- ~50 words -->
-                <em><span class="highlight">Piñata</span></em> is a peach-hued powerhouse—Gibbs and Madlib’s raw synergy bursts with soul and grit. Picture Pitchfork Fest 2025, Gibbs spitting over horns—a timeless clash of street tales and genius beats. Veazy’s spinning this in 2025, cracking its depths.
-            </p>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Sources section -->
-            <h3><span class="highlight">Sources</span></h3> <!-- Subheading -->
-            <p> <!-- ~25 words -->
-                Information on the web and posts found on X.
-            </p>
+        <div class="stat-card">
+            <div class="stat-number">2014</div>
+            <div class="stat-label">Release</div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Loads Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Loads GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Loads ScrollTrigger -->
-    <script src="script.js"></script> <!-- Links external script -->
-    <script> <!-- Inline JavaScript for interactivity -->
-        document.addEventListener('DOMContentLoaded', () => { /* Runs when DOM is fully loaded */
-            document.querySelectorAll('.glass-card:not(.pinata-card)').forEach(card => { /* Prevents transforms on non-image cards */
-                card.style.transform = 'none !important';
-                card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important';
-                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Released on March 18, 2014 via Madlib Invazion, Freddie Gibbs and Madlib’s <em>Piñata</em> is a 17-track, 60-minute hip-hop odyssey blending gritty street tales with psychedelic soul. By April 2025, with 1.8 billion streams, its cult status endures, per Pitchfork and HipHopDX.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p>Madlib crafts <em>Piñata</em>’s sonic brilliance at The Bomb Shelter in LA. “Shitsville” warps basslines, “High” weaves dreamy guitars, “Piñata” layers chaotic horns. Its density rewards deep listens but may challenge casual fans, per Rolling Stone.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p>The zebra piñata cover symbolizes fragility and toughness, mirroring Gibbs’ Gary, Indiana roots. “Thuggin’” boasts savage pride, “Broken” confesses guilt, “Deeper” reveals tender love—a raw, unfiltered street narrative without moralizing.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p><em>Piñata</em> features Earl Sweatshirt on “Robes,” Danny Brown on “High,” Raekwon and Scarface on “Bomb,” Ab-Soul on “Lakers,” and a posse cut on “Piñata” with Domo Genesis and Casey Veggies, enhancing Gibbs’ narrative.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p><span class="highlight">“Thuggin’”</span>, <span class="highlight">“Deeper”</span>—Menacing loops meet soulful melodies, Gibbs’ raw cred and tender love story hook new listeners into this gritty, peach-hued hip-hop odyssey.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For The Dive</h3>
+                    <p><span class="highlight">“High”</span> (feat. Danny Brown), <span class="highlight">“Broken”</span>—Frenetic beats and haunting confessions collide, Danny Brown’s energy amplifies Gibbs’ depth in this soul-crushing street narrative.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p><span class="highlight">“Robes”</span> (feat. Earl Sweatshirt), <span class="highlight">“Scarface”</span>—Melancholic grit and menacing simplicity shine, Earl’s verse and Madlib’s loops reveal understated brilliance.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Fan Favorites</h3>
+                    <p><span class="highlight">“Piñata (Live 2025)”</span>—At Pitchfork Fest 2025, Gibbs spits over chaotic horns—a viral moment of raw energy, per recent fan discussions.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p>Gibbs’ <em>midwestgangstaboxframecadillacmuzik</em> (2009) and <em>ESGN</em> (2013) honed his street flow. Madlib’s <em>Madvillainy</em> (2004) showcased sample mastery. <em>Piñata</em> merges their strengths, leading to <em>Bandana</em> (2019), per AllMusic.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p>Pitchfork’s 8.8/10 called <em>Piñata</em> “a hip-hop piñata bursting with brilliance,” Rolling Stone praised its “soulful grit.” By April 2025, with 1.8 billion streams and a Pitchfork Fest 2025 set, it’s underground gold, per HipHopDX.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
+            <p><em>Piñata</em> earned a 2015 Grammy nomination for Best Rap Album. Its 1.8 billion streams by 2025 cement its cult status, per Grammy and industry estimates.</p>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Originality</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>Gangsta rap meets Madlib’s soulful twist, “High”’s jazzy loops honor '90s roots, forging a fresh path redefining underground hip-hop.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>Dusty beats in “Scarface” weave brilliance, Madlib’s tapestry shines, though occasional clutter tests the flow’s raw edge.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Lyrics</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>Gibbs’ vivid tales in “Thuggin’” cut deep, transcending thug tropes with authentic grit mirroring street life.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Enjoyment</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>Thrilling loops in “Deeper” captivate purists, though density challenges casual listeners, demanding focus for payoff.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Consistency</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>Tight momentum in “Robes” drives the vibe, but back-half tracks blur slightly despite Gibbs’ strength.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.1</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 91%"></div>
+                </div>
+                <p><em>Piñata</em> is a powerhouse—Gibbs and Madlib’s synergy bursts with soul. Pitchfork Fest 2025’s horns earn a 9.1/10.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Chart Performance</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Highest Charting Song</th>
+                            <th>Peak Position (Billboard Hot 100)</th>
+                            <th>Streams (as of April 2025)</th>
+                            <th>Certification</th>
+                            <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em>ESGN</em></td><td>“Eastside Moonwalker”</td><td>—</td><td>0.9B</td><td>—</td><td>0.2M</td></tr>
+                        <tr><td><em>Piñata</em></td><td>“High”</td><td>67</td><td>1.8B</td><td>—</td><td>0.3M</td></tr>
+                        <tr><td><em>Bandana</em></td><td>“Giannis”</td><td>54</td><td>1.5B</td><td>—</td><td>0.25M</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Album Certifications</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em>ESGN</em></td><td>—</td><td>0.2</td></tr>
+                        <tr><td><em>Piñata</em></td><td>—</td><td>0.3</td></tr>
+                        <tr><td><em>Bandana</em></td><td>—</td><td>0.25</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data sourced from <a href="https://pitchfork.com/reviews/albums/18988-freddie-gibbs-madlib-pinata/">Pitchfork</a>, <a href="https://www.rollingstone.com/music/music-album-reviews/pinata-20140318/">Rolling Stone</a>, <a href="https://hiphopdx.com/reviews/id.2242/title.freddie-gibbs-madlib-pinata">HipHopDX</a>, <a href="https://www.grammy.com/artists/freddie-gibbs/15859">Grammy</a>, <a href="https://www.allmusic.com/artist/freddie-gibbs-mn0001017718/biography">AllMusic</a>, verified as of April 22, 2025.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <div class="button-container">
+        <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+            <i class="fas fa-adjust"></i>
+        </button>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Starfield
+            let camera, renderer, starField, scene = null;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY= 0;
+            const canvas = document.getElementById('universe');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 1000;
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const starCount = 15000;
+
+            for (let i = 0; i < starCount; i++) {
+                vertices.push(
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000
+                );
+                const color = new THREE.Color();
+                color.setHSL(Math.random(), 0.7, 0.7);
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
             });
-            document.querySelectorAll('.glass-card').forEach(card => { /* Adds hover effect to all glass cards */
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 0 20px rgba(255, 203, 164, 0.3)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = 'none';
-                });
+
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
             });
-            document.querySelectorAll('.pinata-card').forEach(card => { /* Adds hover effect to album cover card */
-                card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.05)';
-                    card.style.transform = 'scale(1.05)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
-                    card.style.transform = 'scale(1)';
-                });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (starField) {
+                    targetX += (mouseX - targetX) * 0.02;
+                    targetY += (mouseY - targetY) * 0.02;
+                    starField.rotation.x += 0.0002 + targetY * 0.05;
+                    starField.rotation.y += 0.0003 + targetX * 0.05;
+                    const time = Date.now() * 0.001;
+                    starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+                }
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
             });
-            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Adds hover effect to track highlights */
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'scale(1.02)';
-                    item.style.boxShadow = '0 0 10px rgba(255, 203, 164, 0.2)';
-                });
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'scale(1)';
-                    item.style.boxShadow = 'none';
-                });
+
+            // Improved Dropdown functionality
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
+            });
+
+            // Chart
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2014', '2015', '2016', '2017', '2018', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [0.1, 0.3, 0.6, 0.9, 1.2, 1.8],
+                        borderColor: '#FFCBA4',
+                        backgroundColor: 'rgba(255, 203, 164, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
             });
         });
     </script>
