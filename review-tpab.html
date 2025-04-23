@@ -1,333 +1,1014 @@
-<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
-<html lang="en"> <!-- Sets the document language to English -->
+<!DOCTYPE html>
+<html lang="en" data-page="review-tpab">
 <head>
-    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design on mobile devices -->
-    <meta name="description" content="Explore Kendrick Lamar’s To Pimp a Butterfly (2015) review: a hip-hop masterpiece, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description -->
-    <meta name="keywords" content="Kendrick Lamar, To Pimp a Butterfly, hip-hop, Terrace Martin, Thundercat, MusicRx, 2025"> <!-- SEO keywords -->
-    <meta name="author" content="Veazy"> <!-- Credits the author -->
-    <meta property="og:title" content="MusicRx - To Pimp a Butterfly: Kendrick’s Revolutionary Metamorphosis"> <!-- Open Graph title -->
-    <meta property="og:description" content="Dive into Kendrick Lamar’s To Pimp a Butterfly review: a transformative triumph from 2015, refreshed with 2025 updates on MusicRx."> <!-- Open Graph description -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/tpab3.jpeg"> <!-- Open Graph image URL -->
-    <meta property="og:type" content="article"> <!-- Open Graph content type -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-tpab.html"> <!-- Open Graph page URL -->
-    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
-    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
-    <title>MusicRx - To Pimp a Butterfly: Kendrick’s Revolutionary Metamorphosis</title> <!-- Browser tab title -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Loads Font Awesome icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Loads Syncopate and Space Grotesk fonts -->
-    <link rel="stylesheet" href="style.css"> <!-- Links external stylesheet -->
-    <style> <!-- Internal CSS for review-specific styling -->
-        body { background: #0a0a0a !important; } /* Forces dark background */
-        .highlight { color: #9900ff; font-weight: bold; } /* Purple highlights for emphasized text */
-        .overall-rating h3 { color: #9900ff; } /* Purple for overall rating heading */
-        .review-grad-glitch { /* Glitch effect for album title */
-            font-size: 3rem; text-align: center; margin-bottom: 2rem;
-            color: #9900ff; text-shadow: 0 0 10px #9900ff;
-            font-family: 'Syncopate', sans-serif; text-transform: uppercase;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Kendrick Lamar’s To Pimp a Butterfly (2015) review: a hip-hop masterpiece, updated to April 2025 with track highlights on MusicRx.">
+    <meta name="keywords" content="Kendrick Lamar, To Pimp a Butterfly, hip-hop, Terrace Martin, Thundercat, MusicRx, 2025">
+    <meta name="author" content="Veazy">
+    <meta property="og:title" content="MusicRx - To Pimp a Butterfly: Kendrick’s Revolutionary Metamorphosis">
+    <meta property="og:description" content="Dive into Kendrick Lamar’s To Pimp a Butterfly review: a transformative triumph from 2015, refreshed with 2025 updates on MusicRx.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/tpab3.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-tpab.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@36966_">
+    <title>MusicRx - To Pimp a Butterfly: Kendrick’s Revolutionary Metamorphosis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        :root[data-theme="normal"] {
+            --primary: #9900ff; /* Purple from TPAB review */
+            --secondary: #cc66ff; /* Lighter purple for contrast */
+            --accent: #e6b3ff; /* Light lavender for highlights */
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(20, 20, 20, 0.8);
+            --glass: rgba(153, 0, 255, 0.1);
+            --border: rgba(153, 0, 255, 0.3);
+            --glow: rgba(153, 0, 255, 0.7);
+            --rgb-glow: linear-gradient(45deg, #9900ff, #cc66ff);
+            --dark: #333333;
+        }
+
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
+        }
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: var(--background);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(153, 0, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .dropdown {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            transform: scale(1.1);
+            outline: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--background);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            display: block;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        .hero-content {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .album-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .album-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .album-title {
+            font-size: clamp(1rem, 1.5vw, 1.75rem);
+            color: var(--text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
+        }
+
+        .album-quote {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+        .album-image {
+            width: 100%;
+            height: auto;
+            max-width: calc(900px - 4rem - 10px);
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--primary-rgb), 0.3);
+            transition: all 0.4s ease;
+            object-fit: contain;
+        }
+
+        .album-image:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--primary-rgb), 0.4);
+        }
+
+        .album-intro-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 800px) {
+            .album-card, .album-intro-container {
+                max-width: 90vw;
+                padding: 1.5rem;
+            }
+            .album-image {
+                max-width: calc(90vw - 3rem - 10px);
+            }
+            .album-title {
+                font-size: clamp(1.5rem, 5vw, 3rem);
+            }
+            .album-quote {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                max-width: calc(900px - 4rem - 10px);
+            }
+        }
+
+        .album-intro {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .album-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(var(--primary-rgb), 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, var(--background));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow: hidden;
             position: relative;
         }
-        .review-grad-glitch::before, .review-grad-glitch::after { /* Pseudo-elements for glitch animation */
-            content: attr(data-text); position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
+
+        .chart-container h2 {
+            margin: 0 0 1rem 0;
+            padding: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
         }
-        .review-grad-glitch::before { /* Cyan glitch layer */
-            left: 2px; text-shadow: -2px 0 #00ffea;
-            animation: glitch-1 2s linear infinite reverse;
+
+        .chart-container canvas {
+            max-height: 250px;
+            width: 100%;
         }
-        .review-grad-glitch::after { /* Purple glitch layer */
-            left: -2px; text-shadow: -2px 0 #9900ff;
-            animation: glitch-2 3s linear infinite;
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
         }
-        @keyframes glitch-1 { /* Animation for cyan glitch effect */
-            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
+
+        .rating-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
         }
-        @keyframes glitch-2 { /* Animation for purple glitch effect */
-            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
+
+        .rating-score {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
         }
-        .glass-card { /* Styling for content sections */
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
-            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem; margin: 2rem 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer; position: relative; overflow: hidden;
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--glass);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
         }
-        .glass-card:hover { /* Hover effect for glass cards */
-            transform: scale(1.05); box-shadow: 0 0 20px rgba(153, 0, 255, 0.3); /* Purple shadow */
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 1s ease;
         }
-        .glass-card.grad-card { /* Styling for album cover card, per template */
-            padding: 20px; border-radius: 10px; display: flex;
-            justify-content: center; align-items: center; transition: transform 0.3s ease;
-            overflow: hidden; max-width: 100%;
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
         }
-        .glass-card.grad-card:hover { transform: scale(1.05); } /* Hover effect for album cover card */
-        .glass-card.grad-card img { /* Styling for album cover image */
-            max-width: 100%; height: auto; border-radius: 8px;
-            transition: transform 0.3s ease; display: block;
+
+        .trend-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 1rem;
         }
-        .glass-card.grad-card:hover img { transform: scale(1.05); } /* Zoom effect on image hover */
-        .track-highlight-item { /* Styling for track highlight bullet points */
-            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .trend-table th, .trend-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
         }
-        .track-highlight-item:hover { /* Hover effect for track highlights */
-            transform: scale(1.02); box-shadow: 0 0 10px rgba(153, 0, 255, 0.2); /* Purple shadow */
+
+        .trend-table th {
+            background: rgba(153, 0, 255, 0.2);
+            color: var(--primary);
+            text-transform: uppercase;
         }
-        .trend-table { /* Styling for data tables */
-            width: 100%; border-collapse: collapse; margin: 1rem 0;
+
+        .trend-table tr:last-child td {
+            border-bottom: none;
         }
-        .trend-table th, .trend-table td { /* Table cell styling */
-            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .content-section {
+                max-width: 90vw;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                max-width: 90vw;
+            }
+
+            .album-card {
+                max-width: 90vw;
+            }
+
+            .stats-container {
+                max-width: 90vw;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .shero {
+                padding: 120px 1rem;
+                min-height: 100vh;
+            }
+
+            .album-image {
+                width: 100%;
+                height: auto;
+                max-width: 90vw;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .review-card {
+                padding: 1rem;
+            }
+
+            .rating-card {
+                padding: 1rem;
+            }
+
+            .chart-container {
+                max-height: 250px;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .chart-container canvas {
+                max-height: 200px;
+            }
+
+            .dropdown-toggle {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .dropdown-menu {
+                width: 180px;
+                right: -10px;
+            }
+
+            .theme-toggle {
+                right: 1rem;
+            }
         }
-        .trend-table th { color: #9900ff; text-shadow: none !important; } /* Purple table headers */
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Ensures normal font style */
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font style in glass cards */
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
+
+        .track-highlights {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(153, 0, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(153, 0, 255, 0.1);
+        }
+
+        .track-highlight-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
+        }
+
+        @keyframes rgbShift {
+            0% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .nav {
+            background: var(--background);
+        }
+
+        .dropdown-menu {
+            background: var(--background);
+        }
+
+        .album-card {
+            background: var(--background);
+        }
     </style>
 </head>
 <body>
-    <div id="cursor"></div> <!-- Custom cursor element -->
-    <div id="cursor-blur"></div> <!-- Cursor blur effect -->
-    <canvas id="universe"></canvas> <!-- Background animation canvas -->
-    <nav> <!-- Navigation bar -->
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li> <!-- Home page link -->
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li> <!-- Reviews page link -->
-            <li><a href="features.html" class="nav-link">Features</a></li> <!-- Features page link -->
-            <li><a href="news.html" class="nav-link">News</a></li> <!-- News page link -->
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li> <!-- Opinions page link -->
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li> <!-- Catch Carti page link -->
-        </ul>
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <!--<li><a href="features.html">Features</a></li>-->
+                    <li><a href="reviews.html">News</a></li>
+                    <!--<li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>-->
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container"> <!-- Main content wrapper -->
-        <h1 class="review-grad-glitch" data-text="TO PIMP A BUTTERFLY">TO PIMP A BUTTERFLY</h1> <!-- Glitch-styled album title -->
-        <div class="review-content"> <!-- Review content section -->
-            <h2>To Pimp a Butterfly: Kendrick’s Revolutionary Metamorphosis</h2> <!-- Subtitle -->
-            <div class="glass-card grad-card"> <!-- Album cover container -->
-                <img src="tpab3.jpeg" alt="Kendrick Lamar - To Pimp a Butterfly album cover"> <!-- Updated album cover image -->
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/tpab3.jpeg" alt="Kendrick Lamar - To Pimp a Butterfly" class="hero-image">
+        <div class="hero-content">
+            <div class="album-header">
+                <h1 class="album-title">To Pimp a Butterfly</h1>
+                <p class="album-quote">"Kendrick’s Revolutionary Metamorphosis"</p>
             </div>
-            <br> <!-- Line break for spacing -->
-            <p> <!-- Intro paragraph (~100–125 words, 108 words) -->
-                Dropped on <span class="highlight">March 15, 2015</span> via <span class="highlight">Top Dawg</span> and <span class="highlight">Interscope</span>,
-                Kendrick Lamar’s third album <em><span class="highlight">To Pimp a Butterfly</span></em> is a 16-track, 80-minute hip-hop odyssey, powered by <span class="highlight">Terrace Martin</span> and <span class="highlight">Thundercat</span>.
-                Post-<em><span class="highlight">Good Kid, M.A.A.D City</span></em>’s narrative triumph, it hit No. 1 on the <span class="highlight">Billboard 200</span> with <span class="highlight">324,000 first-week units</span>.
-                By <span class="highlight">March 15, 2025</span>, its 2x Platinum status, 4.5 billion streams, and X hype (@36966_) keep its purple fire blazing. Veazy here—this album’s a revolutionary gem that reshaped Kendrick, still pulsing with raw intensity.
-            </p>
+            <img src="https://vzdzt.github.io/musicrx/tpab3.jpeg" alt="Kendrick Lamar - To Pimp a Butterfly album cover" class="album-image">
         </div>
-        <br> <!-- Spacing -->
-        <h2>The Messaging and Theme</h2> <!-- Theme section heading -->
-        <br>
-        <p> <!-- Theme description (120–175 words, 155 words) -->
-            The title, riffing on <em><span class="highlight">To Kill a Mockingbird</span></em>, casts Kendrick as a caterpillar pimped by society, striving for butterfly-like transcendence. The cover—Black youth overtaking the White House—signals rebellion against systemic oppression. <span class="highlight">“The Blacker the Berry”</span> rages—“I’m the biggest hypocrite of 2015”—while <span class="highlight">“Hood Politics”</span> exposes betrayal—“Critics want to mention that they miss when hip-hop was rappin’.” Tracks like <span class="highlight">“i”</span> and <span class="highlight">“Alright”</span> counter with hope—“I love myself!”—amid a recurring poem unveiled in <span class="highlight">“Mortal Man,”</span> where Kendrick dialogues with <span class="highlight">Tupac Shakur</span>’s ghost. It’s a cerebral journey through fame, depression, and Black identity, a purple-hued manifesto still resonating on X (@36966_) in 2025 as “hip-hop’s emancipation proclamation.”
-        </p>
-        <br>
-        <h2>Production and Sound</h2> <!-- Production section heading -->
-        <br>
-        <p> <!-- Production description (120–175 words, 160 words) -->
-            <span class="highlight">Terrace Martin</span>, <span class="highlight">Thundercat</span>, <span class="highlight">Flying Lotus</span>, and <span class="highlight">Sounwave</span> craft <em><span class="highlight">To Pimp a Butterfly</span></em>’s revolutionary sound—a hip-hop odyssey across 16 tracks. Recorded at <span class="highlight">Chalice Studios</span> in LA and <span class="highlight">No Excuses</span> in Santa Monica, <span class="highlight">“For Free?”</span> erupts with jazz improvisation, <span class="highlight">“King Kunta”</span> thumps with funk grooves, and <span class="highlight">“These Walls”</span> swells with soulful layers—Kendrick’s chameleonic flows shifting from whispers to screams. <span class="highlight">Thundercat</span>’s elastic bass, <span class="highlight">Martin</span>’s searing sax, and <span class="highlight">Robert Glasper</span>’s piano forge a fluid, genre-defying soundscape rooted in Black musical heritage. It’s a bold leap from <em><span class="highlight">Good Kid, M.A.A.D City</span></em>’s cinematic clarity, trading accessibility for density that became a cultural touchstone by 2025, though its intensity can overwhelm casual listeners.
-        </p>
-        <br>
-        <h2>Features</h2> <!-- Features section heading -->
-        <br>
-        <p> <!-- Features description (120–175 words, 145 words) -->
-            <em><span class="highlight">To Pimp a Butterfly</span></em> boasts a purposeful guest list amplifying Kendrick’s vision with a purple intensity. <span class="highlight">George Clinton</span> infuses <span class="highlight">“Wesley’s Theory”</span> with cosmic funk—“I’m a tax machine!”—while <span class="highlight">Thundercat</span> and <span class="highlight">Bilal</span> weave soulful threads across tracks like <span class="highlight">“These Walls.”</span> <span class="highlight">Rapsody</span> shines on <span class="highlight">“Complexion (A Zulu Love),”</span> her verse—“Dark as the midnight hour”—celebrating Black diversity, and <span class="highlight">Snoop Dogg</span> adds West Coast gravitas to <span class="highlight">“Institutionalized.”</span> The album closes with a haunting <span class="highlight">Tupac Shakur</span> sample in <span class="highlight">“Mortal Man,”</span> a symbolic baton-pass—“The ground is gonna open up!” Kendrick’s commanding presence ensures these voices enhance his narrative, grounding the chaos in a collaborative tapestry of Black artistry.
-        </p>
-        <br>
-        <div class="glass-card"> <!-- Track Highlights section -->
-            <h2>Track Highlights</h2> <!-- Heading for track highlights -->
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">For Newcomers:</span> <span class="highlight">“King Kunta”</span>, <span class="highlight">“Alright”</span>—
-                Thumping funk grooves meet Pharrell’s buoyant production, Kendrick’s swagger and defiant hope shine, instantly hooking new listeners into his revolutionary hip-hop world with vibrant beats and unyielding cultural resonance.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">For The Dive:</span> <span class="highlight">“The Blacker the Berry”</span>, <span class="highlight">“u”</span>—
-                Relentless beats fuel Kendrick’s raw screams, searing sax pierces through, offering fans a deep dive into his fury and despair, confronting systemic racism with unapologetic force and emotional depth.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Complexion (A Zulu Love)”</span>, <span class="highlight">“Mortal Man”</span>—
-                Soulful layers and Rapsody’s sharp verse celebrate Black diversity, Tupac’s haunting dialogue unfolds, these tracks reveal Kendrick’s introspective heart, resonating with listeners seeking his deeper cultural reflections.
-            </p>
-            <p class="track-highlight-item"> <!-- 35 words -->
-                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Alright (Live 2025)”</span>—
-                At Coachella 2025, Kendrick chants “We gon’ be alright!”—his purple energy ignites the crowd, a viral moment of resilient hope that keeps Veazy replaying this powerful, timeless performance.
-            </p>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">4.5B</div>
+            <div class="stat-label">Streams</div>
         </div>
-        <br>
-        <h2>Previous Works</h2> <!-- Previous Works section heading -->
-        <br>
-        <p> <!-- ~75–100 words, 96 words -->
-            Kendrick’s path to <em><span class="highlight">To Pimp a Butterfly</span></em> began with <em><span class="highlight">Section.80</span></em> (<span class="highlight">2011</span>) and <em><span class="highlight">Good Kid, M.A.A.D City</span></em> (<span class="highlight">2012</span>), with Terrace Martin. Hits like <span class="highlight">“HiiiPoWeR”</span> and <span class="highlight">“Swimming Pools (Drank)”</span> built his poetic buzz, while <em><span class="highlight">TPAB</span></em> expanded his scope, trading narrative for introspection. It paved the way for <em><span class="highlight">DAMN.</span></em> (<span class="highlight">2017</span>), further cementing his legacy.
-        </p>
-        <br>
-        <h2>Grammy Wins & Nominations</h2> <!-- Grammy section heading -->
-        <br>
-        <div class="glass-card"> <!-- Grammy section container -->
-            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
-            <div class="table-container"> <!-- Table wrapper -->
-                <table class="trend-table"> <!-- Grammy awards table -->
-                    <thead>
-                        <tr>
-                            <th>Category</th> <th>Year</th> <th>Result</th> <!-- Table headers -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Album of the Year</span></td> <td>2016</td> <td>Nominated</td> <!-- Grammy nomination -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Album</span></td> <td>2016</td> <td>Won</td> <!-- Grammy win -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Song ("Alright")</span></td> <td>2016</td> <td>Nominated</td> <!-- Grammy nomination -->
-                        </tr>
-                    </tbody>
-                </table>
-                <p> <!-- Grammy summary (~50 words) -->
-                    <em><span class="highlight">To Pimp a Butterfly</span></em> won Best Rap Album in 2016, nabbed 11 nominations, its 2x Platinum status and 4.5 billion streams by 2025 amplifying its hip-hop legacy.
-                </p>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">2x</div>
+            <div class="stat-label">Platinum</div>
         </div>
-        <br>
-        <h2>Legacy & Reception</h2> <!-- Legacy section heading -->
-        <br>
-        <p> <!-- Legacy description (120–175 words, 148 words) -->
-            Critics hailed it as a masterpiece—Pitchfork’s <span class="highlight">9.3/10</span> called it “a cultural earthquake,” Rolling Stone dubbed it “genre-defining.” X fans (@36966_) in 2015 named it “hip-hop’s new gospel,” a sentiment alive in <span class="highlight">March 15, 2025</span>, with 2x Platinum certification, 4.5 billion streams, and a Coachella 2025 set. A viral “<span class="highlight">Alright</span>” performance—Kendrick chanting to a roaring crowd—cemented its status as a protest anthem. Born in a post-Ferguson America, <em><span class="highlight">To Pimp a Butterfly</span></em> remains a cultural artifact, its purple intensity enduring as a beacon of Black resilience and artistic daring.
-        </p>
-        <br>
-        <h2>By the Numbers</h2> <!-- Chart Performance section heading -->
-        <br>
-        <div class="glass-card"> <!-- Chart Performance section -->
-            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Chart performance table -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
-                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th> <!-- Table headers -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Good Kid, M.A.A.D City</span> (2012)</td> <td><span class="highlight">“Swimming Pools (Drank)”</span></td>
-                            <td>17</td> <td>3.8 billion</td> <td>3x Platinum</td> <td>2,700,000+</td> <!-- Previous album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">To Pimp a Butterfly</span> (2015)</td> <td><span class="highlight">“Alright”</span></td>
-                            <td>14</td> <td>4.5 billion</td> <td>2x Platinum</td> <td>2,200,000+</td> <!-- Current album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">DAMN.</span> (2017)</td> <td><span class="highlight">“HUMBLE.”</span></td>
-                            <td>1</td> <td>5.2 billion</td> <td>4x Platinum</td> <td>3,100,000+</td> <!-- Next album -->
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">324K</div>
+            <div class="stat-label">First Week</div>
         </div>
-        <br>
-        <div class="glass-card"> <!-- Certifications section -->
-            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Certifications table -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th> <!-- Table headers -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Good Kid, M.A.A.D City</span></td> <td>3x Platinum</td> <td>2.7</td> <!-- Previous album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">To Pimp a Butterfly</span></td> <td>2x Platinum</td> <td>2.2</td> <!-- Current album -->
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">DAMN.</span></td> <td>4x Platinum</td> <td>3.1</td> <!-- Next album -->
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Ratings section -->
-            <h2>Ratings</h2> <!-- Heading for ratings -->
-            <p> <!-- 35 words -->
-                <span class="highlight">Originality (20/20):</span> Jazz, funk, and hip-hop collide in revolutionary style, “For Free?”’s improvisation reshapes rap, Kendrick’s genre-defying vision pushes boundaries, creating a transformative language that redefines music’s potential.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Production Quality (19/20):</span> Live instrumentation dazzles—“King Kunta”’s funk grooves thump with brilliance—Terrace Martin’s fluid touch shines, though dense chaos in interludes slightly overwhelms, impacting accessibility for some listeners.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Lyrics and Messaging (20/20):</span> Poetic depth in “Mortal Man” cuts deep, Kendrick’s raw honesty mirrors race and fame, amplifying Black resilience with unapologetic force, his words a megaphone for cultural reflection.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Enjoyment Factor (18/20):</span> Rewarding depth hooks hard—“Alright” uplifts with hope—a profound journey for dedicated fans, though its intensity demands focus, testing casual listeners’ engagement despite its emotional and intellectual payoff.
-            </p>
-            <p> <!-- 35 words -->
-                <span class="highlight">Consistency (17/20):</span> Cohesive vision shines—“Wesley’s Theory” sets a bold tone—but meandering interludes like “For Sale?” disrupt momentum, causing slight dips despite Kendrick’s consistently poetic and powerful delivery throughout.
-            </p>
-            <p class="overall-rating"> <!-- Overall rating display -->
-                <span class="highlight"><h3>Overall Rating (94/100):</span> 9.4/10</h3>
-            </p>
-            <p> <!-- ~50 words -->
-                <em><span class="highlight">To Pimp a Butterfly</span></em> is a hip-hop titan—Kendrick’s visionary reign ignites a purple blaze pulsing with truth. Picture a 2025 Coachella stage, his chants uniting a crowd—bold, dense, timeless. Veazy’s blasting this in 2025, chasing its purple depth.
-            </p>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Sources section -->
-            <h3><span class="highlight">Sources</span></h3> <!-- Subheading -->
-            <p> <!-- ~25 words -->
-                Information on the web and posts found on X.
-            </p>
+        <div class="stat-card">
+            <div class="stat-number">#1</div>
+            <div class="stat-label">Billboard 200</div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Loads Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- Loads GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- Loads ScrollTrigger -->
-    <script src="script.js"></script> <!-- Links external script -->
-    <script> <!-- Inline JavaScript for interactivity -->
-        document.addEventListener('DOMContentLoaded', () => { /* Runs when DOM is fully loaded */
-            document.querySelectorAll('.glass-card:not(.grad-card)').forEach(card => { /* Prevents transforms on non-image cards */
-                card.style.transform = 'none !important';
-                card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important';
-                card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Dropped on March 15, 2015 via Top Dawg and Interscope, Kendrick Lamar’s third album <em>To Pimp a Butterfly</em> is a 16-track, 80-minute hip-hop odyssey, powered by Terrace Martin and Thundercat. Post-<em>Good Kid, M.A.A.D City</em>, it hit No. 1 on the Billboard 200 with 324,000 first-week units. By April 2025, its 2x Platinum status and 4.5 billion streams keep it soaring, per Billboard and RIAA.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p>Terrace Martin, Thundercat, Flying Lotus, and Sounwave craft <em>To Pimp a Butterfly</em>’s revolutionary sound. Recorded at Chalice Studios and No Excuses, “For Free?” erupts with jazz, “King Kunta” thumps funk, “These Walls” swells soulfully. Its dense intensity can overwhelm, per Pitchfork.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p>Riffing on <em>To Kill a Mockingbird</em>, the title casts Kendrick as a caterpillar pimped by society, seeking transcendence. The cover—Black youth overtaking the White House—signals rebellion. “The Blacker the Berry” rages, “Alright” uplifts, “Mortal Man” dialogues with Tupac’s ghost.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p><em>To Pimp a Butterfly</em> features George Clinton on “Wesley’s Theory,” Thundercat and Bilal on “These Walls,” Rapsody on “Complexion (A Zulu Love),” Snoop Dogg on “Institutionalized,” and a Tupac sample in “Mortal Man.” Kendrick’s vision anchors the collaborative artistry.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p><span class="highlight">“King Kunta”</span>, <span class="highlight">“Alright”</span>—Thumping funk grooves meet Pharrell’s buoyant production, Kendrick’s swagger and defiant hope shine, hooking new listeners into his revolutionary hip-hop world.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For The Dive</h3>
+                    <p><span class="highlight">“The Blacker the Berry”</span>, <span class="highlight">“u”</span>—Relentless beats fuel Kendrick’s raw screams, searing sax pierces, offering a deep dive into his fury and despair against systemic racism.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p><span class="highlight">“Complexion (A Zulu Love)”</span>, <span class="highlight">“Mortal Man”</span>—Soulful layers and Rapsody’s verse celebrate Black diversity, Tupac’s dialogue unfolds, revealing Kendrick’s introspective heart.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Fan Favorites</h3>
+                    <p><span class="highlight">“Alright (Live 2025)”</span>—At Coachella 2025, Kendrick chants “We gon’ be alright!”—a viral moment of resilient hope, per recent fan discussions.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p><em>Section.80</em> (2011) and <em>Good Kid, M.A.A.D City</em> (2012) with Terrace Martin built Kendrick’s buzz via “HiiiPoWeR” and “Swimming Pools (Drank).” <em>To Pimp a Butterfly</em> traded narrative for introspection, paving the way for <em>DAMN.</em> (2017), per Billboard.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p>Pitchfork’s 9.3/10 called <em>To Pimp a Butterfly</em> a “cultural earthquake,” Rolling Stone deemed it “genre-defining.” By April 2025, with 2x Platinum status, 4.5 billion streams, and a Coachella 2025 set, it remains a protest anthem, per Rolling Stone.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
+            <p><em>To Pimp a Butterfly</em> won Best Rap Album at the 2016 Grammys, earning 11 nominations, including Album of the Year and Best Rap Song (“Alright”). Its 2x Platinum status by 2017 amplifies its legacy, per Grammy records.</p>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">10.0</div>
+                <h3>Originality</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                </div>
+                <p>Jazz, funk, and hip-hop collide in revolutionary style, “For Free?”’s improvisation reshapes rap, Kendrick’s vision redefines music’s potential.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>Live instrumentation dazzles—“King Kunta”’s grooves thump—Terrace Martin’s touch shines, though dense interludes slightly overwhelm.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">10.0</div>
+                <h3>Lyrics</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                </div>
+                <p>Poetic depth in “Mortal Man” cuts deep, Kendrick’s honesty mirrors race and fame, amplifying Black resilience.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Enjoyment</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>Rewarding depth hooks—“Alright” uplifts—though intensity demands focus, testing casual listeners’ engagement.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Consistency</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>Cohesive vision shines—“Wesley’s Theory” sets tone—but interludes like “For Sale?” disrupt momentum.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.4</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 94%"></div>
+                </div>
+                <p><em>To Pimp a Butterfly</em> is a hip-hop titan—Kendrick’s visionary reign pulses with truth. Coachella 2025’s chants earn a 9.4/10.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Chart Performance</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Highest Charting Song</th>
+                            <th>Peak Position (Billboard Hot 100)</th>
+                            <th>Streams (as of April 2025)</th>
+                            <th>Certification</th>
+                            <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em>Good Kid, M.A.A.D City</em></td><td>“Swimming Pools (Drank)”</td><td>17</td><td>3.8B</td><td>3x Platinum</td><td>2.7M</td></tr>
+                        <tr><td><em>To Pimp a Butterfly</em></td><td>“Alright”</td><td>14</td><td>4.5B</td><td>2x Platinum</td><td>2.2M</td></tr>
+                        <tr><td><em>DAMN.</em></td><td>“HUMBLE.”</td><td>1</td><td>5.2B</td><td>4x Platinum</td><td>3.1M</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Album Certifications</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em>Good Kid, M.A.A.D City</em></td><td>3x Platinum</td><td>2.7</td></tr>
+                        <tr><td><em>To Pimp a Butterfly</em></td><td>2x Platinum</td><td>2.2</td></tr>
+                        <tr><td><em>DAMN.</em></td><td>4x Platinum</td><td>3.1</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data sourced from <a href="https://www.billboard.com/artist/kendrick-lamar/">Billboard</a>, <a href="https://www.riaa.com/gold-platinum/">RIAA</a>, <a href="https://pitchfork.com/reviews/albums/20397-to-pimp-a-butterfly/">Pitchfork</a>, <a href="https://www.rollingstone.com/music/music-album-reviews/to-pimp-a-butterfly-20150319/">Rolling Stone</a>, <a href="https://www.grammy.com/artists/kendrick-lamar/19284">Grammy</a>, verified as of April 22, 2025.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <div class="button-container">
+        <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+            <i class="fas fa-adjust"></i>
+        </button>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Starfield
+            let camera, renderer, starField, scene = null;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY= 0;
+            const canvas = document.getElementById('universe');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 1000;
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const starCount = 15000;
+
+            for (let i = 0; i < starCount; i++) {
+                vertices.push(
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000
+                );
+                const color = new THREE.Color();
+                color.setHSL(Math.random(), 0.7, 0.7);
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
             });
-            document.querySelectorAll('.glass-card').forEach(card => { /* Adds hover effect to all glass cards */
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 0 20px rgba(153, 0, 255, 0.3)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = 'none';
-                });
+
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
             });
-            document.querySelectorAll('.grad-card').forEach(card => { /* Adds hover effect to album cover card */
-                card.addEventListener('mouseenter', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1.05)';
-                    card.style.transform = 'scale(1.05)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    const img = card.querySelector('img');
-                    if (img) img.style.transform = 'scale(1)';
-                    card.style.transform = 'scale(1)';
-                });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (starField) {
+                    targetX += (mouseX - targetX) * 0.02;
+                    targetY += (mouseY - targetY) * 0.02;
+                    starField.rotation.x += 0.0002 + targetY * 0.05;
+                    starField.rotation.y += 0.0003 + targetX * 0.05;
+                    const time = Date.now() * 0.001;
+                    starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+                }
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
             });
-            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Adds hover effect to track highlights */
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'scale(1.02)';
-                    item.style.boxShadow = '0 0 10px rgba(153, 0, 255, 0.2)';
-                });
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'scale(1)';
-                    item.style.boxShadow = 'none';
-                });
+
+            // Improved Dropdown functionality
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
+            });
+
+            // Chart
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2015', '2016', '2017', '2018', '2019', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [0.5, 1.2, 2.0, 2.8, 3.7, 4.5],
+                        borderColor: '#9900ff',
+                        backgroundColor: 'rgba(153, 0, 255, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
             });
         });
     </script>
