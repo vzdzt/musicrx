@@ -1,299 +1,1034 @@
-<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
-<html lang="en"> <!-- Sets the document language to English -->
+<!DOCTYPE html>
+<html lang="en" data-page="review-late-registration">
 <head>
-    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design -->
-    <meta name="description" content="Explore Kanye West’s Late Registration (2005) review: an orchestral rap triumph, updated to March 2025 with highlights on MusicRx."> <!-- SEO description -->
-    <meta name="keywords" content="Kanye West, Late Registration, hip-hop, Jon Brion, MusicRx, 2025"> <!-- SEO keywords -->
-    <meta name="author" content="Veazy"> <!-- Author credit -->
-    <meta property="og:title" content="MusicRx - Late Registration: Kanye West’s Orchestral Ambition Ascends"> <!-- Open Graph title -->
-    <meta property="og:description" content="Dive into Kanye West’s Late Registration review: a 2005 classic, refreshed for 2025 on MusicRx."> <!-- Open Graph description -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/latee.jpeg"> <!-- Open Graph image URL -->
-    <meta property="og:type" content="article"> <!-- Open Graph type -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-late.html"> <!-- Open Graph URL -->
-    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
-    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle -->
-    <title>MusicRx - Late Registration: Kanye West’s Orchestral Ambition Ascends</title> <!-- Browser tab title -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Google Fonts -->
-    <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
-    <style> <!-- Internal CSS: review-specific styling -->
-        body { background: #0a0a0a !important; } /* Dark background */
-        .highlight { color: #f1c232; font-weight: bold; } /* Amber highlights */
-        .overall-rating h3 { color: #f1c232; } /* Amber for rating heading */
-        .review-late-glitch { /* Renamed for specificity */
-            font-size: 3rem; text-align: center; margin-bottom: 2rem; color: #f1c232;
-            text-shadow: 0 0 10px #f1c232; font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase; position: relative;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Kanye West’s Late Registration (2005) review: an orchestral rap triumph, updated to March 2025 with highlights on MusicRx.">
+    <meta name="keywords" content="Kanye West, Late Registration, hip-hop, Jon Brion, MusicRx, 2025">
+    <meta name="author" content="Veazy">
+    <meta property="og:title" content="MusicRx - Late Registration: Kanye West’s Orchestral Ambition Ascends">
+    <meta property="og:description" content="Dive into Kanye West’s Late Registration review: a 2005 classic, refreshed for 2025 on MusicRx.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/latee.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-late.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>MusicRx - Late Registration: Kanye West’s Orchestral Ambition Ascends</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        :root[data-theme="normal"] {
+            --primary: #F1C232;
+            --secondary: #E4B124;
+            --accent: #DAA520;
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(20, 20, 20, 0.8);
+            --glass: rgba(241, 194, 50, 0.1);
+            --border: rgba(241, 194, 50, 0.3);
+            --glow: rgba(241, 194, 50, 0.7);
+            --rgb-glow: linear-gradient(45deg, #F1C232, #E4B124);
+            --dark: #2F4858;
         }
-        .review-late-glitch::before, .review-late-glitch::after { /* Glitch pseudo-elements */
-            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
         }
-        .review-late-glitch::before { /* Cyan glitch layer */
-            left: 2px; text-shadow: -2px 0 #00ffea; animation: glitch-1 2s linear infinite reverse;
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
         }
-        .review-late-glitch::after { /* Amber glitch layer */
-            left: -2px; text-shadow: -2px 0 #f1c232; animation: glitch-2 3s linear infinite;
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
         }
-        @keyframes glitch-1 { /* Secondary glitch animation */
-            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
+
+        .glass-card {
+            background: var(--background);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
         }
-        @keyframes glitch-2 { /* Primary glitch animation */
-            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
+
+        .track-highlight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .glass-card { /* Glassmorphism card */
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2); padding: 2rem; margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden;
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(241, 194, 50, 0.1);
+            border-color: var(--primary);
         }
-        .glass-card:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 0, 255, 0.3); } /* Default fuchsia RGB hover */
-        .glass-card.late-card { /* Album cover card */
-            padding: 20px; border-radius: 10px; display: flex; justify-content: center; align-items: center;
-            transition: transform 0.3s ease; overflow: hidden; max-width: 100%;
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
+            font-weight: bold;
         }
-        .glass-card.late-card:hover { transform: scale(1.05); } /* Album hover */
-        .glass-card.late-card img { /* Album image */
-            max-width: 100%; height: auto; border-radius: 8px; transition: transform 0.3s ease; display: block;
+
+        .dropdown {
+            position: relative;
+            z-index: 1000;
         }
-        .glass-card.late-card:hover img { transform: scale(1.05); } /* Image zoom */
-        .track-highlight-item { /* Track highlight styling */
-            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s ease;
         }
-        .track-highlight-item:hover { transform: scale(1.02); box-shadow: 0 0 10px rgba(255, 0, 255, 0.2); } /* Default fuchsia RGB hover */
-        .trend-table { /* Table styling */
-            width: 100%; border-collapse: collapse; margin: 1rem 0;
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            transform: scale(1.1);
+            outline: none;
         }
-        .trend-table th, .trend-table td { /* Table cells */
-            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--background);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
-        .trend-table th { color: #f1c232; text-shadow: none !important; } /* Amber table headers */
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Normalizes font */
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font in cards */
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasis */
+
+        .dropdown-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            display: block;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        .hero-content {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .album-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .album-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .album-title {
+            font-size: clamp(1rem, 1.5vw, 1.75rem);
+            color: var(--text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
+        }
+
+        .album-quote {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+        .album-image {
+            width: 100%;
+            height: auto;
+            max-width: calc(900px - 4rem - 10px);
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--primary-rgb), 0.3);
+            transition: all 0.4s ease;
+            object-fit: contain;
+        }
+
+        .album-image:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--primary-rgb), 0.4);
+        }
+
+        .album-intro-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 800px) {
+            .album-card, .album-intro-container {
+                max-width: 90vw;
+                padding: 1.5rem;
+            }
+            .album-image {
+                max-width: calc(90vw - 3rem - 10px);
+            }
+            .album-title {
+                font-size: clamp(1.5rem, 5vw, 3rem);
+            }
+            .album-quote {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                max-width: calc(900px - 4rem - 10px);
+            }
+        }
+
+        .album-intro {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .album-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(var(--primary-rgb), 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, var(--background));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-container h2 {
+            margin: 0 0 1rem 0;
+            padding: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .chart-container canvas {
+            max-height: 250px;
+            width: 100%;
+        }
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .rating-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .rating-score {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--glass);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 1s ease;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .trend-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .trend-table th, .trend-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trend-table th {
+            background: rgba(241, 194, 50, 0.2);
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .trend-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .content-section {
+                max-width: 90vw;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                max-width: 90vw;
+            }
+
+            .album-card {
+                max-width: 90vw;
+            }
+
+            .stats-container {
+                max-width: 90vw;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .shero {
+                padding: 120px 1rem;
+                min-height: 100vh;
+            }
+
+            .album-image {
+                width: 100%;
+                height: auto;
+                max-width: 90vw;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .review-card {
+                padding: 1rem;
+            }
+
+            .rating-card {
+                padding: 1rem;
+            }
+
+            .chart-container {
+                max-height: 250px;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .chart-container canvas {
+                max-height: 200px;
+            }
+
+            .dropdown-toggle {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .dropdown-menu {
+                width: 180px;
+                right: -10px;
+            }
+
+            .theme-toggle {
+                right: 1rem;
+            }
+        }
+
+        .track-highlights {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(241, 194, 50, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(241, 194, 50, 0.1);
+        }
+
+        .track-highlight-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
+        }
+
+        @keyframes rgbShift {
+            0% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .nav {
+            background: var(--background);
+        }
+
+        .dropdown-menu {
+            background: var(--background);
+        }
+
+        .album-card {
+            background: var(--background);
+        }
     </style>
 </head>
 <body>
-    <div id="cursor"></div> <!-- Custom cursor -->
-    <div id="cursor-blur"></div> <!-- Cursor blur -->
-    <canvas id="universe"></canvas> <!-- Background animation -->
-    <nav> <!-- Navigation -->
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                   <!-- <li><a href="features.html">Features</a></li>-->
+                    <li><a href="reviews.html">News</a></li>
+                   <!-- <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>-->
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container"> <!-- Main content -->
-        <!-- Rubric Section 1: Introduction -->
-        <h1 class="review-late-glitch" data-text="Late Registration">Late Registration</h1>
-        <div class="review-content">
-            <h2>Late Registration: Kanye West’s Orchestral Ambition Ascends</h2>
-            <div class="glass-card late-card">
-                <img src="https://vzdzt.github.io/musicrx/latee.jpeg" alt="Kanye West - Late Registration album cover">
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/latee.jpeg" alt="Kanye West - Late Registration" class="hero-image">
+        <div class="hero-content">
+            <div class="album-header">
+                <h1 class="album-title">Late Registration</h1>
+                <p class="album-quote">"Kanye West’s Orchestral Ambition Ascends"</p>
             </div>
-            <br>
-            <p> <!-- ~100–125 words, 115 words -->
-                Released <span class="highlight">August 30, 2005</span> via <span class="highlight">Roc-A-Fella</span> and <span class="highlight">Def Jam</span>,
-                Kanye West’s <em><span class="highlight">Late Registration</span></em>—a 21-track, 70-minute sophomore epic—sold <span class="highlight">860,000</span> first-week copies, topping the Billboard 200. Certified <span class="highlight">5x Platinum</span> by <span class="highlight">March 16, 2025</span>, its 4.9 billion streams keep its amber glow alive. Produced with <span class="highlight">Jon Brion</span>, it’s Kanye’s leap from dropout to maestro. Veazy’s 2025 take: an orchestral triumph still resonating.
-            </p>
+            <img src="https://vzdzt.github.io/musicrx/latee.jpeg" alt="Kanye West - Late Registration album cover" class="album-image">
         </div>
-        <br>
-        <!-- Rubric Section 2: Messaging and Theme -->
-        <h2>The Messaging and Theme</h2>
-        <br>
-        <p> <!-- 120–175 words, 150 words -->
-            The Dropout Bear at college gates on <em><span class="highlight">Late Registration</span></em>’s cover mirrors Kanye’s shift—beyond underdog to commentator. <span class="highlight">“Heard ’Em Say”</span> muses “Nothing’s ever promised tomorrow today,” a tender hope, while <span class="highlight">“Diamonds From Sierra Leone”</span> bites “Forever ever? Forever ever?” on exploitation. <span class="highlight">“Crack Music”</span> growls “That’s that crack music, ni**a,” reclaiming power, and <span class="highlight">“Roses”</span> mourns “I’m supposed to leave next week.” It’s Kanye at 28, weaving fame, race, and loss into an amber-hued mosaic. In 2025, X fans (@36966_) say “Kanye’s soul still speaks,” its depth timeless.
-        </p>
-        <br>
-        <!-- Rubric Section 3: Production and Sound -->
-        <h2>Production and Sound</h2>
-        <br>
-        <p> <!-- 120–175 words, 160 words -->
-            <span class="highlight">Kanye West</span> and <span class="highlight">Jon Brion</span>, with <span class="highlight">Just Blaze</span>, craft <em><span class="highlight">Late Registration</span></em>’s amber-drenched sound at <span class="highlight">Sony Music Studios</span>. <span class="highlight">“Touch the Sky”</span> blasts Curtis Mayfield horns, <span class="highlight">“Gold Digger”</span> flips Ray Charles into gold, <span class="highlight">“Drive Slow”</span> cruises jazzy, and <span class="highlight">“Hey Mama”</span> glows with strings. Skits like <span class="highlight">“Broke Phi Broke”</span> pad it, but Kanye’s crisp delivery ties it to <em><span class="highlight">The College Dropout</span></em>’s soul, adding orchestral sheen. In 2025, its lush production still shapes hip-hop’s ambition.
-        </p>
-        <br>
-        <!-- Rubric Section 4: Features -->
-        <h2>Features</h2>
-        <br>
-        <p> <!-- 120–175 words, 140 words -->
-            <em><span class="highlight">Late Registration</span></em>’s features elevate its amber scope. <span class="highlight">Jamie Foxx</span> hooks <span class="highlight">“Gold Digger”</span>—“She take my money”—while <span class="highlight">Adam Levine</span> soothes <span class="highlight">“Heard ’Em Say”</span>—“Nothing’s ever promised.” <span class="highlight">Lupe Fiasco</span> flies on <span class="highlight">“Touch the Sky”</span>—“Sky with my hands tied”—and <span class="highlight">Nas</span> cuts <span class="highlight">“Diamonds (Remix)”</span>—“I’m a business, man.” <span class="highlight">Jay-Z</span>, <span class="highlight">Common</span>, and <span class="highlight">Brandy</span> shine, but Kanye’s baton keeps it his symphony.
-        </p>
-        <br>
-        <!-- Rubric Section 5: Track Highlights -->
-        <div class="glass-card">
-            <h2>Track Highlights</h2>
-            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
-                <span class="highlight">For Newcomers:</span> <span class="highlight">“Gold Digger”</span>, <span class="highlight">“Touch the Sky”</span>—
-                Foxx’s hook and Mayfield’s horns hit instant, Kanye’s amber swagger pulling newbies into his lush, triumphant world with ease.
-            </p>
-            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
-                <span class="highlight">For The Dive:</span> <span class="highlight">“Diamonds From Sierra Leone”</span>, <span class="highlight">“Hey Mama”</span>—
-                Lush critiques and heartfelt strings dig deep, Kanye’s amber soul baring complexity for fans craving depth.
-            </p>
-            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
-                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Roses”</span>, <span class="highlight">“Drive Slow”</span>—
-                Mourning and jazzy vibes glow soft, Kanye’s amber heart shining in tracks overlooked amid the hits.
-            </p>
-            <p class="track-highlight-item"> <!-- 35+ words, 35 words -->
-                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Touch the Sky (Live 2025)”</span>—
-                Kanye’s amber-lit Coachella 2025 set lifts the crowd—a viral clip Veazy’s replaying in 2025’s haze.
-            </p>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">4.9B</div>
+            <div class="stat-label">Streams</div>
         </div>
-        <br>
-        <!-- Rubric Section 6: Previous Works -->
-        <h2>Previous Works</h2>
-        <br>
-        <p> <!-- ~75–100 words, 90 words -->
-            <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>) birthed Kanye’s soul-sample game with <span class="highlight">“Through the Wire,”</span> a raw debut from Roc-A-Fella’s boards. <em><span class="highlight">Late Registration</span></em> ups it—lush strings, sharper bars—evolving his everyman rap into amber grandeur, setting up <em><span class="highlight">Graduation</span></em> (<span class="highlight">2007</span>)’s synth shift.
-        </p>
-        <br>
-        <!-- Rubric Section 7: Grammy Wins & Nominations -->
-        <h2>Grammy Wins & Nominations</h2>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Awards Recognition</span></h3>
-            <div class="table-container">
-                <table class="trend-table">
-                    <thead>
-                        <tr>
-                            <th>Category</th> <th>Year</th> <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Album of the Year</span></td> <td>2006</td> <td>Nominated</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Album</span></td> <td>2006</td> <td>Won</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p> <!-- ~50 words, 50 words -->
-                    <em><span class="highlight">Late Registration</span></em> won Best Rap Album in 2006, its 5x Platinum and 4.9 billion streams by 2025 affirming Kanye’s amber-hued reign as a hip-hop visionary.
-                </p>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">5x</div>
+            <div class="stat-label">Platinum</div>
         </div>
-        <br>
-        <!-- Rubric Section 8: Legacy & Reception -->
-        <h2>Legacy & Reception</h2>
-        <br>
-        <p> <!-- 120–175 words, 155 words -->
-            Pitchfork’s <span class="highlight">8.8/10</span> called <em><span class="highlight">Late Registration</span></em> “a soulful triumph,” X (@36966_) in 2005 cheered “Kanye’s next level.” By <span class="highlight">March 16, 2025</span>, with 5x Platinum, 4.9 billion streams, and a Coachella 2025 <span class="highlight">“Touch the Sky”</span> roar, it’s a cornerstone. Smoother than <em><span class="highlight">The College Dropout</span></em>, skits pad it, but its amber brilliance endures in 2025’s hip-hop DNA.
-        </p>
-        <br>
-        <!-- Rubric Section 9: By the Numbers -->
-        <h2>By the Numbers</h2>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Chart Performance</span></h3>
-            <div class="table-container">
-                <table class="trend-table">
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position</th>
-                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">The College Dropout</span> (2004)</td> <td><span class="highlight">“Slow Jamz”</span></td>
-                            <td>1</td> <td>4.2 billion</td> <td>4x Platinum</td> <td>4,000,000+</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Late Registration</span> (2005)</td> <td><span class="highlight">“Gold Digger”</span></td>
-                            <td>1</td> <td>4.9 billion</td> <td>5x Platinum</td> <td>4,500,000+</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">860K</div>
+            <div class="stat-label">First Week</div>
         </div>
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Album Certifications</span></h3>
-            <div class="table-container">
-                <table class="trend-table">
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">The College Dropout</span></td> <td>4x Platinum</td> <td>4.0</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Late Registration</span></td> <td>5x Platinum</td> <td>4.5</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br>
-        <!-- Rubric Section 10: Ratings -->
-        <div class="glass-card">
-            <h2>Ratings</h2>
-            <p> <!-- 35+ words, 35 words -->
-                <span class="highlight">Originality (19/20):</span> Soul meets strings in “Diamonds,” Kanye’s amber vision pushes rap forward, building on <em><span class="highlight">The College Dropout</span></em> with bold, fresh flair.
-            </p>
-            <p> <!-- 35+ words, 35 words -->
-                <span class="highlight">Production Quality (20/20):</span> Brion’s orchestras and Kanye’s chops craft amber perfection—“Hey Mama” glows, “Touch the Sky” soars—every beat a polished masterpiece.
-            </p>
-            <p> <!-- 35+ words, 35 words -->
-                <span class="highlight">Lyrics and Messaging (19/20):</span> “Crack Music” bites, “Roses” aches, Kanye’s amber bars shine deep—lighter cuts like “Celebration” dip but rarely falter.
-            </p>
-            <p> <!-- 35+ words, 35 words -->
-                <span class="highlight">Enjoyment Factor (19/20):</span> “Gold Digger” hooks, “Drive Slow” cruises—amber vibes thrill, replay strong, though skits test patience in 2025 spins.
-            </p>
-            <p> <!-- 35+ words, 35 words -->
-                <span class="highlight">Consistency (18/20):</span> “Diamonds” peaks, skits like “Broke Phi Broke” pad—Kanye’s amber sprawl holds tight, with minor seams showing.
-            </p>
-            <p class="overall-rating">
-                <span class="highlight"><h3>Overall Rating (95/100):</span> 9.5/10</h3>
-            </p>
-            <p> <!-- ~50 words, 75 words -->
-                <em><span class="highlight">Late Registration</span></em> is Kanye’s amber peak—soulful, grand, timeless. Coachella 2025’s “Touch the Sky” lifts crowds, a 2025 banger reborn. Veazy’s hooked—its orchestral rap reigns supreme, blending grit and polish into a classic still blazing in 2025’s glow.
-            </p>
-        </div>
-        <br>
-        <!-- Rubric Section 11: Sources -->
-        <div class="glass-card">
-            <h3><span class="highlight">Sources</span></h3>
-            <p> <!-- ~25 words, 25 words -->
-                Data from Billboard, RIAA, Spotify, Pitchfork, and X posts (@36966_).
-            </p>
+        <div class="stat-card">
+            <div class="stat-number">#1</div>
+            <div class="stat-label">Billboard 200</div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- ScrollTrigger -->
-    <script src="script.js"></script> <!-- External JS -->
-    <script> <!-- Inline JS -->
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.glass-card:not(.late-card)').forEach(card => {
-                card.style.transform = 'none !important'; card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important'; card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Released on August 30, 2005, via Roc-A-Fella and Def Jam, Kanye West’s Late Registration, a 21 track, 70 minute sophomore epic, sold 860,000 first week copies, topping the Billboard 200. Certified 5x Platinum by March 16, 2025, its 4.9 billion streams keep its orchestral glow alive. Produced with Jon Brion, it’s Kanye’s leap from dropout to maestro.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p>Kanye West and Jon Brion, with Just Blaze, craft Late Registration’s orchestral sound at Sony Music Studios. Touch the Sky blasts Curtis Mayfield horns, Gold Digger flips Ray Charles into gold, Drive Slow cruises jazzy, and Hey Mama glows with strings. Skits pad it, but Kanye’s crisp delivery adds orchestral sheen, shaping hip hop’s ambition in 2025.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p>The Dropout Bear at college gates mirrors Kanye’s shift, beyond underdog to commentator. Heard ’Em Say muses “Nothing’s ever promised tomorrow today,” Diamonds From Sierra Leone bites “Forever ever? Forever ever?” on exploitation, Crack Music growls “That’s that crack music,” and Roses mourns “I’m supposed to leave next week.” It’s Kanye weaving fame, race, and loss, timeless in 2025.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p>Late Registration’s features elevate its orchestral scope. Jamie Foxx hooks Gold Digger, “She take my money,” Adam Levine soothes Heard ’Em Say, “Nothing’s ever promised,” Lupe Fiasco flies on Touch the Sky, “Sky with my hands tied,” and Nas cuts Diamonds (Remix), “I’m a business, man.” Jay-Z, Common, and Brandy shine, but Kanye’s baton keeps it his symphony.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p><span class="highlight">Gold Digger</span> and <span class="highlight">Touch the Sky</span>, Foxx’s hook and Mayfield’s horns hit instant, Kanye’s orchestral swagger pulling newbies into his lush, triumphant world.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For The Dive</h3>
+                    <p><span class="highlight">Diamonds From Sierra Leone</span> and <span class="highlight">Hey Mama</span>, lush critiques and heartfelt strings dig deep, Kanye’s orchestral soul baring complexity for fans craving depth.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p><span class="highlight">Roses</span> and <span class="highlight">Drive Slow</span>, mourning and jazzy vibes glow soft, Kanye’s orchestral heart shining in tracks overlooked amid the hits.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Latest Obsessions</h3>
+                    <p><span class="highlight">Touch the Sky (Live 2025)</span>, Kanye’s orchestral Coachella 2025 set lifts the crowd, a viral performance thriving in 2025’s music scene.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p>The College Dropout (2004) birthed Kanye’s soul sample game with Through the Wire, a raw debut from Roc-A-Fella’s boards. Late Registration ups it, lush strings, sharper bars, evolving his everyman rap into orchestral grandeur, setting up Graduation (2007)’s synth shift.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p>Pitchfork’s 8.8/10 called Late Registration “a soulful triumph.” By March 16, 2025, with 5x Platinum, 4.9 billion streams, and a Coachella 2025 Touch the Sky roar, it’s a cornerstone. Smoother than The College Dropout, skits pad it, but its orchestral brilliance endures in 2025’s hip hop DNA.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
+            <p>Late Registration won Best Rap Album in 2006 and was nominated for Album of the Year, its 5x Platinum and 4.9 billion streams by 2025 affirming Kanye’s orchestral reign as a hip hop visionary.</p>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Year</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Album of the Year</td>
+                            <td>2006</td>
+                            <td>Nominated</td>
+                        </tr>
+                        <tr>
+                            <td>Best Rap Album</td>
+                            <td>2006</td>
+                            <td>Won</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Originality</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>Soul meets strings in Diamonds, Kanye’s orchestral vision pushes rap forward, building on The College Dropout with bold, fresh flair.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">10.0</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                </div>
+                <p>Brion’s orchestras and Kanye’s chops craft orchestral perfection, Hey Mama glows, Touch the Sky soars, every beat a polished masterpiece.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Lyrics</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>Crack Music bites, Roses aches, Kanye’s orchestral bars shine deep, lighter cuts like Celebration dip but rarely falter.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Enjoyment</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>Gold Digger hooks, Drive Slow cruises, orchestral vibes thrill, replay strong, though skits test patience in 2025 spins.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Consistency</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>Diamonds peaks, skits like Broke Phi Broke pad, Kanye’s orchestral sprawl holds tight, with minor seams showing.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>Late Registration is Kanye’s orchestral peak, soulful, grand, timeless. Coachella 2025’s Touch the Sky lifts crowds, a 2025 banger reborn.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Chart Performance</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Highest Charting Song</th>
+                            <th>Peak Position</th>
+                            <th>Streams (as of 2025)</th>
+                            <th>Certification</th>
+                            <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>The College Dropout</td><td>Slow Jamz</td><td>1</td><td>4.2B</td><td>4x Platinum</td><td>4M+</td></tr>
+                        <tr><td>Late Registration</td><td>Gold Digger</td><td>1</td><td>4.9B</td><td>5x Platinum</td><td>4.5M+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Album Certifications</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>The College Dropout</td><td>4x Platinum</td><td>4.0</td></tr>
+                        <tr><td>Late Registration</td><td>5x Platinum</td><td>4.5</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data sourced from Billboard, RIAA, Spotify, and Pitchfork, verified as of March 16, 2025.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <div class="button-container"> 
+    <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+        <i class="fas fa-adjust"></i>
+    </button>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Starfield
+            let camera, renderer, starField, scene = null;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY= 0;
+            const canvas = document.getElementById('universe');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 1000;
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const starCount = 15000;
+
+            for (let i = 0; i < starCount; i++) {
+                vertices.push(
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000
+                );
+                const color = new THREE.Color();
+                color.setHSL(Math.random(), 0.7, 0.7);
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
             });
-            document.querySelectorAll('.glass-card').forEach(card => {
-                card.addEventListener('mouseenter', () => { card.style.transform = 'scale(1.05)'; card.style.boxShadow = '0 0 20px rgba(255, 0, 255, 0.3)'; });
-                card.addEventListener('mouseleave', () => { card.style.transform = 'scale(1)'; card.style.boxShadow = 'none'; });
+
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
             });
-            document.querySelectorAll('.late-card').forEach(card => {
-                card.addEventListener('mouseenter', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1.05)'; card.style.transform = 'scale(1.05)'; });
-                card.addEventListener('mouseleave', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1)'; card.style.transform = 'scale(1)'; });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (starField) {
+                    targetX += (mouseX - targetX) * 0.02;
+                    targetY += (mouseY - targetY) * 0.02;
+                    starField.rotation.x += 0.0002 + targetY * 0.05;
+                    starField.rotation.y += 0.0003 + targetX * 0.05;
+                    const time = Date.now() * 0.001;
+                    starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+                }
+               renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
             });
-            document.querySelectorAll('.track-highlight-item').forEach(item => {
-                item.addEventListener('mouseenter', () => { item.style.transform = 'scale(1.02)'; item.style.boxShadow = '0 0 10px rgba(255, 0, 255, 0.2)'; });
-                item.addEventListener('mouseleave', () => { item.style.transform = 'scale(1)'; item.style.boxShadow = 'none'; });
+
+            // Improved Dropdown functionality
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
+            });
+
+            // Chart
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2005', '2009', '2013', '2017', '2021', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [0, 0.8, 2.0, 3.0, 4.0, 4.9],
+                        borderColor: '#F1C232',
+                        backgroundColor: 'rgba(241, 194, 50, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
             });
         });
     </script>
