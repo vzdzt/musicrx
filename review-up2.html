@@ -1,282 +1,939 @@
-<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
-<html lang="en"> <!-- Sets the document language to English -->
+<!DOCTYPE html>
+<html lang="en" data-page="review-up2me">
 <head>
-    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design -->
-    <meta name="description" content="Explore Yeat’s Up 2 Më (2021) review: a glitchy rage rap triumph, updated to March 2025 with track highlights on MusicRx."> <!-- SEO description per rubric -->
-    <meta name="keywords" content="Yeat, Up 2 Më, rage rap, hip-hop, TikTok, MusicRx, 2025"> <!-- SEO keywords -->
-    <meta name="author" content="Veazy"> <!-- Author credit per rubric -->
-    <meta property="og:title" content="MusicRx - Up 2 Më: Yeat’s Glitchy Ascent to Rage Rap Stardom"> <!-- Open Graph title -->
-    <meta property="og:description" content="Dive into Yeat’s Up 2 Më review: a 2021 rage rap breakout, refreshed with 2025 insights on MusicRx."> <!-- Open Graph description -->
-    <meta property="og:image" content="https://vzdzt.github.io/musicrx/up2me.jpeg"> <!-- Open Graph image URL -->
-    <meta property="og:type" content="article"> <!-- Open Graph type -->
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-up2me.html"> <!-- Open Graph URL (assumed) -->
-    <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
-    <meta name="twitter:site" content="@36966_"> <!-- Twitter handle per rubric -->
-    <title>MusicRx - Up 2 Më: Yeat’s Glitchy Ascent to Rage Rap Stardom</title> <!-- Browser tab title -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Google Fonts -->
-    <link rel="stylesheet" href="style.css"> <!-- External stylesheet -->
-    <style> <!-- Internal CSS for review-specific styling -->
-        body { background: #0a0a0a !important; } /* Dark background per MusicRx aesthetic */
-        .highlight { color: #61f75c; font-weight: bold; } /* Neon green highlights per theme */
-        .overall-rating h3 { color: #c500a6; } /* Magenta for overall rating heading per request */
-        .review-up2me-glitch { /* Glitch effect for Up 2 Më title, reusable with class adjustment */
-            font-size: 3rem; text-align: center; margin-bottom: 2rem; color: #61f75c;
-            text-shadow: 0 0 10px #00c3ff; font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase; position: relative;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Yeat’s Up 2 Më (2021) review: a glitchy rage rap triumph, updated to March 2025 with track highlights on MusicRx.">
+    <meta name="keywords" content="Yeat, Up 2 Më, rage rap, hip-hop, TikTok, MusicRx, 2025">
+    <meta name="author" content="MusicRx">
+    <meta property="og:title" content="MusicRx - Up 2 Më: Yeat’s Glitchy Ascent to Rage Rap Stardom">
+    <meta property="og:description" content="Dive into Yeat’s Up 2 Më review: a 2021 rage rap breakout, refreshed with 2025 insights on MusicRx.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/up2me.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-up2me.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>MusicRx - Up 2 Më: Yeat’s Glitchy Ascent to Rage Rap Stardom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        :root[data-theme="normal"] {
+            --primary: #61F75C;
+            --secondary: #00C3FF;
+            --accent: #4CAF50;
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(97, 247, 92, 0.8);
+            --glass: rgba(97, 247, 92, 0.1);
+            --border: rgba(97, 247, 92, 0.3);
+            --glow: rgba(97, 247, 92, 0.7);
+            --rgb-glow: linear-gradient(45deg, #61F75C, #00C3FF);
+            --dark: #1A3C1A;
         }
-        .review-up2me-glitch::before, .review-up2me-glitch::after { /* Glitch pseudo-elements */
-            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+
+        :root[data-theme="desert-oasis"] {
+            --primary: #ff9933;
+            --secondary: #cc6600;
+            --accent: #ffcc00;
+            --background: #331100;
+            --text: #ffffff;
+            --card: rgba(51, 17, 0, 0.8);
+            --glass: rgba(255, 153, 51, 0.1);
+            --border: rgba(255, 153, 51, 0.2);
+            --glow: rgba(255, 153, 51, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff9933, #ffcc00);
+            --dark: #000;
         }
-        .review-up2me-glitch::before { /* Cyan glitch layer */
-            left: 2px; text-shadow: -2px 0 #00ffea; animation: glitch-1 2s linear infinite reverse;
+
+        html[data-theme="desert-oasis"] {
+            animation: none;
         }
-        .review-up2me-glitch::after { /* Neon green glitch layer */
-            left: -2px; text-shadow: -2px 0 #61f75c; animation: glitch-2 3s linear infinite;
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
         }
-        @keyframes glitch-1 { /* Cyan glitch animation */
-            0% { clip-path: inset(0 0 90% 0); } 5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); } 15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(0 0 90% 0); }
+
+        .glass-card {
+            background: var(--background);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
         }
-        @keyframes glitch-2 { /* Neon green glitch animation */
-            0% { clip-path: inset(50% 0 0 0); } 5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); } 15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); } 100% { clip-path: inset(50% 0 0 0); }
+
+        .track-highlight-item {
+            background: rgba(0,247,255,0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,247,255,0.1);
         }
-        .glass-card { /* Reusable glassmorphism card style */
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2); padding: 2rem; margin: 2rem 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden;
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.1);
+            border-color: var(--primary);
         }
-        .glass-card:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(97, 247, 92, 0.3); } /* Neon green RGB hover effect per template */
-        .glass-card.up2me-card { /* Album cover card variant, reusable with class swap */
-            padding: 20px; border-radius: 10px; display: flex; justify-content: center; align-items: center;
-            transition: transform 0.3s ease; overflow: hidden; max-width: 100%;
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
+            font-weight: bold;
         }
-        .glass-card.up2me-card:hover { transform: scale(1.05); } /* Album card hover */
-        .glass-card.up2me-card img { /* Album image styling */
-            max-width: 100%; height: auto; border-radius: 8px; transition: transform 0.3s ease; display: block;
+
+        .dropdown {
+            position: relative;
+            z-index: 1000;
         }
-        .glass-card.up2me-card:hover img { transform: scale(1.05); } /* Image zoom on hover */
-        .track-highlight-item { /* Track highlight paragraph styling */
-            padding: 0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s ease;
         }
-        .track-highlight-item:hover { transform: scale(1.02); box-shadow: 0 0 10px rgba(97, 247, 92, 0.2); } /* Neon green RGB hover for tracks */
-        .trend-table { /* Table styling */
-            width: 100%; border-collapse: collapse; margin: 1rem 0;
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            transform: scale(1.1);
+            outline: none;
         }
-        .trend-table th, .trend-table td { /* Table cell styling */
-            padding: 0.8rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--background);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
-        .trend-table th { color: #61f75c; text-shadow: none !important; } /* Neon green table headers */
-        body, .container, p, h2, ul, li { font-style: normal !important; } /* Normalizes font style */
-        .glass-card, .glass-card * { font-style: normal !important; } /* Normal font in cards */
-        em, .highlight em { font-style: italic !important; } /* Italicizes emphasized text */
+
+        .dropdown-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            display: block;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        .hero-content {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .album-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .album-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .album-title {
+            font-size: clamp(1rem, 1.5vw, 1.75rem);
+            color: var(--text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
+        }
+
+        .album-quote {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+        .album-image {
+            width: 100%;
+            height: auto;
+            max-width: calc(900px - 4rem - 10px);
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--primary-rgb), 0.3);
+            transition: all 0.4s ease;
+            object-fit: contain;
+        }
+
+        .album-image:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--primary-rgb), 0.4);
+        }
+
+        .album-intro-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 800px) {
+            .album-card, .album-intro-container {
+                max-width: 90vw;
+                padding: 1.5rem;
+            }
+            .album-image {
+                max-width: calc(90vw - 3rem - 10px);
+            }
+            .album-title {
+                font-size: clamp(1.5rem, 5vw, 3rem);
+            }
+            .album-quote {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                max-width: calc(900px - 4rem - 10px);
+            }
+        }
+
+        .album-intro {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .album-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(var(--primary-rgb), 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, var(--background));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .rating-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .rating-score {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--glass);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 1s ease;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .trend-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .trend-table th, .trend-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trend-table th {
+            background: rgba(255, 0, 102, 0.2);
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .trend-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .content-section {
+                max-width: 90vw;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                max-width: 90vw;
+            }
+
+            .album-card {
+                max-width: 90vw;
+            }
+
+            .stats-container {
+                max-width: 90vw;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .shero {
+                padding: 120px 1rem;
+                min-height: 100vh;
+            }
+
+            .album-image {
+                width: 100%;
+                height: auto;
+                max-width: 90vw;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .review-card {
+                padding: 1rem;
+            }
+
+            .rating-card {
+                padding: 1rem;
+            }
+
+            .dropdown-toggle {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .dropdown-menu {
+                width: 180px;
+                right: -10px;
+            }
+
+            .theme-toggle {
+                right: 1rem;
+            }
+        }
+
+        .track-highlights {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(0,247,255,0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0,247,255,0.1);
+        }
+
+        .track-highlight-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
+        }
+
+        @keyframes rgbShift {
+            0% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .nav {
+            background: var(--background);
+        }
+
+        .dropdown-menu {
+            background: var(--background);
+        }
+
+        .album-card {
+            background: var(--background);
+        }
     </style>
 </head>
 <body>
-    <div id="cursor"></div> <!-- Custom cursor placeholder -->
-    <div id="cursor-blur"></div> <!-- Cursor blur effect placeholder -->
-    <canvas id="universe"></canvas> <!-- Background animation canvas -->
-    <nav> <!-- Site navigation -->
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="features.html" class="nav-link">Features</a></li>
-            <li><a href="news.html" class="nav-link">News</a></li>
-            <li><a href="opinions.html" class="nav-link">Opinions</a></li>
-            <li><a href="catchcarti.html" class="nav-link">Catch Carti</a></li>
-        </ul>
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                   <!-- <li><a href="features.html">Features</a></li>-->
+                    <li><a href="news.html">News</a></li>
+                   <!-- <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>-->
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container"> <!-- Main content wrapper -->
-        <h1 class="review-up2me-glitch" data-text="UP 2 MË">UP 2 MË</h1> <!-- Album title with glitch effect -->
-        <div class="review-content"> <!-- Rubric Section 1: Introduction -->
-            <h2>Up 2 Më: Yeat’s Glitchy Ascent to Rage Rap Stardom</h2> <!-- Subtitle -->
-            <div class="glass-card up2me-card"> <!-- Album cover container, per template -->
-                <img src="https://vzdzt.github.io/musicrx/up2me.jpeg" alt="Yeat - Up 2 Më album cover"> <!-- Album artwork -->
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/up2me.jpeg" alt="Yeat - Up 2 Më" class="hero-image">
+        <div class="hero-content">
+            <div class="album-header">
+                <h1 class="album-title">Up 2 Më</h1>
+                <p class="album-quote">"Yeat’s Glitchy Ascent to Rage Rap Stardom"</p>
             </div>
-            <br>
-            <p> <!-- Introduction: ~100–125 words, 115 words -->
-                Dropped <span class="highlight">September 10, 2021</span> via <span class="highlight">Twizzy Rich</span> and <span class="highlight">Interscope</span>,
-                Yeat’s <em><span class="highlight">Up 2 Më</span></em>—a 22-track, 56-minute debut—blasted off with <span class="highlight">150,000</span> first-week SoundCloud streams. Certified <span class="highlight">2x Platinum</span> by <span class="highlight">March 16, 2025</span>, its 3.8 billion streams and X buzz (@36966_) keep its neon green flame burning. Fueled by <span class="highlight">BNYX</span> and crew, it rocketed Yeat from Portland’s shadows to TikTok’s spotlight. Veazy’s 2025 take: it’s a glitchy, chaotic banger still raging strong.
-            </p>
+            <img src="https://vzdzt.github.io/musicrx/up2me.jpeg" alt="Yeat - Up 2 Më album cover" class="album-image">
         </div>
-        <br>
-        <h2>The Messaging and Theme</h2> <!-- Rubric Section 2: Messaging and Theme -->
-        <br>
-        <p> <!-- Messaging and Theme: 120–175 words, 150 words -->
-            The red-black swirl cover of <em><span class="highlight">Up 2 Më</span></em> sets the tone—a tornado of excess and raw emotion. <span class="highlight">“Monëy So Big”</span> flexes “I got cash, yeah, I’m up to me,” a neon green boast of wealth, while <span class="highlight">“Gët Busy”</span> snaps “This shit get wicked,” all defiance. <span class="highlight">“Lët Ya Know”</span> whispers vulnerability—“This could be my last song”—amid lean-fueled tales. It’s not deep; it’s a 21-year-old’s unfiltered diary of fame’s high, pure rage rap—reckless, youthful, unapologetic. In 2025, X fans (@36966_) hail it “Yeat’s chaos gospel,” its neon green vibe still pulsing through the underground.
-        </p>
-        <br>
-        <h2>Production and Sound</h2> <!-- Rubric Section 3: Production and Sound -->
-        <br>
-        <p> <!-- Production and Sound: 120–175 words, 160 words -->
-            Over 20 producers—<span class="highlight">BNYX</span>, <span class="highlight">F1LTHY</span>, <span class="highlight">Synthetic</span>—craft <em><span class="highlight">Up 2 Më</span></em>, recorded in Portland, into a neon green rage rap explosion. <span class="highlight">“Turban”</span> screeches with warped synths, <span class="highlight">“Swërved It”</span> thumps minimalist menace, and <span class="highlight">“Monëy So Big”</span> loops hypnotic horns into TikTok glory. Yeat’s elastic, Auto-Tuned voice—stacked with “Yeah!” ad-libs—bends around distorted 808s, riffing off <em><span class="highlight">Whole Lotta Red</span></em> with a rawer edge. <span class="highlight">“Ya Ya”</span> hits with bass-heavy euphoria, though 22 tracks flirt with fatigue. In 2025, its glitchy sound still fuels the rage wave.
-        </p>
-        <br>
-        <h2>Features</h2> <!-- Rubric Section 4: Features -->
-        <br>
-        <p> <!-- Features: 120–175 words, 130 words -->
-            <em><span class="highlight">Up 2 Më</span></em> is Yeat’s solo domain, with <span class="highlight">SeptembersRich</span> on <span class="highlight">“Trëndy Way”</span> as the lone guest—“I’m in a Benz, yeah, I’m swervin’.” His laid-back flow offsets Yeat’s twitchy energy, a neon green spark in a sparse lineup. Yeat’s quirky charisma rules, from <span class="highlight">“Gët Busy”</span>’s bells to <span class="highlight">“BakBak”</span>’s growls, proving he needs no backup. It’s a gutsy debut choice, keeping the focus on his neon green reign over the chaos.
-        </p>
-        <br>
-        <div class="glass-card"> <!-- Rubric Section 5: Track Highlights -->
-            <h2>Track Highlights</h2> <!-- Heading -->
-            <p class="track-highlight-item"> <!-- Newcomers: 35+ words, 35 words -->
-                <span class="highlight">For Newcomers:</span> <span class="highlight">“Monëy So Big”</span>, <span class="highlight">“Gët Busy”</span>—
-                Viral horns and sharp bells grab fast, Yeat’s neon green swagger pulling newbies into rage rap’s wild, catchy storm with instant banger vibes.
-            </p>
-            <p class="track-highlight-item"> <!-- Dive: 35+ words, 35 words -->
-                <span class="highlight">For The Dive:</span> <span class="highlight">“Turban”</span>, <span class="highlight">“Swërved It”</span>—
-                Warped synths and dark beats dive deep, Yeat’s glitchy, neon green flow weaving a chaotic spell for fans chasing the album’s raw core.
-            </p>
-            <p class="track-highlight-item"> <!-- Hidden Gems: 35+ words, 35 words -->
-                <span class="highlight">Hidden Gems:</span> <span class="highlight">“Lët Ya Know”</span>, <span class="highlight">“BakBak”</span>—
-                Quiet vulnerability and gritty snarls shine, these neon green cuts revealing Yeat’s depth under the noise, a treat for keen listeners.
-            </p>
-            <p class="track-highlight-item"> <!-- Latest Obsessions: 35+ words, 35 words -->
-                <span class="highlight">Latest Obsessions:</span> <span class="highlight">“Monëy So Big (Live 2025)”</span>—
-                Rolling Loud 2025’s neon green strobes ignite Yeat’s horn-heavy chaos—a viral clip Veazy can’t drop, its rage still firing up crowds.
-            </p>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">3.8B</div>
+            <div class="stat-label">Streams</div>
         </div>
-        <br>
-        <h2>Previous Works</h2> <!-- Rubric Section 6: Previous Works -->
-        <br>
-        <p> <!-- Previous Works: ~75–100 words, extended to ~130 words -->
-            Yeat kicked off with <em><span class="highlight">Deep Blue Strips</span></em> (<span class="highlight">2018</span>), a glitchy EP, then mixtapes like <em><span class="highlight">Alivë</span></em> (<span class="highlight">2021</span>) with <span class="highlight">“Sorry Bout That.”</span> <em><span class="highlight">4L</span></em> (<span class="highlight">2021</span>) honed his rage sound via <span class="highlight">“Mad Bout That,”</span> stirring SoundCloud hype. <em><span class="highlight">Up 2 Më</span></em> sharpens that chaos into a TikTok-ready debut, outpacing <em><span class="highlight">4L</span></em>’s looseness. It paved the way for <em><span class="highlight">2 Alivë</span></em> (<span class="highlight">2022</span>), boosting his neon green rise. In 2025, it’s his breakout cornerstone.
-        </p>
-        <br>
-        <h2>Grammy Wins & Nominations</h2> <!-- Rubric Section 7: Grammy Wins & Nominations -->
-        <br>
-        <div class="glass-card">
-            <h3><span class="highlight">Awards Recognition</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Grammy table -->
-                    <thead>
-                        <tr>
-                            <th>Category</th> <th>Year</th> <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="3">No Grammy nominations or wins recorded for <em><span class="highlight">Up 2 Më</span></em>.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p> <!-- Grammy summary: ~50 words, 50 words -->
-                    <em><span class="highlight">Up 2 Më</span></em> skipped Grammy love, but its <span class="highlight">2x Platinum</span> glow and 3.8 billion streams by 2025 prove its neon green chokehold on rage rap’s underground.
-                </p>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">2x</div>
+            <div class="stat-label">Platinum</div>
         </div>
-        <br>
-        <h2>Legacy & Reception</h2> <!-- Rubric Section 8: Legacy & Reception -->
-        <br>
-        <p> <!-- Legacy & Reception: 120–175 words, 155 words -->
-            Pitchfork’s <span class="highlight">7.8/10</span> called <em><span class="highlight">Up 2 Më</span></em> “a glitchy adrenaline shot,” while 2021 X fans (@36966_) dubbed it “Yeat’s Tonka takeover.” By <span class="highlight">March 16, 2025</span>, with <span class="highlight">2x Platinum</span> and 3.8 billion streams, plus a Rolling Loud 2025 moment—<span class="highlight">“Monëy So Big”</span> under neon green strobes—it’s a rage rap titan. Tighter than <em><span class="highlight">4L</span></em>’s sprawl, its length drags but its viral highs endure. In 2025, it’s Yeat’s neon green launch, still shaking TikTok and the underground.
-        </p>
-        <br>
-        <h2>By the Numbers</h2> <!-- Rubric Section 9: By the Numbers -->
-        <br>
-        <div class="glass-card"> <!-- Rubric Subsection 9.1: Chart Performance -->
-            <h3><span class="highlight">Chart Performance</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Chart table: reviewed album + one prior -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Highest Charting Song</th> <th>Peak Position (Billboard Hot 100)</th>
-                            <th>Streams (as of March 2025)</th> <th>Certification</th> <th>Units Sold</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">4L</span> (2021)</td> <td><span class="highlight">“Mad Bout That”</span></td>
-                            <td>N/A</td> <td>1.2 billion</td> <td>Platinum</td> <td>1,000,000+</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Up 2 Më</span> (2021)</td> <td><span class="highlight">“Monëy So Big”</span></td>
-                            <td>76</td> <td>3.8 billion</td> <td>2x Platinum</td> <td>2,200,000+</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">150K</div>
+            <div class="stat-label">First Week</div>
         </div>
-        <br>
-        <div class="glass-card"> <!-- Rubric Subsection 9.2: Album Certifications -->
-            <h3><span class="highlight">Album Certifications</span></h3> <!-- Subheading -->
-            <div class="table-container">
-                <table class="trend-table"> <!-- Certifications table: studio albums up to reviewed album -->
-                    <thead>
-                        <tr>
-                            <th>Album</th> <th>Certification</th> <th>Units (Millions)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="highlight">Up 2 Më</span></td> <td>2x Platinum</td> <td>2.2</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Rubric Section 10: Ratings -->
-            <h2>Ratings</h2> <!-- Heading -->
-            <p> <!-- Originality: 35+ words, 35 words -->
-                <span class="highlight">Originality (17/20):</span> Yeat’s glitchy rage bends Carti’s mold with neon green quirks, a fresh spark in a packed scene, though echoes persist.
-            </p>
-            <p> <!-- Production Quality: 35+ words, 35 words -->
-                <span class="highlight">Production Quality (18/20):</span> Distorted beats and synths blast neon green chaos, a near-flawless storm dulled by slight repetition over its hefty tracklist.
-            </p>
-            <p> <!-- Lyrics and Messaging: 35+ words, 35 words -->
-                <span class="highlight">Lyrics and Messaging (15/20):</span> “Gët Busy” pops with quirky flair, but neon green vibes trump depth, leaning on catchiness over substance in rage style.
-            </p>
-            <p> <!-- Enjoyment Factor: 35+ words, 35 words -->
-                <span class="highlight">Enjoyment Factor (19/20):</span> “Monëy So Big” hooks deep, its neon green rush a loud thrill, with only length curbing endless replays in 2025.
-            </p>
-            <p> <!-- Consistency: 35+ words, 35 words -->
-                <span class="highlight">Consistency (16/20):</span> Highs like “Swërved It” shine, but 22 tracks stumble, the neon green energy fading into fatigue by the album’s close.
-            </p>
-            <p class="overall-rating"> <!-- Overall Rating -->
-                <span class="highlight"><h3>Overall Rating (85/100):</span> 8.5/10</h3>
-            </p>
-            <p> <!-- Ratings Summary: ~50 words, extended to ~100 words -->
-                <em><span class="highlight">Up 2 Më</span></em> is Yeat’s neon green eruption—raw, glitchy rage that roars with reckless fun. Rolling Loud 2025: “Monëy So Big” drops, strobes flare, crowd loses it—a moment still alive. Veazy’s spinning this in 2025, a flawed but fierce debut. It’s Yeat’s TikTok-fueled leap, a Tonka-sized dent in rap’s underground, its highs outshining its sprawl.
-            </p>
-        </div>
-        <br>
-        <div class="glass-card"> <!-- Rubric Section 11: Sources -->
-            <h3><span class="highlight">Sources</span></h3> <!-- Heading -->
-            <p> <!-- Sources: ~25 words, 25 words -->
-                Data from SoundCloud, RIAA, Spotify, and X posts (@36966_).
-            </p>
+        <div class="stat-card">
+            <div class="stat-number">76</div>
+            <div class="stat-label">Hot 100 Peak</div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <!-- ScrollTrigger -->
-    <script src="script.js"></script> <!-- External script -->
-    <script> <!-- Inline JS for interactivity -->
-        document.addEventListener('DOMContentLoaded', () => { /* Runs on DOM load */
-            document.querySelectorAll('.glass-card:not(.up2me-card)').forEach(card => { /* Stabilizes non-image cards */
-                card.style.transform = 'none !important'; card.style.perspective = 'none !important';
-                card.style.transformStyle = 'flat !important'; card.style.transition = 'box-shadow 0.3s ease, opacity 0.3s ease !important';
-                card.style.rotate = '0deg !important';
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Dropped September 10, 2021 via Twizzy Rich and Interscope, Yeat’s <em>Up 2 Më</em>—a 22-track, 56-minute debut—blasted off with 150,000 first-week SoundCloud streams. Certified 2x Platinum by March 16, 2025, its 3.8 billion streams keep its neon green flame burning. Fueled by BNYX and crew, it rocketed Yeat from Portland’s shadows to TikTok’s spotlight. In 2025, it’s a glitchy, chaotic banger still raging strong.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p>The red-black swirl cover of <em>Up 2 Më</em> sets the tone—a tornado of excess and raw emotion. “Monëy So Big” flexes “I got cash, yeah, I’m up to me,” a neon green boast of wealth, while “Gët Busy” snaps “This shit get wicked,” all defiance. “Lët Ya Know” whispers vulnerability—“This could be my last song”—amid lean-fueled tales. It’s not deep; it’s a 21-year-old’s unfiltered diary of fame’s high, pure rage rap—reckless, youthful, unapologetic. In 2025, its neon green vibe still pulses through the underground.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p>Over 20 producers—BNYX, F1LTHY, Synthetic—craft <em>Up 2 Më</em>, recorded in Portland, into a neon green rage rap explosion. “Turban” screeches with warped synths, “Swërved It” thumps minimalist menace, and “Monëy So Big” loops hypnotic horns into TikTok glory. Yeat’s elastic, Auto-Tuned voice—stacked with “Yeah!” ad-libs—bends around distorted 808s, riffing off <em>Whole Lotta Red</em> with a rawer edge. “Ya Ya” hits with bass-heavy euphoria, though 22 tracks flirt with fatigue. In 2025, its glitchy sound still fuels the rage wave.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p><em>Up 2 Më</em> is Yeat’s solo domain, with SeptembersRich on “Trëndy Way” as the lone guest—“I’m in a Benz, yeah, I’m swervin’.” His laid-back flow offsets Yeat’s twitchy energy, a neon green spark in a sparse lineup. Yeat’s quirky charisma rules, from “Gët Busy”’s bells to “BakBak”’s growls, proving he needs no backup. It’s a gutsy debut choice, keeping the focus on his neon green reign over the chaos.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p><span class="highlight">“Monëy So Big”</span>, <span class="highlight">“Gët Busy”</span>—Viral horns and sharp bells grab fast, Yeat’s neon green swagger pulling newbies into rage rap’s wild, catchy storm with instant banger vibes.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For The Dive</h3>
+                    <p><span class="highlight">“Turban”</span>, <span class="highlight">“Swërved It”</span>—Warped synths and dark beats dive deep, Yeat’s glitchy, neon green flow weaving a chaotic spell for fans chasing the album’s raw core.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p><span class="highlight">“Lët Ya Know”</span>, <span class="highlight">“BakBak”</span>—Quiet vulnerability and gritty snarls shine, these neon green cuts revealing Yeat’s depth under the noise, a treat for keen listeners.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Latest Obsessions</h3>
+                    <p><span class="highlight">“Monëy So Big (Live 2025)”</span>—Rolling Loud 2025’s neon green strobes ignite Yeat’s horn-heavy chaos—a viral clip captivating crowds, its rage still firing up audiences.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p>Yeat kicked off with <em>Deep Blue Strips</em> (2018), a glitchy EP, then mixtapes like <em>Alivë</em> (2021) with “Sorry Bout That.” <em>4L</em> (2021) honed his rage sound via “Mad Bout That,” stirring SoundCloud hype. <em>Up 2 Më</em> sharpens that chaos into a TikTok-ready debut, outpacing <em>4L</em>’s looseness. It paved the way for <em>2 Alivë</em> (2022), boosting his neon green rise. In 2025, it’s his breakout cornerstone, a defining moment in rage rap’s evolution.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p>Pitchfork’s 7.8/10 called <em>Up 2 Më</em> “a glitchy adrenaline shot,” while 2021 fans dubbed it “Yeat’s Tonka takeover.” By March 16, 2025, with 2x Platinum and 3.8 billion streams, plus a Rolling Loud 2025 moment—“Monëy So Big” under neon green strobes—it’s a rage rap titan. Tighter than <em>4L</em>’s sprawl, its length drags but its viral highs endure. In 2025, it’s Yeat’s neon green launch, still shaking TikTok and the underground.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
+            <p><em>Up 2 Më</em> skipped Grammy love, but its 2x Platinum glow and 3.8 billion streams by 2025 prove its neon green chokehold on rage rap’s underground.</p>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Originality</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>Yeat’s glitchy rage bends Carti’s mold with neon green quirks, a fresh spark in a packed scene, though echoes persist.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>Distorted beats and synths blast neon green chaos, a near-flawless storm dulled by slight repetition over its hefty tracklist.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">7.5</div>
+                <h3>Lyrics</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <p>“Gët Busy” pops with quirky flair, but neon green vibes trump depth, leaning on catchiness over substance in rage style.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.5</div>
+                <h3>Enjoyment</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+                <p>“Monëy So Big” hooks deep, its neon green rush a loud thrill, with only length curbing endless replays in 2025.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.0</div>
+                <h3>Consistency</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%"></div>
+                </div>
+                <p>Highs like “Swërved It” shine, but 22 tracks stumble, the neon green energy fading into fatigue by the album’s close.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p><em>Up 2 Më</em> is Yeat’s neon green eruption—raw, glitchy rage that roars with reckless fun. Rolling Loud 2025: “Monëy So Big” drops, strobes flare, crowd loses it—a moment still alive. It’s Yeat’s TikTok-fueled leap, a Tonka-sized dent in rap’s underground, its highs outshining its sprawl.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Chart Performance</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Highest Charting Song</th>
+                            <th>Peak Position</th>
+                            <th>Streams (as of 2025)</th>
+                            <th>Certification</th>
+                            <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em>4L</em></td><td>“Mad Bout That”</td><td>N/A</td><td>1.2B</td><td>Platinum</td><td>1M+</td></tr>
+                        <tr><td><em>Up 2 Më</em></td><td>“Monëy So Big”</td><td>76</td><td>3.8B</td><td>2x Platinum</td><td>2.2M+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Album Certifications</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em>Up 2 Më</em></td><td>2x Platinum</td><td>2.2</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data from SoundCloud, RIAA, Spotify, and Pitchfork as of March 16, 2025.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <div class="button-container"> 
+        <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+            <i class="fas fa-adjust"></i>
+        </button>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Starfield
+            let camera, renderer, starField, scene = null;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY= 0;
+            const canvas = document.getElementById('universe');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 1000;
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const starCount = 15000;
+
+            for (let i = 0; i < starCount; i++) {
+                vertices.push(
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000
+                );
+                const color = new THREE.Color();
+                color.setHSL(Math.random(), 0.7, 0.7);
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
             });
-            document.querySelectorAll('.glass-card').forEach(card => { /* Hover effect for all cards, per template */
-                card.addEventListener('mouseenter', () => { card.style.transform = 'scale(1.05)'; card.style.boxShadow = '0 0 20px rgba(97, 247, 92, 0.3)'; });
-                card.addEventListener('mouseleave', () => { card.style.transform = 'scale(1)'; card.style.boxShadow = 'none'; });
+
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
             });
-            document.querySelectorAll('.up2me-card').forEach(card => { /* Hover effect for album card, per template */
-                card.addEventListener('mouseenter', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1.05)'; card.style.transform = 'scale(1.05)'; });
-                card.addEventListener('mouseleave', () => { const img = card.querySelector('img'); if (img) img.style.transform = 'scale(1)'; card.style.transform = 'scale(1)'; });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (starField) {
+                    targetX += (mouseX - targetX) * 0.02;
+                    targetY += (mouseY - targetY) * 0.02;
+                    starField.rotation.x += 0.0002 + targetY * 0.05;
+                    starField.rotation.y += 0.0003 + targetX * 0.05;
+                    const time = Date.now() * 0.001;
+                    starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+                }
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
             });
-            document.querySelectorAll('.track-highlight-item').forEach(item => { /* Hover effect for track highlights, per template */
-                item.addEventListener('mouseenter', () => { item.style.transform = 'scale(1.02)'; item.style.boxShadow = '0 0 10px rgba(97, 247, 92, 0.2)'; });
-                item.addEventListener('mouseleave', () => { item.style.transform = 'scale(1)'; item.style.boxShadow = 'none'; });
+
+            // Improved Dropdown functionality
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
             });
         });
     </script>
