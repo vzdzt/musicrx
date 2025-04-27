@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore Eminem’s The Slim Shady LP: 283,000 first-week sales, a 1999 rap classic, updated March 2025 on MusicRx.">
-    <meta name="keywords" content="Eminem, The Slim Shady LP, Dr. Dre, Aftermath, Interscope, Detroit, 1999, 2025, Spotify, Billboard">
-    <meta name="author" content="Veazy">
+    <meta name="description" content="Explore Eminem’s The Slim Shady LP: 283,000 first-week sales, a 1999 rap classic, updated April 2025 on MusicRx.">
+    <meta name="keywords" content="Eminem, The Slim Shady LP, Dr. Dre, Aftermath, Interscope, Detroit, 1999, 2025, Spotify, Billboard, Grammy">
+    <meta name="author" content="MusicRx">
     <meta property="og:title" content="MusicRx - The Slim Shady LP: Eminem’s Savage Spark Unleashed">
     <meta property="og:description" content="Dive into Eminem’s The Slim Shady LP review: a 1999 rap milestone, revisited in 2025 on MusicRx.">
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/slim.jpeg">
@@ -29,7 +29,7 @@
             --glass: rgba(255, 255, 0, 0.1);
             --border: rgba(255, 255, 0, 0.3);
             --glow: rgba(255, 255, 0, 0.7);
-            --rgb-glow: linear-gradient(45deg, #FFFF00, #E5E500, #CCCC00);
+            --rgb-glow: linear-gradient(45deg, #FFFF00, #E5E500);
             --dark: #666600;
         }
 
@@ -76,7 +76,7 @@
 
         .track-highlight-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 255, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.1);
             border-color: var(--primary);
         }
 
@@ -587,10 +587,10 @@
         }
 
         .track-highlight-item {
-            background: rgba(255, 255, 0, 0.05);
+            background: rgba(0,247,255,0.05);
             padding: 1rem;
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 0, 0.1);
+            border: 1px solid rgba(0,247,255,0.1);
         }
 
         .track-highlight-item h3 {
@@ -622,9 +622,8 @@
         }
 
         @keyframes rgbShift {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
+            0% { opacity: 1; }
+            100% { opacity: 1; }
         }
 
         .nav {
@@ -637,74 +636,6 @@
 
         .album-card {
             background: var(--background);
-        }
-
-        .review-title-glitch {
-            font-size: 3.5rem;
-            text-align: center;
-            margin: 4rem auto;
-            color: var(--primary);
-            text-shadow: 0 0 15px var(--glow);
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            position: relative;
-            animation: flicker 0.1s infinite alternate;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        @keyframes flicker {
-            0% { opacity: 1; }
-            100% { opacity: 0.95; }
-        }
-
-        .review-title-glitch::before,
-        .review-title-glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .review-title-glitch::before {
-            left: 3px;
-            text-shadow: -3px 0 var(--secondary);
-            animation: glitch-1 2s linear infinite reverse;
-        }
-
-        .review-title-glitch::after {
-            left: -3px;
-            text-shadow: -3px 0 var(--primary);
-            animation: glitch-2 3s linear infinite;
-        }
-
-        @keyframes glitch-1 {
-            0% { clip-path: inset(0 0 90% 0); }
-            5% { clip-path: inset(10% 0 70% 0); }
-            10% { clip-path: inset(20% 0 50% 0); }
-            15% { clip-path: inset(30% 0 60% 0); }
-            20% { clip-path: inset(50% 0 30% 0); }
-            100% { clip-path: inset(0 0 90% 0); }
-        }
-
-        @keyframes glitch-2 {
-            0% { clip-path: inset(50% 0 0 0); }
-            5% { clip-path: inset(70% 0 10% 0); }
-            10% { clip-path: inset(20% 0 60% 0); }
-            15% { clip-path: inset(40% 0 40% 0); }
-            20% { clip-path: inset(90% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
-        }
-
-        .highlight {
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .overall-rating h3 {
-            color: var(--primary);
         }
     </style>
 </head>
@@ -721,13 +652,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="reviews.html">Reviews</a></li>
-                   <!-- <li><a href="features.html">Features</a></li>-->
-                    <li><a href="reviews.html">News</a></li>
-                   <!-- <li><a href="opinions.html">Opinions</a></li>
-                    <li><a href="catchcarti.html">Catch Carti</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>-->
+                    <li><a href="news.html">News</a></li>
                 </ul>
             </div>
         </div>
@@ -737,7 +662,7 @@
         <img src="https://vzdzt.github.io/musicrx/slim.jpeg" alt="Eminem - The Slim Shady LP" class="hero-image">
         <div class="hero-content">
             <div class="album-header">
-                <h1 class="album-title review-title" data-text="The Slim Shady LP">The Slim Shady LP</h1>
+                <h1 class="album-title">The Slim Shady LP</h1>
                 <p class="album-quote">"Eminem’s Savage Spark Unleashed"</p>
             </div>
             <img src="https://vzdzt.github.io/musicrx/slim.jpeg" alt="Eminem - The Slim Shady LP album cover" class="album-image">
@@ -746,7 +671,7 @@
 
     <div class="stats-container">
         <div class="stat-card">
-            <div class="stat-number">8.9B</div>
+            <div class="stat-number">9.1B</div>
             <div class="stat-label">Streams</div>
         </div>
         <div class="stat-card">
@@ -767,19 +692,19 @@
         <div class="review-grid">
             <div class="review-card">
                 <h2 class="section-title">Introduction</h2>
-                <p>Unleashed <span class="highlight">February 23, 1999</span> via <span class="highlight">Aftermath</span> and <span class="highlight">Interscope</span>, Eminem’s <em><span class="highlight">The Slim Shady LP</span></em>—a 20-track, 60-minute rap inferno—sold <span class="highlight">283,000</span> first-week copies, hitting No. 2 on the <span class="highlight">Billboard 200</span> (Billboard). By <span class="highlight">March 24, 2025</span>, it’s racked up <span class="highlight">8.9 billion</span> Spotify streams and <span class="highlight">6x Platinum</span> status (RIAA). This debut birthed Slim Shady’s chaos, a yellow-hot spark still blazing in 2025’s rap scene. This review’s take: it’s a timeless savage classic.</p>
+                <p>Released on February 23, 1999, through Aftermath Entertainment and Interscope Records, Eminem’s <em>The Slim Shady LP</em>, a 20-track, 60-minute rap masterpiece, sold 283,000 units in its first week, peaking at No. 2 on the Billboard 200, according to Billboard. As of April 27, 2025, it has amassed 9.1 billion streams on Spotify and earned 6x Platinum certification from the RIAA.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Production</h2>
-                <p><span class="highlight">Dr. Dre</span>, <span class="highlight">Bass Brothers</span>, and Eminem craft <em><span class="highlight">The Slim Shady LP</span></em> at The Mix House (LA/Detroit), blending West Coast funk with Midwest grit. <span class="highlight">“My Name Is”</span> twists Labi Siffre’s sample into quirky venom, <span class="highlight">“Brain Damage”</span> looms with eerie bass, and <span class="highlight">“Role Model”</span> snarls funky defiance. Evolving <em><span class="highlight">Infinite</span></em>’s polish, its yellow-hot edge shapes 2025’s raw rap wave—think Tyler, The Creator’s bite.</p>
+                <p>Helmed by Dr. Dre, Bass Brothers, and Eminem, <em>The Slim Shady LP</em> was recorded in Los Angeles and Detroit. It blends West Coast funk with Midwest grit, crafting a distinctive sound. “My Name Is” samples Labi Siffre for quirky venom, “Brain Damage” features eerie bass, and “Role Model” delivers funky defiance. Its raw edge influences modern rap artists like Tyler, The Creator.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Messaging and Theme</h2>
-                <p><em><span class="highlight">The Slim Shady LP</span></em> unleashes Slim Shady’s unhinged psyche—rage, dark humor, and Detroit grit in a yellow-hot fever dream. <span class="highlight">“My Name Is”</span> taunts “Hi, kids! Do you like violence?,” a twisted hello. <span class="highlight">“Guilty Conscience”</span> snarls “Take advice from somebody who slapped Dee Barnes?,” wrestling morality. <span class="highlight">“Rock Bottom”</span> bleeds “Minimum wage got my adrenaline caged,” raw despair. In 2025, fans call it “Slim’s feral dawn,” its provocative chaos echoing in TikTok trends and rap’s bold edge.</p>
+                <p><em>The Slim Shady LP</em> introduces Slim Shady’s unhinged persona, weaving rage, dark humor, and Detroit struggles. “My Name Is” taunts with “Hi, kids! Do you like violence?,” setting a provocative tone. “Guilty Conscience” debates morality with “Take advice from somebody who slapped Dee Barnes?,” while “Rock Bottom” laments “Minimum wage got my adrenaline caged.” Its bold themes resonate in 2025 via TikTok trends.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Features</h2>
-                <p><em><span class="highlight">The Slim Shady LP</span></em> keeps features lean, amplifying Eminem’s vision. <span class="highlight">Dr. Dre</span> growls “You gonna rob it” on <span class="highlight">“Guilty Conscience,”</span> a tense moral clash. <span class="highlight">Dina Rae</span> coos “Come on, everybody” on <span class="highlight">“Cum on Everybody,”</span> a playful jab. <span class="highlight">Zoe Winkler</span> and <span class="highlight">Aristotle</span> spice skits like <span class="highlight">“Ken Kaniff,”</span> adding yellow-hot texture to Eminem’s savage reign.</p>
+                <p>The album keeps features sparse, emphasizing Eminem’s vision. Dr. Dre’s commanding “You gonna rob it” on “Guilty Conscience” creates a moral tug-of-war. Dina Rae’s playful “Come on, everybody” on “Cum on Everybody” adds flair. Skits featuring Zoe Winkler and Aristotle, like “Ken Kaniff,” enhance the album’s chaotic texture.</p>
             </div>
         </div>
 
@@ -793,39 +718,31 @@
             <div class="track-highlights">
                 <div class="track-highlight-item">
                     <h3>For Newcomers</h3>
-                    <p><span class="highlight">“My Name Is,”</span> <span class="highlight">“Role Model”</span>—Quirky hooks and vicious bars hook fast, Eminem’s yellow-hot wit reeling in fresh ears.</p>
+                    <p>“My Name Is” and “Role Model” with catchy hooks and sharp bars offer an accessible entry into Eminem’s provocative style.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>For The Dive</h3>
-                    <p><span class="highlight">“Guilty Conscience,”</span> <span class="highlight">“Brain Damage”</span>—Dark loops and raw tales plunge deep into Eminem’s yellow-hot chaos.</p>
+                    <p>“Guilty Conscience” and “Brain Damage” with dark production and intense storytelling delve into the album’s raw core.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>Hidden Gems</h3>
-                    <p><span class="highlight">“Rock Bottom,”</span> <span class="highlight">“If I Had”</span>—Bleak beats and raw despair shine, Eminem’s yellow-hot soul gripping the overlooked.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <h3>Latest Obsessions</h3>
-                    <p><span class="highlight">“My Name Is (Live)”</span>—Coachella 2025’s yellow-hot chants keep this review spinning this viral revival.</p>
-                </div>
-                <div class="track-highlight-item">
-                    <h3>Cultural Impact Tracks</h3>
-                    <p><span class="highlight">“My Name Is”</span>—A 2025 TikTok staple, its yellow-hot chaos fuels rap’s bold resurgence.</p>
+                    <p>“Rock Bottom” and “If I Had” with bleak beats and emotional depth stand out as introspective moments.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>Fan Favorites</h3>
-                    <p><span class="highlight">“Guilty Conscience”</span>—Fans in 2025 hail its yellow-hot Dre clash as a timeless banger.</p>
+                    <p>“My Name Is” remains a fan staple for its viral Coachella 2025 performance, per Spotify streaming data as of 2025.</p>
                 </div>
             </div>
         </div>
 
         <div class="review-card">
             <h2 class="section-title">Previous Works</h2>
-            <p>Eminem’s <em><span class="highlight">Infinite</span></em> (1996) dropped with <span class="highlight">“Infinite,”</span> selling <span class="highlight">1,000</span> copies, a raw skill flex that flopped (Billboard). The <em><span class="highlight">Slim Shady EP</span></em> (1997) teased <span class="highlight">“Just Don’t Give a Fuck,”</span> catching Dre’s ear with <span class="highlight">70,000</span> units. <em><span class="highlight">The Slim Shady LP</span></em> (1999) erupted at No. 2 (<span class="highlight">283,000</span> units), igniting a yellow-hot legacy shaping 2025’s rap edge—think Kendrick’s bite.</p>
+            <p>Eminem’s <em>Infinite</em> (1996) sold ~1,000 copies with “Infinite,” a raw but overlooked debut, per Billboard. The <em>Slim Shady EP</em> (1997) sold 70,000 units with “Just Don’t Give a Fuck,” catching Dr. Dre’s attention. <em>The Slim Shady LP</em> (1999) soared to No. 2 with 283,000 units, setting the stage for <em>The Marshall Mathers LP</em> (2000).</p>
         </div>
 
         <div class="review-card">
             <h2 class="section-title">Legacy & Reception</h2>
-            <p>Metacritic’s <span class="highlight">88/100</span> and Rolling Stone’s 4/5 praised <em><span class="highlight">The Slim Shady LP</span></em> as “a rap inferno,” fans in ‘99 called it “Slim’s savage dawn.” By <span class="highlight">March 24, 2025</span>, its <span class="highlight">6x Platinum</span> and <span class="highlight">8.9 billion</span> streams shine, Coachella 2025’s <span class="highlight">“My Name Is”</span> revival roaring. Skits drag, but its yellow-hot peaks endure in 2025’s rap DNA.</p>
+            <p>Metacritic scored <em>The Slim Shady LP</em> 88/100, and Rolling Stone gave it 4/5, lauding its “rap inferno.” By April 27, 2025, with 6x Platinum status (RIAA) and 9.1 billion Spotify streams, it remains a cultural touchstone, revived by Coachella 2025’s “My Name Is” performance, influencing artists like Kendrick Lamar.</p>
         </div>
 
         <div class="review-card">
@@ -840,25 +757,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="highlight">Best Rap Album</span></td>
-                            <td>2000</td>
-                            <td>Won</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Solo Performance (“My Name Is”)</span></td>
-                            <td>2000</td>
-                            <td>Won</td>
-                        </tr>
-                        <tr>
-                            <td><span class="highlight">Best Rap Performance by a Duo (“Guilty Conscience”)</span></td>
-                            <td>2000</td>
-                            <td>Nominated</td>
-                        </tr>
+                        <tr><td>Best Rap Album</td><td>2000</td><td>Won</td></tr>
+                        <tr><td>Best Rap Solo Performance (“My Name Is”)</td><td>2000</td><td>Won</td></tr>
+                        <tr><td>Best Rap Performance by a Duo (“Guilty Conscience”)</td><td>2000</td><td>Nominated</td></tr>
                     </tbody>
                 </table>
             </div>
-            <p><em><span class="highlight">The Slim Shady LP</span></em> snagged two 2000 Grammys, a Duo nod, its yellow-hot wins boosting Eminem’s cred with 8.9 billion streams by 2025.</p>
+            <p><em>The Slim Shady LP</em> won two Grammys in 2000 and earned a Duo nomination, cementing Eminem’s early legacy.</p>
         </div>
 
         <div class="rating-section">
@@ -868,7 +773,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 100%"></div>
                 </div>
-                <p>Slim Shady’s yellow-hot birth rewrites rap, “My Name Is” twists norms with wild wit, a chaotic persona unmatched in ‘99.</p>
+                <p>“My Name Is” introduces Slim Shady’s unique persona, redefining rap with provocative wit.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">9.0</div>
@@ -876,7 +781,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 90%"></div>
                 </div>
-                <p>Dre’s beats carve menace, “Guilty Conscience” glows eerie, a yellow-hot frame for Eminem’s chaos, skits snag its polish slightly.</p>
+                <p>Dre’s menacing beats in “Guilty Conscience” shine, though skits slightly disrupt flow.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">9.5</div>
@@ -884,7 +789,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 95%"></div>
                 </div>
-                <p>“Rock Bottom” cuts raw, yellow-hot bars blend venom and pain, near-perfect save for occasional shock over depth.</p>
+                <p>“Rock Bottom” blends raw pain and sharp bars, with occasional shock over substance.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">9.5</div>
@@ -892,7 +797,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 95%"></div>
                 </div>
-                <p>“Role Model” hooks wild, a yellow-hot thrill ride of rage and wit, replay value high, niche for some.</p>
+                <p>“Role Model” delivers a thrilling mix of rage and humor, highly replayable for most.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">8.5</div>
@@ -900,15 +805,15 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 85%"></div>
                 </div>
-                <p>“Brain Damage” to “Just Don’t Give” blaze, yellow-hot highs dip with skits and “As the World Turns,” still fierce.</p>
+                <p>“Brain Damage” excels, but skits and tracks like “As the World Turns” weaken focus.</p>
             </div>
-            <div class="rating-card overall-rating">
+            <div class="rating-card">
                 <div class="rating-score">9.3</div>
                 <h3>Overall</h3>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 93%"></div>
                 </div>
-                <p><em><span class="highlight">The Slim Shady LP</span></em> earns its 9.3/10 as Eminem’s yellow-hot spark—raw, manic genius. “My Name Is” erupts at Coachella 2025, a timeless inferno. Its skits falter, but the chaos reigns supreme, influencing 2025’s rap edge. This review’s hooked—a savage classic worth cranking loud.</p>
+                <p><em>The Slim Shady LP</em> earns a 9.3/10 for its groundbreaking energy, with “My Name Is” fueling Coachella 2025’s viral moment, cementing its influence on modern rap.</p>
             </div>
         </div>
 
@@ -927,22 +832,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><em><span class="highlight">Infinite</span></em></td>
-                            <td><span class="highlight">“Infinite”</span></td>
-                            <td>N/A</td>
-                            <td>1.2B</td>
-                            <td>Gold</td>
-                            <td>500,000+</td>
-                        </tr>
-                        <tr>
-                            <td><em><span class="highlight">The Slim Shady LP</span></em></td>
-                            <td><span class="highlight">“My Name Is”</span></td>
-                            <td>36</td>
-                            <td>8.9B</td>
-                            <td>6x Platinum</td>
-                            <td>6.7M+</td>
-                        </tr>
+                        <tr><td><em>Infinite</em></td><td>“Infinite”</td><td>N/A</td><td>1.2B</td><td>None</td><td>~1,000</td></tr>
+                        <tr><td><em>The Slim Shady LP</em></td><td>“My Name Is”</td><td>36</td><td>9.1B</td><td>6x Platinum</td><td>6.7M+</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -960,16 +851,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><em><span class="highlight">Infinite</span></em></td>
-                            <td>Gold</td>
-                            <td>0.5</td>
-                        </tr>
-                        <tr>
-                            <td><em><span class="highlight">The Slim Shady LP</span></em></td>
-                            <td>6x Platinum</td>
-                            <td>6.7</td>
-                        </tr>
+                        <tr><td><em>Infinite</em></td><td>None</td><td>0.001</td></tr>
+                        <tr><td><em>The Slim Shady LP</em></td><td>6x Platinum</td><td>6.7</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -977,7 +860,7 @@
 
         <div class="review-card">
             <h2 class="section-title">Sources</h2>
-            <p>Data from Billboard, RIAA, Spotify, Metacritic, Rolling Stone, verified as of March 24, 2025.</p>
+            <p>Data sourced from Billboard, RIAA, Spotify, Metacritic, Rolling Stone, and Grammy records, verified as of April 27, 2025.</p>
         </div>
     </div>
 
@@ -1118,7 +1001,7 @@
                     labels: ['1999', '2005', '2010', '2015', '2020', '2025'],
                     datasets: [{
                         label: 'Streams (Billions)',
-                        data: [0.1, 1.0, 2.5, 4.5, 7.0, 8.9],
+                        data: [0.1, 1.0, 2.5, 4.5, 7.0, 9.1],
                         borderColor: '#FFFF00',
                         backgroundColor: 'rgba(255, 255, 0, 0.1)',
                         fill: true,
