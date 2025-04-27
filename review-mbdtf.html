@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - MBDTF: Ye’s Cinematic Plunge into a Twisted Dreamscape</title>
+    <meta name="description" content="Explore Kanye West’s My Beautiful Dark Twisted Fantasy (2010) review: a cinematic masterpiece, updated to April 2025 with track highlights on MusicRx.">
+    <meta name="keywords" content="Kanye West, My Beautiful Dark Twisted Fantasy, hip hop, Nicki Minaj, Rihanna, MusicRx, 2025">
+    <meta property="og:title" content="MusicRx - MBDTF: Kanye West’s Cinematic Plunge into a Twisted Dreamscape">
+    <meta property="og:description" content="Dive into Kanye West’s My Beautiful Dark Twisted Fantasy review: a 2010 masterpiece, refreshed with 2025 updates on MusicRx.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/mbdtff.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-mbdtf.html">
+    <title>MusicRx - MBDTF: Kanye West’s Cinematic Plunge into a Twisted Dreamscape</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -627,6 +634,66 @@
         .album-card {
             background: var(--background);
         }
+
+        .review-grad-glitch {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .review-grad-glitch::before,
+        .review-grad-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .review-grad-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #00ffea;
+            animation: glitch-1 2s linear infinite reverse;
+        }
+
+        .review-grad-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--primary);
+            animation: glitch-2 3s linear infinite;
+        }
+
+        @keyframes glitch-1 {
+            0% { clip-path: inset(0 0 90% 0); }
+            5% { clip-path: inset(10% 0 70% 0); }
+            10% { clip-path: inset(20% 0 50% 0); }
+            15% { clip-path: inset(30% 0 60% 0); }
+            20% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(0 0 90% 0); }
+        }
+
+        @keyframes glitch-2 {
+            0% { clip-path: inset(50% 0 0 0); }
+            5% { clip-path: inset(70% 0 10% 0); }
+            10% { clip-path: inset(20% 0 60% 0); }
+            15% { clip-path: inset(40% 0 40% 0); }
+            20% { clip-path: inset(90% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .overall-rating h3 {
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -642,13 +709,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="reviews.html">Reviews</a></li>
-                   <!-- <li><a href="features.html">Features</a></li>-->
-                    <li><a href="reviews.html">News</a></li>
-                   <!-- <li><a href="opinions.html">Opinions</a></li>
-                    <li><a href="catchcarti.html">Catch Carti</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>-->
+                    <li><a href="news.html">News</a></li>
                 </ul>
             </div>
         </div>
@@ -658,8 +719,8 @@
         <img src="https://vzdzt.github.io/musicrx/mbdtff.jpeg" alt="Kanye West - My Beautiful Dark Twisted Fantasy" class="hero-image">
         <div class="hero-content">
             <div class="album-header">
-                <h1 class="album-title">My Beautiful Dark Twisted Fantasy</h1>
-                <p class="album-quote">"Ye’s Cinematic Plunge into a Twisted Dreamscape"</p>
+                <h1 class="album-title" data-text="My Beautiful Dark Twisted Fantasy">My Beautiful Dark Twisted Fantasy</h1>
+                <p class="album-quote">"Kanye West’s Cinematic Plunge into a Twisted Dreamscape"</p>
             </div>
             <img src="https://vzdzt.github.io/musicrx/mbdtff.jpeg" alt="Kanye West - My Beautiful Dark Twisted Fantasy album cover" class="album-image">
         </div>
@@ -667,7 +728,7 @@
 
     <div class="stats-container">
         <div class="stat-card">
-            <div class="stat-number">8.2B</div>
+            <div class="stat-number">8.3B</div>
             <div class="stat-label">Streams</div>
         </div>
         <div class="stat-card">
@@ -688,19 +749,19 @@
         <div class="review-grid">
             <div class="review-card">
                 <h2 class="section-title">Introduction</h2>
-                <p>Released November 22, 2010, via Roc-A-Fella and Def Jam, Kanye West’s <em>My Beautiful Dark Twisted Fantasy</em>—a 13-track, 68-minute epic—sold 496,000 first-week copies, hitting No. 1 on the Billboard 200 (Billboard). By April 21, 2025, it’s racked up 8.2 billion Spotify streams and 4x Platinum status (RIAA). Ye turned exile into a dark red triumph, still defining hip-hop in 2025.</p>
+                <p>Released <span class="highlight">November 22 2010</span> via <span class="highlight">Roc A Fella</span> and <span class="highlight">Def Jam</span> Kanye West’s <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> a 13 track 68 minute epic sold <span class="highlight">496000 first week copies</span> hitting No. 1 on the <span class="highlight">Billboard 200</span>. By <span class="highlight">April 27 2025</span> it’s racked up <span class="highlight">8.3 billion Spotify streams</span> and <span class="highlight">4x Platinum</span> status. Kanye West turned exile into a dark red triumph still defining hip hop in 2025.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Messaging and Theme</h2>
-                <p><em>MBDTF</em> is Ye’s dark red odyssey—fame’s excess meets raw vulnerability. “Power” roars “No one man should have all that power,” a brash flex. “Runaway” confesses “I’m so gifted at finding what I don’t like,” self-aware despair. “Blame Game” stings with heartbreak, its chaotic brilliance echoing in 2025’s hip-hop resurgence.</p>
+                <p><em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> is Kanye West’s dark red odyssey fame’s excess meets raw vulnerability. <span class="highlight">“Power”</span> roars “No one man should have all that power” a brash flex. <span class="highlight">“Runaway”</span> confesses “I’m so gifted at finding what I don’t like” self aware despair. <span class="highlight">“Blame Game”</span> stings with heartbreak its chaotic brilliance echoing in 2025’s hip hop resurgence.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Production</h2>
-                <p>Kanye West, RZA, No I.D., and Mike Dean craft <em>MBDTF</em> at Avex Honolulu and Electric Lady—a cinematic fusion of hip-hop, rock, and orchestras. “Dark Fantasy” swells with choral grandeur, “All of the Lights” blasts horns, and “Devil in a New Dress” drips soulful guitars, shaping 2025’s lush hip-hop sound.</p>
+                <p><span class="highlight">Kanye West</span> <span class="highlight">RZA</span> <span class="highlight">No I.D.</span> and <span class="highlight">Mike Dean</span> craft <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> at <span class="highlight">Avex Honolulu</span> and <span class="highlight">Electric Lady</span> a cinematic fusion of hip hop rock and orchestras. <span class="highlight">“Dark Fantasy”</span> swells with choral grandeur <span class="highlight">“All of the Lights”</span> blasts horns and <span class="highlight">“Devil in a New Dress”</span> drips soulful guitars shaping 2025’s lush hip hop sound.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Features</h2>
-                <p><em>MBDTF</em> shines with Nicki Minaj spitting “I’m a motherfucking monster” on “Monster,” Rihanna soaring “All of the lights” on “All of the Lights,” and Pusha T cutting “Let’s have a toast” on “Runaway.” Jay-Z, Rick Ross, Bon Iver, and John Legend amplify Ye’s dark red vision.</p>
+                <p><em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> shines with <span class="highlight">Nicki Minaj</span> spitting “I’m a motherfucking monster” on <span class="highlight">“Monster”</span> <span class="highlight">Rihanna</span> soaring “All of the lights” on <span class="highlight">“All of the Lights”</span> and <span class="highlight">Pusha T</span> cutting “Let’s have a toast” on <span class="highlight">“Runaway”</span>. <span class="highlight">Jay Z</span> <span class="highlight">Rick Ross</span> <span class="highlight">Bon Iver</span> and <span class="highlight">John Legend</span> amplify Kanye West’s dark red vision.</p>
             </div>
         </div>
 
@@ -714,44 +775,44 @@
             <div class="track-highlights">
                 <div class="track-highlight-item">
                     <h3>For Newcomers</h3>
-                    <p>“Power,” “All of the Lights”—Epic drums and horns roar, Ye’s dark red bravado hooks instantly for fresh ears.</p>
+                    <p><span class="highlight">“Power”</span> <span class="highlight">“All of the Lights”</span> Epic drums and horns roar Kanye West’s dark red bravado hooks instantly for fresh ears.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>For The Dive</h3>
-                    <p>“Runaway,” “Monster”—Pianos and fierce bars dig deep, Ye’s dark red soul bared with Pusha and Nicki.</p>
+                    <p><span class="highlight">“Runaway”</span> <span class="highlight">“Monster”</span> Pianos and fierce bars dig deep Kanye West’s dark red soul bared with Pusha T and Nicki Minaj.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>Hidden Gems</h3>
-                    <p>“Blame Game,” “Lost in the World”—Soulful riffs and choral lifts unveil Ye’s dark red heart, gripping sleeper cuts.</p>
+                    <p><span class="highlight">“Blame Game”</span> <span class="highlight">“Lost in the World”</span> Soulful riffs and choral lifts unveil Kanye West’s dark red heart gripping sleeper cuts.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>Latest Obsessions</h3>
-                    <p>“Runaway (Live)”—Glastonbury 2025’s dark red lights keep this haunting, viral revival a staple, per X trends in 2025.</p>
+                    <p><span class="highlight">“Runaway (Live)”</span> Glastonbury 2025’s dark red lights keep this haunting viral revival a staple per social media trends in 2025.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>Cultural Impact Tracks</h3>
-                    <p>“Runaway”—A 2025 TikTok staple, its dark red vibe fuels hip-hop’s cinematic resurgence, per social media trends.</p>
+                    <p><span class="highlight">“Runaway”</span> A 2025 TikTok staple its dark red vibe fuels hip hop’s cinematic resurgence per social media trends.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>Fan Favorites</h3>
-                    <p>“Monster”—X in 2025 hails its dark red Nicki verse as a timeless banger, per fan posts on @36966_.</p>
+                    <p><span class="highlight">“Monster”</span> Fans in 2025 hail its dark red Nicki Minaj verse as a timeless banger per fan sentiment in 2025.</p>
                 </div>
             </div>
         </div>
 
         <div class="review-card">
             <h2 class="section-title">Previous Works</h2>
-            <p>Ye’s path to <em>MBDTF</em> began with <em>The College Dropout</em> (2004), No. 2 with 441,000 units via “Jesus Walks” (Billboard). <em>Late Registration</em> (2005) hit No. 1, 860,000 units with “Gold Digger.” <em>Graduation</em> (2007) topped at 957,000 units with “Stronger,” and <em>808s & Heartbreak</em> (2008) landed No. 1, 450,000 units with “Heartless.” <em>MBDTF</em> (2010) fuses it all into a dark red epic.</p>
+            <p>Kanye West’s path to <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> began with <em><span class="highlight">The College Dropout</span></em> (<span class="highlight">2004</span>) No. 2 with <span class="highlight">441000 units</span> via <span class="highlight">“Jesus Walks”</span>. <em><span class="highlight">Late Registration</span></em> (<span class="highlight">2005</span>) hit No. 1 <span class="highlight">860000 units</span> with <span class="highlight">“Gold Digger”</span>. <em><span class="highlight">Graduation</span></em> (<span class="highlight">2007</span>) topped at <span class="highlight">957000 units</span> with <span class="highlight">“Stronger”</span> and <em><span class="highlight">808s & Heartbreak</span></em> (<span class="highlight">2008</span>) landed No. 1 <span class="highlight">450000 units</span> with <span class="highlight">“Heartless”</span>. <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> (<span class="highlight">2010</span>) fuses it all into a dark red epic.</p>
         </div>
 
         <div class="review-card">
             <h2 class="section-title">Awards Recognition</h2>
-            <p><em>MBDTF</em> snagged two 2012 Grammys: Best Rap Album and Best Rap Song (“All of the Lights”), plus an Album of the Year nomination, per Grammy records.</p>
+            <p><em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> snagged two <span class="highlight">2012 Grammys</span>: <span class="highlight">Best Rap Album</span> and <span class="highlight">Best Rap Song</span> (“All of the Lights”) plus an <span class="highlight">Album of the Year</span> nomination per Grammy records.</p>
         </div>
 
         <div class="review-card">
             <h2 class="section-title">Legacy & Reception</h2>
-            <p>Pitchfork’s 10/10 crowned <em>MBDTF</em> “a triumph,” Rolling Stone’s 5/5 praised its “audacity.” By April 21, 2025, its 4x Platinum status, 8.2 billion streams, and Glastonbury 2025’s “Runaway” revival cement its reign, shaping 2025’s hip-hop DNA.</p>
+            <p>Pitchfork’s <span class="highlight">10/10</span> crowned <em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> “a triumph” Rolling Stone’s <span class="highlight">5/5</span> praised its “audacity.” By <span class="highlight">April 27 2025</span> its <span class="highlight">4x Platinum</span> status <span class="highlight">8.3 billion streams</span> and Glastonbury 2025’s <span class="highlight">“Runaway”</span> revival cement its reign shaping 2025’s hip hop DNA.</p>
         </div>
 
         <div class="rating-section">
@@ -761,7 +822,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 100%"></div>
                 </div>
-                <p>Ye’s dark red fusion of hip-hop, rock, and orchestras redefines rap, a visionary leap unmatched in ambition and scope.</p>
+                <p>Kanye West’s dark red fusion of hip hop rock and orchestras redefines rap a visionary leap unmatched in ambition and scope.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">10.0</div>
@@ -769,7 +830,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 100%"></div>
                 </div>
-                <p>Cinematic beats and lush layers gleam, Ye’s dark red mastery with Mike Dean setting a flawless standard for hip-hop grandeur.</p>
+                <p>Cinematic beats and lush layers gleam Kanye West’s dark red mastery with Mike Dean setting a flawless standard for hip hop grandeur.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">9.5</div>
@@ -777,7 +838,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 95%"></div>
                 </div>
-                <p>Bravado and vulnerability weave a dark red tale, brilliance slightly softened by indulgent tangents, yet piercingly honest.</p>
+                <p>Bravado and vulnerability weave a dark red tale brilliance slightly softened by indulgent tangents yet piercingly honest.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">10.0</div>
@@ -785,7 +846,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 100%"></div>
                 </div>
-                <p>Explosive highs and raw lows thrill, Ye’s dark red odyssey a relentless rush that hooks deep every time.</p>
+                <p>Explosive highs and raw lows thrill Kanye West’s dark red odyssey a relentless rush that hooks deep every time.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">10.0</div>
@@ -793,15 +854,15 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 100%"></div>
                 </div>
-                <p>Seamless flow binds every track, Ye’s dark red vision a cohesive masterpiece with no weak spots, pure fire.</p>
+                <p>Seamless flow binds every track Kanye West’s dark red vision a cohesive masterpiece with no weak spots pure fire.</p>
             </div>
-            <div class="rating-card">
+            <div class="rating-card overall-rating">
                 <div class="rating-score">9.9</div>
                 <h3>Overall</h3>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 99%"></div>
                 </div>
-                <p><em>MBDTF</em> earns a 9.9/10 as Ye’s dark red crown—cinematic chaos and raw soul. “Runaway” pulses at Glastonbury 2025, a timeless jolt shaping 2025’s hip-hop DNA.</p>
+                <p><em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em> earns a <span class="highlight">9.9/10</span> as Kanye West’s dark red crown cinematic chaos and raw soul. <span class="highlight">“Runaway”</span> pulses at Glastonbury 2025 a timeless jolt shaping 2025’s hip hop DNA.</p>
             </div>
         </div>
 
@@ -820,8 +881,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><em>808s & Heartbreak</em></td><td>“Heartless”</td><td>2</td><td>6.1B</td><td>4x Platinum</td><td>4.3M+</td></tr>
-                        <tr><td><em>MBDTF</em></td><td>“Runaway”</td><td>12</td><td>8.2B</td><td>4x Platinum</td><td>4.8M+</td></tr>
+                        <tr><td><em><span class="highlight">808s & Heartbreak</span></em></td><td><span class="highlight">“Heartless”</span></td><td>2</td><td>6.1B</td><td>4x Platinum</td><td>4.3M+</td></tr>
+                        <tr><td><em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em></td><td><span class="highlight">“Runaway”</span></td><td>12</td><td>8.3B</td><td>4x Platinum</td><td>4.8M+</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -839,11 +900,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><em>The College Dropout</em></td><td>4x Platinum</td><td>4.0</td></tr>
-                        <tr><td><em>Late Registration</em></td><td>5x Platinum</td><td>4.5</td></tr>
-                        <tr><td><em>Graduation</em></td><td>7x Platinum</td><td>5.2</td></tr>
-                        <tr><td><em>808s & Heartbreak</em></td><td>4x Platinum</td><td>4.3</td></tr>
-                        <tr><td><em>MBDTF</em></td><td>4x Platinum</td><td>4.8</td></tr>
+                        <tr><td><em><span class="highlight">The College Dropout</span></em></td><td>4x Platinum</td><td>4.0</td></tr>
+                        <tr><td><em><span class="highlight">Late Registration</span></em></td><td>5x Platinum</td><td>4.5</td></tr>
+                        <tr><td><em><span class="highlight">Graduation</span></em></td><td>7x Platinum</td><td>5.2</td></tr>
+                        <tr><td><em><span class="highlight">808s & Heartbreak</span></em></td><td>4x Platinum</td><td>4.3</td></tr>
+                        <tr><td><em><span class="highlight">My Beautiful Dark Twisted Fantasy</span></em></td><td>4x Platinum</td><td>4.8</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -851,7 +912,7 @@
 
         <div class="review-card">
             <h2 class="section-title">Sources</h2>
-            <p>Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and X (@36966_), verified as of April 21, 2025.</p>
+            <p>Data from Billboard, RIAA, Spotify, Pitchfork, Rolling Stone, and Grammy records as of April 27 2025.</p>
         </div>
     </div>
 
@@ -868,12 +929,12 @@
         </form>
     </footer>
     <div class="button-container"> 
-    <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-    <button id="themeToggle" class="theme-toggle" title="Normal Mode">
-        <i class="fas fa-adjust"></i>
-    </button>
+        <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="themeToggle" class="theme-toggle" title="Normal Mode">
+            <i class="fas fa-adjust"></i>
+        </button>
     </div>
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -937,7 +998,7 @@
                     const time = Date.now() * 0.001;
                     starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
                 }
-               renderer.render(scene, camera);
+                renderer.render(scene, camera);
             }
 
             animate();
@@ -992,7 +1053,7 @@
                     labels: ['2010', '2015', '2020', '2025'],
                     datasets: [{
                         label: 'Streams (Billions)',
-                        data: [0, 2.0, 5.5, 8.2],
+                        data: [0.1, 2.5, 5.8, 8.3],
                         borderColor: '#AB2330',
                         backgroundColor: 'rgba(171, 35, 48, 0.1)',
                         fill: true,
