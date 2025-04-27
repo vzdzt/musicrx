@@ -67,7 +67,18 @@
                     card.style.animation = 'none';
                 });
             });
-        });
+ const searchInput = document.getElementById('reviewSearch');
+            const cards = document.querySelectorAll('.scroll-item');
+
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                cards.forEach(card => {
+                    const title = card.querySelector('.news-title-card h2').textContent.toLowerCase();
+                    const shouldShow = title.includes(searchTerm);
+                    card.style.display = shouldShow ? 'flex' : 'none';
+                });
+            });       
+ });
     </script>
 </head>
 <body>
@@ -498,10 +509,10 @@
             <p>© 2025 MusicRx. All rights reserved.</p>
         </div>
         <!-- Newsletter subscription form -->
-        <form class="newsletter-form">
+       <!-- <form class="newsletter-form">
             <input type="email" placeholder="Subscribe to Newsletter" required>
             <button type="submit">Subscribe</button>
-        </form>
+        </form>-->
     </footer>
 
     <!-- External scripts -->

@@ -1,11 +1,10 @@
-
 // Footer visibility control
 window.addEventListener('scroll', () => {
   const footer = document.querySelector('footer');
   if (footer) {
     const scrollPosition = Math.ceil(window.scrollY + window.innerHeight);
     const documentHeight = document.documentElement.scrollHeight;
-    
+
     if (scrollPosition >= documentHeight) {
       footer.classList.add('visible');
     } else {
@@ -415,45 +414,6 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggle.setAttribute('aria-label', `Switch to next theme (current: ${newThemeTitle})`);
             updateCursorForTheme(newTheme);
 
-// Search functionality for reviews and features pages
-function initializeSearch() {
-  const reviewSearch = document.getElementById('reviewSearch');
-  const featureSearch = document.getElementById('featureSearch');
-  
-  if (reviewSearch) {
-    const cards = document.querySelectorAll('.glass-card');
-    reviewSearch.addEventListener('input', debounce((e) => {
-      const searchTerm = e.target.value.toLowerCase().trim();
-      cards.forEach(card => {
-        const artistName = card.querySelector('h2')?.textContent.toLowerCase() || '';
-        const description = card.querySelector('p')?.textContent.toLowerCase() || '';
-        const shouldShow = artistName.includes(searchTerm) || description.includes(searchTerm);
-        card.style.display = shouldShow ? 'block' : 'none';
-        card.style.opacity = shouldShow ? '1' : '0';
-        card.style.transition = 'opacity 0.3s ease';
-      });
-    }, 300));
-  }
-
-  if (featureSearch) {
-    const cards = document.querySelectorAll('.glass-card');
-    featureSearch.addEventListener('input', debounce((e) => {
-      const searchTerm = e.target.value.toLowerCase().trim();
-      cards.forEach(card => {
-        const artistName = card.querySelector('h2')?.textContent.toLowerCase() || '';
-        const description = card.querySelector('p')?.textContent.toLowerCase() || '';
-        const shouldShow = artistName.includes(searchTerm) || description.includes(searchTerm);
-        card.style.display = shouldShow ? 'block' : 'none';
-        card.style.opacity = shouldShow ? '1' : '0';
-        card.style.transition = 'opacity 0.3s ease';
-      });
-    }, 300));
-  }
-}
-
-// Call the search initialization when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeSearch);
-
             updateStarfieldColors();
             console.log(`Theme changed to: ${newTheme}`);
         });
@@ -531,29 +491,34 @@ wordSpan.textContent = word;
 function initializeSearch() {
     const reviewSearch = document.getElementById('reviewSearch');
     const featureSearch = document.getElementById('featureSearch');
-    
-    function handleSearch(input, cards) {
-        const searchTerm = input.value.toLowerCase().trim();
-        cards.forEach(card => {
-            const title = card.querySelector('h2, h3')?.textContent.toLowerCase() || '';
-            const description = card.querySelector('p')?.textContent.toLowerCase() || '';
-            const shouldShow = title.includes(searchTerm) || description.includes(searchTerm);
-            card.style.display = shouldShow ? 'flex' : 'none';
-            card.style.opacity = shouldShow ? '1' : '0';
-        });
-    }
 
     if (reviewSearch) {
-        const reviewCards = document.querySelectorAll('.glass-card');
+        const cards = document.querySelectorAll('.scroll-item');
         reviewSearch.addEventListener('input', debounce((e) => {
-            handleSearch(reviewSearch, reviewCards);
+            const searchTerm = e.target.value.toLowerCase().trim();
+            cards.forEach(card => {
+                const artistName = card.querySelector('.news-title-card h2')?.textContent.toLowerCase() || '';
+                const rating = card.querySelector('.rating')?.textContent.toLowerCase() || '';
+                const shouldShow = artistName.includes(searchTerm) || rating.includes(searchTerm);
+                card.style.display = shouldShow ? 'flex' : 'none';
+                card.style.opacity = shouldShow ? '1' : '0';
+                card.style.transition = 'opacity 0.3s ease';
+            });
         }, 300));
     }
 
     if (featureSearch) {
-        const featureCards = document.querySelectorAll('.glass-card');
+        const cards = document.querySelectorAll('.scroll-item');
         featureSearch.addEventListener('input', debounce((e) => {
-            handleSearch(featureSearch, featureCards);
+            const searchTerm = e.target.value.toLowerCase().trim();
+            cards.forEach(card => {
+                const artistName = card.querySelector('.news-title-card h2')?.textContent.toLowerCase() || '';
+                const rating = card.querySelector('.rating')?.textContent.toLowerCase() || '';
+                const shouldShow = artistName.includes(searchTerm) || rating.includes(searchTerm);
+                card.style.display = shouldShow ? 'flex' : 'none';
+                card.style.opacity = shouldShow ? '1' : '0';
+                card.style.transition = 'opacity 0.3s ease';
+            });
         }, 300));
     }
 }
