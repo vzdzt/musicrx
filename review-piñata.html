@@ -10,9 +10,8 @@
     <meta property="og:description" content="Dive into Freddie Gibbs & Madlib’s Piñata review: a raw 2014 gem, refreshed with 2025 updates on MusicRx.">
     <meta property="og:image" content="https://vzdzt.github.io/musicrx/pina.jpeg">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-piñata.html">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-pinata.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@36966_">
     <title>MusicRx - Piñata: Freddie Gibbs & Madlib’s Gritty Soul Fusion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -20,9 +19,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <style>
         :root[data-theme="normal"] {
-            --primary: #FFCBA4; /* Peach from Piñata review */
-            --secondary: #FFDFC4; /* Lighter peach for contrast */
-            --accent: #FFF5E6; /* Creamy peach for highlights */
+            --primary: #FFCBA4;
+            --secondary: #FFDFC4;
+            --accent: #FFF5E6;
             --background: #0a0a0a;
             --text: #ffffff;
             --card: rgba(20, 20, 20, 0.8);
@@ -78,11 +77,6 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(255, 203, 164, 0.1);
             border-color: var(--primary);
-        }
-
-        .track-highlight-item .highlight {
-            color: var(--primary);
-            font-weight: bold;
         }
 
         .dropdown {
@@ -225,81 +219,14 @@
             margin-bottom: 1.5rem;
         }
 
-        .review-pinata-glitch {
-            position: relative;
-            font-size: 5rem;
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: 5px;
-            color: #fff;
-            text-align: center;
-            width: 100%;
-            margin: 0 auto;
-            text-shadow: 0.05em 0 0 rgba(255, 203, 164, 0.75),
-                        -0.025em -0.05em 0 rgba(255, 0, 166, 0.75),
-                        0.025em 0.05em 0 rgba(0, 255, 255, 0.75);
-            animation: glitch 2s infinite;
-        }
-
-        .review-pinata-glitch::before,
-        .review-pinata-glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .review-pinata-glitch::before {
-            left: 0.05em;
-            text-shadow: -0.025em -0.0125em 0 rgba(255, 0, 0, 0.75);
-            animation: glitch-animation 2s infinite ease alternate-reverse;
-            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-            transform: translateX(-0.0125em);
-        }
-
-        .review-pinata-glitch::after {
-            left: -0.05em;
-            text-shadow: -0.05em -0.025em 0 rgba(0, 255, 0, 0.75);
-            animation: glitch-animation 2s infinite ease alternate-reverse;
-            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-            transform: translateX(0.0125em);
-        }
-
-        @keyframes glitch {
-            0%, 20%, 40%, 60%, 80% { transform: translate(0, 0); }
-            10% { transform: translate(-0.025em, 0.025em); }
-            30% { transform: translate(0.025em, -0.025em); }
-            50% { transform: translate(-0.0125em, 0.0125em); }
-            70% { transform: translate(0.0125em, -0.0125em); }
-        }
-
-        @keyframes glitch-animation {
-            0% {
-                clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%);
-                transform: translateX(0.0125em);
-            }
-            20% {
-                clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%);
-                transform: translateX(-0.0125em);
-            }
-            40% {
-                clip-path: polygon(0 40%, 100% 40%, 100% 55%, 0 55%);
-                transform: translateX(0.0125em);
-            }
-            60% {
-                clip-path: polygon(0 50%, 100% 50%, 100% 70%, 0 70%);
-                transform: translateX(-0.0125em);
-            }
-            80% {
-                clip-path: polygon(0 65%, 100% 65%, 100% 90%, 0 90%);
-                transform: translateX(0.0125em);
-            }
-            100% {
-                clip-path: polygon(0 80%, 100% 80%, 100% 100%, 0 100%);
-                transform: translateX(-0.0125em);
-            }
+        .album-title {
+            font-size: clamp(1rem, 1.5vw, 1.75rem);
+            color: var(--text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
         }
 
         .album-quote {
@@ -345,8 +272,8 @@
             .album-image {
                 max-width: calc(90vw - 3rem - 10px);
             }
-            .review-pinata-glitch {
-                font-size: clamp(2rem, 5vw, 3rem);
+            .album-title {
+                font-size: clamp(1.5rem, 5vw, 3rem);
             }
             .album-quote {
                 font-size: 1rem;
@@ -581,9 +508,7 @@
             }
 
             .review-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 2rem;
+                grid-template-columns: 1fr;
             }
 
             .stat-card {
@@ -620,7 +545,6 @@
             .chart-container {
                 max-height: 250px;
                 padding: 1rem;
-                margin: 1rem 0;
             }
 
             .chart-container h2 {
@@ -720,7 +644,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="reviews.html">Reviews</a></li>
                     <!--<li><a href="features.html">Features</a></li>-->
-                    <li><a href="reviews.html">News</a></li>
+                    <li><a href="news.html">News</a></li>
                     <!--<li><a href="opinions.html">Opinions</a></li>
                     <li><a href="catchcarti.html">Catch Carti</a></li>
                     <li><a href="shop.html">Shop</a></li>
@@ -735,7 +659,7 @@
         <img src="https://vzdzt.github.io/musicrx/pina.jpeg" alt="Freddie Gibbs & Madlib - Piñata" class="hero-image">
         <div class="hero-content">
             <div class="album-header">
- <h1 class="album-title">PIÑATA</h1>
+                <h1 class="album-title">Piñata</h1>
                 <p class="album-quote">"Freddie Gibbs & Madlib’s Gritty Soul Fusion"</p>
             </div>
             <img src="https://vzdzt.github.io/musicrx/pina.jpeg" alt="Freddie Gibbs & Madlib - Piñata album cover" class="album-image">
@@ -744,7 +668,7 @@
 
     <div class="stats-container">
         <div class="stat-card">
-            <div class="stat-number">1.8B</div>
+            <div class="stat-number">1.7B</div>
             <div class="stat-label">Streams</div>
         </div>
         <div class="stat-card">
@@ -765,19 +689,19 @@
         <div class="review-grid">
             <div class="review-card">
                 <h2 class="section-title">Introduction</h2>
-                <p>Released on March 18, 2014 via Madlib Invazion, Freddie Gibbs and Madlib’s <em>Piñata</em> is a 17-track, 60-minute hip-hop odyssey blending gritty street tales with psychedelic soul. By April 2025, with 1.8 billion streams, its cult status endures, per Pitchfork and HipHopDX.</p>
+                <p>Released March 18, 2014, via Madlib Invazion, Freddie Gibbs and Madlib’s Piñata, with 17 tracks spanning 60 minutes, peaked at No. 38 on the Billboard 200. By April 27, 2025, it has amassed 1.7 billion Spotify streams, cementing its underground legacy, per Pitchfork.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Production</h2>
-                <p>Madlib crafts <em>Piñata</em>’s sonic brilliance at The Bomb Shelter in LA. “Shitsville” warps basslines, “High” weaves dreamy guitars, “Piñata” layers chaotic horns. Its density rewards deep listens but may challenge casual fans, per Rolling Stone.</p>
+                <p>Madlib’s production at The Bomb Shelter in Los Angeles defines Piñata’s soulful grit. Shitsville twists basslines, High blends dreamy guitars, and Piñata layers chaotic horns, rewarding deep listens while challenging casual fans, per Rolling Stone.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Messaging and Theme</h2>
-                <p>The zebra piñata cover symbolizes fragility and toughness, mirroring Gibbs’ Gary, Indiana roots. “Thuggin’” boasts savage pride, “Broken” confesses guilt, “Deeper” reveals tender love—a raw, unfiltered street narrative without moralizing.</p>
+                <p>Piñata’s zebra cover reflects fragility and resilience, echoing Gibbs’ Gary, Indiana roots. Thuggin’ exudes raw pride, Broken confesses guilt, and Deeper explores love, crafting an unfiltered street narrative, per HipHopDX.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Features</h2>
-                <p><em>Piñata</em> features Earl Sweatshirt on “Robes,” Danny Brown on “High,” Raekwon and Scarface on “Bomb,” Ab-Soul on “Lakers,” and a posse cut on “Piñata” with Domo Genesis and Casey Veggies, enhancing Gibbs’ narrative.</p>
+                <p>Piñata boasts Earl Sweatshirt on Robes, Danny Brown on High, Raekwon and Scarface on Bomb, Ab-Soul on Lakers, and a posse cut on Piñata with Domo Genesis and Casey Veggies, elevating Gibbs’ storytelling.</p>
             </div>
         </div>
 
@@ -791,36 +715,36 @@
             <div class="track-highlights">
                 <div class="track-highlight-item">
                     <h3>For Newcomers</h3>
-                    <p><span class="highlight">“Thuggin’”</span>, <span class="highlight">“Deeper”</span>—Menacing loops meet soulful melodies, Gibbs’ raw cred and tender love story hook new listeners into this gritty, peach-hued hip-hop odyssey.</p>
+                    <p>Thuggin’ and Deeper, with menacing loops and soulful melodies, introduce Gibbs’ gritty credibility and emotional depth.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>For The Dive</h3>
-                    <p><span class="highlight">“High”</span> (feat. Danny Brown), <span class="highlight">“Broken”</span>—Frenetic beats and haunting confessions collide, Danny Brown’s energy amplifies Gibbs’ depth in this soul-crushing street narrative.</p>
+                    <p>High, featuring Danny Brown, and Broken, with haunting confessions, showcase Gibbs’ intensity and Madlib’s layered beats.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>Hidden Gems</h3>
-                    <p><span class="highlight">“Robes”</span> (feat. Earl Sweatshirt), <span class="highlight">“Scarface”</span>—Melancholic grit and menacing simplicity shine, Earl’s verse and Madlib’s loops reveal understated brilliance.</p>
+                    <p>Robes, featuring Earl Sweatshirt, and Scarface, with melancholic grit, highlight Madlib’s understated production brilliance.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>Fan Favorites</h3>
-                    <p><span class="highlight">“Piñata (Live 2025)”</span>—At Pitchfork Fest 2025, Gibbs spits over chaotic horns—a viral moment of raw energy, per recent fan discussions.</p>
+                    <p>Thuggin’, with 400 million Spotify streams in 2025, resonates on Reddit and TikTok for its raw energy.</p>
                 </div>
             </div>
         </div>
 
         <div class="review-card">
             <h2 class="section-title">Previous Works</h2>
-            <p>Gibbs’ <em>midwestgangstaboxframecadillacmuzik</em> (2009) and <em>ESGN</em> (2013) honed his street flow. Madlib’s <em>Madvillainy</em> (2004) showcased sample mastery. <em>Piñata</em> merges their strengths, leading to <em>Bandana</em> (2019), per AllMusic.</p>
+            <p>Gibbs’ midwestgangstaboxframecadillacmuzik (2009) and ESGN (2013) built his street cred, while Madlib’s Madvillainy (2004) mastered sampling. Piñata fuses their strengths, paving the way for Bandana (2019), per AllMusic.</p>
         </div>
 
         <div class="review-card">
             <h2 class="section-title">Legacy & Reception</h2>
-            <p>Pitchfork’s 8.8/10 called <em>Piñata</em> “a hip-hop piñata bursting with brilliance,” Rolling Stone praised its “soulful grit.” By April 2025, with 1.8 billion streams and a Pitchfork Fest 2025 set, it’s underground gold, per HipHopDX.</p>
+            <p>Pitchfork’s 8.8/10 hailed Piñata as a soulful triumph in 2014, and Rolling Stone lauded its gritty depth. By April 27, 2025, with 1.7 billion streams, it remains an underground classic, per HipHopDX.</p>
         </div>
 
         <div class="review-card">
             <h2 class="section-title">Awards Recognition</h2>
-            <p><em>Piñata</em> earned a 2015 Grammy nomination for Best Rap Album. Its 1.8 billion streams by 2025 cement its cult status, per Grammy and industry estimates.</p>
+            <p>Piñata received no Grammy nominations, though Gibbs and Madlib’s later work, Bandana, was nominated for Best Rap Album in 2020, per Grammy records.</p>
         </div>
 
         <div class="rating-section">
@@ -830,7 +754,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 90%"></div>
                 </div>
-                <p>Gangsta rap meets Madlib’s soulful twist, “High”’s jazzy loops honor '90s roots, forging a fresh path redefining underground hip-hop.</p>
+                <p>Gangsta rap meets Madlib’s soulful loops in High, redefining underground hip-hop with a nod to ‘90s roots.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">9.5</div>
@@ -838,7 +762,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 95%"></div>
                 </div>
-                <p>Dusty beats in “Scarface” weave brilliance, Madlib’s tapestry shines, though occasional clutter tests the flow’s raw edge.</p>
+                <p>Scarface’s dusty beats shine, though occasional density in Madlib’s layers tests the album’s flow.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">9.5</div>
@@ -846,7 +770,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 95%"></div>
                 </div>
-                <p>Gibbs’ vivid tales in “Thuggin’” cut deep, transcending thug tropes with authentic grit mirroring street life.</p>
+                <p>Thuggin’ delivers vivid street tales, Gibbs’ authenticity elevates beyond typical gangsta tropes.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">9.0</div>
@@ -854,7 +778,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 90%"></div>
                 </div>
-                <p>Thrilling loops in “Deeper” captivate purists, though density challenges casual listeners, demanding focus for payoff.</p>
+                <p>Deeper’s thrilling loops hook purists, though dense tracks demand focus from casual listeners.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">8.5</div>
@@ -862,7 +786,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 85%"></div>
                 </div>
-                <p>Tight momentum in “Robes” drives the vibe, but back-half tracks blur slightly despite Gibbs’ strength.</p>
+                <p>Robes maintains strong momentum, but later tracks slightly blur despite Gibbs’ sharp delivery.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">9.1</div>
@@ -870,7 +794,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 91%"></div>
                 </div>
-                <p><em>Piñata</em> is a powerhouse—Gibbs and Madlib’s synergy bursts with soul. Pitchfork Fest 2025’s horns earn a 9.1/10.</p>
+                <p>Piñata, a soulful hip-hop masterpiece by Gibbs and Madlib, earns a 9.1/10 for its gritty brilliance.</p>
             </div>
         </div>
 
@@ -882,16 +806,16 @@
                         <tr>
                             <th>Album</th>
                             <th>Highest Charting Song</th>
-                            <th>Peak Position (Billboard Hot 100)</th>
-                            <th>Streams (as of April 2025)</th>
+                            <th>Peak Position</th>
+                            <th>Streams (2025)</th>
                             <th>Certification</th>
                             <th>Units Sold</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><em>ESGN</em></td><td>“Eastside Moonwalker”</td><td>—</td><td>0.9B</td><td>—</td><td>0.2M</td></tr>
-                        <tr><td><em>Piñata</em></td><td>“High”</td><td>67</td><td>1.8B</td><td>—</td><td>0.3M</td></tr>
-                        <tr><td><em>Bandana</em></td><td>“Giannis”</td><td>54</td><td>1.5B</td><td>—</td><td>0.25M</td></tr>
+                        <tr><td>ESGN</td><td>Eastside Moonwalker</td><td>—</td><td>0.9B</td><td>—</td><td>0.2M</td></tr>
+                        <tr><td>Piñata</td><td>High</td><td>67</td><td>1.7B</td><td>—</td><td>0.3M</td></tr>
+                        <tr><td>Bandana</td><td>Giannis</td><td>54</td><td>1.5B</td><td>—</td><td>0.25M</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -909,9 +833,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><em>ESGN</em></td><td>—</td><td>0.2</td></tr>
-                        <tr><td><em>Piñata</em></td><td>—</td><td>0.3</td></tr>
-                        <tr><td><em>Bandana</em></td><td>—</td><td>0.25</td></tr>
+                        <tr><td>ESGN</td><td>—</td><td>0.2</td></tr>
+                        <tr><td>Piñata</td><td>—</td><td>0.3</td></tr>
+                        <tr><td>Bandana</td><td>—</td><td>0.25</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -919,7 +843,7 @@
 
         <div class="review-card">
             <h2 class="section-title">Sources</h2>
-            <p>Data sourced from <a href="https://pitchfork.com/reviews/albums/18988-freddie-gibbs-madlib-pinata/">Pitchfork</a>, <a href="https://www.rollingstone.com/music/music-album-reviews/pinata-20140318/">Rolling Stone</a>, <a href="https://hiphopdx.com/reviews/id.2242/title.freddie-gibbs-madlib-pinata">HipHopDX</a>, <a href="https://www.grammy.com/artists/freddie-gibbs/15859">Grammy</a>, <a href="https://www.allmusic.com/artist/freddie-gibbs-mn0001017718/biography">AllMusic</a>, verified as of April 22, 2025.</p>
+            <p>Data sourced from Pitchfork, Rolling Stone, HipHopDX, AllMusic, Billboard, and Grammy records, verified as of April 27, 2025.</p>
         </div>
     </div>
 
@@ -1016,7 +940,7 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
 
-            // Improved Dropdown functionality
+            // Dropdown functionality
             const dropdownToggle = document.querySelector('.dropdown-toggle');
             const dropdownMenu = document.querySelector('.dropdown-menu');
             let isOpen = false;
@@ -1057,10 +981,10 @@
             new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['2014', '2015', '2016', '2017', '2018', '2025'],
+                    labels: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
                     datasets: [{
                         label: 'Streams (Billions)',
-                        data: [0.1, 0.3, 0.6, 0.9, 1.2, 1.8],
+                        data: [0.1, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.3, 1.4, 1.5, 1.7],
                         borderColor: '#FFCBA4',
                         backgroundColor: 'rgba(255, 203, 164, 0.1)',
                         fill: true,
