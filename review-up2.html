@@ -65,12 +65,12 @@
         }
 
         .track-highlight-item {
-            background: rgba(0,247,255,0.05);
+            background: rgba(var(--primary-rgb), 0.05);
             padding: 1rem;
             border-radius: 10px;
             margin: 0.5rem 0;
             transition: all 0.3s ease;
-            border: 1px solid rgba(0,247,255,0.1);
+            border: 1px solid rgba(var(--primary-rgb), 0.1);
         }
 
         .track-highlight-item:hover {
@@ -396,6 +396,31 @@
             line-height: 1.4;
         }
 
+        .chart-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-container h2 {
+            margin: 0 0 1rem 0;
+            padding: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .chart-container canvas {
+            max-height: 250px;
+            width: 100%;
+        }
+
         .rating-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -524,6 +549,21 @@
                 padding: 1rem;
             }
 
+            .chart-container {
+                max-height: 250px;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .chart-container canvas {
+                max-height: 200px;
+            }
+
             .dropdown-toggle {
                 font-size: 1.2rem;
                 padding: 0.3rem;
@@ -545,18 +585,6 @@
             margin: 1rem 0;
         }
 
-        .track-highlight-item {
-            background: rgba(0,247,255,0.05);
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid rgba(0,247,255,0.1);
-        }
-
-        .track-highlight-item h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
         .theme-toggle {
             position: fixed;
             bottom: 20px;
@@ -573,7 +601,7 @@
         }
 
         .theme-toggle:hover {
-            background: var(--rgb-glow);
+            background: var(--rgb MINUS glow);
             color: var(--dark);
             box-shadow: 0 0 20px var(--primary);
             animation: rgbShift 3s linear infinite;
@@ -611,13 +639,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="reviews.html">Reviews</a></li>
-                   <!-- <li><a href="features.html">Features</a></li>-->
                     <li><a href="news.html">News</a></li>
-                   <!-- <li><a href="opinions.html">Opinions</a></li>
-                    <li><a href="catchcarti.html">Catch Carti</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>-->
                 </ul>
             </div>
         </div>
@@ -657,20 +679,25 @@
         <div class="review-grid">
             <div class="review-card">
                 <h2 class="section-title">Introduction</h2>
-                <p>Dropped September 10, 2021 via Twizzy Rich and Interscope, Yeat’s <em>Up 2 Më</em>—a 22-track, 56-minute debut—blasted off with 150,000 first-week SoundCloud streams. Certified 2x Platinum by March 16, 2025, its 3.8 billion streams keep its neon green flame burning. Fueled by BNYX and crew, it rocketed Yeat from Portland’s shadows to TikTok’s spotlight. In 2025, it’s a glitchy, chaotic banger still raging strong.</p>
+                <p>Dropped <span class="highlight">September 10 2021</span> via <span class="highlight">Twizzy Rich</span> and <span class="highlight">Interscope</span> Yeat’s <em><span class="highlight">Up 2 Më</span></em> a <span class="highlight">22 track 56 minute</span> debut blasted off with <span class="highlight">150000 first week SoundCloud streams</span>. Certified <span class="highlight">2x Platinum</span> by <span class="highlight">March 16 2025</span> its <span class="highlight">3.8 billion streams</span> keep its neon green flame burning. Fueled by <span class="highlight">BNYX</span> and crew it rocketed Yeat from Portland’s shadows to <span class="highlight">TikTok</span>’s spotlight. In 2025 it’s a glitchy chaotic banger still raging strong.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Messaging and Theme</h2>
-                <p>The red-black swirl cover of <em>Up 2 Më</em> sets the tone—a tornado of excess and raw emotion. “Monëy So Big” flexes “I got cash, yeah, I’m up to me,” a neon green boast of wealth, while “Gët Busy” snaps “This shit get wicked,” all defiance. “Lët Ya Know” whispers vulnerability—“This could be my last song”—amid lean-fueled tales. It’s not deep; it’s a 21-year-old’s unfiltered diary of fame’s high, pure rage rap—reckless, youthful, unapologetic. In 2025, its neon green vibe still pulses through the underground.</p>
+                <p>The red black swirl cover of <em><span class="highlight">Up 2 Më</span></em> sets the tone a tornado of excess and raw emotion. <span class="highlight">“Monëy So Big”</span> flexes “I got cash yeah I’m up to me” a neon green boast of wealth while <span class="highlight">“Gët Busy”</span> snaps “This shit get wicked” all defiance. <span class="highlight">“Lët Ya Know”</span> whispers vulnerability “This could be my last song” amid lean fueled tales. It’s not deep it’s a 21 year old’s unfiltered diary of fame’s high pure rage rap reckless youthful unapologetic. In 2025 its neon green vibe still pulses through the underground.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Production</h2>
-                <p>Over 20 producers—BNYX, F1LTHY, Synthetic—craft <em>Up 2 Më</em>, recorded in Portland, into a neon green rage rap explosion. “Turban” screeches with warped synths, “Swërved It” thumps minimalist menace, and “Monëy So Big” loops hypnotic horns into TikTok glory. Yeat’s elastic, Auto-Tuned voice—stacked with “Yeah!” ad-libs—bends around distorted 808s, riffing off <em>Whole Lotta Red</em> with a rawer edge. “Ya Ya” hits with bass-heavy euphoria, though 22 tracks flirt with fatigue. In 2025, its glitchy sound still fuels the rage wave.</p>
+                <p>Over 20 producers <span class="highlight">BNYX</span> <span class="highlight">F1LTHY</span> <span class="highlight">Synthetic</span> craft <em><span class="highlight">Up 2 Më</span></em> recorded in Portland into a neon green rage rap explosion. <span class="highlight">“Turban”</span> screeches with warped synths <span class="highlight">“Swërved It”</span> thumps minimalist menace and <span class="highlight">“Monëy So Big”</span> loops hypnotic horns into <span class="highlight">TikTok</span> glory. Yeat’s elastic Auto Tuned voice stacked with “Yeah” ad-libs bends around distorted 808s riffing off <em><span class="highlight">Whole Lotta Red</span></em> with a rawer edge. <span class="highlight">“Ya Ya”</span> hits with bass heavy euphoria though 22 tracks flirt with fatigue. In 2025 its glitchy sound still fuels the rage wave.</p>
             </div>
             <div class="review-card">
                 <h2 class="section-title">Features</h2>
-                <p><em>Up 2 Më</em> is Yeat’s solo domain, with SeptembersRich on “Trëndy Way” as the lone guest—“I’m in a Benz, yeah, I’m swervin’.” His laid-back flow offsets Yeat’s twitchy energy, a neon green spark in a sparse lineup. Yeat’s quirky charisma rules, from “Gët Busy”’s bells to “BakBak”’s growls, proving he needs no backup. It’s a gutsy debut choice, keeping the focus on his neon green reign over the chaos.</p>
+                <p><em><span class="highlight">Up 2 Më</span></em> is Yeat’s solo domain with <span class="highlight">SeptembersRich</span> on <span class="highlight">“Trëndy Way”</span> as the lone guest “I’m in a Benz yeah I’m swervin’.” His laid back flow offsets Yeat’s twitchy energy a neon green spark in a sparse lineup. Yeat’s quirky charisma rules from <span class="highlight">“Gët Busy”</span>’s bells to <span class="highlight">“BakBak”</span>’s growls proving he needs no backup. It’s a gutsy debut choice keeping the focus on his neon green reign over the chaos.</p>
             </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
         </div>
 
         <div class="review-card">
@@ -678,36 +705,36 @@
             <div class="track-highlights">
                 <div class="track-highlight-item">
                     <h3>For Newcomers</h3>
-                    <p><span class="highlight">“Monëy So Big”</span>, <span class="highlight">“Gët Busy”</span>—Viral horns and sharp bells grab fast, Yeat’s neon green swagger pulling newbies into rage rap’s wild, catchy storm with instant banger vibes.</p>
+                    <p><span class="highlight">“Monëy So Big”</span> <span class="highlight">“Gët Busy”</span> Viral horns and sharp bells grab fast Yeat’s neon green swagger pulling newbies into rage rap’s wild catchy storm with instant banger vibes.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>For The Dive</h3>
-                    <p><span class="highlight">“Turban”</span>, <span class="highlight">“Swërved It”</span>—Warped synths and dark beats dive deep, Yeat’s glitchy, neon green flow weaving a chaotic spell for fans chasing the album’s raw core.</p>
+                    <p><span class="highlight">“Turban”</span> <span class="highlight">“Swërved It”</span> Warped synths and dark beats dive deep Yeat’s glitchy neon green flow weaving a chaotic spell for fans chasing the album’s raw core.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>Hidden Gems</h3>
-                    <p><span class="highlight">“Lët Ya Know”</span>, <span class="highlight">“BakBak”</span>—Quiet vulnerability and gritty snarls shine, these neon green cuts revealing Yeat’s depth under the noise, a treat for keen listeners.</p>
+                    <p><span class="highlight">“Lët Ya Know”</span> <span class="highlight">“BakBak”</span> Quiet vulnerability and gritty snarls shine these neon green cuts revealing Yeat’s depth under the noise a treat for keen listeners.</p>
                 </div>
                 <div class="track-highlight-item">
                     <h3>Latest Obsessions</h3>
-                    <p><span class="highlight">“Monëy So Big (Live 2025)”</span>—Rolling Loud 2025’s neon green strobes ignite Yeat’s horn-heavy chaos—a viral clip captivating crowds, its rage still firing up audiences.</p>
+                    <p><span class="highlight">“Monëy So Big (Live 2025)”</span> <span class="highlight">Rolling Loud 2025</span>’s neon green strobes ignite Yeat’s horn heavy chaos a viral clip captivating crowds its rage still firing up audiences.</p>
                 </div>
             </div>
         </div>
 
         <div class="review-card">
             <h2 class="section-title">Previous Works</h2>
-            <p>Yeat kicked off with <em>Deep Blue Strips</em> (2018), a glitchy EP, then mixtapes like <em>Alivë</em> (2021) with “Sorry Bout That.” <em>4L</em> (2021) honed his rage sound via “Mad Bout That,” stirring SoundCloud hype. <em>Up 2 Më</em> sharpens that chaos into a TikTok-ready debut, outpacing <em>4L</em>’s looseness. It paved the way for <em>2 Alivë</em> (2022), boosting his neon green rise. In 2025, it’s his breakout cornerstone, a defining moment in rage rap’s evolution.</p>
+            <p>Yeat kicked off with <em><span class="highlight">Deep Blue Strips</span></em> (<span class="highlight">2018</span>) a glitchy EP then mixtapes like <em><span class="highlight">Alivë</span></em> (<span class="highlight">2021</span>) with <span class="highlight">“Sorry Bout That”</span>. <em><span class="highlight">4L</span></em> (<span class="highlight">2021</span>) honed his rage sound via <span class="highlight">“Mad Bout That”</span> stirring <span class="highlight">SoundCloud</span> hype. <em><span class="highlight">Up 2 Më</span></em> sharpens that chaos into a <span class="highlight">TikTok</span> ready debut outpacing <em><span class="highlight">4L</span></em>’s looseness. It paved the way for <em><span class="highlight">2 Alivë</span></em> (<span class="highlight">2022</span>) boosting his neon green rise. In 2025 it’s his breakout cornerstone a defining moment in rage rap’s evolution.</p>
         </div>
 
         <div class="review-card">
             <h2 class="section-title">Legacy & Reception</h2>
-            <p>Pitchfork’s 7.8/10 called <em>Up 2 Më</em> “a glitchy adrenaline shot,” while 2021 fans dubbed it “Yeat’s Tonka takeover.” By March 16, 2025, with 2x Platinum and 3.8 billion streams, plus a Rolling Loud 2025 moment—“Monëy So Big” under neon green strobes—it’s a rage rap titan. Tighter than <em>4L</em>’s sprawl, its length drags but its viral highs endure. In 2025, it’s Yeat’s neon green launch, still shaking TikTok and the underground.</p>
+            <p><span class="highlight">Pitchfork</span>’s <span class="highlight">7.8/10</span> called <em><span class="highlight">Up 2 Më</span></em> “a glitchy adrenaline shot” while 2021 fans dubbed it “Yeat’s Tonka takeover.” By <span class="highlight">March 16 2025</span> with <span class="highlight">2x Platinum</span> and <span class="highlight">3.8 billion streams</span> plus a <span class="highlight">Rolling Loud 2025</span> moment <span class="highlight">“Monëy So Big”</span> under neon green strobes it’s a rage rap titan. Tighter than <em><span class="highlight">4L</span></em>’s sprawl its length drags but its viral highs endure. In 2025 it’s Yeat’s neon green launch still shaking <span class="highlight">TikTok</span> and the underground.</p>
         </div>
 
         <div class="review-card">
             <h2 class="section-title">Awards Recognition</h2>
-            <p><em>Up 2 Më</em> skipped Grammy love, but its 2x Platinum glow and 3.8 billion streams by 2025 prove its neon green chokehold on rage rap’s underground.</p>
+            <p><em><span class="highlight">Up 2 Më</span></em> skipped Grammy love but its <span class="highlight">2x Platinum</span> glow and <span class="highlight">3.8 billion streams</span> by 2025 prove its neon green chokehold on rage rap’s underground.</p>
         </div>
 
         <div class="rating-section">
@@ -717,7 +744,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 85%"></div>
                 </div>
-                <p>Yeat’s glitchy rage bends Carti’s mold with neon green quirks, a fresh spark in a packed scene, though echoes persist.</p>
+                <p>Yeat’s glitchy rage bends <span class="highlight">Carti</span>’s mold with neon green quirks a fresh spark in a packed scene though echoes persist.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">9.0</div>
@@ -725,7 +752,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 90%"></div>
                 </div>
-                <p>Distorted beats and synths blast neon green chaos, a near-flawless storm dulled by slight repetition over its hefty tracklist.</p>
+                <p>Distorted beats and synths blast neon green chaos a near flawless storm dulled by slight repetition over its hefty tracklist.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">7.5</div>
@@ -733,7 +760,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 75%"></div>
                 </div>
-                <p>“Gët Busy” pops with quirky flair, but neon green vibes trump depth, leaning on catchiness over substance in rage style.</p>
+                <p><span class="highlight">“Gët Busy”</span> pops with quirky flair but neon green vibes trump depth leaning on catchiness over substance in rage style.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">9.5</div>
@@ -741,7 +768,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 95%"></div>
                 </div>
-                <p>“Monëy So Big” hooks deep, its neon green rush a loud thrill, with only length curbing endless replays in 2025.</p>
+                <p><span class="highlight">“Monëy So Big”</span> hooks deep its neon green rush a loud thrill with only length curbing endless replays in 2025.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">8.0</div>
@@ -749,7 +776,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 80%"></div>
                 </div>
-                <p>Highs like “Swërved It” shine, but 22 tracks stumble, the neon green energy fading into fatigue by the album’s close.</p>
+                <p>Highs like <span class="highlight">“Swërved It”</span> shine but 22 tracks stumble the neon green energy fading into fatigue by the album’s close.</p>
             </div>
             <div class="rating-card">
                 <div class="rating-score">8.5</div>
@@ -757,7 +784,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 85%"></div>
                 </div>
-                <p><em>Up 2 Më</em> is Yeat’s neon green eruption—raw, glitchy rage that roars with reckless fun. Rolling Loud 2025: “Monëy So Big” drops, strobes flare, crowd loses it—a moment still alive. It’s Yeat’s TikTok-fueled leap, a Tonka-sized dent in rap’s underground, its highs outshining its sprawl.</p>
+                <p><em><span class="highlight">Up 2 Më</span></em> is Yeat’s neon green eruption raw glitchy rage that roars with reckless fun. <span class="highlight">Rolling Loud 2025</span>: <span class="highlight">“Monëy So Big”</span> drops strobes flare crowd loses it a moment still alive. It’s Yeat’s <span class="highlight">TikTok</span> fueled leap a Tonka sized dent in rap’s underground its highs outshining its sprawl.</p>
             </div>
         </div>
 
@@ -776,8 +803,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><em>4L</em></td><td>“Mad Bout That”</td><td>N/A</td><td>1.2B</td><td>Platinum</td><td>1M+</td></tr>
-                        <tr><td><em>Up 2 Më</em></td><td>“Monëy So Big”</td><td>76</td><td>3.8B</td><td>2x Platinum</td><td>2.2M+</td></tr>
+                        <tr><td><em><span class="highlight">4L</span></em></td><td><span class="highlight">“Mad Bout That”</span></td><td>N/A</td><td>1.2B</td><td>Platinum</td><td>1M+</td></tr>
+                        <tr><td><em><span class="highlight">Up 2 Më</span></em></td><td><span class="highlight">“Monëy So Big”</span></td><td>76</td><td>3.8B</td><td>2x Platinum</td><td>2.2M+</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -795,7 +822,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><em>Up 2 Më</em></td><td>2x Platinum</td><td>2.2</td></tr>
+                        <tr><td><em><span class="highlight">Up 2 Më</span></em></td><td>2x Platinum</td><td>2.2</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -803,7 +830,7 @@
 
         <div class="review-card">
             <h2 class="section-title">Sources</h2>
-            <p>Data from SoundCloud, RIAA, Spotify, and Pitchfork as of March 16, 2025.</p>
+            <p>Data from <span class="highlight">SoundCloud</span> <span class="highlight">RIAA</span> <span class="highlight">Spotify</span> and <span class="highlight">Pitchfork</span> as of <span class="highlight">March 16 2025</span>.</p>
         </div>
     </div>
 
@@ -933,6 +960,32 @@
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     toggleDropdown(e);
+                }
+            });
+
+            // Chart
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2021', '2022', '2023', '2024', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [0.3, 1.2, 2.4, 3.2, 3.8],
+                        borderColor: '#61F75C',
+                        backgroundColor: 'rgba(97, 247, 92, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
                 }
             });
         });
