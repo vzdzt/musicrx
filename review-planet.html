@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en" data-page="review-planet-her">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Doja Cat’s Planet Her (2021) review: a vibrant pop-rap fusion triumph, updated to May 2025 with track highlights on MusicRx.">
+    <meta name="keywords" content="Doja Cat, Planet Her, pop-rap, R&B, TikTok, MusicRx, 2025">
+    <meta name="author" content="MusicRx">
+    <meta property="og:title" content="MusicRx - Planet Her: Doja Cat’s Cosmic Pop-Rap Triumph">
+    <meta property="og:description" content="Dive into Doja Cat’s Planet Her review: a 2021 pop-rap masterpiece, refreshed with 2025 insights on MusicRx.">
+    <meta property="og:image" content="https://vzdzt.github.io/musicrx/planether.jpeg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vzdzt.github.io/musicrx/review-planet-her.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>MusicRx - Planet Her: Doja Cat’s Cosmic Pop-Rap Triumph</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        :root[data-theme="normal"] {
+            --primary: #FF69B4;
+            --secondary: #00CED1;
+            --accent: #FFD700;
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --card: rgba(255, 105, 180, 0.8);
+            --glass: rgba(255, 105, 180, 0.1);
+            --border: rgba(255, 105, 180, 0.3);
+            --glow: rgba(255, 105, 180, 0.7);
+            --rgb-glow: linear-gradient(45deg, #FF69B4, #00CED1);
+            --dark: #1A1A1A;
+        }
+
+        :root[data-theme="cosmic-vibe"] {
+            --primary: #FF69B4;
+            --secondary: #00CED1;
+            --accent: #FFD700;
+            --background: #120024;
+            --text: #ffffff;
+            --card: rgba(255, 105, 180, 0.8);
+            --glass: rgba(255, 105, 180, 0.1);
+            --border: rgba(255, 105, 180, 0.2);
+            --glow: rgba(255, 105, 180, 0.5);
+            --rgb-glow: linear-gradient(45deg, #FF69B4, #00CED1);
+            --dark: #000;
+        }
+
+        html[data-theme="cosmic-vibe"] {
+            animation: none;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: var(--background);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .track-highlight-item {
+            background: rgba(var(--primary-rgb), 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--primary-rgb), 0.1);
+        }
+
+        .track-highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .track-highlight-item .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .dropdown {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            transform: scale(1.1);
+            outline: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--background);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            display: block;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        .hero-content {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .album-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .album-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .album-title {
+            font-size: clamp(1rem, 1.5vw, 1.75rem);
+            color: var(--text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
+        }
+
+        .album-quote {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+        .album-image {
+            width: 100%;
+            height: auto;
+            max-width: calc(900px - 4rem - 10px);
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--primary-rgb), 0.3);
+            transition: all 0.4s ease;
+            object-fit: contain;
+        }
+
+        .album-image:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--primary-rgb), 0.4);
+        }
+
+        .album-intro-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 800px) {
+            .album-card, .album-intro-container {
+                max-width: 90vw;
+                padding: 1.5rem;
+            }
+            .album-image {
+                max-width: calc(90vw - 3rem - 10px);
+            }
+            .album-title {
+                font-size: clamp(1.5rem, 5vw, 3rem);
+            }
+            .album-quote {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                max-width: calc(900px - 4rem - 10px);
+            }
+        }
+
+        .album-intro {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .album-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(var(--primary-rgb), 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .album-image {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, var(--background));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-container h2 {
+            margin: 0 0 1rem 0;
+            padding: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .chart-container canvas {
+            max-height: 250px;
+            width: 100%;
+        }
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .rating-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .rating-score {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--glass);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 1s ease;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .trend-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .trend-table th, .trend-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trend-table th {
+            background: rgba(255, 105, 180, 0.2);
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .trend-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .content-section {
+                max-width: 90vw;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                max-width: 90vw;
+            }
+
+            .album-card {
+                max-width: 90vw;
+            }
+
+            .stats-container {
+                max-width: 90vw;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .shero {
+                padding: 120px 1rem;
+                min-height: 100vh;
+            }
+
+            .album-image {
+                width: 100%;
+                height: auto;
+                max-width: 90vw;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .review-card {
+                padding: 1rem;
+            }
+
+            .rating-card {
+                padding: 1rem;
+            }
+
+            .chart-container {
+                max-height: 250px;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .chart-container canvas {
+                max-height: 200px;
+            }
+
+            .dropdown-toggle {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .dropdown-menu {
+                width: 180px;
+                right: -10px;
+            }
+
+            .theme-toggle {
+                right: 1rem;
+            }
+        }
+
+        .track-highlights {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--rgb-glow);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            animation: rgbShift 3s linear infinite;
+            transform: translateY(-3px);
+        }
+
+        @keyframes rgbShift {
+            0% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .nav {
+            background: var(--background);
+        }
+
+        .dropdown-menu {
+            background: var(--background);
+        }
+
+        .album-card {
+            background: var(--background);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="universe" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="news.html">News</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <img src="https://vzdzt.github.io/musicrx/planether.jpeg" alt="Doja Cat - Planet Her" class="hero-image">
+        <div class="hero-content">
+            <div class="album-header">
+                <h1 class="album-title">Planet Her</h1>
+                <p class="album-quote">"Doja Cat’s Cosmic Pop-Rap Triumph"</p>
+            </div>
+            <img src="https://vzdzt.github.io/musicrx/planether.jpeg" alt="Doja Cat - Planet Her album cover" class="album-image">
+        </div>
+    </section>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">14.2B</div>
+            <div class="stat-label">Streams</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">2x</div>
+            <div class="stat-label">Platinum</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">109K</div>
+            <div class="stat-label">First Week</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Hot 100 Peak</div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="review-grid">
+            <div class="review-card">
+                <h2 class="section-title">Introduction</h2>
+                <p>Released <span class="highlight">June 25 2021</span> via <span class="highlight">Kemosabe Records</span> and <span class="highlight">RCA Records</span> Doja Cat’s <em><span class="highlight">Planet Her</span></em> a <span class="highlight">14 track 44 minute</span> cosmic journey exploded with <span class="highlight">109000 first week equivalent units</span>. Certified <span class="highlight">2x Platinum</span> by <span class="highlight">November 2022</span> its <span class="highlight">14.2 billion global streams</span> as of <span class="highlight">May 2025</span> cement its vibrant legacy. Produced by <span class="highlight">Dr. Luke</span> <span class="highlight">Y2K</span> and others it launched Doja from <span class="highlight">TikTok</span> fame to global stardom. In 2025 its colorful pop-rap fusion still dazzles.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Messaging and Theme</h2>
+                <p>The <span class="highlight">David LaChapelle</span> shot cover a neon hued alien queen Doja sets a cosmic empowering tone. <span class="highlight">“Woman”</span> declares “I could be the leader” a feminist anthem while <span class="highlight">“Kiss Me More”</span> flirts “We could do it all night” with playful romance. <span class="highlight">“Need to Know”</span> dives into lust “I’m tryna get freaky” and <span class="highlight">“You Right”</span> wrestles with temptation. It’s a vibrant escapist narrative blending sensuality and confidence though some critics note its lighter depth favoring fun over introspection. In 2025 its cosmic vibe still captivates.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Production</h2>
+                <p><span class="highlight">Dr. Luke</span> <span class="highlight">Y2K</span> <span class="highlight">Al Shux</span> and others shape <em><span class="highlight">Planet Her</span></em> recorded in Los Angeles into a genre hopping pop-rap gem. <span class="highlight">“Kiss Me More”</span> grooves with retro funk <span class="highlight">“Woman”</span> pulses with Afrobeats inspired rhythms and <span class="highlight">“Get Into It (Yuh)”</span> pops with synth driven energy. Doja’s versatile vocals glide over vibrant beats though some tracks like <span class="highlight">“Payday”</span> feel less essential. Its 44 minute runtime balances diversity with slight unevenness. In 2025 its colorful production still fuels <span class="highlight">TikTok</span> trends.</p>
+            </div>
+            <div class="review-card">
+                <h2 class="section-title">Features</h2>
+                <p><em><span class="highlight">Planet Her</span></em> shines with guests <span class="highlight">SZA</span> <span class="highlight">The Weeknd</span> <span class="highlight">Young Thug</span> <span class="highlight">JID</span> and <span class="highlight">Ariana Grande</span>. <span class="highlight">SZA</span>’s silky vocals on <span class="highlight">“Kiss Me More”</span> create a chart topping spark while <span class="highlight">The Weeknd</span>’s brooding delivery on <span class="highlight">“You Right”</span> adds depth. <span class="highlight">Young Thug</span>’s quirky flow on <span class="highlight">“Payday”</span> and <span class="highlight">JID</span>’s sharp verse on <span class="highlight">“Options”</span> elevate the vibe. <span class="highlight">Ariana Grande</span>’s ethereal touch on <span class="highlight">“I Don’t Do Drugs”</span> dazzles though some fans argue the features occasionally outshine Doja’s colorful lead.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="section-title">Streaming Growth</h2>
+            <canvas id="streamingChart"></canvas>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Track Highlights</h2>
+            <div class="track-highlights">
+                <div class="track-highlight-item">
+                    <h3>For Newcomers</h3>
+                    <p><span class="highlight">“Kiss Me More”</span> <span class="highlight">“Woman”</span> Funky pop and empowering Afrobeats hooks grab instantly Doja’s vibrant cosmic charm pulling new listeners into her colorful world with catchy infectious vibes.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>For The Dive</h3>
+                    <p><span class="highlight">“Need to Know”</span> <span class="highlight">“Get Into It (Yuh)”</span> Sultry R&B and bouncy synth beats dive deep into Doja’s playful cosmic flow a vibrant treat for fans seeking her genre blending core.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Hidden Gems</h3>
+                    <p><span class="highlight">“Ain’t Shit”</span> <span class="highlight">“Love to Dream”</span> Sassy lyricism and dreamy melodies shine these vibrant cuts revealing Doja’s emotional depth under the cosmic sheen a gem for keen listeners.</p>
+                </div>
+                <div class="track-highlight-item">
+                    <h3>Latest Obsessions</h3>
+                    <p><span class="highlight">“Woman (Live 2025)”</span> <span class="highlight">Coachella 2025</span>’s vibrant neon stage ignites Doja’s Afrobeats anthem a viral clip with colorful energy still captivating crowds in 2025.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Previous Works</h2>
+            <p>Doja Cat’s journey began with <em><span class="highlight">Purrr!</span></em> (<span class="highlight">2014</span>) then <em><span class="highlight">Amala</span></em> (<span class="highlight">2018</span>) with <span class="highlight">“Candy”</span>. <em><span class="highlight">Hot Pink</span></em> (<span class="highlight">2019</span>) brought <span class="highlight">“Say So”</span> her first Hot 100 number one. <em><span class="highlight">Planet Her</span></em> elevated her pop-rap fusion earning Grammy nods and outshining <em><span class="highlight">Hot Pink</span></em>’s raw edge. It set the stage for <em><span class="highlight">Scarlet</span></em> (<span class="highlight">2023</span>) with <span class="highlight">“Paint the Town Red”</span>. In 2025 <em><span class="highlight">Planet Her</span></em> remains her vibrant cornerstone a defining pop-rap milestone.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Legacy & Reception</h2>
+            <p><span class="highlight">Billboard</span> named <em><span class="highlight">Planet Her</span></em> the top female rap album of the 21st century in <span class="highlight">January 2025</span> with a Metacritic score of <span class="highlight">76</span>. Certified <span class="highlight">2x Platinum</span> by <span class="highlight">November 2022</span> its <span class="highlight">14.2 billion streams</span> and <span class="highlight">Coachella 2025</span> performance of <span class="highlight">“Woman”</span> keep it vibrant. Fans on <span class="highlight">TikTok</span> and X praise its colorful hits though some critique its lighter depth. In 2025 it’s Doja’s cosmic triumph still orbiting pop-rap’s stratosphere.</p>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Awards Recognition</h2>
+            <p><em><span class="highlight">Planet Her</span></em> earned <span class="highlight">Grammy</span> nominations for Album of the Year and Best Pop Vocal Album in 2022 with <span class="highlight">“Kiss Me More”</span> winning Best Pop Duo/Group Performance. Its <span class="highlight">2x Platinum</span> status and <span class="highlight">14.2 billion streams</span> by 2025 solidify its vibrant grip on pop-rap’s mainstream.</p>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-card">
+                <div class="rating-score">8.5</div>
+                <h3>Originality</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p>Doja’s cosmic pop-rap blend adds vibrant flair to the genre though it leans on familiar pop tropes at times.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Production</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p>Vibrant genre hopping beats dazzle with colorful energy slightly marred by uneven filler tracks.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">7.5</div>
+                <h3>Lyrics</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <p><span class="highlight">“Woman”</span> shines with vibrant wit but lyrics prioritize fun over deep substance in pop-rap style.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">9.0</div>
+                <h3>Enjoyment</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <p><span class="highlight">“Kiss Me More”</span> hooks instantly its vibrant rush a cosmic thrill perfect for replay in 2025.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.0</div>
+                <h3>Consistency</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%"></div>
+                </div>
+                <p>Hits like <span class="highlight">“Need to Know”</span> soar but some tracks dim the vibrant flow by the album’s end.</p>
+            </div>
+            <div class="rating-card">
+                <div class="rating-score">8.4</div>
+                <h3>Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 84%"></div>
+                </div>
+                <p><em><span class="highlight">Planet Her</span></em> is Doja Cat’s vibrant cosmic eruption a pop-rap gem that shines with fun. <span class="highlight">Coachella 2025</span>: <span class="highlight">“Woman”</span> drops neon flares crowd erupts a moment still alive. It’s Doja’s <span class="highlight">TikTok</span> fueled leap a colorful dent in pop-rap’s orbit its highs outshining its flaws.</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Chart Performance</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Highest Charting Song</th>
+                            <th>Peak Position</th>
+                            <th>Streams (as of 2025)</th>
+                            <th>Certification</th>
+                            <th>Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em><span class="highlight">Hot Pink</span></em></td><td><span class="highlight">“Say So”</span></td><td>1</td><td>8.5B</td><td>2x Platinum</td><td>2M+</td></tr>
+                        <tr><td><em><span class="highlight">Planet Her</span></em></td><td><span class="highlight">“Kiss Me More”</span></td><td>3</td><td>14.2B</td><td>2x Platinum</td><td>2.5M+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Album Certifications</h2>
+            <div class="table-container">
+                <table class="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Album</th>
+                            <th>Certification</th>
+                            <th>Units (Millions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><em><span class="highlight">Planet Her</span></em></td><td>2x Platinum</td><td>2.5</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <h2 class="section-title">Sources</h2>
+            <p>Data from <span class="highlight">Billboard</span> <span class="highlight">RIAA</span> <span class="highlight">Spotify</span> and <span class="highlight">Metacritic</span> as of <span class="highlight">May 1 2025</span>.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <div class="button-container"> 
+        <button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none; background: var(--glass); border: 1px solid var(--border); color: var(--primary); padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 1001;">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="themeToggle" class="theme-toggle" title="Cosmic Vibe Mode">
+            <i class="fas fa-adjust"></i>
+        </button>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Starfield
+            let camera, renderer, starField, scene = null;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY= 0;
+            const canvas = document.getElementById('universe');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 1000;
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const starCount = 15000;
+
+            for (let i = 0; i < starCount; i++) {
+                vertices.push(
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000
+                );
+                const color = new THREE.Color();
+                color.setHSL(Math.random(), 0.7, 0.7);
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
+            });
+
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (starField) {
+                    targetX += (mouseX - targetX) * 0.02;
+                    targetY += (mouseY - targetY) * 0.02;
+                    starField.rotation.x += 0.0002 + targetY * 0.05;
+                    starField.rotation.y += 0.0003 + targetX * 0.05;
+                    const time = Date.now() * 0.001;
+                    starField.scale.setScalar(Math.sin(time) * 0.05 + 1);
+                }
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            // Improved Dropdown functionality
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            let isOpen = false;
+
+            function toggleDropdown(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                dropdownMenu.classList.toggle('active', isOpen);
+            }
+
+            dropdownToggle.addEventListener('click', toggleDropdown);
+            dropdownToggle.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    isOpen = false;
+                    dropdownMenu.classList.remove('active');
+                }
+            }, { passive: true });
+
+            dropdownToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
+            });
+
+            // Chart
+            const ctx = document.getElementById('streamingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2021', '2022', '2023', '2024', '2025'],
+                    datasets: [{
+                        label: 'Streams (Billions)',
+                        data: [2.5, 7.8, 10.5, 12.8, 14.2],
+                        borderColor: '#FF69B4',
+                        backgroundColor: 'rgba(255, 105, 180, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } },
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#ffffff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
