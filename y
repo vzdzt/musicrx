@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - The Most Trusted Music Oracle (real)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/oracle.css">
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <canvas id="universe"></canvas>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="oracle.html">Music Oracle</a></li>
+                    <li><a href="underground.html">Underground</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button>
+    <button id="starfieldToggle" title="Toggle Starfield"><i class="fas fa-stars"></i></button>
+
+    <div class="container">
+        <h1 class="glitch" data-text="MUSIC ORACLE">MUSIC ORACLE</h1>
+        <p class="oracle-subtitle">Answering your deepest darkest music questions since 2025 (real)</p>
+        <div class="oracle-container">
+            <div class="magic-search">
+                <div class="oracle-modes">
+                    <button class="mode-btn active" data-mode="fortune">Fortune</button>
+                    <button class="mode-btn" data-mode="recommendation">Get aux privileges</button>
+                    <button class="mode-btn" data-mode="compatibility">Ship artists</button>
+                </div>
+                <p class="oracle-intro">Ask the Oracle anything...</p>
+                <div class="magic-search-bar">
+                    <input type="text" id="magicInput" placeholder="what if carti dropped an album every year?">
+                    <button id="magicButton"><i class="fas fa-crystal-ball"></i></button>
+                </div>
+                <div class="oracle-options">
+                    <select id="genreSelect" style="display: none;">
+                        <option value="">Pick your poison</option>
+                        <option value="rap">Rap (W)</option>
+                        <option value="rock">Rock (slept on)</option>
+                        <option value="pop">Pop (making a come back)</option>
+                        <option value="electronic">Electronic (valid)</option>
+                        <option value="jazz">Jazz (based)</option>
+                    </select>
+                    <div class="compatibility-inputs" style="display: none;">
+                        <input type="text" id="artist1" placeholder="first goat">
+                        <input type="text" id="artist2" placeholder="second goat">
+                    </div>
+                </div>
+                <div class="oracle-vibe-check">
+                    <span class="vibe-indicator">vibe check loading...</span>
+                    <div class="vibe-meter"></div>
+                </div>
+                <p id="magicAnswer" class="oracle-answer">♫ i promise i wont troll ♫</p>
+                <div class="oracle-history">
+                    <h3>Previous L's and W's</h3>
+                    <div id="prophecyHistory"></div>
+                </div>
+                <div class="oracle-disclaimer">
+                    *results may vary, oracle might be in its flop era
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved (no cap)</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="get notified when we speaking facts" required>
+            <button type="submit">Subscribe fr</button>
+        </form>
+    </footer>
+
+    <script src="magic-oracle.js" type="module"></script>
+    <script src="script.js" type="module"></script>
+</body>
+</html>
+
