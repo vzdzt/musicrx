@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        .tool-section {
+            background: var(--card-background);
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tool-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow);
+        }
+        .tool-section h2 {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .tool-section p {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .input-group input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--card-background);
+            color: var(--text-color);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--glow);
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--card-background);
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: var(--rgb-glow);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        .status {
+            margin-top: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            min-height: 1.5rem;
+        }
+        .success {
+            color: #4CAF50;
+        }
+        .error {
+            color: #f44336;
+        }
+        .info {
+            color: var(--secondary);
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .tool-section {
+                padding: 1rem;
+            }
+            .input-group {
+                flex-direction: column;
+            }
+            .input-group input {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <canvas id="universe"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="underground.html">Underground</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+    <div class="container">
+        <h1 class="glitch" data-text="TOOLS">TOOLS</h1>
+
+        <div class="tool-section">
+            <h2><i class="fas fa-download"></i> Media Downloader</h2>
+            <p>Paste a direct URL to an audio or video file (.mp3, .mp4, etc.) and download it instantly.</p>
+            <div class="input-group">
+                <input type="url" id="mediaUrl" placeholder="Enter media URL (e.g., https://example.com/file.mp3)" required>
+                <button class="btn" onclick="downloadMedia()"><i class="fas fa-download"></i> Download</button>
+            </div>
+            <div id="status" class="status"></div>
+        </div>
+
+        <div class="tool-section">
+            <h2><i class="fas fa-info-circle"></i> How It Works</h2>
+            <p>This tool allows you to download media files directly from URLs. It works best with direct links to audio/video files. Note that this tool cannot download from streaming services or protected content.</p>
+            <ul style="text-align: left; display: inline-block;">
+                <li>Supported formats: MP3, MP4, WAV, AVI, MOV, and more</li>
+                <li>Works with direct file URLs only</li>
+                <li>Files are downloaded directly to your device</li>
+                <li>No server storage - your privacy is protected</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        function downloadMedia() {
+            const url = document.getElementById('mediaUrl').value.trim();
+            const status = document.getElementById('status');
+
+            if (!url) {
+                status.textContent = 'Please enter a URL.';
+                status.className = 'status error';
+                return;
+            }
+
+            // Basic URL validation
+            try {
+                new URL(url);
+            } catch (e) {
+                status.textContent = 'Please enter a valid URL.';
+                status.className = 'status error';
+                return;
+            }
+
+            // Check if it's a likely media file
+            const mediaExtensions = ['.mp3', '.mp4', '.wav', '.avi', '.mov', '.m4a', '.m4v', '.webm', '.ogg', '.flac', '.aac'];
+            const isMediaFile = mediaExtensions.some(ext => url.toLowerCase().includes(ext));
+
+            if (!isMediaFile) {
+                status.textContent = 'Warning: This doesn\'t appear to be a direct media file URL. It may not work.';
+                status.className = 'status info';
+            } else {
+                status.textContent = 'Starting download...';
+                status.className = 'status info';
+            }
+
+            // Create a temporary anchor element to trigger download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = url.split('/').pop() || 'download';
+            a.style.display = 'none';
+
+            // Add to DOM, click, and remove
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // Update status
+            setTimeout(() => {
+                status.textContent = 'Download initiated. Check your downloads folder.';
+                status.className = 'status success';
+            }, 1000);
+        }
+
+        // Add enter key support
+        document.getElementById('mediaUrl').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                downloadMedia();
+            }
+        });
+    </script>
+</body>
+</html>
