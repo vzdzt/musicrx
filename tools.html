@@ -170,7 +170,7 @@
     <script src="script.js"></script>
 
     <script>
-        function downloadMedia() {
+        async function downloadMedia() {
             const url = document.getElementById('mediaUrl').value.trim();
             const status = document.getElementById('status');
 
@@ -197,26 +197,72 @@
                 status.textContent = 'Warning: This doesn\'t appear to be a direct media file URL. It may not work.';
                 status.className = 'status info';
             } else {
-                status.textContent = 'Starting download...';
+                status.textContent = 'Downloading...';
                 status.className = 'status info';
             }
 
-            // Create a temporary anchor element to trigger download
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = url.split('/').pop() || 'download';
-            a.style.display = 'none';
+            try {
+                // Fetch the file
+                const response = await fetch(url, {
+                    mode: 'cors' // Try CORS, fallback if needed
+                });
 
-            // Add to DOM, click, and remove
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
 
-            // Update status
-            setTimeout(() => {
-                status.textContent = 'Download initiated. Check your downloads folder.';
+                const contentLength = response.headers.get('content-length');
+                if (contentLength && parseInt(contentLength) > 100 * 1024 * 1024) { // 100MB limit
+                    throw new Error('File too large (>100MB). Use direct link instead.');
+                }
+
+                const blob = await response.blob();
+                const blobUrl = URL.createObjectURL(blob);
+
+                // Create download link
+                const a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = url.split('/').pop() || 'download';
+                a.style.display = 'none';
+
+                // Trigger download
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                // Clean up
+                URL.revokeObjectURL(blobUrl);
+
+                status.textContent = 'Download completed! Check your downloads folder.';
                 status.className = 'status success';
-            }, 1000);
+
+            } catch (error) {
+                console.error('Download error:', error);
+
+                // Fallback to direct link method
+                if (error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
+                    status.textContent = 'Using direct download method...';
+                    status.className = 'status info';
+
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = url.split('/').pop() || 'download';
+                    a.target = '_blank'; // Open in new tab to prevent navigation
+                    a.style.display = 'none';
+
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+
+                    setTimeout(() => {
+                        status.textContent = 'Download initiated. Check your downloads folder or new tab.';
+                        status.className = 'status success';
+                    }, 1000);
+                } else {
+                    status.textContent = 'Download failed: ' + error.message;
+                    status.className = 'status error';
+                }
+            }
         }
 
         // Add enter key support
