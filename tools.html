@@ -238,8 +238,26 @@
 
             } catch (error) {
                 console.error('Download error:', error);
-                status.textContent = 'Download failed: ' + error.message + '. Try a different URL or check if the file is accessible.';
-                status.className = 'status error';
+
+                // Fallback to direct link method in new tab
+                status.textContent = 'Using direct download method...';
+                status.className = 'status info';
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = url.split('/').pop() || 'download';
+                a.target = '_blank'; // Open in new tab to prevent navigation on main page
+                a.rel = 'noopener noreferrer'; // Security
+                a.style.display = 'none';
+
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                setTimeout(() => {
+                    status.textContent = 'Download initiated. Check your downloads folder.';
+                    status.className = 'status success';
+                }, 1000);
             }
         }
 
