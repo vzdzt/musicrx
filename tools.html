@@ -135,7 +135,7 @@
 
         <div class="tool-section">
             <h2><i class="fas fa-download"></i> Media Downloader</h2>
-            <p>Paste a direct URL to an audio or video file (.mp3, .mp4, etc.) and download it instantly.</p>
+            <p>Paste any media URL (direct files or social media posts) and download it instantly.</p>
             <div class="input-group">
                 <input type="url" id="mediaUrl" placeholder="Enter media URL (e.g., https://example.com/file.mp3)" required>
                 <button class="btn" onclick="downloadMedia()"><i class="fas fa-download"></i> Download</button>
@@ -145,10 +145,11 @@
 
         <div class="tool-section">
             <h2><i class="fas fa-info-circle"></i> How It Works</h2>
-            <p>This tool allows you to download media files directly from URLs. It works best with direct links to audio/video files. Note that this tool cannot download from streaming services or protected content.</p>
+            <p>This tool allows you to download media from any URL. For direct files, it downloads immediately. For social media posts, it uses an external service to extract and download the media.</p>
             <ul style="text-align: left; display: inline-block; padding-left: 1rem; margin: 0;">
+                <li style="margin-bottom: 0.5rem;">Supported platforms: Twitter/X, Instagram, TikTok, YouTube</li>
                 <li style="margin-bottom: 0.5rem;">Supported formats: MP3, MP4, WAV, AVI, MOV, and more</li>
-                <li style="margin-bottom: 0.5rem;">Works with direct file URLs only</li>
+                <li style="margin-bottom: 0.5rem;">Works with direct URLs and post URLs</li>
                 <li style="margin-bottom: 0.5rem;">Files are downloaded directly to your device</li>
                 <li>No server storage - your privacy is protected</li>
             </ul>
@@ -186,6 +187,21 @@
             } catch (e) {
                 status.textContent = 'Please enter a valid URL.';
                 status.className = 'status error';
+                return;
+            }
+
+            // Check if it's a post URL from supported platforms
+            const isPostUrl = /twitter\.com\/.*\/status\/|x\.com\/.*\/status\/|instagram\.com\/p\/|tiktok\.com\/.*\/video\/|youtube\.com\/watch|youtu\.be\//.test(url);
+
+            if (isPostUrl) {
+                // Redirect to Cobalt.tools for post URLs
+                status.textContent = 'Redirecting to download service...';
+                status.className = 'status info';
+                window.open(`https://cobalt.tools/?url=${encodeURIComponent(url)}`, '_blank');
+                setTimeout(() => {
+                    status.textContent = 'Download service opened in new tab.';
+                    status.className = 'status success';
+                }, 1000);
                 return;
             }
 
