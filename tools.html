@@ -165,6 +165,16 @@
         </div>
 
         <div class="tool-section">
+            <h2><i class="fas fa-video"></i> Video to MP3 Converter</h2>
+            <p>Extract MP3 audio from YouTube, TikTok, Instagram, and other video platforms.</p>
+            <div class="input-group">
+                <input type="url" id="videoUrl" placeholder="Enter video URL (YouTube, TikTok, Instagram, etc.)" required>
+                <button class="btn" onclick="convertToMp3()"><i class="fas fa-download"></i> Convert to MP3</button>
+            </div>
+            <div id="convertResult" class="status"></div>
+        </div>
+
+        <div class="tool-section">
             <h2><i class="fas fa-terminal"></i> Songlink CLI</h2>
             <p>A powerful command-line tool for music sharing and downloading using the Songlink API.</p>
             <div style="text-align: left; margin-bottom: 1.5rem;">
@@ -459,6 +469,44 @@
             }
         });
 
+        function convertToMp3() {
+            const url = document.getElementById('videoUrl').value.trim();
+            const result = document.getElementById('convertResult');
+
+            if (!url) {
+                result.textContent = 'Please enter a video URL.';
+                result.className = 'status error';
+                return;
+            }
+
+            // Basic URL validation
+            try {
+                new URL(url);
+            } catch (e) {
+                result.textContent = 'Please enter a valid URL.';
+                result.className = 'status error';
+                return;
+            }
+
+            // Check if it's a supported video platform
+            const isSupportedVideo = /youtube\.com\/watch|youtu\.be\/|tiktok\.com\/.*\/video\/|instagram\.com\/p\/|twitter\.com\/.*\/status\/|x\.com\/.*\/status\/|vimeo\.com\//.test(url);
+
+            if (!isSupportedVideo) {
+                result.textContent = 'Unsupported platform. Please use YouTube, TikTok, Instagram, Twitter/X, or Vimeo URLs.';
+                result.className = 'status error';
+                return;
+            }
+
+            // Redirect to MP3 conversion service
+            result.textContent = 'Redirecting to MP3 conversion service...';
+            result.className = 'status info';
+            window.open(`https://ytmp3.cc/?url=${encodeURIComponent(url)}`, '_blank');
+            setTimeout(() => {
+                result.textContent = 'Conversion service opened in new tab. Select MP3 format and download.';
+                result.className = 'status success';
+            }, 1000);
+        }
+
         // Add enter key support for lyrics inputs
         document.getElementById('lyricsArtist').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -469,6 +517,13 @@
         document.getElementById('lyricsTitle').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 findLyrics();
+            }
+        });
+
+        // Add enter key support for video URL
+        document.getElementById('videoUrl').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                convertToMp3();
             }
         });
     </script>
