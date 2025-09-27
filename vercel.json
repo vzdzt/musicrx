@@ -1,19 +1,11 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/server.js"
+  "functions": {
+    "api/convert-video.js": {
+      "maxDuration": 300
     },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+    "api/download-media.js": {
+      "maxDuration": 300
     }
-  ]
+  }
 }
