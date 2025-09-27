@@ -144,6 +144,50 @@
         </div>
 
         <div class="tool-section">
+            <h2><i class="fas fa-link"></i> Universal Music Links</h2>
+            <p>Paste any music URL (Spotify, Apple Music, YouTube, etc.) and get links to listen on all platforms.</p>
+            <div class="input-group">
+                <input type="url" id="musicUrl" placeholder="Enter music URL (Spotify, Apple Music, YouTube, etc.)" required>
+                <button class="btn" onclick="generateLinks()"><i class="fas fa-search"></i> Get Links</button>
+            </div>
+            <div id="linksResult" class="status"></div>
+        </div>
+
+        <div class="tool-section">
+            <h2><i class="fas fa-music"></i> Lyrics Finder</h2>
+            <p>Find lyrics for any song by entering the artist and song title.</p>
+            <div class="input-group">
+                <input type="text" id="lyricsArtist" placeholder="Artist name" required>
+                <input type="text" id="lyricsTitle" placeholder="Song title" required>
+                <button class="btn" onclick="findLyrics()"><i class="fas fa-search"></i> Get Lyrics</button>
+            </div>
+            <div id="lyricsResult" class="status"></div>
+        </div>
+
+        <div class="tool-section">
+            <h2><i class="fas fa-terminal"></i> Songlink CLI</h2>
+            <p>A powerful command-line tool for music sharing and downloading using the Songlink API.</p>
+            <div style="text-align: left; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Features:</h3>
+                <ul style="padding-left: 1.5rem; margin: 0;">
+                    <li style="margin-bottom: 0.25rem;">Get universal music links across all platforms</li>
+                    <li style="margin-bottom: 0.25rem;">Search for songs and albums using Apple Music API</li>
+                    <li style="margin-bottom: 0.25rem;">Download tracks and playlists as MP3/MP4</li>
+                    <li style="margin-bottom: 0.25rem;">Clipboard integration for easy sharing</li>
+                    <li style="margin-bottom: 0.25rem;">Cross-platform (macOS, Linux, Windows)</li>
+                </ul>
+            </div>
+            <div style="text-align: center;">
+                <a href="https://github.com/guitaripod/songlink-cli/releases/tag/3.2.1" target="_blank" rel="noopener noreferrer" class="btn" style="margin-right: 1rem;">
+                    <i class="fab fa-github"></i> Download CLI
+                </a>
+                <a href="https://github.com/guitaripod/songlink-cli" target="_blank" rel="noopener noreferrer" class="btn">
+                    <i class="fas fa-book"></i> Documentation
+                </a>
+            </div>
+        </div>
+
+        <div class="tool-section">
             <h2><i class="fas fa-info-circle"></i> How It Works</h2>
             <p>This tool allows you to download media from any URL. For direct files, it downloads immediately. For social media posts, it uses an external service to extract and download the media.</p>
             <ul style="text-align: left; display: inline-block; padding-left: 1rem; margin: 0;">
@@ -233,10 +277,198 @@
             }, 1000);
         }
 
-        // Add enter key support
+        async function generateLinks() {
+            const url = document.getElementById('musicUrl').value.trim();
+            const result = document.getElementById('linksResult');
+
+            if (!url) {
+                result.textContent = 'Please enter a URL.';
+                result.className = 'status error';
+                return;
+            }
+
+            // Basic URL validation
+            try {
+                new URL(url);
+            } catch (e) {
+                result.textContent = 'Please enter a valid URL.';
+                result.className = 'status error';
+                return;
+            }
+
+            result.textContent = 'Fetching links...';
+            result.className = 'status info';
+
+            try {
+                const apiUrl = `https://api.song.link/v1-alpha.1/links?url=${encodeURIComponent(url)}`;
+                const response = await fetch(apiUrl);
+
+                if (!response.ok) {
+                    throw new Error(`API request failed: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (!data.linksByPlatform || Object.keys(data.linksByPlatform).length === 0) {
+                    throw new Error('No links found for this URL.');
+                }
+
+                // Get track/album info
+                const entities = data.entitiesByUniqueId;
+                const firstEntity = Object.values(entities)[0];
+                const title = firstEntity.title || 'Unknown Title';
+                const artist = firstEntity.artistName || 'Unknown Artist';
+                const type = firstEntity.type || 'track';
+
+                // Platform icons mapping
+                const platformIcons = {
+                    spotify: 'fab fa-spotify',
+                    appleMusic: 'fab fa-apple',
+                    youtube: 'fab fa-youtube',
+                    youtubeMusic: 'fab fa-youtube',
+                    tidal: 'fas fa-music',
+                    deezer: 'fab fa-deezer',
+                    amazonMusic: 'fab fa-amazon',
+                    soundcloud: 'fab fa-soundcloud',
+                    pandora: 'fas fa-music',
+                    itunes: 'fab fa-apple'
+                };
+
+                // Build results HTML
+                let html = `<div style="text-align: left; margin-bottom: 1rem;">
+                    <h3 style="margin: 0 0 0.5rem 0; color: var(--primary);">${title}</h3>
+                    <p style="margin: 0 0 1rem 0; color: var(--text-color);">by ${artist} (${type})</p>
+                    <p style="margin: 0 0 1rem 0; color: var(--secondary); font-size: 0.9rem;">Listen on:</p>`;
+
+                // Add links for each platform
+                Object.entries(data.linksByPlatform).forEach(([platform, linkData]) => {
+                    const platformUrl = linkData.url;
+                    const iconClass = platformIcons[platform] || 'fas fa-external-link-alt';
+                    const platformName = platform.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+
+                    html += `<a href="${platformUrl}" target="_blank" rel="noopener noreferrer" 
+                        style="display: inline-block; margin: 0.25rem 0.5rem 0.25rem 0; padding: 0.5rem 1rem; 
+                        background: var(--card-background); border: 1px solid var(--border-color); 
+                        border-radius: 8px; text-decoration: none; color: var(--text-color); 
+                        transition: all 0.3s ease;">
+                        <i class="${iconClass}" style="margin-right: 0.5rem;"></i>${platformName}
+                    </a>`;
+                });
+
+                // Add universal song.link
+                if (data.pageUrl) {
+                    html += `<br><br><a href="${data.pageUrl}" target="_blank" rel="noopener noreferrer" 
+                        style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; 
+                        background: var(--primary); color: white; border-radius: 8px; 
+                        text-decoration: none; font-weight: bold;">
+                        <i class="fas fa-link" style="margin-right: 0.5rem;"></i>Universal Link (song.link)
+                    </a>`;
+                }
+
+                html += '</div>';
+
+                result.innerHTML = html;
+                result.className = 'status success';
+
+            } catch (error) {
+                console.error('Songlink API error:', error);
+                result.textContent = 'Error: ' + error.message;
+                result.className = 'status error';
+            }
+        }
+
+        async function findLyrics() {
+            const artist = document.getElementById('lyricsArtist').value.trim();
+            const title = document.getElementById('lyricsTitle').value.trim();
+            const result = document.getElementById('lyricsResult');
+
+            if (!artist || !title) {
+                result.textContent = 'Please enter both artist and song title.';
+                result.className = 'status error';
+                return;
+            }
+
+            result.textContent = 'Searching for lyrics...';
+            result.className = 'status info';
+
+            try {
+                const apiUrl = `https://api.lyrics.ovh/v1/${encodeURIComponent(artist)}/${encodeURIComponent(title)}`;
+                const response = await fetch(apiUrl);
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        throw new Error('Lyrics not found. Try checking the spelling or different artist/title format.');
+                    }
+                    throw new Error(`API request failed: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (!data.lyrics) {
+                    throw new Error('Lyrics not found for this song.');
+                }
+
+                // Format lyrics with line breaks
+                const formattedLyrics = data.lyrics
+                    .replace(/\n\n/g, '</p><p>')
+                    .replace(/\n/g, '<br>');
+
+                result.innerHTML = `<div style="text-align: left; max-height: 400px; overflow-y: auto; background: var(--card-background); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                    <h3 style="margin: 0 0 1rem 0; color: var(--primary);">${title}</h3>
+                    <p style="margin: 0 0 1rem 0; color: var(--secondary); font-size: 0.9rem;">by ${artist}</p>
+                    <div style="color: var(--text-color); line-height: 1.6; white-space: pre-wrap;">${formattedLyrics}</div>
+                    <button onclick="copyLyrics()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Copy Lyrics</button>
+                </div>`;
+                result.className = 'status success';
+
+                // Store lyrics for copying
+                window.currentLyrics = data.lyrics;
+
+            } catch (error) {
+                console.error('Lyrics API error:', error);
+                result.textContent = 'Error: ' + error.message;
+                result.className = 'status error';
+            }
+        }
+
+        function copyLyrics() {
+            if (window.currentLyrics) {
+                navigator.clipboard.writeText(window.currentLyrics).then(() => {
+                    const result = document.getElementById('lyricsResult');
+                    const original = result.innerHTML;
+                    result.innerHTML = '<div style="color: #4CAF50;">Lyrics copied to clipboard!</div>';
+                    setTimeout(() => {
+                        result.innerHTML = original;
+                    }, 2000);
+                }).catch(() => {
+                    alert('Failed to copy lyrics. Please copy manually.');
+                });
+            }
+        }
+
+        // Add enter key support for both inputs
         document.getElementById('mediaUrl').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 downloadMedia();
+            }
+        });
+
+        document.getElementById('musicUrl').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generateLinks();
+            }
+        });
+
+        // Add enter key support for lyrics inputs
+        document.getElementById('lyricsArtist').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('lyricsTitle').focus();
+            }
+        });
+
+        document.getElementById('lyricsTitle').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                findLyrics();
             }
         });
     </script>
