@@ -243,16 +243,8 @@
                 status.textContent = 'Using direct download method...';
                 status.className = 'status info';
 
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = url.split('/').pop() || 'download';
-                a.target = '_blank'; // Open in new tab to prevent navigation on main page
-                a.rel = 'noopener noreferrer'; // Security
-                a.style.display = 'none';
-
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                // Open in new tab
+                window.open(url, '_blank');
 
                 setTimeout(() => {
                     status.textContent = 'Download initiated. Check your downloads folder.';
