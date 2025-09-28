@@ -603,8 +603,40 @@ const BACKEND_URL = 'https://musicrx.app';
                 return;
             }
 
-            result.textContent = 'Rating album... This may take a moment.';
+            // Show progress bar
+            result.innerHTML = `
+                <div style="text-align: center;">
+                    <p style="margin: 0 0 1rem 0; color: var(--text-color);">Rating album... This may take a moment.</p>
+                    <div style="width: 100%; height: 8px; background: var(--card-background); border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden;">
+                        <div id="progressBar" style="width: 0%; height: 100%; background: var(--primary); transition: width 0.3s ease;"></div>
+                    </div>
+                    <p id="progressText" style="margin: 0.5rem 0 0 0; color: var(--secondary); font-size: 0.9rem;">Analyzing album data...</p>
+                </div>
+            `;
             result.className = 'status info';
+
+            // Animate progress bar
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            let progress = 0;
+
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 15; // Random progress increase
+                if (progress > 90) progress = 90; // Don't reach 100% until done
+
+                progressBar.style.width = progress + '%';
+
+                // Update progress text
+                if (progress < 30) {
+                    progressText.textContent = 'Analyzing album data...';
+                } else if (progress < 60) {
+                    progressText.textContent = 'Gathering streaming data...';
+                } else if (progress < 80) {
+                    progressText.textContent = 'Checking reviews and sentiment...';
+                } else {
+                    progressText.textContent = 'Calculating final rating...';
+                }
+            }, 500);
 
             try {
                 const response = await fetch(`${BACKEND_URL}/api/album`, {
@@ -628,48 +660,57 @@ const BACKEND_URL = 'https://musicrx.app';
 
                 const albumData = await response.json();
 
+                // Complete progress bar
+                clearInterval(progressInterval);
+                progressBar.style.width = '100%';
+                progressText.textContent = 'Complete!';
+
                 console.log('Album data received:', albumData); // Debug log
 
-                if (albumData.status === 'enqueued') {
-                    result.innerHTML = `<div style="text-align: left;">
-                        <h3 style="color: var(--primary); margin: 0 0 1rem 0;">${albumData.title}</h3>
-                        <p style="margin: 0 0 1rem 0; color: var(--text-color);">by ${albumData.artist}</p>
-                        <p style="margin: 0; color: var(--secondary);">Album enqueued for rating. Ready by ${new Date(albumData.readyBy).toLocaleDateString()}.</p>
-                    </div>`;
-                } else if (albumData.status === 'reviewed') {
-                    // Store album data globally for button toggles
-                    window.currentAlbumData = albumData;
+                // Small delay to show completion
+                setTimeout(() => {
+                    if (albumData.status === 'enqueued') {
+                        result.innerHTML = `<div style="text-align: left;">
+                            <h3 style="color: var(--primary); margin: 0 0 1rem 0;">${albumData.title}</h3>
+                            <p style="margin: 0 0 1rem 0; color: var(--text-color);">by ${albumData.artist}</p>
+                            <p style="margin: 0; color: var(--secondary);">Album enqueued for rating. Ready by ${new Date(albumData.readyBy).toLocaleDateString()}.</p>
+                        </div>`;
+                    } else if (albumData.status === 'reviewed') {
+                        // Store album data globally for button toggles
+                        window.currentAlbumData = albumData;
 
-                    result.innerHTML = `<div style="text-align: left;">
-                        <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;">
-                            ${albumData.imageUrl ? `<img src="${albumData.imageUrl}" alt="${albumData.title} cover" style="width: 120px; height: 120px; border-radius: 8px; margin-right: 1rem; object-fit: cover;">` : ''}
-                            <div>
-                                <h3 style="color: var(--primary); margin: 0 0 0.5rem 0;">${albumData.title}</h3>
-                                <p style="margin: 0 0 1rem 0; color: var(--text-color);">by ${albumData.artist}</p>
-                                <div style="font-size: 2rem; font-weight: bold; color: var(--primary); margin: 1rem 0;">${albumData.score}/10</div>
+                        result.innerHTML = `<div style="text-align: left;">
+                            <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;">
+                                ${albumData.imageUrl ? `<img src="${albumData.imageUrl}" alt="${albumData.title} cover" style="width: 120px; height: 120px; border-radius: 8px; margin-right: 1rem; object-fit: cover;">` : ''}
+                                <div>
+                                    <h3 style="color: var(--primary); margin: 0 0 0.5rem 0;">${albumData.title}</h3>
+                                    <p style="margin: 0 0 1rem 0; color: var(--text-color);">by ${albumData.artist}</p>
+                                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary); margin: 1rem 0;">${albumData.score}/10</div>
+                                </div>
                             </div>
-                        </div>
-                        <div style="margin: 1rem 0;">
-                            <button onclick="showHighlights()" style="margin-right: 1rem; padding: 0.5rem 1rem; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Highlights</button>
-                            <button onclick="showMisses()" style="padding: 0.5rem 1rem; background: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">Misses</button>
-                        </div>
-                        <div id="albumDetails" style="margin: 1rem 0;"></div>
-                    </div>`;
-                } else if (albumData.status === 'error') {
-                    result.textContent = 'Error: ' + (albumData.message || 'Unknown error occurred');
-                    result.className = 'status error';
-                    return;
-                } else {
-                    result.textContent = `Album rating completed, but status is unclear. Status: ${albumData.status}`;
-                }
+                            <div style="margin: 1rem 0;">
+                                <button onclick="showHighlights()" style="margin-right: 1rem; padding: 0.5rem 1rem; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Highlights</button>
+                                <button onclick="showMisses()" style="padding: 0.5rem 1rem; background: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">Misses</button>
+                            </div>
+                            <div id="albumDetails" style="margin: 1rem 0;"></div>
+                        </div>`;
+                    } else if (albumData.status === 'error') {
+                        result.textContent = 'Error: ' + (albumData.message || 'Unknown error occurred');
+                        result.className = 'status error';
+                        return;
+                    } else {
+                        result.textContent = `Album rating completed, but status is unclear. Status: ${albumData.status}`;
+                    }
 
-                result.className = 'status success';
+                    result.className = 'status success';
 
-                // Load featured albums after successful rating
-                loadFeaturedAlbums();
+                    // Load featured albums after successful rating
+                    loadFeaturedAlbums();
+                }, 500);
 
             } catch (error) {
                 console.error('Album rating error:', error);
+                clearInterval(progressInterval);
                 result.textContent = 'Error: ' + error.message;
                 result.className = 'status error';
             }
