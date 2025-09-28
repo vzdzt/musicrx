@@ -687,11 +687,9 @@ app.get('/api/new-releases', async (req, res) => {
                 // Check if album is already in our database
                 const existingAlbum = await Album.findOne({ albumId: albumData.id });
 
-                // Include albums that aren't rated OR were rated recently (show variety)
-                const shouldInclude = !existingAlbum || (
-                  existingAlbum && existingAlbum.updatedAt &&
-                  (new Date() - new Date(existingAlbum.updatedAt)) > (30 * 24 * 60 * 60 * 1000) // 30 days ago
-                );
+                // For now, include all popular albums to populate the New Releases section
+                // TODO: Later we can filter based on rating status
+                const shouldInclude = true;
 
                 if (shouldInclude) {
                   newReleases.push({
