@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx Backend API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        .api-info {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        .endpoint {
+            background: white;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #007acc;
+            text-align: left;
+        }
+        code {
+            background: #e0e0e0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎵 MusicRx Backend API</h1>
+    <p>This is the backend API for MusicRx media tools.</p>
+
+    <div class="api-info">
+        <h2>Available Endpoints:</h2>
+
+        <div class="endpoint">
+            <h3>POST /api/convert-video</h3>
+            <p>Convert video URLs to MP3 audio</p>
+            <code>curl -X POST /api/convert-video -H "Content-Type: application/json" -d '{"url": "https://youtube.com/watch?v=..."}'</code>
+        </div>
+
+        <div class="endpoint">
+            <h3>POST /api/download-media</h3>
+            <p>Download media from social media posts</p>
+            <code>curl -X POST /api/download-media -H "Content-Type: application/json" -d '{"url": "https://instagram.com/p/..."}'</code>
+        </div>
+
+        <div class="endpoint">
+            <h3>GET /api/health</h3>
+            <p>Health check endpoint</p>
+            <code>curl /api/health</code>
+        </div>
+    </div>
+
+    <p><strong>Frontend:</strong> <a href="https://vzdzt.github.io/musicrx/tools.html">MusicRx Tools</a></p>
+    <p><strong>Repository:</strong> <a href="https://github.com/vzdzt/musicrx">GitHub</a></p>
+</body>
+</html>
