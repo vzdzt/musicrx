@@ -461,18 +461,102 @@ async function reviewAlbum(albumId) {
 
     const strengths = [];
     const weaknesses = [];
-    if (streams > 8) strengths.push('Top-tier streaming performance');
-    if (billboard > 7) strengths.push(`Strong Billboard ranking (#${billboardRank})`);
-    if (sales < 6) weaknesses.push('Lower sales performance');
-    if (avgReview < 6) weaknesses.push('Mixed critical reviews');
 
-    // Ensure we have at least some basic strengths/weaknesses
-    if (strengths.length === 0) {
-      strengths.push('Solid streaming numbers');
+    // Generate more detailed and varied strengths
+    if (streams > 8) {
+      strengths.push('Exceptional streaming performance with massive daily plays');
+      strengths.push('Strong digital presence and audience engagement');
     }
-    if (weaknesses.length === 0) {
-      weaknesses.push('Room for improvement in sales performance');
+    if (billboard > 7) {
+      strengths.push(`Impressive Billboard chart performance (#${billboardRank})`);
+      strengths.push('Significant mainstream recognition and commercial success');
     }
+    if (popularity > 70) {
+      strengths.push('High popularity score indicating broad appeal');
+      strengths.push('Widespread cultural impact and fanbase growth');
+    }
+    if (avgReview > 7) {
+      strengths.push('Strong critical reception with positive reviews');
+      strengths.push('Quality production and artistic merit recognized by critics');
+    }
+
+    // Add album-specific strengths based on release timing
+    if (daysSinceRelease < 30) {
+      strengths.push('Recent release with fresh, contemporary sound');
+    } else if (daysSinceRelease < 180) {
+      strengths.push('Established track record with proven staying power');
+    }
+
+    // Generate more detailed and varied weaknesses
+    if (streams < 5) {
+      weaknesses.push('Limited streaming numbers suggest niche appeal');
+      weaknesses.push('Could benefit from increased marketing and promotion');
+    }
+    if (billboard < 5) {
+      weaknesses.push('Lower chart performance indicates limited mainstream breakthrough');
+    }
+    if (popularity < 40) {
+      weaknesses.push('Moderate popularity suggests room for broader audience expansion');
+    }
+    if (avgReview < 6) {
+      weaknesses.push('Mixed critical reception with some divisive opinions');
+      weaknesses.push('Production or artistic elements may not resonate with all listeners');
+    }
+    if (sales < 6) {
+      weaknesses.push('Physical/digital sales performance could be stronger');
+      weaknesses.push('Limited commercial impact despite streaming success');
+    }
+
+    // Add variety based on score ranges
+    if (score < 6) {
+      weaknesses.push('Overall execution falls short of expectations');
+      weaknesses.push('Multiple areas need improvement for broader appeal');
+    } else if (score > 8) {
+      strengths.push('Outstanding overall quality and execution');
+      strengths.push('Sets a high standard in multiple musical categories');
+    }
+
+    // Ensure we have at least 2-3 points each, but not too many
+    const strengthOptions = [
+      'Innovative production techniques and sound design',
+      'Compelling lyrical content with meaningful themes',
+      'Excellent vocal performances and delivery',
+      'Cohesive album structure with strong sequencing',
+      'Unique artistic vision and creative direction',
+      'Strong instrumental arrangements and musicianship',
+      'Effective use of modern production tools',
+      'Emotional depth and authentic expression'
+    ];
+
+    const weaknessOptions = [
+      'Some tracks lack the consistency of the best moments',
+      'Production choices may not appeal to all listeners',
+      'Lyrical content varies in quality and impact',
+      'Album length could be more focused',
+      'Some songs may not stand out individually',
+      'Mix/mastering could be more polished',
+      'Artistic risks don\'t always pay off',
+      'Limited genre exploration or experimentation'
+    ];
+
+    // Add 1-2 random additional points to make it more detailed
+    while (strengths.length < 3) {
+      const randomStrength = strengthOptions[Math.floor(Math.random() * strengthOptions.length)];
+      if (!strengths.includes(randomStrength)) {
+        strengths.push(randomStrength);
+      }
+    }
+
+    while (weaknesses.length < 3) {
+      const randomWeakness = weaknessOptions[Math.floor(Math.random() * weaknessOptions.length)];
+      if (!weaknesses.includes(randomWeakness)) {
+        weaknesses.push(randomWeakness);
+      }
+    }
+
+    // Limit to 4 points each for readability
+    strengths.splice(4);
+    weaknesses.splice(4);
 
     console.log(`Album review complete: ${score}/10`);
     return { status: 'reviewed', score: parseFloat(score), strengths, weaknesses, imageUrl: album.body.images[0]?.url };
