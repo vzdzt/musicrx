@@ -653,34 +653,14 @@ app.get('/api/all-time-rankings', async (req, res) => {
 // New releases endpoint (actual new Spotify releases)
 app.get('/api/new-releases', async (req, res) => {
   try {
-    const timeRange = req.query.timeRange || 'month'; // 'week', 'month', 'year'
-    let daysBack;
-
-    switch (timeRange) {
-      case 'week':
-        daysBack = 7;
-        break;
-      case 'month':
-        daysBack = 30;
-        break;
-      case 'year':
-        daysBack = 365;
-        break;
-      default:
-        daysBack = 30;
-    }
-
-    const startDate = new Date();
-    startDate.setDate(startDate.getDate() - daysBack);
-
-    console.log(`Fetching new releases from last ${daysBack} days...`);
+    console.log('Fetching new releases from Spotify...');
 
     // Get new releases from Spotify
     const newReleases = [];
     let offset = 0;
     const limit = 50;
 
-    // Search for albums from current year first, then expand if needed
+    // Search for albums from current year
     const currentYear = new Date().getFullYear();
 
     while (newReleases.length < 20 && offset < 200) {
@@ -694,27 +674,24 @@ app.get('/api/new-releases', async (req, res) => {
         if (response.body.albums.items.length === 0) break;
 
         for (const album of response.body.albums.items) {
-          if (album.album_type === 'album') {
+          if (album.album_type === 'album' && album.popularity > 10) {
             // Get full album details
             try {
               const fullAlbum = await spotifyApi.getAlbum(album.id);
               const albumData = fullAlbum.body;
 
-              const releaseDate = new Date(albumData.release_date);
-              if (releaseDate >= startDate) {
-                // Check if album is already in our database
-                const existingAlbum = await Album.findOne({ albumId: albumData.id });
-                if (!existingAlbum) {
-                  newReleases.push({
-                    id: albumData.id,
-                    title: albumData.name,
-                    artist: albumData.artists[0].name,
-                    releaseDate: albumData.release_date,
-                    imageUrl: albumData.images[0]?.url,
-                    popularity: albumData.popularity,
-                    external_urls: albumData.external_urls
-                  });
-                }
+              // Check if album is already in our database
+              const existingAlbum = await Album.findOne({ albumId: albumData.id });
+              if (!existingAlbum) {
+                newReleases.push({
+                  id: albumData.id,
+                  title: albumData.name,
+                  artist: albumData.artists[0].name,
+                  releaseDate: albumData.release_date,
+                  imageUrl: albumData.images[0]?.url,
+                  popularity: albumData.popularity,
+                  external_urls: albumData.external_urls
+                });
               }
             } catch (albumErr) {
               console.error(`Error getting album ${album.id}:`, albumErr.message);
@@ -733,8 +710,15 @@ app.get('/api/new-releases', async (req, res) => {
       }
     }
 
-    // Sort by release date (newest first)
-    newReleases.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+    // Sort by popularity first, then by release date (newest first)
+    newReleases.sort((a, b) => {
+      // Primary sort: popularity (highest first)
+      if (b.popularity !== a.popularity) {
+        return b.popularity - a.popularity;
+      }
+      // Secondary sort: release date (newest first)
+      return new Date(b.releaseDate) - new Date(a.releaseDate);
+    });
 
     console.log(`Found ${newReleases.length} new releases`);
     res.json(newReleases.slice(0, 12)); // Return top 12
