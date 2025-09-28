@@ -603,6 +603,25 @@ app.get('/api/aoty-contenders', async (req, res) => {
   }
 });
 
+// All 2025 albums endpoint
+app.get('/api/all-2025-albums', async (req, res) => {
+  try {
+    const currentYear = new Date().getFullYear();
+    const startOfYear = new Date(currentYear, 0, 1);
+    const endOfYear = new Date(currentYear, 11, 31, 23, 59, 59);
+
+    const allAlbums = await Album.find({
+      status: 'reviewed',
+      releaseDate: { $gte: startOfYear, $lte: endOfYear }
+    }).sort({ score: -1 });
+
+    res.json(allAlbums);
+  } catch (err) {
+    console.error('All 2025 albums error:', err);
+    res.status(500).json({ error: 'Failed to fetch all 2025 albums' });
+  }
+});
+
 // New releases endpoint (recently reviewed albums)
 app.get('/api/new-releases', async (req, res) => {
   try {
