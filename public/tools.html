@@ -656,7 +656,7 @@ const BACKEND_URL = 'https://musicrx.app';
                         <div id="albumDetails" style="margin: 1rem 0;"></div>
                     </div>`;
                 } else if (albumData.status === 'error') {
-                    result.textContent = 'Error: ' + albumData.message;
+                    result.textContent = 'Error: ' + (albumData.message || 'Unknown error occurred');
                     result.className = 'status error';
                     return;
                 } else {
