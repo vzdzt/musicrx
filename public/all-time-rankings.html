@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - All-Time Rankings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .album-card {
+            background: var(--card-background);
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+        }
+        .album-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow);
+        }
+        .album-cover {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 2px solid var(--border-color);
+        }
+        .album-title {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        .album-artist {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+        .album-score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        .album-date {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        .album-details {
+            text-align: left;
+            margin-top: 1rem;
+        }
+        .album-details h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .album-details ul {
+            margin: 0;
+            padding-left: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-color);
+        }
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            color: var(--secondary);
+        }
+        .stats {
+            background: var(--card-background);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .stats h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .stat-item {
+            background: var(--rgb-glow);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-top: 0.5rem;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--card-background);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .nav-button.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <canvas id="universe"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="underground.html">Underground</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+    <div class="container">
+        <div class="nav-buttons">
+            <a href="all-2025-albums.html" class="nav-button">2025 Rankings</a>
+            <a href="all-time-rankings.html" class="nav-button active">All-Time Rankings</a>
+        </div>
+
+        <h1 class="glitch" data-text="ALL-TIME ALBUM RANKINGS" style="margin-top: 90px; margin-bottom: 1rem;">ALL-TIME ALBUM RANKINGS</h1>
+        <p style="color: var(--text-color); margin-bottom: 2rem;">The highest rated albums of all time in our automated ranking system</p>
+
+        <div id="stats" class="stats">
+            <h2><i class="fas fa-crown"></i> All-Time Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalAlbums">-</div>
+                    <div class="stat-label">Total Albums</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="avgScore">-</div>
+                    <div class="stat-label">Average Score</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="highestScore">-</div>
+                    <div class="stat-label">Highest Score</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="lowestScore">-</div>
+                    <div class="stat-label">Lowest Score</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="albumsGrid" class="albums-grid">
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <p>Loading all-time rankings...</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Configuration
+        const BACKEND_URL = 'https://musicrx.app';
+
+        async function loadAllTimeRankings() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/all-time-rankings`);
+                if (!response.ok) {
+                    throw new Error(`Failed to load rankings: ${response.status}`);
+                }
+
+                const albums = await response.json();
+                displayAlbums(albums);
+                displayStats(albums);
+
+            } catch (error) {
+                console.error('Failed to load rankings:', error);
+                document.getElementById('albumsGrid').innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: #f44336;"></i>
+                        <p>Failed to load rankings. Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayAlbums(albums) {
+            const grid = document.getElementById('albumsGrid');
+
+            if (albums.length === 0) {
+                grid.innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-music" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>No albums rated yet.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            albums.forEach((album, index) => {
+                const ranking = index + 1;
+                const medal = ranking === 1 ? '👑' : ranking === 2 ? '🥇' : ranking === 3 ? '🥈' : ranking === 4 ? '🥉' : `#${ranking}`;
+
+                html += `
+                    <div class="album-card">
+                        <div style="position: absolute; top: 10px; left: 10px; font-size: 1.5rem;">${medal}</div>
+                        ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover" class="album-cover">` : '<div class="album-cover" style="display: flex; align-items: center; justify-content: center; background: var(--card-background);"><i class="fas fa-music" style="font-size: 3rem; opacity: 0.5;"></i></div>'}
+                        <div class="album-score">${album.score}/10</div>
+                        <div class="album-title">${album.title}</div>
+                        <div class="album-artist">by ${album.artist}</div>
+                        <div class="album-date">Released: ${new Date(album.releaseDate).toLocaleDateString()}</div>
+                        <div class="album-details">
+                            <h4>Strengths:</h4>
+                            <ul>
+                                ${album.strengths.map(s => `<li>${s}</li>`).join('')}
+                            </ul>
+                            <h4 style="margin-top: 1rem;">Weaknesses:</h4>
+                            <ul>
+                                ${album.weaknesses.map(w => `<li>${w}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html;
+        }
+
+        function displayStats(albums) {
+            if (albums.length === 0) return;
+
+            const totalAlbums = albums.length;
+            const scores = albums.map(a => a.score);
+            const avgScore = (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1);
+            const highestScore = Math.max(...scores);
+            const lowestScore = Math.min(...scores);
+
+            document.getElementById('totalAlbums').textContent = totalAlbums;
+            document.getElementById('avgScore').textContent = avgScore;
+            document.getElementById('highestScore').textContent = highestScore;
+            document.getElementById('lowestScore').textContent = lowestScore;
+        }
+
+        // Load rankings when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllTimeRankings();
+        });
+    </script>
+</body>
+</html>

@@ -622,6 +622,20 @@ app.get('/api/all-2025-albums', async (req, res) => {
   }
 });
 
+// All-time rankings endpoint
+app.get('/api/all-time-rankings', async (req, res) => {
+  try {
+    const allTimeRankings = await Album.find({
+      status: 'reviewed'
+    }).sort({ score: -1 }).limit(100);
+
+    res.json(allTimeRankings);
+  } catch (err) {
+    console.error('All-time rankings error:', err);
+    res.status(500).json({ error: 'Failed to fetch all-time rankings' });
+  }
+});
+
 // New releases endpoint (recently reviewed albums)
 app.get('/api/new-releases', async (req, res) => {
   try {
