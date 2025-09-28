@@ -655,6 +655,33 @@ app.get('/api/new-releases', async (req, res) => {
   try {
     console.log('Fetching new releases from Spotify...');
 
+    // Simple test response first
+    const testAlbums = [
+      {
+        id: '4aawyAB9vmqN3uQ7FjRGTy',
+        title: 'MUSIC',
+        artist: 'Playboi Carti',
+        releaseDate: '2025-01-15',
+        imageUrl: 'https://i.scdn.co/image/ab67616d0000b273a3a7d6b8c1b9e9b8c1b9e9b8',
+        popularity: 85,
+        isRated: true
+      },
+      {
+        id: '18NOKLkZETa4sWwLMIm0UZ',
+        title: 'UTOPIA',
+        artist: 'Travis Scott',
+        releaseDate: '2024-07-28',
+        imageUrl: 'https://i.scdn.co/image/ab67616d0000b273a3a7d6b8c1b9e9b8c1b9e9b8',
+        popularity: 90,
+        isRated: true
+      }
+    ];
+
+    console.log('Returning test albums for now');
+    return res.json(testAlbums);
+
+    // TODO: Restore full Spotify API logic later
+    /*
     // Get new releases from Spotify
     const newReleases = [];
     let offset = 0;
@@ -736,6 +763,7 @@ app.get('/api/new-releases', async (req, res) => {
 
     console.log(`Found ${newReleases.length} new releases`);
     res.json(newReleases.slice(0, 12)); // Return top 12
+    */
 
   } catch (err) {
     console.error('New releases error:', err);
