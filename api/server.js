@@ -660,54 +660,70 @@ app.get('/api/new-releases', async (req, res) => {
     let offset = 0;
     const limit = 50;
 
-    // Search for albums from current year
+    // Search for albums from current year and last year
     const currentYear = new Date().getFullYear();
+    const years = [currentYear, currentYear - 1]; // 2025 and 2024
 
-    while (newReleases.length < 20 && offset < 200) {
-      try {
-        const response = await spotifyApi.searchAlbums(`year:${currentYear}`, {
-          limit: limit,
-          offset: offset,
-          market: 'US'
-        });
+    for (const year of years) {
+      offset = 0; // Reset offset for each year
 
-        if (response.body.albums.items.length === 0) break;
+      while (newReleases.length < 25 && offset < 100) {
+        try {
+          const response = await spotifyApi.searchAlbums(`year:${year}`, {
+            limit: limit,
+            offset: offset,
+            market: 'US'
+          });
 
-        for (const album of response.body.albums.items) {
-          if (album.album_type === 'album' && album.popularity > 10) {
-            // Get full album details
-            try {
-              const fullAlbum = await spotifyApi.getAlbum(album.id);
-              const albumData = fullAlbum.body;
+          if (response.body.albums.items.length === 0) break;
 
-              // Check if album is already in our database
-              const existingAlbum = await Album.findOne({ albumId: albumData.id });
-              if (!existingAlbum) {
-                newReleases.push({
-                  id: albumData.id,
-                  title: albumData.name,
-                  artist: albumData.artists[0].name,
-                  releaseDate: albumData.release_date,
-                  imageUrl: albumData.images[0]?.url,
-                  popularity: albumData.popularity,
-                  external_urls: albumData.external_urls
-                });
+          for (const album of response.body.albums.items) {
+            if (album.album_type === 'album' && album.popularity > 5) { // Lower threshold
+              // Get full album details
+              try {
+                const fullAlbum = await spotifyApi.getAlbum(album.id);
+                const albumData = fullAlbum.body;
+
+                // Check if album is already in our database
+                const existingAlbum = await Album.findOne({ albumId: albumData.id });
+
+                // Include albums that aren't rated OR were rated recently (show variety)
+                const shouldInclude = !existingAlbum || (
+                  existingAlbum && existingAlbum.updatedAt &&
+                  (new Date() - new Date(existingAlbum.updatedAt)) > (30 * 24 * 60 * 60 * 1000) // 30 days ago
+                );
+
+                if (shouldInclude) {
+                  newReleases.push({
+                    id: albumData.id,
+                    title: albumData.name,
+                    artist: albumData.artists[0].name,
+                    releaseDate: albumData.release_date,
+                    imageUrl: albumData.images[0]?.url,
+                    popularity: albumData.popularity,
+                    external_urls: albumData.external_urls,
+                    isRated: !!existingAlbum
+                  });
+                }
+              } catch (albumErr) {
+                console.error(`Error getting album ${album.id}:`, albumErr.message);
               }
-            } catch (albumErr) {
-              console.error(`Error getting album ${album.id}:`, albumErr.message);
+
+              // Rate limiting
+              await new Promise(resolve => setTimeout(resolve, 50));
             }
-
-            // Rate limiting
-            await new Promise(resolve => setTimeout(resolve, 100));
           }
+
+          offset += limit;
+
+        } catch (err) {
+          console.error('Spotify search error:', err);
+          break;
         }
-
-        offset += limit;
-
-      } catch (err) {
-        console.error('Spotify search error:', err);
-        break;
       }
+
+      // If we have enough albums, stop searching
+      if (newReleases.length >= 15) break;
     }
 
     // Sort by popularity first, then by release date (newest first)

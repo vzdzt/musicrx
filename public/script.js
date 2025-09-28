@@ -70,6 +70,8 @@ async function loadNewReleases() {
                     timeLabel = releaseDate;
                 }
 
+                const ratedText = album.isRated ? '<span style="color: #4CAF50; font-size: 0.7rem;">✓ Rated</span>' : '<span style="color: var(--primary); font-size: 0.7rem;">Click to rate</span>';
+
                 html += `<div class="scroll-item" onclick="rateAlbumFromNewRelease('${album.id}')" style="cursor: pointer;">
                     <div class="news-title-card">
                         <h2>${title}</h2>
@@ -78,7 +80,7 @@ async function loadNewReleases() {
                         <p class="date">${artist}</p>
                         ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-music" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
                         <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${timeLabel}</p>
-                        <p style="font-size: 0.7rem; color: var(--primary); margin-top: 0.25rem;">Click to rate</p>
+                        <p style="margin-top: 0.25rem;">${ratedText}</p>
                     </div>
                 </div>`;
             });
