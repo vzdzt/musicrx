@@ -10,7 +10,7 @@
     "build": "echo 'No build step required'",
     "deploy": "rsync -avz --exclude='node_modules' --exclude='.git' ./ user@your-vps:/path/to/musicrx/",
     "setup-vps": "echo 'Run these commands on your VPS:' && echo 'sudo apt update && sudo apt install -y nodejs npm ffmpeg' && echo 'curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && chmod +x /usr/local/bin/yt-dlp'",
-    "pm2-start": "pm2 start api/server.js --name musicrx-backend",
+    "pm2-start": "pm2 start api/server.js --name musicrx-backend -f",
     "pm2-stop": "pm2 stop musicrx-backend",
     "pm2-restart": "pm2 restart musicrx-backend"
   },
