@@ -850,6 +850,16 @@ const BACKEND_URL = 'https://musicrx.app';
         document.addEventListener('DOMContentLoaded', function() {
             loadFeaturedAlbums();
             loadAotyContenders();
+
+            // Check for album ID in URL parameters (from new releases)
+            const urlParams = new URLSearchParams(window.location.search);
+            const albumIdToRate = urlParams.get('rate');
+            if (albumIdToRate) {
+                document.getElementById('albumId').value = albumIdToRate;
+                // Auto-focus and scroll to the album rater
+                document.getElementById('albumId').focus();
+                document.getElementById('albumId').scrollIntoView({ behavior: 'smooth' });
+            }
         });
 
         // Add enter key support for album ID

@@ -41,7 +41,7 @@ function scrollSection(containerId, distance) {
 // Load new releases for the index page
 async function loadNewReleases() {
     try {
-        const response = await fetch('/api/new-releases');
+        const response = await fetch('/api/new-releases?timeRange=month');
         if (!response.ok) {
             throw new Error(`Failed to load new releases: ${response.status}`);
         }
@@ -55,15 +55,30 @@ async function loadNewReleases() {
                 const title = album.title.length > 20 ? album.title.substring(0, 17) + '...' : album.title;
                 const artist = album.artist.length > 20 ? album.artist.substring(0, 17) + '...' : album.artist;
                 const releaseDate = new Date(album.releaseDate).toLocaleDateString();
+                const daysSinceRelease = Math.floor((new Date() - new Date(album.releaseDate)) / (1000 * 60 * 60 * 24));
 
-                html += `<div class="scroll-item">
+                let timeLabel = '';
+                if (daysSinceRelease === 0) {
+                    timeLabel = 'Today';
+                } else if (daysSinceRelease === 1) {
+                    timeLabel = 'Yesterday';
+                } else if (daysSinceRelease <= 7) {
+                    timeLabel = `${daysSinceRelease} days ago`;
+                } else if (daysSinceRelease <= 30) {
+                    timeLabel = `${Math.floor(daysSinceRelease / 7)} weeks ago`;
+                } else {
+                    timeLabel = releaseDate;
+                }
+
+                html += `<div class="scroll-item" onclick="rateAlbumFromNewRelease('${album.id}')" style="cursor: pointer;">
                     <div class="news-title-card">
                         <h2>${title}</h2>
                     </div>
                     <div class="news-content-card">
                         <p class="date">${artist}</p>
                         ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-music" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
-                        <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">Released: ${releaseDate}</p>
+                        <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${timeLabel}</p>
+                        <p style="font-size: 0.7rem; color: var(--primary); margin-top: 0.25rem;">Click to rate</p>
                     </div>
                 </div>`;
             });
@@ -83,6 +98,12 @@ async function loadNewReleases() {
             <p>Unable to load new releases at this time.</p>
         </div>`;
     }
+}
+
+// Rate album from new releases section
+async function rateAlbumFromNewRelease(albumId) {
+    // Redirect to tools page with the album ID
+    window.location.href = `tools.html?rate=${albumId}`;
 }
 
 // Debounce utility function
