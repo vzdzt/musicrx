@@ -1,6 +1,7 @@
 import { exec } from 'child_process';
 import path from 'path';
 import fs from 'fs';
+import https from 'https';
 
 export default async function handler(req, res) {
   // Set CORS headers
@@ -34,11 +35,17 @@ export default async function handler(req, res) {
 
   const jobId = Date.now();
   const tempDir = '/tmp';
-  const ytDlpPath = path.join(__dirname, '../../yt-dlp');
+  const ytDlpPath = path.join(tempDir, 'yt-dlp');
   const outputTemplate = path.join(tempDir, `${jobId}.%(ext)s`);
 
   try {
     console.log(`Downloading media: ${url}`);
+
+    // Download yt-dlp if not exists
+    if (!fs.existsSync(ytDlpPath)) {
+      console.log('Downloading yt-dlp...');
+      await downloadYtDlp(ytDlpPath);
+    }
 
     // Make sure yt-dlp is executable
     await new Promise((resolve, reject) => {
@@ -133,4 +140,36 @@ export default async function handler(req, res) {
       details: error.message
     });
   }
+}
+
+// Function to download yt-dlp binary
+async function downloadYtDlp(targetPath) {
+  const ytDlpUrl = 'https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp';
+
+  return new Promise((resolve, reject) => {
+    const file = fs.createWriteStream(targetPath);
+    const request = https.get(ytDlpUrl, (response) => {
+      if (response.statusCode !== 200) {
+        reject(new Error(`Failed to download yt-dlp: ${response.statusCode}`));
+        return;
+      }
+
+      response.pipe(file);
+
+      file.on('finish', () => {
+        file.close();
+        resolve();
+      });
+    });
+
+    request.on('error', (err) => {
+      fs.unlink(targetPath, () => {});
+      reject(err);
+    });
+
+    file.on('error', (err) => {
+      fs.unlink(targetPath, () => {});
+      reject(err);
+    });
+  });
 }
