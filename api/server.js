@@ -584,6 +584,25 @@ app.get('/api/featured-albums', async (req, res) => {
   res.json(featuredAlbums);
 });
 
+// Album of the Year contenders endpoint
+app.get('/api/aoty-contenders', async (req, res) => {
+  try {
+    const currentYear = new Date().getFullYear();
+    const startOfYear = new Date(currentYear, 0, 1);
+    const endOfYear = new Date(currentYear, 11, 31, 23, 59, 59);
+
+    const contenders = await Album.find({
+      status: 'reviewed',
+      releaseDate: { $gte: startOfYear, $lte: endOfYear }
+    }).sort({ score: -1 }).limit(10);
+
+    res.json(contenders);
+  } catch (err) {
+    console.error('AOTY contenders error:', err);
+    res.status(500).json({ error: 'Failed to fetch album of the year contenders' });
+  }
+});
+
 // Error handling middleware
 app.use((error, req, res, next) => {
   console.error('Unhandled error:', error);

@@ -189,6 +189,18 @@
             </div>
         </div>
 
+        <div class="tool-section">
+            <h2><i class="fas fa-trophy"></i> Album of the Year Contenders</h2>
+            <p>Top-rated albums released in 2025, ranked by our automated scoring system. Rate more albums to see them compete!</p>
+            <div id="aotyContenders" style="margin-top: 2rem;">
+                <div id="aotyList" style="text-align: left;"></div>
+                <div id="aotyEmpty" style="text-align: center; color: var(--secondary); padding: 2rem;">
+                    <i class="fas fa-music" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                    <p>No albums rated yet for 2025. Rate some albums to see the contenders!</p>
+                </div>
+            </div>
+        </div>
+
 
 
         <div class="tool-section">
@@ -773,9 +785,55 @@ const BACKEND_URL = 'https://musicrx.app';
             }
         }
 
-        // Load featured albums on page load
+        async function loadAotyContenders() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/aoty-contenders`);
+                if (!response.ok) {
+                    throw new Error(`Failed to load AOTY contenders: ${response.status}`);
+                }
+
+                const contenders = await response.json();
+                const aotyList = document.getElementById('aotyList');
+                const aotyEmpty = document.getElementById('aotyEmpty');
+
+                if (contenders.length > 0) {
+                    let html = '';
+                    contenders.forEach((album, index) => {
+                        const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`;
+                        html += `<div style="background: var(--card-background); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                            <div style="display: flex; align-items: flex-start; margin-bottom: 0.5rem;">
+                                ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover" style="width: 60px; height: 60px; border-radius: 6px; margin-right: 1rem; object-fit: cover;">` : ''}
+                                <div style="flex: 1;">
+                                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.25rem;">
+                                        <span style="font-size: 1.2rem; font-weight: bold; color: var(--primary);">${medal}</span>
+                                        <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">${album.score}/10</span>
+                                    </div>
+                                    <h4 style="margin: 0 0 0.25rem 0; color: var(--primary); font-size: 1rem;">${album.title}</h4>
+                                    <p style="margin: 0 0 0.25rem 0; color: var(--text-color); font-size: 0.9rem;">by ${album.artist}</p>
+                                    <p style="margin: 0; color: var(--secondary); font-size: 0.8rem;">Released: ${new Date(album.releaseDate).toLocaleDateString()}</p>
+                                </div>
+                            </div>
+                        </div>`;
+                    });
+
+                    aotyList.innerHTML = html;
+                    aotyEmpty.style.display = 'none';
+                } else {
+                    aotyEmpty.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Failed to load AOTY contenders:', error);
+                document.getElementById('aotyEmpty').innerHTML = `
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: #f44336;"></i>
+                    <p>Unable to load contenders at this time.</p>
+                `;
+            }
+        }
+
+        // Load featured albums and AOTY contenders on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadFeaturedAlbums();
+            loadAotyContenders();
         });
 
         // Add enter key support for album ID
