@@ -665,6 +665,7 @@ app.get('/api/new-releases', async (req, res) => {
     const years = [currentYear, currentYear - 1]; // 2025 and 2024
 
     for (const year of years) {
+      console.log(`Searching year: ${year}`);
       offset = 0; // Reset offset for each year
 
       while (newReleases.length < 25 && offset < 100) {
@@ -675,10 +676,21 @@ app.get('/api/new-releases', async (req, res) => {
             market: 'US'
           });
 
+          console.log(`Year ${year}, offset ${offset}: ${response.body.albums.items.length} items found`);
+
           if (response.body.albums.items.length === 0) break;
 
+          // Debug first few albums
+          if (offset === 0) {
+            console.log('Sample albums:', response.body.albums.items.slice(0, 3).map(a => ({
+              name: a.name,
+              type: a.album_type,
+              popularity: a.popularity
+            })));
+          }
+
           for (const album of response.body.albums.items) {
-            if (album.album_type === 'album' && album.popularity > 5) { // Lower threshold
+            if (album.album_type === 'album' && album.popularity > 0) { // Very low threshold
               // Get full album details
               try {
                 const fullAlbum = await spotifyApi.getAlbum(album.id);
