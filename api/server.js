@@ -564,6 +564,19 @@ app.get('/api/album/:id', async (req, res) => {
 
 app.post('/api/album', async (req, res) => {
   const { albumId } = req.body;
+
+  // Check if album already exists
+  const existingAlbum = await Album.findOne({ albumId });
+  if (existingAlbum) {
+    // Return existing album if already rated
+    if (existingAlbum.status === 'reviewed') {
+      return res.json(existingAlbum);
+    }
+    // If enqueued, return current status
+    return res.json(existingAlbum);
+  }
+
+  // Rate new album
   const albumData = await spotifyApi.getAlbum(albumId);
   const review = await reviewAlbum(albumId);
   const newAlbum = new Album({
@@ -591,6 +604,7 @@ app.get('/api/aoty-contenders', async (req, res) => {
     const startOfYear = new Date(currentYear, 0, 1);
     const endOfYear = new Date(currentYear, 11, 31, 23, 59, 59);
 
+    // Get unique albums by albumId (no duplicates)
     const contenders = await Album.find({
       status: 'reviewed',
       releaseDate: { $gte: startOfYear, $lte: endOfYear }
