@@ -35,24 +35,11 @@ export default async function handler(req, res) {
 
   const jobId = Date.now();
   const tempDir = '/tmp';
-  const ytDlpPath = path.join(tempDir, 'yt-dlp');
+  const ytDlpPath = '/usr/local/bin/yt-dlp';
   const outputPath = path.join(tempDir, `${jobId}.mp3`);
 
   try {
     console.log(`Converting video: ${url}`);
-
-    // Download yt-dlp if not exists
-    if (!fs.existsSync(ytDlpPath)) {
-      console.log('Downloading yt-dlp...');
-      await downloadYtDlp(ytDlpPath);
-      // Make executable
-      await new Promise((resolve, reject) => {
-        exec(`chmod +x "${ytDlpPath}"`, (error) => {
-          if (error) reject(error);
-          else resolve();
-        });
-      });
-    }
 
     // yt-dlp command for audio extraction
     const command = `"${ytDlpPath}" -x --audio-format mp3 --audio-quality 192K -o "${outputPath}" "${url}" --no-playlist`;
