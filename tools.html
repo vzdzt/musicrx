@@ -225,6 +225,9 @@
     <script src="script.js"></script>
 
     <script>
+        // Configuration - Update this with your VPS URL
+        const BACKEND_URL = 'https://your-vps-ip-or-domain'; // Replace with your actual VPS URL
+
         async function downloadMedia() {
             const url = document.getElementById('mediaUrl').value.trim();
             const status = document.getElementById('status');
@@ -248,19 +251,13 @@
             status.className = 'status info';
 
             try {
-                // Use external service for now - replace with your backend later
-                const cobaltUrl = `https://cobalt.tools/api/json`;
-                const response = await fetch(cobaltUrl, {
+                // Use your own backend (update BACKEND_URL above)
+                const response = await fetch(`${BACKEND_URL}/api/download-media`, {
                     method: 'POST',
                     headers: {
-                        'Accept': 'application/json',
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({
-                        url: url,
-                        aFormat: 'best',
-                        isAudioOnly: false
-                    })
+                    body: JSON.stringify({ url: url })
                 });
 
                 if (!response.ok) {
@@ -509,19 +506,13 @@
             result.className = 'status info';
 
             try {
-                // Use external service for now - replace with your backend later
-                const cobaltUrl = `https://cobalt.tools/api/json`;
-                const response = await fetch(cobaltUrl, {
+                // Use your own backend (update BACKEND_URL above)
+                const response = await fetch(`${BACKEND_URL}/api/convert-video`, {
                     method: 'POST',
                     headers: {
-                        'Accept': 'application/json',
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({
-                        url: url,
-                        aFormat: 'mp3',
-                        isAudioOnly: true
-                    })
+                    body: JSON.stringify({ url: url })
                 });
 
                 if (!response.ok) {
