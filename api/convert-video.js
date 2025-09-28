@@ -1,6 +1,6 @@
-const { exec } = require('child_process');
-const path = require('path');
-const fs = require('fs');
+import { exec } from 'child_process';
+import path from 'path';
+import fs from 'fs';
 
 export default async function handler(req, res) {
   // Only allow POST requests
