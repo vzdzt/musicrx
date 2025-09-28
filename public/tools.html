@@ -190,11 +190,16 @@
         </div>
 
         <div class="tool-section">
-            <h2><i class="fas fa-trophy"></i> Album of the Year Contenders</h2>
-            <p>Top-rated albums released in 2025, ranked by our automated scoring system. Rate more albums to see them compete!</p>
-            <div id="aotyContenders" style="margin-top: 2rem;">
-                <div id="aotyList" style="text-align: left;"></div>
-                <div id="aotyEmpty" style="text-align: center; color: var(--secondary); padding: 2rem;">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-trophy"></i> Album of the Year Contenders</h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('aoty-contenders', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('aoty-contenders', 300)">→</button>
+                </div>
+            </div>
+            <p style="margin-bottom: 1rem;">Top-rated albums released in 2025, ranked by our automated scoring system. Rate more albums to see them compete!</p>
+            <div class="scroll-container" id="aoty-contenders-scroll">
+                <div id="aotyEmpty" class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
                     <i class="fas fa-music" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
                     <p>No albums rated yet for 2025. Rate some albums to see the contenders!</p>
                 </div>
@@ -793,40 +798,43 @@ const BACKEND_URL = 'https://musicrx.app';
                 }
 
                 const contenders = await response.json();
-                const aotyList = document.getElementById('aotyList');
+                const scrollContainer = document.getElementById('aoty-contenders-scroll');
                 const aotyEmpty = document.getElementById('aotyEmpty');
 
                 if (contenders.length > 0) {
                     let html = '';
                     contenders.forEach((album, index) => {
                         const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`;
-                        html += `<div style="background: var(--card-background); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
-                            <div style="display: flex; align-items: flex-start; margin-bottom: 0.5rem;">
-                                ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover" style="width: 60px; height: 60px; border-radius: 6px; margin-right: 1rem; object-fit: cover;">` : ''}
-                                <div style="flex: 1;">
-                                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.25rem;">
-                                        <span style="font-size: 1.2rem; font-weight: bold; color: var(--primary);">${medal}</span>
-                                        <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">${album.score}/10</span>
-                                    </div>
-                                    <h4 style="margin: 0 0 0.25rem 0; color: var(--primary); font-size: 1rem;">${album.title}</h4>
-                                    <p style="margin: 0 0 0.25rem 0; color: var(--text-color); font-size: 0.9rem;">by ${album.artist}</p>
-                                    <p style="margin: 0; color: var(--secondary); font-size: 0.8rem;">Released: ${new Date(album.releaseDate).toLocaleDateString()}</p>
-                                </div>
+                        const score = album.score;
+                        const title = album.title.length > 20 ? album.title.substring(0, 17) + '...' : album.title;
+                        const artist = album.artist.length > 20 ? album.artist.substring(0, 17) + '...' : album.artist;
+
+                        html += `<div class="scroll-item">
+                            <div class="news-title-card">
+                                <h2>${medal} ${score}/10</h2>
+                            </div>
+                            <div class="news-content-card">
+                                <p class="date">${artist}</p>
+                                ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover" style="width: 100%; height: auto; border-radius: 4px;">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-music" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
                             </div>
                         </div>`;
                     });
 
-                    aotyList.innerHTML = html;
+                    scrollContainer.innerHTML = html;
                     aotyEmpty.style.display = 'none';
                 } else {
-                    aotyEmpty.style.display = 'block';
+                    scrollContainer.innerHTML = `<div id="aotyEmpty" class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
+                        <i class="fas fa-music" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>No albums rated yet for 2025. Rate some albums to see the contenders!</p>
+                    </div>`;
                 }
             } catch (error) {
                 console.error('Failed to load AOTY contenders:', error);
-                document.getElementById('aotyEmpty').innerHTML = `
+                const scrollContainer = document.getElementById('aoty-contenders-scroll');
+                scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
                     <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: #f44336;"></i>
                     <p>Unable to load contenders at this time.</p>
-                `;
+                </div>`;
             }
         }
 
