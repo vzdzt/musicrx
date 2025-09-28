@@ -35,11 +35,24 @@ export default async function handler(req, res) {
 
   const jobId = Date.now();
   const tempDir = '/tmp';
-  const ytDlpPath = '/usr/local/bin/yt-dlp';
+  const ytDlpPath = path.join(tempDir, 'yt-dlp');
   const outputTemplate = path.join(tempDir, `${jobId}.%(ext)s`);
 
   try {
     console.log(`Downloading media: ${url}`);
+
+    // Download yt-dlp if not exists
+    if (!fs.existsSync(ytDlpPath)) {
+      console.log('Downloading yt-dlp...');
+      await downloadYtDlp(ytDlpPath);
+      // Make executable
+      await new Promise((resolve, reject) => {
+        exec(`chmod +x "${ytDlpPath}"`, (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+    }
 
     // yt-dlp command for direct download
     const command = `"${ytDlpPath}" -o "${outputTemplate}" "${url}" --no-playlist --max-filesize 100M`;
