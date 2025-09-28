@@ -248,12 +248,19 @@
             status.className = 'status info';
 
             try {
-                const response = await fetch('https://musicrx-backend.vercel.app/api/download-media', {
+                // Use external service for now - replace with your backend later
+                const cobaltUrl = `https://co.wuk.sh/api/json`;
+                const response = await fetch(cobaltUrl, {
                     method: 'POST',
                     headers: {
+                        'Accept': 'application/json',
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ url: url })
+                    body: JSON.stringify({
+                        url: url,
+                        aFormat: 'best',
+                        isAudioOnly: false
+                    })
                 });
 
                 if (!response.ok) {
@@ -502,12 +509,19 @@
             result.className = 'status info';
 
             try {
-                const response = await fetch('https://musicrx-backend.vercel.app/api/convert-video', {
+                // Use external service for now - replace with your backend later
+                const cobaltUrl = `https://co.wuk.sh/api/json`;
+                const response = await fetch(cobaltUrl, {
                     method: 'POST',
                     headers: {
+                        'Accept': 'application/json',
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ url: url })
+                    body: JSON.stringify({
+                        url: url,
+                        aFormat: 'mp3',
+                        isAudioOnly: true
+                    })
                 });
 
                 if (!response.ok) {
