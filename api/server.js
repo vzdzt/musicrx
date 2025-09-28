@@ -12,6 +12,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
+// yt-dlp path
+const ytDlpPath = path.join(__dirname, '../yt-dlp');
+
 // Ensure temp directory exists
 const tempDir = path.join(__dirname, 'temp');
 if (!fs.existsSync(tempDir)) {
@@ -39,8 +42,16 @@ app.post('/api/convert-video', async (req, res) => {
   try {
     console.log(`Converting video: ${url}`);
 
+    // Make sure yt-dlp is executable
+    await new Promise((resolve, reject) => {
+      exec(`chmod +x "${ytDlpPath}"`, (error) => {
+        if (error) reject(error);
+        else resolve();
+      });
+    });
+
     // yt-dlp command for audio extraction
-    const command = `yt-dlp -x --audio-format mp3 --audio-quality 192K -o "${outputPath}" "${url}" --no-playlist`;
+    const command = `"${ytDlpPath}" -x --audio-format mp3 --audio-quality 192K -o "${outputPath}" "${url}" --no-playlist`;
 
     await new Promise((resolve, reject) => {
       exec(command, { timeout: 300000 }, (error, stdout, stderr) => {
@@ -121,8 +132,16 @@ app.post('/api/download-media', async (req, res) => {
   try {
     console.log(`Downloading media: ${url}`);
 
+    // Make sure yt-dlp is executable
+    await new Promise((resolve, reject) => {
+      exec(`chmod +x "${ytDlpPath}"`, (error) => {
+        if (error) reject(error);
+        else resolve();
+      });
+    });
+
     // yt-dlp command for direct download
-    const command = `yt-dlp -o "${outputTemplate}" "${url}" --no-playlist --max-filesize 100M`;
+    const command = `"${ytDlpPath}" -o "${outputTemplate}" "${url}" --no-playlist --max-filesize 100M --no-check-certificates`;
 
     await new Promise((resolve, reject) => {
       exec(command, { timeout: 300000 }, (error, stdout, stderr) => {

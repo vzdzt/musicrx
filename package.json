@@ -2,11 +2,11 @@
   "name": "musicrx-backend",
   "version": "1.0.0",
   "description": "Backend API for MusicRx media tools",
-  "main": "server.js",
+  "main": "api/server.js",
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
+    "dev": "nodemon --exec \"node api/server.js\"",
     "build": "echo 'No build step required'",
     "deploy": "rsync -avz --exclude='node_modules' --exclude='.git' ./ user@your-vps:/path/to/musicrx/",
     "setup-vps": "echo 'Run these commands on your VPS:' && echo 'sudo apt update && sudo apt install -y nodejs npm ffmpeg' && echo 'curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && chmod +x /usr/local/bin/yt-dlp'",
