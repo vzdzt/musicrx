@@ -137,7 +137,7 @@
             <h2><i class="fas fa-download"></i> Media Downloader</h2>
             <p>Paste any media URL (direct files or social media posts) and download it instantly.</p>
             <div class="input-group">
-                <input type="url" id="mediaUrl" placeholder="Enter media URL (e.g., https://example.com/file.mp3)" required>
+                <input type="url" id="mediaUrl" placeholder="Enter media URL (direct link or social media post URL)" required>
                 <button class="btn" onclick="downloadMedia()"><i class="fas fa-download"></i> Download</button>
             </div>
             <div id="status" class="status"></div>
@@ -174,28 +174,7 @@
             <div id="convertResult" class="status"></div>
         </div>
 
-        <div class="tool-section">
-            <h2><i class="fas fa-terminal"></i> Songlink CLI</h2>
-            <p>A powerful command-line tool for music sharing and downloading using the Songlink API.</p>
-            <div style="text-align: left; margin-bottom: 1.5rem;">
-                <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Features:</h3>
-                <ul style="padding-left: 1.5rem; margin: 0;">
-                    <li style="margin-bottom: 0.25rem;">Get universal music links across all platforms</li>
-                    <li style="margin-bottom: 0.25rem;">Search for songs and albums using Apple Music API</li>
-                    <li style="margin-bottom: 0.25rem;">Download tracks and playlists as MP3/MP4</li>
-                    <li style="margin-bottom: 0.25rem;">Clipboard integration for easy sharing</li>
-                    <li style="margin-bottom: 0.25rem;">Cross-platform (macOS, Linux, Windows)</li>
-                </ul>
-            </div>
-            <div style="text-align: center;">
-                <a href="https://github.com/guitaripod/songlink-cli/releases/tag/3.2.1" target="_blank" rel="noopener noreferrer" class="btn" style="margin-right: 1rem;">
-                    <i class="fab fa-github"></i> Download CLI
-                </a>
-                <a href="https://github.com/guitaripod/songlink-cli" target="_blank" rel="noopener noreferrer" class="btn">
-                    <i class="fas fa-book"></i> Documentation
-                </a>
-            </div>
-        </div>
+
 
         <div class="tool-section">
             <h2><i class="fas fa-info-circle"></i> How It Works</h2>
@@ -226,7 +205,7 @@
 
     <script>
         // Configuration - Update this with your VPS URL
-const BACKEND_URL = 'https://api.musicrx.app';
+const BACKEND_URL = 'https://musicrx-backend.vercel.app';
 
         async function downloadMedia() {
             const url = document.getElementById('mediaUrl').value.trim();
@@ -261,8 +240,14 @@ const BACKEND_URL = 'https://api.musicrx.app';
                 });
 
                 if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || 'Download failed');
+                    let errorMessage = 'Download failed';
+                    try {
+                        const errorData = await response.json();
+                        errorMessage = errorData.error || errorMessage;
+                    } catch (parseError) {
+                        errorMessage = `Download failed: ${response.status} ${response.statusText}`;
+                    }
+                    throw new Error(errorMessage);
                 }
 
                 // Create download link from response
@@ -331,7 +316,12 @@ const BACKEND_URL = 'https://api.musicrx.app';
                     throw new Error(`API request failed: ${response.status}`);
                 }
 
-                const data = await response.json();
+                let data;
+                try {
+                    data = await response.json();
+                } catch (parseError) {
+                    throw new Error('Invalid response from Songlink API - response is not valid JSON');
+                }
 
                 if (!data.linksByPlatform || Object.keys(data.linksByPlatform).length === 0) {
                     throw new Error('No links found for this URL.');
@@ -426,7 +416,12 @@ const BACKEND_URL = 'https://api.musicrx.app';
                     throw new Error(`API request failed: ${response.status}`);
                 }
 
-                const data = await response.json();
+                let data;
+                try {
+                    data = await response.json();
+                } catch (parseError) {
+                    throw new Error('Invalid response from Lyrics API - response is not valid JSON');
+                }
 
                 if (!data.lyrics) {
                     throw new Error('Lyrics not found for this song.');
@@ -516,8 +511,14 @@ const BACKEND_URL = 'https://api.musicrx.app';
                 });
 
                 if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || 'Conversion failed');
+                    let errorMessage = 'Conversion failed';
+                    try {
+                        const errorData = await response.json();
+                        errorMessage = errorData.error || errorMessage;
+                    } catch (parseError) {
+                        errorMessage = `Conversion failed: ${response.status} ${response.statusText}`;
+                    }
+                    throw new Error(errorMessage);
                 }
 
                 // Create download link from response
