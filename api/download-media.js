@@ -61,7 +61,8 @@ export default async function handler(req, res) {
       exec(command, { timeout: 300000 }, (error, stdout, stderr) => {
         if (error) {
           console.error('Download error:', error);
-          reject(new Error('Failed to download media'));
+          console.error('stderr:', stderr);
+          reject(new Error(`Failed to download media: ${stderr || error.message}`));
         } else {
           console.log('Download successful');
           resolve(stdout);
