@@ -38,6 +38,53 @@ function scrollSection(containerId, distance) {
     }
 }
 
+// Load new releases for the index page
+async function loadNewReleases() {
+    try {
+        const response = await fetch('/api/new-releases');
+        if (!response.ok) {
+            throw new Error(`Failed to load new releases: ${response.status}`);
+        }
+
+        const newReleases = await response.json();
+        const scrollContainer = document.getElementById('new-releases-scroll');
+
+        if (newReleases.length > 0) {
+            let html = '';
+            newReleases.forEach((album) => {
+                const title = album.title.length > 20 ? album.title.substring(0, 17) + '...' : album.title;
+                const artist = album.artist.length > 20 ? album.artist.substring(0, 17) + '...' : album.artist;
+                const releaseDate = new Date(album.releaseDate).toLocaleDateString();
+
+                html += `<div class="scroll-item">
+                    <div class="news-title-card">
+                        <h2>${title}</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">${artist}</p>
+                        ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-music" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
+                        <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">Released: ${releaseDate}</p>
+                    </div>
+                </div>`;
+            });
+
+            scrollContainer.innerHTML = html;
+        } else {
+            scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
+                <i class="fas fa-music" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                <p>No new releases in the last 30 days.</p>
+            </div>`;
+        }
+    } catch (error) {
+        console.error('Failed to load new releases:', error);
+        const scrollContainer = document.getElementById('new-releases-scroll');
+        scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: #f44336;"></i>
+            <p>Unable to load new releases at this time.</p>
+        </div>`;
+    }
+}
+
 // Debounce utility function
 function debounce(func, delay) {
     let timeoutId;
@@ -484,6 +531,11 @@ wordSpan.textContent = word;
       });
     }
     wrapChars(); //Call the function after DOMContentLoaded
+
+    // Load new releases for the index page
+    if (document.getElementById('new-releases-scroll')) {
+        loadNewReleases();
+    }
 
 });
 

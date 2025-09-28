@@ -603,6 +603,24 @@ app.get('/api/aoty-contenders', async (req, res) => {
   }
 });
 
+// New releases endpoint (albums from last 30 days)
+app.get('/api/new-releases', async (req, res) => {
+  try {
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const newReleases = await Album.find({
+      status: 'reviewed',
+      releaseDate: { $gte: thirtyDaysAgo }
+    }).sort({ releaseDate: -1 }).limit(12);
+
+    res.json(newReleases);
+  } catch (err) {
+    console.error('New releases error:', err);
+    res.status(500).json({ error: 'Failed to fetch new releases' });
+  }
+});
+
 // Error handling middleware
 app.use((error, req, res, next) => {
   console.error('Unhandled error:', error);
