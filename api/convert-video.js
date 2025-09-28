@@ -1,6 +1,7 @@
 import { exec } from 'child_process';
 import path from 'path';
 import fs from 'fs';
+import https from 'https';
 
 export default async function handler(req, res) {
   // Set CORS headers
@@ -34,13 +35,27 @@ export default async function handler(req, res) {
 
   const jobId = Date.now();
   const tempDir = '/tmp';
+  const ytDlpPath = path.join(tempDir, 'yt-dlp');
   const outputPath = path.join(tempDir, `${jobId}.mp3`);
 
   try {
     console.log(`Converting video: ${url}`);
 
+    // Download yt-dlp if not exists
+    if (!fs.existsSync(ytDlpPath)) {
+      console.log('Downloading yt-dlp...');
+      await downloadYtDlp(ytDlpPath);
+      // Make executable
+      await new Promise((resolve, reject) => {
+        exec(`chmod +x "${ytDlpPath}"`, (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+    }
+
     // yt-dlp command for audio extraction
-    const command = `yt-dlp -x --audio-format mp3 --audio-quality 192K -o "${outputPath}" "${url}" --no-playlist`;
+    const command = `"${ytDlpPath}" -x --audio-format mp3 --audio-quality 192K -o "${outputPath}" "${url}" --no-playlist`;
 
     await new Promise((resolve, reject) => {
       exec(command, { timeout: 300000 }, (error, stdout, stderr) => {
@@ -98,4 +113,36 @@ export default async function handler(req, res) {
       details: error.message
     });
   }
+}
+
+// Function to download yt-dlp binary
+async function downloadYtDlp(targetPath) {
+  const ytDlpUrl = 'https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp';
+
+  return new Promise((resolve, reject) => {
+    const file = fs.createWriteStream(targetPath);
+    const request = https.get(ytDlpUrl, (response) => {
+      if (response.statusCode !== 200) {
+        reject(new Error(`Failed to download yt-dlp: ${response.statusCode}`));
+        return;
+      }
+
+      response.pipe(file);
+
+      file.on('finish', () => {
+        file.close();
+        resolve();
+      });
+    });
+
+    request.on('error', (err) => {
+      fs.unlink(targetPath, () => {});
+      reject(err);
+    });
+
+    file.on('error', (err) => {
+      fs.unlink(targetPath, () => {});
+      reject(err);
+    });
+  });
 }
