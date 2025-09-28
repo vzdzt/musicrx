@@ -175,11 +175,12 @@
         </div>
 
         <div class="tool-section">
-            <h2><i class="fas fa-star"></i> Album Reviewer</h2>
-            <p>Get automated album reviews based on streams, sales, reviews, and sentiment analysis. Discover new releases automatically!</p>
+            <h2><i class="fas fa-star"></i> Album Rater</h2>
+            <p>Get an automated rating for any album based on streams, sales, reviews, and sentiment analysis. Enter a Spotify Album ID to get a score out of 10 with highlights and misses.</p>
+            <p style="font-size: 0.9rem; color: var(--secondary); margin-bottom: 1rem;"><strong>Example:</strong> Try "4aawyAB9vmqN3uQ7FjRGTy" (MUSIC by Playboi Carti)</p>
             <div class="input-group">
                 <input type="text" id="albumId" placeholder="Enter Spotify Album ID (e.g., 4aawyAB9vmqN3uQ7FjRGTy)" required>
-                <button class="btn" onclick="reviewAlbum()"><i class="fas fa-search"></i> Review Album</button>
+                <button class="btn" onclick="rateAlbum()"><i class="fas fa-search"></i> Rate Album</button>
             </div>
             <div id="reviewResult" class="status"></div>
             <div id="featuredAlbums" style="margin-top: 2rem; display: none;">
@@ -591,8 +592,8 @@ const BACKEND_URL = 'https://musicrx.app';
             }
         });
 
-        // Album Reviewer functions
-        async function reviewAlbum() {
+        // Album Rater functions
+        async function rateAlbum() {
             const albumId = document.getElementById('albumId').value.trim();
             const result = document.getElementById('reviewResult');
 
@@ -602,7 +603,7 @@ const BACKEND_URL = 'https://musicrx.app';
                 return;
             }
 
-            result.textContent = 'Reviewing album... This may take a moment.';
+            result.textContent = 'Rating album... This may take a moment.';
             result.className = 'status info';
 
             try {
@@ -615,12 +616,12 @@ const BACKEND_URL = 'https://musicrx.app';
                 });
 
                 if (!response.ok) {
-                    let errorMessage = 'Review failed';
+                    let errorMessage = 'Rating failed';
                     try {
                         const errorData = await response.json();
                         errorMessage = errorData.error || errorMessage;
                     } catch (parseError) {
-                        errorMessage = `Review failed: ${response.status} ${response.statusText}`;
+                        errorMessage = `Rating failed: ${response.status} ${response.statusText}`;
                     }
                     throw new Error(errorMessage);
                 }
@@ -631,40 +632,63 @@ const BACKEND_URL = 'https://musicrx.app';
                     result.innerHTML = `<div style="text-align: left;">
                         <h3 style="color: var(--primary); margin: 0 0 1rem 0;">${albumData.title}</h3>
                         <p style="margin: 0 0 1rem 0; color: var(--text-color);">by ${albumData.artist}</p>
-                        <p style="margin: 0; color: var(--secondary);">Album enqueued for review. Ready by ${new Date(albumData.readyBy).toLocaleDateString()}.</p>
+                        <p style="margin: 0; color: var(--secondary);">Album enqueued for rating. Ready by ${new Date(albumData.readyBy).toLocaleDateString()}.</p>
                     </div>`;
                 } else if (albumData.status === 'reviewed') {
+                    // Store album data globally for button toggles
+                    window.currentAlbumData = albumData;
+
                     result.innerHTML = `<div style="text-align: left;">
-                        <h3 style="color: var(--primary); margin: 0 0 1rem 0;">${albumData.title}</h3>
-                        <p style="margin: 0 0 1rem 0; color: var(--text-color);">by ${albumData.artist}</p>
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary); margin: 1rem 0;">${albumData.score}/10</div>
-                        <div style="margin: 1rem 0;">
-                            <h4 style="color: var(--primary); margin: 0 0 0.5rem 0;">Strengths:</h4>
-                            <ul style="margin: 0; padding-left: 1rem; color: var(--text-color);">
-                                ${albumData.strengths.map(s => `<li>${s}</li>`).join('')}
-                            </ul>
+                        <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;">
+                            ${albumData.coverUrl ? `<img src="${albumData.coverUrl}" alt="${albumData.title} cover" style="width: 120px; height: 120px; border-radius: 8px; margin-right: 1rem; object-fit: cover;">` : ''}
+                            <div>
+                                <h3 style="color: var(--primary); margin: 0 0 0.5rem 0;">${albumData.title}</h3>
+                                <p style="margin: 0 0 1rem 0; color: var(--text-color);">by ${albumData.artist}</p>
+                                <div style="font-size: 2rem; font-weight: bold; color: var(--primary); margin: 1rem 0;">${albumData.score}/10</div>
+                            </div>
                         </div>
                         <div style="margin: 1rem 0;">
-                            <h4 style="color: #f44336; margin: 0 0 0.5rem 0;">Weaknesses:</h4>
-                            <ul style="margin: 0; padding-left: 1rem; color: var(--text-color);">
-                                ${albumData.weaknesses.map(w => `<li>${w}</li>`).join('')}
-                            </ul>
+                            <button onclick="showHighlights()" style="margin-right: 1rem; padding: 0.5rem 1rem; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Highlights</button>
+                            <button onclick="showMisses()" style="padding: 0.5rem 1rem; background: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">Misses</button>
                         </div>
+                        <div id="albumDetails" style="margin: 1rem 0;"></div>
                     </div>`;
                 } else {
-                    result.textContent = 'Album review completed, but status is unclear.';
+                    result.textContent = 'Album rating completed, but status is unclear.';
                 }
 
                 result.className = 'status success';
 
-                // Load featured albums after successful review
+                // Load featured albums after successful rating
                 loadFeaturedAlbums();
 
             } catch (error) {
-                console.error('Album review error:', error);
+                console.error('Album rating error:', error);
                 result.textContent = 'Error: ' + error.message;
                 result.className = 'status error';
             }
+        }
+
+        function showHighlights() {
+            if (!window.currentAlbumData || !window.currentAlbumData.strengths) return;
+            const detailsDiv = document.getElementById('albumDetails');
+            detailsDiv.innerHTML = `
+                <h4 style="color: var(--primary); margin: 0 0 0.5rem 0;">Highlights:</h4>
+                <ul style="margin: 0; padding-left: 1rem; color: var(--text-color);">
+                    ${window.currentAlbumData.strengths.map(s => `<li>${s}</li>`).join('')}
+                </ul>
+            `;
+        }
+
+        function showMisses() {
+            if (!window.currentAlbumData || !window.currentAlbumData.weaknesses) return;
+            const detailsDiv = document.getElementById('albumDetails');
+            detailsDiv.innerHTML = `
+                <h4 style="color: #f44336; margin: 0 0 0.5rem 0;">Misses:</h4>
+                <ul style="margin: 0; padding-left: 1rem; color: var(--text-color);">
+                    ${window.currentAlbumData.weaknesses.map(w => `<li>${w}</li>`).join('')}
+                </ul>
+            `;
         }
 
         async function loadFeaturedAlbums() {
@@ -710,7 +734,7 @@ const BACKEND_URL = 'https://musicrx.app';
         // Add enter key support for album ID
         document.getElementById('albumId').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                reviewAlbum();
+                rateAlbum();
             }
         });
     </script>
