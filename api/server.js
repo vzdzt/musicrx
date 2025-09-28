@@ -26,7 +26,17 @@ dotenv.config();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from public directory for root routes
 app.use(express.static(path.join(__dirname, '../public')));
+
+// Serve React app for /album-reviewer route
+app.use('/album-reviewer', express.static(path.join(__dirname, '../frontend/build')));
+
+// Handle React app routing for /album-reviewer
+app.get('/album-reviewer/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+});
 
 // MongoDB setup
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/musicrx')
