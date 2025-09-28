@@ -603,16 +603,12 @@ app.get('/api/aoty-contenders', async (req, res) => {
   }
 });
 
-// New releases endpoint (albums from last 30 days)
+// New releases endpoint (recently reviewed albums)
 app.get('/api/new-releases', async (req, res) => {
   try {
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-
     const newReleases = await Album.find({
-      status: 'reviewed',
-      releaseDate: { $gte: thirtyDaysAgo }
-    }).sort({ releaseDate: -1 }).limit(12);
+      status: 'reviewed'
+    }).sort({ updatedAt: -1 }).limit(12);
 
     res.json(newReleases);
   } catch (err) {
