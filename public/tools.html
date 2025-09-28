@@ -628,6 +628,8 @@ const BACKEND_URL = 'https://musicrx.app';
 
                 const albumData = await response.json();
 
+                console.log('Album data received:', albumData); // Debug log
+
                 if (albumData.status === 'enqueued') {
                     result.innerHTML = `<div style="text-align: left;">
                         <h3 style="color: var(--primary); margin: 0 0 1rem 0;">${albumData.title}</h3>
@@ -653,8 +655,12 @@ const BACKEND_URL = 'https://musicrx.app';
                         </div>
                         <div id="albumDetails" style="margin: 1rem 0;"></div>
                     </div>`;
+                } else if (albumData.status === 'error') {
+                    result.textContent = 'Error: ' + albumData.message;
+                    result.className = 'status error';
+                    return;
                 } else {
-                    result.textContent = 'Album rating completed, but status is unclear.';
+                    result.textContent = `Album rating completed, but status is unclear. Status: ${albumData.status}`;
                 }
 
                 result.className = 'status success';
