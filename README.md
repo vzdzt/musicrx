@@ -6,6 +6,7 @@ Backend API for MusicRx media tools - video conversion, media downloading, and m
 
 - **Video to MP3 Conversion**: Convert YouTube, TikTok, Instagram videos to MP3
 - **Media Downloader**: Download videos, images, and audio from social media posts
+- **Album Reviewer**: Automated album reviews based on streams, sales, professional reviews, and fan sentiment
 - **Universal Music Links**: Cross-platform music link discovery (frontend only)
 - **Lyrics Finder**: Song lyrics search (frontend only)
 
@@ -66,6 +67,28 @@ npm start
 
 The server will run on `http://localhost:3000`
 
+## Album Reviewer Setup
+
+The Album Reviewer feature requires additional API keys and MongoDB:
+
+1. **MongoDB**: Set up a MongoDB instance (local or cloud like MongoDB Atlas)
+2. **Spotify API**: Create an app at [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) to get Client ID and Secret
+3. **X (Twitter) API**: Get a Bearer Token from [Twitter Developer Portal](https://developer.twitter.com/en/portal/dashboard)
+4. **YouTube Data API**: Enable at [Google Cloud Console](https://console.cloud.google.com/) and get API key
+5. **Billboard API**: Optional, placeholder used if not provided
+
+Update your `.env` file with the keys:
+```bash
+MONGODB_URI=mongodb://localhost/musicrx
+SPOTIFY_CLIENT_ID=your_client_id
+SPOTIFY_CLIENT_SECRET=your_client_secret
+X_BEARER_TOKEN=your_bearer_token
+YOUTUBE_API_KEY=your_api_key
+BILLBOARD_API_KEY=your_billboard_key  # optional
+```
+
+The Album Reviewer frontend is available at `http://localhost:3000` (served as static files).
+
 ## API Endpoints
 
 ### POST `/api/convert-video`
@@ -102,6 +125,45 @@ Health check endpoint.
   "timestamp": "2025-01-27T..."
 }
 ```
+
+### Album Reviewer Endpoints
+
+#### GET `/api/albums`
+Get all reviewed albums.
+
+**Response:**
+```json
+[
+  {
+    "albumId": "4aawyAB9vmqN3uQ7FjRGTy",
+    "title": "Folklore",
+    "artist": "Taylor Swift",
+    "releaseDate": "2020-07-24T00:00:00.000Z",
+    "status": "reviewed",
+    "score": 8.5,
+    "strengths": ["Top-tier streaming performance"],
+    "weaknesses": [],
+    "imageUrl": "https://..."
+  }
+]
+```
+
+#### GET `/api/album/:id`
+Get review for a specific album by Spotify ID.
+
+**Response:** Album object (see above)
+
+#### POST `/api/album`
+Add an album for review by Spotify ID.
+
+**Request:**
+```json
+{
+  "albumId": "4aawyAB9vmqN3uQ7FjRGTy"
+}
+```
+
+**Response:** Album object
 
 ## Deployment
 
@@ -143,6 +205,12 @@ vercel
 
 - `PORT`: Server port (default: 3000)
 - `NODE_ENV`: Environment (development/production)
+- `MONGODB_URI`: MongoDB connection string (default: mongodb://localhost/musicrx)
+- `SPOTIFY_CLIENT_ID`: Spotify API client ID
+- `SPOTIFY_CLIENT_SECRET`: Spotify API client secret
+- `X_BEARER_TOKEN`: X (Twitter) API bearer token
+- `YOUTUBE_API_KEY`: YouTube Data API key
+- `BILLBOARD_API_KEY`: Billboard API key (optional, placeholder used if not provided)
 
 ## Supported Platforms
 

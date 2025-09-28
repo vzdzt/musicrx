@@ -5,17 +5,128 @@ import fs from 'fs';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import SpotifyWebApi from 'spotify-web-api-node';
+import cron from 'node-cron';
+import axios from 'axios';
+import Sentiment from 'sentiment';
+import * as cheerio from 'cheerio';
+import { google } from 'googleapis';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
+
+// Load environment variables
+dotenv.config();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
+
+// MongoDB setup
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/musicrx')
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// Album schema
+const albumSchema = new mongoose.Schema({
+  albumId: String,
+  title: String,
+  artist: String,
+  releaseDate: Date,
+  status: String, // 'enqueued' or 'reviewed'
+  score: Number,
+  strengths: [String],
+  weaknesses: [String],
+  readyBy: Date,
+  imageUrl: String,
+  featured: { type: Boolean, default: false },
+  ranking: Number
+});
+const Album = mongoose.model('Album', albumSchema);
+
+// Spotify API setup
+const spotifyApi = new SpotifyWebApi({
+  clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientSecret: process.env.SPOTIFY_CLIENT_SECRET
+});
+
+// Authenticate Spotify
+async function authenticateSpotify() {
+  try {
+    const data = await spotifyApi.clientCredentialsGrant();
+    spotifyApi.setAccessToken(data.body['access_token']);
+    console.log('Spotify authenticated');
+  } catch (err) {
+    console.error('Spotify auth failed:', err);
+  }
+}
+authenticateSpotify();
+
+// Search for albums released on a specific date
+async function searchAlbumsByReleaseDate(date) {
+  try {
+    const dateStr = date.toISOString().split('T')[0]; // YYYY-MM-DD format
+    const response = await spotifyApi.searchAlbums(`year:${date.getFullYear()}`, {
+      limit: 50,
+      offset: 0
+    });
+
+    // Filter albums released exactly on the target date
+    const targetAlbums = response.body.albums.items.filter(album => {
+      const releaseDate = new Date(album.release_date);
+      return releaseDate.toISOString().split('T')[0] === dateStr;
+    });
+
+    return targetAlbums;
+  } catch (err) {
+    console.error('Spotify search error:', err);
+    return [];
+  }
+}
+
+// Auto-discover albums released exactly 7 days ago
+async function autoDiscoverAlbums() {
+  try {
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+    console.log(`Searching for albums released on ${sevenDaysAgo.toISOString().split('T')[0]}`);
+
+    const newReleases = await searchAlbumsByReleaseDate(sevenDaysAgo);
+
+    for (const album of newReleases) {
+      // Check if album already exists
+      const existingAlbum = await Album.findOne({ albumId: album.id });
+      if (!existingAlbum) {
+        console.log(`Adding new album: ${album.name} by ${album.artists[0].name}`);
+
+        const review = await reviewAlbum(album.id);
+        const newAlbum = new Album({
+          albumId: album.id,
+          title: album.name,
+          artist: album.artists[0].name,
+          releaseDate: new Date(album.release_date),
+          imageUrl: album.images[0]?.url,
+          ...review
+        });
+        await newAlbum.save();
+      }
+    }
+
+    console.log(`Auto-discovery complete. Found ${newReleases.length} albums.`);
+  } catch (err) {
+    console.error('Auto-discovery error:', err);
+  }
+}
+
+// Sentiment analysis for X posts
+const sentiment = new Sentiment();
 
 // yt-dlp path (global installation on VPS)
 const ytDlpPath = '/usr/local/bin/yt-dlp';
@@ -222,6 +333,238 @@ app.post('/api/download-media', async (req, res) => {
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Placeholder functions for real implementations
+async function scrapePitchfork(title, artist) {
+  try {
+    const url = `https://pitchfork.com/search/?query=${encodeURIComponent(title + ' ' + artist)}`;
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      }
+    });
+    const $ = cheerio.load(response.data);
+    const reviewLink = $('.result-item a').first().attr('href');
+    if (reviewLink) {
+      const reviewUrl = `https://pitchfork.com${reviewLink}`;
+      const reviewResponse = await axios.get(reviewUrl, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        }
+      });
+      const $$ = cheerio.load(reviewResponse.data);
+      const scoreText = $$('.score-box .score').text().trim();
+      const score = parseFloat(scoreText);
+      return isNaN(score) ? null : score;
+    }
+  } catch (err) {
+    console.error('Pitchfork scrape error:', err);
+  }
+  return null;
+}
+
+async function getFantanoReview(title, artist) {
+  try {
+    const youtube = google.youtube({
+      version: 'v3',
+      auth: process.env.YOUTUBE_API_KEY
+    });
+    const response = await youtube.search.list({
+      part: 'snippet',
+      q: `${title} ${artist} theneedledrop`,
+      type: 'video',
+      maxResults: 5
+    });
+    for (const item of response.data.items) {
+      const videoTitle = item.snippet.title.toLowerCase();
+      if (videoTitle.includes('album review') || videoTitle.includes('review')) {
+        const videoId = item.id.videoId;
+        const videoResponse = await youtube.videos.list({
+          part: 'snippet',
+          id: videoId
+        });
+        const description = videoResponse.data.items[0].snippet.description;
+        const scoreMatch = description.match(/(\d+(\.\d+)?)\/10/);
+        if (scoreMatch) {
+          return parseFloat(scoreMatch[1]);
+        }
+      }
+    }
+  } catch (err) {
+    console.error('Fantano error:', err);
+  }
+  return null;
+}
+
+async function getBillboardRank(title, artist) {
+  // Note: Billboard does not have a free public API. For real implementation, consider paid services like Chartmetric or Billboard API.
+  // As a placeholder, using a mock value. Replace with real integration.
+  return Math.floor(Math.random() * 200) + 1; // Mock rank 1-200
+}
+
+// Fetch and review album
+async function reviewAlbum(albumId) {
+  try {
+    const album = await spotifyApi.getAlbum(albumId);
+    const releaseDate = new Date(album.body.release_date);
+    const today = new Date('2025-09-28'); // For testing; use new Date() in prod
+    const daysSinceRelease = Math.floor((today - releaseDate) / (1000 * 60 * 60 * 24));
+
+    if (daysSinceRelease < 7) {
+      return {
+        status: 'enqueued',
+        readyBy: new Date(releaseDate.getTime() + 7 * 24 * 60 * 60 * 1000)
+      };
+    }
+
+    const popularity = album.body.popularity;
+    const streams = Math.round(popularity / 10);
+
+    const billboardRank = await getBillboardRank(album.body.name, album.body.artists[0].name) || 100;
+    const billboard = Math.max(0, 10 - (billboardRank / 20));
+
+    const sales = billboard * 0.9;
+
+    const pitchforkScore = await scrapePitchfork(album.body.name, album.body.artists[0].name) || 7.5;
+
+    const fantanoScore = await getFantanoReview(album.body.name, album.body.artists[0].name) || 8.0;
+
+    const query = `${album.body.name} ${album.body.artists[0].name}`;
+    const xResponse = await axios.get(`https://api.twitter.com/2/tweets/search/recent?query=${encodeURIComponent(query)}&max_results=10`, {
+      headers: { Authorization: `Bearer ${process.env.X_BEARER_TOKEN}` }
+    });
+    const xPosts = xResponse.data?.data || [];
+    let sentimentTotal = 0;
+    xPosts.forEach(post => {
+      const analysis = sentiment.analyze(post.text);
+      sentimentTotal += analysis.score;
+    });
+    const normalizedSentiment = Math.min(10, Math.max(0, ((sentimentTotal / xPosts.length) + 5) * 2)) || 5;
+
+    const avgReview = (pitchforkScore + fantanoScore) / 2;
+    const score = (
+      0.3 * streams +
+      0.25 * sales +
+      0.2 * billboard +
+      0.15 * avgReview +
+      0.1 * normalizedSentiment
+    ).toFixed(1);
+
+    const strengths = [];
+    const weaknesses = [];
+    if (streams > 8) strengths.push('Top-tier streaming performance');
+    if (billboard > 7) strengths.push(`Strong Billboard ranking (#${billboardRank})`);
+    if (sales < 6) weaknesses.push('Lower sales performance');
+    if (avgReview < 6) weaknesses.push('Mixed critical reviews');
+
+    return { status: 'reviewed', score: parseFloat(score), strengths, weaknesses, imageUrl: album.body.images[0]?.url };
+  } catch (err) {
+    console.error('Review error:', err);
+    return { status: 'error', message: err.message };
+  }
+}
+
+// Update featured albums rankings
+async function updateFeaturedAlbums() {
+  try {
+    // Get recently reviewed albums (reviewed in the last 30 days)
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const recentAlbums = await Album.find({
+      status: 'reviewed',
+      updatedAt: { $gte: thirtyDaysAgo }
+    }).sort({ score: -1 }).limit(10);
+
+    // Reset all featured flags
+    await Album.updateMany({}, { featured: false, ranking: null });
+
+    // Set featured albums with rankings
+    for (let i = 0; i < recentAlbums.length; i++) {
+      await Album.findOneAndUpdate(
+        { albumId: recentAlbums[i].albumId },
+        { featured: true, ranking: i + 1 }
+      );
+    }
+
+    console.log(`Updated featured albums rankings. ${recentAlbums.length} albums featured.`);
+  } catch (err) {
+    console.error('Featured albums update error:', err);
+  }
+}
+
+// Cron job: Daily review check and auto-discovery
+cron.schedule('0 0 * * *', async () => {
+  console.log('Running daily album reviews...');
+  const enqueuedAlbums = await Album.find({ status: 'enqueued' });
+  for (const album of enqueuedAlbums) {
+    const review = await reviewAlbum(album.albumId);
+    if (review.status === 'reviewed') {
+      await Album.findOneAndUpdate(
+        { albumId: album.albumId },
+        { status: 'reviewed', score: review.score, strengths: review.strengths, weaknesses: review.weaknesses, imageUrl: review.imageUrl, readyBy: undefined }
+      );
+    }
+  }
+
+  // Auto-discover new albums
+  await autoDiscoverAlbums();
+
+  // Update featured albums
+  await updateFeaturedAlbums();
+});
+
+// Album endpoints
+app.get('/api/albums', async (req, res) => {
+  const albums = await Album.find();
+  res.json(albums);
+});
+
+app.get('/api/album/:id', async (req, res) => {
+  let album = await Album.findOne({ albumId: req.params.id });
+  if (!album) {
+    const albumData = await spotifyApi.getAlbum(req.params.id);
+    const review = await reviewAlbum(req.params.id);
+    album = new Album({
+      albumId: req.params.id,
+      title: albumData.body.name,
+      artist: albumData.body.artists[0].name,
+      releaseDate: new Date(albumData.body.release_date),
+      imageUrl: albumData.body.images[0]?.url,
+      ...review
+    });
+    await album.save();
+  } else if (album.status === 'enqueued') {
+    const review = await reviewAlbum(req.params.id);
+    if (review.status === 'reviewed') {
+      await Album.findOneAndUpdate({ albumId: req.params.id }, { ...review });
+      album = { ...album.toObject(), ...review };
+    }
+  }
+  res.json(album);
+});
+
+app.post('/api/album', async (req, res) => {
+  const { albumId } = req.body;
+  const albumData = await spotifyApi.getAlbum(albumId);
+  const review = await reviewAlbum(albumId);
+  const newAlbum = new Album({
+    albumId,
+    title: albumData.body.name,
+    artist: albumData.body.artists[0].name,
+    releaseDate: new Date(albumData.body.release_date),
+    imageUrl: albumData.body.images[0]?.url,
+    ...review
+  });
+  await newAlbum.save();
+  res.json(newAlbum);
+});
+
+// Featured albums endpoint
+app.get('/api/featured-albums', async (req, res) => {
+  const featuredAlbums = await Album.find({ featured: true }).sort({ ranking: 1 });
+  res.json(featuredAlbums);
 });
 
 // Error handling middleware

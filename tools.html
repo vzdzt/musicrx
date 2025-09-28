@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        .tool-section {
+            background: var(--card-background);
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tool-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow);
+        }
+        .tool-section h2 {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .tool-section p {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .input-group input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--card-background);
+            color: var(--text-color);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--glow);
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--card-background);
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: var(--rgb-glow);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        .status {
+            margin-top: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            min-height: 1.5rem;
+        }
+        .success {
+            color: #4CAF50;
+        }
+        .error {
+            color: #f44336;
+        }
+        .info {
+            color: var(--secondary);
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .tool-section {
+                padding: 1rem;
+            }
+            .input-group {
+                flex-direction: column;
+            }
+            .input-group input {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <canvas id="universe"></canvas>
+
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="underground.html">Underground</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+    <div class="container">
+        <h1 class="glitch" data-text="TOOLS" style="margin-top: 90px; margin-bottom: 2rem;">TOOLS</h1>
+
+        <div class="tool-section">
+            <h2><i class="fas fa-download"></i> Media Downloader</h2>
+            <p>Paste any media URL (direct files or social media posts) and download it instantly.</p>
+            <div class="input-group">
+                <input type="url" id="mediaUrl" placeholder="Enter media URL (direct link or social media post URL)" required>
+                <button class="btn" onclick="downloadMedia()"><i class="fas fa-download"></i> Download</button>
+            </div>
+            <div id="status" class="status"></div>
+        </div>
+
+        <div class="tool-section">
+            <h2><i class="fas fa-link"></i> Universal Music Links</h2>
+            <p>Paste any music URL (Spotify, Apple Music, YouTube, etc.) and get links to listen on all platforms.</p>
+            <div class="input-group">
+                <input type="url" id="musicUrl" placeholder="Enter music URL (Spotify, Apple Music, YouTube, etc.)" required>
+                <button class="btn" onclick="generateLinks()"><i class="fas fa-search"></i> Get Links</button>
+            </div>
+            <div id="linksResult" class="status"></div>
+        </div>
+
+        <div class="tool-section">
+            <h2><i class="fas fa-music"></i> Lyrics Finder</h2>
+            <p>Find lyrics for any song by entering the artist and song title.</p>
+            <div class="input-group">
+                <input type="text" id="lyricsArtist" placeholder="Artist name" required>
+                <input type="text" id="lyricsTitle" placeholder="Song title" required>
+                <button class="btn" onclick="findLyrics()"><i class="fas fa-search"></i> Get Lyrics</button>
+            </div>
+            <div id="lyricsResult" class="status"></div>
+        </div>
+
+        <div class="tool-section">
+            <h2><i class="fas fa-video"></i> Video to MP3 Converter</h2>
+            <p>Extract MP3 audio from YouTube, TikTok, Instagram, and other video platforms.</p>
+            <div class="input-group">
+                <input type="url" id="videoUrl" placeholder="Enter video URL (YouTube, TikTok, Instagram, etc.)" required>
+                <button class="btn" onclick="convertToMp3()"><i class="fas fa-download"></i> Convert to MP3</button>
+            </div>
+            <div id="convertResult" class="status"></div>
+        </div>
+
+
+
+        <div class="tool-section">
+            <h2><i class="fas fa-info-circle"></i> How It Works</h2>
+            <p>This tool allows you to download media from any URL. For direct files, it downloads immediately. For social media posts, it uses an external service to extract and download the media.</p>
+            <ul style="text-align: left; display: inline-block; padding-left: 1rem; margin: 0;">
+                <li style="margin-bottom: 0.5rem;">Supported platforms: Twitter/X, Instagram, TikTok, YouTube</li>
+                <li style="margin-bottom: 0.5rem;">Supported formats: MP3, MP4, WAV, AVI, MOV, and more</li>
+                <li style="margin-bottom: 0.5rem;">Works with direct URLs and post URLs</li>
+                <li style="margin-bottom: 0.5rem;">Files are downloaded directly to your device</li>
+                <li>No server storage - your privacy is protected</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Configuration - Update this with your VPS URL
+const BACKEND_URL = 'https://musicrx.app';
+
+        async function downloadMedia() {
+            const url = document.getElementById('mediaUrl').value.trim();
+            const status = document.getElementById('status');
+
+            if (!url) {
+                status.textContent = 'Please enter a URL.';
+                status.className = 'status error';
+                return;
+            }
+
+            // Basic URL validation
+            try {
+                new URL(url);
+            } catch (e) {
+                status.textContent = 'Please enter a valid URL.';
+                status.className = 'status error';
+                return;
+            }
+
+            status.textContent = 'Downloading media...';
+            status.className = 'status info';
+
+            try {
+                // Use your own backend (update BACKEND_URL above)
+                const response = await fetch(`${BACKEND_URL}/api/download-media`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: url })
+                });
+
+                if (!response.ok) {
+                    let errorMessage = 'Download failed';
+                    try {
+                        const errorData = await response.json();
+                        errorMessage = errorData.error || errorMessage;
+                    } catch (parseError) {
+                        errorMessage = `Download failed: ${response.status} ${response.statusText}`;
+                    }
+                    throw new Error(errorMessage);
+                }
+
+                // Create download link from response
+                const blob = await response.blob();
+                const downloadUrl = URL.createObjectURL(blob);
+
+                // Get filename from response headers
+                const contentDisposition = response.headers.get('Content-Disposition');
+                let filename = 'downloaded_media';
+                if (contentDisposition) {
+                    const filenameMatch = contentDisposition.match(/filename="(.+)"/);
+                    if (filenameMatch) {
+                        filename = filenameMatch[1];
+                    }
+                }
+
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = filename;
+                a.style.display = 'none';
+
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                // Cleanup
+                URL.revokeObjectURL(downloadUrl);
+
+                status.textContent = 'Download completed! Check your downloads folder.';
+                status.className = 'status success';
+
+            } catch (error) {
+                console.error('Download error:', error);
+                status.textContent = 'Error: ' + error.message;
+                status.className = 'status error';
+            }
+        }
+
+        async function generateLinks() {
+            const url = document.getElementById('musicUrl').value.trim();
+            const result = document.getElementById('linksResult');
+
+            if (!url) {
+                result.textContent = 'Please enter a URL.';
+                result.className = 'status error';
+                return;
+            }
+
+            // Basic URL validation
+            try {
+                new URL(url);
+            } catch (e) {
+                result.textContent = 'Please enter a valid URL.';
+                result.className = 'status error';
+                return;
+            }
+
+            result.textContent = 'Fetching links...';
+            result.className = 'status info';
+
+            try {
+                const apiUrl = `https://api.song.link/v1-alpha.1/links?url=${encodeURIComponent(url)}`;
+                const response = await fetch(apiUrl);
+
+                if (!response.ok) {
+                    throw new Error(`API request failed: ${response.status}`);
+                }
+
+                let data;
+                try {
+                    data = await response.json();
+                } catch (parseError) {
+                    throw new Error('Invalid response from Songlink API - response is not valid JSON');
+                }
+
+                if (!data.linksByPlatform || Object.keys(data.linksByPlatform).length === 0) {
+                    throw new Error('No links found for this URL.');
+                }
+
+                // Get track/album info
+                const entities = data.entitiesByUniqueId;
+                const firstEntity = Object.values(entities)[0];
+                const title = firstEntity.title || 'Unknown Title';
+                const artist = firstEntity.artistName || 'Unknown Artist';
+                const type = firstEntity.type || 'track';
+
+                // Platform icons mapping
+                const platformIcons = {
+                    spotify: 'fab fa-spotify',
+                    appleMusic: 'fab fa-apple',
+                    youtube: 'fab fa-youtube',
+                    youtubeMusic: 'fab fa-youtube',
+                    tidal: 'fas fa-music',
+                    deezer: 'fab fa-deezer',
+                    amazonMusic: 'fab fa-amazon',
+                    soundcloud: 'fab fa-soundcloud',
+                    pandora: 'fas fa-music',
+                    itunes: 'fab fa-apple'
+                };
+
+                // Build results HTML
+                let html = `<div style="text-align: left; margin-bottom: 1rem;">
+                    <h3 style="margin: 0 0 0.5rem 0; color: var(--primary);">${title}</h3>
+                    <p style="margin: 0 0 1rem 0; color: var(--text-color);">by ${artist} (${type})</p>
+                    <p style="margin: 0 0 1rem 0; color: var(--secondary); font-size: 0.9rem;">Listen on:</p>`;
+
+                // Add links for each platform
+                Object.entries(data.linksByPlatform).forEach(([platform, linkData]) => {
+                    const platformUrl = linkData.url;
+                    const iconClass = platformIcons[platform] || 'fas fa-external-link-alt';
+                    const platformName = platform.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+
+                    html += `<a href="${platformUrl}" target="_blank" rel="noopener noreferrer" 
+                        style="display: inline-block; margin: 0.25rem 0.5rem 0.25rem 0; padding: 0.5rem 1rem; 
+                        background: var(--card-background); border: 1px solid var(--border-color); 
+                        border-radius: 8px; text-decoration: none; color: var(--text-color); 
+                        transition: all 0.3s ease;">
+                        <i class="${iconClass}" style="margin-right: 0.5rem;"></i>${platformName}
+                    </a>`;
+                });
+
+                // Add universal song.link
+                if (data.pageUrl) {
+                    html += `<br><br><a href="${data.pageUrl}" target="_blank" rel="noopener noreferrer" 
+                        style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; 
+                        background: var(--primary); color: white; border-radius: 8px; 
+                        text-decoration: none; font-weight: bold;">
+                        <i class="fas fa-link" style="margin-right: 0.5rem;"></i>Universal Link (song.link)
+                    </a>`;
+                }
+
+                html += '</div>';
+
+                result.innerHTML = html;
+                result.className = 'status success';
+
+            } catch (error) {
+                console.error('Songlink API error:', error);
+                result.textContent = 'Error: ' + error.message;
+                result.className = 'status error';
+            }
+        }
+
+        async function findLyrics() {
+            const artist = document.getElementById('lyricsArtist').value.trim();
+            const title = document.getElementById('lyricsTitle').value.trim();
+            const result = document.getElementById('lyricsResult');
+
+            if (!artist || !title) {
+                result.textContent = 'Please enter both artist and song title.';
+                result.className = 'status error';
+                return;
+            }
+
+            result.textContent = 'Searching for lyrics...';
+            result.className = 'status info';
+
+            try {
+                const apiUrl = `https://api.lyrics.ovh/v1/${encodeURIComponent(artist)}/${encodeURIComponent(title)}`;
+                const response = await fetch(apiUrl);
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        throw new Error('Lyrics not found. Try checking the spelling or different artist/title format.');
+                    }
+                    throw new Error(`API request failed: ${response.status}`);
+                }
+
+                let data;
+                try {
+                    data = await response.json();
+                } catch (parseError) {
+                    throw new Error('Invalid response from Lyrics API - response is not valid JSON');
+                }
+
+                if (!data.lyrics) {
+                    throw new Error('Lyrics not found for this song.');
+                }
+
+                // Format lyrics with line breaks
+                const formattedLyrics = data.lyrics
+                    .replace(/\n\n/g, '</p><p>')
+                    .replace(/\n/g, '<br>');
+
+                result.innerHTML = `<div style="text-align: left; max-height: 400px; overflow-y: auto; background: var(--card-background); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                    <h3 style="margin: 0 0 1rem 0; color: var(--primary);">${title}</h3>
+                    <p style="margin: 0 0 1rem 0; color: var(--secondary); font-size: 0.9rem;">by ${artist}</p>
+                    <div style="color: var(--text-color); line-height: 1.6; white-space: pre-wrap;">${formattedLyrics}</div>
+                    <button onclick="copyLyrics()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Copy Lyrics</button>
+                </div>`;
+                result.className = 'status success';
+
+                // Store lyrics for copying
+                window.currentLyrics = data.lyrics;
+
+            } catch (error) {
+                console.error('Lyrics API error:', error);
+                result.textContent = 'Error: ' + error.message;
+                result.className = 'status error';
+            }
+        }
+
+        function copyLyrics() {
+            if (window.currentLyrics) {
+                navigator.clipboard.writeText(window.currentLyrics).then(() => {
+                    const result = document.getElementById('lyricsResult');
+                    const original = result.innerHTML;
+                    result.innerHTML = '<div style="color: #4CAF50;">Lyrics copied to clipboard!</div>';
+                    setTimeout(() => {
+                        result.innerHTML = original;
+                    }, 2000);
+                }).catch(() => {
+                    alert('Failed to copy lyrics. Please copy manually.');
+                });
+            }
+        }
+
+        // Add enter key support for both inputs
+        document.getElementById('mediaUrl').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                downloadMedia();
+            }
+        });
+
+        document.getElementById('musicUrl').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generateLinks();
+            }
+        });
+
+        async function convertToMp3() {
+            const url = document.getElementById('videoUrl').value.trim();
+            const result = document.getElementById('convertResult');
+
+            if (!url) {
+                result.textContent = 'Please enter a video URL.';
+                result.className = 'status error';
+                return;
+            }
+
+            // Basic URL validation
+            try {
+                new URL(url);
+            } catch (e) {
+                result.textContent = 'Please enter a valid URL.';
+                result.className = 'status error';
+                return;
+            }
+
+            result.textContent = 'Converting video to MP3... This may take a few minutes.';
+            result.className = 'status info';
+
+            try {
+                // Use your own backend (update BACKEND_URL above)
+                const response = await fetch(`${BACKEND_URL}/api/convert-video`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: url })
+                });
+
+                if (!response.ok) {
+                    let errorMessage = 'Conversion failed';
+                    try {
+                        const errorData = await response.json();
+                        errorMessage = errorData.error || errorMessage;
+                    } catch (parseError) {
+                        errorMessage = `Conversion failed: ${response.status} ${response.statusText}`;
+                    }
+                    throw new Error(errorMessage);
+                }
+
+                // Create download link from response
+                const blob = await response.blob();
+                const downloadUrl = URL.createObjectURL(blob);
+
+                // Get filename from response headers
+                const contentDisposition = response.headers.get('Content-Disposition');
+                let filename = 'converted_audio.mp3';
+                if (contentDisposition) {
+                    const filenameMatch = contentDisposition.match(/filename="(.+)"/);
+                    if (filenameMatch) {
+                        filename = filenameMatch[1];
+                    }
+                }
+
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = filename;
+                a.style.display = 'none';
+
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                // Cleanup
+                URL.revokeObjectURL(downloadUrl);
+
+                result.textContent = 'Conversion completed! MP3 downloaded to your device.';
+                result.className = 'status success';
+
+            } catch (error) {
+                console.error('Conversion error:', error);
+                result.textContent = 'Error: ' + error.message;
+                result.className = 'status error';
+            }
+        }
+
+        // Add enter key support for lyrics inputs
+        document.getElementById('lyricsArtist').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('lyricsTitle').focus();
+            }
+        });
+
+        document.getElementById('lyricsTitle').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                findLyrics();
+            }
+        });
+
+        // Add enter key support for video URL
+        document.getElementById('videoUrl').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                convertToMp3();
+            }
+        });
+    </script>
+</body>
+</html>
