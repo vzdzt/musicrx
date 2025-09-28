@@ -1,8 +1,8 @@
-const express = require('express');
-const { exec } = require('child_process');
-const path = require('path');
-const fs = require('fs');
-const cors = require('cors');
+import express from 'express';
+import { exec } from 'child_process';
+import path from 'path';
+import fs from 'fs';
+import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,8 +12,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-// yt-dlp path
-const ytDlpPath = path.join(__dirname, '../yt-dlp');
+// yt-dlp path (global installation on VPS)
+const ytDlpPath = '/usr/local/bin/yt-dlp';
 
 // Ensure temp directory exists
 const tempDir = path.join(__dirname, 'temp');
