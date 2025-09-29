@@ -879,249 +879,171 @@ const BACKEND_URL = 'https://musicrx.app';
             saveBtn.disabled = true;
 
             try {
-                // Get current theme colors
-                const isDarkTheme = document.body.classList.contains('dark-theme') ||
-                                   getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() === '#ffffff';
-                const primaryColor = isDarkTheme ? '#ffffff' : '#f97316';
-                const bgColor = isDarkTheme ? '#000000' : '#ffffff';
-                const textColor = isDarkTheme ? '#ffffff' : '#1f2937';
-                const secondaryColor = isDarkTheme ? '#9ca3af' : '#6b7280';
-
-                // Create a temporary div with the rating card design
+                // Create news-style rating card (similar to news segments)
                 const cardDiv = document.createElement('div');
-                cardDiv.style.width = '1200px';
-                cardDiv.style.height = '675px';
-                cardDiv.style.background = isDarkTheme ?
-                    'linear-gradient(135deg, #1a1a1a 0%, #000000 50%, #2a2a2a 100%)' :
-                    'linear-gradient(135deg, #fef3c7 0%, #ffffff 50%, #e5e7eb 100%)';
-                cardDiv.style.border = `8px solid ${primaryColor}`;
-                cardDiv.style.borderRadius = '24px';
-                cardDiv.style.padding = '40px';
-                cardDiv.style.boxShadow = `0 0 40px ${primaryColor}33`;
-                cardDiv.style.position = 'relative';
-                cardDiv.style.overflow = 'hidden';
+                cardDiv.style.width = '800px';
                 cardDiv.style.fontFamily = 'system-ui, sans-serif';
+                cardDiv.style.background = 'var(--card-background)';
+                cardDiv.style.border = '2px solid var(--border-color)';
+                cardDiv.style.borderRadius = '15px';
+                cardDiv.style.overflow = 'hidden';
+                cardDiv.style.boxShadow = '0 10px 40px rgba(0,0,0,0.1)';
 
-                // Background pattern
-                cardDiv.style.backgroundImage = isDarkTheme ?
-                    'radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.05) 0%, transparent 50%)' :
-                    'radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.1) 0%, transparent 50%)';
+                // Title card (top part like news segments)
+                const titleCard = document.createElement('div');
+                titleCard.style.padding = '1rem';
+                titleCard.style.background = 'var(--card-background)';
+                titleCard.style.backdropFilter = 'blur(15px)';
+                titleCard.style.borderBottom = 'none';
+                titleCard.style.borderRadius = '15px 15px 0 0';
+                titleCard.style.display = 'flex';
+                titleCard.style.alignItems = 'center';
+                titleCard.style.justifyContent = 'space-between';
 
-                // Album cover - ensure it loads properly
+                // Album info and score
+                const albumInfo = document.createElement('div');
+                albumInfo.style.display = 'flex';
+                albumInfo.style.alignItems = 'center';
+                albumInfo.style.gap = '1rem';
+
+                const albumText = document.createElement('div');
+                const title = document.createElement('h2');
+                title.textContent = `${window.currentAlbumData.title} - ${window.currentAlbumData.artist}`;
+                title.style.margin = '0';
+                title.style.fontSize = '1.2rem';
+                title.style.lineHeight = '1.2';
+                title.style.fontFamily = 'Syncopate, sans-serif';
+                title.style.textTransform = 'uppercase';
+                title.style.color = 'var(--primary)';
+                title.style.textShadow = '0 0 10px var(--glow)';
+                albumText.appendChild(title);
+
+                albumInfo.appendChild(albumText);
+
+                // Score badge
+                const scoreBadge = document.createElement('div');
+                scoreBadge.textContent = `${window.currentAlbumData.score}/10`;
+                scoreBadge.style.background = 'var(--primary)';
+                scoreBadge.style.color = 'white';
+                scoreBadge.style.padding = '0.5rem 1rem';
+                scoreBadge.style.borderRadius = '20px';
+                scoreBadge.style.fontSize = '1.1rem';
+                scoreBadge.style.fontWeight = 'bold';
+                scoreBadge.style.boxShadow = '0 0 15px var(--glow)';
+
+                titleCard.appendChild(albumInfo);
+                titleCard.appendChild(scoreBadge);
+                cardDiv.appendChild(titleCard);
+
+                // Content card (bottom part)
+                const contentCard = document.createElement('div');
+                contentCard.style.padding = '1.5rem';
+                contentCard.style.background = 'var(--card-background)';
+                contentCard.style.backdropFilter = 'blur(15px)';
+                contentCard.style.borderTop = 'none';
+                contentCard.style.borderRadius = '0 0 15px 15px';
+
+                // Album cover
                 const coverImg = document.createElement('img');
-                coverImg.crossOrigin = 'anonymous'; // Handle CORS
+                coverImg.crossOrigin = 'anonymous';
                 coverImg.src = window.currentAlbumData.imageUrl;
-                coverImg.style.width = '400px';
-                coverImg.style.height = '400px';
-                coverImg.style.borderRadius = '20px';
+                coverImg.style.width = '100%';
+                coverImg.style.height = 'auto';
+                coverImg.style.borderRadius = '10px';
+                coverImg.style.marginBottom = '1rem';
+                coverImg.style.maxHeight = '300px';
                 coverImg.style.objectFit = 'cover';
-                coverImg.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
-                coverImg.style.border = `4px solid ${primaryColor}4D`;
-                coverImg.style.position = 'absolute';
-                coverImg.style.top = '40px';
-                coverImg.style.left = '40px';
 
                 // Wait for image to load
                 await new Promise((resolve) => {
                     coverImg.onload = resolve;
-                    coverImg.onerror = resolve; // Continue even if image fails
+                    coverImg.onerror = resolve;
                 });
 
-                cardDiv.appendChild(coverImg);
+                contentCard.appendChild(coverImg);
 
-                // Title and artist
-                const titleDiv = document.createElement('div');
-                titleDiv.style.position = 'absolute';
-                titleDiv.style.top = '80px';
-                titleDiv.style.right = '40px';
-                titleDiv.style.width = '600px';
-                titleDiv.style.textAlign = 'left';
+                // Release date
+                const dateDiv = document.createElement('p');
+                dateDiv.textContent = `Released: ${new Date(window.currentAlbumData.releaseDate).toLocaleDateString()}`;
+                dateDiv.className = 'date';
+                contentCard.appendChild(dateDiv);
 
-                const title = document.createElement('h1');
-                title.textContent = window.currentAlbumData.title;
-                title.style.fontSize = '48px';
-                title.style.fontWeight = 'bold';
-                title.style.color = textColor;
-                title.style.margin = '0 0 10px 0';
-                title.style.textTransform = 'uppercase';
-                title.style.letterSpacing = '2px';
-                titleDiv.appendChild(title);
+                // Highlights section
+                if (window.currentAlbumData.strengths && window.currentAlbumData.strengths.length > 0) {
+                    const highlightsDiv = document.createElement('div');
+                    highlightsDiv.style.marginTop = '1rem';
+                    highlightsDiv.style.padding = '1rem';
+                    highlightsDiv.style.background = 'rgba(16, 185, 129, 0.1)';
+                    highlightsDiv.style.border = '1px solid #10b981';
+                    highlightsDiv.style.borderRadius = '8px';
 
-                const artist = document.createElement('p');
-                artist.textContent = `by ${window.currentAlbumData.artist}`;
-                artist.style.fontSize = '24px';
-                artist.style.color = secondaryColor;
-                artist.style.margin = '0 0 20px 0';
-                artist.style.fontStyle = 'italic';
-                titleDiv.appendChild(artist);
+                    const highlightsTitle = document.createElement('h4');
+                    highlightsTitle.textContent = '🎯 Highlights';
+                    highlightsTitle.style.margin = '0 0 0.5rem 0';
+                    highlightsTitle.style.color = '#10b981';
+                    highlightsTitle.style.fontSize = '1rem';
+                    highlightsDiv.appendChild(highlightsTitle);
 
-                // Release year badge
-                const yearBadge = document.createElement('span');
-                yearBadge.textContent = new Date(window.currentAlbumData.releaseDate).getFullYear();
-                yearBadge.style.background = '#e5e7eb';
-                yearBadge.style.color = '#374151';
-                yearBadge.style.padding = '4px 12px';
-                yearBadge.style.borderRadius = '8px';
-                yearBadge.style.fontSize = '18px';
-                yearBadge.style.fontWeight = 'bold';
-                yearBadge.style.display = 'inline-block';
-                titleDiv.appendChild(yearBadge);
+                    const highlightsList = document.createElement('ul');
+                    highlightsList.style.margin = '0';
+                    highlightsList.style.paddingLeft = '1rem';
+                    highlightsList.style.color = 'var(--text-color)';
+                    highlightsList.style.fontSize = '0.9rem';
+                    highlightsList.style.lineHeight = '1.4';
 
-                cardDiv.appendChild(titleDiv);
+                    window.currentAlbumData.strengths.forEach(strength => {
+                        const li = document.createElement('li');
+                        li.textContent = strength;
+                        highlightsList.appendChild(li);
+                    });
 
-                // Score badge
-                const scoreDiv = document.createElement('div');
-                scoreDiv.style.position = 'absolute';
-                scoreDiv.style.top = '200px';
-                scoreDiv.style.right = '80px';
-                scoreDiv.style.width = '160px';
-                scoreDiv.style.height = '160px';
-                scoreDiv.style.borderRadius = '50%';
-                scoreDiv.style.background = '#f97316';
-                scoreDiv.style.display = 'flex';
-                scoreDiv.style.flexDirection = 'column';
-                scoreDiv.style.alignItems = 'center';
-                scoreDiv.style.justifyContent = 'center';
-                scoreDiv.style.boxShadow = '0 10px 30px rgba(249, 115, 22, 0.4)';
-                scoreDiv.style.border = '6px solid rgba(255,255,255,0.8)';
+                    highlightsDiv.appendChild(highlightsList);
+                    contentCard.appendChild(highlightsDiv);
+                }
 
-                const scoreText = document.createElement('div');
-                scoreText.textContent = window.currentAlbumData.score;
-                scoreText.style.fontSize = '60px';
-                scoreText.style.fontWeight = 'bold';
-                scoreText.style.color = 'white';
-                scoreDiv.appendChild(scoreText);
+                // Misses section
+                if (window.currentAlbumData.weaknesses && window.currentAlbumData.weaknesses.length > 0) {
+                    const missesDiv = document.createElement('div');
+                    missesDiv.style.marginTop = '1rem';
+                    missesDiv.style.padding = '1rem';
+                    missesDiv.style.background = 'rgba(245, 158, 11, 0.1)';
+                    missesDiv.style.border = '1px solid #f59e0b';
+                    missesDiv.style.borderRadius = '8px';
 
-                const scoreLabel = document.createElement('div');
-                scoreLabel.textContent = '/10';
-                scoreLabel.style.fontSize = '20px';
-                scoreLabel.style.color = 'white';
-                scoreLabel.style.opacity = '0.9';
-                scoreDiv.appendChild(scoreLabel);
+                    const missesTitle = document.createElement('h4');
+                    missesTitle.textContent = '⚠️ Misses';
+                    missesTitle.style.margin = '0 0 0.5rem 0';
+                    missesTitle.style.color = '#f59e0b';
+                    missesTitle.style.fontSize = '1rem';
+                    missesDiv.appendChild(missesTitle);
 
-                cardDiv.appendChild(scoreDiv);
+                    const missesList = document.createElement('ul');
+                    missesList.style.margin = '0';
+                    missesList.style.paddingLeft = '1rem';
+                    missesList.style.color = 'var(--text-color)';
+                    missesList.style.fontSize = '0.9rem';
+                    missesList.style.lineHeight = '1.4';
 
-                // Highlights and misses
-                const detailsDiv = document.createElement('div');
-                detailsDiv.style.position = 'absolute';
-                detailsDiv.style.bottom = '40px';
-                detailsDiv.style.left = '40px';
-                detailsDiv.style.right = '40px';
-                detailsDiv.style.display = 'flex';
-                detailsDiv.style.gap = '20px';
+                    window.currentAlbumData.weaknesses.forEach(weakness => {
+                        const li = document.createElement('li');
+                        li.textContent = weakness;
+                        missesList.appendChild(li);
+                    });
 
-                // Highlights
-                const highlightsDiv = document.createElement('div');
-                highlightsDiv.style.flex = '1';
-                highlightsDiv.style.background = 'rgba(16, 185, 129, 0.1)';
-                highlightsDiv.style.border = '2px solid #10b981';
-                highlightsDiv.style.borderRadius = '12px';
-                highlightsDiv.style.padding = '20px';
-                highlightsDiv.style.backdropFilter = 'blur(10px)';
+                    missesDiv.appendChild(missesList);
+                    contentCard.appendChild(missesDiv);
+                }
 
-                const highlightsTitle = document.createElement('h3');
-                highlightsTitle.textContent = 'HIGHLIGHTS';
-                highlightsTitle.style.color = '#10b981';
-                highlightsTitle.style.margin = '0 0 15px 0';
-                highlightsTitle.style.fontSize = '18px';
-                highlightsTitle.style.fontWeight = 'bold';
-                highlightsDiv.appendChild(highlightsTitle);
-
-                const highlightsList = document.createElement('ul');
-                highlightsList.style.margin = '0';
-                highlightsList.style.paddingLeft = '20px';
-                highlightsList.style.color = '#065f46';
-                highlightsList.style.fontSize = '14px';
-                highlightsList.style.lineHeight = '1.6';
-
-                window.currentAlbumData.strengths.slice(0, 3).forEach(strength => {
-                    const li = document.createElement('li');
-                    li.textContent = strength;
-                    li.style.marginBottom = '8px';
-                    highlightsList.appendChild(li);
-                });
-
-                highlightsDiv.appendChild(highlightsList);
-                detailsDiv.appendChild(highlightsDiv);
-
-                // Misses
-                const missesDiv = document.createElement('div');
-                missesDiv.style.flex = '1';
-                missesDiv.style.background = 'rgba(245, 158, 11, 0.1)';
-                missesDiv.style.border = '2px solid #f59e0b';
-                missesDiv.style.borderRadius = '12px';
-                missesDiv.style.padding = '20px';
-                missesDiv.style.backdropFilter = 'blur(10px)';
-
-                const missesTitle = document.createElement('h3');
-                missesTitle.textContent = 'MISSES';
-                missesTitle.style.color = '#f59e0b';
-                missesTitle.style.margin = '0 0 15px 0';
-                missesTitle.style.fontSize = '18px';
-                missesTitle.style.fontWeight = 'bold';
-                missesDiv.appendChild(missesTitle);
-
-                const missesList = document.createElement('ul');
-                missesList.style.margin = '0';
-                missesList.style.paddingLeft = '20px';
-                missesList.style.color = '#92400e';
-                missesList.style.fontSize = '14px';
-                missesList.style.lineHeight = '1.6';
-
-                window.currentAlbumData.weaknesses.slice(0, 3).forEach(weakness => {
-                    const li = document.createElement('li');
-                    li.textContent = weakness;
-                    li.style.marginBottom = '8px';
-                    missesList.appendChild(li);
-                });
-
-                missesDiv.appendChild(missesList);
-                detailsDiv.appendChild(missesDiv);
-
-                cardDiv.appendChild(detailsDiv);
-
-                // Subtle MusicRx branding
-                const brandingDiv = document.createElement('div');
-                brandingDiv.style.position = 'absolute';
-                brandingDiv.style.bottom = '20px';
-                brandingDiv.style.right = '40px';
-                brandingDiv.style.textAlign = 'right';
-                brandingDiv.style.display = 'flex';
-                brandingDiv.style.alignItems = 'center';
-                brandingDiv.style.gap = '6px';
-
-                // Heart logo (subtle)
-                const logoSpan = document.createElement('span');
-                logoSpan.className = 'logo-symbol';
-                logoSpan.style.display = 'inline-block';
-                logoSpan.style.opacity = '0.7';
-
-                const heartIcon = document.createElement('i');
-                heartIcon.className = 'fas fa-heartbeat';
-                heartIcon.style.fontSize = '16px';
-                heartIcon.style.color = primaryColor;
-
-                logoSpan.appendChild(heartIcon);
-                brandingDiv.appendChild(logoSpan);
-
-                const brandingText = document.createElement('span');
-                brandingText.textContent = 'MusicRx';
-                brandingText.style.fontSize = '14px';
-                brandingText.style.fontWeight = '500';
-                brandingText.style.color = secondaryColor;
-                brandingText.style.opacity = '0.8';
-                brandingDiv.appendChild(brandingText);
-
-                cardDiv.appendChild(brandingDiv);
+                cardDiv.appendChild(contentCard);
 
                 // Add to DOM temporarily for html2canvas
                 document.body.appendChild(cardDiv);
 
                 // Generate canvas
                 const canvas = await html2canvas(cardDiv, {
-                    width: 1200,
-                    height: 675,
-                    backgroundColor: null,
+                    width: 800,
+                    height: 600,
+                    backgroundColor: 'var(--card-background)',
                     scale: 1
                 });
 
