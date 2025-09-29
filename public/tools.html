@@ -879,71 +879,57 @@ const BACKEND_URL = 'https://musicrx.app';
             saveBtn.disabled = true;
 
             try {
-                // Create news-style rating card (similar to news segments)
+                // Create exact news-style rating card using news.html CSS
                 const cardDiv = document.createElement('div');
-                cardDiv.style.width = '800px';
-                cardDiv.style.fontFamily = 'system-ui, sans-serif';
-                cardDiv.style.background = 'var(--card-background)';
-                cardDiv.style.border = '2px solid var(--border-color)';
-                cardDiv.style.borderRadius = '15px';
-                cardDiv.style.overflow = 'hidden';
-                cardDiv.style.boxShadow = '0 10px 40px rgba(0,0,0,0.1)';
+                cardDiv.className = 'news-item';
+                cardDiv.style.width = '100%';
+                cardDiv.style.maxWidth = '800px';
+                cardDiv.style.margin = '0 auto';
 
-                // Title card (top part like news segments)
+                // Title card (exact copy of news-title-card styling)
                 const titleCard = document.createElement('div');
-                titleCard.style.padding = '1rem';
-                titleCard.style.background = 'var(--card-background)';
-                titleCard.style.backdropFilter = 'blur(15px)';
-                titleCard.style.borderBottom = 'none';
-                titleCard.style.borderRadius = '15px 15px 0 0';
+                titleCard.className = 'news-title-card';
+                titleCard.style.padding = '0.3rem 1rem';
+                titleCard.style.minHeight = 'auto';
+                titleCard.style.height = 'auto';
                 titleCard.style.display = 'flex';
                 titleCard.style.alignItems = 'center';
-                titleCard.style.justifyContent = 'space-between';
+                titleCard.style.justifyContent = 'center';
+                titleCard.style.background = 'var(--card-background)';
+                titleCard.style.backdropFilter = 'blur(15px)';
+                titleCard.style.border = '2px solid var(--border-color)';
+                titleCard.style.borderBottom = 'none';
+                titleCard.style.borderRadius = '15px 15px 0 0';
+                titleCard.style.marginBottom = '0';
+                titleCard.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
 
-                // Album info and score
-                const albumInfo = document.createElement('div');
-                albumInfo.style.display = 'flex';
-                albumInfo.style.alignItems = 'center';
-                albumInfo.style.gap = '1rem';
+                const titleH2 = document.createElement('h2');
+                titleH2.className = 'card-title-container';
+                titleH2.style.margin = '0';
+                titleH2.style.fontSize = '1.2rem';
+                titleH2.style.lineHeight = '1.2';
+                titleH2.style.fontFamily = 'Syncopate, sans-serif';
+                titleH2.style.textTransform = 'uppercase';
+                titleH2.style.color = 'var(--primary)';
+                titleH2.style.textShadow = '0 0 10px var(--glow)';
+                titleH2.textContent = `${window.currentAlbumData.title} - ${window.currentAlbumData.artist} (${window.currentAlbumData.score}/10)`;
 
-                const albumText = document.createElement('div');
-                const title = document.createElement('h2');
-                title.textContent = `${window.currentAlbumData.title} - ${window.currentAlbumData.artist}`;
-                title.style.margin = '0';
-                title.style.fontSize = '1.2rem';
-                title.style.lineHeight = '1.2';
-                title.style.fontFamily = 'Syncopate, sans-serif';
-                title.style.textTransform = 'uppercase';
-                title.style.color = 'var(--primary)';
-                title.style.textShadow = '0 0 10px var(--glow)';
-                albumText.appendChild(title);
-
-                albumInfo.appendChild(albumText);
-
-                // Score badge
-                const scoreBadge = document.createElement('div');
-                scoreBadge.textContent = `${window.currentAlbumData.score}/10`;
-                scoreBadge.style.background = 'var(--primary)';
-                scoreBadge.style.color = 'white';
-                scoreBadge.style.padding = '0.5rem 1rem';
-                scoreBadge.style.borderRadius = '20px';
-                scoreBadge.style.fontSize = '1.1rem';
-                scoreBadge.style.fontWeight = 'bold';
-                scoreBadge.style.boxShadow = '0 0 15px var(--glow)';
-
-                titleCard.appendChild(albumInfo);
-                titleCard.appendChild(scoreBadge);
+                titleCard.appendChild(titleH2);
                 cardDiv.appendChild(titleCard);
 
-                // Content card (bottom part)
+                // Content card (exact copy of news-content-card styling)
                 const contentCard = document.createElement('div');
+                contentCard.className = 'news-content-card';
                 contentCard.style.padding = '1.5rem';
                 contentCard.style.background = 'var(--card-background)';
                 contentCard.style.backdropFilter = 'blur(15px)';
+                contentCard.style.border = '2px solid var(--border-color)';
                 contentCard.style.borderTop = 'none';
                 contentCard.style.borderRadius = '0 0 15px 15px';
+                contentCard.style.marginTop = '0';
+                contentCard.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
 
-                // Album cover
+                // Album cover (like news images)
                 const coverImg = document.createElement('img');
                 coverImg.crossOrigin = 'anonymous';
                 coverImg.src = window.currentAlbumData.imageUrl;
@@ -951,8 +937,6 @@ const BACKEND_URL = 'https://musicrx.app';
                 coverImg.style.height = 'auto';
                 coverImg.style.borderRadius = '10px';
                 coverImg.style.marginBottom = '1rem';
-                coverImg.style.maxHeight = '300px';
-                coverImg.style.objectFit = 'cover';
 
                 // Wait for image to load
                 await new Promise((resolve) => {
@@ -962,76 +946,37 @@ const BACKEND_URL = 'https://musicrx.app';
 
                 contentCard.appendChild(coverImg);
 
-                // Release date
+                // Release date (like news date)
                 const dateDiv = document.createElement('p');
-                dateDiv.textContent = `Released: ${new Date(window.currentAlbumData.releaseDate).toLocaleDateString()}`;
                 dateDiv.className = 'date';
+                dateDiv.style.fontSize = '0.9rem';
+                dateDiv.style.color = 'var(--secondary)';
+                dateDiv.style.textAlign = 'center';
+                dateDiv.style.marginBottom = '0.5rem';
+                dateDiv.style.fontFamily = 'Space Grotesk, sans-serif';
+                dateDiv.textContent = `Released: ${new Date(window.currentAlbumData.releaseDate).toLocaleDateString()}`;
                 contentCard.appendChild(dateDiv);
 
-                // Highlights section
+                // Highlights section (like news content)
                 if (window.currentAlbumData.strengths && window.currentAlbumData.strengths.length > 0) {
-                    const highlightsDiv = document.createElement('div');
-                    highlightsDiv.style.marginTop = '1rem';
-                    highlightsDiv.style.padding = '1rem';
-                    highlightsDiv.style.background = 'rgba(16, 185, 129, 0.1)';
-                    highlightsDiv.style.border = '1px solid #10b981';
-                    highlightsDiv.style.borderRadius = '8px';
-
-                    const highlightsTitle = document.createElement('h4');
-                    highlightsTitle.textContent = '🎯 Highlights';
-                    highlightsTitle.style.margin = '0 0 0.5rem 0';
-                    highlightsTitle.style.color = '#10b981';
-                    highlightsTitle.style.fontSize = '1rem';
-                    highlightsDiv.appendChild(highlightsTitle);
-
-                    const highlightsList = document.createElement('ul');
-                    highlightsList.style.margin = '0';
-                    highlightsList.style.paddingLeft = '1rem';
-                    highlightsList.style.color = 'var(--text-color)';
-                    highlightsList.style.fontSize = '0.9rem';
-                    highlightsList.style.lineHeight = '1.4';
-
-                    window.currentAlbumData.strengths.forEach(strength => {
-                        const li = document.createElement('li');
-                        li.textContent = strength;
-                        highlightsList.appendChild(li);
-                    });
-
-                    highlightsDiv.appendChild(highlightsList);
-                    contentCard.appendChild(highlightsDiv);
+                    const highlightsP = document.createElement('p');
+                    highlightsP.style.margin = '0';
+                    highlightsP.style.fontSize = '1rem';
+                    highlightsP.style.fontFamily = 'Space Grotesk, sans-serif';
+                    highlightsP.style.color = 'var(--text-color)';
+                    highlightsP.innerHTML = `<strong style="color: #10b981;">🎯 HIGHLIGHTS:</strong><br>${window.currentAlbumData.strengths.join('<br>• ')}`;
+                    contentCard.appendChild(highlightsP);
                 }
 
-                // Misses section
+                // Misses section (like news content)
                 if (window.currentAlbumData.weaknesses && window.currentAlbumData.weaknesses.length > 0) {
-                    const missesDiv = document.createElement('div');
-                    missesDiv.style.marginTop = '1rem';
-                    missesDiv.style.padding = '1rem';
-                    missesDiv.style.background = 'rgba(245, 158, 11, 0.1)';
-                    missesDiv.style.border = '1px solid #f59e0b';
-                    missesDiv.style.borderRadius = '8px';
-
-                    const missesTitle = document.createElement('h4');
-                    missesTitle.textContent = '⚠️ Misses';
-                    missesTitle.style.margin = '0 0 0.5rem 0';
-                    missesTitle.style.color = '#f59e0b';
-                    missesTitle.style.fontSize = '1rem';
-                    missesDiv.appendChild(missesTitle);
-
-                    const missesList = document.createElement('ul');
-                    missesList.style.margin = '0';
-                    missesList.style.paddingLeft = '1rem';
-                    missesList.style.color = 'var(--text-color)';
-                    missesList.style.fontSize = '0.9rem';
-                    missesList.style.lineHeight = '1.4';
-
-                    window.currentAlbumData.weaknesses.forEach(weakness => {
-                        const li = document.createElement('li');
-                        li.textContent = weakness;
-                        missesList.appendChild(li);
-                    });
-
-                    missesDiv.appendChild(missesList);
-                    contentCard.appendChild(missesDiv);
+                    const missesP = document.createElement('p');
+                    missesP.style.margin = '0.4rem 0';
+                    missesP.style.fontSize = '1rem';
+                    missesP.style.fontFamily = 'Space Grotesk, sans-serif';
+                    missesP.style.color = 'var(--text-color)';
+                    missesP.innerHTML = `<strong style="color: #f59e0b;">⚠️ MISSES:</strong><br>${window.currentAlbumData.weaknesses.join('<br>• ')}`;
+                    contentCard.appendChild(missesP);
                 }
 
                 cardDiv.appendChild(contentCard);
