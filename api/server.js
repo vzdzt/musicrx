@@ -763,11 +763,24 @@ app.get('/api/aoty-contenders', async (req, res) => {
     const startOfYear = new Date(currentYear, 0, 1);
     const endOfYear = new Date(currentYear, 11, 31, 23, 59, 59);
 
+    console.log(`Fetching AOTY contenders for ${currentYear}`);
+    console.log(`Date range: ${startOfYear.toISOString()} to ${endOfYear.toISOString()}`);
+
     // Get unique albums by albumId (no duplicates)
     const contenders = await Album.find({
       status: 'reviewed',
       releaseDate: { $gte: startOfYear, $lte: endOfYear }
     }).sort({ score: -1 }).limit(10);
+
+    console.log(`Found ${contenders.length} AOTY contenders`);
+    if (contenders.length > 0) {
+      console.log('Sample contender:', {
+        title: contenders[0].title,
+        artist: contenders[0].artist,
+        score: contenders[0].score,
+        releaseDate: contenders[0].releaseDate
+      });
+    }
 
     res.json(contenders);
   } catch (err) {
@@ -1056,6 +1069,67 @@ app.post('/api/share/:albumId', async (req, res) => {
       error: 'Failed to share to Twitter',
       details: error.message
     });
+  }
+});
+
+// Rescore all albums with updated algorithm (including Discogs)
+app.post('/api/rescore-all', async (req, res) => {
+  try {
+    console.log('Starting rescore of all albums...');
+
+    const albums = await Album.find({ status: 'reviewed' });
+    console.log(`Found ${albums.length} albums to rescore`);
+
+    let successCount = 0;
+    let errorCount = 0;
+
+    for (const album of albums) {
+      try {
+        console.log(`Rescoring: ${album.title} by ${album.artist}`);
+
+        // Re-run the review algorithm with all APIs including Discogs
+        const review = await reviewAlbum(album.albumId);
+
+        if (review.status === 'reviewed') {
+          await Album.findOneAndUpdate(
+            { albumId: album.albumId },
+            {
+              score: review.score,
+              strengths: review.strengths,
+              weaknesses: review.weaknesses
+            }
+          );
+          successCount++;
+          console.log(`✓ Rescored ${album.title}: ${review.score}/10`);
+        } else {
+          console.log(`⚠ Skipped ${album.title}: ${review.status}`);
+        }
+
+        // Rate limiting between albums
+        await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second delay
+
+      } catch (albumErr) {
+        console.error(`Error rescoring ${album.title}:`, albumErr.message);
+        errorCount++;
+      }
+    }
+
+    // Update featured albums rankings after rescoring
+    await updateFeaturedAlbums();
+
+    console.log(`Rescoring complete: ${successCount} success, ${errorCount} errors`);
+
+    res.json({
+      success: true,
+      total: albums.length,
+      successCount,
+      errorCount,
+      message: `Rescored ${successCount} albums with updated algorithm including Discogs data`
+    });
+
+  } catch (err) {
+    console.error('Rescore error:', err);
+    res.status(500).json({ error: 'Failed to rescore albums', details: err.message });
   }
 });
 
