@@ -852,36 +852,24 @@ app.get('/api/all-2025-albums', async (req, res) => {
 // All-time rankings endpoint
 app.get('/api/all-time-rankings', async (req, res) => {
   try {
-    // Group by albumId and get the highest rated version for each album (no duplicates)
-    const pipeline = [
-      {
-        $match: {
-          status: 'reviewed'
-        }
-      },
-      {
-        $group: {
-          _id: '$albumId',
-          album: { $first: '$$ROOT' },
-          maxScore: { $max: '$score' }
-        }
-      },
-      {
-        $sort: { maxScore: -1 }
-      },
-      {
-        $limit: 100
-      }
-    ];
-
-    const groupedResults = await Album.aggregate(pipeline);
+    // Get all reviewed albums (no limit for now to show all)
+    const allAlbums = await Album.find({ status: 'reviewed' })
+      .sort({ score: -1 })
+      .limit(500); // Show top 500 instead of 100
 
     // Format the results
-    const allTimeRankings = groupedResults.map(result => ({
-      ...result.album,
-      score: result.maxScore
+    const allTimeRankings = allAlbums.map(album => ({
+      albumId: album.albumId,
+      title: album.title,
+      artist: album.artist,
+      score: album.score,
+      strengths: album.strengths || [],
+      weaknesses: album.weaknesses || [],
+      imageUrl: album.imageUrl,
+      releaseDate: album.releaseDate
     }));
 
+    console.log(`Returning ${allTimeRankings.length} albums for all-time rankings`);
     res.json(allTimeRankings);
   } catch (err) {
     console.error('All-time rankings error:', err);
