@@ -9,72 +9,79 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .album-selector {
-            max-width: 600px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
-            text-align: center;
-            min-height: 80vh;
+            min-height: 60vh;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
         }
 
-        .vinyl-template {
+        .horizontal-selector {
             background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%);
             border-radius: 20px;
-            padding: 3rem 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
 
-        .vinyl-template::before {
+        .horizontal-selector::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(249, 115, 22, 0.08) 0%, transparent 50%);
             pointer-events: none;
         }
 
         .album-preview {
-            margin-bottom: 2rem;
+            flex-shrink: 0;
+            position: relative;
         }
 
         .album-cover {
-            width: 250px;
-            height: 250px;
-            border-radius: 15px;
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
             object-fit: cover;
-            margin: 0 auto 1.5rem;
-            display: block;
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             border: 3px solid rgba(255,255,255,0.9);
             transition: all 0.3s ease;
         }
 
         .album-cover:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+        }
+
+        .album-info {
+            flex: 1;
+            text-align: left;
         }
 
         .album-info h2 {
             font-family: 'Syncopate', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #1f2937;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .album-info p {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #6b7280;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .input-group {
@@ -221,36 +228,37 @@
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
 
     <div class="album-selector">
-        <div class="vinyl-template">
+        <div class="horizontal-selector">
             <div class="album-preview">
                 <img id="albumCover" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0yMDAgMjAwSDE2MEwxNjAgMTYwSDE2MEwxNjAgMjQwSDE2MEwyMDAgMjQwTDIwMCAyMDBaIiBmaWxsPSIjOUNBM0FGIi8+CjxjaXJjbGUgY3g9IjIwMCIgY3k9IjIwMCIgcj0iNDAiIGZpbGw9IiM5Q0EzQUYiLz4KPHN2Zz4=" alt="Album Cover Preview" class="album-cover">
-                <div class="album-info">
-                    <h2 id="albumTitle">Choose Your Album</h2>
-                    <p id="albumArtist">Enter a Spotify Album ID below</p>
+            </div>
+
+            <div class="album-info">
+                <h2 id="albumTitle">Choose Your Album</h2>
+                <p id="albumArtist">Enter a Spotify Album ID below</p>
+
+                <div class="input-group">
+                    <input
+                        type="text"
+                        id="albumIdInput"
+                        placeholder="Enter Spotify Album ID (e.g., 4aawyAB9vmqN3uQ7FjRGTy)"
+                        required
+                    >
                 </div>
+
+                <div class="button-group">
+                    <button id="selectBtn" class="select-btn" onclick="selectAlbum()">
+                        <i class="fas fa-search"></i> Select Album
+                    </button>
+                    <button id="downloadBtn" class="download-btn" onclick="downloadAlbumCard()" disabled>
+                        <i class="fas fa-download"></i> Download Card
+                    </button>
+                </div>
+
+                <p class="loading" id="loadingText">Loading album details...</p>
+
+                <div class="error" id="errorMessage"></div>
             </div>
-
-            <div class="input-group">
-                <input
-                    type="text"
-                    id="albumIdInput"
-                    placeholder="Enter Spotify Album ID (e.g., 4aawyAB9vmqN3uQ7FjRGTy)"
-                    required
-                >
-            </div>
-
-            <div class="button-group">
-                <button id="selectBtn" class="select-btn" onclick="selectAlbum()">
-                    <i class="fas fa-search"></i> Select Album
-                </button>
-                <button id="downloadBtn" class="download-btn" onclick="downloadAlbumCard()" disabled>
-                    <i class="fas fa-download"></i> Download Card
-                </button>
-            </div>
-
-            <p class="loading" id="loadingText">Loading album details...</p>
-
-            <div class="error" id="errorMessage"></div>
         </div>
     </div>
 
