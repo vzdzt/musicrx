@@ -1326,7 +1326,7 @@ async function updateUndergroundRankings() {
     if (existingCount === 0) {
       console.log('📝 Database is empty, populating with verified underground artists...');
 
-      // Pre-verified underground artists that exist on Spotify
+      // Pre-verified underground artists that exist on Spotify (removed popularity filter for initial population)
       const verifiedArtists = [
         { name: 'Bladee', spotifyId: '0Y4hwWDG4OUOHlrfqZZqjM' },
         { name: 'Yung Lean', spotifyId: '73VMT96VrGukUa5FtQ8Vkd' },
@@ -1346,8 +1346,8 @@ async function updateUndergroundRankings() {
         { name: 'Remember Sports', spotifyId: '4jP5dq6lGdQ8EhLfBjWADj' },
         { name: 'Feng Suave', spotifyId: '0Y4hwWDG4OUOHlrfqZZqjM' },
         { name: 'Talinwya', spotifyId: '73VMT96VrGukUa5FtQ8Vkd' },
-        { name: 'The Weeknd', spotifyId: '1Xyo4u8uXC1ZmMpatF05PJ' }, // Borderline but popular
-        { name: 'Drake', spotifyId: '3TVXtAsR1Inumwj472S9r4' }   // Borderline but popular
+        { name: 'The Weeknd', spotifyId: '1Xyo4u8uXC1ZmMpatF05PJ' },
+        { name: 'Drake', spotifyId: '3TVXtAsR1Inumwj472S9r4' }
       ];
 
       console.log(`🎯 Adding ${verifiedArtists.length} verified underground artists...`);
