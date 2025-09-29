@@ -456,14 +456,15 @@
                 brandingDiv.style.alignItems = 'center';
                 brandingDiv.style.gap = '8px';
 
-                // Heart logo
+                // Heart logo (more subtle)
                 const logoSpan = document.createElement('span');
                 logoSpan.className = 'logo-symbol';
                 logoSpan.style.display = 'inline-block';
+                logoSpan.style.opacity = '0.7';
 
                 const heartIcon = document.createElement('i');
                 heartIcon.className = 'fas fa-heartbeat';
-                heartIcon.style.fontSize = '20px';
+                heartIcon.style.fontSize = '16px';
                 heartIcon.style.color = '#f97316';
 
                 logoSpan.appendChild(heartIcon);
@@ -471,9 +472,10 @@
 
                 const brandingText = document.createElement('span');
                 brandingText.textContent = 'MusicRx';
-                brandingText.style.fontSize = '18px';
-                brandingText.style.fontWeight = '600';
-                brandingText.style.color = '#f97316';
+                brandingText.style.fontSize = '14px';
+                brandingText.style.fontWeight = '500';
+                brandingText.style.color = '#6b7280';
+                brandingText.style.opacity = '0.8';
                 brandingDiv.appendChild(brandingText);
 
                 cardDiv.appendChild(brandingDiv);
