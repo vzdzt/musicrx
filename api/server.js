@@ -1456,6 +1456,50 @@ app.post('/api/update-all-reviewed', async (req, res) => {
   }
 });
 
+// Deezer Simple API Integration (No authentication required)
+async function searchDeezerArtist(artistName) {
+  try {
+    const response = await axios.get('https://api.deezer.com/search/artist', {
+      params: {
+        q: artistName,
+        limit: 5
+      },
+      timeout: 10000
+    });
+
+    return response.data.data || [];
+  } catch (error) {
+    console.warn('Deezer artist search error:', error.message);
+    return [];
+  }
+}
+
+async function getDeezerArtist(artistId) {
+  try {
+    const response = await axios.get(`https://api.deezer.com/artist/${artistId}`, {
+      timeout: 10000
+    });
+
+    return response.data;
+  } catch (error) {
+    console.warn('Deezer artist fetch error:', error.message);
+    return null;
+  }
+}
+
+async function getDeezerCharts() {
+  try {
+    const response = await axios.get('https://api.deezer.com/chart', {
+      timeout: 10000
+    });
+
+    return response.data;
+  } catch (error) {
+    console.warn('Deezer charts fetch error:', error.message);
+    return null;
+  }
+}
+
 // MusicBrainz API Integration
 async function searchMusicBrainzArtist(artistName) {
   try {
@@ -1926,6 +1970,53 @@ app.get('/api/musicbrainz/release/search', async (req, res) => {
   } catch (error) {
     console.error('MusicBrainz release search error:', error.message);
     res.status(500).json({ error: 'Failed to search MusicBrainz releases' });
+  }
+});
+
+// Deezer Charts endpoint
+app.get('/api/charts/deezer', async (req, res) => {
+  try {
+    const charts = await getDeezerCharts();
+    if (!charts) {
+      return res.status(404).json({ error: 'Deezer charts not available' });
+    }
+    res.json(charts);
+  } catch (error) {
+    console.error('Deezer charts error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch Deezer charts' });
+  }
+});
+
+// Deezer Artist Search endpoint
+app.get('/api/deezer/artist/search', async (req, res) => {
+  try {
+    const { q: artistName } = req.query;
+    if (!artistName) {
+      return res.status(400).json({ error: 'Artist name query parameter required' });
+    }
+
+    const artists = await searchDeezerArtist(artistName);
+    res.json(artists);
+  } catch (error) {
+    console.error('Deezer artist search error:', error.message);
+    res.status(500).json({ error: 'Failed to search Deezer artists' });
+  }
+});
+
+// Deezer Artist Info endpoint
+app.get('/api/deezer/artist/:artistId', async (req, res) => {
+  try {
+    const { artistId } = req.params;
+    const artistInfo = await getDeezerArtist(artistId);
+
+    if (!artistInfo) {
+      return res.status(404).json({ error: 'Artist not found on Deezer' });
+    }
+
+    res.json(artistInfo);
+  } catch (error) {
+    console.error('Deezer artist info error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch artist info' });
   }
 });
 
