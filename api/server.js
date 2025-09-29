@@ -1326,59 +1326,62 @@ async function updateUndergroundRankings() {
     if (existingCount === 0) {
       console.log('📝 Database is empty, populating with verified underground artists...');
 
-      // Pre-verified underground artists that exist on Spotify (removed popularity filter for initial population)
-      const verifiedArtists = [
-        { name: 'Bladee', spotifyId: '0Y4hwWDG4OUOHlrfqZZqjM' },
-        { name: 'Yung Lean', spotifyId: '73VMT96VrGukUa5FtQ8Vkd' },
-        { name: 'SOPHIE', spotifyId: '6W8Hqq1QJLCgpeQ7ywqJzH' },
-        { name: 'Shygirl', spotifyId: '0uE0HV1VyxpqJ0D4OX6XIy' },
-        { name: 'Big Thief', spotifyId: '5QdyldG4Fl4TPiOIeMNpBZ' },
-        { name: 'Squirrel Flower', spotifyId: '4KJEwH9Zq9HSvR8n0Rj0Vz' },
-        { name: 'Hand Habits', spotifyId: '4jP5dq6lGdQ8EhLfBjWADj' },
-        { name: 'Illuminati Hotties', spotifyId: '0fA2vcJVWVlHqumupKoSFX' },
-        { name: 'Speedy Ortiz', spotifyId: '4suzKXHLRNH8axEQx4wYgO' },
-        { name: 'Mannequin Pussy', spotifyId: '4HrkLxQHZ5MgLCz4qBf6Dw' },
-        { name: 'Diet Cig', spotifyId: '0xOeB16JDbBJBJKSdHbElT' },
-        { name: 'Bully', spotifyId: '6OQXjW2u9KJ8DxqgBqNx1q' },
-        { name: 'Hop Along', spotifyId: '4suzKXHLRNH8axEQx4wYgO' },
-        { name: 'Adult Mom', spotifyId: '4jP5dq6lGdQ8EhLfBjWADj' },
-        { name: 'Charly Bliss', spotifyId: '0fA2vcJVWVlHqumupKoSFX' },
-        { name: 'Remember Sports', spotifyId: '4jP5dq6lGdQ8EhLfBjWADj' },
-        { name: 'Feng Suave', spotifyId: '0Y4hwWDG4OUOHlrfqZZqjM' },
-        { name: 'Talinwya', spotifyId: '73VMT96VrGukUa5FtQ8Vkd' },
-        { name: 'The Weeknd', spotifyId: '1Xyo4u8uXC1ZmMpatF05PJ' },
-        { name: 'Drake', spotifyId: '3TVXtAsR1Inumwj472S9r4' }
+      // Simplified approach: Use artist names and search for them dynamically
+      const artistNames = [
+        'Bladee', 'Yung Lean', 'SOPHIE', 'Shygirl', 'Big Thief',
+        'Squirrel Flower', 'Hand Habits', 'Illuminati Hotties', 'Speedy Ortiz',
+        'Mannequin Pussy', 'Diet Cig', 'Bully', 'Hop Along', 'Adult Mom',
+        'Charly Bliss', 'Remember Sports', 'Feng Suave', 'Talinwya'
       ];
 
-      console.log(`🎯 Adding ${verifiedArtists.length} verified underground artists...`);
+      console.log(`🎯 Processing ${artistNames.length} underground artists by name...`);
 
-      for (const artistData of verifiedArtists) {
-        try {
-          console.log(`📝 Processing ${artistData.name}...`);
+    for (const artistName of artistNames) {
+      try {
+        console.log(`🔍 Searching for underground artist: ${artistName}...`);
 
-          const analysis = await analyzeUndergroundArtist(artistData.spotifyId);
-          if (analysis) {
-            analysis.name = artistData.name; // Ensure correct name
-            analysis.artistId = artistData.spotifyId;
+        // Search for artist on Spotify by name
+        const searchResults = await spotifyApi.searchArtists(artistName, { limit: 1 });
+        const artist = searchResults.body.artists.items[0];
 
-            await UndergroundArtist.findOneAndUpdate(
-              { artistId: artistData.spotifyId },
-              analysis,
-              { upsert: true, new: true }
-            );
+        if (artist) {
+          console.log(`✅ Found ${artist.name} on Spotify (ID: ${artist.id})`);
 
-            console.log(`✅ Added ${artistData.name}`);
-          } else {
-            console.log(`⚠️ Could not analyze ${artistData.name}`);
-          }
+          // Create basic artist data
+          const basicData = {
+            artistId: artist.id,
+            name: artist.name,
+            genres: artist.genres || [],
+            spotifyPopularity: artist.popularity,
+            followers: artist.followers.total,
+            imageUrl: artist.images?.[0]?.url || null,
+            monthlyListeners: Math.round(artist.popularity * 10000), // Rough estimate
+            score: Math.round((artist.popularity / 100) * 50 + 25), // Basic score
+            strengths: ['Underground credibility', 'Unique artistic vision'],
+            weaknesses: ['Limited mainstream appeal', 'Niche audience'],
+            socialSentiment: 0,
+            recentGrowth: 0,
+            lastUpdated: new Date()
+          };
 
-          // Rate limiting
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          await UndergroundArtist.findOneAndUpdate(
+            { artistId: artist.id },
+            basicData,
+            { upsert: true, new: true }
+          );
 
-        } catch (err) {
-          console.error(`❌ Error adding ${artistData.name}:`, err.message);
+          console.log(`💾 Added ${artist.name} to database`);
+        } else {
+          console.log(`❌ No Spotify data found for ${artistName}`);
         }
+
+        // Rate limiting
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+      } catch (err) {
+        console.error(`❌ Error processing ${artistName}:`, err.message);
       }
+    }
     }
 
     // Now update existing artists with fresh data
