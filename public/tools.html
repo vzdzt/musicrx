@@ -241,6 +241,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="script.js"></script>
 
     <script>
@@ -864,7 +865,12 @@ const BACKEND_URL = 'https://musicrx.app';
         });
 
         async function saveRatingCard() {
-            if (!window.currentAlbumData) return;
+            if (!window.currentAlbumData) {
+                alert('No album data available. Please rate an album first.');
+                return;
+            }
+
+            console.log('Saving rating card for:', window.currentAlbumData);
 
             // Show loading state
             const saveBtn = event.target;
