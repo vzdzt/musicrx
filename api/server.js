@@ -13,6 +13,7 @@ import axios from 'axios';
 import Sentiment from 'sentiment';
 import * as cheerio from 'cheerio';
 import { google } from 'googleapis';
+import { TwitterApi } from 'twitter-api-v2';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -925,6 +926,81 @@ app.get('/api/new-releases', async (req, res) => {
   } catch (err) {
     console.error('New releases error:', err);
     res.status(500).json({ error: 'Failed to fetch new releases' });
+  }
+});
+
+// X/Twitter sharing endpoint
+app.post('/api/share/:albumId', async (req, res) => {
+  try {
+    const albumId = req.params.albumId;
+
+    // Get album data
+    const album = await Album.findOne({ albumId });
+    if (!album) {
+      return res.status(404).json({ error: 'Album not found' });
+    }
+
+    // Check if image was uploaded
+    if (!req.file && !req.body.image) {
+      return res.status(400).json({ error: 'No image provided' });
+    }
+
+    // Initialize Twitter client
+    const twitterClient = new TwitterApi({
+      appKey: process.env.X_API_KEY,
+      appSecret: process.env.X_API_SECRET,
+      accessToken: process.env.X_ACCESS_TOKEN,
+      accessSecret: process.env.X_ACCESS_SECRET,
+    });
+
+    let mediaId = null;
+
+    // Upload image to Twitter
+    if (req.file) {
+      // If multer was used
+      const mediaData = req.file.buffer;
+      const mediaType = req.file.mimetype;
+
+      const mediaUpload = await twitterClient.v1.uploadMedia(mediaData, { mimeType: mediaType });
+      mediaId = mediaUpload;
+    } else if (req.body.image) {
+      // If base64 image data
+      const base64Data = req.body.image.replace(/^data:image\/png;base64,/, '');
+      const mediaData = Buffer.from(base64Data, 'base64');
+
+      const mediaUpload = await twitterClient.v1.uploadMedia(mediaData, { mimeType: 'image/png' });
+      mediaId = mediaUpload;
+    }
+
+    if (!mediaId) {
+      return res.status(500).json({ error: 'Failed to upload image to Twitter' });
+    }
+
+    // Create tweet text
+    const tweetText = `I rated "${album.title}" by ${album.artist} a ${album.score}/10 on MusicRx!\n\nHighlights: ${album.strengths.slice(0, 2).join(', ')}\n\n#MusicRx #AlbumReview`;
+
+    // Post tweet with image
+    const tweet = await twitterClient.v2.tweet({
+      text: tweetText,
+      media: {
+        media_ids: [mediaId]
+      }
+    });
+
+    console.log('Tweet posted successfully:', tweet.data.id);
+
+    res.json({
+      success: true,
+      tweetId: tweet.data.id,
+      tweetUrl: `https://twitter.com/i/status/${tweet.data.id}`
+    });
+
+  } catch (error) {
+    console.error('Twitter sharing error:', error);
+    res.status(500).json({
+      error: 'Failed to share to Twitter',
+      details: error.message
+    });
   }
 });
 
