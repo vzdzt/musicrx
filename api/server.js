@@ -741,6 +741,7 @@ app.get('/api/new-releases', async (req, res) => {
 
     // Try Spotify's new releases endpoint first
     try {
+      console.log('Trying Spotify new releases endpoint...');
       const newReleasesResponse = await spotifyApi.getNewReleases({
         limit: 20,
         offset: 0,
@@ -749,9 +750,14 @@ app.get('/api/new-releases', async (req, res) => {
 
       console.log(`Spotify new releases endpoint returned ${newReleasesResponse.body.albums.items.length} albums`);
 
+      if (newReleasesResponse.body.albums.items.length === 0) {
+        throw new Error('No albums returned from new releases endpoint');
+      }
+
       const newReleases = [];
       for (const album of newReleasesResponse.body.albums.items) {
         try {
+          console.log(`Getting details for album: ${album.name}`);
           // Get full album details
           const fullAlbum = await spotifyApi.getAlbum(album.id);
           const albumData = fullAlbum.body;
@@ -786,6 +792,7 @@ app.get('/api/new-releases', async (req, res) => {
 
     } catch (newReleasesErr) {
       console.error('Spotify new releases endpoint failed:', newReleasesErr.message);
+      console.error('Full error:', newReleasesErr);
       // Fall back to search approach
     }
 
