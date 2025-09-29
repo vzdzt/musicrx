@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Album schema
 const albumSchema = new mongoose.Schema({
