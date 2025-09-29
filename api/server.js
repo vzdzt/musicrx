@@ -1361,6 +1361,34 @@ app.post('/api/rescore-all', async (req, res) => {
   }
 });
 
+// Update all albums to reviewed status
+app.post('/api/update-all-reviewed', async (req, res) => {
+  try {
+    console.log('Updating all albums to reviewed status...');
+
+    const result = await Album.updateMany(
+      { status: { $ne: 'reviewed' } },
+      { status: 'reviewed' }
+    );
+
+    console.log(`Updated ${result.modifiedCount} albums to reviewed status`);
+
+    const totalReviewed = await Album.countDocuments({ status: 'reviewed' });
+    console.log(`Total reviewed albums: ${totalReviewed}`);
+
+    res.json({
+      success: true,
+      updated: result.modifiedCount,
+      totalReviewed,
+      message: `Updated ${result.modifiedCount} albums to reviewed status`
+    });
+
+  } catch (err) {
+    console.error('Update error:', err);
+    res.status(500).json({ error: 'Failed to update albums', details: err.message });
+  }
+});
+
 // Error handling middleware
 app.use((error, req, res, next) => {
   console.error('Unhandled error:', error);
