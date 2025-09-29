@@ -1956,6 +1956,108 @@ async function fetchLastFmArtistInfo(artistName) {
   }
 }
 
+// Twitter/X API Integration
+async function fetchTwitterUserTweets(username, maxResults = 10) {
+  try {
+    const bearerToken = process.env.X_BEARER_TOKEN;
+    if (!bearerToken) {
+      console.log('Twitter bearer token not configured, skipping...');
+      return [];
+    }
+
+    // First get user ID from username
+    const userResponse = await axios.get('https://api.twitter.com/2/users/by/username/' + username, {
+      headers: {
+        'Authorization': `Bearer ${bearerToken}`
+      },
+      timeout: 10000
+    });
+
+    const userId = userResponse.data.data.id;
+
+    // Then get recent tweets
+    const tweetsResponse = await axios.get(`https://api.twitter.com/2/users/${userId}/tweets`, {
+      headers: {
+        'Authorization': `Bearer ${bearerToken}`
+      },
+      params: {
+        max_results: maxResults,
+        'tweet.fields': 'created_at,public_metrics,text,entities',
+        'user.fields': 'username,name,profile_image_url,verified',
+        exclude: 'replies' // Only get original tweets, not replies
+      },
+      timeout: 10000
+    });
+
+    return tweetsResponse.data.data.map(tweet => ({
+      id: tweet.id,
+      text: tweet.text,
+      created_at: tweet.created_at,
+      username: username,
+      user: userResponse.data.data,
+      metrics: tweet.public_metrics,
+      entities: tweet.entities,
+      url: `https://twitter.com/${username}/status/${tweet.id}`,
+      source: 'Twitter',
+      category: 'music',
+      tags: ['twitter', 'music', username.toLowerCase()],
+      sentiment: 0, // Could add sentiment analysis later
+      engagement: tweet.public_metrics.like_count + tweet.public_metrics.retweet_count
+    }));
+
+  } catch (error) {
+    console.warn(`Twitter fetch error for @${username}:`, error.message);
+    return [];
+  }
+}
+
+// Fetch music news from Twitter accounts
+async function fetchTwitterMusicNews() {
+  try {
+    console.log('🐦 Fetching music news from Twitter...');
+
+    // List of major music news Twitter accounts (high-follower accounts)
+    const musicNewsAccounts = [
+      'billboard',        // 4.8M followers - Major charts
+      'Pitchfork',        // 1.2M followers - Indie/alternative
+      'RollingStone',     // 2.1M followers - Rock/legacy
+      'ComplexMusic',     // 1.8M followers - Hip-hop/R&B
+      'Stereogum',        // 400K followers - Indie
+      'TheNeedleDrop',    // 1.1M followers - Hip-hop reviews
+      'FADER',            // 800K followers - Culture/music
+      'NME',              // 1.5M followers - UK/Global
+      'kurrco',           // Music news updates
+      'raptv',            // Rap news
+      'akademiks'         // Hip-hop culture
+    ];
+
+    const allTweets = [];
+
+    // Fetch recent tweets from each account (limit to avoid rate limits)
+    for (const account of musicNewsAccounts.slice(0, 8)) { // Limit to 8 accounts to avoid rate limits
+      try {
+        const tweets = await fetchTwitterUserTweets(account, 3); // 3 tweets per account
+        allTweets.push(...tweets);
+
+        // Rate limiting
+        await new Promise(resolve => setTimeout(resolve, 500));
+      } catch (accountError) {
+        console.warn(`Failed to fetch tweets for @${account}:`, accountError.message);
+      }
+    }
+
+    // Sort by creation date (newest first)
+    allTweets.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+    console.log(`✅ Fetched ${allTweets.length} tweets from music news accounts`);
+    return allTweets;
+
+  } catch (error) {
+    console.error('Twitter music news fetch error:', error.message);
+    return [];
+  }
+}
+
 // Automated News Collection Functions
 
 // Fetch news from NewsAPI (requires API key)
@@ -2118,15 +2220,16 @@ async function collectDailyNews() {
   try {
     console.log('📰 Collecting daily music news...');
 
-    const [newsApiArticles, rssArticles, trendingArticles] = await Promise.all([
+    const [newsApiArticles, rssArticles, trendingArticles, twitterArticles] = await Promise.all([
       fetchNewsAPI(),
       fetchRSSNews(),
-      generateTrendingNews()
+      generateTrendingNews(),
+      fetchTwitterMusicNews()
     ]);
 
-    const allArticles = [...newsApiArticles, ...rssArticles, ...trendingArticles];
+    const allArticles = [...newsApiArticles, ...rssArticles, ...trendingArticles, ...twitterArticles];
 
-    console.log(`📊 Collected ${allArticles.length} articles (${newsApiArticles.length} NewsAPI, ${rssArticles.length} RSS, ${trendingArticles.length} trending)`);
+    console.log(`📊 Collected ${allArticles.length} articles (${newsApiArticles.length} NewsAPI, ${rssArticles.length} RSS, ${trendingArticles.length} trending, ${twitterArticles.length} Twitter)`);
 
     // Filter and deduplicate articles
     const uniqueArticles = allArticles.filter((article, index, self) =>
