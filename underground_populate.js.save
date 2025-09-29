@@ -1,8 +1,5 @@
+git add underground_populate.js && git commit -m "Fix Spotify API integration: add proper imports, dotenv config, and hardcoded credentials for testing" && git push origin main
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
-// Load environment variables
-dotenv.config();
 
 // Underground Artist schema
 const undergroundArtistSchema = new mongoose.Schema({
@@ -28,26 +25,19 @@ async function populateUndergroundRankings() {
     await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/musicrx');
     console.log('Connected to MongoDB for underground rankings');
 
-    // Use environment variables for credentials
-    const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
-    const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
-
-    if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET) {
-      console.error('❌ Spotify credentials not found in environment variables');
-      return;
-    }
-
-    console.log('Using Spotify credentials from environment...');
-
     // Import Spotify API
-    const { default: SpotifyWebApi } = await import('spotify-web-api-node');
-    const spotifyApi = new SpotifyWebApi({
-      clientId: SPOTIFY_CLIENT_ID,
-      clientSecret: SPOTIFY_CLIENT_SECRET
-    });
+const spotifyApi = new SpotifyWebApi({
+  clientId: '02bb0d690b6045ee877899ef8f6b67df',
+  clientSecret: '3b2858df7795428797ef7f86660b75c8'
+});
+
 
     // Authenticate Spotify
     let spotifyAuthenticated = false;
+    console.log('Checking Spotify credentials...');
+    console.log('Client ID:', process.env.SPOTIFY_CLIENT_ID ? 'Set' : 'NOT SET');
+    console.log('Client Secret:', process.env.SPOTIFY_CLIENT_SECRET ? 'Set' : 'NOT SET');
+
     try {
       const data = await spotifyApi.clientCredentialsGrant();
       spotifyApi.setAccessToken(data.body['access_token']);
@@ -55,22 +45,30 @@ async function populateUndergroundRankings() {
       console.log('✅ Spotify authenticated successfully!');
     } catch (authError) {
       console.log('❌ Spotify authentication failed!');
-      console.log('Error:', authError.message);
+      console.log('Error details:', authError.message);
+      console.log('Status code:', authError.statusCode);
+      if (authError.body) {
+        console.log('Error body:', authError.body);
+      }
       console.log('Cannot proceed with real data - all artists will be skipped');
     }
 
-    // List of underground artists to analyze (strictly underground only - no mainstream artists)
+    // List of underground artists to analyze
     const undergroundArtists = [
-      // Pure underground artists only - removed mainstream artists like Kanye West
-      'osamason', 'nettspend', 'sk8star', 'summrs', 'molly santana',
+      // Original artists
+      'osamason', 'nettspend', 'yeat', 'sk8star', 'summrs', 'molly santana',
       'veeze', 'lucki', 'homixide gang', 'otoboke beaver', 'bladee', 'che',
-      'brennan jones', '2hollis', 'destroy lonely', 'ken carson',
+      'brennan jones', '2hollis', 'destroy lonely', 'ken carson', 'kayne west',
+      'playboi carti', 'travis scott', 'lil uzi vert', 'future', 'young thug',
+      'gunna', 'lil baby', 'rod wave', 'the weeknd', 'drake', 'kanye west',
+
+      // Additional underground/emerging artists from user list
       'babytron', 'yung lean', 'shygirl', 'lee gamble', 'sOPHIE', 'Holly Herndon',
       'Jlin', 'Arca', 'Actress', 'southsidesilhouette', 'diorvsyou', 'untiljapan',
       'nine vicious', 'diamond*', 'tezzus', '1300saint', 'unitus', 'dellyvadova',
       'feng', 'rollin thrax', 'pradabagshawty', 'babystaydown', 'apollored1',
       'glokk40spaz', '9geek', 'babybartier', 'tali the one', 'sixbill', 'kels!',
-      'lil2posh', 'thirteendegrees', 'ladé', 'nosaint',
+      'lil2posh', 'thirteendegrees', 'seventhirtyatmorning', 'ladé', 'nosaint',
       '6evermir', 'ja66', 'project4play', 'velarian', 'kioracks', 'yung fazo',
       'pz\'', 'kikotali', 'lil xt', 'verci', 'nate x', 'protect', 'bandanna$saint',
       'kankan', 'bleedlivin', 'eternalvail', '1oneam', 'okaymar', 'sneak',
@@ -125,7 +123,7 @@ async function populateUndergroundRankings() {
 
         if (analysis) {
           analyzedArtists.push(analysis);
-          console.log(`✓ Analyzed ${artistName}: ${analysis.monthlyListeners.toLocaleString()} monthly listeners`);
+          console.log(`✓ Analyzed ${artistName}: ${analysis.score}/100 (${analysis.monthlyListeners.toLocaleString()} monthly listeners)`);
         }
 
         // Rate limiting to avoid API limits (only when using real API)
@@ -139,12 +137,12 @@ async function populateUndergroundRankings() {
       }
     }
 
-    // Sort by monthly listeners (descending)
-    analyzedArtists.sort((a, b) => b.monthlyListeners - a.monthlyListeners);
+    // Sort by score and assign rankings
+    analyzedArtists.sort((a, b) => b.score - a.score);
 
     console.log('\nTop 10 Underground Artists:');
     analyzedArtists.slice(0, 10).forEach((artist, index) => {
-      console.log(`${index + 1}. ${artist.name} (${artist.monthlyListeners.toLocaleString()} monthly listeners) - ${artist.genres.join(', ')}`);
+      console.log(`${index + 1}. ${artist.name} (${artist.score}/100) - ${artist.genres.join(', ')}`);
     });
 
     // Save to database
@@ -445,3 +443,6 @@ function generateMockUndergroundData(artistName) {
 }
 
 populateUndergroundRankings();
+cd /Users/veazy/Projects/musicrx && npm test
+git show HEAD~1:public/style.css | tail -200
+
