@@ -2016,19 +2016,79 @@ async function fetchTwitterMusicNews() {
   try {
     console.log('🐦 Fetching music news from Twitter...');
 
-    // List of major music news Twitter accounts (high-follower accounts)
+    // List of major music news Twitter accounts (>4K followers - high engagement accounts)
     const musicNewsAccounts = [
-      'billboard',        // 4.8M followers - Major charts
-      'Pitchfork',        // 1.2M followers - Indie/alternative
-      'RollingStone',     // 2.1M followers - Rock/legacy
-      'ComplexMusic',     // 1.8M followers - Hip-hop/R&B
-      'Stereogum',        // 400K followers - Indie
-      'TheNeedleDrop',    // 1.1M followers - Hip-hop reviews
-      'FADER',            // 800K followers - Culture/music
-      'NME',              // 1.5M followers - UK/Global
+      // Major Publications (Millions of followers)
+      'billboard',        // 4.8M - Charts & industry leader
+      'RollingStone',     // 2.1M - Rock & culture legacy
+      'NME',              // 1.5M - UK/Global music news
+      'Pitchfork',        // 1.2M - Indie/alternative authority
+      'ComplexMusic',     // 1.8M - Hip-hop/R&B focus
+      'TheNeedleDrop',    // 1.1M - Hip-hop reviews & commentary
+
+      // Established Music Media (100K-800K followers)
+      'Stereogum',        // 400K - Indie rock/alternative
+      'FADER',            // 800K - Culture & music trends
+      'Spin',             // 200K - Alternative music
+      'DIYmag',           // 150K - Indie/alt coverage
+      'QMagazine',        // 100K - Rock music authority
+      'Uncut',            // 80K - Classic rock reviews
+      'Mojo',             // 70K - Rock music magazine
+      'KerrangMag',       // 200K - Metal/rock
+      'MetalHammer',      // 150K - Metal music
+      'RockSound',        // 100K - Rock/alternative
+      'PlanetRockRadio',  // 50K - Rock radio
+
+      // Hip-Hop & Rap Focused (High engagement)
       'kurrco',           // Music news updates
-      'raptv',            // Rap news
-      'akademiks'         // Hip-hop culture
+      'raptv',            // Rap news & culture
+      'akademiks',        // Hip-hop culture & news
+      'HipHopDX',         // 300K - Hip-hop news
+      'AllHipHop',        // 200K - Hip-hop culture
+      'RapRadar',         // 150K - Rap industry news
+      '2DOPEBOYZ',        // 100K - Hip-hop media
+      'MassAppeal',       // 80K - Hip-hop culture
+      'NoiseyMusic',      // 150K - Music culture
+
+      // Music Business & Industry
+      'MusicBusinessUK',  // 50K - UK music industry
+      'MusicBizGlobal',   // 30K - Global music business
+      'MusicTechNews',    // 25K - Music technology
+      'MusicLawyer',      // 15K - Music industry law
+
+      // Festival & Live Music
+      'Coachella',        // 1.2M - Major festival
+      'Glastonbury',      // 800K - Legendary festival
+      'ReadingFestival',  // 200K - Major UK festival
+      'DownloadFest',     // 50K - Metal festival
+
+      // Record Labels & Distributors
+      'UMG',              // 500K - Universal Music Group
+      'SonyMusic',        // 800K - Sony Music Entertainment
+      'WarnerRecords',    // 300K - Warner Music
+      'AtlanticRecords',  // 200K - Atlantic Records
+      'DefJamRecords',    // 150K - Def Jam
+      'RocNation',        // 300K - Roc Nation
+      'Interscope',       // 100K - Interscope Records
+
+      // Music Streaming & Tech
+      'Spotify',          // 8M - Major streaming platform
+      'AppleMusic',       // 2M - Apple Music
+      'TIDAL',            // 500K - High-fidelity streaming
+      'SoundCloud',       // 2M - Music sharing platform
+      'Bandcamp',         // 300K - Independent music
+
+      // Music Production & Gear
+      'Ableton',          // 200K - Music production software
+      'NativeInstruments', // 150K - Music gear
+      'Focusrite',        // 50K - Audio interfaces
+      'KRKsystems',       // 20K - Studio monitors
+
+      // Music Education & Culture
+      'BerkleeOnline',    // 50K - Music education
+      'NAMM',             // 100K - Music industry association
+      'ASCAP',            // 50K - Music licensing
+      'BMI_music',        // 30K - Music licensing
     ];
 
     const allTweets = [];
