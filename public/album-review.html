@@ -20,14 +20,14 @@
         }
 
         .album-cover {
-            width: 300px;
-            height: 300px;
-            border-radius: 15px;
+            width: 350px;
+            height: 350px;
+            border-radius: 20px;
             object-fit: cover;
-            margin: 0 auto 1.5rem;
+            margin: 2rem auto 1rem;
             display: block;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border: 3px solid rgba(255,255,255,0.8);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 4px solid var(--border-color);
             position: relative;
             z-index: 1;
         }
@@ -347,9 +347,14 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('reviewContent').style.display = 'block';
 
+            console.log('Displaying album:', album); // Debug log
+
             // Update album info
             if (album.imageUrl) {
                 document.getElementById('albumCover').src = album.imageUrl;
+                console.log('Album image URL:', album.imageUrl);
+            } else {
+                console.log('No album image URL found');
             }
             document.getElementById('albumTitle').textContent = album.title;
             document.getElementById('albumArtist').textContent = `by ${album.artist}`;
@@ -358,15 +363,27 @@
 
             // Update highlights
             const highlightsList = document.getElementById('highlightsList');
-            highlightsList.innerHTML = album.strengths.map(strength =>
-                `<li>${strength}</li>`
-            ).join('');
+            if (album.strengths && album.strengths.length > 0) {
+                highlightsList.innerHTML = album.strengths.map(strength =>
+                    `<li>${strength}</li>`
+                ).join('');
+                console.log('Highlights loaded:', album.strengths.length, 'items');
+            } else {
+                highlightsList.innerHTML = '<li>No highlights available</li>';
+                console.log('No highlights found in album data');
+            }
 
             // Update misses
             const missesList = document.getElementById('missesList');
-            missesList.innerHTML = album.weaknesses.map(weakness =>
-                `<li>${weakness}</li>`
-            ).join('');
+            if (album.weaknesses && album.weaknesses.length > 0) {
+                missesList.innerHTML = album.weaknesses.map(weakness =>
+                    `<li>${weakness}</li>`
+                ).join('');
+                console.log('Misses loaded:', album.weaknesses.length, 'items');
+            } else {
+                missesList.innerHTML = '<li>No misses available</li>';
+                console.log('No misses found in album data');
+            }
         }
 
         async function shareToX() {
@@ -444,13 +461,20 @@
         }
 
         async function generateRatingCard() {
-            // Get current theme colors
-            const isDarkTheme = document.body.classList.contains('dark-theme') ||
-                               getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() === '#ffffff';
-            const primaryColor = isDarkTheme ? '#ffffff' : '#f97316';
+            // Get current theme colors - improved detection
+            const computedStyle = getComputedStyle(document.documentElement);
+            const primaryColorValue = computedStyle.getPropertyValue('--primary').trim();
+            const backgroundColorValue = computedStyle.getPropertyValue('--background').trim();
+
+            // Check if we're in dark theme (primary is white or background is dark)
+            const isDarkTheme = primaryColorValue === '#ffffff' ||
+                               backgroundColorValue === '#000000' ||
+                               document.body.classList.contains('dark-theme');
+
+            const primaryColor = isDarkTheme ? '#ffffff' : '#000000';
             const bgColor = isDarkTheme ? '#000000' : '#ffffff';
-            const textColor = isDarkTheme ? '#ffffff' : '#1f2937';
-            const secondaryColor = isDarkTheme ? '#9ca3af' : '#6b7280';
+            const textColor = isDarkTheme ? '#ffffff' : '#000000';
+            const secondaryColor = isDarkTheme ? '#cccccc' : '#666666';
 
             // Create a temporary div with the rating card design
             const cardDiv = document.createElement('div');
