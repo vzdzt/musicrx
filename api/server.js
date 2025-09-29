@@ -539,23 +539,23 @@ async function getBillboardRank(title, artist) {
   return Math.floor(Math.random() * 200) + 1; // Mock rank 1-200
 }
 
-// Fetch and review album
+// Fetch and review album with comprehensive 7-API data
 async function reviewAlbum(albumId) {
   try {
-    console.log(`Reviewing album: ${albumId}`);
+    console.log(`🔍 Reviewing album with 7-API data: ${albumId}`);
 
     // First, try to get album from Spotify
     let album;
     try {
       album = await spotifyApi.getAlbum(albumId);
-      console.log(`Found album: ${album.body.name} by ${album.body.artists[0].name}`);
+      console.log(`✅ Found album: ${album.body.name} by ${album.body.artists[0].name}`);
     } catch (spotifyErr) {
-      console.error('Spotify API error:', spotifyErr.message);
+      console.error('❌ Spotify API error:', spotifyErr.message);
       return { status: 'error', message: `Invalid album ID or Spotify API error: ${spotifyErr.message}` };
     }
 
     const releaseDate = new Date(album.body.release_date);
-    const today = new Date(); // Use real date in production
+    const today = new Date();
     const daysSinceRelease = Math.floor((today - releaseDate) / (1000 * 60 * 60 * 24));
 
     if (daysSinceRelease < 7) {
@@ -565,34 +565,103 @@ async function reviewAlbum(albumId) {
       };
     }
 
-    const popularity = album.body.popularity;
-    const streams = Math.round(popularity / 10);
+    const artistName = album.body.artists[0].name;
+    const albumTitle = album.body.name;
 
-    // Get real data from APIs
-    const billboardRank = await getBillboardRank(album.body.name, album.body.artists[0].name) || 100;
-    const billboard = Math.max(0, 10 - (billboardRank / 20));
-    const sales = billboard * 0.9;
+    console.log(`🎵 Gathering data from 7 APIs for: ${albumTitle} by ${artistName}`);
 
-    // Get Pitchfork and Fantano scores
-    const pitchforkScore = await scrapePitchfork(album.body.name, album.body.artists[0].name) || 7.5;
-    const fantanoScore = await getFantanoReview(album.body.name, album.body.artists[0].name) || 8.0;
+    // 1. SPOTIFY DATA (18% weight)
+    const spotifyPopularity = album.body.popularity;
+    const spotifyStreams = Math.round(spotifyPopularity / 10); // Estimate streams from popularity
+    console.log(`   Spotify: Popularity ${spotifyPopularity}, Estimated streams: ${spotifyStreams}`);
 
-    // Get Discogs data
-    const discogsData = await getDiscogsData(album.body.name, album.body.artists[0].name);
-    const discogsRating = discogsData?.rating ? (discogsData.rating / 5) * 10 : 7.0; // Convert 5-point scale to 10-point
+    // 2. DISCOGS DATA (15% weight)
+    const discogsData = await getDiscogsData(albumTitle, artistName);
+    const discogsRating = discogsData?.rating ? (discogsData.rating / 5) * 10 : 7.0;
+    const discogsVotes = discogsData?.votes || 0;
+    console.log(`   Discogs: Rating ${discogsRating}/10 (${discogsVotes} votes)`);
 
-    // Mock sentiment for now
-    const normalizedSentiment = 7.0;
+    // 3. PITCHFORK SCORE (12% weight)
+    const pitchforkScore = await scrapePitchfork(albumTitle, artistName) || 7.5;
+    console.log(`   Pitchfork: ${pitchforkScore}/10`);
 
-    // Calculate weighted score including Discogs
-    const avgReview = (pitchforkScore + fantanoScore + discogsRating) / 3;
+    // 4. LAST.FM DATA (12% weight)
+    let lastFmStats = 7.0;
+    try {
+      const lastFmInfo = await fetchLastFmArtistInfo(artistName);
+      if (lastFmInfo?.stats) {
+        // Convert Last.fm listeners/playcount to a 0-10 score
+        const listenersScore = Math.min(10, lastFmInfo.stats.listeners / 1000000); // 1M listeners = 10 points
+        const playcountScore = Math.min(10, lastFmInfo.stats.playcount / 100000000); // 100M plays = 10 points
+        lastFmStats = (listenersScore + playcountScore) / 2;
+        console.log(`   Last.fm: ${lastFmInfo.stats.listeners.toLocaleString()} listeners, ${lastFmInfo.stats.playcount.toLocaleString()} plays`);
+      }
+    } catch (lastFmErr) {
+      console.log(`   Last.fm: Data unavailable, using default score`);
+    }
+
+    // 5. MUSICBRAINZ VERIFICATION (12% weight)
+    let musicBrainzScore = 7.0;
+    try {
+      const mbArtists = await searchMusicBrainzArtist(artistName);
+      if (mbArtists.length > 0) {
+        const mbReleases = await searchMusicBrainzRelease(albumTitle, artistName);
+        // Higher score if we find matching releases in MusicBrainz
+        musicBrainzScore = mbReleases.length > 0 ? 9.0 : 6.0;
+        console.log(`   MusicBrainz: Found ${mbReleases.length} matching releases`);
+      }
+    } catch (mbErr) {
+      console.log(`   MusicBrainz: Verification unavailable`);
+    }
+
+    // 6. DEEZER CHART DATA (11% weight)
+    let deezerScore = 7.0;
+    try {
+      const deezerArtists = await searchDeezerArtist(artistName);
+      if (deezerArtists.length > 0) {
+        const topArtist = deezerArtists[0];
+        // Use Deezer fan count as popularity indicator
+        deezerScore = Math.min(10, Math.max(4, topArtist.nb_fan / 100000)); // 100K fans = 10 points
+        console.log(`   Deezer: ${topArtist.nb_fan.toLocaleString()} fans`);
+      }
+    } catch (deezerErr) {
+      console.log(`   Deezer: Chart data unavailable`);
+    }
+
+    // 7. NEWS SENTIMENT (10% weight)
+    let newsSentiment = 7.0;
+    try {
+      // Search for recent news about this artist/album
+      const newsArticles = await NewsArticle.find({
+        $or: [
+          { title: { $regex: artistName, $options: 'i' } },
+          { content: { $regex: artistName, $options: 'i' } }
+        ],
+        publishedAt: { $gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) } // Last 30 days
+      }).limit(5);
+
+      if (newsArticles.length > 0) {
+        // Calculate average sentiment from recent news
+        const avgSentiment = newsArticles.reduce((sum, article) => sum + (article.sentiment || 0), 0) / newsArticles.length;
+        newsSentiment = Math.max(1, Math.min(10, 7 + (avgSentiment * 3))); // Convert -1/+1 to roughly 4-10
+        console.log(`   News: ${newsArticles.length} articles, avg sentiment: ${avgSentiment.toFixed(2)}`);
+      }
+    } catch (newsErr) {
+      console.log(`   News: Sentiment analysis unavailable`);
+    }
+
+    // Calculate comprehensive score with 7-API data
     const score = (
-      0.25 * streams +
-      0.2 * sales +
-      0.15 * billboard +
-      0.25 * avgReview +
-      0.15 * normalizedSentiment
+      0.18 * spotifyStreams +      // Spotify streaming data
+      0.15 * discogsRating +       // Discogs critic ratings
+      0.12 * pitchforkScore +      // Pitchfork professional reviews
+      0.12 * lastFmStats +         // Last.fm global listening stats
+      0.12 * musicBrainzScore +    // MusicBrainz metadata verification
+      0.11 * deezerScore +         // Deezer European charts
+      0.10 * newsSentiment         // News sentiment analysis
     ).toFixed(1);
+
+    console.log(`🎯 Final score: ${score}/10 (from 7 APIs)`);
 
     const strengths = [];
     const weaknesses = [];
