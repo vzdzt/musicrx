@@ -461,20 +461,13 @@
         }
 
         async function generateRatingCard() {
-            // Get current theme colors - improved detection
-            const computedStyle = getComputedStyle(document.documentElement);
-            const primaryColorValue = computedStyle.getPropertyValue('--primary').trim();
-            const backgroundColorValue = computedStyle.getPropertyValue('--background').trim();
-
-            // Check if we're in dark theme (primary is white or background is dark)
-            const isDarkTheme = primaryColorValue === '#ffffff' ||
-                               backgroundColorValue === '#000000' ||
-                               document.body.classList.contains('dark-theme');
-
-            const primaryColor = isDarkTheme ? '#ffffff' : '#000000';
-            const bgColor = isDarkTheme ? '#000000' : '#ffffff';
-            const textColor = isDarkTheme ? '#ffffff' : '#000000';
-            const secondaryColor = isDarkTheme ? '#cccccc' : '#666666';
+                // Get computed theme colors (html2canvas doesn't support CSS variables)
+                const computedStyle = getComputedStyle(document.documentElement);
+                const cardBackground = computedStyle.getPropertyValue('--card-background').trim() || '#ffffff';
+                const borderColor = computedStyle.getPropertyValue('--border-color').trim() || '#e5e7eb';
+                const primaryColor = computedStyle.getPropertyValue('--primary').trim() || '#000000';
+                const textColor = computedStyle.getPropertyValue('--text-color').trim() || '#000000';
+                const secondaryColor = computedStyle.getPropertyValue('--secondary').trim() || '#666666';
 
             // Create a temporary div with the rating card design
             const cardDiv = document.createElement('div');
@@ -706,13 +699,13 @@
             // Add to DOM temporarily for html2canvas
             document.body.appendChild(cardDiv);
 
-            // Generate canvas
-            const canvas = await html2canvas(cardDiv, {
-                width: 1200,
-                height: 675,
-                backgroundColor: null,
-                scale: 1
-            });
+                // Generate canvas
+                const canvas = await html2canvas(cardDiv, {
+                    width: 1200,
+                    height: 675,
+                    backgroundColor: cardBackground,
+                    scale: 1
+                });
 
             // Remove from DOM
             document.body.removeChild(cardDiv);

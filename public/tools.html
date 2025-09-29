@@ -879,7 +879,15 @@ const BACKEND_URL = 'https://musicrx.app';
             saveBtn.disabled = true;
 
             try {
-                // Create exact news-style rating card using news.html CSS
+                // Get computed theme colors (html2canvas doesn't support CSS variables)
+                const computedStyle = getComputedStyle(document.documentElement);
+                const cardBackground = computedStyle.getPropertyValue('--card-background').trim() || '#ffffff';
+                const borderColor = computedStyle.getPropertyValue('--border-color').trim() || '#e5e7eb';
+                const primaryColor = computedStyle.getPropertyValue('--primary').trim() || '#000000';
+                const textColor = computedStyle.getPropertyValue('--text-color').trim() || '#000000';
+                const secondaryColor = computedStyle.getPropertyValue('--secondary').trim() || '#666666';
+
+                // Create exact news-style rating card using computed colors
                 const cardDiv = document.createElement('div');
                 cardDiv.className = 'news-item';
                 cardDiv.style.width = '100%';
@@ -895,9 +903,9 @@ const BACKEND_URL = 'https://musicrx.app';
                 titleCard.style.display = 'flex';
                 titleCard.style.alignItems = 'center';
                 titleCard.style.justifyContent = 'center';
-                titleCard.style.background = 'var(--card-background)';
+                titleCard.style.background = cardBackground;
                 titleCard.style.backdropFilter = 'blur(15px)';
-                titleCard.style.border = '2px solid var(--border-color)';
+                titleCard.style.border = `2px solid ${borderColor}`;
                 titleCard.style.borderBottom = 'none';
                 titleCard.style.borderRadius = '15px 15px 0 0';
                 titleCard.style.marginBottom = '0';
@@ -910,8 +918,8 @@ const BACKEND_URL = 'https://musicrx.app';
                 titleH2.style.lineHeight = '1.2';
                 titleH2.style.fontFamily = 'Syncopate, sans-serif';
                 titleH2.style.textTransform = 'uppercase';
-                titleH2.style.color = 'var(--primary)';
-                titleH2.style.textShadow = '0 0 10px var(--glow)';
+                titleH2.style.color = primaryColor;
+                titleH2.style.textShadow = `0 0 10px ${primaryColor}40`;
                 titleH2.textContent = `${window.currentAlbumData.title} - ${window.currentAlbumData.artist} (${window.currentAlbumData.score}/10)`;
 
                 titleCard.appendChild(titleH2);
@@ -921,9 +929,9 @@ const BACKEND_URL = 'https://musicrx.app';
                 const contentCard = document.createElement('div');
                 contentCard.className = 'news-content-card';
                 contentCard.style.padding = '1.5rem';
-                contentCard.style.background = 'var(--card-background)';
+                contentCard.style.background = cardBackground;
                 contentCard.style.backdropFilter = 'blur(15px)';
-                contentCard.style.border = '2px solid var(--border-color)';
+                contentCard.style.border = `2px solid ${borderColor}`;
                 contentCard.style.borderTop = 'none';
                 contentCard.style.borderRadius = '0 0 15px 15px';
                 contentCard.style.marginTop = '0';
@@ -988,7 +996,7 @@ const BACKEND_URL = 'https://musicrx.app';
                 const canvas = await html2canvas(cardDiv, {
                     width: 800,
                     height: 600,
-                    backgroundColor: 'var(--card-background)',
+                    backgroundColor: cardBackground,
                     scale: 1
                 });
 
