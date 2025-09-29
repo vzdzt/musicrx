@@ -33,14 +33,23 @@ async function populateUndergroundRankings() {
 
     // Authenticate Spotify
     let spotifyAuthenticated = false;
+    console.log('Checking Spotify credentials...');
+    console.log('Client ID:', process.env.SPOTIFY_CLIENT_ID ? 'Set' : 'NOT SET');
+    console.log('Client Secret:', process.env.SPOTIFY_CLIENT_SECRET ? 'Set' : 'NOT SET');
+
     try {
       const data = await spotifyApi.clientCredentialsGrant();
       spotifyApi.setAccessToken(data.body['access_token']);
       spotifyAuthenticated = true;
-      console.log('Spotify authenticated for underground rankings');
+      console.log('✅ Spotify authenticated successfully!');
     } catch (authError) {
-      console.log('Spotify authentication failed, falling back to mock data:', authError.message);
-      console.log('Continuing with mock data for rankings...');
+      console.log('❌ Spotify authentication failed!');
+      console.log('Error details:', authError.message);
+      console.log('Status code:', authError.statusCode);
+      if (authError.body) {
+        console.log('Error body:', authError.body);
+      }
+      console.log('Cannot proceed with real data - all artists will be skipped');
     }
 
     // List of underground artists to analyze
