@@ -727,10 +727,33 @@ app.get('/api/all-2025-albums', async (req, res) => {
     const startOfYear = new Date(currentYear, 0, 1);
     const endOfYear = new Date(currentYear, 11, 31, 23, 59, 59);
 
-    const allAlbums = await Album.find({
-      status: 'reviewed',
-      releaseDate: { $gte: startOfYear, $lte: endOfYear }
-    }).sort({ score: -1 });
+    // Group by albumId and get the highest rated version for each album (no duplicates)
+    const pipeline = [
+      {
+        $match: {
+          status: 'reviewed',
+          releaseDate: { $gte: startOfYear, $lte: endOfYear }
+        }
+      },
+      {
+        $group: {
+          _id: '$albumId',
+          album: { $first: '$$ROOT' },
+          maxScore: { $max: '$score' }
+        }
+      },
+      {
+        $sort: { maxScore: -1 }
+      }
+    ];
+
+    const groupedResults = await Album.aggregate(pipeline);
+
+    // Format the results
+    const allAlbums = groupedResults.map(result => ({
+      ...result.album,
+      score: result.maxScore
+    }));
 
     res.json(allAlbums);
   } catch (err) {
@@ -742,9 +765,35 @@ app.get('/api/all-2025-albums', async (req, res) => {
 // All-time rankings endpoint
 app.get('/api/all-time-rankings', async (req, res) => {
   try {
-    const allTimeRankings = await Album.find({
-      status: 'reviewed'
-    }).sort({ score: -1 }).limit(100);
+    // Group by albumId and get the highest rated version for each album (no duplicates)
+    const pipeline = [
+      {
+        $match: {
+          status: 'reviewed'
+        }
+      },
+      {
+        $group: {
+          _id: '$albumId',
+          album: { $first: '$$ROOT' },
+          maxScore: { $max: '$score' }
+        }
+      },
+      {
+        $sort: { maxScore: -1 }
+      },
+      {
+        $limit: 100
+      }
+    ];
+
+    const groupedResults = await Album.aggregate(pipeline);
+
+    // Format the results
+    const allTimeRankings = groupedResults.map(result => ({
+      ...result.album,
+      score: result.maxScore
+    }));
 
     res.json(allTimeRankings);
   } catch (err) {
