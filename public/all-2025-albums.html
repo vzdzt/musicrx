@@ -118,6 +118,33 @@
             color: var(--text-color);
             margin-top: 0.5rem;
         }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--card-background);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .nav-button.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -148,6 +175,11 @@
     <div class="container">
         <h1 class="glitch" data-text="2025 ALBUM OF THE YEAR" style="margin-top: 120px; margin-bottom: 1rem;">2025 ALBUM OF THE YEAR</h1>
         <p style="color: var(--text-color); margin-bottom: 2rem;">Complete rankings of all major 2025 albums rated by our automated system</p>
+
+        <div class="nav-buttons">
+            <a href="all-2025-albums.html" class="nav-button active">2025 Rankings</a>
+            <a href="all-time-rankings.html" class="nav-button">All-Time Rankings</a>
+        </div>
 
         <div id="stats" class="stats">
             <h2><i class="fas fa-chart-bar"></i> Statistics</h2>
