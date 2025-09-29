@@ -14,7 +14,7 @@ import Sentiment from 'sentiment';
 import * as cheerio from 'cheerio';
 import { google } from 'googleapis';
 import { TwitterApi } from 'twitter-api-v2';
-import Discogs from 'disconnect';
+// import Discogs from 'disconnect'; // Temporarily disabled
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -99,11 +99,11 @@ async function ensureSpotifyAuth() {
 
 authenticateSpotify();
 
-// Discogs API setup
-const discogsClient = new Discogs.Client({
-  consumerKey: process.env.DISCOGS_API_KEY,
-  consumerSecret: process.env.DISCOGS_API_SECRET
-});
+// Discogs API setup (temporarily disabled)
+// const discogsClient = new Discogs.Client({
+//   consumerKey: process.env.DISCOGS_API_KEY,
+//   consumerSecret: process.env.DISCOGS_API_SECRET
+// });
 
 // Get Discogs data for an album
 async function getDiscogsData(title, artist) {
@@ -517,9 +517,10 @@ async function reviewAlbum(albumId) {
     const pitchforkScore = await scrapePitchfork(album.body.name, album.body.artists[0].name) || 7.5;
     const fantanoScore = await getFantanoReview(album.body.name, album.body.artists[0].name) || 8.0;
 
-    // Get Discogs data
-    const discogsData = await getDiscogsData(album.body.name, album.body.artists[0].name);
-    const discogsRating = discogsData?.rating ? (discogsData.rating / 5) * 10 : 7.0; // Convert 5-point scale to 10-point
+    // Get Discogs data (temporarily disabled)
+    // const discogsData = await getDiscogsData(album.body.name, album.body.artists[0].name);
+    // const discogsRating = discogsData?.rating ? (discogsData.rating / 5) * 10 : 7.0; // Convert 5-point scale to 10-point
+    const discogsRating = 7.0; // Temporary fallback
 
     // Mock sentiment for now
     const normalizedSentiment = 7.0;
