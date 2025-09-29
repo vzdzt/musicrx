@@ -1,4 +1,8 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 // Underground Artist schema
 const undergroundArtistSchema = new mongoose.Schema({
@@ -24,19 +28,21 @@ async function populateUndergroundRankings() {
     await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/musicrx');
     console.log('Connected to MongoDB for underground rankings');
 
+    // Hardcode credentials for now to ensure they work
+    const SPOTIFY_CLIENT_ID = '02bb0d690b6045ee877899ef8f6b67df';
+    const SPOTIFY_CLIENT_SECRET = '3b2858df7795428797ef7f86660b75c8';
+
+    console.log('Using hardcoded Spotify credentials...');
+
     // Import Spotify API
-    const SpotifyWebApi = (await import('spotify-web-api-node')).default;
+    const { default: SpotifyWebApi } = await import('spotify-web-api-node');
     const spotifyApi = new SpotifyWebApi({
-      clientId: process.env.SPOTIFY_CLIENT_ID,
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET
+      clientId: SPOTIFY_CLIENT_ID,
+      clientSecret: SPOTIFY_CLIENT_SECRET
     });
 
     // Authenticate Spotify
     let spotifyAuthenticated = false;
-    console.log('Checking Spotify credentials...');
-    console.log('Client ID:', process.env.SPOTIFY_CLIENT_ID ? 'Set' : 'NOT SET');
-    console.log('Client Secret:', process.env.SPOTIFY_CLIENT_SECRET ? 'Set' : 'NOT SET');
-
     try {
       const data = await spotifyApi.clientCredentialsGrant();
       spotifyApi.setAccessToken(data.body['access_token']);
@@ -44,22 +50,16 @@ async function populateUndergroundRankings() {
       console.log('✅ Spotify authenticated successfully!');
     } catch (authError) {
       console.log('❌ Spotify authentication failed!');
-      console.log('Error details:', authError.message);
-      console.log('Status code:', authError.statusCode);
-      if (authError.body) {
-        console.log('Error body:', authError.body);
-      }
+      console.log('Error:', authError.message);
       console.log('Cannot proceed with real data - all artists will be skipped');
     }
 
-    // List of underground artists to analyze
+    // List of underground artists to analyze (strictly underground only - no mainstream artists)
     const undergroundArtists = [
-      // Original artists
-      'osamason', 'nettspend', 'yeat', 'sk8star', 'summrs', 'molly santana',
+      // Pure underground artists only
+      'osamason', 'nettspend', 'sk8star', 'summrs', 'molly santana',
       'veeze', 'lucki', 'homixide gang', 'otoboke beaver', 'bladee', 'che',
-      'brennan jones', '2hollis', 'destroy lonely', 'ken carson', 'kayne west',
-      'playboi carti', 'travis scott', 'lil uzi vert', 'future', 'young thug',
-      'gunna', 'lil baby', 'rod wave', 'the weeknd', 'drake', 'kanye west',
+      'brennan jones', '2hollis', 'destroy lonely', 'ken carson',
 
       // Additional underground/emerging artists from user list
       'babytron', 'yung lean', 'shygirl', 'lee gamble', 'sOPHIE', 'Holly Herndon',
@@ -122,7 +122,7 @@ async function populateUndergroundRankings() {
 
         if (analysis) {
           analyzedArtists.push(analysis);
-          console.log(`✓ Analyzed ${artistName}: ${analysis.score}/100 (${analysis.monthlyListeners.toLocaleString()} monthly listeners)`);
+          console.log(`✓ Analyzed ${artistName}: ${analysis.monthlyListeners.toLocaleString()} monthly listeners`);
         }
 
         // Rate limiting to avoid API limits (only when using real API)
@@ -136,12 +136,12 @@ async function populateUndergroundRankings() {
       }
     }
 
-    // Sort by score and assign rankings
-    analyzedArtists.sort((a, b) => b.score - a.score);
+    // Sort by monthly listeners (descending)
+    analyzedArtists.sort((a, b) => b.monthlyListeners - a.monthlyListeners);
 
     console.log('\nTop 10 Underground Artists:');
     analyzedArtists.slice(0, 10).forEach((artist, index) => {
-      console.log(`${index + 1}. ${artist.name} (${artist.score}/100) - ${artist.genres.join(', ')}`);
+      console.log(`${index + 1}. ${artist.name} (${artist.monthlyListeners.toLocaleString()} monthly listeners) - ${artist.genres.join(', ')}`);
     });
 
     // Save to database

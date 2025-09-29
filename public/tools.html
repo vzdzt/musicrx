@@ -738,7 +738,18 @@ const BACKEND_URL = 'https://musicrx.app';
             } catch (error) {
                 console.error('Album rating error:', error);
                 clearInterval(progressInterval);
-                result.textContent = 'Error: ' + error.message;
+
+                // Better error handling
+                let errorMessage = 'An unexpected error occurred';
+                if (error.message) {
+                    errorMessage = error.message;
+                } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    errorMessage = 'Network error - please check your connection and try again';
+                } else if (error.name === 'AbortError') {
+                    errorMessage = 'Request timed out - please try again';
+                }
+
+                result.textContent = 'Error: ' + errorMessage;
                 result.className = 'status error';
             }
         }
@@ -879,13 +890,14 @@ const BACKEND_URL = 'https://musicrx.app';
             saveBtn.disabled = true;
 
             try {
-                // Get computed theme colors (html2canvas doesn't support CSS variables)
-                const computedStyle = getComputedStyle(document.documentElement);
-                const cardBackground = computedStyle.getPropertyValue('--card-background').trim() || '#ffffff';
-                const borderColor = computedStyle.getPropertyValue('--border-color').trim() || '#e5e7eb';
-                const primaryColor = computedStyle.getPropertyValue('--primary').trim() || '#000000';
-                const textColor = computedStyle.getPropertyValue('--text-color').trim() || '#000000';
-                const secondaryColor = computedStyle.getPropertyValue('--secondary').trim() || '#666666';
+                // Black theme colors for rating card
+                const cardBackground = '#000000';
+                const borderColor = '#333333';
+                const primaryColor = '#FFD700'; // Gold for titles and highlights
+                const textColor = '#FFFFFF'; // White text
+                const secondaryColor = '#CCCCCC'; // Light gray for secondary text
+                const highlightColor = '#10b981'; // Green for highlights
+                const missColor = '#f59e0b'; // Orange for misses
 
                 // Create exact news-style rating card using computed colors
                 const cardDiv = document.createElement('div');
@@ -971,8 +983,8 @@ const BACKEND_URL = 'https://musicrx.app';
                     highlightsP.style.margin = '0';
                     highlightsP.style.fontSize = '1rem';
                     highlightsP.style.fontFamily = 'Space Grotesk, sans-serif';
-                    highlightsP.style.color = 'var(--text-color)';
-                    highlightsP.innerHTML = `<strong style="color: #10b981;">🎯 HIGHLIGHTS:</strong><br>${window.currentAlbumData.strengths.join('<br>• ')}`;
+                    highlightsP.style.color = textColor;
+                    highlightsP.innerHTML = `<strong style="color: ${highlightColor};">🎯 HIGHLIGHTS:</strong><br>${window.currentAlbumData.strengths.join('<br>• ')}`;
                     contentCard.appendChild(highlightsP);
                 }
 
@@ -982,8 +994,8 @@ const BACKEND_URL = 'https://musicrx.app';
                     missesP.style.margin = '0.4rem 0';
                     missesP.style.fontSize = '1rem';
                     missesP.style.fontFamily = 'Space Grotesk, sans-serif';
-                    missesP.style.color = 'var(--text-color)';
-                    missesP.innerHTML = `<strong style="color: #f59e0b;">⚠️ MISSES:</strong><br>${window.currentAlbumData.weaknesses.join('<br>• ')}`;
+                    missesP.style.color = textColor;
+                    missesP.innerHTML = `<strong style="color: ${missColor};">⚠️ MISSES:</strong><br>${window.currentAlbumData.weaknesses.join('<br>• ')}`;
                     contentCard.appendChild(missesP);
                 }
 

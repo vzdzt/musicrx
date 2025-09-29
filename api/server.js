@@ -436,7 +436,8 @@ async function scrapePitchfork(title, artist) {
     const response = await axios.get(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-      }
+      },
+      timeout: 10000 // 10 second timeout
     });
     const $ = cheerio.load(response.data);
     const reviewLink = $('.result-item a').first().attr('href');
@@ -445,7 +446,8 @@ async function scrapePitchfork(title, artist) {
       const reviewResponse = await axios.get(reviewUrl, {
         headers: {
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        }
+        },
+        timeout: 10000 // 10 second timeout
       });
       const $$ = cheerio.load(reviewResponse.data);
       const scoreText = $$('.score-box .score').text().trim();
@@ -453,7 +455,7 @@ async function scrapePitchfork(title, artist) {
       return isNaN(score) ? null : score;
     }
   } catch (err) {
-    console.error('Pitchfork scrape error:', err);
+    console.error('Pitchfork scrape error:', err.message);
   }
   return null;
 }
@@ -464,20 +466,42 @@ async function getFantanoReview(title, artist) {
       version: 'v3',
       auth: process.env.YOUTUBE_API_KEY
     });
-    const response = await youtube.search.list({
-      part: 'snippet',
-      q: `${title} ${artist} theneedledrop`,
-      type: 'video',
-      maxResults: 5
-    });
+
+    // Add timeout wrapper for YouTube API calls
+    const searchWithTimeout = async () => {
+      return Promise.race([
+        youtube.search.list({
+          part: 'snippet',
+          q: `${title} ${artist} theneedledrop`,
+          type: 'video',
+          maxResults: 5
+        }),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('YouTube search timeout')), 10000)
+        )
+      ]);
+    };
+
+    const response = await searchWithTimeout();
+
     for (const item of response.data.items) {
       const videoTitle = item.snippet.title.toLowerCase();
       if (videoTitle.includes('album review') || videoTitle.includes('review')) {
         const videoId = item.id.videoId;
-        const videoResponse = await youtube.videos.list({
-          part: 'snippet',
-          id: videoId
-        });
+
+        const videoWithTimeout = async () => {
+          return Promise.race([
+            youtube.videos.list({
+              part: 'snippet',
+              id: videoId
+            }),
+            new Promise((_, reject) =>
+              setTimeout(() => reject(new Error('YouTube video timeout')), 10000)
+            )
+          ]);
+        };
+
+        const videoResponse = await videoWithTimeout();
         const description = videoResponse.data.items[0].snippet.description;
         const scoreMatch = description.match(/(\d+(\.\d+)?)\/10/);
         if (scoreMatch) {
@@ -486,7 +510,7 @@ async function getFantanoReview(title, artist) {
       }
     }
   } catch (err) {
-    console.error('Fantano error:', err);
+    console.error('Fantano error:', err.message);
   }
   return null;
 }
@@ -1251,7 +1275,7 @@ async function updateUndergroundRankings() {
 app.get('/api/underground-rankings', async (req, res) => {
   try {
     const undergroundArtists = await UndergroundArtist.find()
-      .sort({ score: -1 })
+      .sort({ monthlyListeners: -1 })
       .limit(50);
 
     res.json(undergroundArtists);

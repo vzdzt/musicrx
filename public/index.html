@@ -47,6 +47,7 @@
                     <li><a href="reviews.html">Reviews</a></li>
                     <li><a href="news.html">News</a></li>
                     <li><a href="underground.html">Underground</a></li>
+                    <li><a href="all-time-rankings.html">Rankings</a></li>
                     <li><a href="tools.html">Tools</a></li>
                 </ul>
             </div>
@@ -405,6 +406,39 @@
                 </a>
             </div>
         </section>
+        <section class="scroll-section" id="underground-artists">
+            <div class="section-header">
+                <h2 class="section-title"><a href="underground-rankings.html" style="text-decoration: none; color: inherit;">Top Underground Artists</a></h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('underground-artists', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('underground-artists', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="underground-artists-scroll">
+                <!-- Underground artists will be loaded here -->
+                <div class="loading" id="underground-loading">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p>Loading underground artists...</p>
+                </div>
+            </div>
+        </section>
+        <section class="scroll-section" id="aoty-contenders">
+            <div class="section-header">
+                <h2 class="section-title"><a href="all-2025-albums.html" style="text-decoration: none; color: inherit;">Album of the Year Contenders</a></h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('aoty-contenders', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('aoty-contenders', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="aoty-contenders-scroll">
+                <!-- AOTY contenders will be loaded here -->
+                <div class="loading" id="aoty-loading">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p>Loading AOTY contenders...</p>
+                </div>
+            </div>
+        </section>
+
         <section class="scroll-section" id="underground">
             <div class="section-header">
                 <h2 class="section-title"><a href="underground.html" style="text-decoration: none; color: inherit;">Underground Artists</a></h2>
@@ -473,6 +507,36 @@
                             <source src="https://od.lk/s/MzhfMjkxNDc0OTdf/lazy%20finished%20v1.mp3" type="audio/mpeg">
                         </audio>
                     </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="rankings-section" id="rankings">
+            <div class="rankings-header">
+                <h2 class="rankings-title">🏆 Rankings</h2>
+                <p class="rankings-subtitle">Explore our comprehensive music rankings and discover the best albums and artists</p>
+            </div>
+            <div class="rankings-grid">
+                <a href="all-time-rankings.html" class="ranking-card">
+                    <div class="ranking-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>All-Time Rankings</h3>
+                    <p>The highest rated albums of all time in our automated ranking system</p>
+                </a>
+                <a href="all-2025-albums.html" class="ranking-card">
+                    <div class="ranking-icon">
+                        <i class="fas fa-calendar-star"></i>
+                    </div>
+                    <h3>2025 Album of the Year</h3>
+                    <p>Complete rankings of all major 2025 albums rated by our system</p>
+                </a>
+                <a href="underground-rankings.html" class="ranking-card">
+                    <div class="ranking-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Underground Rankings</h3>
+                    <p>Discover promising underground artists based on streaming data and growth potential</p>
                 </a>
             </div>
         </section>

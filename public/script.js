@@ -51,7 +51,30 @@ async function loadNewReleases() {
 
         if (newReleases.length > 0) {
             let html = '';
-            newReleases.forEach((album) => {
+
+            // Process albums to get their ratings
+            const processedAlbums = await Promise.all(newReleases.map(async (album) => {
+                let albumData = { ...album };
+
+                // If album is rated, fetch the full data to get the score
+                if (album.isRated) {
+                    try {
+                        const albumResponse = await fetch(`/api/album/${album.id}`);
+                        if (albumResponse.ok) {
+                            const fullAlbumData = await albumResponse.json();
+                            albumData.score = fullAlbumData.score;
+                            albumData.strengths = fullAlbumData.strengths;
+                            albumData.weaknesses = fullAlbumData.weaknesses;
+                        }
+                    } catch (err) {
+                        console.warn(`Could not fetch rating for album ${album.id}:`, err);
+                    }
+                }
+
+                return albumData;
+            }));
+
+            processedAlbums.forEach((album) => {
                 const title = album.title.length > 20 ? album.title.substring(0, 17) + '...' : album.title;
                 const artist = album.artist.length > 20 ? album.artist.substring(0, 17) + '...' : album.artist;
                 const releaseDate = new Date(album.releaseDate).toLocaleDateString();
@@ -70,32 +93,39 @@ async function loadNewReleases() {
                     timeLabel = releaseDate;
                 }
 
-                const ratedText = album.isRated ? '<span style="color: #4CAF50; font-size: 0.7rem;">✓ Rated</span>' : '<span style="color: var(--primary); font-size: 0.7rem;">Click to rate</span>';
+                // Display score if available, otherwise show rating prompt
+                let ratingDisplay = '';
+                if (album.score) {
+                    ratingDisplay = `<span style="color: #FFD700; font-size: 0.9rem; font-weight: bold;">★ ${album.score}/10</span>`;
+                } else {
+                    ratingDisplay = '<span style="color: var(--primary); font-size: 0.7rem;">Click to rate</span>';
+                }
 
-                html += `<div class="scroll-item" onclick="rateAlbumFromNewRelease('${album.id}')" style="cursor: pointer;">
-                    <div class="news-title-card">
-                        <h2>${title}</h2>
+                // Black theme styling
+                html += `<div class="scroll-item" onclick="rateAlbumFromNewRelease('${album.id}')" style="cursor: pointer; background: #000000; border: 2px solid #333; color: white;">
+                    <div class="news-title-card" style="background: #111; border-bottom: 1px solid #333;">
+                        <h2 style="color: #FFD700;">${title}</h2>
                     </div>
-                    <div class="news-content-card">
-                        <p class="date">${artist}</p>
-                        ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-music" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
-                        <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${timeLabel}</p>
-                        <p style="margin-top: 0.25rem;">${ratedText}</p>
+                    <div class="news-content-card" style="background: #000;">
+                        <p class="date" style="color: #CCC;">${artist}</p>
+                        ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover" style="border: 2px solid #333;">` : '<div style="width: 100%; height: 120px; background: #111; border-radius: 4px; display: flex; align-items: center; justify-content: center; border: 2px solid #333;"><i class="fas fa-music" style="font-size: 2rem; opacity: 0.5; color: #666;"></i></div>'}
+                        <p style="font-size: 0.8rem; color: #AAA; margin-top: 0.5rem;">${timeLabel}</p>
+                        <p style="margin-top: 0.25rem;">${ratingDisplay}</p>
                     </div>
                 </div>`;
             });
 
             scrollContainer.innerHTML = html;
         } else {
-            scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
-                <i class="fas fa-music" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+            scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none; background: #000; color: white;">
+                <i class="fas fa-music" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; color: #666;"></i>
                 <p>No new releases in the last 30 days.</p>
             </div>`;
         }
     } catch (error) {
         console.error('Failed to load new releases:', error);
         const scrollContainer = document.getElementById('new-releases-scroll');
-        scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
+        scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none; background: #000; color: white;">
             <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: #f44336;"></i>
             <p>Unable to load new releases at this time.</p>
         </div>`;
@@ -106,6 +136,124 @@ async function loadNewReleases() {
 async function rateAlbumFromNewRelease(albumId) {
     // Redirect to tools page with the album ID
     window.location.href = `tools.html?rate=${albumId}`;
+}
+
+// Load underground artists for the index page
+async function loadUndergroundArtists() {
+    try {
+        const response = await fetch('/api/underground-rankings');
+        if (!response.ok) {
+            throw new Error(`Failed to load underground artists: ${response.status}`);
+        }
+
+        const undergroundArtists = await response.json();
+        const scrollContainer = document.getElementById('underground-artists-scroll');
+        const loadingElement = document.getElementById('underground-loading');
+
+        // Hide loading
+        if (loadingElement) {
+            loadingElement.style.display = 'none';
+        }
+
+        if (undergroundArtists.length > 0) {
+            let html = '';
+            // Show top 20 underground artists
+            const topArtists = undergroundArtists.slice(0, 20);
+
+            topArtists.forEach((artist) => {
+                const name = artist.name.length > 15 ? artist.name.substring(0, 12) + '...' : artist.name;
+                const monthlyListeners = artist.monthlyListeners ? artist.monthlyListeners.toLocaleString() : 'N/A';
+
+                html += `<a href="underground-rankings.html" class="scroll-item" style="text-decoration: none;">
+                    <div class="news-title-card">
+                        <h2>${name}</h2>
+                    </div>
+                    <div class="news-content-card">
+                        ${artist.imageUrl ? `<img src="${artist.imageUrl}" alt="${artist.name}" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px;">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-user" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
+                        <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${monthlyListeners} monthly listeners</p>
+                    </div>
+                </a>`;
+            });
+
+            scrollContainer.innerHTML = html;
+        } else {
+            scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
+                <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                <p>No underground artists available at this time.</p>
+            </div>`;
+        }
+    } catch (error) {
+        console.error('Failed to load underground artists:', error);
+        const scrollContainer = document.getElementById('underground-artists-scroll');
+        const loadingElement = document.getElementById('underground-loading');
+
+        if (loadingElement) {
+            loadingElement.innerHTML = `
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: #f44336;"></i>
+                <p>Unable to load underground artists at this time.</p>
+            `;
+        }
+    }
+}
+
+// Load AOTY contenders for the index page
+async function loadAOTYContenders() {
+    try {
+        const response = await fetch('/api/aoty-contenders');
+        if (!response.ok) {
+            throw new Error(`Failed to load AOTY contenders: ${response.status}`);
+        }
+
+        const aotyContenders = await response.json();
+        const scrollContainer = document.getElementById('aoty-contenders-scroll');
+        const loadingElement = document.getElementById('aoty-loading');
+
+        // Hide loading
+        if (loadingElement) {
+            loadingElement.style.display = 'none';
+        }
+
+        if (aotyContenders.length > 0) {
+            let html = '';
+            // Show top 10 AOTY contenders
+            const topContenders = aotyContenders.slice(0, 10);
+
+            topContenders.forEach((album) => {
+                const title = album.title.length > 15 ? album.title.substring(0, 12) + '...' : album.title;
+                const artist = album.artist.length > 15 ? album.artist.substring(0, 12) + '...' : album.artist;
+                const score = album.score ? `${album.score}/10` : 'N/A';
+
+                html += `<a href="all-2025-albums.html" class="scroll-item" style="text-decoration: none;">
+                    <div class="news-title-card">
+                        <h2>${title}</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">${artist}</p>
+                        ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title}" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px;">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-music" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
+                        <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${score}</p>
+                    </div>
+                </a>`;
+            });
+
+            scrollContainer.innerHTML = html;
+        } else {
+            scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
+                <i class="fas fa-trophy" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                <p>No AOTY contenders available at this time.</p>
+            </div>`;
+        }
+    } catch (error) {
+        console.error('Failed to load AOTY contenders:', error);
+        const scrollContainer = document.getElementById('aoty-contenders-scroll');
+        const loadingElement = document.getElementById('aoty-loading');
+
+        if (loadingElement) {
+            loadingElement.innerHTML = `
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: #f44336;"></i>
+                <p>Unable to load AOTY contenders at this time.</p>
+            `;
+        }
+    }
 }
 
 // Debounce utility function
@@ -558,6 +706,16 @@ wordSpan.textContent = word;
     // Load new releases for the index page
     if (document.getElementById('new-releases-scroll')) {
         loadNewReleases();
+    }
+
+    // Load underground artists for the index page
+    if (document.getElementById('underground-artists-scroll')) {
+        loadUndergroundArtists();
+    }
+
+    // Load AOTY contenders for the index page
+    if (document.getElementById('aoty-contenders-scroll')) {
+        loadAOTYContenders();
     }
 
 });
