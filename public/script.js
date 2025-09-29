@@ -703,9 +703,11 @@ wordSpan.textContent = word;
     }
     wrapChars(); //Call the function after DOMContentLoaded
 
-    // Load new releases for the index page
+    // Load new releases for the index page with periodic updates
     if (document.getElementById('new-releases-scroll')) {
         loadNewReleases();
+        // Refresh new releases every 5 minutes to show latest releases
+        setInterval(loadNewReleases, 5 * 60 * 1000); // 5 minutes
     }
 
     // Load underground artists for the index page
