@@ -1456,6 +1456,76 @@ app.post('/api/update-all-reviewed', async (req, res) => {
   }
 });
 
+// MusicBrainz API Integration
+async function searchMusicBrainzArtist(artistName) {
+  try {
+    const userAgent = process.env.MUSICBRAINZ_USER_AGENT || 'MusicRx/1.0.0 (test@example.com)';
+
+    const response = await axios.get('https://musicbrainz.org/ws/2/artist/', {
+      params: {
+        query: artistName,
+        limit: 5,
+        fmt: 'json'
+      },
+      headers: {
+        'User-Agent': userAgent
+      },
+      timeout: 10000
+    });
+
+    return response.data.artists || [];
+  } catch (error) {
+    console.warn('MusicBrainz artist search error:', error.message);
+    return [];
+  }
+}
+
+async function getMusicBrainzArtist(artistId) {
+  try {
+    const userAgent = process.env.MUSICBRAINZ_USER_AGENT || 'MusicRx/1.0.0 (test@example.com)';
+
+    const response = await axios.get(`https://musicbrainz.org/ws/2/artist/${artistId}`, {
+      params: {
+        inc: 'aliases+tags+ratings+release-groups',
+        fmt: 'json'
+      },
+      headers: {
+        'User-Agent': userAgent
+      },
+      timeout: 10000
+    });
+
+    return response.data;
+  } catch (error) {
+    console.warn('MusicBrainz artist fetch error:', error.message);
+    return null;
+  }
+}
+
+async function searchMusicBrainzRelease(title, artist) {
+  try {
+    const userAgent = process.env.MUSICBRAINZ_USER_AGENT || 'MusicRx/1.0.0 (test@example.com)';
+    const query = `release:"${title}" AND artist:"${artist}"`;
+
+    const response = await axios.get('https://musicbrainz.org/ws/2/release/', {
+      params: {
+        query: query,
+        limit: 5,
+        fmt: 'json'
+      },
+      headers: {
+        'User-Agent': userAgent
+      },
+      timeout: 10000
+    });
+
+    return response.data.releases || [];
+  } catch (error) {
+    console.warn('MusicBrainz release search error:', error.message);
+    return [];
+  }
+}
+
 // Last.fm API Integration
 async function fetchLastFmCharts() {
   try {
@@ -1807,6 +1877,55 @@ app.get('/api/artist/lastfm/:artistName', async (req, res) => {
   } catch (error) {
     console.error('Last.fm artist info error:', error.message);
     res.status(500).json({ error: 'Failed to fetch artist info' });
+  }
+});
+
+// MusicBrainz Artist Search endpoint
+app.get('/api/musicbrainz/artist/search', async (req, res) => {
+  try {
+    const { q: artistName } = req.query;
+    if (!artistName) {
+      return res.status(400).json({ error: 'Artist name query parameter required' });
+    }
+
+    const artists = await searchMusicBrainzArtist(artistName);
+    res.json(artists);
+  } catch (error) {
+    console.error('MusicBrainz artist search error:', error.message);
+    res.status(500).json({ error: 'Failed to search MusicBrainz artists' });
+  }
+});
+
+// MusicBrainz Artist Info endpoint
+app.get('/api/musicbrainz/artist/:artistId', async (req, res) => {
+  try {
+    const { artistId } = req.params;
+    const artistInfo = await getMusicBrainzArtist(artistId);
+
+    if (!artistInfo) {
+      return res.status(404).json({ error: 'Artist not found on MusicBrainz' });
+    }
+
+    res.json(artistInfo);
+  } catch (error) {
+    console.error('MusicBrainz artist info error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch artist info' });
+  }
+});
+
+// MusicBrainz Release Search endpoint
+app.get('/api/musicbrainz/release/search', async (req, res) => {
+  try {
+    const { title, artist } = req.query;
+    if (!title || !artist) {
+      return res.status(400).json({ error: 'Title and artist query parameters required' });
+    }
+
+    const releases = await searchMusicBrainzRelease(title, artist);
+    res.json(releases);
+  } catch (error) {
+    console.error('MusicBrainz release search error:', error.message);
+    res.status(500).json({ error: 'Failed to search MusicBrainz releases' });
   }
 });
 
