@@ -32,9 +32,16 @@ async function populateUndergroundRankings() {
     });
 
     // Authenticate Spotify
-    const data = await spotifyApi.clientCredentialsGrant();
-    spotifyApi.setAccessToken(data.body['access_token']);
-    console.log('Spotify authenticated for underground rankings');
+    let spotifyAuthenticated = false;
+    try {
+      const data = await spotifyApi.clientCredentialsGrant();
+      spotifyApi.setAccessToken(data.body['access_token']);
+      spotifyAuthenticated = true;
+      console.log('Spotify authenticated for underground rankings');
+    } catch (authError) {
+      console.log('Spotify authentication failed, falling back to mock data:', authError.message);
+      console.log('Continuing with mock data for rankings...');
+    }
 
     // List of underground artists to analyze
     const undergroundArtists = [
@@ -66,47 +73,69 @@ async function populateUndergroundRankings() {
 
     for (const artistName of undergroundArtists) {
       try {
-        console.log(`Searching Spotify for: ${artistName}`);
+        let analysis = null;
 
-        // Search for artist on Spotify
-        const searchResults = await spotifyApi.searchArtists(artistName, { limit: 1 });
+        if (spotifyAuthenticated) {
+          console.log(`Searching Spotify for: ${artistName}`);
 
-        if (!searchResults.body.artists.items.length) {
-          console.log(`❌ No Spotify data found for: ${artistName}`);
-          continue;
+          // Search for artist on Spotify
+          const searchResults = await spotifyApi.searchArtists(artistName, { limit: 1 });
+
+          if (!searchResults.body.artists.items.length) {
+            console.log(`❌ No Spotify data found for: ${artistName}, using mock data`);
+          } else {
+            const artist = searchResults.body.artists.items[0];
+            console.log(`✓ Found: ${artist.name} (${artist.popularity} popularity, ${artist.followers.total.toLocaleString()} followers)`);
+
+            // Get top tracks for monthly listeners estimate
+            let monthlyListeners = 0;
+            try {
+              const topTracksData = await spotifyApi.getArtistTopTracks(artist.id, 'US');
+              const topTracks = topTracksData.body.tracks;
+
+              // Estimate monthly listeners from top tracks
+              monthlyListeners = topTracks.reduce((total, track) => {
+                return total + (track.popularity * 15000); // Rough estimate based on popularity
+              }, 0) / topTracks.length;
+            } catch (err) {
+              console.log(`Could not get top tracks for ${artistName}, using follower-based estimate`);
+              monthlyListeners = artist.followers.total * 0.1; // Rough estimate
+            }
+
+            // Analyze artist with real data
+            analysis = await analyzeUndergroundArtist(artist, monthlyListeners);
+          }
+        } else {
+          console.log(`Using mock data for: ${artistName} (Spotify not available)`);
         }
 
-        const artist = searchResults.body.artists.items[0];
-        console.log(`✓ Found: ${artist.name} (${artist.popularity} popularity, ${artist.followers.total.toLocaleString()} followers)`);
-
-        // Get top tracks for monthly listeners estimate
-        let monthlyListeners = 0;
-        try {
-          const topTracksData = await spotifyApi.getArtistTopTracks(artist.id, 'US');
-          const topTracks = topTracksData.body.tracks;
-
-          // Estimate monthly listeners from top tracks
-          monthlyListeners = topTracks.reduce((total, track) => {
-            return total + (track.popularity * 15000); // Rough estimate based on popularity
-          }, 0) / topTracks.length;
-        } catch (err) {
-          console.log(`Could not get top tracks for ${artistName}, using follower-based estimate`);
-          monthlyListeners = artist.followers.total * 0.1; // Rough estimate
+        // Fall back to mock data if no real data available
+        if (!analysis) {
+          analysis = generateMockUndergroundData(artistName);
         }
-
-        // Analyze artist with real data
-        const analysis = await analyzeUndergroundArtist(artist, monthlyListeners);
 
         if (analysis) {
           analyzedArtists.push(analysis);
-          console.log(`✓ Analyzed ${artistName}: ${analysis.score}/100 (${Math.round(monthlyListeners).toLocaleString()} monthly listeners)`);
+          console.log(`✓ Analyzed ${artistName}: ${analysis.score}/100 (${analysis.monthlyListeners.toLocaleString()} monthly listeners)`);
         }
 
-        // Rate limiting to avoid API limits
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        // Rate limiting to avoid API limits (only when using real API)
+        if (spotifyAuthenticated) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
 
       } catch (err) {
         console.error(`Error analyzing ${artistName}:`, err.message);
+        // Try with mock data as fallback
+        try {
+          const mockAnalysis = generateMockUndergroundData(artistName);
+          if (mockAnalysis) {
+            analyzedArtists.push(mockAnalysis);
+            console.log(`✓ Used mock data for ${artistName}: ${mockAnalysis.score}/100`);
+          }
+        } catch (mockErr) {
+          console.error(`Mock data also failed for ${artistName}:`, mockErr.message);
+        }
         continue;
       }
     }
