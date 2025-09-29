@@ -62,6 +62,25 @@ const albumSchema = new mongoose.Schema({
 });
 const Album = mongoose.model('Album', albumSchema);
 
+// Underground Artist schema
+const undergroundArtistSchema = new mongoose.Schema({
+  artistId: String,
+  name: String,
+  genres: [String],
+  spotifyPopularity: Number,
+  monthlyListeners: Number,
+  followers: Number,
+  imageUrl: String,
+  score: Number,
+  ranking: Number,
+  strengths: [String],
+  weaknesses: [String],
+  socialSentiment: Number,
+  recentGrowth: Number,
+  lastUpdated: Date
+});
+const UndergroundArtist = mongoose.model('UndergroundArtist', undergroundArtistSchema);
+
 // Spotify API setup
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -1027,6 +1046,241 @@ app.post('/api/share/:albumId', async (req, res) => {
       error: 'Failed to share',
       details: error.message
     });
+  }
+});
+
+// Analyze underground artist
+async function analyzeUndergroundArtist(artistId) {
+  try {
+    console.log(`Analyzing underground artist: ${artistId}`);
+
+    // Get artist data from Spotify
+    const artistData = await spotifyApi.getArtist(artistId);
+    const artist = artistData.body;
+
+    // Get top tracks for monthly listeners estimate
+    const topTracksData = await spotifyApi.getArtistTopTracks(artistId, 'US');
+    const topTracks = topTracksData.body.tracks;
+
+    // Estimate monthly listeners (rough calculation)
+    const monthlyListeners = topTracks.reduce((total, track) => {
+      return total + (track.popularity * 10000); // Rough estimate
+    }, 0) / topTracks.length;
+
+    // Get related artists for network analysis
+    const relatedData = await spotifyApi.getArtistRelatedArtists(artistId);
+    const relatedArtists = relatedData.body.artists.slice(0, 5);
+
+    // Mock social sentiment analysis (would need real social media API)
+    const socialSentiment = Math.random() * 2 - 1; // -1 to 1 scale
+
+    // Calculate recent growth (mock for now)
+    const recentGrowth = Math.random() * 50 - 25; // -25% to +25%
+
+    // Underground scoring algorithm
+    // Weight factors for underground artists
+    const popularityWeight = Math.max(0, (100 - artist.popularity) / 100); // Lower popularity = more underground
+    const followersWeight = Math.min(1, artist.followers.total / 1000000); // Scale followers
+    const monthlyListenersWeight = Math.min(1, monthlyListeners / 10000000); // Scale monthly listeners
+    const networkWeight = relatedArtists.filter(a => a.popularity < 50).length / 5; // Underground network
+    const sentimentWeight = (socialSentiment + 1) / 2; // Convert -1/+1 to 0/1
+    const growthWeight = Math.max(0, (recentGrowth + 25) / 50); // Convert -25/+25 to 0/1
+
+    const score = (
+      popularityWeight * 0.25 +      // 25% - Underground appeal
+      followersWeight * 0.20 +       // 20% - Dedicated fanbase
+      monthlyListenersWeight * 0.20 + // 20% - Streaming presence
+      networkWeight * 0.15 +         // 15% - Underground network
+      sentimentWeight * 0.10 +       // 10% - Social buzz
+      growthWeight * 0.10            // 10% - Recent momentum
+    ) * 100; // Scale to 0-100
+
+    // Generate strengths and weaknesses
+    const strengths = [];
+    const weaknesses = [];
+
+    if (artist.popularity < 30) {
+      strengths.push('Authentic underground credibility');
+      strengths.push('Dedicated niche following');
+    }
+    if (artist.followers.total > 100000) {
+      strengths.push('Growing fanbase with potential');
+      strengths.push('Cult following developing');
+    }
+    if (monthlyListeners > 1000000) {
+      strengths.push('Significant streaming presence');
+      strengths.push('Breaking through to wider audience');
+    }
+    if (networkWeight > 0.6) {
+      strengths.push('Strong underground network connections');
+      strengths.push('Part of emerging music scene');
+    }
+    if (socialSentiment > 0.2) {
+      strengths.push('Positive social media buzz');
+      strengths.push('Growing online presence');
+    }
+
+    if (artist.popularity > 60) {
+      weaknesses.push('Risk of losing underground appeal');
+      weaknesses.push('May be transitioning to mainstream');
+    }
+    if (artist.followers.total < 50000) {
+      weaknesses.push('Limited fanbase size');
+      weaknesses.push('Struggling for visibility');
+    }
+    if (monthlyListeners < 500000) {
+      weaknesses.push('Low streaming numbers');
+      weaknesses.push('Limited commercial viability');
+    }
+    if (networkWeight < 0.3) {
+      weaknesses.push('Weak underground connections');
+      weaknesses.push('Isolated from music scenes');
+    }
+    if (socialSentiment < -0.2) {
+      weaknesses.push('Negative social sentiment');
+      weaknesses.push('Controversial or divisive reputation');
+    }
+
+    // Ensure minimum analysis points
+    const defaultStrengths = [
+      'Unique artistic vision',
+      'Innovative approach to music',
+      'Authentic expression',
+      'Growing potential',
+      'Scene influence'
+    ];
+
+    const defaultWeaknesses = [
+      'Limited mainstream appeal',
+      'Smaller audience reach',
+      'Resource constraints',
+      'Visibility challenges',
+      'Commercial limitations'
+    ];
+
+    while (strengths.length < 3) {
+      const randomStrength = defaultStrengths[Math.floor(Math.random() * defaultStrengths.length)];
+      if (!strengths.includes(randomStrength)) {
+        strengths.push(randomStrength);
+      }
+    }
+
+    while (weaknesses.length < 3) {
+      const randomWeakness = defaultWeaknesses[Math.floor(Math.random() * defaultWeaknesses.length)];
+      if (!weaknesses.includes(randomWeakness)) {
+        weaknesses.push(randomWeakness);
+      }
+    }
+
+    // Limit to 4 points each
+    strengths.splice(4);
+    weaknesses.splice(4);
+
+    return {
+      artistId,
+      name: artist.name,
+      genres: artist.genres,
+      spotifyPopularity: artist.popularity,
+      monthlyListeners: Math.round(monthlyListeners),
+      followers: artist.followers.total,
+      imageUrl: artist.images[0]?.url,
+      score: Math.round(score * 10) / 10, // Round to 1 decimal
+      strengths,
+      weaknesses,
+      socialSentiment: Math.round(socialSentiment * 100) / 100,
+      recentGrowth: Math.round(recentGrowth * 100) / 100,
+      lastUpdated: new Date()
+    };
+
+  } catch (err) {
+    console.error('Underground artist analysis error:', err);
+    return null;
+  }
+}
+
+// Update underground rankings
+async function updateUndergroundRankings() {
+  try {
+    console.log('Updating underground artist rankings...');
+
+    // List of underground artists to track
+    const undergroundArtists = [
+      'osamason', 'nettspend', 'yeat', 'sk8star', 'summrs', 'molly santana',
+      'veeze', 'lucki', 'homixide gang', 'otoboke beaver', 'bladee', 'che',
+      'brennan jones', '2hollis', 'destroy lonely', 'ken carson', 'kayne west',
+      'playboi carti', 'travis scott', 'lil uzi vert', 'future', 'young thug',
+      'gunna', 'lil baby', 'rod wave', 'the weeknd', 'drake', 'kanye west'
+    ];
+
+    const analyzedArtists = [];
+
+    for (const artistName of undergroundArtists) {
+      try {
+        console.log(`Searching for underground artist: ${artistName}`);
+
+        // Search for artist on Spotify
+        const searchResults = await spotifyApi.searchArtists(artistName, { limit: 1 });
+        const artist = searchResults.body.artists.items[0];
+
+        if (artist && artist.popularity < 80) { // Only include relatively underground artists
+          const analysis = await analyzeUndergroundArtist(artist.id);
+          if (analysis) {
+            analyzedArtists.push(analysis);
+          }
+        }
+
+        // Rate limiting
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+      } catch (err) {
+        console.error(`Error analyzing ${artistName}:`, err.message);
+        continue;
+      }
+    }
+
+    // Sort by score and assign rankings
+    analyzedArtists.sort((a, b) => b.score - a.score);
+
+    for (let i = 0; i < analyzedArtists.length; i++) {
+      analyzedArtists[i].ranking = i + 1;
+
+      // Update or create in database
+      await UndergroundArtist.findOneAndUpdate(
+        { artistId: analyzedArtists[i].artistId },
+        analyzedArtists[i],
+        { upsert: true, new: true }
+      );
+    }
+
+    console.log(`Updated ${analyzedArtists.length} underground artists`);
+
+  } catch (err) {
+    console.error('Underground rankings update error:', err);
+  }
+}
+
+// Underground rankings endpoint
+app.get('/api/underground-rankings', async (req, res) => {
+  try {
+    const undergroundArtists = await UndergroundArtist.find()
+      .sort({ score: -1 })
+      .limit(50);
+
+    res.json(undergroundArtists);
+  } catch (err) {
+    console.error('Underground rankings error:', err);
+    res.status(500).json({ error: 'Failed to fetch underground rankings' });
+  }
+});
+
+// Update underground rankings endpoint
+app.post('/api/update-underground-rankings', async (req, res) => {
+  try {
+    await updateUndergroundRankings();
+    res.json({ success: true, message: 'Underground rankings updated' });
+  } catch (err) {
+    console.error('Update underground rankings error:', err);
+    res.status(500).json({ error: 'Failed to update underground rankings' });
   }
 });
 
