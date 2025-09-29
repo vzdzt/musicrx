@@ -62,6 +62,24 @@ const albumSchema = new mongoose.Schema({
 });
 const Album = mongoose.model('Album', albumSchema);
 
+// News Article schema
+const newsArticleSchema = new mongoose.Schema({
+  title: String,
+  content: String,
+  summary: String,
+  source: String,
+  url: String,
+  imageUrl: String,
+  publishedAt: Date,
+  category: String, // 'music', 'artist', 'album', 'industry', 'trending'
+  tags: [String],
+  sentiment: Number, // -1 to 1 (negative to positive)
+  engagement: Number, // popularity/engagement score
+  isAutomated: { type: Boolean, default: true },
+  createdAt: { type: Date, default: Date.now }
+});
+const NewsArticle = mongoose.model('NewsArticle', newsArticleSchema);
+
 // Underground Artist schema
 const undergroundArtistSchema = new mongoose.Schema({
   artistId: String,
@@ -1436,6 +1454,272 @@ app.post('/api/update-all-reviewed', async (req, res) => {
     console.error('Update error:', err);
     res.status(500).json({ error: 'Failed to update albums', details: err.message });
   }
+});
+
+// Automated News Collection Functions
+
+// Fetch news from NewsAPI (requires API key)
+async function fetchNewsAPI() {
+  try {
+    const NEWS_API_KEY = process.env.NEWS_API_KEY;
+    if (!NEWS_API_KEY) {
+      console.log('NewsAPI key not configured, skipping...');
+      return [];
+    }
+
+    const response = await axios.get(`https://newsapi.org/v2/everything`, {
+      params: {
+        q: 'music OR album OR artist OR hip-hop OR rap OR pop OR rock',
+        language: 'en',
+        sortBy: 'publishedAt',
+        pageSize: 20,
+        apiKey: NEWS_API_KEY
+      },
+      timeout: 10000
+    });
+
+    return response.data.articles.map(article => ({
+      title: article.title,
+      content: article.description || article.content?.substring(0, 500) + '...',
+      summary: article.description,
+      source: article.source.name,
+      url: article.url,
+      imageUrl: article.urlToImage,
+      publishedAt: new Date(article.publishedAt),
+      category: 'music',
+      tags: ['news', 'music'],
+      sentiment: 0, // Would need NLP analysis
+      engagement: Math.floor(Math.random() * 1000) + 100
+    }));
+  } catch (error) {
+    console.error('NewsAPI fetch error:', error.message);
+    return [];
+  }
+}
+
+// Scrape music news from RSS feeds
+async function fetchRSSNews() {
+  try {
+    const rssFeeds = [
+      'https://pitchfork.com/rss/news/',
+      'https://www.billboard.com/feed/',
+      'https://www.rollingstone.com/music/feed/',
+      'https://www.spin.com/feed/',
+      'https://www.stereogum.com/feed/'
+    ];
+
+    const allArticles = [];
+
+    for (const feedUrl of rssFeeds) {
+      try {
+        const response = await axios.get(feedUrl, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+          },
+          timeout: 10000
+        });
+
+        const $ = cheerio.load(response.data, { xmlMode: true });
+
+        $('item').each((i, item) => {
+          if (i >= 5) return; // Limit to 5 articles per feed
+
+          const title = $(item).find('title').text();
+          const link = $(item).find('link').text();
+          const description = $(item).find('description').text();
+          const pubDate = $(item).find('pubDate').text();
+
+          // Clean HTML from description
+          const cleanDescription = description.replace(/<[^>]*>/g, '').substring(0, 300) + '...';
+
+          allArticles.push({
+            title: title,
+            content: cleanDescription,
+            summary: cleanDescription,
+            source: feedUrl.includes('pitchfork') ? 'Pitchfork' :
+                   feedUrl.includes('billboard') ? 'Billboard' :
+                   feedUrl.includes('rollingstone') ? 'Rolling Stone' :
+                   feedUrl.includes('spin') ? 'Spin' : 'Stereogum',
+            url: link,
+            imageUrl: null, // Would need additional scraping for images
+            publishedAt: new Date(pubDate),
+            category: 'music',
+            tags: ['news', 'music', 'rss'],
+            sentiment: 0,
+            engagement: Math.floor(Math.random() * 500) + 50
+          });
+        });
+      } catch (feedError) {
+        console.warn(`Failed to fetch RSS feed ${feedUrl}:`, feedError.message);
+      }
+    }
+
+    return allArticles;
+  } catch (error) {
+    console.error('RSS fetch error:', error.message);
+    return [];
+  }
+}
+
+// Generate trending music news from Spotify data
+async function generateTrendingNews() {
+  try {
+    // Get trending artists from Spotify
+    const trendingResponse = await spotifyApi.getArtists(['4q3ewBCX7sLwd24euuV69X', '1Xyo4u8uXC1ZmMpatF05PJ', '06HL4z0CvFAxyc27GXpf02']); // Example popular artists
+    const artists = trendingResponse.body.artists;
+
+    const trendingArticles = [];
+
+    for (const artist of artists) {
+      if (!artist) continue;
+
+      // Generate synthetic news based on real artist data
+      const newsTemplates = [
+        `${artist.name} announces surprise collaboration with upcoming artist`,
+        `${artist.name} breaks streaming record with latest single`,
+        `${artist.name} reveals new album artwork and release date`,
+        `Behind the scenes: ${artist.name}'s creative process revealed`,
+        `${artist.name} dominates charts with viral performance`,
+        `Fan reactions: ${artist.name}'s latest work divides opinions`,
+        `${artist.name} shares personal story behind hit song`,
+        `Industry buzz: ${artist.name} signs major label deal`,
+        `${artist.name} teases upcoming world tour dates`,
+        `${artist.name} wins award for outstanding musical achievement`
+      ];
+
+      const randomTemplate = newsTemplates[Math.floor(Math.random() * newsTemplates.length)];
+      const engagement = Math.floor(Math.random() * 2000) + 500;
+
+      trendingArticles.push({
+        title: randomTemplate,
+        content: `Latest updates on ${artist.name}'s music career and upcoming projects. Fans are excited about what this artist has in store for the coming months.`,
+        summary: `Breaking news about ${artist.name} and their latest musical endeavors.`,
+        source: 'MusicRx Trending',
+        url: `https://musicrx.app/artist/${artist.id}`,
+        imageUrl: artist.images?.[0]?.url,
+        publishedAt: new Date(),
+        category: 'trending',
+        tags: ['trending', 'artist', artist.name.toLowerCase()],
+        sentiment: Math.random() * 0.4 + 0.3, // Positive sentiment
+        engagement: engagement,
+        isAutomated: true
+      });
+    }
+
+    return trendingArticles;
+  } catch (error) {
+    console.error('Trending news generation error:', error.message);
+    return [];
+  }
+}
+
+// Collect and store fresh news
+async function collectDailyNews() {
+  try {
+    console.log('📰 Collecting daily music news...');
+
+    const [newsApiArticles, rssArticles, trendingArticles] = await Promise.all([
+      fetchNewsAPI(),
+      fetchRSSNews(),
+      generateTrendingNews()
+    ]);
+
+    const allArticles = [...newsApiArticles, ...rssArticles, ...trendingArticles];
+
+    console.log(`📊 Collected ${allArticles.length} articles (${newsApiArticles.length} NewsAPI, ${rssArticles.length} RSS, ${trendingArticles.length} trending)`);
+
+    // Filter and deduplicate articles
+    const uniqueArticles = allArticles.filter((article, index, self) =>
+      index === self.findIndex(a => a.title === article.title && a.source === article.source)
+    );
+
+    // Store new articles (avoid duplicates)
+    let storedCount = 0;
+    for (const article of uniqueArticles.slice(0, 20)) { // Limit to 20 articles per collection
+      try {
+        // Check if article already exists
+        const existing = await NewsArticle.findOne({
+          title: article.title,
+          source: article.source,
+          publishedAt: {
+            $gte: new Date(Date.now() - 24 * 60 * 60 * 1000) // Within last 24 hours
+          }
+        });
+
+        if (!existing) {
+          await NewsArticle.create(article);
+          storedCount++;
+        }
+      } catch (dbError) {
+        console.warn('Error storing article:', dbError.message);
+      }
+    }
+
+    // Clean up old articles (keep only last 30 days)
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    const deletedCount = await NewsArticle.deleteMany({
+      publishedAt: { $lt: thirtyDaysAgo }
+    });
+
+    console.log(`✅ Stored ${storedCount} new articles, cleaned up ${deletedCount.deletedCount} old articles`);
+
+  } catch (error) {
+    console.error('❌ Daily news collection error:', error.message);
+  }
+}
+
+// News endpoints
+app.get('/api/news', async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 20;
+    const category = req.query.category;
+
+    let query = {};
+    if (category) {
+      query.category = category;
+    }
+
+    const articles = await NewsArticle.find(query)
+      .sort({ publishedAt: -1 })
+      .limit(limit);
+
+    res.json(articles);
+  } catch (error) {
+    console.error('News fetch error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch news' });
+  }
+});
+
+app.get('/api/news/trending', async (req, res) => {
+  try {
+    const articles = await NewsArticle.find({
+      category: 'trending',
+      publishedAt: { $gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } // Last 7 days
+    })
+      .sort({ engagement: -1 })
+      .limit(10);
+
+    res.json(articles);
+  } catch (error) {
+    console.error('Trending news fetch error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch trending news' });
+  }
+});
+
+app.post('/api/news/collect', async (req, res) => {
+  try {
+    await collectDailyNews();
+    res.json({ success: true, message: 'News collection completed' });
+  } catch (error) {
+    console.error('Manual news collection error:', error.message);
+    res.status(500).json({ error: 'Failed to collect news' });
+  }
+});
+
+// Update cron job to include news collection
+cron.schedule('0 */6 * * *', async () => { // Every 6 hours
+  console.log('Running scheduled news collection...');
+  await collectDailyNews();
 });
 
 // Error handling middleware

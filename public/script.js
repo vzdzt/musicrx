@@ -196,6 +196,64 @@ async function loadUndergroundArtists() {
     }
 }
 
+// Load latest news for the index page
+async function loadLatestNews() {
+    try {
+        const response = await fetch('/api/news?limit=10');
+        if (!response.ok) {
+            throw new Error(`Failed to load news: ${response.status}`);
+        }
+
+        const newsArticles = await response.json();
+        const scrollContainer = document.getElementById('news-scroll');
+        const loadingElement = document.getElementById('news-loading');
+
+        // Hide loading
+        if (loadingElement) {
+            loadingElement.style.display = 'none';
+        }
+
+        if (newsArticles.length > 0) {
+            let html = '';
+            // Show latest 10 news articles
+            newsArticles.forEach((article) => {
+                const title = article.title.length > 25 ? article.title.substring(0, 22) + '...' : article.title;
+                const source = article.source || 'MusicRx';
+                const publishedDate = new Date(article.publishedAt).toLocaleDateString();
+
+                html += `<a href="${article.url}" target="_blank" class="scroll-item" style="text-decoration: none;">
+                    <div class="news-title-card">
+                        <h2>${title}</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">${source}</p>
+                        ${article.imageUrl ? `<img src="${article.imageUrl}" alt="${article.title}" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px;">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-newspaper" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
+                        <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${publishedDate}</p>
+                    </div>
+                </a>`;
+            });
+
+            scrollContainer.innerHTML = html;
+        } else {
+            scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
+                <i class="fas fa-newspaper" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                <p>No news available at this time.</p>
+            </div>`;
+        }
+    } catch (error) {
+        console.error('Failed to load latest news:', error);
+        const scrollContainer = document.getElementById('news-scroll');
+        const loadingElement = document.getElementById('news-loading');
+
+        if (loadingElement) {
+            loadingElement.innerHTML = `
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: #f44336;"></i>
+                <p>Unable to load latest news at this time.</p>
+            `;
+        }
+    }
+}
+
 // Load AOTY contenders for the index page
 async function loadAOTYContenders() {
     try {
@@ -718,6 +776,11 @@ wordSpan.textContent = word;
     // Load AOTY contenders for the index page
     if (document.getElementById('aoty-contenders-scroll')) {
         loadAOTYContenders();
+    }
+
+    // Load latest news for the index page
+    if (document.getElementById('news-scroll')) {
+        loadLatestNews();
     }
 
 });
