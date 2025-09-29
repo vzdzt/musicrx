@@ -626,12 +626,28 @@
 
             cardDiv.appendChild(detailsDiv);
 
-            // Branding
+            // Branding with exact navbar heart logo
             const brandingDiv = document.createElement('div');
             brandingDiv.style.position = 'absolute';
             brandingDiv.style.bottom = '20px';
             brandingDiv.style.right = '40px';
             brandingDiv.style.textAlign = 'right';
+            brandingDiv.style.display = 'flex';
+            brandingDiv.style.alignItems = 'center';
+            brandingDiv.style.gap = '10px';
+
+            // Exact navbar logo structure
+            const logoSpan = document.createElement('span');
+            logoSpan.className = 'logo-symbol';
+            logoSpan.style.display = 'inline-block';
+
+            const heartIcon = document.createElement('i');
+            heartIcon.className = 'fas fa-heartbeat';
+            heartIcon.style.fontSize = '28px';
+            heartIcon.style.color = '#f97316';
+
+            logoSpan.appendChild(heartIcon);
+            brandingDiv.appendChild(logoSpan);
 
             const brandingText = document.createElement('div');
             brandingText.textContent = 'MusicRx – Your Album Pulse';
