@@ -1680,7 +1680,7 @@ async function searchMusicBrainzRelease(title, artist) {
 }
 
 // Last.fm API Integration
-async function fetchLastFmCharts() {
+async function fetchLastFmCharts(country = 'united states') {
   try {
     const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
     if (!LASTFM_API_KEY) {
@@ -1688,10 +1688,11 @@ async function fetchLastFmCharts() {
       return [];
     }
 
-    // Fetch top artists chart
+    // Fetch top artists chart for specific country
     const response = await axios.get('https://ws.audioscrobbler.com/2.0/', {
       params: {
-        method: 'chart.gettopartists',
+        method: 'geo.gettopartists',
+        country: country,
         api_key: LASTFM_API_KEY,
         format: 'json',
         limit: 20
@@ -1699,16 +1700,41 @@ async function fetchLastFmCharts() {
       timeout: 10000
     });
 
-    return response.data.artists.artist.map(artist => ({
+    return response.data.topartists.artist.map(artist => ({
       name: artist.name,
       playcount: parseInt(artist.playcount),
       listeners: parseInt(artist.listeners),
       url: artist.url,
       imageUrl: artist.image?.[2]?.['#text'] || null, // Medium image
-      rank: parseInt(artist['@attr']?.rank) || 0
+      rank: parseInt(artist['@attr']?.rank) || 0,
+      country: country
     }));
   } catch (error) {
     console.error('Last.fm charts fetch error:', error.message);
+    return [];
+  }
+}
+
+async function fetchLastFmUSTracks() {
+  try {
+    const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
+    if (!LASTFM_API_KEY) return [];
+
+    // Fetch top tracks in the US
+    const response = await axios.get('https://ws.audioscrobbler.com/2.0/', {
+      params: {
+        method: 'geo.gettoptracks',
+        country: 'united states',
+        api_key: LASTFM_API_KEY,
+        format: 'json',
+        limit: 20
+      },
+      timeout: 10000
+    });
+
+    return response.data.tracks.track || [];
+  } catch (error) {
+    console.error('Last.fm US tracks fetch error:', error.message);
     return [];
   }
 }
@@ -2009,11 +2035,81 @@ app.post('/api/news/collect', async (req, res) => {
 // Last.fm Charts endpoint
 app.get('/api/charts/lastfm', async (req, res) => {
   try {
-    const charts = await fetchLastFmCharts();
+    const country = req.query.country || 'united states';
+    const charts = await fetchLastFmCharts(country);
     res.json(charts);
   } catch (error) {
     console.error('Last.fm charts error:', error.message);
     res.status(500).json({ error: 'Failed to fetch Last.fm charts' });
+  }
+});
+
+// Last.fm US Charts endpoint
+app.get('/api/charts/lastfm/us', async (req, res) => {
+  try {
+    const charts = await fetchLastFmCharts('united states');
+    res.json(charts);
+  } catch (error) {
+    console.error('Last.fm US charts error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch Last.fm US charts' });
+  }
+});
+
+// Last.fm UK Charts endpoint
+app.get('/api/charts/lastfm/uk', async (req, res) => {
+  try {
+    const charts = await fetchLastFmCharts('united kingdom');
+    res.json(charts);
+  } catch (error) {
+    console.error('Last.fm UK charts error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch Last.fm UK charts' });
+  }
+});
+
+// Last.fm Global Charts endpoint
+app.get('/api/charts/lastfm/global', async (req, res) => {
+  try {
+    // For global, we'll use the default method which gets worldwide charts
+    const charts = await fetchLastFmCharts();
+    res.json(charts);
+  } catch (error) {
+    console.error('Last.fm global charts error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch Last.fm global charts' });
+  }
+});
+
+// Last.fm US Tracks endpoint
+app.get('/api/charts/lastfm/us/tracks', async (req, res) => {
+  try {
+    const tracks = await fetchLastFmUSTracks();
+    res.json(tracks);
+  } catch (error) {
+    console.error('Last.fm US tracks error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch Last.fm US tracks' });
+  }
+});
+
+// Last.fm UK Tracks endpoint
+app.get('/api/charts/lastfm/uk/tracks', async (req, res) => {
+  try {
+    const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
+    if (!LASTFM_API_KEY) return res.status(500).json({ error: 'Last.fm API key not configured' });
+
+    const response = await axios.get('https://ws.audioscrobbler.com/2.0/', {
+      params: {
+        method: 'geo.gettoptracks',
+        country: 'united kingdom',
+        api_key: LASTFM_API_KEY,
+        format: 'json',
+        limit: 20
+      },
+      timeout: 10000
+    });
+
+    res.json(response.data.tracks.track || []);
+  } catch (error) {
+    console.error('Last.fm UK tracks error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch Last.fm UK tracks' });
   }
 });
 
