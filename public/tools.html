@@ -189,30 +189,7 @@
             </div>
         </div>
 
-        <div class="tool-section">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fas fa-trophy"></i> Album of the Year Contenders</h2>
-                <div class="scroll-nav">
-                    <button class="scroll-button prev" onclick="scrollSection('aoty-contenders', -300)">←</button>
-                    <button class="scroll-button next" onclick="scrollSection('aoty-contenders', 300)">→</button>
-                </div>
-            </div>
-            <p style="margin-bottom: 1rem;">Top-rated albums released in 2025, ranked by our automated scoring system. Rate more albums to see them compete!</p>
-            <div style="margin-bottom: 1rem;">
-                <a href="all-2025-albums.html" style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: all 0.3s ease; margin-right: 1rem;">
-                    📅 2025 Rankings
-                </a>
-                <a href="all-time-rankings.html" style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--card-background); color: var(--text-color); text-decoration: none; border: 2px solid var(--border-color); border-radius: 8px; font-weight: bold; transition: all 0.3s ease;">
-                    👑 All-Time Rankings
-                </a>
-            </div>
-            <div class="scroll-container" id="aoty-contenders-scroll">
-                <div id="aotyEmpty" class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
-                    <i class="fas fa-music" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-                    <p>No albums rated yet for 2025. Rate some albums to see the contenders!</p>
-                </div>
-            </div>
-        </div>
+
 
 
 
@@ -246,7 +223,9 @@
 
     <script>
         // Configuration - Update this with your VPS URL
-const BACKEND_URL = 'https://musicrx.app';
+        const BACKEND_URL = 'https://musicrx.app';
+
+
 
         async function downloadMedia() {
             const url = document.getElementById('mediaUrl').value.trim();
@@ -859,10 +838,9 @@ const BACKEND_URL = 'https://musicrx.app';
             }
         }
 
-        // Load featured albums and AOTY contenders on page load
+        // Load featured albums on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadFeaturedAlbums();
-            loadAotyContenders();
 
             // Check for album ID in URL parameters (from new releases)
             const urlParams = new URLSearchParams(window.location.search);
