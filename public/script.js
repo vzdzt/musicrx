@@ -96,20 +96,20 @@ async function loadNewReleases() {
                 // Display score if available, otherwise show rating prompt
                 let ratingDisplay = '';
                 if (album.score) {
-                    ratingDisplay = `<span style="color: #FFD700; font-size: 0.9rem; font-weight: bold;">★ ${album.score}/10</span>`;
+                    ratingDisplay = `<span style="color: var(--primary); font-size: 0.9rem; font-weight: bold;">★ ${album.score}/10</span>`;
                 } else {
                     ratingDisplay = '<span style="color: var(--primary); font-size: 0.7rem;">Click to rate</span>';
                 }
 
-                // Black theme styling
-                html += `<div class="scroll-item" onclick="rateAlbumFromNewRelease('${album.id}')" style="cursor: pointer; background: #000000; border: 2px solid #333; color: white;">
-                    <div class="news-title-card" style="background: #111; border-bottom: 1px solid #333;">
-                        <h2 style="color: #FFD700;">${title}</h2>
+                // Use same styling as static cards - no inline styles, rely on CSS classes
+                html += `<div class="scroll-item" onclick="rateAlbumFromNewRelease('${album.id}')" style="cursor: pointer;">
+                    <div class="news-title-card">
+                        <h2>${title}</h2>
                     </div>
-                    <div class="news-content-card" style="background: #000;">
-                        <p class="date" style="color: #CCC;">${artist}</p>
-                        ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover" style="border: 2px solid #333;">` : '<div style="width: 100%; height: 120px; background: #111; border-radius: 4px; display: flex; align-items: center; justify-content: center; border: 2px solid #333;"><i class="fas fa-music" style="font-size: 2rem; opacity: 0.5; color: #666;"></i></div>'}
-                        <p style="font-size: 0.8rem; color: #AAA; margin-top: 0.5rem;">${timeLabel}</p>
+                    <div class="news-content-card">
+                        <p class="date">${artist}</p>
+                        ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-music" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
+                        <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${timeLabel}</p>
                         <p style="margin-top: 0.25rem;">${ratingDisplay}</p>
                     </div>
                 </div>`;
