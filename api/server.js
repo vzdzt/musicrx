@@ -14,6 +14,7 @@ import Sentiment from 'sentiment';
 import * as cheerio from 'cheerio';
 import { google } from 'googleapis';
 import { TwitterApi } from 'twitter-api-v2';
+import Discogs from 'disconnect';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -97,6 +98,51 @@ async function ensureSpotifyAuth() {
 }
 
 authenticateSpotify();
+
+// Discogs API setup
+const discogsClient = new Discogs.Client({
+  consumerKey: process.env.DISCOGS_API_KEY,
+  consumerSecret: process.env.DISCOGS_API_SECRET
+});
+
+// Get Discogs data for an album
+async function getDiscogsData(title, artist) {
+  try {
+    console.log(`Searching Discogs for: ${title} by ${artist}`);
+
+    const response = await discogsClient.database().search({
+      release_title: title,
+      artist: artist,
+      type: 'release',
+      per_page: 5
+    });
+
+    if (response.results && response.results.length > 0) {
+      // Get the first result's details
+      const releaseId = response.results[0].id;
+      const releaseResponse = await discogsClient.database().getRelease(releaseId);
+
+      const discogsData = {
+        rating: releaseResponse.rating || null,
+        votes: releaseResponse.rating_count || 0,
+        releaseDate: releaseResponse.released || null,
+        labels: releaseResponse.labels?.map(l => l.name) || [],
+        formats: releaseResponse.formats?.map(f => f.name) || [],
+        genres: releaseResponse.genres || [],
+        styles: releaseResponse.styles || []
+      };
+
+      console.log(`Discogs data found: ${discogsData.rating}/5 (${discogsData.votes} votes)`);
+      return discogsData;
+    }
+
+    console.log('No Discogs data found');
+    return null;
+  } catch (err) {
+    console.error('Discogs API error:', err.message);
+    return null;
+  }
+}
 
 // Search for albums released on a specific date
 async function searchAlbumsByReleaseDate(date) {
@@ -462,21 +508,30 @@ async function reviewAlbum(albumId) {
     const popularity = album.body.popularity;
     const streams = Math.round(popularity / 10);
 
-    // Mock data for now - replace with real APIs when available
+    // Get real data from APIs
     const billboardRank = await getBillboardRank(album.body.name, album.body.artists[0].name) || 100;
     const billboard = Math.max(0, 10 - (billboardRank / 20));
     const sales = billboard * 0.9;
-    const pitchforkScore = 7.5; // Mock - replace with real scrape
-    const fantanoScore = 8.0; // Mock - replace with real API
-    const normalizedSentiment = 7.0; // Mock - replace with real sentiment analysis
 
-    const avgReview = (pitchforkScore + fantanoScore) / 2;
+    // Get Pitchfork and Fantano scores
+    const pitchforkScore = await scrapePitchfork(album.body.name, album.body.artists[0].name) || 7.5;
+    const fantanoScore = await getFantanoReview(album.body.name, album.body.artists[0].name) || 8.0;
+
+    // Get Discogs data
+    const discogsData = await getDiscogsData(album.body.name, album.body.artists[0].name);
+    const discogsRating = discogsData?.rating ? (discogsData.rating / 5) * 10 : 7.0; // Convert 5-point scale to 10-point
+
+    // Mock sentiment for now
+    const normalizedSentiment = 7.0;
+
+    // Calculate weighted score including Discogs
+    const avgReview = (pitchforkScore + fantanoScore + discogsRating) / 3;
     const score = (
-      0.3 * streams +
-      0.25 * sales +
-      0.2 * billboard +
-      0.15 * avgReview +
-      0.1 * normalizedSentiment
+      0.25 * streams +
+      0.2 * sales +
+      0.15 * billboard +
+      0.25 * avgReview +
+      0.15 * normalizedSentiment
     ).toFixed(1);
 
     const strengths = [];
