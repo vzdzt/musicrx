@@ -254,6 +254,64 @@ async function loadLatestNews() {
     }
 }
 
+// Load latest tweets for the index page
+async function loadLatestTweets() {
+    try {
+        const response = await fetch('/api/tweets?limit=10');
+        if (!response.ok) {
+            throw new Error(`Failed to load tweets: ${response.status}`);
+        }
+
+        const tweets = await response.json();
+        const scrollContainer = document.getElementById('tweets-scroll');
+        const loadingElement = document.getElementById('tweets-loading');
+
+        // Hide loading
+        if (loadingElement) {
+            loadingElement.style.display = 'none';
+        }
+
+        if (tweets.length > 0) {
+            let html = '';
+            // Show latest 10 tweets
+            tweets.forEach((tweet) => {
+                const title = tweet.title.length > 25 ? tweet.title.substring(0, 22) + '...' : tweet.title;
+                const source = tweet.source || 'Unknown';
+                const publishedDate = new Date(tweet.publishedAt).toLocaleDateString();
+
+                html += `<a href="${tweet.url}" target="_blank" class="scroll-item" style="text-decoration: none;">
+                    <div class="news-title-card">
+                        <h2>${title}</h2>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">@${source}</p>
+                        ${tweet.imageUrl ? `<img src="${tweet.imageUrl}" alt="${tweet.title}" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjMzMzIi8+Cjx0ZXh0IHg9IjYwIiB5PSI2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OSI+VHdlZXQ8L3RleHQ+Cjwvc3ZnPg=='">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fab fa-twitter" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
+                        <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${publishedDate}</p>
+                    </div>
+                </a>`;
+            });
+
+            scrollContainer.innerHTML = html;
+        } else {
+            scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
+                <i class="fab fa-twitter" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                <p>No tweets available at this time.</p>
+            </div>`;
+        }
+    } catch (error) {
+        console.error('Failed to load latest tweets:', error);
+        const scrollContainer = document.getElementById('tweets-scroll');
+        const loadingElement = document.getElementById('tweets-loading');
+
+        if (loadingElement) {
+            loadingElement.innerHTML = `
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: #f44336;"></i>
+                <p>Unable to load latest tweets at this time.</p>
+            `;
+        }
+    }
+}
+
 // Load AOTY contenders for the index page
 async function loadAOTYContenders() {
     try {
@@ -781,6 +839,11 @@ wordSpan.textContent = word;
     // Load latest news for the index page
     if (document.getElementById('news-scroll')) {
         loadLatestNews();
+    }
+
+    // Load latest tweets for the index page
+    if (document.getElementById('tweets-scroll')) {
+        loadLatestTweets();
     }
 
 });

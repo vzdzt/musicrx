@@ -2016,8 +2016,15 @@ async function fetchTwitterMusicNews() {
   try {
     console.log('🐦 Fetching music news from Twitter...');
 
-    // List of major music news Twitter accounts (>4K followers - high engagement accounts)
-    const musicNewsAccounts = [
+    // Prioritized accounts - fetch more posts from these first
+    const priorityAccounts = [
+      'kurrco',           // Music news updates - PRIORITY
+      'raptv',            // Rap news & culture - PRIORITY
+      'akademiks',        // Hip-hop culture & news - PRIORITY
+    ];
+
+    // Other major music news accounts
+    const otherMusicNewsAccounts = [
       // Major Publications (Millions of followers)
       'billboard',        // 4.8M - Charts & industry leader
       'RollingStone',     // 2.1M - Rock & culture legacy
@@ -2039,10 +2046,7 @@ async function fetchTwitterMusicNews() {
       'RockSound',        // 100K - Rock/alternative
       'PlanetRockRadio',  // 50K - Rock radio
 
-      // Hip-Hop & Rap Focused (High engagement)
-      'kurrco',           // Music news updates
-      'raptv',            // Rap news & culture
-      'akademiks',        // Hip-hop culture & news
+      // Additional Hip-Hop & Rap Focused (High engagement)
       'HipHopDX',         // 300K - Hip-hop news
       'AllHipHop',        // 200K - Hip-hop culture
       'RapRadar',         // 150K - Rap industry news
@@ -2093,10 +2097,27 @@ async function fetchTwitterMusicNews() {
 
     const allTweets = [];
 
-    // Fetch recent tweets from each account (limit to avoid rate limits)
-    for (const account of musicNewsAccounts.slice(0, 8)) { // Limit to 8 accounts to avoid rate limits
+    // First, fetch more posts from priority accounts (5 tweets each)
+    console.log('🎯 Fetching priority accounts: kurrco, rapTV, akademiks');
+    for (const account of priorityAccounts) {
       try {
-        const tweets = await fetchTwitterUserTweets(account, 3); // 3 tweets per account
+        console.log(`📱 Fetching ${5} tweets from @${account} (PRIORITY)`);
+        const tweets = await fetchTwitterUserTweets(account, 5); // 5 tweets per priority account
+        allTweets.push(...tweets);
+
+        // Rate limiting
+        await new Promise(resolve => setTimeout(resolve, 500));
+      } catch (accountError) {
+        console.warn(`Failed to fetch tweets for priority account @${account}:`, accountError.message);
+      }
+    }
+
+    // Then fetch from other accounts (limit to avoid rate limits)
+    const remainingSlots = Math.max(0, 8 - priorityAccounts.length); // Adjust based on priority accounts
+    for (const account of otherMusicNewsAccounts.slice(0, remainingSlots)) {
+      try {
+        console.log(`📱 Fetching ${3} tweets from @${account}`);
+        const tweets = await fetchTwitterUserTweets(account, 3); // 3 tweets per regular account
         allTweets.push(...tweets);
 
         // Rate limiting
@@ -2106,10 +2127,10 @@ async function fetchTwitterMusicNews() {
       }
     }
 
-    // Sort by creation date (newest first)
+    // Sort by creation date (newest first) - priority accounts will naturally appear first due to more recent fetches
     allTweets.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
-    console.log(`✅ Fetched ${allTweets.length} tweets from music news accounts`);
+    console.log(`✅ Fetched ${allTweets.length} tweets from music news accounts (${priorityAccounts.length} priority accounts)`);
     return allTweets;
 
   } catch (error) {
@@ -2350,6 +2371,24 @@ app.get('/api/news', async (req, res) => {
   } catch (error) {
     console.error('News fetch error:', error.message);
     res.status(500).json({ error: 'Failed to fetch news' });
+  }
+});
+
+// Tweets endpoint
+app.get('/api/tweets', async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 10;
+
+    const tweets = await NewsArticle.find({
+      tags: { $in: ['twitter'] }
+    })
+      .sort({ publishedAt: -1 })
+      .limit(limit);
+
+    res.json(tweets);
+  } catch (error) {
+    console.error('Tweets fetch error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch tweets' });
   }
 });
 
