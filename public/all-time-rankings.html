@@ -298,10 +298,23 @@
             if (albums.length === 0) return;
 
             const totalAlbums = albums.length;
-            const scores = albums.map(a => a.score);
-            const avgScore = (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1);
-            const highestScore = Math.max(...scores);
-            const lowestScore = Math.min(...scores);
+            // Filter out invalid scores and convert to numbers
+            const validScores = albums
+                .map(a => parseFloat(a.score))
+                .filter(score => !isNaN(score) && score >= 0 && score <= 10);
+
+            if (validScores.length === 0) {
+                // No valid scores available
+                document.getElementById('totalAlbums').textContent = totalAlbums;
+                document.getElementById('avgScore').textContent = 'N/A';
+                document.getElementById('highestScore').textContent = 'N/A';
+                document.getElementById('lowestScore').textContent = 'N/A';
+                return;
+            }
+
+            const avgScore = (validScores.reduce((a, b) => a + b, 0) / validScores.length).toFixed(1);
+            const highestScore = Math.max(...validScores);
+            const lowestScore = Math.min(...validScores);
 
             document.getElementById('totalAlbums').textContent = totalAlbums;
             document.getElementById('avgScore').textContent = avgScore;
