@@ -72,10 +72,29 @@ async function authenticateSpotify() {
     const data = await spotifyApi.clientCredentialsGrant();
     spotifyApi.setAccessToken(data.body['access_token']);
     console.log('Spotify authenticated');
+    return true;
   } catch (err) {
     console.error('Spotify auth failed:', err);
+    return false;
   }
 }
+
+// Refresh Spotify token if needed
+async function ensureSpotifyAuth() {
+  try {
+    // Try a simple API call to check if token is valid
+    await spotifyApi.getMe();
+    return true;
+  } catch (err) {
+    if (err.statusCode === 401) {
+      console.log('Spotify token expired, refreshing...');
+      return await authenticateSpotify();
+    }
+    console.error('Spotify auth check failed:', err.message);
+    return false;
+  }
+}
+
 authenticateSpotify();
 
 // Search for albums released on a specific date
@@ -738,6 +757,12 @@ app.get('/api/all-time-rankings', async (req, res) => {
 app.get('/api/new-releases', async (req, res) => {
   try {
     console.log('Fetching new releases from Spotify...');
+
+    // Ensure Spotify authentication is valid
+    const isAuthenticated = await ensureSpotifyAuth();
+    if (!isAuthenticated) {
+      throw new Error('Failed to authenticate with Spotify');
+    }
 
     // Try Spotify's new releases endpoint first
     try {
