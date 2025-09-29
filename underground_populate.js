@@ -26,21 +26,26 @@ async function populateUndergroundRankings() {
 
     // List of underground artists to analyze
     const undergroundArtists = [
+      // Original artists
       'osamason', 'nettspend', 'yeat', 'sk8star', 'summrs', 'molly santana',
       'veeze', 'lucki', 'homixide gang', 'otoboke beaver', 'bladee', 'che',
       'brennan jones', '2hollis', 'destroy lonely', 'ken carson', 'kayne west',
       'playboi carti', 'travis scott', 'lil uzi vert', 'future', 'young thug',
       'gunna', 'lil baby', 'rod wave', 'the weeknd', 'drake', 'kanye west',
-      // Additional underground/emerging artists
-      'babytron', 'riley Reid', 'yung lean', 'shygirl', 'lee Gamble',
-      'sOPHIE', 'Holly Herndon', 'Jlin', 'Arca', 'SOPHIE', 'Actress',
-      'Actress', 'Actress', 'Actress', 'Actress', 'Actress', 'Actress',
-      'Actress', 'Actress', 'Actress', 'Actress', 'Actress', 'Actress',
-      'Actress', 'Actress', 'Actress', 'Actress', 'Actress', 'Actress',
-      'Actress', 'Actress', 'Actress', 'Actress', 'Actress', 'Actress',
-      'Actress', 'Actress', 'Actress', 'Actress', 'Actress', 'Actress',
-      'Actress', 'Actress', 'Actress', 'Actress', 'Actress', 'Actress',
-      'Actress', 'Actress', 'Actress', 'Actress', 'Actress', 'Actress'
+
+      // Additional underground/emerging artists from user list
+      'babytron', 'yung lean', 'shygirl', 'lee gamble', 'sOPHIE', 'Holly Herndon',
+      'Jlin', 'Arca', 'Actress', 'southsidesilhouette', 'diorvsyou', 'untiljapan',
+      'nine vicious', 'diamond*', 'tezzus', '1300saint', 'unitus', 'dellyvadova',
+      'feng', 'rollin thrax', 'pradabagshawty', 'babystaydown', 'apollored1',
+      'glokk40spaz', '9geek', 'babybartier', 'tali the one', 'sixbill', 'kels!',
+      'lil2posh', 'thirteendegrees', 'seventhirtyatmorning', 'ladé', 'nosaint',
+      '6evermir', 'ja66', 'project4play', 'velarian', 'kioracks', 'yung fazo',
+      'pz\'', 'kikotali', 'lil xt', 'verci', 'nate x', 'protect', 'bandanna$saint',
+      'kankan', 'bleedlivin', 'eternalvail', '1oneam', 'okaymar', 'sneak',
+      'yunosa', 'strxch', 'talinwya', 'kelly audi', 'prettifun', 'ohsxnta',
+      'rickityrackzz', 'shrimpasta', 'zaan6below', 'savehills', 'lil righteous',
+      'lesgokev', 'zukenee', 'tana', 'billi0n'
     ];
 
     console.log(`Analyzing ${undergroundArtists.length} underground artists...`);
