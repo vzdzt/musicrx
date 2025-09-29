@@ -1456,6 +1456,72 @@ app.post('/api/update-all-reviewed', async (req, res) => {
   }
 });
 
+// Last.fm API Integration
+async function fetchLastFmCharts() {
+  try {
+    const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
+    if (!LASTFM_API_KEY) {
+      console.log('Last.fm API key not configured, skipping...');
+      return [];
+    }
+
+    // Fetch top artists chart
+    const response = await axios.get('https://ws.audioscrobbler.com/2.0/', {
+      params: {
+        method: 'chart.gettopartists',
+        api_key: LASTFM_API_KEY,
+        format: 'json',
+        limit: 20
+      },
+      timeout: 10000
+    });
+
+    return response.data.artists.artist.map(artist => ({
+      name: artist.name,
+      playcount: parseInt(artist.playcount),
+      listeners: parseInt(artist.listeners),
+      url: artist.url,
+      imageUrl: artist.image?.[2]?.['#text'] || null, // Medium image
+      rank: parseInt(artist['@attr']?.rank) || 0
+    }));
+  } catch (error) {
+    console.error('Last.fm charts fetch error:', error.message);
+    return [];
+  }
+}
+
+async function fetchLastFmArtistInfo(artistName) {
+  try {
+    const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
+    if (!LASTFM_API_KEY) return null;
+
+    const response = await axios.get('https://ws.audioscrobbler.com/2.0/', {
+      params: {
+        method: 'artist.getinfo',
+        artist: artistName,
+        api_key: LASTFM_API_KEY,
+        format: 'json'
+      },
+      timeout: 10000
+    });
+
+    const artist = response.data.artist;
+    return {
+      name: artist.name,
+      bio: artist.bio?.summary,
+      tags: artist.tags?.tag?.map(t => t.name) || [],
+      similar: artist.similar?.artist?.slice(0, 5).map(a => a.name) || [],
+      stats: {
+        listeners: parseInt(artist.stats?.listeners) || 0,
+        playcount: parseInt(artist.stats?.playcount) || 0
+      }
+    };
+  } catch (error) {
+    console.warn(`Last.fm artist info fetch error for ${artistName}:`, error.message);
+    return null;
+  }
+}
+
 // Automated News Collection Functions
 
 // Fetch news from NewsAPI (requires API key)
@@ -1713,6 +1779,34 @@ app.post('/api/news/collect', async (req, res) => {
   } catch (error) {
     console.error('Manual news collection error:', error.message);
     res.status(500).json({ error: 'Failed to collect news' });
+  }
+});
+
+// Last.fm Charts endpoint
+app.get('/api/charts/lastfm', async (req, res) => {
+  try {
+    const charts = await fetchLastFmCharts();
+    res.json(charts);
+  } catch (error) {
+    console.error('Last.fm charts error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch Last.fm charts' });
+  }
+});
+
+// Last.fm Artist Info endpoint
+app.get('/api/artist/lastfm/:artistName', async (req, res) => {
+  try {
+    const artistName = req.params.artistName;
+    const artistInfo = await fetchLastFmArtistInfo(artistName);
+
+    if (!artistInfo) {
+      return res.status(404).json({ error: 'Artist not found on Last.fm' });
+    }
+
+    res.json(artistInfo);
+  } catch (error) {
+    console.error('Last.fm artist info error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch artist info' });
   }
 });
 
