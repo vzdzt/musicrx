@@ -1358,38 +1358,117 @@ async function updateUndergroundRankings() {
   }
 }
 
-// Underground rankings endpoint
+// Underground rankings endpoint - with fresh API data
 app.get('/api/underground-rankings', async (req, res) => {
   try {
+    console.log('🔍 Fetching underground rankings with fresh API data...');
+
     const undergroundArtists = await UndergroundArtist.find()
       .sort({ monthlyListeners: -1 })
       .limit(50);
 
-    // Ensure all artists have proper images from Spotify
-    const updatedArtists = await Promise.all(undergroundArtists.map(async (artist) => {
-      // If imageUrl is a placeholder or missing, try to fetch from Spotify
-      if (!artist.imageUrl || artist.imageUrl.includes('placeholder') || artist.imageUrl.includes('via.placeholder')) {
+    // Update each artist with fresh data from all APIs
+    const updatedArtists = await Promise.all(undergroundArtists.map(async (artist, index) => {
+      try {
+        console.log(`📊 Updating ${artist.name} with fresh API data...`);
+
+        // 1. SPOTIFY DATA - Fresh artist info
+        let spotifyData = null;
         try {
-          console.log(`Fetching fresh image for ${artist.name} from Spotify...`);
           const artistData = await spotifyApi.getArtist(artist.artistId);
           const spotifyArtist = artistData.body;
 
-          if (spotifyArtist.images && spotifyArtist.images[0]) {
-            artist.imageUrl = spotifyArtist.images[0].url;
-            // Update in database
-            await UndergroundArtist.findOneAndUpdate(
-              { artistId: artist.artistId },
-              { imageUrl: artist.imageUrl }
-            );
-            console.log(`✅ Updated image for ${artist.name}`);
-          }
+          // Get top tracks for monthly listeners
+          const topTracksData = await spotifyApi.getArtistTopTracks(artist.artistId, 'US');
+          const topTracks = topTracksData.body.tracks;
+
+          // Estimate monthly listeners
+          const monthlyListeners = topTracks.reduce((total, track) => {
+            return total + (track.popularity * 10000);
+          }, 0) / topTracks.length;
+
+          spotifyData = {
+            popularity: spotifyArtist.popularity,
+            followers: spotifyArtist.followers.total,
+            genres: spotifyArtist.genres,
+            imageUrl: spotifyArtist.images?.[0]?.url || artist.imageUrl,
+            monthlyListeners: Math.round(monthlyListeners)
+          };
+
+          console.log(`   Spotify: ${spotifyData.followers.toLocaleString()} followers, ${spotifyData.monthlyListeners.toLocaleString()} monthly listeners`);
         } catch (spotifyErr) {
-          console.warn(`Could not fetch image for ${artist.name}:`, spotifyErr.message);
+          console.warn(`   Spotify data unavailable for ${artist.name}`);
         }
+
+        // 2. LAST.FM DATA - Listening statistics
+        let lastFmData = null;
+        try {
+          const lastFmInfo = await fetchLastFmArtistInfo(artist.name);
+          if (lastFmInfo?.stats) {
+            lastFmData = {
+              listeners: lastFmInfo.stats.listeners,
+              playcount: lastFmInfo.stats.playcount,
+              tags: lastFmInfo.tags,
+              bio: lastFmInfo.bio
+            };
+            console.log(`   Last.fm: ${lastFmInfo.stats.listeners.toLocaleString()} listeners`);
+          }
+        } catch (lastFmErr) {
+          console.warn(`   Last.fm data unavailable for ${artist.name}`);
+        }
+
+        // 3. DEEZER DATA - European popularity
+        let deezerData = null;
+        try {
+          const deezerArtists = await searchDeezerArtist(artist.name);
+          if (deezerArtists.length > 0) {
+            const topArtist = deezerArtists[0];
+            deezerData = {
+              fans: topArtist.nb_fan,
+              link: topArtist.link
+            };
+            console.log(`   Deezer: ${topArtist.nb_fan.toLocaleString()} fans`);
+          }
+        } catch (deezerErr) {
+          console.warn(`   Deezer data unavailable for ${artist.name}`);
+        }
+
+        // Update artist with fresh data
+        const updatedArtist = {
+          ...artist.toObject(),
+          // Use real Spotify data if available
+          spotifyPopularity: spotifyData?.popularity || artist.spotifyPopularity,
+          monthlyListeners: spotifyData?.monthlyListeners || artist.monthlyListeners,
+          followers: spotifyData?.followers || artist.followers,
+          imageUrl: spotifyData?.imageUrl || artist.imageUrl,
+          genres: spotifyData?.genres || artist.genres,
+          // Add new API data
+          lastFmListeners: lastFmData?.listeners || 0,
+          lastFmPlaycount: lastFmData?.playcount || 0,
+          deezerFans: deezerData?.fans || 0,
+          lastUpdated: new Date()
+        };
+
+        // Update in database
+        await UndergroundArtist.findOneAndUpdate(
+          { artistId: artist.artistId },
+          updatedArtist,
+          { new: true }
+        );
+
+        console.log(`✅ Updated ${artist.name} with fresh API data`);
+        return updatedArtist;
+
+      } catch (updateErr) {
+        console.error(`❌ Error updating ${artist.name}:`, updateErr.message);
+        return artist; // Return original data if update fails
       }
-      return artist;
     }));
 
+    // Sort by updated monthly listeners
+    updatedArtists.sort((a, b) => (b.monthlyListeners || 0) - (a.monthlyListeners || 0));
+
+    console.log(`🎯 Returned ${updatedArtists.length} underground artists with fresh API data`);
     res.json(updatedArtists);
   } catch (err) {
     console.error('Underground rankings error:', err);
