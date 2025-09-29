@@ -169,7 +169,7 @@ async function loadUndergroundArtists() {
                         <h2>${name}</h2>
                     </div>
                     <div class="news-content-card">
-                        ${artist.imageUrl ? `<img src="${artist.imageUrl}" alt="${artist.name}" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px;">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-user" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
+                        ${artist.imageUrl ? `<img src="${artist.imageUrl}" alt="${artist.name}" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjMzMzIi8+Cjx0ZXh0IHg9IjYwIiB5PSI2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OSI+QXJ0aXN0PC90ZXh0Pgo8L3N2Zz4='">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-user" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
                         <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${monthlyListeners} monthly listeners</p>
                     </div>
                 </a>`;
