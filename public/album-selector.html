@@ -124,6 +124,41 @@
             transform: none;
         }
 
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            background: var(--primary, #f97316);
+            color: white;
+            border: 2px solid var(--primary, #f97316);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .download-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+            background: #ea580c;
+            border-color: #ea580c;
+        }
+
+        .download-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .loading {
             display: none;
             color: #6b7280;
@@ -204,9 +239,14 @@
                 >
             </div>
 
-            <button id="selectBtn" class="select-btn" onclick="selectAlbum()">
-                <i class="fas fa-search"></i> Select Album
-            </button>
+            <div class="button-group">
+                <button id="selectBtn" class="select-btn" onclick="selectAlbum()">
+                    <i class="fas fa-search"></i> Select Album
+                </button>
+                <button id="downloadBtn" class="download-btn" onclick="downloadAlbumCard()" disabled>
+                    <i class="fas fa-download"></i> Download Card
+                </button>
+            </div>
 
             <p class="loading" id="loadingText">Loading album details...</p>
 
@@ -226,11 +266,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="script.js"></script>
 
     <script>
         // Configuration
         const BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://api.musicrx.app';
+
+        let currentAlbum = null;
 
         async function selectAlbum() {
             const albumId = document.getElementById('albumIdInput').value.trim();
@@ -265,12 +308,18 @@
 
                 const albumData = await response.json();
 
+                // Store album data for download functionality
+                currentAlbum = albumData;
+
                 // Update preview with album data
                 if (albumData.imageUrl) {
                     document.getElementById('albumCover').src = albumData.imageUrl;
                 }
                 document.getElementById('albumTitle').textContent = albumData.title;
                 document.getElementById('albumArtist').textContent = `by ${albumData.artist}`;
+
+                // Enable download button
+                document.getElementById('downloadBtn').disabled = false;
 
                 // Navigate to review page
                 setTimeout(() => {
@@ -291,6 +340,164 @@
             const errorMessage = document.getElementById('errorMessage');
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
+        }
+
+        async function downloadAlbumCard() {
+            if (!currentAlbum) return;
+
+            const downloadBtn = document.getElementById('downloadBtn');
+            const originalText = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+            downloadBtn.disabled = true;
+
+            try {
+                // Create a temporary div with the album card design
+                const cardDiv = document.createElement('div');
+                cardDiv.style.width = '1200px';
+                cardDiv.style.height = '675px';
+                cardDiv.style.background = 'linear-gradient(135deg, #fef3c7 0%, #ffffff 50%, #e5e7eb 100%)';
+                cardDiv.style.border = '8px solid #f97316';
+                cardDiv.style.borderRadius = '24px';
+                cardDiv.style.padding = '40px';
+                cardDiv.style.boxShadow = '0 0 40px rgba(249, 115, 22, 0.3)';
+                cardDiv.style.position = 'relative';
+                cardDiv.style.overflow = 'hidden';
+                cardDiv.style.fontFamily = 'system-ui, sans-serif';
+
+                // Background pattern
+                cardDiv.style.backgroundImage = `
+                    radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.1) 0%, transparent 50%)
+                `;
+
+                // Album cover (centered and larger)
+                const coverImg = document.createElement('img');
+                coverImg.src = currentAlbum.imageUrl;
+                coverImg.style.width = '500px';
+                coverImg.style.height = '500px';
+                coverImg.style.borderRadius = '25px';
+                coverImg.style.objectFit = 'cover';
+                coverImg.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+                coverImg.style.border = '6px solid rgba(249, 115, 22, 0.3)';
+                coverImg.style.position = 'absolute';
+                coverImg.style.top = '50%';
+                coverImg.style.left = '50%';
+                coverImg.style.transform = 'translate(-50%, -50%)';
+                cardDiv.appendChild(coverImg);
+
+                // Title and artist overlay
+                const infoDiv = document.createElement('div');
+                infoDiv.style.position = 'absolute';
+                infoDiv.style.bottom = '120px';
+                infoDiv.style.left = '40px';
+                infoDiv.style.right = '40px';
+                infoDiv.style.textAlign = 'center';
+                infoDiv.style.background = 'rgba(255, 255, 255, 0.9)';
+                infoDiv.style.backdropFilter = 'blur(10px)';
+                infoDiv.style.borderRadius = '15px';
+                infoDiv.style.padding = '20px';
+                infoDiv.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+
+                const title = document.createElement('h1');
+                title.textContent = currentAlbum.title;
+                title.style.fontSize = '48px';
+                title.style.fontWeight = 'bold';
+                title.style.color = '#1f2937';
+                title.style.margin = '0 0 10px 0';
+                title.style.textTransform = 'uppercase';
+                title.style.letterSpacing = '2px';
+                infoDiv.appendChild(title);
+
+                const artist = document.createElement('p');
+                artist.textContent = `by ${currentAlbum.artist}`;
+                artist.style.fontSize = '28px';
+                artist.style.color = '#6b7280';
+                artist.style.margin = '0 0 15px 0';
+                artist.style.fontStyle = 'italic';
+                infoDiv.appendChild(artist);
+
+                // Release year badge
+                const yearBadge = document.createElement('span');
+                yearBadge.textContent = new Date(currentAlbum.releaseDate).getFullYear();
+                yearBadge.style.background = '#e5e7eb';
+                yearBadge.style.color = '#374151';
+                yearBadge.style.padding = '8px 16px';
+                yearBadge.style.borderRadius = '12px';
+                yearBadge.style.fontSize = '24px';
+                yearBadge.style.fontWeight = 'bold';
+                yearBadge.style.display = 'inline-block';
+                infoDiv.appendChild(yearBadge);
+
+                cardDiv.appendChild(infoDiv);
+
+                // Branding with exact navbar heart logo
+                const brandingDiv = document.createElement('div');
+                brandingDiv.style.position = 'absolute';
+                brandingDiv.style.bottom = '20px';
+                brandingDiv.style.right = '40px';
+                brandingDiv.style.textAlign = 'right';
+                brandingDiv.style.display = 'flex';
+                brandingDiv.style.alignItems = 'center';
+                brandingDiv.style.gap = '10px';
+
+                // Exact navbar logo structure
+                const logoSpan = document.createElement('span');
+                logoSpan.className = 'logo-symbol';
+                logoSpan.style.display = 'inline-block';
+
+                const heartIcon = document.createElement('i');
+                heartIcon.className = 'fas fa-heartbeat';
+                heartIcon.style.fontSize = '32px';
+                heartIcon.style.color = '#f97316';
+
+                logoSpan.appendChild(heartIcon);
+                brandingDiv.appendChild(logoSpan);
+
+                const brandingText = document.createElement('div');
+                brandingText.textContent = 'MusicRx – Your Album Pulse';
+                brandingText.style.fontSize = '28px';
+                brandingText.style.fontWeight = 'bold';
+                brandingText.style.color = '#f97316';
+                brandingText.style.marginBottom = '5px';
+                brandingDiv.appendChild(brandingText);
+
+                const tagline = document.createElement('div');
+                tagline.textContent = 'Where Music Meets Analysis';
+                tagline.style.fontSize = '14px';
+                tagline.style.color = '#6b7280';
+                tagline.style.fontStyle = 'italic';
+                tagline.style.transform = 'rotate(-2deg)';
+                brandingDiv.appendChild(tagline);
+
+                cardDiv.appendChild(brandingDiv);
+
+                // Add to DOM temporarily for html2canvas
+                document.body.appendChild(cardDiv);
+
+                // Generate canvas
+                const canvas = await html2canvas(cardDiv, {
+                    width: 1200,
+                    height: 675,
+                    backgroundColor: null,
+                    scale: 1
+                });
+
+                // Remove from DOM
+                document.body.removeChild(cardDiv);
+
+                // Create download link
+                const link = document.createElement('a');
+                link.download = `${currentAlbum.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_album_card.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+            } catch (error) {
+                console.error('Download error:', error);
+                alert('Failed to generate album card. Please try again.');
+            } finally {
+                downloadBtn.innerHTML = originalText;
+                downloadBtn.disabled = false;
+            }
         }
 
         // Handle Enter key
