@@ -1278,7 +1278,32 @@ app.get('/api/underground-rankings', async (req, res) => {
       .sort({ monthlyListeners: -1 })
       .limit(50);
 
-    res.json(undergroundArtists);
+    // Ensure all artists have proper images from Spotify
+    const updatedArtists = await Promise.all(undergroundArtists.map(async (artist) => {
+      // If imageUrl is a placeholder or missing, try to fetch from Spotify
+      if (!artist.imageUrl || artist.imageUrl.includes('placeholder') || artist.imageUrl.includes('via.placeholder')) {
+        try {
+          console.log(`Fetching fresh image for ${artist.name} from Spotify...`);
+          const artistData = await spotifyApi.getArtist(artist.artistId);
+          const spotifyArtist = artistData.body;
+
+          if (spotifyArtist.images && spotifyArtist.images[0]) {
+            artist.imageUrl = spotifyArtist.images[0].url;
+            // Update in database
+            await UndergroundArtist.findOneAndUpdate(
+              { artistId: artist.artistId },
+              { imageUrl: artist.imageUrl }
+            );
+            console.log(`✅ Updated image for ${artist.name}`);
+          }
+        } catch (spotifyErr) {
+          console.warn(`Could not fetch image for ${artist.name}:`, spotifyErr.message);
+        }
+      }
+      return artist;
+    }));
+
+    res.json(updatedArtists);
   } catch (err) {
     console.error('Underground rankings error:', err);
     res.status(500).json({ error: 'Failed to fetch underground rankings' });
