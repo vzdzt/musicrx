@@ -1569,6 +1569,46 @@ async function getDeezerCharts() {
   }
 }
 
+async function getDeezerPlaylists(limit = 10) {
+  try {
+    const response = await axios.get('https://api.deezer.com/chart/0/playlists', {
+      params: { limit },
+      timeout: 10000
+    });
+
+    return response.data.data || [];
+  } catch (error) {
+    console.warn('Deezer playlists fetch error:', error.message);
+    return [];
+  }
+}
+
+async function getDeezerEditorial() {
+  try {
+    const response = await axios.get('https://api.deezer.com/editorial/0', {
+      timeout: 10000
+    });
+
+    return response.data;
+  } catch (error) {
+    console.warn('Deezer editorial fetch error:', error.message);
+    return null;
+  }
+}
+
+async function getDeezerGenres() {
+  try {
+    const response = await axios.get('https://api.deezer.com/genre', {
+      timeout: 10000
+    });
+
+    return response.data.data || [];
+  } catch (error) {
+    console.warn('Deezer genres fetch error:', error.message);
+    return [];
+  }
+}
+
 // MusicBrainz API Integration
 async function searchMusicBrainzArtist(artistName) {
   try {
@@ -1957,6 +1997,7 @@ app.get('/api/news/trending', async (req, res) => {
 
 app.post('/api/news/collect', async (req, res) => {
   try {
+    console.log('📰 Starting manual news collection...');
     await collectDailyNews();
     res.json({ success: true, message: 'News collection completed' });
   } catch (error) {
@@ -2086,6 +2127,43 @@ app.get('/api/deezer/artist/:artistId', async (req, res) => {
   } catch (error) {
     console.error('Deezer artist info error:', error.message);
     res.status(500).json({ error: 'Failed to fetch artist info' });
+  }
+});
+
+// Deezer Playlists endpoint
+app.get('/api/deezer/playlists', async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 10;
+    const playlists = await getDeezerPlaylists(limit);
+    res.json(playlists);
+  } catch (error) {
+    console.error('Deezer playlists error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch Deezer playlists' });
+  }
+});
+
+// Deezer Editorial endpoint
+app.get('/api/deezer/editorial', async (req, res) => {
+  try {
+    const editorial = await getDeezerEditorial();
+    if (!editorial) {
+      return res.status(404).json({ error: 'Deezer editorial not available' });
+    }
+    res.json(editorial);
+  } catch (error) {
+    console.error('Deezer editorial error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch Deezer editorial' });
+  }
+});
+
+// Deezer Genres endpoint
+app.get('/api/deezer/genres', async (req, res) => {
+  try {
+    const genres = await getDeezerGenres();
+    res.json(genres);
+  } catch (error) {
+    console.error('Deezer genres error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch Deezer genres' });
   }
 });
 
