@@ -251,6 +251,152 @@
             }
         }
 
+        // Unique album descriptions mapping
+        const albumDescriptions = {
+            // High-ranking albums get unique descriptions
+            "Blonde": {
+                strengths: [
+                    "Intimate acoustic arrangements that showcase raw emotion",
+                    "Vocal performances that blend vulnerability with technical precision",
+                    "Atmospheric production that creates immersive soundscapes",
+                    "Lyrical depth exploring themes of love and self-discovery"
+                ],
+                weaknesses: [
+                    "Some tracks may feel too sparse for listeners expecting fuller arrangements",
+                    "The minimalist approach might not satisfy fans of more conventional pop structures",
+                    "Requires focused listening to appreciate subtle nuances",
+                    "Emotional intensity may be overwhelming for casual listeners"
+                ]
+            },
+            "My Beautiful Dark Twisted Fantasy": {
+                strengths: [
+                    "Masterful production blending multiple genres seamlessly",
+                    "Lyrical complexity addressing personal and cultural themes",
+                    "Collaborations with top-tier artists elevating the project",
+                    "Innovative sampling and sound design techniques"
+                ],
+                weaknesses: [
+                    "Dense lyrical content requires multiple listens to fully comprehend",
+                    "Some tracks may feel disjointed due to the album's ambitious scope",
+                    "Production complexity might overshadow simpler emotional moments",
+                    "Length and pacing may challenge listeners expecting shorter formats"
+                ]
+            },
+            "The College Dropout": {
+                strengths: [
+                    "Soulful production incorporating live instrumentation",
+                    "Thought-provoking lyrics addressing faith and materialism",
+                    "Innovative fusion of hip-hop with gospel and soul elements",
+                    "Consistent thematic exploration throughout the project"
+                ],
+                weaknesses: [
+                    "Some production choices may feel dated to modern listeners",
+                    "Slower tempo tracks might not hold attention spans accustomed to faster-paced music",
+                    "Religious themes may alienate secular audiences",
+                    "Instrumentation occasionally overshadows vocal performances"
+                ]
+            },
+            "To Pimp a Butterfly": {
+                strengths: [
+                    "Diverse range of musical styles and guest appearances",
+                    "Powerful social commentary addressing systemic issues",
+                    "Innovative production techniques pushing hip-hop boundaries",
+                    "Exceptional lyricism and wordplay throughout"
+                ],
+                weaknesses: [
+                    "Complex themes may require cultural and historical context",
+                    "Some tracks may feel disjointed due to genre experimentation",
+                    "Length and density might be intimidating for casual listeners",
+                    "Political content may polarize audiences with different viewpoints"
+                ]
+            },
+            "The Marshall Mathers LP": {
+                strengths: [
+                    "Exceptional lyrical dexterity and rapid-fire delivery",
+                    "Dark humor and satire addressing controversial topics",
+                    "Innovative production with hard-hitting beats",
+                    "Raw emotional intensity in personal storytelling"
+                ],
+                weaknesses: [
+                    "Controversial and offensive content may alienate sensitive listeners",
+                    "Some tracks may feel too aggressive or confrontational",
+                    "Themes of violence and anger might be disturbing for some",
+                    "Humor doesn't always translate well across cultural contexts"
+                ]
+            },
+            "Illmatic": {
+                strengths: [
+                    "Crisp production with jazz-infused hip-hop beats",
+                    "Exceptional lyricism showcasing storytelling prowess",
+                    "Cohesive narrative flow throughout the album",
+                    "Timeless sound that transcends generations"
+                ],
+                weaknesses: [
+                    "Short runtime may leave listeners wanting more content",
+                    "Some production elements may sound dated to modern ears",
+                    "Dense lyrical content requires focused attention",
+                    "Underground appeal may not resonate with mainstream audiences"
+                ]
+            },
+            "OK Computer": {
+                strengths: [
+                    "Innovative sound design and experimental production",
+                    "Lyrical themes exploring technology and alienation",
+                    "Cohesive concept album with interconnected themes",
+                    "Musical complexity showcasing technical proficiency"
+                ],
+                weaknesses: [
+                    "Abstract themes may be difficult to interpret",
+                    "Some tracks may feel disjointed or experimental",
+                    "Emotional distance might not connect with all listeners",
+                    "Production techniques may overshadow songwriting in places"
+                ]
+            },
+            "The Miseducation of Lauryn Hill": {
+                strengths: [
+                    "Soulful vocals blending R&B with hip-hop sensibilities",
+                    "Intimate and personal lyrical content",
+                    "Innovative production incorporating live instrumentation",
+                    "Emotional depth and vulnerability in performances"
+                ],
+                weaknesses: [
+                    "Some tracks may feel too personal or introspective",
+                    "Production occasionally prioritizes atmosphere over melody",
+                    "Themes of relationships may not resonate with all demographics",
+                    "Length might feel excessive for some listening sessions"
+                ]
+            },
+            "In a Silent Way": {
+                strengths: [
+                    "Revolutionary jazz fusion approach blending acoustic and electronic elements",
+                    "Atmospheric soundscapes that redefined instrumental music",
+                    "Innovative use of studio technology and effects",
+                    "Collaborative chemistry between Miles Davis and his ensemble"
+                ],
+                weaknesses: [
+                    "Abstract nature may not appeal to listeners expecting traditional melodies",
+                    "Some passages may feel too experimental or avant-garde",
+                    "Lack of traditional song structures might confuse listeners",
+                    "Requires sophisticated listening skills to fully appreciate"
+                ]
+            },
+            "Kind of Blue": {
+                strengths: [
+                    "Modal jazz innovation that expanded harmonic possibilities",
+                    "Improvisational brilliance from jazz legends",
+                    "Timeless sound that defined cool jazz aesthetics",
+                    "Perfect balance between composition and spontaneity"
+                ],
+                weaknesses: [
+                    "Modal approach may sound repetitive to untrained ears",
+                    "Some solos may feel extended for listeners preferring shorter forms",
+                    "Lack of traditional chord progressions might be disorienting",
+                    "Requires jazz knowledge to fully appreciate technical achievements"
+                ]
+            }
+            // Add more albums as needed
+        };
+
         function displayAlbums(albums) {
             const grid = document.getElementById('albumsGrid');
 
@@ -269,6 +415,22 @@
                 const ranking = index + 1;
                 const medal = ranking === 1 ? '👑' : ranking === 2 ? '🥇' : ranking === 3 ? '🥈' : ranking === 4 ? '🥉' : `#${ranking}`;
 
+                // Get unique description for this album, fallback to generic if not found
+                const description = albumDescriptions[album.title] || {
+                    strengths: [
+                        "Outstanding musical craftsmanship and production quality",
+                        "Innovative approach to genre conventions and expectations",
+                        "Exceptional artistic vision and creative direction",
+                        "Powerful emotional impact and listener engagement"
+                    ],
+                    weaknesses: [
+                        "May require multiple listens to fully appreciate",
+                        "Some elements may not appeal to all audiences",
+                        "Occasional pacing or structural inconsistencies",
+                        "Complex themes may be challenging for some listeners"
+                    ]
+                };
+
                 html += `
                     <div class="album-card">
                         <div style="position: absolute; top: 10px; left: 10px; font-size: 1.5rem;">${medal}</div>
@@ -280,11 +442,11 @@
                         <div class="album-details">
                             <h4>Strengths:</h4>
                             <ul>
-                                ${album.strengths.map(s => `<li>${s}</li>`).join('')}
+                                ${description.strengths.map(s => `<li>${s}</li>`).join('')}
                             </ul>
                             <h4 style="margin-top: 1rem;">Weaknesses:</h4>
                             <ul>
-                                ${album.weaknesses.map(w => `<li>${w}</li>`).join('')}
+                                ${description.weaknesses.map(w => `<li>${w}</li>`).join('')}
                             </ul>
                         </div>
                     </div>

@@ -251,6 +251,16 @@
             }
         }
 
+        // Unique album descriptions mapping
+        const albumDescriptions = {
+            // Add 2025 albums here as they get rated
+            // Example format:
+            // "Album Title": {
+            //     strengths: ["Unique strength 1", "Unique strength 2", "Unique strength 3", "Unique strength 4"],
+            //     weaknesses: ["Unique weakness 1", "Unique weakness 2", "Unique weakness 3", "Unique weakness 4"]
+            // }
+        };
+
         function displayAlbums(albums) {
             const grid = document.getElementById('albumsGrid');
 
@@ -269,6 +279,22 @@
                 const ranking = index + 1;
                 const medal = ranking === 1 ? '🥇' : ranking === 2 ? '🥈' : ranking === 3 ? '🥉' : `#${ranking}`;
 
+                // Get unique description for this album, fallback to generic if not found
+                const description = albumDescriptions[album.title] || {
+                    strengths: [
+                        "Outstanding musical craftsmanship and production quality",
+                        "Innovative approach to genre conventions and expectations",
+                        "Exceptional artistic vision and creative direction",
+                        "Powerful emotional impact and listener engagement"
+                    ],
+                    weaknesses: [
+                        "May require multiple listens to fully appreciate",
+                        "Some elements may not appeal to all audiences",
+                        "Occasional pacing or structural inconsistencies",
+                        "Complex themes may be challenging for some listeners"
+                    ]
+                };
+
                 html += `
                     <div class="album-card">
                         <div style="position: absolute; top: 10px; left: 10px; font-size: 1.5rem;">${medal}</div>
@@ -280,11 +306,11 @@
                         <div class="album-details">
                             <h4>Strengths:</h4>
                             <ul>
-                                ${album.strengths.map(s => `<li>${s}</li>`).join('')}
+                                ${description.strengths.map(s => `<li>${s}</li>`).join('')}
                             </ul>
                             <h4 style="margin-top: 1rem;">Weaknesses:</h4>
                             <ul>
-                                ${album.weaknesses.map(w => `<li>${w}</li>`).join('')}
+                                ${description.weaknesses.map(w => `<li>${w}</li>`).join('')}
                             </ul>
                         </div>
                     </div>

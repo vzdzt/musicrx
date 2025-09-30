@@ -59,7 +59,8 @@
         // Load personal tweets
         async function loadPersonalTweets() {
             try {
-                const response = await fetch('/api/personal-tweets?limit=10');
+                // Use VPS API endpoint directly since frontend is on Vercel
+                const response = await fetch('https://musicrx.app/api/personal-tweets?limit=10');
                 if (!response.ok) {
                     throw new Error(`Failed to load tweets: ${response.status}`);
                 }
