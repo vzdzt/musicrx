@@ -159,6 +159,24 @@ async function populateUndergroundRankings() {
           }
 
           const artist = searchResults.body.artists.items[0];
+
+          // Validate this is actually an underground artist (not a mainstream match)
+          const isValidUndergroundArtist = (
+            artist.followers.total < 5000000 && // Not a mainstream superstar
+            artist.popularity < 80 && // Not ultra-mainstream
+            (artist.genres.some(g => g.toLowerCase().includes('hip hop') ||
+                                   g.toLowerCase().includes('rap') ||
+                                   g.toLowerCase().includes('underground') ||
+                                   g.toLowerCase().includes('experimental')) ||
+             artistName.toLowerCase() === 'otoboke beaver' ||
+             artistName.toLowerCase() === 'molly santana') // Allow specific non-hip-hop artists
+          );
+
+          if (!isValidUndergroundArtist) {
+            console.log(`❌ Found ${artist.name} but doesn't match underground criteria (${artist.followers.total.toLocaleString()} followers, ${artist.popularity} popularity), skipping`);
+            continue; // Skip this artist entirely
+          }
+
           console.log(`✓ Found: ${artist.name} (${artist.popularity} popularity, ${artist.followers.total.toLocaleString()} followers)`);
 
           // MEGA POWER RANKING: Use ALL 9 APIs for the ultimate underground artist analysis
@@ -522,14 +540,25 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
 
     console.log(`   📊 MEGA SCORE: ${finalScore.toFixed(1)} (Streaming: ${(streamingScore * 100).toFixed(1)}, Critical: ${(criticalScore * 100).toFixed(1)}, Meta: ${(metadataScore * 100).toFixed(1)}, Apple: ${megaMetrics.appleMusicData?.toLocaleString() || 0}, SoundCloud: ${megaMetrics.soundcloudData?.toLocaleString() || 0})`);
 
-    // Calculate monthly listeners from multiple sources
-    const monthlyListeners = Math.max(
-      megaMetrics.spotifyStreams,
-      megaMetrics.lastfmListeners || 0,
-      Math.round(megaMetrics.deezerFans * 10), // Rough estimate
-      Math.round(megaMetrics.appleMusicData / 1000) || 0, // Apple Music estimate
-      Math.round(megaMetrics.soundcloudData / 10) || 0   // SoundCloud estimate
-    );
+    // Calculate monthly listeners from multiple sources - ensure valid numbers
+    const spotifyStreams = Number.isFinite(megaMetrics.spotifyStreams) ? megaMetrics.spotifyStreams : 0;
+    const lastfmListeners = Number.isFinite(megaMetrics.lastfmListeners) ? megaMetrics.lastfmListeners : 0;
+    const deezerEstimate = Number.isFinite(megaMetrics.deezerFans) ? Math.round(megaMetrics.deezerFans * 10) : 0;
+    const appleEstimate = Number.isFinite(megaMetrics.appleMusicData) ? Math.round(megaMetrics.appleMusicData / 1000) : 0;
+    const soundcloudEstimate = Number.isFinite(megaMetrics.soundcloudData) ? Math.round(megaMetrics.soundcloudData / 10) : 0;
+
+    // Use Spotify streams as primary, with fallbacks - ensure minimum value
+    let monthlyListeners = Math.max(spotifyStreams, lastfmListeners, deezerEstimate, appleEstimate, soundcloudEstimate);
+
+    // If all sources are 0, use a minimum based on followers
+    if (monthlyListeners === 0) {
+      monthlyListeners = Math.max(1000, Math.round(megaMetrics.spotifyFollowers * 0.1));
+    }
+
+    // Final validation - ensure it's a valid number
+    if (!Number.isFinite(monthlyListeners) || monthlyListeners < 0) {
+      monthlyListeners = 1000; // Absolute fallback
+    }
 
     // Use real genres from Spotify
     const genres = artist.genres.length > 0 ? artist.genres : ['Hip Hop', 'Rap'];
