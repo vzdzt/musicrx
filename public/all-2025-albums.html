@@ -68,6 +68,32 @@
             text-align: left;
             margin-top: 1rem;
         }
+        .review-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .review-btn {
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--border-color);
+            background: var(--card-background);
+            color: var(--text-color);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .review-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .review-section {
+            display: none;
+        }
+        .review-section.active {
+            display: block;
+        }
         .album-details h4 {
             color: var(--primary);
             margin-bottom: 0.5rem;
@@ -351,14 +377,22 @@
                         <div class="album-artist">by ${album.artist}</div>
                         <div class="album-date">Released: ${new Date(album.releaseDate).toLocaleDateString()}</div>
                         <div class="album-details">
-                            <h4>Strengths:</h4>
-                            <ul>
-                                ${description.strengths.map(s => `<li>${s}</li>`).join('')}
-                            </ul>
-                            <h4 style="margin-top: 1rem;">Weaknesses:</h4>
-                            <ul>
-                                ${description.weaknesses.map(w => `<li>${w}</li>`).join('')}
-                            </ul>
+                            <div class="review-toggle">
+                                <button class="review-btn active" onclick="toggleReview(this, 'strengths')">Highlights</button>
+                                <button class="review-btn" onclick="toggleReview(this, 'weaknesses')">Misses</button>
+                            </div>
+                            <div class="review-section active" id="strengths-${index}">
+                                <h4>Highlights:</h4>
+                                <ul>
+                                    ${description.strengths.map(s => `<li>${s}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="review-section" id="weaknesses-${index}">
+                                <h4>Misses:</h4>
+                                <ul>
+                                    ${description.weaknesses.map(w => `<li>${w}</li>`).join('')}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -393,6 +427,24 @@
             document.getElementById('avgScore').textContent = avgScore;
             document.getElementById('highestScore').textContent = highestScore;
             document.getElementById('lowestScore').textContent = lowestScore;
+        }
+
+        // Toggle between highlights and misses
+        function toggleReview(button, type) {
+            const card = button.closest('.album-card');
+            const buttons = card.querySelectorAll('.review-btn');
+            const sections = card.querySelectorAll('.review-section');
+
+            // Update button states
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Update section visibility
+            sections.forEach(section => section.classList.remove('active'));
+            const targetSection = card.querySelector(`#${type}-${Array.from(card.parentNode.children).indexOf(card)}`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
         }
 
         // Load albums when page loads
