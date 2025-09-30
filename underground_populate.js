@@ -276,13 +276,53 @@ async function populateUndergroundRankings() {
           try {
             const topTracksData = await spotifyApi.getArtistTopTracks(artist.id, 'US');
             const topTracks = topTracksData.body.tracks;
-            const totalStreams = topTracks.reduce((total, track) => {
-              return total + (track.popularity * 20000); // More accurate estimate
-            }, 0);
-            megaMetrics.spotifyStreams = Math.round(totalStreams / topTracks.length);
-            console.log(`   Spotify: ${megaMetrics.spotifyStreams.toLocaleString()} est. streams`);
+
+            if (topTracks.length > 0) {
+              // Better estimation: popularity score roughly correlates to monthly streams
+              // High popularity (80-100) = millions of monthly streams
+              // Medium popularity (50-79) = hundreds of thousands
+              // Low popularity (0-49) = tens of thousands
+              let estimatedMonthlyStreams = 0;
+
+              for (const track of topTracks.slice(0, 5)) { // Use top 5 tracks
+                const popularity = track.popularity;
+                let trackStreams = 0;
+
+                if (popularity >= 80) {
+                  trackStreams = popularity * 80000; // 6.4M-8M per track (higher for viral tracks)
+                } else if (popularity >= 60) {
+                  trackStreams = popularity * 25000; // 1.5M-3M per track
+                } else if (popularity >= 40) {
+                  trackStreams = popularity * 8000; // 320K-640K per track
+                } else if (popularity >= 20) {
+                  trackStreams = popularity * 2000; // 40K-80K per track
+                } else {
+                  trackStreams = popularity * 500; // 0-25K per track
+                }
+
+                estimatedMonthlyStreams += trackStreams;
+              }
+
+              // Average across top tracks, but boost based on follower count
+              const baseStreams = Math.round(estimatedMonthlyStreams / Math.min(5, topTracks.length));
+              const followerMultiplier = Math.min(5, artist.followers.total / 100000); // Max 5x boost
+              megaMetrics.spotifyStreams = Math.round(baseStreams * (1 + followerMultiplier));
+
+              console.log(`   Spotify: ${megaMetrics.spotifyStreams.toLocaleString()} est. monthly streams`);
+            } else {
+              // Fallback: estimate based on followers and popularity
+              const followerEstimate = artist.followers.total * 0.2; // Rough estimate
+              const popularityEstimate = artist.popularity * 10000; // Popularity bonus
+              megaMetrics.spotifyStreams = Math.round(followerEstimate + popularityEstimate);
+              console.log(`   Spotify: ${megaMetrics.spotifyStreams.toLocaleString()} est. streams (fallback)`);
+            }
           } catch (err) {
-            megaMetrics.spotifyStreams = artist.followers.total * 0.15;
+            console.log(`Could not get Spotify top tracks for ${artistName}`);
+            // Better fallback using followers and popularity
+            const followerEstimate = artist.followers.total * 0.15;
+            const popularityEstimate = artist.popularity * 8000;
+            megaMetrics.spotifyStreams = Math.round(followerEstimate + popularityEstimate);
+            console.log(`   Spotify: ${megaMetrics.spotifyStreams.toLocaleString()} est. streams (fallback)`);
           }
 
           // 2. LAST.FM API - Historical streaming data & global reach
