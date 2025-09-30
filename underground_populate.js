@@ -169,6 +169,22 @@ async function populateUndergroundRankings() {
 
     console.log(`Analyzing ${undergroundArtists.length} underground artists with real Spotify data...`);
 
+    // First, clean up any mainstream artists that shouldn't be in underground rankings
+    console.log('🧹 Cleaning up mainstream artists from database...');
+    try {
+      const cleanupResult = await UndergroundArtist.deleteMany({
+        $or: [
+          { followers: { $gt: 2000000 } }, // Remove artists with 2M+ followers
+          { spotifyPopularity: { $gt: 70 } } // Remove artists with 70+ popularity
+        ]
+      });
+      if (cleanupResult.deletedCount > 0) {
+        console.log(`✅ Removed ${cleanupResult.deletedCount} mainstream artists from database`);
+      }
+    } catch (cleanupErr) {
+      console.log('⚠️ Could not clean up database:', cleanupErr.message);
+    }
+
     const analyzedArtists = [];
 
     for (const artistName of undergroundArtists) {
@@ -226,16 +242,15 @@ async function populateUndergroundRankings() {
             continue;
           }
 
-          // Only skip if it's clearly a mainstream superstar (not underground)
-          // Allow ALL artists with Spotify data, regardless of genre or follower count
-          const isMainstreamSuperstar = (
-            artist.followers.total > 10000000 && // Only skip true superstars
-            artist.popularity > 90 // Only skip ultra-mainstream artists
+          // Skip mainstream artists that don't belong in underground rankings
+          const isMainstreamArtist = (
+            artist.followers.total > 2000000 || // Skip artists with 2M+ followers
+            artist.popularity > 70 // Skip artists with 70+ popularity
           );
 
-          if (isMainstreamSuperstar) {
-            console.log(`❌ Found ${artist.name} - mainstream superstar (${artist.followers.total.toLocaleString()} followers, ${artist.popularity} popularity), skipping`);
-            continue; // Skip only true mainstream superstars
+          if (isMainstreamArtist) {
+            console.log(`❌ Found ${artist.name} - mainstream artist (${artist.followers.total.toLocaleString()} followers, ${artist.popularity} popularity), skipping`);
+            continue; // Skip mainstream artists
           }
 
           console.log(`✓ Found: ${artist.name} (${artist.popularity} popularity, ${artist.followers.total.toLocaleString()} followers)`);
