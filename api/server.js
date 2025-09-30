@@ -2419,35 +2419,23 @@ async function collectDailyNews() {
 
     console.log(`📊 Collected ${allArticles.length} articles (${newsApiArticles.length} NewsAPI, ${rssArticles.length} RSS, ${trendingArticles.length} trending, ${twitterArticles.length} Twitter)`);
 
-    // Get date boundaries for today and yesterday
+    // Get date boundaries for today and yesterday only
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
-    const dayBeforeYesterday = new Date(yesterday);
-    dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 1);
 
-    // Filter articles to prioritize recent ones (today, yesterday, or day before)
+    // Filter articles to ONLY include those from today and yesterday
     const recentArticles = allArticles.filter(article => {
       if (!article.publishedAt) return false;
       const articleDate = new Date(article.publishedAt);
       const articleDay = new Date(articleDate.getFullYear(), articleDate.getMonth(), articleDate.getDate());
-      return articleDay >= yesterday; // Today or yesterday
+      return articleDay >= yesterday; // Today or yesterday only
     });
 
-    // If we don't have enough recent articles, include some from the day before
-    let finalArticles = recentArticles;
-    if (recentArticles.length < 10) {
-      const olderArticles = allArticles.filter(article => {
-        if (!article.publishedAt) return false;
-        const articleDate = new Date(article.publishedAt);
-        const articleDay = new Date(articleDate.getFullYear(), articleDate.getMonth(), articleDate.getDate());
-        return articleDay >= dayBeforeYesterday && articleDay < yesterday; // Day before yesterday
-      });
-      finalArticles = [...recentArticles, ...olderArticles.slice(0, 10 - recentArticles.length)];
-    }
+    const finalArticles = recentArticles;
 
-    console.log(`📅 Filtered to ${finalArticles.length} recent articles (${recentArticles.length} from today/yesterday)`);
+    console.log(`📅 Filtered to ${finalArticles.length} articles from today and yesterday only`);
 
     // Filter and deduplicate articles with improved logic
     const uniqueArticles = [];
