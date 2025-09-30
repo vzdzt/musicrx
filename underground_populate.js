@@ -136,7 +136,8 @@ async function populateUndergroundRankings() {
       'zaan6below', 'Zukenee', '2hollis', '6evermir', '9geek',
       'osamason', 'che', 'molly santana', 'otoboke beaver', 'summrs',
       'yeat', 'jorjiana', 'k3', 'benji blue billz', 'jace',
-      'plaqueboymax', 'holottacheese', 'eem triplin', 'jim legacy'
+      'plaqueboymax', 'holottacheese', 'eem triplin', 'jim legacy',
+      '1900rugrat'  // Added as requested by user
     ];
 
     console.log(`Analyzing ${undergroundArtists.length} underground artists with real Spotify data...`);
