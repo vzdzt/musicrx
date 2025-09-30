@@ -151,15 +151,53 @@ async function populateUndergroundRankings() {
         if (spotifyAuthenticated) {
           console.log(`Searching Spotify for: ${artistName}`);
 
-          // Search for artist on Spotify
-          const searchResults = await spotifyApi.searchArtists(artistName, { limit: 1 });
+          // Search for artist on Spotify - use more specific search for certain artists
+          let searchQuery = artistName;
+          if (artistName.toLowerCase() === 'che') {
+            searchQuery = 'che underground rapper'; // More specific search for che
+          }
+
+          const searchResults = await spotifyApi.searchArtists(searchQuery, { limit: 5 }); // Get more results to find the right match
 
           if (!searchResults.body.artists.items.length) {
             console.log(`❌ No Spotify data found for: ${artistName}, skipping`);
             continue; // Skip this artist entirely
           }
 
-          const artist = searchResults.body.artists.items[0];
+          // Find the best matching artist (closest name match to original search)
+          let artist = searchResults.body.artists.items[0];
+          let bestMatch = artist;
+          let bestSimilarity = 0;
+
+          for (const candidate of searchResults.body.artists.items) {
+            // Calculate similarity between search term and artist name
+            const searchLower = artistName.toLowerCase();
+            const candidateLower = candidate.name.toLowerCase();
+
+            // Exact match gets highest score
+            if (candidateLower === searchLower) {
+              bestMatch = candidate;
+              bestSimilarity = 1;
+              break;
+            }
+
+            // Contains search term
+            if (candidateLower.includes(searchLower) || searchLower.includes(candidateLower)) {
+              const similarity = Math.min(searchLower.length, candidateLower.length) / Math.max(searchLower.length, candidateLower.length);
+              if (similarity > bestSimilarity) {
+                bestMatch = candidate;
+                bestSimilarity = similarity;
+              }
+            }
+          }
+
+          artist = bestMatch;
+
+          // Additional check: if similarity is too low, skip
+          if (bestSimilarity < 0.3) {
+            console.log(`❌ No good match found for: ${artistName} (best similarity: ${bestSimilarity.toFixed(2)}), skipping`);
+            continue;
+          }
 
           // Only skip if it's clearly a mainstream superstar (not underground)
           // Allow ALL artists with Spotify data, regardless of genre or follower count
