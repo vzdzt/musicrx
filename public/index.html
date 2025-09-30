@@ -290,15 +290,32 @@
             </div>
         </section>
 
-        <section class="scroll-section" id="underground">
+        <section class="scroll-section" id="underground-artists">
             <div class="section-header">
-                <h2 class="section-title"><a href="underground.html" style="text-decoration: none; color: inherit;">Underground Artists</a></h2>
+                <h2 class="section-title"><a href="underground-rankings.html" style="text-decoration: none; color: inherit;">Top Underground Artists</a></h2>
                 <div class="scroll-nav">
-                    <button class="scroll-button prev" onclick="scrollSection('underground', -300)">←</button>
-                    <button class="scroll-button next" onclick="scrollSection('underground', 300)">→</button>
+                    <button class="scroll-button prev" onclick="scrollSection('underground-artists', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('underground-artists', 300)">→</button>
                 </div>
             </div>
-            <div class="scroll-container" id="underground-scroll">
+            <div class="scroll-container" id="underground-artists-scroll">
+                <!-- Underground artists will be loaded here -->
+                <div class="loading" id="underground-loading">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p>Loading underground artists...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="scroll-section" id="new-music">
+            <div class="section-header">
+                <h2 class="section-title"><a href="underground.html" style="text-decoration: none; color: inherit;">New Music</a></h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('new-music', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('new-music', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="new-music-scroll">
                 <a href="underground.html" class="scroll-item">
                     <div class="news-title-card">
                         <h2>Project 202</h2>
