@@ -439,21 +439,27 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
   try {
     console.log(`🧠 MEGA POWER Analysis for ${artist.name}...`);
 
-    // MEGA POWER SCORING ALGORITHM - Using ALL 9 APIs
+    // MEGA POWER SCORING ALGORITHM - Optimized for Underground Artists
     // =================================================================
 
-    // 1. STREAMING IMPACT (35% weight) - Multi-Platform Performance
+    // UNDERGROUND ARTISTS TYPICALLY SCORE LOW IN:
+    // - Streaming numbers (small audiences by definition)
+    // - Twitter mentions (less mainstream coverage)
+    // - Metadata completeness (less professional documentation)
+
+    // SOLUTION: Adjust weights to favor underground metrics
+
+    // 1. STREAMING IMPACT (25% weight) - Reduced from 35%
     const streamingScore = (
-      (megaMetrics.spotifyFollowers / 1000000) * 0.20 +       // Spotify followers (scaled)
-      (megaMetrics.spotifyStreams / 10000000) * 0.20 +        // Spotify streams (scaled)
-      (megaMetrics.lastfmPlaycount / 100000000) * 0.15 +      // Last.fm total plays (historical)
-      (megaMetrics.deezerFans / 100000) * 0.12 +              // Deezer European presence
-      (megaMetrics.youtubeViews / 10000000) * 0.12 +          // YouTube visual impact
-      (megaMetrics.appleMusicData / 10000000) * 0.11 +        // Apple Music iOS dominance
-      (megaMetrics.soundcloudData / 1000000) * 0.10           // SoundCloud underground presence
+      (megaMetrics.spotifyFollowers / 1000000) * 0.25 +       // Spotify followers (scaled)
+      (megaMetrics.spotifyStreams / 10000000) * 0.25 +        // Spotify streams (scaled)
+      (megaMetrics.lastfmPlaycount / 100000000) * 0.20 +      // Last.fm total plays (historical)
+      (megaMetrics.deezerFans / 100000) * 0.15 +              // Deezer European presence
+      (megaMetrics.youtubeViews / 10000000) * 0.10 +          // YouTube visual impact
+      (megaMetrics.appleMusicData / 10000000) * 0.05          // Apple Music iOS dominance (reduced)
     );
 
-    // 2. CRITICAL RECEPTION (25% weight) - Professional Validation
+    // 2. CRITICAL RECEPTION (20% weight) - Reduced from 25%
     const criticalScore = (
       (megaMetrics.discogsRating / 5) * 0.40 +                // Discogs critic rating
       (megaMetrics.discogsVotes / 100) * 0.30 +               // Discogs voter consensus
@@ -461,32 +467,32 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
       Math.min(1, (megaMetrics.socialMentions || 0) / 50) * 0.10 // Twitter mentions volume
     );
 
-    // 3. METADATA QUALITY (15% weight) - Data Completeness & Legitimacy
+    // 3. METADATA QUALITY (10% weight) - Reduced from 15%
     const metadataScore = (
       megaMetrics.musicbrainzScore * 0.60 +                   // MusicBrainz completeness
       (megaMetrics.spotifyPopularity / 100) * 0.40            // Spotify data quality proxy
     );
 
-    // 4. CULTURAL IMPACT (15% weight) - Social & Cultural Presence
+    // 4. CULTURAL IMPACT (30% weight) - Increased from 15%
     const culturalScore = (
-      megaMetrics.emergingIndicators * 0.40 +                 // Underground authenticity
-      (megaMetrics.crossPlatformPresence || 0.5) * 0.30 +     // Multi-platform presence
-      (megaMetrics.socialBuzz || 0.5) * 0.30                  // Social media buzz
+      megaMetrics.emergingIndicators * 0.60 +                 // Underground authenticity (increased)
+      (megaMetrics.crossPlatformPresence || 0.5) * 0.25 +     // Multi-platform presence
+      (megaMetrics.socialBuzz || 0.5) * 0.15                  // Social media buzz
     );
 
-    // 5. GROWTH TRAJECTORY (10% weight) - Future Potential
+    // 5. GROWTH TRAJECTORY (15% weight) - Increased from 10%
     const growthScore = (
-      megaMetrics.recentGrowth * 0.60 +                       // Recent momentum
-      megaMetrics.emergingIndicators * 0.40                   // Emerging artist potential
+      megaMetrics.recentGrowth * 0.70 +                       // Recent momentum (increased)
+      megaMetrics.emergingIndicators * 0.30                   // Emerging artist potential
     );
 
-    // FINAL MEGA POWER SCORE - Weighted combination of all 9 APIs
+    // FINAL MEGA POWER SCORE - Rebalanced for Underground Artists
     const finalScore = (
-      streamingScore * 0.35 +    // 35% - Streaming Impact (9 platforms)
-      criticalScore * 0.25 +     // 25% - Critical Reception
-      metadataScore * 0.15 +     // 15% - Metadata Quality
-      culturalScore * 0.15 +     // 15% - Cultural Impact
-      growthScore * 0.10         // 10% - Growth Trajectory
+      streamingScore * 0.25 +    // 25% - Streaming Impact (reduced for underground)
+      criticalScore * 0.20 +     // 20% - Critical Reception
+      metadataScore * 0.10 +     // 10% - Metadata Quality (reduced)
+      culturalScore * 0.30 +     // 30% - Cultural Impact (increased for underground)
+      growthScore * 0.15         // 15% - Growth Trajectory (increased for emerging artists)
     ) * 100;
 
     console.log(`   📊 MEGA SCORE: ${finalScore.toFixed(1)} (Streaming: ${(streamingScore * 100).toFixed(1)}, Critical: ${(criticalScore * 100).toFixed(1)}, Meta: ${(metadataScore * 100).toFixed(1)}, Apple: ${megaMetrics.appleMusicData?.toLocaleString() || 0}, SoundCloud: ${megaMetrics.soundcloudData?.toLocaleString() || 0})`);
