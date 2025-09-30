@@ -22,14 +22,16 @@ function calculateUGRating(artist, megaMetrics) {
   const followers = megaMetrics.spotifyFollowers || 0;
   const popularity = megaMetrics.spotifyPopularity || 0;
 
-  // UG Rating categories based on underground metrics - adjusted for viral artists
-  if (monthlyListeners > 3000000 && followers > 500000) {
-    return 'Viral'; // Truly massive underground success (lowered thresholds)
-  } else if (monthlyListeners > 1500000 && followers > 300000) {
+  // UG Rating categories based on underground metrics - viral up to 20M listeners
+  if (monthlyListeners > 20000000) {
+    return 'Super Viral'; // Ultra-massive success (over 20M)
+  } else if (monthlyListeners > 10000000 && followers > 500000) {
+    return 'Viral'; // Truly massive underground success (10M-20M listeners)
+  } else if (monthlyListeners > 5000000 && followers > 300000) {
     return 'Next Up'; // Breaking through to wider recognition
-  } else if (monthlyListeners > 750000 && followers > 150000) {
+  } else if (monthlyListeners > 2000000 && followers > 150000) {
     return 'On The Rise'; // Significant growth and momentum
-  } else if (monthlyListeners > 300000 && followers > 75000) {
+  } else if (monthlyListeners > 500000 && followers > 75000) {
     return 'Known'; // Building awareness and fanbase
   } else {
     return 'Unknown'; // Deep underground, building from ground up
@@ -512,7 +514,7 @@ async function populateUndergroundRankings() {
       }
     }
 
-    // Sort by monthly listeners (descending)
+    // Sort by monthly listeners (descending) - as requested by user
     analyzedArtists.sort((a, b) => b.monthlyListeners - a.monthlyListeners);
 
     console.log('\nTop 10 Underground Artists:');
