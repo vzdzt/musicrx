@@ -566,30 +566,96 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
       strengths.push('Authentic underground credibility');
     }
 
-    // WEAKNESSES based on MEGA metrics - More varied and specific
+    // WEAKNESSES based on MEGA metrics - Highly varied and artist-specific
+    const artistName = artist.name;
+    const primaryGenre = artist.genres?.[0] || 'hip hop';
+
     if (streamingScore < 0.3) {
-      weaknesses.push('Developing streaming presence across major platforms');
+      const streamingWeaknesses = [
+        `${artistName} is still building their streaming footprint across major digital platforms`,
+        `Current streaming numbers for ${artistName} reflect their developing platform presence`,
+        `${artistName}'s cross-platform streaming distribution is in early development stages`,
+        `Building sustainable streaming momentum remains a key focus for ${artistName}`,
+        `${artistName} shows potential for growth in multi-platform streaming engagement`
+      ];
+      weaknesses.push(streamingWeaknesses[Math.floor(Math.random() * streamingWeaknesses.length)]);
     }
+
     if (megaMetrics.appleMusicData < 1000) {
-      weaknesses.push('Minimal iOS market penetration on Apple Music');
+      const appleWeaknesses = [
+        `${artistName} has limited iOS market penetration through Apple Music`,
+        `Apple Music streaming data for ${artistName} indicates room for iOS audience expansion`,
+        `${artistName}'s presence on Apple Music's iOS ecosystem needs further development`,
+        `iOS streaming growth represents an opportunity for ${artistName} on Apple Music`,
+        `${artistName} could benefit from increased iOS user engagement on Apple Music`
+      ];
+      weaknesses.push(appleWeaknesses[Math.floor(Math.random() * appleWeaknesses.length)]);
     }
+
     if (megaMetrics.soundcloudData < 1000) {
-      weaknesses.push('Limited engagement on underground SoundCloud community');
+      const soundcloudWeaknesses = [
+        `${artistName}'s SoundCloud engagement reflects their developing underground presence`,
+        `Building a stronger SoundCloud community is part of ${artistName}'s growth strategy`,
+        `${artistName} has opportunities to expand their SoundCloud audience reach`,
+        `SoundCloud platform engagement for ${artistName} is in early development`,
+        `${artistName}'s underground SoundCloud following has significant growth potential`
+      ];
+      weaknesses.push(soundcloudWeaknesses[Math.floor(Math.random() * soundcloudWeaknesses.length)]);
     }
+
     if (criticalScore < 0.4) {
-      weaknesses.push('Building critical reputation and collector interest');
+      const criticalWeaknesses = [
+        `${artistName} is establishing their critical reputation within the ${primaryGenre} community`,
+        `Building collector interest and critical recognition is an ongoing process for ${artistName}`,
+        `${artistName}'s critical reception is developing alongside their artistic growth`,
+        `Industry recognition and critical acclaim for ${artistName} continue to build`,
+        `${artistName} shows promise for future critical and collector value appreciation`
+      ];
+      weaknesses.push(criticalWeaknesses[Math.floor(Math.random() * criticalWeaknesses.length)]);
     }
+
     if (megaMetrics.musicbrainzScore < 0.3) {
-      weaknesses.push('Artist metadata and documentation needs expansion');
+      const metadataWeaknesses = [
+        `${artistName}'s artist documentation and metadata completeness needs expansion`,
+        `Comprehensive artist information for ${artistName} is still being developed`,
+        `${artistName}'s metadata and background information requires further documentation`,
+        `Building complete artist profiles and historical data is part of ${artistName}'s journey`,
+        `${artistName}'s artistic legacy documentation is in early development stages`
+      ];
+      weaknesses.push(metadataWeaknesses[Math.floor(Math.random() * metadataWeaknesses.length)]);
     }
+
     if (megaMetrics.youtubeViews < 100000) {
-      weaknesses.push('Growing visual content and video marketing presence');
+      const youtubeWeaknesses = [
+        `${artistName}'s visual content and video presence is expanding`,
+        `Building a YouTube audience remains a growth opportunity for ${artistName}`,
+        `${artistName}'s video content strategy is in development`,
+        `YouTube platform engagement for ${artistName} has room for expansion`,
+        `${artistName} could benefit from increased visual content and video marketing`
+      ];
+      weaknesses.push(youtubeWeaknesses[Math.floor(Math.random() * youtubeWeaknesses.length)]);
     }
+
     if (megaMetrics.socialMentions < 2) {
-      weaknesses.push('Expanding social media reach and online discussions');
+      const socialWeaknesses = [
+        `${artistName}'s social media conversations and online discussions are growing`,
+        `Building broader social media reach is part of ${artistName}'s development`,
+        `${artistName}'s online community engagement continues to expand`,
+        `Social media presence and digital conversations around ${artistName} are developing`,
+        `${artistName} has opportunities to increase their social media visibility`
+      ];
+      weaknesses.push(socialWeaknesses[Math.floor(Math.random() * socialWeaknesses.length)]);
     }
+
     if (megaMetrics.emergingIndicators < 0.3) {
-      weaknesses.push('Establishing stronger underground scene connections');
+      const sceneWeaknesses = [
+        `${artistName} is establishing stronger connections within the underground ${primaryGenre} scene`,
+        `Building relationships and networks in the ${primaryGenre} community is ongoing for ${artistName}`,
+        `${artistName}'s position within the underground music ecosystem is developing`,
+        `Scene connections and underground network building continue for ${artistName}`,
+        `${artistName} shows potential for deeper integration into the ${primaryGenre} underground`
+      ];
+      weaknesses.push(sceneWeaknesses[Math.floor(Math.random() * sceneWeaknesses.length)]);
     }
 
     // Ensure minimum analysis points with more varied defaults
