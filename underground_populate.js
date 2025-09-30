@@ -481,12 +481,14 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
       (megaMetrics.appleMusicData / 10000000) * 0.05          // Apple Music iOS dominance (reduced)
     );
 
-    // 2. CRITICAL RECEPTION (20% weight) - Reduced from 25%
+    // 2. CRITICAL RECEPTION (20% weight) - Underground credibility boost
+    // Replace social sentiment (mostly 0) with underground credibility score
+    const undergroundCredibility = Math.min(1, (100 - megaMetrics.spotifyPopularity) / 100); // Lower popularity = more credible underground
     const criticalScore = (
       (megaMetrics.discogsRating / 5) * 0.40 +                // Discogs critic rating
       (megaMetrics.discogsVotes / 100) * 0.30 +               // Discogs voter consensus
-      ((megaMetrics.socialSentiment + 1) / 2) * 0.20 +        // Twitter social sentiment (normalized)
-      Math.min(1, (megaMetrics.socialMentions || 0) / 50) * 0.10 // Twitter mentions volume
+      undergroundCredibility * 0.20 +                         // Underground credibility (replaces social sentiment)
+      Math.min(1, (megaMetrics.socialMentions || 0) / 50) * 0.10 // Twitter mentions volume (if available)
     );
 
     // 3. METADATA QUALITY (10% weight) - Reduced from 15%
