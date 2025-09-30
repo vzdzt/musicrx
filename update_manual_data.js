@@ -130,8 +130,38 @@ async function updateManualData() {
           console.log(`✅ Updated ${artistName}: ${monthlyListeners.toLocaleString()} listeners (${ugRating})`);
           updatedCount++;
         } else {
-          console.log(`❌ Artist not found in database: ${artistName}`);
-          notFoundCount++;
+          // Artist not found - create new artist entry with manual data
+          let ugRating = 'Unknown';
+          if (monthlyListeners >= 10000000) {
+            ugRating = 'Viral';
+          } else if (monthlyListeners >= 1000000) {
+            ugRating = 'Next Up';
+          } else if (monthlyListeners >= 500000) {
+            ugRating = 'On The Rise';
+          } else if (monthlyListeners >= 100000) {
+            ugRating = 'Known';
+          }
+
+          // Create new artist with manual data
+          const newArtist = new UndergroundArtist({
+            artistId: `manual_${artistName.replace(/\s+/g, '_').toLowerCase()}`,
+            name: artistName,
+            genres: ['Hip Hop', 'Rap'], // Default genres
+            spotifyPopularity: 70, // Default popularity
+            monthlyListeners: monthlyListeners,
+            followers: Math.round(monthlyListeners * 0.1), // Estimate followers
+            imageUrl: `https://via.placeholder.com/300x300/333/666?text=${encodeURIComponent(artistName)}`,
+            score: monthlyListeners / 10000, // Simple score based on listeners
+            strengths: ['High streaming numbers', 'Growing popularity'],
+            weaknesses: ['Building fanbase', 'Developing unique identity'],
+            ugRating: ugRating,
+            recentGrowth: 0.1,
+            lastUpdated: new Date()
+          });
+
+          await newArtist.save();
+          console.log(`✅ Added new artist ${artistName}: ${monthlyListeners.toLocaleString()} listeners (${ugRating})`);
+          updatedCount++;
         }
       } catch (err) {
         console.error(`Error updating ${artistName}:`, err.message);
