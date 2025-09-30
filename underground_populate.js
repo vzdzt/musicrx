@@ -167,9 +167,12 @@ async function populateUndergroundRankings() {
             (artist.genres.some(g => g.toLowerCase().includes('hip hop') ||
                                    g.toLowerCase().includes('rap') ||
                                    g.toLowerCase().includes('underground') ||
-                                   g.toLowerCase().includes('experimental')) ||
+                                   g.toLowerCase().includes('experimental') ||
+                                   g.toLowerCase().includes('rage rap') ||
+                                   g.toLowerCase().includes('cloud rap')) ||
              artistName.toLowerCase() === 'otoboke beaver' ||
-             artistName.toLowerCase() === 'molly santana') // Allow specific non-hip-hop artists
+             artistName.toLowerCase() === 'molly santana' ||
+             artistName.toLowerCase() === 'che') // Allow specific user-confirmed artists
           );
 
           if (!isValidUndergroundArtist) {
