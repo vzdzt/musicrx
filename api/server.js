@@ -2360,10 +2360,42 @@ async function collectDailyNews() {
 
     console.log(`📊 Collected ${allArticles.length} articles (${newsApiArticles.length} NewsAPI, ${rssArticles.length} RSS, ${trendingArticles.length} trending, ${twitterArticles.length} Twitter)`);
 
-    // Filter and deduplicate articles
-    const uniqueArticles = allArticles.filter((article, index, self) =>
-      index === self.findIndex(a => a.title === article.title && a.source === article.source)
-    );
+    // Filter and deduplicate articles with improved logic
+    const uniqueArticles = [];
+    const seenTitles = new Set();
+    const seenUrls = new Set();
+
+    for (const article of allArticles) {
+      // Skip if we've seen this exact URL before
+      if (seenUrls.has(article.url)) {
+        continue;
+      }
+
+      // Normalize title for comparison (remove extra spaces, convert to lowercase)
+      const normalizedTitle = article.title.toLowerCase().replace(/\s+/g, ' ').trim();
+
+      // Skip if we've seen a very similar title (basic fuzzy matching)
+      let isDuplicate = false;
+      for (const seenTitle of seenTitles) {
+        // Check if titles are very similar (80%+ overlap)
+        const words1 = new Set(normalizedTitle.split(' '));
+        const words2 = new Set(seenTitle.split(' '));
+        const intersection = new Set([...words1].filter(x => words2.has(x)));
+        const union = new Set([...words1, ...words2]);
+        const similarity = intersection.size / union.size;
+
+        if (similarity > 0.8 && intersection.size >= 3) { // At least 80% similar and 3+ common words
+          isDuplicate = true;
+          break;
+        }
+      }
+
+      if (!isDuplicate) {
+        uniqueArticles.push(article);
+        seenTitles.add(normalizedTitle);
+        seenUrls.add(article.url);
+      }
+    }
 
     // Store new articles (avoid duplicates)
     let storedCount = 0;
