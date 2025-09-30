@@ -59,24 +59,22 @@ async function populateUndergroundRankings() {
       console.log('Cannot proceed with real data - all artists will be skipped');
     }
 
-    // List of underground artists to analyze (strictly underground only - no mainstream artists)
+    // User's specified list of underground rappers
     const undergroundArtists = [
-      // Pure underground artists only - removed mainstream artists like Kanye West
-      'osamason', 'nettspend', 'sk8star', 'summrs', 'molly santana',
-      'veeze', 'lucki', 'homixide gang', 'otoboke beaver', 'bladee', 'che',
-      'brennan jones', '2hollis', 'destroy lonely', 'ken carson',
-      'babytron', 'yung lean', 'shygirl', 'lee gamble', 'sOPHIE', 'Holly Herndon',
-      'Jlin', 'Arca', 'Actress', 'southsidesilhouette', 'diorvsyou', 'untiljapan',
-      'nine vicious', 'diamond*', 'tezzus', '1300saint', 'unitus', 'dellyvadova',
-      'feng', 'rollin thrax', 'pradabagshawty', 'babystaydown', 'apollored1',
-      'glokk40spaz', '9geek', 'babybartier', 'tali the one', 'sixbill', 'kels!',
-      'lil2posh', 'thirteendegrees', 'ladé', 'nosaint',
-      '6evermir', 'ja66', 'project4play', 'velarian', 'kioracks', 'yung fazo',
-      'pz\'', 'kikotali', 'lil xt', 'verci', 'nate x', 'protect', 'bandanna$saint',
-      'kankan', 'bleedlivin', 'eternalvail', '1oneam', 'okaymar', 'sneak',
-      'yunosa', 'strxch', 'talinwya', 'kelly audi', 'prettifun', 'ohsxnta',
-      'rickityrackzz', 'shrimpasta', 'zaan6below', 'savehills', 'lil righteous',
-      'lesgokev', 'zukenee', 'tana', 'billi0n'
+      '1300SAINT', 'Apollored1', 'Babystaydown', 'Bandanna$aint', 'banhoes',
+      'Bear1boss', 'Bleedlivin', 'Brennan Jones', 'Dellyvadova', 'Destroy lonely',
+      'diamond*', 'Diorvsyou', 'eternalvail', 'Feng', 'Glokk40spaz',
+      'Hardrock', 'Homixide gang', 'Kankan', 'Kels!', 'Ken Carson',
+      'Kikotali', 'Kioracks', 'ladé', 'Lesgokev', 'Lil Righteous',
+      'lilxt', 'Lucki', 'Maxon', 'Nate X', 'Nine Vicious',
+      'nosaint', 'ohsxnta', 'Pradabagshawty', 'Prettifun', 'Protect',
+      'Rickityrackzz', 'Rollin Thrax', 'rollinthrax', 'savehills', 'Seventhirtyatmorning',
+      'shrimpasta', 'Sixbill', 'Sk8star', 'skaiwater', 'Southsidesilhouette',
+      'Strxtch', 'tali the one', 'tana', 'Tezzus', 'Thirteendegrees',
+      'Unitus', 'Untiljapan', 'Veeze', 'velarian', 'yung fazo',
+      'Yung Kayo', 'zaan6below', 'Zukenee', '2hollis', '6evermir', '9geek',
+      'osamason', 'che', 'otoboke beaver', 'molly santana', 'nettspend',
+      'jace', 'plaqueboymax', 'k3', 'jorjiana', '1900rugrat'
     ];
 
     console.log(`Analyzing ${undergroundArtists.length} underground artists with real Spotify data...`);
