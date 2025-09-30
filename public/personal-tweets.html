@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Tweets - MusicRx</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <p class="heartbeat-text">MUSICRX</p>
+            <span class="heartbeat-line"></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle" type="button"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="underground.html">Underground</a></li>
+                    <li><a href="all-time-rankings.html">Rankings</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <section class="scroll-section" id="personal-tweets">
+            <div class="section-header">
+                <h2 class="section-title">My Personal Tweets</h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('personal-tweets', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('personal-tweets', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="personal-tweets-scroll">
+                <div class="loading" id="personal-tweets-loading">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p>Loading personal tweets...</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Scroll function for horizontal sections
+        function scrollSection(containerId, distance) {
+            const container = document.getElementById(`${containerId}-scroll`);
+            if (container) {
+                container.scrollBy({ left: distance, behavior: 'smooth' });
+            }
+        }
+
+        // Load personal tweets
+        async function loadPersonalTweets() {
+            try {
+                const response = await fetch('/api/personal-tweets?limit=10');
+                if (!response.ok) {
+                    throw new Error(`Failed to load tweets: ${response.status}`);
+                }
+
+                const tweets = await response.json();
+                const scrollContainer = document.getElementById('personal-tweets-scroll');
+                const loadingElement = document.getElementById('personal-tweets-loading');
+
+                if (loadingElement) {
+                    loadingElement.style.display = 'none';
+                }
+
+                if (tweets.length > 0) {
+                    let html = '';
+                    tweets.forEach((tweet) => {
+                        const title = tweet.text.length > 25 ? tweet.text.substring(0, 22) + '...' : tweet.text;
+                        const username = tweet.username || 'Unknown';
+                        const publishedDate = new Date(tweet.created_at).toLocaleDateString();
+
+                        html += `<a href="${tweet.url}" target="_blank" class="scroll-item" style="text-decoration: none;">
+                            <div class="news-title-card">
+                                <h2>${title}</h2>
+                            </div>
+                            <div class="news-content-card">
+                                <p class="date">@${username}</p>
+                                <i class="fab fa-twitter" style="font-size: 2rem; opacity: 0.5; margin: 1rem 0;"></i>
+                                <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${publishedDate}</p>
+                            </div>
+                        </a>`;
+                    });
+
+                    scrollContainer.innerHTML = html;
+                } else {
+                    scrollContainer.innerHTML = `<div class="scroll-item" style="text-align: center; padding: 2rem; border: none;">
+                        <i class="fab fa-twitter" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>No personal tweets available at this time.</p>
+                    </div>`;
+                }
+            } catch (error) {
+                console.error('Failed to load personal tweets:', error);
+                const scrollContainer = document.getElementById('personal-tweets-scroll');
+                const loadingElement = document.getElementById('personal-tweets-loading');
+
+                if (loadingElement) {
+                    loadingElement.innerHTML = `
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: #f44336;"></i>
+                        <p>Unable to load personal tweets at this time.</p>
+                    `;
+                }
+            }
+        }
+
+        // Load tweets when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPersonalTweets();
+        });
+    </script>
+</body>
+</html>
