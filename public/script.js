@@ -841,10 +841,7 @@ wordSpan.textContent = word;
         loadLatestNews();
     }
 
-    // Load latest tweets for the index page
-    if (document.getElementById('tweets-scroll')) {
-        loadLatestTweets();
-    }
+
 
 });
 
