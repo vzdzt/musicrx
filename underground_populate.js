@@ -242,16 +242,8 @@ async function populateUndergroundRankings() {
             continue;
           }
 
-          // Skip mainstream artists that don't belong in underground rankings
-          const isMainstreamArtist = (
-            artist.followers.total > 2000000 || // Skip artists with 2M+ followers
-            artist.popularity > 70 // Skip artists with 70+ popularity
-          );
-
-          if (isMainstreamArtist) {
-            console.log(`❌ Found ${artist.name} - mainstream artist (${artist.followers.total.toLocaleString()} followers, ${artist.popularity} popularity), skipping`);
-            continue; // Skip mainstream artists
-          }
+          // Allow all artists in the user's list, regardless of follower count or popularity
+          // The user specifically requested these artists for their underground rankings
 
           console.log(`✓ Found: ${artist.name} (${artist.popularity} popularity, ${artist.followers.total.toLocaleString()} followers)`);
 
