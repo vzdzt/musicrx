@@ -200,7 +200,7 @@ async function populateUndergroundRankings() {
             searchQuery = 'che underground rapper'; // More specific search for che
           }
 
-          const searchResults = await spotifyApi.searchArtists(searchQuery, { limit: 5 }); // Get more results to find the right match
+          const searchResults = await spotifyApi.searchArtists(searchQuery, { limit: 5, market: 'US' }); // Get more results to find the right match, specify US market
 
           if (!searchResults.body.artists.items.length) {
             console.log(`❌ No Spotify data found for: ${artistName}, skipping`);
