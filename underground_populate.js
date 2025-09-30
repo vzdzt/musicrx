@@ -59,18 +59,17 @@ async function populateUndergroundRankings() {
       console.log('Cannot proceed with real data - all artists will be skipped');
     }
 
-    // User's specified list of underground rappers
+    // User's specified list of underground rappers (filtered to exclude mainstream artists)
     const undergroundArtists = [
       '1300SAINT', 'Apollored1', 'Babystaydown', 'Bandanna$aint', 'banhoes',
       'Bear1boss', 'Bleedlivin', 'Brennan Jones', 'Dellyvadova', 'Destroy lonely',
       'diamond*', 'Diorvsyou', 'eternalvail', 'Feng', 'Glokk40spaz',
-      'Hardrock', 'Homixide gang', 'Kankan', 'Kels!', 'Ken Carson',
-      'Kikotali', 'Kioracks', 'ladé', 'Lesgokev', 'Lil Righteous',
-      'lilxt', 'Lucki', 'Maxon', 'Nate X', 'Nine Vicious',
+      'Hardrock', 'Homixide gang', 'Kankan', 'Ken Carson',
+      'Kioracks', 'ladé', 'Lesgokev', 'Lucki', 'Maxon', 'Nate X', 'Nine Vicious',
       'nosaint', 'ohsxnta', 'Pradabagshawty', 'Prettifun', 'Protect',
       'Rickityrackzz', 'Rollin Thrax', 'rollinthrax', 'savehills', 'Seventhirtyatmorning',
-      'shrimpasta', 'Sixbill', 'Sk8star', 'skaiwater', 'Southsidesilhouette',
-      'Strxtch', 'tali the one', 'tana', 'Tezzus', 'Thirteendegrees',
+      'Sixbill', 'Sk8star', 'skaiwater', 'Southsidesilhouette',
+      'Strxtch', 'tana', 'Tezzus', 'Thirteendegrees',
       'Unitus', 'Untiljapan', 'Veeze', 'velarian', 'yung fazo',
       'Yung Kayo', 'zaan6below', 'Zukenee', '2hollis', '6evermir', '9geek',
       'osamason', 'che', 'otoboke beaver', 'molly santana', 'nettspend',
@@ -99,23 +98,48 @@ async function populateUndergroundRankings() {
           const artist = searchResults.body.artists.items[0];
           console.log(`✓ Found: ${artist.name} (${artist.popularity} popularity, ${artist.followers.total.toLocaleString()} followers)`);
 
-          // Get top tracks for monthly listeners estimate
-          let monthlyListeners = 0;
+          // Get comprehensive streaming data from multiple APIs
+          let streamingData = { spotifyFollowers: artist.followers.total, lastfmPlaycount: 0, deezerFans: 0 };
+
+          // 1. Get Spotify top tracks for stream estimates
           try {
             const topTracksData = await spotifyApi.getArtistTopTracks(artist.id, 'US');
             const topTracks = topTracksData.body.tracks;
-
-            // Estimate monthly listeners from top tracks
-            monthlyListeners = topTracks.reduce((total, track) => {
+            const estimatedStreams = topTracks.reduce((total, track) => {
               return total + (track.popularity * 15000); // Rough estimate based on popularity
             }, 0) / topTracks.length;
+            streamingData.spotifyStreams = Math.round(estimatedStreams);
           } catch (err) {
-            console.log(`Could not get top tracks for ${artistName}, using follower-based estimate`);
-            monthlyListeners = artist.followers.total * 0.1; // Rough estimate
+            console.log(`Could not get Spotify top tracks for ${artistName}`);
+            streamingData.spotifyStreams = artist.followers.total * 0.1; // Fallback estimate
           }
 
-          // Analyze artist with real data
-          analysis = await analyzeUndergroundArtist(artist, monthlyListeners);
+          // 2. Get Last.fm data for total playcounts
+          try {
+            const lastfmResponse = await fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${encodeURIComponent(artist.name)}&api_key=${process.env.LASTFM_API_KEY}&format=json`);
+            const lastfmData = await lastfmResponse.json();
+            if (lastfmData.artist?.stats?.playcount) {
+              streamingData.lastfmPlaycount = parseInt(lastfmData.artist.stats.playcount);
+              console.log(`   Last.fm: ${streamingData.lastfmPlaycount.toLocaleString()} total plays`);
+            }
+          } catch (err) {
+            console.log(`Could not get Last.fm data for ${artistName}`);
+          }
+
+          // 3. Get Deezer data for European fanbase
+          try {
+            const deezerResponse = await fetch(`https://api.deezer.com/search/artist?q=${encodeURIComponent(artist.name)}`);
+            const deezerData = await deezerResponse.json();
+            if (deezerData.data && deezerData.data[0]) {
+              streamingData.deezerFans = deezerData.data[0].nb_fan;
+              console.log(`   Deezer: ${streamingData.deezerFans.toLocaleString()} fans`);
+            }
+          } catch (err) {
+            console.log(`Could not get Deezer data for ${artistName}`);
+          }
+
+          // Analyze artist with comprehensive streaming data
+          analysis = await analyzeUndergroundArtist(artist, streamingData);
         } else {
           console.log(`❌ Spotify not available, cannot get real data for: ${artistName}, skipping`);
           continue; // Skip this artist entirely
