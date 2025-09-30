@@ -2743,7 +2743,7 @@ app.get('/api/deezer/genres', async (req, res) => {
 });
 
 // Update cron job to include news collection
-cron.schedule('0 */6 * * *', async () => { // Every 6 hours
+cron.schedule('0 */2 * * *', async () => { // Every 2 hours
   console.log('Running scheduled news collection...');
   await collectDailyNews();
 });
