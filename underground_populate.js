@@ -159,9 +159,9 @@ async function populateUndergroundRankings() {
           const artist = searchResults.body.artists.items[0];
           console.log(`✓ Found: ${artist.name} (${artist.popularity} popularity, ${artist.followers.total.toLocaleString()} followers)`);
 
-          // SUPER POWER RANKING: Use ALL 7 APIs for comprehensive underground artist analysis
-          let superMetrics = {
-            // Streaming Impact (40% total)
+          // MEGA POWER RANKING: Use ALL 9 APIs for the ultimate underground artist analysis
+          let megaMetrics = {
+            // Streaming Impact (35% total) - Now includes Apple Music & SoundCloud
             spotifyFollowers: artist.followers.total,
             spotifyPopularity: artist.popularity,
             spotifyStreams: 0,
@@ -169,18 +169,20 @@ async function populateUndergroundRankings() {
             lastfmListeners: 0,
             deezerFans: 0,
             youtubeViews: 0,
+            appleMusicData: 0,
+            soundcloudData: 0,
 
             // Critical Reception (25% total)
             discogsRating: 0,
             discogsVotes: 0,
-            newsSentiment: 0,
-            newsCoverage: 0,
+            socialMentions: 0,
+            socialSentiment: 0,
 
             // Metadata Quality (15% total)
             musicbrainzScore: 0,
             genreConsistency: 0,
 
-            // Cultural Impact (10% total)
+            // Cultural Impact (15% total) - Increased weight for social data
             socialBuzz: 0,
             crossPlatformPresence: 0,
 
@@ -196,10 +198,10 @@ async function populateUndergroundRankings() {
             const totalStreams = topTracks.reduce((total, track) => {
               return total + (track.popularity * 20000); // More accurate estimate
             }, 0);
-            superMetrics.spotifyStreams = Math.round(totalStreams / topTracks.length);
-            console.log(`   Spotify: ${superMetrics.spotifyStreams.toLocaleString()} est. streams`);
+            megaMetrics.spotifyStreams = Math.round(totalStreams / topTracks.length);
+            console.log(`   Spotify: ${megaMetrics.spotifyStreams.toLocaleString()} est. streams`);
           } catch (err) {
-            superMetrics.spotifyStreams = artist.followers.total * 0.15;
+            megaMetrics.spotifyStreams = artist.followers.total * 0.15;
           }
 
           // 2. LAST.FM API - Historical streaming data & global reach
@@ -207,9 +209,9 @@ async function populateUndergroundRankings() {
             const lastfmResponse = await fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${encodeURIComponent(artist.name)}&api_key=${process.env.LASTFM_API_KEY}&format=json`);
             const lastfmData = await lastfmResponse.json();
             if (lastfmData.artist?.stats) {
-              superMetrics.lastfmPlaycount = parseInt(lastfmData.artist.stats.playcount) || 0;
-              superMetrics.lastfmListeners = parseInt(lastfmData.artist.stats.listeners) || 0;
-              console.log(`   Last.fm: ${superMetrics.lastfmPlaycount.toLocaleString()} plays, ${superMetrics.lastfmListeners.toLocaleString()} listeners`);
+              megaMetrics.lastfmPlaycount = parseInt(lastfmData.artist.stats.playcount) || 0;
+              megaMetrics.lastfmListeners = parseInt(lastfmData.artist.stats.listeners) || 0;
+              console.log(`   Last.fm: ${megaMetrics.lastfmPlaycount.toLocaleString()} plays, ${megaMetrics.lastfmListeners.toLocaleString()} listeners`);
             }
           } catch (err) {
             console.log(`Could not get Last.fm data for ${artistName}`);
@@ -220,8 +222,8 @@ async function populateUndergroundRankings() {
             const deezerResponse = await fetch(`https://api.deezer.com/search/artist?q=${encodeURIComponent(artist.name)}`);
             const deezerData = await deezerResponse.json();
             if (deezerData.data && deezerData.data[0]) {
-              superMetrics.deezerFans = deezerData.data[0].nb_fan;
-              console.log(`   Deezer: ${superMetrics.deezerFans.toLocaleString()} fans`);
+              megaMetrics.deezerFans = deezerData.data[0].nb_fan;
+              console.log(`   Deezer: ${megaMetrics.deezerFans.toLocaleString()} fans`);
             }
           } catch (err) {
             console.log(`Could not get Deezer data for ${artistName}`);
@@ -255,10 +257,61 @@ async function populateUndergroundRankings() {
                 continue;
               }
             }
-            superMetrics.youtubeViews = totalViews;
+            megaMetrics.youtubeViews = totalViews;
             console.log(`   YouTube: ${totalViews.toLocaleString()} total views`);
           } catch (err) {
             console.log(`Could not get YouTube data for ${artistName}`);
+          }
+
+          // 8. APPLE MUSIC API - iOS streaming dominance
+          try {
+            // Apple Music doesn't have a public API, so we'll use web scraping of their RSS feeds
+            const appleResponse = await fetch(`https://music.apple.com/us/rss/topsongs/limit=100/json`);
+            const appleData = await appleResponse.json();
+
+            // Search for artist in top songs
+            let appleStreams = 0;
+            if (appleData.feed?.entry) {
+              const artistSongs = appleData.feed.entry.filter(song =>
+                song['im:artist']?.label?.toLowerCase().includes(artist.name.toLowerCase())
+              );
+              appleStreams = artistSongs.length * 50000; // Rough estimate per song in top 100
+            }
+
+            megaMetrics.appleMusicData = appleStreams;
+            console.log(`   Apple Music: ${appleStreams.toLocaleString()} estimated streams`);
+          } catch (err) {
+            console.log(`Could not get Apple Music data for ${artistName}`);
+            megaMetrics.appleMusicData = 0;
+          }
+
+          // 9. SOUNDCLOUD API - Underground audio platform
+          try {
+            // SoundCloud API v2 (limited but available)
+            const scResponse = await fetch(`https://api.soundcloud.com/users?q=${encodeURIComponent(artist.name)}&client_id=${process.env.SOUNDCLOUD_CLIENT_ID}&limit=1`);
+            const scData = await scResponse.json();
+
+            if (scData && scData[0]) {
+              const scUser = scData[0];
+              // Get user's tracks and calculate engagement
+              const tracksResponse = await fetch(`${scUser.uri}/tracks?client_id=${process.env.SOUNDCLOUD_CLIENT_ID}&limit=50`);
+              const tracksData = await tracksResponse.json();
+
+              let totalPlays = 0;
+              let totalLikes = 0;
+              tracksData.forEach(track => {
+                totalPlays += track.playback_count || 0;
+                totalLikes += track.likes_count || 0;
+              });
+
+              megaMetrics.soundcloudData = totalPlays + (totalLikes * 10); // Weight likes as engagement
+              console.log(`   SoundCloud: ${totalPlays.toLocaleString()} plays, ${totalLikes.toLocaleString()} likes`);
+            } else {
+              megaMetrics.soundcloudData = 0;
+            }
+          } catch (err) {
+            console.log(`Could not get SoundCloud data for ${artistName}`);
+            megaMetrics.soundcloudData = 0;
           }
 
           // 5. DISCOGS API - Critical reception & collector value
@@ -386,51 +439,53 @@ async function analyzeUndergroundArtistSuper(artist, superMetrics) {
   try {
     console.log(`🧠 SUPER POWER Analysis for ${artist.name}...`);
 
-    // SUPER POWER SCORING ALGORITHM - Using ALL 7 APIs
+    // MEGA POWER SCORING ALGORITHM - Using ALL 9 APIs
     // =================================================================
 
-    // 1. STREAMING IMPACT (40% weight) - Current & Historical Performance
+    // 1. STREAMING IMPACT (35% weight) - Multi-Platform Performance
     const streamingScore = (
-      (superMetrics.spotifyFollowers / 1000000) * 0.25 +     // Spotify followers (scaled)
-      (superMetrics.spotifyStreams / 10000000) * 0.25 +      // Spotify streams (scaled)
-      (superMetrics.lastfmPlaycount / 100000000) * 0.20 +    // Last.fm total plays (historical)
-      (superMetrics.deezerFans / 100000) * 0.15 +            // Deezer European presence
-      (superMetrics.youtubeViews / 10000000) * 0.15          // YouTube visual impact
+      (megaMetrics.spotifyFollowers / 1000000) * 0.20 +       // Spotify followers (scaled)
+      (megaMetrics.spotifyStreams / 10000000) * 0.20 +        // Spotify streams (scaled)
+      (megaMetrics.lastfmPlaycount / 100000000) * 0.15 +      // Last.fm total plays (historical)
+      (megaMetrics.deezerFans / 100000) * 0.12 +              // Deezer European presence
+      (megaMetrics.youtubeViews / 10000000) * 0.12 +          // YouTube visual impact
+      (megaMetrics.appleMusicData / 10000000) * 0.11 +        // Apple Music iOS dominance
+      (megaMetrics.soundcloudData / 1000000) * 0.10           // SoundCloud underground presence
     );
 
     // 2. CRITICAL RECEPTION (25% weight) - Professional Validation
     const criticalScore = (
-      (superMetrics.discogsRating / 5) * 0.40 +              // Discogs critic rating
-      (superMetrics.discogsVotes / 100) * 0.30 +             // Discogs voter consensus
-      ((superMetrics.socialSentiment + 1) / 2) * 0.20 +      // Twitter social sentiment (normalized)
-      Math.min(1, (superMetrics.socialMentions || 0) / 50) * 0.10 // Twitter mentions volume
+      (megaMetrics.discogsRating / 5) * 0.40 +                // Discogs critic rating
+      (megaMetrics.discogsVotes / 100) * 0.30 +               // Discogs voter consensus
+      ((megaMetrics.socialSentiment + 1) / 2) * 0.20 +        // Twitter social sentiment (normalized)
+      Math.min(1, (megaMetrics.socialMentions || 0) / 50) * 0.10 // Twitter mentions volume
     );
 
     // 3. METADATA QUALITY (15% weight) - Data Completeness & Legitimacy
     const metadataScore = (
-      superMetrics.musicbrainzScore * 0.60 +                  // MusicBrainz completeness
-      (superMetrics.spotifyPopularity / 100) * 0.40           // Spotify data quality proxy
+      megaMetrics.musicbrainzScore * 0.60 +                   // MusicBrainz completeness
+      (megaMetrics.spotifyPopularity / 100) * 0.40            // Spotify data quality proxy
     );
 
-    // 4. CULTURAL IMPACT (10% weight) - Social & Cultural Presence
+    // 4. CULTURAL IMPACT (15% weight) - Social & Cultural Presence
     const culturalScore = (
-      superMetrics.emergingIndicators * 0.50 +                // Underground authenticity
-      (superMetrics.crossPlatformPresence || 0.5) * 0.30 +    // Multi-platform presence
-      (superMetrics.socialBuzz || 0.5) * 0.20                 // Social media buzz
+      megaMetrics.emergingIndicators * 0.40 +                 // Underground authenticity
+      (megaMetrics.crossPlatformPresence || 0.5) * 0.30 +     // Multi-platform presence
+      (megaMetrics.socialBuzz || 0.5) * 0.30                  // Social media buzz
     );
 
     // 5. GROWTH TRAJECTORY (10% weight) - Future Potential
     const growthScore = (
-      superMetrics.recentGrowth * 0.60 +                      // Recent momentum
-      superMetrics.emergingIndicators * 0.40                  // Emerging artist potential
+      megaMetrics.recentGrowth * 0.60 +                       // Recent momentum
+      megaMetrics.emergingIndicators * 0.40                   // Emerging artist potential
     );
 
-    // FINAL SUPER POWER SCORE - Weighted combination of all metrics
+    // FINAL MEGA POWER SCORE - Weighted combination of all 9 APIs
     const finalScore = (
-      streamingScore * 0.40 +    // 40% - Streaming Impact
+      streamingScore * 0.35 +    // 35% - Streaming Impact (9 platforms)
       criticalScore * 0.25 +     // 25% - Critical Reception
       metadataScore * 0.15 +     // 15% - Metadata Quality
-      culturalScore * 0.10 +     // 10% - Cultural Impact
+      culturalScore * 0.15 +     // 15% - Cultural Impact
       growthScore * 0.10         // 10% - Growth Trajectory
     ) * 100;
 
