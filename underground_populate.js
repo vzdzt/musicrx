@@ -121,8 +121,9 @@ async function populateUndergroundRankings() {
     }
 
     // User's specified list of underground rappers (filtered to exclude mainstream artists)
+    // REMOVED: 'banhoes' (matches Chevelle rock band instead of underground rapper)
     const undergroundArtists = [
-      '1300SAINT', 'Apollored1', 'Babystaydown', 'Bandanna$aint', 'banhoes',
+      '1300SAINT', 'Apollored1', 'Babystaydown', 'Bandanna$aint', // Removed 'banhoes'
       'Bear1boss', 'Bleedlivin', 'Brennan Jones', 'Dellyvadova', 'Destroy lonely',
       'diamond*', 'Diorvsyou', 'eternalvail', 'Feng', 'Glokk40spaz',
       'Hardrock', 'Homixide gang', 'Kankan', 'Ken Carson',
