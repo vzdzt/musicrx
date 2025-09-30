@@ -2403,10 +2403,10 @@ async function generateTrendingNews() {
   }
 }
 
-// Collect and store fresh news
+// Collect and store fresh news - prioritizing articles from today and yesterday
 async function collectDailyNews() {
   try {
-    console.log('📰 Collecting daily music news...');
+    console.log('📰 Collecting daily music news (prioritizing today & yesterday)...');
 
     const [newsApiArticles, rssArticles, trendingArticles, twitterArticles] = await Promise.all([
       fetchNewsAPI(),
@@ -2419,12 +2419,42 @@ async function collectDailyNews() {
 
     console.log(`📊 Collected ${allArticles.length} articles (${newsApiArticles.length} NewsAPI, ${rssArticles.length} RSS, ${trendingArticles.length} trending, ${twitterArticles.length} Twitter)`);
 
+    // Get date boundaries for today and yesterday
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    const dayBeforeYesterday = new Date(yesterday);
+    dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 1);
+
+    // Filter articles to prioritize recent ones (today, yesterday, or day before)
+    const recentArticles = allArticles.filter(article => {
+      if (!article.publishedAt) return false;
+      const articleDate = new Date(article.publishedAt);
+      const articleDay = new Date(articleDate.getFullYear(), articleDate.getMonth(), articleDate.getDate());
+      return articleDay >= yesterday; // Today or yesterday
+    });
+
+    // If we don't have enough recent articles, include some from the day before
+    let finalArticles = recentArticles;
+    if (recentArticles.length < 10) {
+      const olderArticles = allArticles.filter(article => {
+        if (!article.publishedAt) return false;
+        const articleDate = new Date(article.publishedAt);
+        const articleDay = new Date(articleDate.getFullYear(), articleDate.getMonth(), articleDate.getDate());
+        return articleDay >= dayBeforeYesterday && articleDay < yesterday; // Day before yesterday
+      });
+      finalArticles = [...recentArticles, ...olderArticles.slice(0, 10 - recentArticles.length)];
+    }
+
+    console.log(`📅 Filtered to ${finalArticles.length} recent articles (${recentArticles.length} from today/yesterday)`);
+
     // Filter and deduplicate articles with improved logic
     const uniqueArticles = [];
     const seenTitles = new Set();
     const seenUrls = new Set();
 
-    for (const article of allArticles) {
+    for (const article of finalArticles) {
       // Skip if we've seen this exact URL before
       if (seenUrls.has(article.url)) {
         continue;
@@ -2478,10 +2508,10 @@ async function collectDailyNews() {
       }
     }
 
-    // Clean up old articles (keep only last 30 days)
-    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    // Clean up old articles (keep only last 7 days to focus on recent news)
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     const deletedCount = await NewsArticle.deleteMany({
-      publishedAt: { $lt: thirtyDaysAgo }
+      publishedAt: { $lt: sevenDaysAgo }
     });
 
     console.log(`✅ Stored ${storedCount} new articles, cleaned up ${deletedCount.deletedCount} old articles`);
