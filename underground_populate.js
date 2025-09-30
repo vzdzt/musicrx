@@ -137,7 +137,7 @@ async function populateUndergroundRankings() {
       'osamason', 'che', 'molly santana', 'otoboke beaver', 'summrs',
       'yeat', 'jorjiana', 'k3', 'benji blue billz', 'jace',
       'plaqueboymax', 'holottacheese', 'eem triplin', 'jim legacy',
-      '1900rugrat'  // Added as requested by user
+      '1900rugrat', 'ian'  // Added ian as requested by user
     ];
 
     console.log(`Analyzing ${undergroundArtists.length} underground artists with real Spotify data...`);
