@@ -227,7 +227,7 @@ async function loadLatestNews() {
                     </div>
                     <div class="news-content-card">
                         <p class="date">${source}</p>
-                        ${article.imageUrl ? `<img src="${article.imageUrl}" alt="${article.title}">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-newspaper" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
+                        ${article.imageUrl ? `<img src="${article.imageUrl}" alt="${article.title}" onerror="this.src='https://via.placeholder.com/300x200/333/666?text=News'">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-newspaper" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
                         <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${publishedDate}</p>
                     </div>
                 </a>`;
