@@ -307,73 +307,18 @@
 
         <section class="scroll-section" id="underground">
             <div class="section-header">
-                <h2 class="section-title"><a href="underground.html" style="text-decoration: none; color: inherit;">Underground Artists</a></h2>
+                <h2 class="section-title"><a href="underground-rankings.html" style="text-decoration: none; color: inherit;">Top Underground Artists</a></h2>
                 <div class="scroll-nav">
                     <button class="scroll-button prev" onclick="scrollSection('underground', -300)">←</button>
                     <button class="scroll-button next" onclick="scrollSection('underground', 300)">→</button>
                 </div>
             </div>
             <div class="scroll-container" id="underground-scroll">
-                <a href="underground.html" class="scroll-item">
-                    <div class="news-title-card">
-                        <h2>Project 202</h2>
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">Xroz</p>
-                        <img src="project202.jpg" alt="Xroz - Project 202">
-                        <audio controls>
-                            <source src="https://od.lk/s/MzhfMjkxNDc0OTJf/Project_202.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                </a>
-                <a href="underground.html" class="scroll-item">
-                    <div class="news-title-card">
-                        <h2>Zone V2</h2>
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">Xroz</p>
-                        <img src="zone.jpg" alt="Xroz - Zone V2">
-                        <audio controls>
-                            <source src="https://od.lk/s/MzhfMjkxNDc0OThf/zone%20v2.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                </a>
-                <a href="underground.html" class="scroll-item">
-                    <div class="news-title-card">
-                        <h2>Project 191</h2>
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">Xroz</p>
-                        <img src="project191.jpg" alt="Xroz - Project 191">
-                        <audio controls>
-                            <source src="https://od.lk/s/MzhfMjkxNDc0OTNf/Project_191.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                </a>
-                <a href="underground.html" class="scroll-item">
-                    <div class="news-title-card">
-                        <h2>Loaf</h2>
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">Xroz</p>
-                        <img src="loaf.jpg" alt="Xroz - Loaf">
-                        <audio controls>
-                            <source src="https://od.lk/s/MzhfMjkxNDc0OTZf/loaf%20by%20xrozk.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                </a>
-                <a href="underground.html" class="scroll-item">
-                    <div class="news-title-card">
-                        <h2>Lazy V1</h2>
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">Xroz</p>
-                        <img src="lazy.jpg" alt="Xroz - Lazy V1">
-                        <audio controls>
-                            <source src="https://od.lk/s/MzhfMjkxNDc0OTdf/lazy%20finished%20v1.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                </a>
+                <!-- Top underground artists will be loaded here -->
+                <div class="loading" id="homepage-underground-loading">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p>Loading top underground artists...</p>
+                </div>
             </div>
         </section>
 
@@ -420,5 +365,72 @@
     <script src="hover-effects.js"></script>
     <script src="scroll-effects.js"></script>
     <script src="script.js"></script>
+
+    <script>
+        // Configuration
+        const BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://musicrx.app';
+
+        // Load top underground artists for homepage
+        async function loadHomepageUndergroundArtists() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/underground-rankings?limit=6`);
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load underground artists: ${response.status}`);
+                }
+
+                const artists = await response.json();
+                displayHomepageUndergroundArtists(artists.slice(0, 6)); // Show top 6
+
+            } catch (error) {
+                console.error('Homepage underground artists error:', error);
+                // Fallback to show some default content
+                document.getElementById('homepage-underground-loading').innerHTML = `
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-music" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>Check out our <a href="underground-rankings.html" style="color: var(--primary);">full underground rankings</a></p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayHomepageUndergroundArtists(artists) {
+            document.getElementById('homepage-underground-loading').style.display = 'none';
+
+            const container = document.getElementById('underground-scroll');
+
+            artists.forEach(artist => {
+                const item = document.createElement('a');
+                item.href = 'underground-rankings.html';
+                item.className = 'scroll-item';
+
+                const imageUrl = artist.imageUrl || 'https://via.placeholder.com/200x200/333/666?text=No+Image';
+
+                item.innerHTML = `
+                    <div class="news-title-card">
+                        <h3>${artist.name}</h3>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">${artist.ugRating || 'Underground'} • ${formatNumber(artist.monthlyListeners)} listeners</p>
+                        <img src="${imageUrl}" alt="${artist.name}" onerror="this.src='https://via.placeholder.com/200x200/333/666?text=No+Image'">
+                    </div>
+                `;
+
+                container.appendChild(item);
+            });
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toString();
+        }
+
+        // Load homepage underground artists when page loads
+        document.addEventListener('DOMContentLoaded', loadHomepageUndergroundArtists);
+    </script>
 </body>
 </html>
