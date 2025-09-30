@@ -160,24 +160,16 @@ async function populateUndergroundRankings() {
 
           const artist = searchResults.body.artists.items[0];
 
-          // Validate this is actually an underground artist (not a mainstream match)
-          const isValidUndergroundArtist = (
-            artist.followers.total < 5000000 && // Not a mainstream superstar
-            artist.popularity < 80 && // Not ultra-mainstream
-            (artist.genres.some(g => g.toLowerCase().includes('hip hop') ||
-                                   g.toLowerCase().includes('rap') ||
-                                   g.toLowerCase().includes('underground') ||
-                                   g.toLowerCase().includes('experimental') ||
-                                   g.toLowerCase().includes('rage rap') ||
-                                   g.toLowerCase().includes('cloud rap')) ||
-             artistName.toLowerCase() === 'otoboke beaver' ||
-             artistName.toLowerCase() === 'molly santana' ||
-             artistName.toLowerCase() === 'che') // Allow specific user-confirmed artists
+          // Only skip if it's clearly a mainstream superstar (not underground)
+          // Allow ALL artists with Spotify data, regardless of genre or follower count
+          const isMainstreamSuperstar = (
+            artist.followers.total > 10000000 && // Only skip true superstars
+            artist.popularity > 90 // Only skip ultra-mainstream artists
           );
 
-          if (!isValidUndergroundArtist) {
-            console.log(`❌ Found ${artist.name} but doesn't match underground criteria (${artist.followers.total.toLocaleString()} followers, ${artist.popularity} popularity), skipping`);
-            continue; // Skip this artist entirely
+          if (isMainstreamSuperstar) {
+            console.log(`❌ Found ${artist.name} - mainstream superstar (${artist.followers.total.toLocaleString()} followers, ${artist.popularity} popularity), skipping`);
+            continue; // Skip only true mainstream superstars
           }
 
           console.log(`✓ Found: ${artist.name} (${artist.popularity} popularity, ${artist.followers.total.toLocaleString()} followers)`);
