@@ -22,19 +22,17 @@ function calculateUGRating(artist, megaMetrics) {
   const followers = megaMetrics.spotifyFollowers || 0;
   const popularity = megaMetrics.spotifyPopularity || 0;
 
-  // UG Rating categories based on underground metrics - viral up to 20M listeners
-  if (monthlyListeners > 20000000) {
-    return 'Super Viral'; // Ultra-massive success (over 20M)
-  } else if (monthlyListeners > 10000000 && followers > 500000) {
-    return 'Viral'; // Truly massive underground success (10M-20M listeners)
-  } else if (monthlyListeners > 5000000 && followers > 300000) {
-    return 'Next Up'; // Breaking through to wider recognition
-  } else if (monthlyListeners > 2000000 && followers > 150000) {
-    return 'On The Rise'; // Significant growth and momentum
-  } else if (monthlyListeners > 500000 && followers > 75000) {
-    return 'Known'; // Building awareness and fanbase
+  // UG Rating categories based purely on monthly listeners
+  if (monthlyListeners >= 10000000) {
+    return 'Viral'; // 10-20 million monthly listeners
+  } else if (monthlyListeners >= 1000000) {
+    return 'Next Up'; // 1-9.9 million monthly listeners
+  } else if (monthlyListeners >= 500000) {
+    return 'On The Rise'; // 500k-999k monthly listeners
+  } else if (monthlyListeners >= 100000) {
+    return 'Known'; // 100k-499k monthly listeners
   } else {
-    return 'Unknown'; // Deep underground, building from ground up
+    return 'Unknown'; // <100K monthly listeners
   }
 }
 
