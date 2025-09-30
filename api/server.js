@@ -964,6 +964,81 @@ app.get('/api/all-2025-albums', async (req, res) => {
   }
 });
 
+// New releases endpoint
+app.get('/api/new-releases', async (req, res) => {
+  try {
+    const timeRange = req.query.timeRange || 'month'; // 'week', 'month', 'year'
+
+    console.log(`Fetching new releases for time range: ${timeRange}`);
+
+    // Ensure Spotify auth
+    if (!(await ensureSpotifyAuth())) {
+      console.log('Spotify auth failed, using database fallback');
+      return await getPopularAlbumsFallback(res);
+    }
+
+    // Get new releases from Spotify
+    const response = await spotifyApi.getNewReleases({
+      limit: 20,
+      offset: 0,
+      country: 'US'
+    });
+
+    const albums = response.body.albums.items;
+
+    if (!albums || albums.length === 0) {
+      console.log('No albums from Spotify, using fallback');
+      return await getPopularAlbumsFallback(res);
+    }
+
+    // Process the albums
+    const processedAlbums = await processNewReleases(albums);
+
+    // Filter by time range if specified
+    let filteredAlbums = processedAlbums;
+    if (timeRange !== 'all') {
+      const now = new Date();
+      let cutoffDate;
+
+      switch (timeRange) {
+        case 'week':
+          cutoffDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+          break;
+        case 'month':
+          cutoffDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+          break;
+        case 'year':
+          cutoffDate = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
+          break;
+        default:
+          cutoffDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+      }
+
+      filteredAlbums = processedAlbums.filter(album => {
+        const releaseDate = new Date(album.releaseDate);
+        return releaseDate >= cutoffDate;
+      });
+    }
+
+    // Ensure we return at least some albums
+    if (filteredAlbums.length === 0) {
+      console.log('No albums in time range, returning recent albums');
+      filteredAlbums = processedAlbums.slice(0, 12);
+    }
+
+    // Limit to 12 albums for homepage display
+    const finalAlbums = filteredAlbums.slice(0, 12);
+
+    console.log(`Returning ${finalAlbums.length} new releases`);
+    res.json(finalAlbums);
+
+  } catch (err) {
+    console.error('New releases error:', err);
+    // Fallback to database albums
+    await getPopularAlbumsFallback(res);
+  }
+});
+
 // All-time rankings endpoint
 app.get('/api/all-time-rankings', async (req, res) => {
   try {
@@ -992,203 +1067,7 @@ app.get('/api/all-time-rankings', async (req, res) => {
   }
 });
 
-// New releases endpoint (always returns albums)
-app.get('/api/new-releases', async (req, res) => {
-  try {
-    const timeRange = req.query.timeRange || 'month'; // Default to month
-    console.log(`Fetching new releases from Spotify (timeRange: ${timeRange})...`);
 
-    // Always try to return albums - multiple fallback strategies ensure we never return empty
-    let albums = [];
-
-    try {
-      // Ensure Spotify authentication is valid
-      const isAuthenticated = await ensureSpotifyAuth();
-      if (!isAuthenticated) {
-        console.log('Spotify auth failed, using fallback strategies...');
-        throw new Error('Spotify auth failed');
-      }
-
-      // Try Spotify's new releases endpoint first
-      try {
-        console.log('Trying Spotify new releases endpoint...');
-        const newReleasesResponse = await spotifyApi.getNewReleases({
-          limit: 20,
-          offset: 0,
-          country: 'US'
-        });
-
-        console.log(`Spotify new releases endpoint returned ${newReleasesResponse.body.albums.items.length} albums`);
-
-        if (newReleasesResponse.body.albums.items.length > 0) {
-          const newReleases = await processNewReleases(newReleasesResponse.body.albums.items);
-          if (newReleases.length > 0) {
-            console.log(`Successfully fetched ${newReleases.length} new releases from Spotify`);
-            return res.json(newReleases.slice(0, 12));
-          }
-        }
-
-        console.log('New releases endpoint returned no albums, trying fallback...');
-
-      } catch (newReleasesErr) {
-        console.error('Spotify new releases endpoint failed:', newReleasesErr.message);
-      }
-
-      // Multiple fallback strategies to ensure we always return albums
-      console.log('Using fallback strategies...');
-
-      // Strategy 1: Recent popular albums from current year
-      try {
-        const currentYear = new Date().getFullYear();
-        console.log(`Searching for popular albums from ${currentYear}...`);
-
-        const response = await spotifyApi.searchAlbums(`year:${currentYear}`, {
-          limit: 50,
-          offset: 0,
-          market: 'US'
-        });
-
-        console.log(`Search returned ${response.body.albums.items.length} albums`);
-
-        const validAlbums = response.body.albums.items.filter(album =>
-          album.album_type === 'album' && album.popularity > 5
-        );
-
-        if (validAlbums.length > 0) {
-          const processedAlbums = await processNewReleases(validAlbums.slice(0, 20));
-          if (processedAlbums.length > 0) {
-            console.log(`Found ${processedAlbums.length} albums via current year search`);
-            return res.json(processedAlbums.slice(0, 12));
-          }
-        }
-      } catch (searchErr) {
-        console.error('Current year search failed:', searchErr.message);
-      }
-
-      // Strategy 2: Popular albums from recent years
-      try {
-        console.log('Trying recent years search...');
-        const currentYear = new Date().getFullYear();
-        const years = [currentYear, currentYear - 1, currentYear - 2];
-
-        for (const year of years) {
-          try {
-            const response = await spotifyApi.searchAlbums(`year:${year}`, {
-              limit: 30,
-              offset: 0,
-              market: 'US'
-            });
-
-            const validAlbums = response.body.albums.items.filter(album =>
-              album.album_type === 'album' && album.popularity > 20
-            );
-
-            if (validAlbums.length > 0) {
-              const processedAlbums = await processNewReleases(validAlbums.slice(0, 15));
-              if (processedAlbums.length > 0) {
-                console.log(`Found ${processedAlbums.length} albums from ${year}`);
-                return res.json(processedAlbums.slice(0, 12));
-              }
-            }
-          } catch (yearErr) {
-            console.error(`Year ${year} search failed:`, yearErr.message);
-          }
-        }
-      } catch (recentErr) {
-        console.error('Recent years search failed:', recentErr.message);
-      }
-
-      // Strategy 3: Popular albums by trending artists
-      try {
-        console.log('Trying trending artists approach...');
-        const trendingArtists = [
-          '4q3ewBCX7sLwd24euuV69X', // Bad Bunny
-          '1Xyo4u8uXC1ZmMpatF05PJ', // The Weeknd
-          '06HL4z0CvFAxyc27GXpf02', // Taylor Swift
-          '3TVXtAsR1Inumwj472S9r4', // Drake
-          '4gzpq5DPGxSnKTe4SA8HAU', // Coldplay
-          '1uNFoZAHBGtllmzznpCI3s', // Justin Bieber
-          '66CXWjxzNUsdJxJ2JdwvnR', // Ariana Grande
-          '5pKCCKE2ajJHZ9KAiaK11H'  // Rihanna
-        ];
-
-        const allAlbums = [];
-
-        for (const artistId of trendingArtists.slice(0, 5)) { // Check first 5 artists
-          try {
-            const albumsResponse = await spotifyApi.getArtistAlbums(artistId, {
-              limit: 5,
-              include_groups: 'album',
-              market: 'US'
-            });
-
-            const recentAlbums = albumsResponse.body.items.filter(album => {
-              const releaseDate = new Date(album.release_date);
-              const oneYearAgo = new Date();
-              oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-              return releaseDate > oneYearAgo && album.album_type === 'album';
-            });
-
-            for (const album of recentAlbums.slice(0, 2)) { // Take up to 2 albums per artist
-              try {
-                const fullAlbum = await spotifyApi.getAlbum(album.id);
-                const albumData = fullAlbum.body;
-
-                const existingAlbum = await Album.findOne({ albumId: albumData.id });
-
-                allAlbums.push({
-                  id: albumData.id,
-                  title: albumData.name,
-                  artist: albumData.artists[0].name,
-                  releaseDate: albumData.release_date,
-                  imageUrl: albumData.images[0]?.url,
-                  popularity: albumData.popularity,
-                  external_urls: albumData.external_urls,
-                  isRated: !!existingAlbum
-                });
-              } catch (albumErr) {
-                console.error(`Error processing album ${album.id}:`, albumErr.message);
-              }
-            }
-
-            // Rate limiting
-            await new Promise(resolve => setTimeout(resolve, 200));
-
-          } catch (artistErr) {
-            console.error(`Error getting albums for artist ${artistId}:`, artistErr.message);
-          }
-        }
-
-        if (allAlbums.length > 0) {
-          // Sort by popularity and recency
-          allAlbums.sort((a, b) => {
-            const popularityDiff = b.popularity - a.popularity;
-            if (popularityDiff !== 0) return popularityDiff;
-
-            const dateA = new Date(a.releaseDate);
-            const dateB = new Date(b.releaseDate);
-            return dateB - dateA; // Newer first
-          });
-
-          console.log(`Found ${allAlbums.length} albums via trending artists`);
-          return res.json(allAlbums.slice(0, 12));
-        }
-
-      } catch (trendingErr) {
-        console.error('Trending artists approach failed:', trendingErr.message);
-      }
-
-      // Final fallback: Return some cached/popular albums from database
-      console.log('Using database fallback...');
-      return await getPopularAlbumsFallback(res);
-
-    } catch (err) {
-      console.error('New releases error:', err);
-      // Even if everything fails, return some albums
-      return await getPopularAlbumsFallback(res);
-    }
-  }
-});
 
 // Helper function to process new releases
 async function processNewReleases(albums) {
