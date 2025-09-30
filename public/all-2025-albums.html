@@ -16,7 +16,7 @@
         }
         .albums-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -28,6 +28,9 @@
             padding: 1.5rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
         }
         .album-card:hover {
             transform: translateY(-5px);
@@ -378,16 +381,16 @@
                         <div class="album-date">Released: ${new Date(album.releaseDate).toLocaleDateString()}</div>
                         <div class="album-details">
                             <div class="review-toggle">
-                                <button class="review-btn active" onclick="toggleReview(this, 'strengths')">Highlights</button>
+                                <button class="review-btn" onclick="toggleReview(this, 'strengths')">Highlights</button>
                                 <button class="review-btn" onclick="toggleReview(this, 'weaknesses')">Misses</button>
                             </div>
-                            <div class="review-section active" id="strengths-${index}">
+                            <div class="review-section" id="strengths-${index}" style="display: none;">
                                 <h4>Highlights:</h4>
                                 <ul>
                                     ${description.strengths.map(s => `<li>${s}</li>`).join('')}
                                 </ul>
                             </div>
-                            <div class="review-section" id="weaknesses-${index}">
+                            <div class="review-section" id="weaknesses-${index}" style="display: none;">
                                 <h4>Misses:</h4>
                                 <ul>
                                     ${description.weaknesses.map(w => `<li>${w}</li>`).join('')}
