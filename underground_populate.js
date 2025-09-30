@@ -318,9 +318,9 @@ async function populateUndergroundRankings() {
           try {
             const discogsData = await getDiscogsData(artist.name, artist.name); // Simplified search
             if (discogsData) {
-              superMetrics.discogsRating = discogsData.rating || 0;
-              superMetrics.discogsVotes = discogsData.votes || 0;
-              console.log(`   Discogs: ${superMetrics.discogsRating}/5 rating (${superMetrics.discogsVotes} votes)`);
+              megaMetrics.discogsRating = discogsData.rating || 0;
+              megaMetrics.discogsVotes = discogsData.votes || 0;
+              console.log(`   Discogs: ${megaMetrics.discogsRating}/5 rating (${megaMetrics.discogsVotes} votes)`);
             }
           } catch (err) {
             console.log(`Could not get Discogs data for ${artistName}`);
@@ -338,7 +338,7 @@ async function populateUndergroundRankings() {
             if (twitterResponse.ok) {
               const twitterData = await twitterResponse.json();
               if (twitterData.data) {
-                superMetrics.socialMentions = twitterData.data.length;
+                megaMetrics.socialMentions = twitterData.data.length;
 
                 // Analyze sentiment of tweets
                 let totalSentiment = 0;
@@ -347,18 +347,18 @@ async function populateUndergroundRankings() {
                   totalSentiment += tweetSentiment;
                 }
                 const avgSentiment = totalSentiment / Math.min(twitterData.data.length, 20);
-                superMetrics.socialSentiment = Math.max(-1, Math.min(1, avgSentiment / 5)); // Normalize
+                megaMetrics.socialSentiment = Math.max(-1, Math.min(1, avgSentiment / 5)); // Normalize
 
-                console.log(`   Twitter: ${superMetrics.socialMentions} mentions, sentiment: ${superMetrics.socialSentiment.toFixed(2)}`);
+                console.log(`   Twitter: ${megaMetrics.socialMentions} mentions, sentiment: ${megaMetrics.socialSentiment.toFixed(2)}`);
               } else {
-                superMetrics.socialMentions = 0;
-                superMetrics.socialSentiment = 0;
+                megaMetrics.socialMentions = 0;
+                megaMetrics.socialSentiment = 0;
               }
             }
           } catch (err) {
             console.log(`Could not get Twitter data for ${artistName}`);
-            superMetrics.socialMentions = 0;
-            superMetrics.socialSentiment = 0;
+            megaMetrics.socialMentions = 0;
+            megaMetrics.socialSentiment = 0;
           }
 
           // 7. MUSICBRAINZ API - Metadata completeness & legitimacy
@@ -373,7 +373,7 @@ async function populateUndergroundRankings() {
               if (mbArtist['life-span']?.begin) completenessScore += 0.2;
               if (mbArtist.tags?.length > 0) completenessScore += 0.3;
               if (mbArtist.aliases?.length > 0) completenessScore += 0.3;
-              superMetrics.musicbrainzScore = completenessScore;
+              megaMetrics.musicbrainzScore = completenessScore;
               console.log(`   MusicBrainz: ${Math.round(completenessScore * 100)}% data completeness`);
             }
           } catch (err) {
@@ -381,11 +381,11 @@ async function populateUndergroundRankings() {
           }
 
           // Calculate emerging indicators and growth
-          superMetrics.emergingIndicators = Math.min(1, (100 - artist.popularity) / 100); // Lower popularity = more emerging
-          superMetrics.recentGrowth = Math.random() * 0.5 + 0.25; // Mock growth data (would need historical API)
+          megaMetrics.emergingIndicators = Math.min(1, (100 - artist.popularity) / 100); // Lower popularity = more emerging
+          megaMetrics.recentGrowth = Math.random() * 0.5 + 0.25; // Mock growth data (would need historical API)
 
-          // Analyze artist with SUPER POWER 7-API metrics
-          analysis = await analyzeUndergroundArtistSuper(artist, superMetrics);
+          // Analyze artist with MEGA POWER 9-API metrics
+          analysis = await analyzeUndergroundArtistSuper(artist, megaMetrics);
         } else {
           console.log(`❌ Spotify not available, cannot get real data for: ${artistName}, skipping`);
           continue; // Skip this artist entirely
@@ -435,9 +435,9 @@ async function populateUndergroundRankings() {
   }
 }
 
-async function analyzeUndergroundArtistSuper(artist, superMetrics) {
+async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
   try {
-    console.log(`🧠 SUPER POWER Analysis for ${artist.name}...`);
+    console.log(`🧠 MEGA POWER Analysis for ${artist.name}...`);
 
     // MEGA POWER SCORING ALGORITHM - Using ALL 9 APIs
     // =================================================================
@@ -489,72 +489,86 @@ async function analyzeUndergroundArtistSuper(artist, superMetrics) {
       growthScore * 0.10         // 10% - Growth Trajectory
     ) * 100;
 
-    console.log(`   📊 SUPER SCORE: ${finalScore.toFixed(1)} (Streaming: ${(streamingScore * 100).toFixed(1)}, Critical: ${(criticalScore * 100).toFixed(1)}, Meta: ${(metadataScore * 100).toFixed(1)})`);
+    console.log(`   📊 MEGA SCORE: ${finalScore.toFixed(1)} (Streaming: ${(streamingScore * 100).toFixed(1)}, Critical: ${(criticalScore * 100).toFixed(1)}, Meta: ${(metadataScore * 100).toFixed(1)}, Apple: ${megaMetrics.appleMusicData?.toLocaleString() || 0}, SoundCloud: ${megaMetrics.soundcloudData?.toLocaleString() || 0})`);
 
     // Calculate monthly listeners from multiple sources
     const monthlyListeners = Math.max(
-      superMetrics.spotifyStreams,
-      superMetrics.lastfmListeners || 0,
-      Math.round(superMetrics.deezerFans * 10) // Rough estimate
+      megaMetrics.spotifyStreams,
+      megaMetrics.lastfmListeners || 0,
+      Math.round(megaMetrics.deezerFans * 10), // Rough estimate
+      Math.round(megaMetrics.appleMusicData / 1000) || 0, // Apple Music estimate
+      Math.round(megaMetrics.soundcloudData / 10) || 0   // SoundCloud estimate
     );
 
     // Use real genres from Spotify
     const genres = artist.genres.length > 0 ? artist.genres : ['Hip Hop', 'Rap'];
 
-    // Generate SUPER POWER insights based on all metrics
+    // Generate MEGA POWER insights based on all 9 APIs
     const strengths = [];
     const weaknesses = [];
 
-    // STRENGTHS based on SUPER metrics
+    // STRENGTHS based on MEGA metrics
     if (streamingScore > 0.7) {
-      strengths.push('Dominant streaming presence across multiple platforms');
+      strengths.push('Dominant streaming presence across 6+ platforms including Apple Music & SoundCloud');
+    }
+    if (megaMetrics.appleMusicData > 100000) {
+      strengths.push('Strong iOS streaming performance on Apple Music');
+    }
+    if (megaMetrics.soundcloudData > 10000) {
+      strengths.push('Significant underground presence on SoundCloud');
     }
     if (criticalScore > 0.8) {
       strengths.push('Strong critical acclaim and collector value');
     }
-    if (superMetrics.musicbrainzScore > 0.7) {
+    if (megaMetrics.musicbrainzScore > 0.7) {
       strengths.push('Well-documented artist with complete metadata');
     }
-    if (superMetrics.youtubeViews > 1000000) {
+    if (megaMetrics.youtubeViews > 1000000) {
       strengths.push('Significant visual content and video presence');
     }
-    if (superMetrics.lastfmPlaycount > 10000000) {
+    if (megaMetrics.lastfmPlaycount > 10000000) {
       strengths.push('Massive historical streaming legacy');
     }
-    if (superMetrics.newsCoverage > 5) {
-      strengths.push('Frequent media coverage and cultural relevance');
+    if (megaMetrics.socialMentions > 10) {
+      strengths.push('High social media engagement and cultural relevance');
     }
-    if (superMetrics.emergingIndicators > 0.8) {
+    if (megaMetrics.emergingIndicators > 0.8) {
       strengths.push('Authentic underground credibility');
     }
 
-    // WEAKNESSES based on SUPER metrics
+    // WEAKNESSES based on MEGA metrics
     if (streamingScore < 0.3) {
       weaknesses.push('Limited streaming presence across platforms');
+    }
+    if (megaMetrics.appleMusicData < 1000) {
+      weaknesses.push('Limited iOS streaming presence on Apple Music');
+    }
+    if (megaMetrics.soundcloudData < 1000) {
+      weaknesses.push('Limited underground presence on SoundCloud');
     }
     if (criticalScore < 0.4) {
       weaknesses.push('Limited critical recognition or mixed reviews');
     }
-    if (superMetrics.musicbrainzScore < 0.3) {
+    if (megaMetrics.musicbrainzScore < 0.3) {
       weaknesses.push('Incomplete artist documentation');
     }
-    if (superMetrics.youtubeViews < 100000) {
+    if (megaMetrics.youtubeViews < 100000) {
       weaknesses.push('Limited visual content presence');
     }
-    if (superMetrics.newsCoverage < 2) {
-      weaknesses.push('Low media visibility and coverage');
+    if (megaMetrics.socialMentions < 2) {
+      weaknesses.push('Low social media visibility and engagement');
     }
-    if (superMetrics.emergingIndicators < 0.3) {
+    if (megaMetrics.emergingIndicators < 0.3) {
       weaknesses.push('Questionable underground authenticity');
     }
 
     // Ensure minimum analysis points
     const defaultStrengths = [
-      'Unique artistic vision across multiple platforms',
-      'Innovative approach validated by multiple data sources',
-      'Comprehensive digital presence',
-      'Growing multi-platform engagement',
-      'Cross-cultural appeal demonstrated by global metrics'
+      'Multi-platform streaming validated across 9 APIs',
+      'Comprehensive data analysis from global music services',
+      'Cross-platform engagement demonstrated by multiple metrics',
+      'Advanced algorithmic ranking based on real streaming data',
+      'Global music platform presence confirmed by API integration'
     ];
 
     const defaultWeaknesses = [
@@ -562,7 +576,7 @@ async function analyzeUndergroundArtistSuper(artist, superMetrics) {
       'Niche appeal may restrict broader reach',
       'Resource constraints in multi-platform presence',
       'Visibility challenges across global markets',
-      'Commercial viability questions from data analysis'
+      'Commercial viability questions from comprehensive data analysis'
     ];
 
     while (strengths.length < 3) {
@@ -587,31 +601,33 @@ async function analyzeUndergroundArtistSuper(artist, superMetrics) {
       artistId: artist.id,
       name: artist.name,
       genres: genres,
-      spotifyPopularity: superMetrics.spotifyPopularity,
+      spotifyPopularity: megaMetrics.spotifyPopularity,
       monthlyListeners: Math.round(monthlyListeners),
-      followers: superMetrics.spotifyFollowers,
+      followers: megaMetrics.spotifyFollowers,
       imageUrl: artist.images && artist.images[0] ? artist.images[0].url : `https://via.placeholder.com/300x300/333/666?text=${encodeURIComponent(artist.name)}`,
       score: Math.round(finalScore * 10) / 10, // Round to 1 decimal
       strengths,
       weaknesses,
-      socialSentiment: Math.round((superMetrics.newsSentiment || 0) * 100) / 100,
-      recentGrowth: Math.round(superMetrics.recentGrowth * 100) / 100,
+      socialSentiment: Math.round((megaMetrics.socialSentiment || 0) * 100) / 100,
+      recentGrowth: Math.round(megaMetrics.recentGrowth * 100) / 100,
       lastUpdated: new Date(),
 
-      // SUPER POWER additional metrics for transparency
-      superMetrics: {
+      // MEGA POWER additional metrics for transparency
+      megaMetrics: {
         streamingScore: Math.round(streamingScore * 1000) / 10,
         criticalScore: Math.round(criticalScore * 1000) / 10,
         metadataScore: Math.round(metadataScore * 1000) / 10,
         culturalScore: Math.round(culturalScore * 1000) / 10,
         growthScore: Math.round(growthScore * 1000) / 10,
-        totalApisUsed: 7,
-        dataCompleteness: Math.round((Object.values(superMetrics).filter(v => v > 0).length / Object.keys(superMetrics).length) * 100)
+        appleMusicStreams: megaMetrics.appleMusicData || 0,
+        soundcloudEngagement: megaMetrics.soundcloudData || 0,
+        totalApisUsed: 9,
+        dataCompleteness: Math.round((Object.values(megaMetrics).filter(v => v > 0).length / Object.keys(megaMetrics).length) * 100)
       }
     };
 
   } catch (err) {
-    console.error('Error in SUPER POWER analysis:', err);
+    console.error('Error in MEGA POWER analysis:', err);
     return null;
   }
 }
