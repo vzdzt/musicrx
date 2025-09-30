@@ -16,48 +16,23 @@
         }
         .albums-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
         .album-card {
-            background: transparent;
-            perspective: 1000px;
-            min-height: 350px;
-            cursor: pointer;
-        }
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-        .album-card.flipped .card-inner {
-            transform: rotateY(180deg);
-        }
-        .card-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 15px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
+            background: var(--card-background);
             backdrop-filter: blur(15px);
             border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
         }
-        .card-front {
-            background: var(--card-background);
-        }
-        .card-back {
-            background: var(--card-background);
-            transform: rotateY(180deg);
-        }
-        .album-card:hover .card-front {
+        .album-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 20px var(--glow);
         }
@@ -396,36 +371,33 @@
                 // Generate unique description for this album based on its data
                 const description = generateUniqueDescription(album);
 
-                html += `
-                    <div class="album-card" onclick="flipCard(this)">
-                        <div class="card-inner">
-                            <!-- Front of card -->
-                            <div class="card-face card-front">
-                                <div style="position: absolute; top: 10px; left: 10px; font-size: 1.5rem;">${medal}</div>
-                                ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover" class="album-cover">` : '<div class="album-cover" style="display: flex; align-items: center; justify-content: center; background: var(--card-background);"><i class="fas fa-music" style="font-size: 3rem; opacity: 0.5;"></i></div>'}
-                                <div class="album-score">${album.score}/10</div>
-                                <div class="album-title">${album.title}</div>
-                                <div class="album-artist">by ${album.artist}</div>
-                                <div class="album-date">Released: ${new Date(album.releaseDate).toLocaleDateString()}</div>
-                                <div style="margin-top: auto; font-size: 0.8rem; color: var(--secondary); opacity: 0.7;">
-                                    Click to flip for details
-                                </div>
-                            </div>
+                // Abbreviate long titles
+                const abbreviatedTitle = album.title.length > 25 ? album.title.substring(0, 22) + '...' : album.title;
 
-                            <!-- Back of card -->
-                            <div class="card-face card-back">
-                                <div style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; cursor: pointer;" onclick="flipCard(this.closest('.album-card')); event.stopPropagation();">↩️</div>
-                                <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.2rem;">${album.title}</h3>
-                                <div class="album-details">
-                                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Highlights:</h4>
-                                    <ul style="text-align: left; margin: 0 0 1rem 0; padding-left: 1rem; font-size: 0.8rem;">
-                                        ${description.strengths.map(s => `<li>${s}</li>`).join('')}
-                                    </ul>
-                                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Misses:</h4>
-                                    <ul style="text-align: left; margin: 0; padding-left: 1rem; font-size: 0.8rem;">
-                                        ${description.weaknesses.map(w => `<li>${w}</li>`).join('')}
-                                    </ul>
-                                </div>
+                html += `
+                    <div class="album-card">
+                        <div style="position: absolute; top: 10px; left: 10px; font-size: 1.5rem;">${medal}</div>
+                        ${album.imageUrl ? `<img src="${album.imageUrl}" alt="${album.title} cover" class="album-cover">` : '<div class="album-cover" style="display: flex; align-items: center; justify-content: center; background: var(--card-background);"><i class="fas fa-music" style="font-size: 3rem; opacity: 0.5;"></i></div>'}
+                        <div class="album-score">${album.score}/10</div>
+                        <div class="album-title" title="${album.title}">${abbreviatedTitle}</div>
+                        <div class="album-artist">by ${album.artist}</div>
+                        <div class="album-date">Released: ${new Date(album.releaseDate).toLocaleDateString()}</div>
+                        <div class="album-details">
+                            <div class="review-toggle">
+                                <button class="review-btn active" onclick="toggleReview(this, 'strengths', ${index})">Highlights</button>
+                                <button class="review-btn" onclick="toggleReview(this, 'weaknesses', ${index})">Misses</button>
+                            </div>
+                            <div class="review-section active" id="strengths-${index}">
+                                <h4>Highlights:</h4>
+                                <ul>
+                                    ${description.strengths.slice(0, 3).map(s => `<li>${s}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="review-section" id="weaknesses-${index}">
+                                <h4>Misses:</h4>
+                                <ul>
+                                    ${description.weaknesses.slice(0, 3).map(w => `<li>${w}</li>`).join('')}
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -463,9 +435,22 @@
             document.getElementById('lowestScore').textContent = lowestScore;
         }
 
-        // Flip card to show back
-        function flipCard(card) {
-            card.classList.toggle('flipped');
+        // Toggle between highlights and misses
+        function toggleReview(button, type, index) {
+            const card = button.closest('.album-card');
+            const buttons = card.querySelectorAll('.review-btn');
+            const sections = card.querySelectorAll('.review-section');
+
+            // Update button states
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Update section visibility
+            sections.forEach(section => section.classList.remove('active'));
+            const targetSection = card.querySelector(`#${type}-${index}`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
         }
 
         // Load rankings when page loads
