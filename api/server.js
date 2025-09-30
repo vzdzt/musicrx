@@ -2825,6 +2825,31 @@ cron.schedule('0 */2 * * *', async () => { // Every 2 hours
   await collectDailyNews();
 });
 
+// Weekly underground rankings update (every Sunday at 2 AM)
+cron.schedule('0 2 * * 0', async () => {
+  console.log('Running weekly underground rankings update...');
+  try {
+    // Import and run the underground populate script
+    const { exec } = require('child_process');
+    const path = require('path');
+
+    exec('node underground_populate.js', {
+      cwd: path.join(__dirname, '..'),
+      maxBuffer: 1024 * 1024 * 10 // 10MB buffer for output
+    }, (error, stdout, stderr) => {
+      if (error) {
+        console.error('Weekly underground update failed:', error);
+        return;
+      }
+      console.log('Weekly underground update completed successfully');
+      console.log('Output:', stdout);
+      if (stderr) console.log('Stderr:', stderr);
+    });
+  } catch (err) {
+    console.error('Error running weekly underground update:', err);
+  }
+});
+
 // Error handling middleware
 app.use((error, req, res, next) => {
   console.error('Unhandled error:', error);
