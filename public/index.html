@@ -47,7 +47,7 @@
                     <li><a href="reviews.html">Reviews</a></li>
                     <li><a href="news.html">News</a></li>
                     <li><a href="underground.html">New Music</a></li>
-                    <li><a href="underground-rankings.html">Underground</a></li>
+                    <li><a href="underground.html">Underground</a></li>
                     <li><a href="all-time-rankings.html">Rankings</a></li>
                     <li><a href="tools.html">Tools</a></li>
                 </ul>
@@ -293,7 +293,7 @@
 
         <section class="scroll-section" id="underground-artists">
             <div class="section-header">
-                <h2 class="section-title"><a href="underground-rankings.html" style="text-decoration: none; color: inherit;">Top Underground Artists</a></h2>
+                <h2 class="section-title"><a href="underground.html" style="text-decoration: none; color: inherit;">Top Underground Artists</a></h2>
                 <div class="scroll-nav">
                     <button class="scroll-button prev" onclick="scrollSection('underground-artists', -300)">←</button>
                     <button class="scroll-button next" onclick="scrollSection('underground-artists', 300)">→</button>
@@ -400,7 +400,7 @@
                     <h3>2025 Album of the Year</h3>
                     <p>Complete rankings of all major 2025 albums rated by our system</p>
                 </a>
-                <a href="underground-rankings.html" class="ranking-card">
+                <a href="underground.html" class="ranking-card">
                     <div class="ranking-icon">
                         <i class="fas fa-users"></i>
                     </div>
@@ -446,7 +446,7 @@
                 document.getElementById('homepage-underground-loading').innerHTML = `
                     <div style="text-align: center; padding: 2rem;">
                         <i class="fas fa-music" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-                        <p>Check out our <a href="underground-rankings.html" style="color: var(--primary);">full underground rankings</a></p>
+                        <p>Check out our <a href="underground.html" style="color: var(--primary);">full underground rankings</a></p>
                     </div>
                 `;
             }
@@ -459,7 +459,7 @@
 
             artists.forEach(artist => {
                 const item = document.createElement('a');
-                item.href = 'underground-rankings.html';
+                item.href = 'underground.html';
                 item.className = 'scroll-item';
 
                 const imageUrl = artist.imageUrl || 'https://via.placeholder.com/200x200/333/666?text=No+Image';
