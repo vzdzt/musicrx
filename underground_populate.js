@@ -564,33 +564,33 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
       strengths.push('Authentic underground credibility');
     }
 
-    // WEAKNESSES based on MEGA metrics
+    // WEAKNESSES based on MEGA metrics - More varied and specific
     if (streamingScore < 0.3) {
-      weaknesses.push('Limited streaming presence across platforms');
+      weaknesses.push('Developing streaming presence across major platforms');
     }
     if (megaMetrics.appleMusicData < 1000) {
-      weaknesses.push('Limited iOS streaming presence on Apple Music');
+      weaknesses.push('Minimal iOS market penetration on Apple Music');
     }
     if (megaMetrics.soundcloudData < 1000) {
-      weaknesses.push('Limited underground presence on SoundCloud');
+      weaknesses.push('Limited engagement on underground SoundCloud community');
     }
     if (criticalScore < 0.4) {
-      weaknesses.push('Limited critical recognition or mixed reviews');
+      weaknesses.push('Building critical reputation and collector interest');
     }
     if (megaMetrics.musicbrainzScore < 0.3) {
-      weaknesses.push('Incomplete artist documentation');
+      weaknesses.push('Artist metadata and documentation needs expansion');
     }
     if (megaMetrics.youtubeViews < 100000) {
-      weaknesses.push('Limited visual content presence');
+      weaknesses.push('Growing visual content and video marketing presence');
     }
     if (megaMetrics.socialMentions < 2) {
-      weaknesses.push('Low social media visibility and engagement');
+      weaknesses.push('Expanding social media reach and online discussions');
     }
     if (megaMetrics.emergingIndicators < 0.3) {
-      weaknesses.push('Questionable underground authenticity');
+      weaknesses.push('Establishing stronger underground scene connections');
     }
 
-    // Ensure minimum analysis points
+    // Ensure minimum analysis points with more varied defaults
     const defaultStrengths = [
       'Multi-platform streaming validated across 9 APIs',
       'Comprehensive data analysis from global music services',
@@ -600,11 +600,14 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
     ];
 
     const defaultWeaknesses = [
-      'Limited mainstream crossover potential',
-      'Niche appeal may restrict broader reach',
-      'Resource constraints in multi-platform presence',
-      'Visibility challenges across global markets',
-      'Commercial viability questions from comprehensive data analysis'
+      'Early-stage artist development with growth potential',
+      'Building sustainable fanbase and audience engagement',
+      'Navigating competitive underground music landscape',
+      'Developing unique artistic identity and market positioning',
+      'Managing resource constraints in independent music production',
+      'Expanding geographic reach beyond local scenes',
+      'Adapting to evolving digital music industry trends',
+      'Balancing artistic integrity with commercial considerations'
     ];
 
     while (strengths.length < 3) {
