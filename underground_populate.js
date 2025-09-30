@@ -120,9 +120,11 @@ async function populateUndergroundRankings() {
       console.log('Cannot proceed with real data - all artists will be skipped');
     }
 
-    // User's specified underground rappers only (removed all artists not specifically requested)
+    // User's complete specified list (all artists they personally mentioned)
     const undergroundArtists = [
-      'osamason', 'che'  // Only the artists the user specifically asked to add
+      'osamason', 'che',           // Initially requested
+      'nettspend', 'jace', 'plaqueboymax', 'k3', 'jorjiana', '1900rugrat', // Additional requested
+      'otoboke beaver', 'molly santana'  // Also mentioned by user
     ];
 
     console.log(`Analyzing ${undergroundArtists.length} underground artists with real Spotify data...`);
