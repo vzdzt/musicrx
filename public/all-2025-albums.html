@@ -251,15 +251,75 @@
             }
         }
 
-        // Unique album descriptions mapping
-        const albumDescriptions = {
-            // Add 2025 albums here as they get rated
-            // Example format:
-            // "Album Title": {
-            //     strengths: ["Unique strength 1", "Unique strength 2", "Unique strength 3", "Unique strength 4"],
-            //     weaknesses: ["Unique weakness 1", "Unique weakness 2", "Unique weakness 3", "Unique weakness 4"]
-            // }
-        };
+        // Generate unique descriptions for each album based on its data
+        function generateUniqueDescription(album) {
+            const title = album.title || '';
+            const artist = album.artist || '';
+            const score = parseFloat(album.score) || 7.0;
+
+            // Create unique hash for deterministic but varied results
+            const hashInput = title + artist;
+            let hash = 0;
+            for (let i = 0; i < hashInput.length; i++) {
+                const char = hashInput.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32-bit integer
+            }
+
+            // Strength templates based on score and hash
+            const strengthTemplates = [
+                `${title} demonstrates exceptional musical craftsmanship with ${score >= 8.5 ? 'masterful' : 'solid'} production quality`,
+                `${artist}'s innovative approach to ${title.toLowerCase().includes('hip') || title.toLowerCase().includes('rap') ? 'lyrical delivery' : 'musical composition'} sets new standards`,
+                `The artistic vision in ${title} showcases ${artist}'s creative evolution and depth`,
+                `${title} delivers powerful emotional impact that resonates with dedicated listeners`,
+                `Outstanding technical execution throughout ${title} elevates the listening experience`,
+                `${artist}'s performance on ${title} combines technical precision with artistic expression`,
+                `${title} successfully blends commercial appeal with artistic integrity`,
+                `Innovative sound design in ${title} pushes genre boundaries forward`,
+                `The thematic consistency of ${title} creates a compelling and cohesive narrative`,
+                `Exceptional attention to detail in ${title} rewards repeated listening`
+            ];
+
+            // Weakness templates based on score and hash
+            const weaknessTemplates = [
+                `${title} may require multiple listens to fully appreciate its depth and nuance`,
+                `Some elements of ${title} might not appeal to all audience segments`,
+                `The complexity of ${title} could be challenging for casual listeners`,
+                `Certain production choices in ${title} may divide listener opinions`,
+                `${title}'s ambitious scope occasionally affects pacing and flow`,
+                `Some tracks on ${title} may feel less consistent than the strongest material`,
+                `${artist}'s experimental elements in ${title} might alienate traditional fans`,
+                `The thematic depth of ${title} demands significant listener investment`,
+                `Occasional structural choices in ${title} may feel unconventional`,
+                `The artistic risks taken in ${title} don't always pay off completely`
+            ];
+
+            // Generate 4 unique strengths using hash for deterministic selection
+            const strengths = [];
+            const usedStrengthIndices = new Set();
+
+            while (strengths.length < 4) {
+                const index = Math.abs((hash + strengths.length * 31) % strengthTemplates.length);
+                if (!usedStrengthIndices.has(index)) {
+                    strengths.push(strengthTemplates[index]);
+                    usedStrengthIndices.add(index);
+                }
+            }
+
+            // Generate 4 unique weaknesses using different hash offset
+            const weaknesses = [];
+            const usedWeaknessIndices = new Set();
+
+            while (weaknesses.length < 4) {
+                const index = Math.abs((hash + weaknesses.length * 37 + 100) % weaknessTemplates.length);
+                if (!usedWeaknessIndices.has(index)) {
+                    weaknesses.push(weaknessTemplates[index]);
+                    usedWeaknessIndices.add(index);
+                }
+            }
+
+            return { strengths, weaknesses };
+        }
 
         function displayAlbums(albums) {
             const grid = document.getElementById('albumsGrid');
@@ -279,21 +339,8 @@
                 const ranking = index + 1;
                 const medal = ranking === 1 ? '🥇' : ranking === 2 ? '🥈' : ranking === 3 ? '🥉' : `#${ranking}`;
 
-                // Get unique description for this album, fallback to generic if not found
-                const description = albumDescriptions[album.title] || {
-                    strengths: [
-                        "Outstanding musical craftsmanship and production quality",
-                        "Innovative approach to genre conventions and expectations",
-                        "Exceptional artistic vision and creative direction",
-                        "Powerful emotional impact and listener engagement"
-                    ],
-                    weaknesses: [
-                        "May require multiple listens to fully appreciate",
-                        "Some elements may not appeal to all audiences",
-                        "Occasional pacing or structural inconsistencies",
-                        "Complex themes may be challenging for some listeners"
-                    ]
-                };
+                // Generate unique description for this album based on its data
+                const description = generateUniqueDescription(album);
 
                 html += `
                     <div class="album-card">
