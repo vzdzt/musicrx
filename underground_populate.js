@@ -9,6 +9,33 @@ dotenv.config();
 // Sentiment analysis for news
 const sentiment = new Sentiment();
 
+// Calculate UG (Underground) Rating based on artist's underground status
+function calculateUGRating(artist, megaMetrics) {
+  const monthlyListeners = Math.max(
+    megaMetrics.spotifyStreams || 0,
+    megaMetrics.lastfmListeners || 0,
+    Math.round(megaMetrics.deezerFans * 10) || 0,
+    Math.round(megaMetrics.appleMusicData / 1000) || 0,
+    Math.round(megaMetrics.soundcloudData / 10) || 0
+  );
+
+  const followers = megaMetrics.spotifyFollowers || 0;
+  const popularity = megaMetrics.spotifyPopularity || 0;
+
+  // UG Rating categories based on underground metrics
+  if (monthlyListeners > 5000000 && followers > 1000000) {
+    return 'Viral'; // Truly massive underground success
+  } else if (monthlyListeners > 2000000 && followers > 500000) {
+    return 'Breakout Artist'; // Breaking through to wider recognition
+  } else if (monthlyListeners > 1000000 && followers > 200000) {
+    return 'Rising Star'; // Significant growth and momentum
+  } else if (monthlyListeners > 500000 && followers > 100000) {
+    return 'Getting Known'; // Building awareness and fanbase
+  } else {
+    return 'Unknown'; // Deep underground, building from ground up
+  }
+}
+
 // Get Discogs data for an album
 async function getDiscogsData(title, artist) {
   try {
@@ -78,7 +105,7 @@ const undergroundArtistSchema = new mongoose.Schema({
   ranking: Number,
   strengths: [String],
   weaknesses: [String],
-  socialSentiment: Number,
+  ugRating: String, // UG (Underground) Rating replaces social sentiment
   recentGrowth: Number,
   lastUpdated: Date
 });
@@ -459,6 +486,9 @@ async function populateUndergroundRankings() {
           megaMetrics.emergingIndicators = Math.min(1, (100 - artist.popularity) / 100); // Lower popularity = more emerging
           megaMetrics.recentGrowth = Math.random() * 0.5 + 0.25; // Mock growth data (would need historical API)
 
+          // Calculate UG (Underground) Rating based on underground status
+          megaMetrics.ugRating = calculateUGRating(artist, megaMetrics);
+
           // Analyze artist with MEGA POWER 9-API metrics
           analysis = await analyzeUndergroundArtistSuper(artist, megaMetrics);
         } else {
@@ -771,7 +801,7 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
       score: Math.round(finalScore * 10) / 10, // Round to 1 decimal
       strengths,
       weaknesses,
-      socialSentiment: Math.round((megaMetrics.socialSentiment || 0) * 100) / 100,
+      ugRating: megaMetrics.ugRating, // UG (Underground) Rating replaces social sentiment
       recentGrowth: Math.round(megaMetrics.recentGrowth * 100) / 100,
       lastUpdated: new Date(),
 
