@@ -328,35 +328,56 @@ async function populateUndergroundRankings() {
 
           // 6. TWITTER API - Social media sentiment & cultural buzz
           try {
-            // Search for recent tweets mentioning the artist
-            const twitterResponse = await fetch(`https://api.twitter.com/2/tweets/search/recent?query=${encodeURIComponent(artist.name)}&max_results=100&tweet.fields=public_metrics,text,created_at`, {
-              headers: {
-                'Authorization': `Bearer ${process.env.X_BEARER_TOKEN}`
-              }
-            });
-
-            if (twitterResponse.ok) {
-              const twitterData = await twitterResponse.json();
-              if (twitterData.data) {
-                megaMetrics.socialMentions = twitterData.data.length;
-
-                // Analyze sentiment of tweets
-                let totalSentiment = 0;
-                for (const tweet of twitterData.data.slice(0, 20)) { // Analyze up to 20 tweets
-                  const tweetSentiment = sentiment.analyze(tweet.text).score;
-                  totalSentiment += tweetSentiment;
+            // Check if Twitter Bearer Token is configured
+            if (!process.env.X_BEARER_TOKEN) {
+              console.log(`   Twitter: Bearer token not configured, skipping sentiment analysis`);
+              megaMetrics.socialMentions = 0;
+              megaMetrics.socialSentiment = 0;
+            } else {
+              // Search for recent tweets mentioning the artist
+              const twitterResponse = await fetch(`https://api.twitter.com/2/tweets/search/recent?query=${encodeURIComponent(artist.name)}&max_results=100&tweet.fields=public_metrics,text,created_at`, {
+                headers: {
+                  'Authorization': `Bearer ${process.env.X_BEARER_TOKEN}`
                 }
-                const avgSentiment = totalSentiment / Math.min(twitterData.data.length, 20);
-                megaMetrics.socialSentiment = Math.max(-1, Math.min(1, avgSentiment / 5)); // Normalize
+              });
 
-                console.log(`   Twitter: ${megaMetrics.socialMentions} mentions, sentiment: ${megaMetrics.socialSentiment.toFixed(2)}`);
+              if (twitterResponse.ok) {
+                const twitterData = await twitterResponse.json();
+                if (twitterData.data && twitterData.data.length > 0) {
+                  megaMetrics.socialMentions = twitterData.data.length;
+
+                  // Analyze sentiment of tweets
+                  let totalSentiment = 0;
+                  let analyzedTweets = 0;
+                  for (const tweet of twitterData.data.slice(0, 20)) {
+                    if (tweet.text) {
+                      const tweetSentiment = sentiment.analyze(tweet.text).score;
+                      totalSentiment += tweetSentiment;
+                      analyzedTweets++;
+                    }
+                  }
+
+                  if (analyzedTweets > 0) {
+                    const avgSentiment = totalSentiment / analyzedTweets;
+                    megaMetrics.socialSentiment = Math.max(-1, Math.min(1, avgSentiment / 5)); // Normalize
+                    console.log(`   Twitter: ${megaMetrics.socialMentions} mentions, ${analyzedTweets} analyzed, sentiment: ${megaMetrics.socialSentiment.toFixed(2)}`);
+                  } else {
+                    megaMetrics.socialSentiment = 0;
+                    console.log(`   Twitter: ${megaMetrics.socialMentions} mentions found but no text to analyze`);
+                  }
+                } else {
+                  megaMetrics.socialMentions = 0;
+                  megaMetrics.socialSentiment = 0;
+                  console.log(`   Twitter: No recent mentions found`);
+                }
               } else {
+                console.log(`   Twitter API error: ${twitterResponse.status}`);
                 megaMetrics.socialMentions = 0;
                 megaMetrics.socialSentiment = 0;
               }
             }
           } catch (err) {
-            console.log(`Could not get Twitter data for ${artistName}`);
+            console.log(`   Twitter: Error - ${err.message}`);
             megaMetrics.socialMentions = 0;
             megaMetrics.socialSentiment = 0;
           }
