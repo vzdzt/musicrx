@@ -120,11 +120,23 @@ async function populateUndergroundRankings() {
       console.log('Cannot proceed with real data - all artists will be skipped');
     }
 
-    // User's complete specified list (all artists they personally mentioned)
+    // User's complete underground artist list (comprehensive collection)
     const undergroundArtists = [
-      'osamason', 'che',           // Initially requested
-      'nettspend', 'jace', 'plaqueboymax', 'k3', 'jorjiana', '1900rugrat', // Additional requested
-      'otoboke beaver', 'molly santana'  // Also mentioned by user
+      '1300SAINT', 'Apollored1', 'Babystaydown', 'Bandanna$aint', 'Bear1boss',
+      'Bleedlivin', 'Brennan Jones', 'Dellyvadova', 'Destroy lonely', 'diamond*',
+      'Diorvsyou', 'eternalvail', 'Feng', 'Glokk40spaz', 'Hardrock',
+      'Homixide gang', 'Kankan', 'Kels!', 'Ken Carson', 'Kikotali',
+      'Kioracks', 'ladé', 'Lesgokev', 'Lil Righteous', 'lilxt',
+      'Lucki', 'Maxon', 'Nate X', 'Nine Vicious', 'nosaint',
+      'ohsxnta', 'Pradabagshawty', 'Prettifun', 'Protect', 'Rickityrackzz',
+      'Rollin Thrax', 'rollinthrax', 'savehills', 'Seventhirtyatmorning', 'shrimpasta',
+      'Sixbill', 'Sk8star', 'skaiwater', 'Southsidesilhouette', 'Strxtch',
+      'tali the one', 'tana', 'Tezzus', 'Thirteendegrees', 'Unitus',
+      'Untiljapan', 'Veeze', 'velarian', 'yung fazo', 'Yung Kayo',
+      'zaan6below', 'Zukenee', '2hollis', '6evermir', '9geek',
+      'osamason', 'che', 'molly santana', 'otoboke beaver', 'summrs',
+      'yeat', 'jorjiana', 'k3', 'benji blue billz', 'jace',
+      'plaqueboymax', 'holottacheese', 'eem triplin', 'jim legacy'
     ];
 
     console.log(`Analyzing ${undergroundArtists.length} underground artists with real Spotify data...`);
