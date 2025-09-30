@@ -3,68 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicRx - Underground Artists</title>
+    <title>MusicRx - Underground Rankings</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Custom styles for underground page */
-        .glass-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 400px; /* Fixed height for consistency */
-            padding: 1rem;
+        .rankings-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
         }
-        .glass-card img {
-            width: 100%;
-            height: 150px; /* Fixed height for uniformity */
-            object-fit: cover;
-            margin-bottom: 0.5rem;
+
+        .rankings-header {
+            margin-bottom: 3rem;
+            margin-top: 4rem; /* Add top margin to avoid nav bar overlap */
         }
-        .glass-card h2 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        .glass-card .description {
-            font-size: 0.9rem;
-            flex-grow: 1;
-            margin-bottom: 0.5rem;
-        }
-        .glass-card audio {
-            width: 100%;
-            height: 40px; /* Fixed height for snug fit */
-            margin-bottom: 0.5rem;
-            border-radius: 5px;
-        }
-        .glass-card .button-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .glass-card .social-link, .glass-card .download-link {
+
+        .rankings-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 3rem;
             color: var(--primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .rankings-subtitle {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center; /* Ensure perfect centering */
+            padding-left: 0; /* Remove any left padding/indent */
+            padding-right: 0; /* Remove any right padding/indent */
+        }
+
+        .rankings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ranking-card {
+            background: var(--card-background);
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ranking-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: var(--primary);
+        }
+
+        .ranking-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--rgb-glow));
+        }
+
+        .ranking-number {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .artist-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            display: block;
+            border: 3px solid var(--border-color);
             transition: all 0.3s ease;
         }
-        .glass-card .social-link:hover, .glass-card .download-link:hover {
-            color: var(--text);
-            transform: scale(1.2);
+
+        .ranking-card:hover .artist-image {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .artist-name {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .artist-genres {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .score-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 1rem 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.05);
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-label {
+            color: var(--secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .analysis-section {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .analysis-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .analysis-list {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .analysis-list li {
+            margin-bottom: 0.25rem;
+            padding-left: 0.5rem;
+            position: relative;
+        }
+
+        .analysis-list li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            color: var(--secondary);
+        }
+
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: #dc2626;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            padding: 0.75rem 1.5rem;
+            background: var(--card-background);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .nav-link:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .rankings-container {
+                padding: 1rem;
+            }
+
+            .rankings-title {
+                font-size: 2rem;
+            }
+
+            .rankings-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .ranking-card {
+                padding: 1rem;
+            }
+
+            .artist-image {
+                width: 100px;
+                height: 100px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <div id="cursor"></div>
-    <!-- <div id="cursor-blur"></div> -->
     <canvas id="universe"></canvas>
 
-    <!-- Navigation -->
     <nav class="navbar global-nav">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
-        </div>
-        <div class="search-container">
-            <input type="text" id="reviewSearch" placeholder="Search underground tracks..." class="search-input">
         </div>
         <div class="dropdown">
             <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
@@ -72,116 +280,55 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="reviews.html">Reviews</a></li>
-              <!--  <li><a href="features.html">Features</a></li>-->
                     <li><a href="news.html">News</a></li>
-                  <!--  <li><a href="opinions.html">Opinions</a></li>
-                    <li><a href="catchcarti.html">Catch Carti</a></li>
-                    <li><a href="underground.html">Underground</a></li>-->
+                    <li><a href="underground.html">Underground</a></li>
+                    <li><a href="tools.html">Tools</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Fixed Buttons -->
     <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
     <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
-    <!-- <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button> -->
 
-    <!-- Main Content -->
-    <div class="container">
-        <h1 class="glitch" data-text="UNDERGROUND">UNDERGROUND</h1>
-        <p style="text-align: center; margin-bottom: 2rem;">discover new tracks from emerging artists.</p>
-        <div class="grid">
-            <!-- Underground Artist Tracks by Xroz -->
-            <div class="glass-card">
-                <img src="project202.jpg" alt="Xroz - Project 202 artwork">
-                <h2>Xroz - Project 202</h2>
-               <!-- <p class="description">some to crash out to</p>-->
-                <audio controls>
-                    <source src="https://od.lk/s/MzhfMjkxNDc0OTJf/Project_202.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <div class="button-group">
-                    <a href="https://x.com/xrozk" target="_blank" class="social-link" title="Follow Xroz on Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://od.lk/d/MzhfMjkxNDc0OTJf/Project_202.mp3" target="_blank" class="download-link" title="Download Project 202">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="glass-card">
-                <img src="zone.jpg" alt="Xroz - Zone V2 artwork">
-                <h2>Xroz - Zone V2</h2>
-               <!-- <p class="description">Hypnotic rhythms with a futuristic edge.</p>-->
-                <audio controls>
-                    <source src="https://od.lk/s/MzhfMjkxNDc0OThf/zone%20v2.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <div class="button-group">
-                    <a href="https://x.com/xrozk" target="_blank" class="social-link" title="Follow Xroz on Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://od.lk/d/MzhfMjkxNDc0OThf/zone%20v2.mp3" target="_blank" class="download-link" title="Download Zone V2">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="glass-card">
-                <img src="project191.jpg" alt="Xroz - Project 191 artwork">
-                <h2>Xroz - Project 191</h2>
-               <!-- <p class="description">A gritty, lo-fi track straight from the streets.</p>-->
-                <audio controls>
-                    <source src="https://od.lk/s/MzhfMjkxNDc0OTNf/Project_191.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <div class="button-group">
-                    <a href="https://x.com/xrozk" target="_blank" class="social-link" title="Follow Xroz on Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://od.lk/d/MzhfMjkxNDc0OTNf/Project_191.mp3" target="_blank" class="download-link" title="Download Project 191">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="glass-card">
-                <img src="loaf.jpg" alt="Xroz - Loaf artwork">
-                <h2>Xroz - Loaf</h2>
-               <!-- <p class="description">A smooth, melodic flow with trap undertones.</p>-->
-                <audio controls>
-                    <source src="https://od.lk/s/MzhfMjkxNDc0OTZf/loaf%20by%20xrozk.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <div class="button-group">
-                    <a href="https://x.com/xrozk" target="_blank" class="social-link" title="Follow Xroz on Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://od.lk/d/MzhfMjkxNDc0OTZf/loaf%20by%20xrozk.mp3" target="_blank" class="download-link" title="Download Loaf">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="glass-card">
-                <img src="lazy.jpg" alt="Xroz - Lazy V1 artwork">
-                <h2>Xroz - Lazy V1</h2>
-               <!-- <p class="description">Chilled-out vibes with a lazy, laid-back beat.</p>-->
-                <audio controls>
-                    <source src="https://od.lk/s/MzhfMjkxNDc0OTdf/lazy%20finished%20v1.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <div class="button-group">
-                    <a href="https://x.com/xrozk" target="_blank" class="social-link" title="Follow Xroz on Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://od.lk/d/MzhfMjkxNDc0OTdf/lazy%20finished%20v1.mp3" target="_blank" class="download-link" title="Download Lazy V1">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-            </div>
+    <div class="rankings-container">
+        <div class="rankings-header">
+            <h1 class="rankings-title">Underground Rankings</h1>
+            <p class="rankings-subtitle">
+                Discover the most promising underground artists based on streaming data, social sentiment, network influence, and growth potential. These are the artists pushing boundaries and shaping the future of music.
+            </p>
+        </div>
+
+        <div class="nav-links">
+            <a href="all-time-rankings.html" class="nav-link">
+                <i class="fas fa-trophy"></i> All-Time Rankings
+            </a>
+            <a href="all-2025-albums.html" class="nav-link">
+                <i class="fas fa-calendar"></i> 2025 Albums
+            </a>
+            <a href="underground-rankings.html" class="nav-link">
+                <i class="fas fa-users"></i> Underground
+            </a>
+            <a href="tools.html" class="nav-link">
+                <i class="fas fa-tools"></i> Album Rater
+            </a>
+        </div>
+
+        <div id="loading" class="loading">
+            <i class="fas fa-spinner fa-spin" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Loading underground rankings...</p>
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+            <p id="errorMessage">Failed to load underground rankings.</p>
+        </div>
+
+        <div id="rankingsGrid" class="rankings-grid" style="display: none;">
+            <!-- Rankings will be populated here -->
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="nav-logo">
             <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
@@ -189,16 +336,99 @@
         <div class="footer-content">
             <p>© 2025 MusicRx. All rights reserved.</p>
         </div>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Subscribe to Newsletter" required>
-            <button type="submit">Subscribe</button>
-        </form>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
+
+    <script>
+        // Configuration
+        const BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://musicrx.app';
+
+        async function loadUndergroundRankings() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/underground-rankings`);
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load rankings: ${response.status}`);
+                }
+
+                const rankings = await response.json();
+                displayRankings(rankings);
+
+            } catch (error) {
+                console.error('Underground rankings error:', error);
+                showError('Failed to load underground rankings. Please try again.');
+            }
+        }
+
+        function displayRankings(rankings) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('rankingsGrid').style.display = 'grid';
+
+            const grid = document.getElementById('rankingsGrid');
+            grid.innerHTML = '';
+
+            rankings.forEach(artist => {
+                const card = document.createElement('div');
+                card.className = 'ranking-card';
+
+                const imageUrl = artist.imageUrl || 'https://via.placeholder.com/120x120/333/666?text=No+Image';
+
+                card.innerHTML = `
+                    <img src="${imageUrl}" alt="${artist.name}" class="artist-image" onerror="this.src='https://via.placeholder.com/120x120/333/666?text=No+Image'">
+                    <h3 class="artist-name">${artist.name}</h3>
+                    <div class="artist-genres">${artist.genres.slice(0, 3).join(', ') || 'Various'}</div>
+
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-label">Monthly Listeners</div>
+                            <div class="stat-value">${formatNumber(artist.monthlyListeners)}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Followers</div>
+                            <div class="stat-value">${formatNumber(artist.followers)}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">UG Rating</div>
+                            <div class="stat-value">${artist.ugRating || 'Unknown'}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Recent Growth</div>
+                            <div class="stat-value">${artist.recentGrowth > 0 ? '+' : ''}${artist.recentGrowth}%</div>
+                        </div>
+                    </div>
+
+
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function formatNumber(num) {
+            if (num === null || num === undefined) {
+                return 'N/A';
+            }
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toString();
+        }
+
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('errorMessage').textContent = message;
+        }
+
+        // Load rankings on page load
+        document.addEventListener('DOMContentLoaded', loadUndergroundRankings);
+    </script>
 </body>
 </html>
