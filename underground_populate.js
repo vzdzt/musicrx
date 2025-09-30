@@ -120,22 +120,9 @@ async function populateUndergroundRankings() {
       console.log('Cannot proceed with real data - all artists will be skipped');
     }
 
-    // User's specified list of underground rappers (filtered to exclude mainstream artists)
-    // REMOVED: 'banhoes' (matches Chevelle rock band instead of underground rapper)
+    // User's specified underground rappers only (removed all artists not specifically requested)
     const undergroundArtists = [
-      '1300SAINT', 'Apollored1', 'Babystaydown', 'Bandanna$aint', // Removed 'banhoes'
-      'Bear1boss', 'Bleedlivin', 'Brennan Jones', 'Dellyvadova', 'Destroy lonely',
-      'diamond*', 'Diorvsyou', 'eternalvail', 'Feng', 'Glokk40spaz',
-      'Hardrock', 'Homixide gang', 'Kankan', 'Ken Carson',
-      'Kioracks', 'ladé', 'Lesgokev', 'Lucki', 'Maxon', 'Nate X', 'Nine Vicious',
-      'nosaint', 'ohsxnta', 'Pradabagshawty', 'Prettifun', 'Protect',
-      'Rickityrackzz', 'Rollin Thrax', 'rollinthrax', 'savehills', 'Seventhirtyatmorning',
-      'Sixbill', 'Sk8star', 'skaiwater', 'Southsidesilhouette',
-      'Strxtch', 'tana', 'Tezzus', 'Thirteendegrees',
-      'Unitus', 'Untiljapan', 'Veeze', 'velarian', 'yung fazo',
-      'Yung Kayo', 'zaan6below', 'Zukenee', '2hollis', '6evermir', '9geek',
-      'osamason', 'che', 'otoboke beaver', 'molly santana', 'nettspend',
-      'jace', 'plaqueboymax', 'k3', 'jorjiana', '1900rugrat'
+      'osamason', 'che'  // Only the artists the user specifically asked to add
     ];
 
     console.log(`Analyzing ${undergroundArtists.length} underground artists with real Spotify data...`);
