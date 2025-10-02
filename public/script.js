@@ -160,18 +160,36 @@ async function loadUndergroundArtists() {
 
         if (undergroundArtists.length > 0) {
             let html = '';
-            // Show top 6 underground artists
-            const topArtists = undergroundArtists.slice(0, 6);
+            // Sort by monthly listeners (highest first) and show top 6
+            const sortedArtists = undergroundArtists.sort((a, b) => (b.monthlyListeners || 0) - (a.monthlyListeners || 0));
+            const topArtists = sortedArtists.slice(0, 6);
 
-            topArtists.forEach((artist) => {
+            topArtists.forEach((artist, index) => {
                 const name = artist.name.length > 15 ? artist.name.substring(0, 12) + '...' : artist.name;
                 const monthlyListeners = artist.monthlyListeners ? artist.monthlyListeners.toLocaleString() : 'N/A';
                 const imageUrl = artist.imageUrl || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==`;
 
-                html += `<a href="https://open.spotify.com/artist/${artist.artistId}" target="_blank" rel="noopener noreferrer" class="scroll-item" style="text-decoration: none; cursor: pointer;">
-                    <div class="ranking-number">${artist.ranking || (index + 1)}</div>
+                // Determine glow effect based on recent growth or UG rating
+                let glowClass = '';
+                const recentGrowth = artist.recentGrowth || 0;
+                const ugRating = artist.ugRating || '';
+
+                if (recentGrowth <= 1 || ugRating === 'Freshman') {
+                    glowClass = 'glow-blue';
+                } else if ((recentGrowth >= 2 && recentGrowth <= 5) || ugRating === 'Known') {
+                    glowClass = 'glow-green';
+                } else if ((recentGrowth >= 6 && recentGrowth <= 10) || ugRating === 'On The Rise') {
+                    glowClass = 'glow-yellow';
+                } else if ((recentGrowth >= 11 && recentGrowth <= 20) || ugRating === 'Breakout') {
+                    glowClass = 'glow-orange';
+                } else if (recentGrowth > 21 || ugRating === 'Viral') {
+                    glowClass = 'glow-red';
+                }
+
+                html += `<a href="https://open.spotify.com/artist/${artist.artistId}" target="_blank" rel="noopener noreferrer" class="scroll-item ${glowClass}" style="text-decoration: none; cursor: pointer;">
+                    <div class="ranking-number">${index + 1}</div>
                     <div class="news-title-card">
-                        <h2>${name}</h2>
+                        <h3>${name}</h3>
                     </div>
                     <div class="news-content-card">
                         <img src="${imageUrl}" alt="${artist.name}" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='">
