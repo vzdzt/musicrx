@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MusicRx - Just A Music Blog</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://musicrx.app">
+    <meta property="og:title" content="MusicRx - Just A Music Blog">
+    <meta property="og:description" content="Discover the latest music reviews, underground rankings, album ratings, and trending artists from around the world.">
+    <meta property="og:image" content="https://musicrx.app/catdive.jpeg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://musicrx.app">
+    <meta property="twitter:title" content="MusicRx - Just A Music Blog">
+    <meta property="twitter:description" content="Discover the latest music reviews, underground rankings, album ratings, and trending artists from around the world.">
+    <meta property="twitter:image" content="https://musicrx.app/catdive.jpeg">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -402,61 +417,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Underground Artist Glowing Effects */
-        .glow-blue {
-            box-shadow: 0 0 20px rgba(0, 123, 255, 0.6), 0 0 40px rgba(0, 123, 255, 0.4), 0 0 60px rgba(0, 123, 255, 0.2);
-            border-color: rgba(0, 123, 255, 0.8);
-            animation: glow-blue-pulse 2s ease-in-out infinite alternate;
-        }
 
-        .glow-green {
-            box-shadow: 0 0 20px rgba(40, 167, 69, 0.6), 0 0 40px rgba(40, 167, 69, 0.4), 0 0 60px rgba(40, 167, 69, 0.2);
-            border-color: rgba(40, 167, 69, 0.8);
-            animation: glow-green-pulse 2s ease-in-out infinite alternate;
-        }
-
-        .glow-yellow {
-            box-shadow: 0 0 20px rgba(255, 193, 7, 0.6), 0 0 40px rgba(255, 193, 7, 0.4), 0 0 60px rgba(255, 193, 7, 0.2);
-            border-color: rgba(255, 193, 7, 0.8);
-            animation: glow-yellow-pulse 2s ease-in-out infinite alternate;
-        }
-
-        .glow-orange {
-            box-shadow: 0 0 20px rgba(255, 87, 34, 0.6), 0 0 40px rgba(255, 87, 34, 0.4), 0 0 60px rgba(255, 87, 34, 0.2);
-            border-color: rgba(255, 87, 34, 0.8);
-            animation: glow-orange-pulse 2s ease-in-out infinite alternate;
-        }
-
-        .glow-red {
-            box-shadow: 0 0 20px rgba(220, 53, 69, 0.6), 0 0 40px rgba(220, 53, 69, 0.4), 0 0 60px rgba(220, 53, 69, 0.2);
-            border-color: rgba(220, 53, 69, 0.8);
-            animation: glow-red-pulse 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow-blue-pulse {
-            from { box-shadow: 0 0 20px rgba(0, 123, 255, 0.6), 0 0 40px rgba(0, 123, 255, 0.4), 0 0 60px rgba(0, 123, 255, 0.2); }
-            to { box-shadow: 0 0 30px rgba(0, 123, 255, 0.8), 0 0 50px rgba(0, 123, 255, 0.6), 0 0 80px rgba(0, 123, 255, 0.4); }
-        }
-
-        @keyframes glow-green-pulse {
-            from { box-shadow: 0 0 20px rgba(40, 167, 69, 0.6), 0 0 40px rgba(40, 167, 69, 0.4), 0 0 60px rgba(40, 167, 69, 0.2); }
-            to { box-shadow: 0 0 30px rgba(40, 167, 69, 0.8), 0 0 50px rgba(40, 167, 69, 0.6), 0 0 80px rgba(40, 167, 69, 0.4); }
-        }
-
-        @keyframes glow-yellow-pulse {
-            from { box-shadow: 0 0 20px rgba(255, 193, 7, 0.6), 0 0 40px rgba(255, 193, 7, 0.4), 0 0 60px rgba(255, 193, 7, 0.2); }
-            to { box-shadow: 0 0 30px rgba(255, 193, 7, 0.8), 0 0 50px rgba(255, 193, 7, 0.6), 0 0 80px rgba(255, 193, 7, 0.4); }
-        }
-
-        @keyframes glow-orange-pulse {
-            from { box-shadow: 0 0 20px rgba(255, 87, 34, 0.6), 0 0 40px rgba(255, 87, 34, 0.4), 0 0 60px rgba(255, 87, 34, 0.2); }
-            to { box-shadow: 0 0 30px rgba(255, 87, 34, 0.8), 0 0 50px rgba(255, 87, 34, 0.6), 0 0 80px rgba(255, 87, 34, 0.4); }
-        }
-
-        @keyframes glow-red-pulse {
-            from { box-shadow: 0 0 20px rgba(220, 53, 69, 0.6), 0 0 40px rgba(220, 53, 69, 0.4), 0 0 60px rgba(220, 53, 69, 0.2); }
-            to { box-shadow: 0 0 30px rgba(220, 53, 69, 0.8), 0 0 50px rgba(220, 53, 69, 0.6), 0 0 80px rgba(220, 53, 69, 0.4); }
-        }
 
         /* Mobile responsiveness */
         @media (max-width: 768px) {
