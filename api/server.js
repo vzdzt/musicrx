@@ -2526,7 +2526,7 @@ app.get('/api/underground-rankings', async (req, res) => {
           // Use real Spotify data if available
           spotifyPopularity: spotifyData?.popularity || artist.spotifyPopularity,
           // Preserve manually set monthly listeners - don't override with API data
-          monthlyListeners: artist.monthlyListeners, // Keep the manually set value
+          monthlyListeners: artist.monthlyListeners || spotifyData?.monthlyListeners || artist.monthlyListeners, // Keep the manually set value
           followers: spotifyData?.followers || artist.followers,
           imageUrl: spotifyData?.imageUrl || artist.imageUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(artist.name)}&background=333&color=666&size=300&format=png`,
           genres: spotifyData?.genres || artist.genres,
