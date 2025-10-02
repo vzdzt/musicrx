@@ -558,28 +558,16 @@
                 const recentGrowth = artist.recentGrowth || 0;
                 const storedUgRating = (artist.ugRating || '').toLowerCase();
 
-                // Check recent growth first (higher priority)
-                if (recentGrowth >= 0 && recentGrowth <= 1) {
+                // Check both recent growth AND UG rating for each tier
+                if ((recentGrowth >= 0 && recentGrowth <= 1) || storedUgRating === 'freshman') {
                     glowClass = 'glow-blue';
-                } else if (recentGrowth >= 2 && recentGrowth <= 5) {
+                } else if ((recentGrowth >= 2 && recentGrowth <= 5) || storedUgRating === 'known') {
                     glowClass = 'glow-green';
-                } else if (recentGrowth >= 6 && recentGrowth <= 10) {
+                } else if ((recentGrowth >= 6 && recentGrowth <= 10) || storedUgRating === 'on the rise') {
                     glowClass = 'glow-yellow';
-                } else if (recentGrowth >= 11 && recentGrowth <= 20) {
+                } else if ((recentGrowth >= 11 && recentGrowth <= 20) || storedUgRating === 'breakout') {
                     glowClass = 'glow-orange';
-                } else if (recentGrowth > 21) {
-                    glowClass = 'glow-red';
-                }
-                // If no growth-based glow, check UG rating
-                else if (storedUgRating === 'freshman') {
-                    glowClass = 'glow-blue';
-                } else if (storedUgRating === 'known') {
-                    glowClass = 'glow-green';
-                } else if (storedUgRating === 'on the rise') {
-                    glowClass = 'glow-yellow';
-                } else if (storedUgRating === 'breakout') {
-                    glowClass = 'glow-orange';
-                } else if (storedUgRating === 'viral') {
+                } else if (recentGrowth > 21 || storedUgRating === 'viral') {
                     glowClass = 'glow-red';
                 }
 
