@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Listener Pulse Heatmaps</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .pulse-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .pulse-header {
+            margin-bottom: 3rem;
+            margin-top: 4rem;
+        }
+
+        .pulse-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .pulse-subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .artist-search {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .artist-search input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-background);
+            color: var(--text-color);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+        }
+
+        .artist-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .artist-search button {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .artist-search button:hover {
+            background: var(--rgb-glow);
+            transform: translateY(-2px);
+        }
+
+        .map-container {
+            height: 600px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        #worldMap {
+            height: 100%;
+            width: 100%;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .pulse-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-background);
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow);
+            border-color: var(--primary);
+        }
+
+        .stat-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-detail {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        .mood-indicator {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .mood-happy { background: #4CAF50; color: white; }
+        .mood-sad { background: #2196F3; color: white; }
+        .mood-energetic { background: #FF9800; color: white; }
+        .mood-calm { background: #9C27B0; color: white; }
+        .mood-neutral { background: #607D8B; color: white; }
+
+        .recent-listeners {
+            background: var(--card-background);
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .listeners-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .listener-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s ease;
+        }
+
+        .listener-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .listener-item:last-child {
+            border-bottom: none;
+        }
+
+        .listener-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            border: 2px solid var(--border-color);
+        }
+
+        .listener-info h4 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .listener-info p {
+            margin: 0.25rem 0 0 0;
+            color: var(--secondary);
+            font-size: 0.8rem;
+        }
+
+        .error-message {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid #f44336;
+            color: #f44336;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Leaflet customizations */
+        .leaflet-popup-content-wrapper {
+            background: var(--card-background);
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .leaflet-popup-tip {
+            background: var(--card-background);
+        }
+
+        .leaflet-popup-content {
+            margin: 1rem;
+        }
+
+        .leaflet-control-attribution {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .pulse-container {
+                padding: 1rem;
+            }
+
+            .pulse-title {
+                font-size: 2rem;
+            }
+
+            .map-container {
+                height: 400px;
+            }
+
+            .pulse-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .artist-search {
+                flex-direction: column;
+            }
+
+            .stat-card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <canvas id="universe"></canvas>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <p class="heartbeat-text">MUSICRX</p>
+            <span class="heartbeat-line"></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle" type="button"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="newmusic.html">New Music</a></li>
+                    <li><a href="underground.html">Underground</a></li>
+                    <li><a href="listener-pulse.html">Listener Pulse</a></li>
+                    <li><a href="all-time-rankings.html">Rankings</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pulse-container">
+        <div class="pulse-header">
+            <h1 class="pulse-title">Listener Pulse</h1>
+            <p class="pulse-subtitle">
+                See what tracks are resonating with listeners worldwide
+            </p>
+        </div>
+
+        <div class="artist-search">
+            <input type="text" id="artistInput" placeholder="Enter artist name (e.g., The Weeknd, Taylor Swift)" value="The Weeknd">
+            <button id="searchBtn">🔍 Analyze Pulse</button>
+        </div>
+
+        <div id="errorContainer" style="display: none;"></div>
+
+        <div class="map-container">
+            <div id="loadingOverlay" class="loading-overlay">
+                <div class="loading-spinner"></div>
+                <p>Loading listener pulse data...</p>
+            </div>
+            <div id="worldMap"></div>
+        </div>
+
+        <div id="statsContainer" class="pulse-stats" style="display: none;">
+            <!-- Stats will be populated here -->
+        </div>
+
+        <div id="recentListeners" class="recent-listeners" style="display: none;">
+            <h3 class="listeners-title">🎧 Who Listened Last Hour</h3>
+            <div id="listenersList">
+                <!-- Recent listeners will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+            <span class="heartbeat-line"></span>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="theme-effects.js"></script>
+    <script src="hover-effects.js"></script>
+    <script src="scroll-effects.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Configuration
+        const BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://musicrx.app';
+
+        let map;
+        let markers = [];
+        let currentArtist = '';
+
+        // City coordinates for major music markets - expanded to match all countries
+        const cityCoordinates = {
+            // North America
+            'United States': [39.8283, -98.5795],
+            'Canada': [56.1304, -106.3468],
+            'Mexico': [23.6345, -102.5528],
+
+            // Central America & Caribbean
+            'Belize': [17.1899, -88.4976],
+            'Costa Rica': [9.7489, -83.7534],
+            'El Salvador': [13.7942, -88.8965],
+            'Guatemala': [15.7835, -90.2308],
+            'Honduras': [15.2000, -86.2419],
+            'Nicaragua': [12.8654, -85.2072],
+            'Panama': [8.5380, -80.7821],
+            'Bahamas': [25.0343, -77.3963],
+            'Barbados': [13.1939, -59.5432],
+            'Cuba': [21.5218, -77.7812],
+            'Dominican Republic': [18.7357, -70.1627],
+            'Haiti': [18.9712, -72.2852],
+            'Jamaica': [18.1096, -77.2975],
+            'Puerto Rico': [18.2208, -66.5901],
+            'Trinidad and Tobago': [10.6918, -61.2225],
+
+            // South America
+            'Argentina': [-38.4161, -63.6167],
+            'Bolivia': [-16.2902, -63.5887],
+            'Brazil': [-14.2350, -51.9253],
+            'Chile': [-35.6751, -71.5430],
+            'Colombia': [4.5709, -74.2973],
+            'Ecuador': [-1.8312, -78.1834],
+            'Guyana': [4.8604, -58.9302],
+            'Paraguay': [-23.4425, -58.4438],
+            'Peru': [-9.1900, -75.0152],
+            'Suriname': [3.9193, -56.0278],
+            'Uruguay': [-32.5228, -55.7658],
+            'Venezuela': [6.4238, -66.5897],
+
+            // Europe
+            'Albania': [41.1533, 20.1683],
+            'Andorra': [42.5063, 1.5218],
+            'Austria': [47.5162, 14.5501],
+            'Belarus': [53.7098, 27.9534],
+            'Belgium': [50.5039, 4.4699],
+            'Bosnia and Herzegovina': [43.9159, 17.6791],
+            'Bulgaria': [42.7339, 25.4858],
+            'Croatia': [45.1000, 15.2000],
+            'Cyprus': [35.1264, 33.4299],
+            'Czech Republic': [49.8175, 15.4730],
+            'Denmark': [56.2639, 9.5018],
+            'Estonia': [58.5953, 25.0136],
+            'Faroe Islands': [61.8926, -6.9118],
+            'Finland': [61.9241, 25.7482],
+            'France': [46.2276, 2.2137],
+            'Germany': [51.1657, 10.4515],
+            'Gibraltar': [36.1408, -5.3536],
+            'Greece': [39.0742, 21.8243],
+            'Greenland': [71.7069, -42.6043],
+            'Hungary': [47.1625, 19.5033],
+            'Iceland': [64.9631, -19.0208],
+            'Ireland': [53.4129, -8.2439],
+            'Italy': [41.8719, 12.5674],
+            'Kosovo': [42.6026, 20.9030],
+            'Latvia': [56.8796, 24.6032],
+            'Liechtenstein': [47.1410, 9.5215],
+            'Lithuania': [55.1694, 23.8813],
+            'Luxembourg': [49.8153, 6.1296],
+            'Malta': [35.9375, 14.3754],
+            'Moldova': [47.4116, 28.3699],
+            'Monaco': [43.7384, 7.4246],
+            'Montenegro': [42.7087, 19.3744],
+            'Netherlands': [52.1326, 5.2913],
+            'North Macedonia': [41.6086, 21.7453],
+            'Norway': [60.4720, 8.4689],
+            'Poland': [51.9194, 19.1451],
+            'Portugal': [39.3999, -8.2245],
+            'Romania': [45.9432, 24.9668],
+            'Russia': [61.5240, 105.3188],
+            'San Marino': [43.9424, 12.4578],
+            'Serbia': [44.0165, 21.0059],
+            'Slovakia': [48.6690, 19.6990],
+            'Slovenia': [46.1512, 14.9955],
+            'Spain': [40.4637, -3.7492],
+            'Sweden': [60.1282, 18.6435],
+            'Switzerland': [46.8182, 8.2275],
+            'Ukraine': [48.3794, 31.1656],
+            'United Kingdom': [55.3781, -3.4360],
+            'Vatican City': [41.9029, 12.4534],
+
+            // Africa
+            'Algeria': [28.0339, 1.6596],
+            'Angola': [-11.2027, 17.8739],
+            'Benin': [9.3077, 2.3158],
+            'Botswana': [-22.3285, 24.6849],
+            'Burkina Faso': [12.2383, -1.5616],
+            'Burundi': [-3.3731, 29.9189],
+            'Cameroon': [7.3697, 12.3547],
+            'Cape Verde': [16.0021, -24.0132],
+            'Central African Republic': [6.6111, 20.9394],
+            'Chad': [15.4542, 18.7322],
+            'Comoros': [-11.8750, 43.8722],
+            'Democratic Republic of the Congo': [-4.0383, 21.7587],
+            'Republic of the Congo': [-0.2280, 15.8277],
+            'Djibouti': [11.8251, 42.5903],
+            'Egypt': [26.0963, 29.9183],
+            'Equatorial Guinea': [1.6508, 10.2679],
+            'Eritrea': [15.1794, 39.7823],
+            'Ethiopia': [9.1450, 40.4897],
+            'Gabon': [-0.8037, 11.6094],
+            'Gambia': [13.4432, -15.3101],
+            'Ghana': [7.9465, -1.0232],
+            'Guinea': [9.9456, -9.6966],
+            'Guinea-Bissau': [11.8037, -15.1804],
+            'Ivory Coast': [7.5399, -5.5471],
+            'Kenya': [-0.0236, 37.9062],
+            'Lesotho': [-29.6099, 28.2336],
+            'Liberia': [6.4281, -9.4295],
+            'Libya': [26.3351, 17.2283],
+            'Madagascar': [-18.7669, 46.8691],
+            'Malawi': [-13.2543, 34.3015],
+            'Mali': [17.5707, -3.9962],
+            'Mauritania': [21.0079, -10.9408],
+            'Mauritius': [-20.3484, 57.5522],
+            'Morocco': [31.7917, -7.0926],
+            'Mozambique': [-18.6657, 35.5296],
+            'Namibia': [-22.9576, 18.4904],
+            'Niger': [17.6078, 8.0817],
+            'Nigeria': [9.0820, 8.6753],
+            'Rwanda': [-1.9403, 29.8739],
+            'Sao Tome and Principe': [0.1864, 6.6131],
+            'Senegal': [14.4974, -14.4524],
+            'Seychelles': [-4.6796, 55.4920],
+            'Sierra Leone': [8.4606, -11.7799],
+            'Somalia': [5.1521, 46.1996],
+            'South Africa': [-30.5595, 22.9375],
+            'South Sudan': [6.8770, 31.3070],
+            'Sudan': [12.8628, 30.2176],
+            'Swaziland': [-26.5225, 31.4659],
+            'Tanzania': [-6.3690, 34.8888],
+            'Togo': [8.6195, 0.8248],
+            'Tunisia': [33.8869, 9.5375],
+            'Uganda': [1.3733, 32.2903],
+            'Western Sahara': [24.2155, -12.8858],
+            'Zambia': [-13.1339, 27.8493],
+            'Zimbabwe': [-19.0154, 29.1549],
+
+            // Asia
+            'Afghanistan': [33.9391, 67.7100],
+            'Armenia': [40.0691, 45.0382],
+            'Azerbaijan': [40.1431, 47.5769],
+            'Bahrain': [25.9304, 50.6378],
+            'Bangladesh': [23.6850, 90.3563],
+            'Bhutan': [27.5142, 90.4336],
+            'Brunei': [4.5353, 114.7277],
+            'Cambodia': [12.5657, 104.9910],
+            'China': [35.8617, 104.1954],
+            'Georgia': [42.3154, 43.3569],
+            'Hong Kong': [22.3193, 114.1694],
+            'India': [20.5937, 78.9629],
+            'Indonesia': [-0.7893, 113.9213],
+            'Iran': [32.4279, 53.6880],
+            'Iraq': [33.2232, 43.6793],
+            'Israel': [31.0461, 34.8516],
+            'Japan': [36.2048, 138.2529],
+            'Jordan': [30.5852, 36.2384],
+            'Kazakhstan': [48.0196, 66.9237],
+            'Kuwait': [29.3117, 47.4818],
+            'Kyrgyzstan': [41.2044, 74.7661],
+            'Laos': [19.8563, 102.4955],
+            'Lebanon': [33.8547, 35.8623],
+            'Macau': [22.1987, 113.5439],
+            'Malaysia': [4.2105, 101.9758],
+            'Maldives': [3.2028, 73.2207],
+            'Mongolia': [46.8625, 103.8467],
+            'Myanmar': [21.9162, 95.9560],
+            'Nepal': [28.3949, 84.1240],
+            'North Korea': [40.3399, 127.5101],
+            'Oman': [21.5126, 55.9233],
+            'Pakistan': [30.3753, 69.3451],
+            'Palestine': [31.9522, 35.2332],
+            'Philippines': [12.8797, 121.7740],
+            'Qatar': [25.3548, 51.1839],
+            'Saudi Arabia': [23.8859, 45.0792],
+            'Singapore': [1.3521, 103.8198],
+            'South Korea': [35.9078, 127.7669],
+            'Sri Lanka': [7.8731, 80.7718],
+            'Syria': [34.8021, 38.9968],
+            'Taiwan': [23.6978, 120.9605],
+            'Tajikistan': [38.8610, 71.2761],
+            'Thailand': [15.8700, 100.9925],
+            'Timor-Leste': [-8.8742, 125.7275],
+            'Turkey': [38.9637, 35.2433],
+            'Turkmenistan': [38.9697, 59.5563],
+            'United Arab Emirates': [23.4241, 53.8478],
+            'Uzbekistan': [41.3775, 64.5853],
+            'Vietnam': [14.0583, 108.2772],
+            'Yemen': [15.5527, 48.5164],
+
+            // Oceania
+            'American Samoa': [-14.2710, -170.1322],
+            'Australia': [-25.2744, 133.7751],
+            'Cook Islands': [-21.2367, -159.7777],
+            'Fiji': [-16.5782, 179.4144],
+            'French Polynesia': [-17.6797, -149.4068],
+            'Guam': [13.4443, 144.7937],
+            'Kiribati': [-3.3704, -168.7340],
+            'Marshall Islands': [7.1315, 171.1845],
+            'Micronesia': [7.4256, 150.5508],
+            'Nauru': [-0.5228, 166.9315],
+            'New Caledonia': [-20.9043, 165.6180],
+            'New Zealand': [-40.9006, 174.8860],
+            'Niue': [-19.0544, -169.8672],
+            'Northern Mariana Islands': [17.3308, 145.3847],
+            'Palau': [7.5149, 134.5825],
+            'Papua New Guinea': [-6.3149, 143.9555],
+            'Pitcairn Islands': [-24.7036, -127.4393],
+            'Samoa': [-13.7590, -172.1046],
+            'Solomon Islands': [-9.6457, 160.1562],
+            'Tokelau': [-8.9674, -171.8559],
+            'Tonga': [-21.1789, -175.1982],
+            'Tuvalu': [-7.1095, 177.6493],
+            'Vanuatu': [-15.3767, 166.9592],
+            'Wallis and Futuna': [-13.7688, -177.1561]
+        };
+
+        // Initialize map
+        function initMap() {
+            map = L.map('worldMap', {
+                center: [20, 0],
+                zoom: 2,
+                minZoom: 2,
+                maxZoom: 8,
+                worldCopyJump: true
+            });
+
+            // Use a dark theme map
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap contributors © CARTO',
+                subdomains: 'abcd',
+                maxZoom: 20
+            }).addTo(map);
+
+            // Remove default zoom control and add custom positioned one
+            map.zoomControl.remove();
+            L.control.zoom({
+                position: 'bottomright'
+            }).addTo(map);
+        }
+
+        // Clear existing markers
+        function clearMarkers() {
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+        }
+
+        // Add city markers with pulse data
+        function addCityMarkers(pulseData) {
+            clearMarkers();
+
+            pulseData.cities.forEach(city => {
+                const coords = cityCoordinates[city.country];
+                if (!coords) return;
+
+                // Calculate marker size based on popularity (10-30px)
+                const markerSize = Math.max(10, Math.min(30, 10 + (city.popularity / 100) * 20));
+
+                // Create custom marker icon
+                const markerIcon = L.divIcon({
+                    className: 'custom-marker',
+                    html: `<div style="
+                        width: ${markerSize}px;
+                        height: ${markerSize}px;
+                        background: var(--primary);
+                        border: 3px solid var(--secondary);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-weight: bold;
+                        font-size: ${markerSize * 0.4}px;
+                        box-shadow: 0 0 10px var(--primary)80;
+                        animation: pulse 2s infinite;
+                    ">${Math.round(city.popularity)}</div>`,
+                    iconSize: [markerSize, markerSize],
+                    iconAnchor: [markerSize/2, markerSize/2]
+                });
+
+                const marker = L.marker(coords, { icon: markerIcon }).addTo(map);
+
+                // Create popup content
+                const popupContent = `
+                    <div style="text-align: center; min-width: 200px;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: var(--primary);">${city.country}</h4>
+                        <p style="margin: 0.25rem 0; color: var(--text-color);">
+                            <strong>"${city.track.name}"</strong><br>
+                            by ${city.track.artist}
+                        </p>
+                        <p style="margin: 0.25rem 0; color: var(--secondary); font-size: 0.9rem;">
+                            ${city.track.listeners ? city.track.listeners.toLocaleString() : 'N/A'} listeners<br>
+                            ${city.track.playcount ? city.track.playcount.toLocaleString() : 'N/A'} plays
+                        </p>
+                    </div>
+                `;
+
+                marker.bindPopup(popupContent);
+                markers.push(marker);
+            });
+
+            // Fit map to show all markers
+            if (markers.length > 0) {
+                const group = new L.featureGroup(markers);
+                map.fitBounds(group.getBounds(), { padding: [20, 20] });
+            }
+        }
+
+        // Get color based on mood
+        function getMoodColor(mood) {
+            const colors = {
+                'happy': '#4CAF50',
+                'sad': '#2196F3',
+                'energetic': '#FF9800',
+                'calm': '#9C27B0',
+                'neutral': '#607D8B',
+                'high-energy': '#FF5722',
+                'danceable': '#E91E63'
+            };
+            return colors[mood.split('-')[0]] || colors.neutral;
+        }
+
+        // Update stats display - show ALL available countries
+        function updateStats(pulseData) {
+            const statsContainer = document.getElementById('statsContainer');
+            const statsHtml = pulseData.cities.map(city => `
+                <div class="stat-card">
+                    <div class="stat-title">${city.country}</div>
+                    <div class="stat-value">${Math.round(city.popularity)}</div>
+                    <div class="stat-detail">Popularity Score</div>
+                    <div class="stat-detail" style="margin-top: 0.5rem;">
+                        <strong>"${city.track.name}"</strong><br>
+                        ${city.track.listeners ? city.track.listeners.toLocaleString() : 'N/A'} listeners
+                    </div>
+                </div>
+            `).join('');
+
+            statsContainer.innerHTML = statsHtml;
+            statsContainer.style.display = 'grid';
+        }
+
+        // Load recent listeners for an artist
+        async function loadRecentListeners(artistName) {
+            try {
+                // This would require Last.fm user data, for now we'll show a placeholder
+                const recentContainer = document.getElementById('recentListeners');
+                const listenersList = document.getElementById('listenersList');
+
+                // Placeholder data - in real implementation, this would come from Last.fm user.getRecentTracks
+                const placeholderListeners = [
+                    { username: 'musicfan123', avatar: 'https://via.placeholder.com/40x40/333/666?text=MF', lastTrack: 'Blinding Lights', timeAgo: '2 minutes ago' },
+                    { username: 'groovelover', avatar: 'https://via.placeholder.com/40x40/333/666?text=GL', lastTrack: 'Save Your Tears', timeAgo: '5 minutes ago' },
+                    { username: 'weekndfan', avatar: 'https://via.placeholder.com/40x40/333/666?text=WF', lastTrack: 'Heartless', timeAgo: '8 minutes ago' },
+                    { username: 'popvibes', avatar: 'https://via.placeholder.com/40x40/333/666?text=PV', lastTrack: 'Starboy', timeAgo: '12 minutes ago' }
+                ];
+
+                const listenersHtml = placeholderListeners.map(listener => `
+                    <div class="listener-item">
+                        <img src="${listener.avatar}" alt="${listener.username}" class="listener-avatar">
+                        <div class="listener-info">
+                            <h4>${listener.username}</h4>
+                            <p>Last played: ${listener.lastTrack} • ${listener.timeAgo}</p>
+                        </div>
+                    </div>
+                `).join('');
+
+                listenersList.innerHTML = listenersHtml;
+                recentContainer.style.display = 'block';
+
+            } catch (error) {
+                console.error('Error loading recent listeners:', error);
+            }
+        }
+
+        // Search for artist pulse
+        async function searchArtistPulse(artistName) {
+            if (!artistName.trim()) {
+                showError('Please enter an artist name');
+                return;
+            }
+
+            currentArtist = artistName;
+            showLoading(true);
+
+            try {
+                console.log(`Searching for listener pulse: ${artistName}`);
+
+                const response = await fetch(`${BACKEND_URL}/api/listener-pulse/${encodeURIComponent(artistName)}`);
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        showError(`No listener pulse data found for "${artistName}". Try a different artist.`);
+                    } else {
+                        showError('Failed to load listener pulse data. Please try again.');
+                    }
+                    return;
+                }
+
+                const pulseData = await response.json();
+
+                if (pulseData.cities && pulseData.cities.length > 0) {
+                    addCityMarkers(pulseData);
+                    updateStats(pulseData);
+                    loadRecentListeners(artistName);
+                    hideError();
+                } else {
+                    showError(`No trending data found for "${artistName}" in major cities.`);
+                }
+
+            } catch (error) {
+                console.error('Pulse search error:', error);
+                showError('Network error. Please check your connection and try again.');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // UI helper functions
+        function showLoading(show) {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.style.display = show ? 'flex' : 'none';
+        }
+
+        function showError(message) {
+            const errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerHTML = `<div class="error-message">${message}</div>`;
+            errorContainer.style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('errorContainer').style.display = 'none';
+        }
+
+        // Event listeners
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            const artistName = document.getElementById('artistInput').value.trim();
+            searchArtistPulse(artistName);
+        });
+
+        document.getElementById('artistInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const artistName = document.getElementById('artistInput').value.trim();
+                searchArtistPulse(artistName);
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+
+            // Auto-search for The Weeknd on load
+            setTimeout(() => {
+                searchArtistPulse('The Weeknd');
+            }, 1000);
+        });
+
+        // Add CSS animation for markers
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.2); opacity: 0.7; }
+                100% { transform: scale(1); opacity: 1; }
+            }
+            .custom-marker {
+                pointer-events: none;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

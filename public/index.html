@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="black">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -27,6 +27,396 @@
             width: 100%;
             transform: none;
         }
+
+        #universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Dynamic Beats Theme */
+        [data-theme="dynamic-beats"] {
+            --background-color: #0a0a0a;
+            --card-background: rgba(20, 20, 30, 0.8);
+            --text-color: #ffffff;
+            --secondary: #b0b0b0;
+            --primary: #ff6b6b;
+            --glow: rgba(255, 107, 107, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            --border-color: rgba(255, 107, 107, 0.3);
+        }
+
+        [data-theme="dynamic-beats"] body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            background-size: 400% 400%;
+            animation: beatPulse 4s ease-in-out infinite;
+        }
+
+        [data-theme="dynamic-beats"] .glass-card {
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.8) 0%, rgba(30, 30, 50, 0.8) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.1);
+            animation: cardBeat 3s ease-in-out infinite;
+        }
+
+        [data-theme="dynamic-beats"] .navbar {
+            background: linear-gradient(90deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 46, 0.9) 50%, rgba(22, 33, 62, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 107, 107, 0.2);
+        }
+
+        [data-theme="dynamic-beats"] h1, [data-theme="dynamic-beats"] h2, [data-theme="dynamic-beats"] h3 {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 3s ease-in-out infinite;
+        }
+
+        [data-theme="dynamic-beats"] .news-title-card {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+
+        [data-theme="dynamic-beats"] .news-content-card {
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.9) 0%, rgba(30, 30, 50, 0.9) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.1);
+        }
+
+        @keyframes beatPulse {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes cardBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Music-reactive animations when audio is playing */
+        [data-theme="dynamic-beats"].music-playing body {
+            animation: beatPulse 1.5s ease-in-out infinite;
+        }
+
+        [data-theme="dynamic-beats"].music-playing .glass-card {
+            animation: cardBeat 1.5s ease-in-out infinite;
+        }
+
+        [data-theme="dynamic-beats"].music-playing h1,
+        [data-theme="dynamic-beats"].music-playing h2,
+        [data-theme="dynamic-beats"].music-playing h3 {
+            animation: textShimmer 1.5s ease-in-out infinite;
+        }
+
+        /* Value Tracker Sidebar */
+        .value-tracker-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: var(--card-background);
+            backdrop-filter: blur(20px);
+            border-left: 2px solid var(--border-color);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .value-tracker-sidebar.open {
+            right: 0;
+        }
+
+        .value-tracker-toggle {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--card-background);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            color: var(--primary);
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .value-tracker-toggle:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h3 {
+            margin: 0;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: var(--primary);
+        }
+
+        .sidebar-content {
+            padding: 1rem;
+        }
+
+        .scanner-section p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .scan-btn, .submit-btn, .stop-scan-btn, .scan-another-btn, .try-again-btn {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .scan-btn:hover, .submit-btn:hover, .scan-another-btn:hover, .try-again-btn:hover {
+            background: var(--rgb-glow);
+            transform: translateY(-2px);
+        }
+
+        .stop-scan-btn {
+            background: #dc2626;
+            margin-top: 1rem;
+        }
+
+        .stop-scan-btn:hover {
+            background: #b91c1c;
+        }
+
+        .scanner-container {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        #scannerVideo {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+        }
+
+        .manual-barcode {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .manual-barcode input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-background);
+            color: var(--text-color);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .manual-barcode input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .vinyl-info {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .vinyl-info img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 2px solid var(--border-color);
+        }
+
+        .vinyl-info h4 {
+            margin: 0.5rem 0;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+        }
+
+        .vinyl-info p {
+            margin: 0.25rem 0;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .vinyl-details {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .vinyl-details span {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        #rarityBadge {
+            background: var(--primary);
+            color: white;
+        }
+
+        .value-metrics {
+            margin-bottom: 1.5rem;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .metric-label {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .metric-value {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.75rem;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .discogs-btn {
+            background: #1a1a1a;
+            color: white;
+            border: 2px solid #333;
+        }
+
+        .discogs-btn:hover {
+            background: #333;
+            border-color: #555;
+        }
+
+        .sell-btn {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .sell-btn:hover {
+            background: var(--rgb-glow);
+            border-color: var(--rgb-glow);
+        }
+
+        .loading-section {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-section {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .error-section p {
+            color: #dc2626;
+            margin-bottom: 1rem;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .value-tracker-sidebar {
+                width: 100vw;
+                right: -100vw;
+            }
+
+            .value-tracker-sidebar.open {
+                right: 0;
+            }
+
+            .value-tracker-toggle {
+                right: 10px;
+            }
+        }
     </style>
 </head>
 <body class="home">
@@ -48,12 +438,15 @@
                     <li><a href="news.html">News</a></li>
                     <li><a href="newmusic.html">New Music</a></li>
                     <li><a href="underground.html">Underground</a></li>
+                    <li><a href="listener-pulse.html">Listener Pulse</a></li>
                     <li><a href="all-time-rankings.html">Rankings</a></li>
                     <li><a href="tools.html">Tools</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
+
     <div class="main-content">
         <section class="scroll-section" id="new-releases">
             <div class="section-header">
@@ -276,6 +669,8 @@
             </div>
         </section>
 
+
+
         <section class="scroll-section" id="underground-artists">
             <div class="section-header">
                 <h2 class="section-title"><a href="underground.html" style="text-decoration: none; color: inherit;">Top Underground Artists</a></h2>
@@ -289,6 +684,23 @@
                 <div class="loading" id="underground-loading">
                     <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
                     <p>Loading underground artists...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="scroll-section" id="world-first-artists">
+            <div class="section-header">
+                <h2 class="section-title"><a href="world-first.html" style="text-decoration: none; color: inherit;">🌍 World First</a></h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('world-first-artists', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('world-first-artists', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="world-first-artists-scroll">
+                <!-- World First artists will be loaded here -->
+                <div class="loading" id="world-first-loading">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p>Loading trending global artists...</p>
                 </div>
             </div>
         </section>
@@ -407,7 +819,7 @@
     <script src="theme-effects.js"></script>
     <script src="hover-effects.js"></script>
     <script src="scroll-effects.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=1.1"></script>
 
     <script>
         // Configuration
@@ -444,8 +856,12 @@
 
             artists.forEach(artist => {
                 const item = document.createElement('a');
-                item.href = 'underground.html';
+                item.href = `https://open.spotify.com/artist/${artist.artistId}`;
+                item.target = '_blank';
+                item.rel = 'noopener noreferrer';
                 item.className = 'scroll-item';
+                item.style.textDecoration = 'none';
+                item.style.color = 'inherit';
 
                 const imageUrl = artist.imageUrl || 'https://via.placeholder.com/200x200/333/666?text=No+Image';
 
@@ -472,8 +888,275 @@
             return num.toString();
         }
 
+        // Load homepage World First artists
+        async function loadHomepageWorldFirstArtists() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/world-first/trends?limit=6`);
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load World First artists: ${response.status}`);
+                }
+
+                const artists = await response.json();
+                displayHomepageWorldFirstArtists(artists.slice(0, 6)); // Show top 6
+
+            } catch (error) {
+                console.error('Homepage World First artists error:', error);
+                // Fallback to show some default content
+                document.getElementById('world-first-loading').innerHTML = `
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-globe" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>Check out our <a href="world-first.html" style="color: var(--primary);">global trending artists</a></p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayHomepageWorldFirstArtists(artists) {
+            document.getElementById('world-first-loading').style.display = 'none';
+
+            const container = document.getElementById('world-first-artists-scroll');
+
+            artists.forEach(artist => {
+                const item = document.createElement('a');
+                item.href = 'world-first.html';
+                item.className = 'scroll-item';
+
+                const imageUrl = artist.artist.imageUrl || 'https://via.placeholder.com/200x200/333/666?text=No+Image';
+
+                item.innerHTML = `
+                    <div class="news-title-card">
+                        <h3>${artist.artist.name}</h3>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">Score: ${artist.undergroundScore}/10 • ${artist.spotifyPresence}</p>
+                        <img src="${imageUrl}" alt="${artist.artist.name}" style="width: 100%; aspect-ratio: 1; object-fit: cover;" onerror="this.src='https://via.placeholder.com/200x200/333/666?text=No+Image'">
+                    </div>
+                `;
+
+                container.appendChild(item);
+            });
+        }
+
         // Load homepage underground artists when page loads
-        document.addEventListener('DOMContentLoaded', loadHomepageUndergroundArtists);
+        document.addEventListener('DOMContentLoaded', () => {
+            loadHomepageUndergroundArtists();
+            loadHomepageWorldFirstArtists();
+        });
+
+        // Value Tracker Sidebar Functionality - COMMENTED OUT FOR NOW
+        /*
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('valueTrackerSidebar');
+            const toggleBtn = document.getElementById('valueTrackerToggle');
+            const closeBtn = document.getElementById('closeValueTracker');
+            const startScanBtn = document.getElementById('startScan');
+            const stopScanBtn = document.getElementById('stopScan');
+            const submitBarcodeBtn = document.getElementById('submitBarcode');
+            const barcodeInput = document.getElementById('barcodeInput');
+            const scanAnotherBtn = document.getElementById('scanAnother');
+            const tryAgainBtn = document.getElementById('tryAgain');
+
+            // Sidebar toggle
+            toggleBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+            });
+
+            // Close sidebar when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            });
+
+            // Start barcode scanning
+            startScanBtn.addEventListener('click', startBarcodeScan);
+
+            // Stop scanning
+            stopScanBtn.addEventListener('click', stopBarcodeScan);
+
+            // Manual title/artist submission
+            submitBarcodeBtn.addEventListener('click', () => {
+                const query = barcodeInput.value.trim();
+                if (query) {
+                    // Parse title and artist from input (format: "Title by Artist")
+                    const parts = query.split(' by ');
+                    if (parts.length === 2) {
+                        checkVinylValue(parts[0].trim(), parts[1].trim());
+                    } else {
+                        // If no "by" separator, treat as artist name and show error
+                        showError('Please enter in format: "Album Title by Artist Name"');
+                    }
+                }
+            });
+
+            barcodeInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = barcodeInput.value.trim();
+                    if (query) {
+                        const parts = query.split(' by ');
+                        if (parts.length === 2) {
+                            checkVinylValue(parts[0].trim(), parts[1].trim());
+                        } else {
+                            showError('Please enter in format: "Album Title by Artist Name"');
+                        }
+                    }
+                }
+            });
+
+            // Scan another record
+            scanAnotherBtn.addEventListener('click', resetScanner);
+
+            // Try again
+            tryAgainBtn.addEventListener('click', resetScanner);
+
+            function startBarcodeScan() {
+                showSection('loadingSection');
+                document.getElementById('scannerContainer').style.display = 'block';
+
+                // Load QuaggaJS dynamically
+                if (!window.Quagga) {
+                    const script = document.createElement('script');
+                    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js';
+                    script.onload = initQuagga;
+                    script.onerror = () => {
+                        showError('Failed to load barcode scanner. Please enter barcode manually.');
+                    };
+                    document.head.appendChild(script);
+                } else {
+                    initQuagga();
+                }
+            }
+
+            function initQuagga() {
+                Quagga.init({
+                    inputStream: {
+                        name: "Live",
+                        type: "LiveStream",
+                        target: document.querySelector('#scannerVideo'),
+                        constraints: {
+                            width: 640,
+                            height: 480,
+                            facingMode: "environment" // Use back camera on mobile
+                        }
+                    },
+                    locator: {
+                        patchSize: "medium",
+                        halfSample: true
+                    },
+                    numOfWorkers: navigator.hardwareConcurrency || 4,
+                    decoder: {
+                        readers: ["ean_reader", "ean_8_reader", "code_128_reader", "code_39_reader", "upc_reader", "upc_e_reader"]
+                    },
+                    locate: true
+                }, function(err) {
+                    if (err) {
+                        console.error('Quagga initialization error:', err);
+                        showError('Camera access failed. Please enter barcode manually.');
+                        return;
+                    }
+                    console.log('Quagga initialized successfully');
+                    Quagga.start();
+                    document.getElementById('loadingSection').style.display = 'none';
+                    document.getElementById('scannerSection').style.display = 'block';
+                });
+
+                Quagga.onDetected(function(result) {
+                    const code = result.codeResult.code;
+                    console.log('Barcode detected:', code);
+                    Quagga.stop();
+                    checkVinylValue(code);
+                });
+
+                Quagga.onProcessed(function(result) {
+                    // Optional: Show processing feedback
+                });
+            }
+
+            function stopBarcodeScan() {
+                if (window.Quagga) {
+                    Quagga.stop();
+                }
+                document.getElementById('scannerContainer').style.display = 'none';
+                showSection('scannerSection');
+            }
+
+            async function checkVinylValue(title, artist) {
+                showSection('loadingSection');
+
+                try {
+                    const response = await fetch(`${BACKEND_URL}/api/discogs/search?title=${encodeURIComponent(title)}&artist=${encodeURIComponent(artist)}`);
+
+                    if (!response.ok) {
+                        if (response.status === 404) {
+                            showError('Vinyl record not found. Please check the title/artist and try again.');
+                        } else {
+                            showError('Failed to check vinyl value. Please try again.');
+                        }
+                        return;
+                    }
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        displayVinylResults(data.data);
+                    } else {
+                        showError('Failed to retrieve vinyl information.');
+                    }
+
+                } catch (error) {
+                    console.error('API error:', error);
+                    showError('Network error. Please check your connection and try again.');
+                }
+            }
+
+            function displayVinylResults(vinyl) {
+                // Update vinyl info
+                document.getElementById('vinylImage').src = vinyl.imageUrl || 'https://via.placeholder.com/120x120/333/666?text=No+Image';
+                document.getElementById('vinylImage').onerror = function() {
+                    this.src = 'https://via.placeholder.com/120x120/333/666?text=No+Image';
+                };
+                document.getElementById('vinylTitle').textContent = vinyl.title;
+                document.getElementById('vinylArtist').textContent = vinyl.artist;
+                document.getElementById('releaseYear').textContent = vinyl.releaseDate ? new Date(vinyl.releaseDate).getFullYear() : 'Unknown';
+                document.getElementById('rarityBadge').textContent = vinyl.rarity;
+
+                // Update metrics
+                document.getElementById('medianPrice').textContent = vinyl.medianPrice ? `$${vinyl.medianPrice.toFixed(2)}` : 'N/A';
+                document.getElementById('lowestPrice').textContent = vinyl.lowestPrice ? `$${vinyl.lowestPrice.toFixed(2)}` : 'N/A';
+                document.getElementById('itemsForSale').textContent = vinyl.numForSale || 0;
+                document.getElementById('communityRating').textContent = vinyl.communityRating ? `${vinyl.communityRating}/5` : 'N/A';
+
+                // Update links
+                document.getElementById('discogsLink').href = vinyl.discogsUrl;
+                document.getElementById('sellLink').href = vinyl.marketplaceUrl;
+
+                showSection('resultsSection');
+            }
+
+            function showSection(sectionId) {
+                const sections = ['scannerSection', 'resultsSection', 'loadingSection', 'errorSection'];
+                sections.forEach(id => {
+                    document.getElementById(id).style.display = id === sectionId ? 'block' : 'none';
+                });
+            }
+
+            function showError(message) {
+                document.getElementById('errorMessage').textContent = message;
+                showSection('errorSection');
+            }
+
+            function resetScanner() {
+                barcodeInput.value = '';
+                stopBarcodeScan();
+                showSection('scannerSection');
+            }
+        });
+        */
     </script>
 </body>
 </html>

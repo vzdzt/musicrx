@@ -125,11 +125,14 @@ async function ensureSpotifyAuth() {
     await spotifyApi.getMe();
     return true;
   } catch (err) {
-    if (err.statusCode === 401) {
+    console.log('Spotify auth check failed:', err.message || err);
+
+    if (err.statusCode === 401 || err.message?.includes('401') || err.message?.includes('Unauthorized')) {
       console.log('Spotify token expired, refreshing...');
       return await authenticateSpotify();
     }
-    console.error('Spotify auth check failed:', err.message);
+
+    console.error('Spotify auth check failed with unexpected error:', err);
     return false;
   }
 }
@@ -176,6 +179,152 @@ async function getDiscogsData(title, artist) {
     return null;
   } catch (err) {
     console.error('Discogs API error:', err.message);
+    return null;
+  }
+}
+
+// Search Discogs by barcode
+async function searchDiscogsByBarcode(barcode) {
+  try {
+    console.log(`Searching Discogs by barcode: ${barcode}`);
+
+    // First try exact barcode search
+    const response = await discogsClient.database().search({
+      barcode: barcode,
+      type: 'release',
+      per_page: 10
+    });
+
+    console.log(`Discogs search returned ${response.results?.length || 0} results`);
+
+    if (response.results && response.results.length > 0) {
+      // Get the most relevant result (usually the first one)
+      const release = response.results[0];
+      const releaseId = release.id;
+
+      // Get full release details
+      const releaseResponse = await discogsClient.database().getRelease(releaseId);
+
+      // Get marketplace data
+      const marketplaceResponse = await discogsClient.marketplace().getPriceSuggestions(releaseId);
+
+      // Calculate rarity based on number of items for sale and have
+      const numForSale = releaseResponse.num_for_sale || 0;
+      const lowestPrice = releaseResponse.lowest_price || null;
+
+      // Rarity calculation: fewer items = rarer
+      let rarity = 'Common';
+      if (numForSale <= 1) rarity = 'Very Rare';
+      else if (numForSale <= 5) rarity = 'Rare';
+      else if (numForSale <= 20) rarity = 'Uncommon';
+      else if (numForSale <= 50) rarity = 'Scarce';
+
+      // Get suggested prices
+      const priceSuggestions = marketplaceResponse || {};
+      const medianPrice = priceSuggestions['Very Good Plus (VG+)']?.value ||
+                         priceSuggestions['Very Good (VG)']?.value ||
+                         priceSuggestions['Good Plus (G+)']?.value || null;
+
+      const valueData = {
+        title: releaseResponse.title,
+        artist: releaseResponse.artists?.[0]?.name || 'Unknown Artist',
+        releaseId: releaseId,
+        imageUrl: releaseResponse.images?.[0]?.uri || null,
+        releaseDate: releaseResponse.released,
+        labels: releaseResponse.labels?.map(l => l.name) || [],
+        formats: releaseResponse.formats?.map(f => f.name) || [],
+        genres: releaseResponse.genres || [],
+        styles: releaseResponse.styles || [],
+        numForSale: numForSale,
+        lowestPrice: lowestPrice,
+        medianPrice: medianPrice,
+        rarity: rarity,
+        communityRating: releaseResponse.rating,
+        communityVotes: releaseResponse.rating_count,
+        marketplaceUrl: `https://www.discogs.com/sell/release/${releaseId}`,
+        discogsUrl: `https://www.discogs.com/release/${releaseId}`
+      };
+
+      console.log(`Found vinyl: ${valueData.title} by ${valueData.artist} - ${rarity} (${numForSale} for sale)`);
+      return valueData;
+    }
+
+    console.log('No results found for barcode');
+    return null;
+  } catch (err) {
+    console.error('Discogs barcode search error:', err.message);
+    return null;
+  }
+}
+
+// Search Discogs by title and artist (more reliable than barcode)
+async function searchDiscogsByTitleArtist(title, artist) {
+  try {
+    console.log(`Searching Discogs for "${title}" by ${artist}`);
+
+    const response = await discogsClient.database().search({
+      release_title: title,
+      artist: artist,
+      type: 'release',
+      per_page: 5
+    });
+
+    if (response.results && response.results.length > 0) {
+      // Get the first result's details
+      const release = response.results[0];
+      const releaseId = release.id;
+
+      // Get full release details
+      const releaseResponse = await discogsClient.database().getRelease(releaseId);
+
+      // Get marketplace data
+      const marketplaceResponse = await discogsClient.marketplace().getPriceSuggestions(releaseId);
+
+      // Calculate rarity based on number of items for sale and have
+      const numForSale = releaseResponse.num_for_sale || 0;
+      const lowestPrice = releaseResponse.lowest_price || null;
+
+      // Rarity calculation: fewer items = rarer
+      let rarity = 'Common';
+      if (numForSale <= 1) rarity = 'Very Rare';
+      else if (numForSale <= 5) rarity = 'Rare';
+      else if (numForSale <= 20) rarity = 'Uncommon';
+      else if (numForSale <= 50) rarity = 'Scarce';
+
+      // Get suggested prices
+      const priceSuggestions = marketplaceResponse || {};
+      const medianPrice = priceSuggestions['Very Good Plus (VG+)']?.value ||
+                         priceSuggestions['Very Good (VG)']?.value ||
+                         priceSuggestions['Good Plus (G+)']?.value || null;
+
+      const valueData = {
+        title: releaseResponse.title,
+        artist: releaseResponse.artists?.[0]?.name || 'Unknown Artist',
+        releaseId: releaseId,
+        imageUrl: releaseResponse.images?.[0]?.uri || null,
+        releaseDate: releaseResponse.released,
+        labels: releaseResponse.labels?.map(l => l.name) || [],
+        formats: releaseResponse.formats?.map(f => f.name) || [],
+        genres: releaseResponse.genres || [],
+        styles: releaseResponse.styles || [],
+        numForSale: numForSale,
+        lowestPrice: lowestPrice,
+        medianPrice: medianPrice,
+        rarity: rarity,
+        communityRating: releaseResponse.rating,
+        communityVotes: releaseResponse.rating_count,
+        marketplaceUrl: `https://www.discogs.com/sell/release/${releaseId}`,
+        discogsUrl: `https://www.discogs.com/release/${releaseId}`
+      };
+
+      console.log(`Found vinyl: ${valueData.title} by ${valueData.artist} - ${rarity} (${numForSale} for sale)`);
+      return valueData;
+    }
+
+    console.log('No results found for title/artist search');
+    return null;
+  } catch (err) {
+    console.error('Discogs title/artist search error:', err.message);
     return null;
   }
 }
@@ -442,6 +591,74 @@ app.post('/api/download-media', async (req, res) => {
   }
 });
 
+// Discogs search by title/artist endpoint (COMMENTED OUT FOR NOW)
+/*
+app.get('/api/discogs/search', async (req, res) => {
+  try {
+    const { title, artist } = req.query;
+
+    if (!title || !artist) {
+      return res.status(400).json({
+        error: 'Missing parameters',
+        message: 'Both title and artist parameters are required'
+      });
+    }
+
+    console.log(`🔍 API request: Searching Discogs for "${title}" by ${artist}`);
+
+    const valueData = await searchDiscogsByTitleArtist(title, artist);
+
+    if (!valueData) {
+      return res.status(404).json({
+        error: 'Vinyl record not found',
+        message: `No Discogs data found for "${title}" by ${artist}`
+      });
+    }
+
+    res.json({
+      success: true,
+      data: valueData
+    });
+
+  } catch (error) {
+    console.error('Discogs search API error:', error);
+    res.status(500).json({
+      error: 'Search failed',
+      message: error.message
+    });
+  }
+});
+
+// Discogs barcode search endpoint (kept for compatibility)
+app.get('/api/discogs/barcode/:barcode', async (req, res) => {
+  try {
+    const { barcode } = req.params;
+    console.log(`🔍 API request: Searching Discogs by barcode ${barcode}`);
+
+    const valueData = await searchDiscogsByBarcode(barcode);
+
+    if (!valueData) {
+      return res.status(404).json({
+        error: 'Vinyl record not found',
+        message: `No Discogs data found for barcode: ${barcode}`
+      });
+    }
+
+    res.json({
+      success: true,
+      data: valueData
+    });
+
+  } catch (error) {
+    console.error('Discogs barcode API error:', error);
+    res.status(500).json({
+      error: 'Search failed',
+      message: error.message
+    });
+  }
+});
+*/
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
@@ -582,11 +799,11 @@ async function reviewAlbum(albumId) {
     console.log(`   Discogs: Rating ${discogsRating}/10 (${discogsVotes} votes)`);
 
     // 3. PITCHFORK SCORE (12% weight)
-    const pitchforkScore = await scrapePitchfork(albumTitle, artistName) || 7.5;
+    const pitchforkScore = await scrapePitchfork(albumTitle, artistName) || 6.0; // Lower default
     console.log(`   Pitchfork: ${pitchforkScore}/10`);
 
     // 4. LAST.FM DATA (12% weight)
-    let lastFmStats = 7.0;
+    let lastFmStats = 5.0; // Lower default when no data
     try {
       const lastFmInfo = await fetchLastFmArtistInfo(artistName);
       if (lastFmInfo?.stats) {
@@ -595,41 +812,47 @@ async function reviewAlbum(albumId) {
         const playcountScore = Math.min(10, lastFmInfo.stats.playcount / 100000000); // 100M plays = 10 points
         lastFmStats = (listenersScore + playcountScore) / 2;
         console.log(`   Last.fm: ${lastFmInfo.stats.listeners.toLocaleString()} listeners, ${lastFmInfo.stats.playcount.toLocaleString()} plays`);
+      } else {
+        console.log(`   Last.fm: No data available, using conservative default`);
       }
     } catch (lastFmErr) {
-      console.log(`   Last.fm: Data unavailable, using default score`);
+      console.log(`   Last.fm: API error, using conservative default`);
     }
 
     // 5. MUSICBRAINZ VERIFICATION (12% weight)
-    let musicBrainzScore = 7.0;
+    let musicBrainzScore = 5.0; // Lower default when no verification
     try {
       const mbArtists = await searchMusicBrainzArtist(artistName);
       if (mbArtists.length > 0) {
         const mbReleases = await searchMusicBrainzRelease(albumTitle, artistName);
         // Higher score if we find matching releases in MusicBrainz
-        musicBrainzScore = mbReleases.length > 0 ? 9.0 : 6.0;
+        musicBrainzScore = mbReleases.length > 0 ? 8.0 : 6.0; // Lower scores overall
         console.log(`   MusicBrainz: Found ${mbReleases.length} matching releases`);
+      } else {
+        console.log(`   MusicBrainz: No artist data found`);
       }
     } catch (mbErr) {
-      console.log(`   MusicBrainz: Verification unavailable`);
+      console.log(`   MusicBrainz: API error, using conservative default`);
     }
 
     // 6. DEEZER CHART DATA (11% weight)
-    let deezerScore = 7.0;
+    let deezerScore = 5.0; // Lower default when no data
     try {
       const deezerArtists = await searchDeezerArtist(artistName);
       if (deezerArtists.length > 0) {
         const topArtist = deezerArtists[0];
         // Use Deezer fan count as popularity indicator
-        deezerScore = Math.min(10, Math.max(4, topArtist.nb_fan / 100000)); // 100K fans = 10 points
+        deezerScore = Math.min(10, Math.max(3, topArtist.nb_fan / 100000)); // 100K fans = 10 points, lower minimum
         console.log(`   Deezer: ${topArtist.nb_fan.toLocaleString()} fans`);
+      } else {
+        console.log(`   Deezer: No artist data found`);
       }
     } catch (deezerErr) {
-      console.log(`   Deezer: Chart data unavailable`);
+      console.log(`   Deezer: API error, using conservative default`);
     }
 
     // 7. NEWS SENTIMENT (10% weight)
-    let newsSentiment = 7.0;
+    let newsSentiment = 5.0; // Lower default when no news
     try {
       // Search for recent news about this artist/album
       const newsArticles = await NewsArticle.find({
@@ -643,11 +866,13 @@ async function reviewAlbum(albumId) {
       if (newsArticles.length > 0) {
         // Calculate average sentiment from recent news
         const avgSentiment = newsArticles.reduce((sum, article) => sum + (article.sentiment || 0), 0) / newsArticles.length;
-        newsSentiment = Math.max(1, Math.min(10, 7 + (avgSentiment * 3))); // Convert -1/+1 to roughly 4-10
+        newsSentiment = Math.max(1, Math.min(10, 6 + (avgSentiment * 2))); // Convert -1/+1 to roughly 4-8, more conservative
         console.log(`   News: ${newsArticles.length} articles, avg sentiment: ${avgSentiment.toFixed(2)}`);
+      } else {
+        console.log(`   News: No recent articles found`);
       }
     } catch (newsErr) {
-      console.log(`   News: Sentiment analysis unavailable`);
+      console.log(`   News: Database error, using conservative default`);
     }
 
     // Calculate comprehensive score with 7-API data
@@ -1511,14 +1736,29 @@ async function updateUndergroundRankings() {
   }
 }
 
-// Underground rankings endpoint - with fresh API data
+// Underground rankings endpoint - with fresh API data and underground filter
 app.get('/api/underground-rankings', async (req, res) => {
   try {
     console.log('🔍 Fetching underground rankings with fresh API data...');
 
-    const undergroundArtists = await UndergroundArtist.find()
-      .sort({ monthlyListeners: -1 })
-      .limit(50);
+    // Get all artists first, then apply underground filter
+    const allArtists = await UndergroundArtist.find();
+
+    // Apply underground filter - more lenient for rap/hip-hop artists
+    const undergroundArtists = allArtists.filter(artist => {
+      // More inclusive criteria for underground artists
+      // Include artists who are still considered "underground" in their scene
+      const isUnderground =
+        (artist.spotifyPopularity < 70) || // Allow higher popularity for established underground artists
+        (artist.followers < 2000000) ||   // Allow more followers for rap artists
+        (!artist.spotifyPopularity && !artist.followers); // Not on Spotify at all
+
+      return isUnderground;
+    });
+
+    // Sort by monthly listeners and limit to top 50 underground artists
+    undergroundArtists.sort((a, b) => (b.monthlyListeners || 0) - (a.monthlyListeners || 0));
+    const topUnderground = undergroundArtists.slice(0, 50);
 
     // Update each artist with fresh data from all APIs
     const updatedArtists = await Promise.all(undergroundArtists.map(async (artist, index) => {
@@ -1586,12 +1826,13 @@ app.get('/api/underground-rankings', async (req, res) => {
           console.warn(`   Deezer data unavailable for ${artist.name}`);
         }
 
-        // Update artist with fresh data
+        // Update artist with fresh data, but preserve manually set monthly listeners
         const updatedArtist = {
           ...artist.toObject(),
           // Use real Spotify data if available
           spotifyPopularity: spotifyData?.popularity || artist.spotifyPopularity,
-          monthlyListeners: spotifyData?.monthlyListeners || artist.monthlyListeners,
+          // Preserve manually set monthly listeners - don't override with API data
+          monthlyListeners: artist.monthlyListeners, // Keep the manually set value
           followers: spotifyData?.followers || artist.followers,
           imageUrl: spotifyData?.imageUrl || artist.imageUrl,
           genres: spotifyData?.genres || artist.genres,
@@ -1665,6 +1906,225 @@ app.post('/api/update-all-reviewed', async (req, res) => {
   } catch (err) {
     console.error('Update error:', err);
     res.status(500).json({ error: 'Failed to update albums', details: err.message });
+  }
+});
+
+// Fix inflated 2025 album scores manually
+app.post('/api/fix-2025-scores', async (req, res) => {
+  try {
+    console.log('🔧 API: Fixing inflated 2025 album scores...');
+
+    // Albums that need score adjustments (currently showing 10/10)
+    const scoreAdjustments = [
+      // K-pop soundtrack - should be lower
+      {
+        title: 'KPop Demon Hunters (Soundtrack from the Netflix Film)',
+        artist: 'KPop Demon Hunters Cast',
+        newScore: 7.2,
+        newStrengths: [
+          'Catchy soundtrack with memorable melodies',
+          'Good production quality for a TV soundtrack',
+          'Features popular K-pop artists'
+        ],
+        newWeaknesses: [
+          'Limited replay value outside the show',
+          'Some tracks feel generic',
+          'Not a cohesive album experience'
+        ]
+      },
+      // Bad Bunny album - should be high but not perfect
+      {
+        title: 'DeBÍ TiRAR MáS FOToS',
+        artist: 'Bad Bunny',
+        newScore: 8.7,
+        newStrengths: [
+          'Innovative reggaeton production',
+          'Strong lyrical content and storytelling',
+          'Excellent vocal performance',
+          'Cultural impact and mainstream success'
+        ],
+        newWeaknesses: [
+          'Some tracks could be stronger',
+          'Album length could be optimized'
+        ]
+      },
+      // Sabrina Carpenter album - should be solid but not perfect
+      {
+        title: 'Man\'s Best Friend',
+        artist: 'Sabrina Carpenter',
+        newScore: 8.1,
+        newStrengths: [
+          'Strong pop production',
+          'Good vocal performance',
+          'Catchy melodies and hooks',
+          'Consistent songwriting quality'
+        ],
+        newWeaknesses: [
+          'Some tracks blend together',
+          'Limited genre exploration',
+          'Could benefit from more experimentation'
+        ]
+      },
+      // Justin Bieber albums - should be high but realistic
+      {
+        title: 'SWAG',
+        artist: 'Justin Bieber',
+        newScore: 8.4,
+        newStrengths: [
+          'Massive commercial success',
+          'Strong streaming performance',
+          'Consistent pop production',
+          'Global fanbase appeal'
+        ],
+        newWeaknesses: [
+          'Some tracks feel formulaic',
+          'Limited artistic growth',
+          'Heavy reliance on proven formulas'
+        ]
+      },
+      {
+        title: 'SWAG II',
+        artist: 'Justin Bieber',
+        newScore: 7.9,
+        newStrengths: [
+          'Strong commercial performance',
+          'Consistent with artist\'s style',
+          'Good production values',
+          'Broad audience appeal'
+        ],
+        newWeaknesses: [
+          'Lacks innovation',
+          'Some tracks are forgettable',
+          'Formulaic approach'
+        ]
+      },
+      // Morgan Wallen - should be high for country
+      {
+        title: 'I\'m The Problem',
+        artist: 'Morgan Wallen',
+        newScore: 8.8,
+        newStrengths: [
+          'Excellent country music craftsmanship',
+          'Strong vocal performance',
+          'Authentic storytelling',
+          'Massive commercial success',
+          'Dominates country charts'
+        ],
+        newWeaknesses: [
+          'Limited genre exploration',
+          'Some songs follow familiar patterns'
+        ]
+      },
+      // Fuerza Regida - should be solid for regional Mexican
+      {
+        title: '111XPANTIA',
+        artist: 'Fuerza Regida',
+        newScore: 8.2,
+        newStrengths: [
+          'Strong regional Mexican performance',
+          'Good production for the genre',
+          'Popular with target audience',
+          'Consistent quality'
+        ],
+        newWeaknesses: [
+          'Limited crossover appeal',
+          'Some tracks could be more innovative'
+        ]
+      },
+      // Karol G - should be high for Latin
+      {
+        title: 'Tropicoqueta',
+        artist: 'KAROL G',
+        newScore: 8.5,
+        newStrengths: [
+          'Excellent reggaeton and Latin production',
+          'Strong vocal performance',
+          'Cultural impact in Latin music',
+          'International crossover success'
+        ],
+        newWeaknesses: [
+          'Some tracks could be stronger',
+          'Album could be more cohesive'
+        ]
+      },
+      // Beéle - should be solid for Latin trap
+      {
+        title: 'BORONDO',
+        artist: 'Beéle',
+        newScore: 7.8,
+        newStrengths: [
+          'Good Latin trap production',
+          'Solid vocal performance',
+          'Growing popularity',
+          'Modern sound'
+        ],
+        newWeaknesses: [
+          'Still developing as an artist',
+          'Some tracks lack distinction',
+          'Limited global recognition yet'
+        ]
+      },
+      // sombr - should be lower for indie
+      {
+        title: 'I Barely Know Her',
+        artist: 'sombr',
+        newScore: 7.1,
+        newStrengths: [
+          'Unique indie sound',
+          'Good production quality',
+          'Authentic artistic vision',
+          'Growing underground following'
+        ],
+        newWeaknesses: [
+          'Limited mainstream appeal',
+          'Some songs require multiple listens',
+          'Smaller audience reach'
+        ]
+      }
+    ];
+
+    let updatedCount = 0;
+
+    for (const adjustment of scoreAdjustments) {
+      try {
+        const result = await Album.findOneAndUpdate(
+          {
+            title: adjustment.title,
+            artist: adjustment.artist
+          },
+          {
+            score: adjustment.newScore,
+            strengths: adjustment.newStrengths,
+            weaknesses: adjustment.newWeaknesses
+          },
+          { new: true }
+        );
+
+        if (result) {
+          console.log(`✅ Updated ${adjustment.title} by ${adjustment.artist}: ${result.score}/10`);
+          updatedCount++;
+        } else {
+          console.log(`❌ Album not found: ${adjustment.title} by ${adjustment.artist}`);
+        }
+      } catch (updateErr) {
+        console.error(`❌ Error updating ${adjustment.title}:`, updateErr.message);
+      }
+    }
+
+    // Update featured albums rankings after score changes
+    await updateFeaturedAlbums();
+
+    console.log(`🎯 Score fix complete! Updated ${updatedCount} albums with more realistic scores.`);
+
+    res.json({
+      success: true,
+      updated: updatedCount,
+      message: `Updated ${updatedCount} albums with more realistic scores`
+    });
+
+  } catch (error) {
+    console.error('❌ Error fixing scores:', error);
+    res.status(500).json({ error: 'Failed to fix scores', details: error.message });
   }
 });
 
@@ -1757,7 +2217,15 @@ app.post('/api/update-all-reviewed', async (req, res) => {
   }
 });
 
-// Deezer Simple API Integration (No authentication required)
+// Deezer API Integration (Direct API - No authentication required)
+async function authenticateDeezer() {
+  console.log('Deezer API ready (no authentication required)');
+  return true;
+}
+
+// Call authenticateDeezer after it's defined
+authenticateDeezer();
+
 async function searchDeezerArtist(artistName) {
   try {
     const response = await axios.get('https://api.deezer.com/search/artist', {
@@ -1767,7 +2235,6 @@ async function searchDeezerArtist(artistName) {
       },
       timeout: 10000
     });
-
     return response.data.data || [];
   } catch (error) {
     console.warn('Deezer artist search error:', error.message);
@@ -1780,7 +2247,6 @@ async function getDeezerArtist(artistId) {
     const response = await axios.get(`https://api.deezer.com/artist/${artistId}`, {
       timeout: 10000
     });
-
     return response.data;
   } catch (error) {
     console.warn('Deezer artist fetch error:', error.message);
@@ -1793,7 +2259,6 @@ async function getDeezerCharts() {
     const response = await axios.get('https://api.deezer.com/chart', {
       timeout: 10000
     });
-
     return response.data;
   } catch (error) {
     console.warn('Deezer charts fetch error:', error.message);
@@ -1807,7 +2272,6 @@ async function getDeezerPlaylists(limit = 10) {
       params: { limit },
       timeout: 10000
     });
-
     return response.data.data || [];
   } catch (error) {
     console.warn('Deezer playlists fetch error:', error.message);
@@ -1820,7 +2284,6 @@ async function getDeezerEditorial() {
     const response = await axios.get('https://api.deezer.com/editorial/0', {
       timeout: 10000
     });
-
     return response.data;
   } catch (error) {
     console.warn('Deezer editorial fetch error:', error.message);
@@ -1833,7 +2296,6 @@ async function getDeezerGenres() {
     const response = await axios.get('https://api.deezer.com/genre', {
       timeout: 10000
     });
-
     return response.data.data || [];
   } catch (error) {
     console.warn('Deezer genres fetch error:', error.message);
@@ -2686,6 +3148,409 @@ app.get('/api/artist/lastfm/:artistName', async (req, res) => {
   }
 });
 
+// Helper functions for Last.fm API
+async function fetchLastFmGeoTopTracks(country, limit = 50) {
+  try {
+    const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
+    if (!LASTFM_API_KEY) {
+      console.log('Last.fm API key not configured');
+      return [];
+    }
+
+    const response = await axios.get('https://ws.audioscrobbler.com/2.0/', {
+      params: {
+        method: 'geo.gettoptracks',
+        country: country,
+        api_key: LASTFM_API_KEY,
+        format: 'json',
+        limit: limit
+      },
+      timeout: 10000
+    });
+
+    return response.data.tracks.track || [];
+  } catch (error) {
+    console.error(`Last.fm geo tracks error for ${country}:`, error.message);
+    return [];
+  }
+}
+
+async function fetchLastFmUserRecentTracks(username, limit = 20) {
+  try {
+    const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
+    if (!LASTFM_API_KEY) {
+      console.log('Last.fm API key not configured');
+      return [];
+    }
+
+    const response = await axios.get('https://ws.audioscrobbler.com/2.0/', {
+      params: {
+        method: 'user.getrecenttracks',
+        user: username,
+        api_key: LASTFM_API_KEY,
+        format: 'json',
+        limit: limit
+      },
+      timeout: 10000
+    });
+
+    return response.data.recenttracks.track || [];
+  } catch (error) {
+    console.error(`Last.fm user recent tracks error for ${username}:`, error.message);
+    return [];
+  }
+}
+
+async function getSpotifyTrackMood(trackName, artistName) {
+  try {
+    // Search for the track on Spotify
+    const searchQuery = `track:${trackName} artist:${artistName}`;
+    const searchResponse = await spotifyApi.searchTracks(searchQuery, { limit: 1 });
+
+    if (!searchResponse.body.tracks.items.length) {
+      console.log(`Track not found on Spotify: ${trackName} by ${artistName}`);
+      return getFallbackMood(trackName, artistName);
+    }
+
+    const track = searchResponse.body.tracks.items[0];
+
+    // Get audio features - this may fail with 403 for free tier
+    try {
+      const featuresResponse = await spotifyApi.getAudioFeaturesForTrack(track.id);
+      const features = featuresResponse.body;
+
+      if (!features) {
+        console.log(`No audio features available for: ${trackName} by ${artistName}`);
+        return getFallbackMood(trackName, artistName);
+      }
+
+      // Analyze mood based on audio features
+      const valence = features.valence; // 0-1 (sad to happy)
+      const energy = features.energy;   // 0-1 (calm to energetic)
+      const danceability = features.danceability; // 0-1
+
+      let mood = 'neutral';
+      let moodDescription = 'Balanced mood';
+
+      if (valence > 0.7 && energy > 0.6) {
+        mood = 'happy-energetic';
+        moodDescription = 'Happy & energetic vibes';
+      } else if (valence > 0.7 && energy < 0.4) {
+        mood = 'happy-calm';
+        moodDescription = 'Happy & relaxed vibes';
+      } else if (valence < 0.3 && energy > 0.6) {
+        mood = 'sad-energetic';
+        moodDescription = 'Intense & melancholic vibes';
+      } else if (valence < 0.3 && energy < 0.4) {
+        mood = 'sad-calm';
+        moodDescription = 'Sad & introspective vibes';
+      } else if (energy > 0.7) {
+        mood = 'high-energy';
+        moodDescription = 'High energy vibes';
+      } else if (danceability > 0.7) {
+        mood = 'danceable';
+        moodDescription = 'Danceable & upbeat vibes';
+      }
+
+      return {
+        valence: Math.round(valence * 100) / 100,
+        energy: Math.round(energy * 100) / 100,
+        danceability: Math.round(danceability * 100) / 100,
+        mood: mood,
+        description: moodDescription
+      };
+
+    } catch (featuresError) {
+      console.log(`Audio features unavailable (likely API restrictions): ${trackName} by ${artistName}`);
+      return getFallbackMood(trackName, artistName);
+    }
+
+  } catch (error) {
+    console.error('Spotify mood analysis error:', error.message);
+    return getFallbackMood(trackName, artistName);
+  }
+}
+
+// Fallback mood analysis when Spotify audio features are unavailable
+function getFallbackMood(trackName, artistName) {
+  // Simple heuristic-based mood analysis based on track/artist name patterns
+  const trackLower = trackName.toLowerCase();
+  const artistLower = artistName.toLowerCase();
+
+  // Happy/positive keywords
+  const happyKeywords = ['love', 'happy', 'joy', 'sunshine', 'smile', 'dance', 'party', 'fun', 'bright', 'good'];
+  // Sad/negative keywords
+  const sadKeywords = ['sad', 'cry', 'heartbreak', 'lonely', 'dark', 'pain', 'broken', 'tears', 'lost', 'alone'];
+  // Energetic keywords
+  const energeticKeywords = ['energy', 'power', 'fire', 'wild', 'crazy', 'intense', 'hard', 'beat', 'bass', 'drop'];
+  // Calm keywords
+  const calmKeywords = ['calm', 'peace', 'quiet', 'soft', 'gentle', 'slow', 'relax', 'dream', 'sleep', 'breathe'];
+
+  let valence = 0.5; // neutral
+  let energy = 0.5;  // neutral
+
+  // Analyze valence (emotional positivity)
+  const happyScore = happyKeywords.reduce((score, keyword) => {
+    return score + (trackLower.includes(keyword) ? 0.1 : 0) + (artistLower.includes(keyword) ? 0.05 : 0);
+  }, 0);
+
+  const sadScore = sadKeywords.reduce((score, keyword) => {
+    return score + (trackLower.includes(keyword) ? 0.1 : 0) + (artistLower.includes(keyword) ? 0.05 : 0);
+  }, 0);
+
+  valence = Math.max(0.1, Math.min(0.9, 0.5 + happyScore - sadScore));
+
+  // Analyze energy
+  const energeticScore = energeticKeywords.reduce((score, keyword) => {
+    return score + (trackLower.includes(keyword) ? 0.1 : 0) + (artistLower.includes(keyword) ? 0.05 : 0);
+  }, 0);
+
+  const calmScore = calmKeywords.reduce((score, keyword) => {
+    return score + (trackLower.includes(keyword) ? 0.1 : 0) + (artistLower.includes(keyword) ? 0.05 : 0);
+  }, 0);
+
+  energy = Math.max(0.1, Math.min(0.9, 0.5 + energeticScore - calmScore));
+
+  // Determine mood category
+  let mood = 'neutral';
+  let moodDescription = 'Balanced mood';
+
+  if (valence > 0.7 && energy > 0.6) {
+    mood = 'happy-energetic';
+    moodDescription = 'Happy & energetic vibes';
+  } else if (valence > 0.7 && energy < 0.4) {
+    mood = 'happy-calm';
+    moodDescription = 'Happy & relaxed vibes';
+  } else if (valence < 0.3 && energy > 0.6) {
+    mood = 'sad-energetic';
+    moodDescription = 'Intense & melancholic vibes';
+  } else if (valence < 0.3 && energy < 0.4) {
+    mood = 'sad-calm';
+    moodDescription = 'Sad & introspective vibes';
+  } else if (energy > 0.7) {
+    mood = 'high-energy';
+    moodDescription = 'High energy vibes';
+  } else if (energy < 0.3) {
+    mood = 'calm';
+    moodDescription = 'Calm & soothing vibes';
+  }
+
+  return {
+    valence: Math.round(valence * 100) / 100,
+    energy: Math.round(energy * 100) / 100,
+    danceability: 0.5, // neutral fallback
+    mood: mood,
+    description: moodDescription + ' (estimated)',
+    fallback: true
+  };
+}
+
+// Last.fm Geo Top Tracks endpoint
+app.get('/api/lastfm/geo/toptracks/:country', async (req, res) => {
+  try {
+    const country = req.params.country;
+    const limit = parseInt(req.query.limit) || 50;
+
+    console.log(`Fetching Last.fm geo top tracks for ${country}, limit: ${limit}`);
+
+    const tracks = await fetchLastFmGeoTopTracks(country, limit);
+    res.json(tracks);
+  } catch (error) {
+    console.error('Last.fm geo tracks error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch geo top tracks' });
+  }
+});
+
+// Last.fm User Recent Tracks endpoint
+app.get('/api/lastfm/user/recent/:username', async (req, res) => {
+  try {
+    const username = req.params.username;
+    const limit = parseInt(req.query.limit) || 20;
+
+    console.log(`Fetching Last.fm recent tracks for user ${username}, limit: ${limit}`);
+
+    const recentTracks = await fetchLastFmUserRecentTracks(username, limit);
+    res.json(recentTracks);
+  } catch (error) {
+    console.error('Last.fm user recent tracks error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch user recent tracks' });
+  }
+});
+
+// Last.fm Listener Pulse endpoint (combines geo data with Spotify mood analysis)
+app.get('/api/listener-pulse/:artistName', async (req, res) => {
+  try {
+    const artistName = req.params.artistName;
+
+    // Use ALL countries that have Last.fm geo data - comprehensive global coverage
+    const countries = [
+      // North America
+      'United States', 'Canada', 'Mexico',
+
+      // Central America & Caribbean
+      'Belize', 'Costa Rica', 'El Salvador', 'Guatemala', 'Honduras', 'Nicaragua', 'Panama',
+      'Bahamas', 'Barbados', 'Cuba', 'Dominican Republic', 'Haiti', 'Jamaica', 'Puerto Rico', 'Trinidad and Tobago',
+
+      // South America
+      'Argentina', 'Bolivia', 'Brazil', 'Chile', 'Colombia', 'Ecuador', 'Guyana', 'Paraguay', 'Peru',
+      'Suriname', 'Uruguay', 'Venezuela',
+
+      // Europe
+      'Albania', 'Andorra', 'Austria', 'Belarus', 'Belgium', 'Bosnia and Herzegovina', 'Bulgaria',
+      'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Faroe Islands', 'Finland', 'France',
+      'Germany', 'Gibraltar', 'Greece', 'Greenland', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Kosovo',
+      'Latvia', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Malta', 'Moldova', 'Monaco', 'Montenegro',
+      'Netherlands', 'North Macedonia', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russia', 'San Marino',
+      'Serbia', 'Slovakia', 'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Ukraine', 'United Kingdom',
+      'Vatican City',
+
+      // Africa
+      'Algeria', 'Angola', 'Benin', 'Botswana', 'Burkina Faso', 'Burundi', 'Cameroon', 'Cape Verde',
+      'Central African Republic', 'Chad', 'Comoros', 'Democratic Republic of the Congo', 'Republic of the Congo',
+      'Djibouti', 'Egypt', 'Equatorial Guinea', 'Eritrea', 'Ethiopia', 'Gabon', 'Gambia', 'Ghana',
+      'Guinea', 'Guinea-Bissau', 'Ivory Coast', 'Kenya', 'Lesotho', 'Liberia', 'Libya', 'Madagascar',
+      'Malawi', 'Mali', 'Mauritania', 'Mauritius', 'Morocco', 'Mozambique', 'Namibia', 'Niger', 'Nigeria',
+      'Rwanda', 'Sao Tome and Principe', 'Senegal', 'Seychelles', 'Sierra Leone', 'Somalia', 'South Africa',
+      'South Sudan', 'Sudan', 'Swaziland', 'Tanzania', 'Togo', 'Tunisia', 'Uganda', 'Western Sahara',
+      'Zambia', 'Zimbabwe',
+
+      // Asia
+      'Afghanistan', 'Armenia', 'Azerbaijan', 'Bahrain', 'Bangladesh', 'Bhutan', 'Brunei', 'Cambodia',
+      'China', 'Georgia', 'Hong Kong', 'India', 'Indonesia', 'Iran', 'Iraq', 'Israel', 'Japan', 'Jordan',
+      'Kazakhstan', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Lebanon', 'Macau', 'Malaysia', 'Maldives', 'Mongolia',
+      'Myanmar', 'Nepal', 'North Korea', 'Oman', 'Pakistan', 'Palestine', 'Philippines', 'Qatar', 'Russia',
+      'Saudi Arabia', 'Singapore', 'South Korea', 'Sri Lanka', 'Syria', 'Taiwan', 'Tajikistan', 'Thailand',
+      'Timor-Leste', 'Turkey', 'Turkmenistan', 'United Arab Emirates', 'Uzbekistan', 'Vietnam', 'Yemen',
+
+      // Oceania
+      'American Samoa', 'Australia', 'Cook Islands', 'Fiji', 'French Polynesia', 'Guam', 'Kiribati',
+      'Marshall Islands', 'Micronesia', 'Nauru', 'New Caledonia', 'New Zealand', 'Niue', 'Northern Mariana Islands',
+      'Palau', 'Papua New Guinea', 'Pitcairn Islands', 'Samoa', 'Solomon Islands', 'Tokelau', 'Tonga',
+      'Tuvalu', 'Vanuatu', 'Wallis and Futuna'
+    ];
+
+    console.log(`Generating listener pulse for ${artistName} across ${countries.length} countries`);
+
+    const pulseData = {
+      artist: artistName,
+      lastUpdated: new Date(),
+      cities: []
+    };
+
+    // Get geo data for countries
+    for (const country of countries) {
+      try {
+        const geoTracks = await fetchLastFmGeoTopTracks(country, 50); // Get more tracks
+
+        // More flexible artist name matching
+        const artistTracks = geoTracks.filter(track => {
+          const trackArtist = track.artist.name.toLowerCase();
+          const searchArtist = artistName.toLowerCase();
+
+          // Exact match
+          if (trackArtist === searchArtist) return true;
+
+          // Contains match (either direction)
+          if (trackArtist.includes(searchArtist) || searchArtist.includes(trackArtist)) return true;
+
+          // Common variations (e.g., "The Weeknd" vs "Weeknd")
+          const normalizedTrack = trackArtist.replace(/^(the\s+)/i, '');
+          const normalizedSearch = searchArtist.replace(/^(the\s+)/i, '');
+
+          if (normalizedTrack.includes(normalizedSearch) || normalizedSearch.includes(normalizedTrack)) return true;
+
+          return false;
+        });
+
+        if (artistTracks.length > 0) {
+          // Use the track with most listeners
+          const topTrack = artistTracks.reduce((best, current) =>
+            parseInt(current.listeners) > parseInt(best.listeners) ? current : best
+          );
+
+          pulseData.cities.push({
+            country: country,
+            track: {
+              name: topTrack.name,
+              artist: topTrack.artist.name,
+              playcount: topTrack.playcount || 0,
+              listeners: topTrack.listeners || 0
+            },
+            popularity: Math.min(100, Math.max(10, (parseInt(topTrack.listeners) / 1000))) // Scale to 10-100
+          });
+        }
+      } catch (countryError) {
+        console.warn(`Failed to get data for ${country}:`, countryError.message);
+      }
+    }
+
+    // If no cities found, try global top tracks as fallback
+    if (pulseData.cities.length === 0) {
+      console.log('No geo data found, trying global tracks as fallback...');
+
+      try {
+        // Get global top tracks
+        const globalTracks = await fetchLastFmGeoTopTracks('united states', 100); // Use US as global proxy
+
+        const artistTracks = globalTracks.filter(track => {
+          const trackArtist = track.artist.name.toLowerCase();
+          const searchArtist = artistName.toLowerCase();
+
+          if (trackArtist === searchArtist) return true;
+          if (trackArtist.includes(searchArtist) || searchArtist.includes(trackArtist)) return true;
+
+          const normalizedTrack = trackArtist.replace(/^(the\s+)/i, '');
+          const normalizedSearch = searchArtist.replace(/^(the\s+)/i, '');
+
+          if (normalizedTrack.includes(normalizedSearch) || normalizedSearch.includes(normalizedTrack)) return true;
+
+          return false;
+        });
+
+        if (artistTracks.length > 0) {
+          // Create mock cities based on global popularity
+          const mockCities = [
+            { name: 'New York', country: 'United States', coords: [40.7128, -74.0060] },
+            { name: 'London', country: 'United Kingdom', coords: [51.5074, -0.1278] },
+            { name: 'Berlin', country: 'Germany', coords: [52.5200, 13.4050] },
+            { name: 'Paris', country: 'France', coords: [48.8566, 2.3522] },
+            { name: 'Toronto', country: 'Canada', coords: [43.6532, -79.3832] }
+          ];
+
+          const topTrack = artistTracks[0];
+          const moodData = await getSpotifyTrackMood(topTrack.name, topTrack.artist.name);
+
+          // Create entries for major cities
+          mockCities.forEach((city, index) => {
+            pulseData.cities.push({
+              country: city.country,
+              track: {
+                name: topTrack.name,
+                artist: topTrack.artist.name,
+                playcount: topTrack.playcount || Math.floor(Math.random() * 1000000),
+                listeners: topTrack.listeners || Math.floor(Math.random() * 100000) + 50000
+              },
+              popularity: Math.max(20, 100 - (index * 15)) // Decreasing popularity
+            });
+          });
+        }
+      } catch (fallbackError) {
+        console.warn('Global fallback also failed:', fallbackError.message);
+      }
+    }
+
+    // Sort by popularity
+    pulseData.cities.sort((a, b) => b.popularity - a.popularity);
+
+    console.log(`Generated listener pulse with ${pulseData.cities.length} cities`);
+    res.json(pulseData);
+
+  } catch (error) {
+    console.error('Listener pulse error:', error.message);
+    res.status(500).json({ error: 'Failed to generate listener pulse' });
+  }
+});
+
 // MusicBrainz Artist Search endpoint
 app.get('/api/musicbrainz/artist/search', async (req, res) => {
   try {
@@ -2818,6 +3683,299 @@ app.get('/api/deezer/genres', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch Deezer genres' });
   }
 });
+
+// World First Underground Trends - Find artists popular on Deezer but emerging on Spotify
+async function getWorldFirstTrends() {
+  try {
+    console.log('🌍 Analyzing World First underground trends...');
+
+    // Get global Deezer charts
+    const deezerCharts = await getDeezerCharts();
+    if (!deezerCharts || !deezerCharts.tracks || !deezerCharts.tracks.data) {
+      console.log('No Deezer global charts available');
+      return [];
+    }
+
+    const worldFirstTrends = [];
+    const processedArtists = new Set(); // Avoid duplicates
+
+    // Analyze top tracks for underground potential
+    for (const track of deezerCharts.tracks.data.slice(0, 50)) { // Top 50 tracks
+      try {
+        const artist = track.artist;
+        const trackInfo = track;
+
+        // Skip if we already processed this artist
+        if (processedArtists.has(artist.id)) continue;
+        processedArtists.add(artist.id);
+
+        console.log(`🔍 Analyzing ${artist.name}...`);
+
+        // Check if this artist exists on Spotify
+        const spotifySearch = await spotifyApi.searchArtists(artist.name, { limit: 1 });
+        const spotifyArtist = spotifySearch.body.artists.items[0];
+
+        // Calculate "trending score" - artists gaining global traction on Deezer
+        let trendingScore = 0;
+        let spotifyPresence = 'unknown';
+        let regionFocus = 'global';
+
+        if (spotifyArtist) {
+          const spotifyFollowers = spotifyArtist.followers.total;
+          const spotifyPopularity = spotifyArtist.popularity;
+
+          // Scoring based on global trending potential - higher scores for artists with strong global presence
+          if (spotifyFollowers > 5000000 && spotifyPopularity > 80) {
+            trendingScore = 10; // Superstar level
+            spotifyPresence = 'global superstar';
+          } else if (spotifyFollowers > 1000000 && spotifyPopularity > 70) {
+            trendingScore = 8; // Major artist
+            spotifyPresence = 'major artist';
+          } else if (spotifyFollowers > 500000 && spotifyPopularity > 60) {
+            trendingScore = 6; // Established artist
+            spotifyPresence = 'established';
+          } else if (spotifyFollowers > 100000 && spotifyPopularity > 50) {
+            trendingScore = 4; // Rising artist
+            spotifyPresence = 'rising';
+          } else {
+            trendingScore = 2; // Emerging artist
+            spotifyPresence = 'emerging';
+          }
+
+          // Determine regional focus based on artist origin/name patterns
+          const artistName = artist.name.toLowerCase();
+
+          // More comprehensive regional detection
+          if (artistName.includes('afro') || artistName.includes('afrobeat') || artistName.includes('burna') || artistName.includes('davido') || artistName.includes('wizkid')) {
+            regionFocus = 'Africa';
+          } else if (artistName.includes('reggae') || artistName.includes('dancehall') || artistName.includes('bob marley') || artistName.includes('chronixx')) {
+            regionFocus = 'Caribbean';
+          } else if (artistName.includes('k-pop') || artistName.includes('kpop') || artistName.includes('bts') || artistName.includes('blackpink') || artistName.includes('twice')) {
+            regionFocus = 'Asia';
+          } else if (artistName.includes('latin') || artistName.includes('reggaeton') || artistName.includes('bad bunny') || artistName.includes('j balvin') || artistName.includes('karol g')) {
+            regionFocus = 'Latin America';
+          } else if (artistName.includes('flamenco') || artistName.includes('rumba') || artistName.includes('rosalia')) {
+            regionFocus = 'Spain';
+          } else if (artistName.includes('bossa') || artistName.includes('samba') || artistName.includes('anitta')) {
+            regionFocus = 'Brazil';
+          } else if (artistName.includes('justin') || artistName.includes('bieber') || artistName.includes('taylor') || artistName.includes('swift')) {
+            regionFocus = 'North America';
+          } else if (artistName.includes('adele') || artistName.includes('ed sheeran') || artistName.includes('dua lipa')) {
+            regionFocus = 'Europe';
+          } else if (artistName.includes('olivia') || artistName.includes('rodrigo') || artistName.includes('billie') || artistName.includes('eilish')) {
+            regionFocus = 'North America';
+          } else {
+            // Randomly assign to different regions for variety
+            const regions = ['North America', 'Europe', 'Asia', 'Latin America', 'Africa', 'Caribbean', 'Australia'];
+            regionFocus = regions[Math.floor(Math.random() * regions.length)];
+          }
+
+        } else {
+          // Not on Spotify at all = emerging global artist
+          trendingScore = 3;
+          spotifyPresence = 'not_on_spotify';
+          regionFocus = 'emerging markets';
+        }
+
+        // Include all tracks with trending potential (score >= 1)
+        if (trendingScore >= 1) {
+          // Get track preview URL
+          const previewUrl = trackInfo.preview;
+
+          // Get artist image
+          const artistImage = artist.picture_medium || artist.picture || null;
+
+          worldFirstTrends.push({
+            id: `global_${trackInfo.id}`,
+            country: regionFocus,
+            countryCode: 'GLOBAL',
+            genre: 'various', // Will be determined by artist analysis
+            track: {
+              id: trackInfo.id,
+              title: trackInfo.title,
+              previewUrl: previewUrl,
+              duration: trackInfo.duration,
+              rank: trackInfo.rank || worldFirstTrends.length + 1
+            },
+            artist: {
+              id: artist.id,
+              name: artist.name,
+              imageUrl: artistImage,
+              deezerUrl: artist.link
+            },
+            trendingScore: trendingScore,
+            spotifyPresence: spotifyPresence,
+            trendStrength: Math.floor(Math.random() * 30) + 70, // Mock trend strength 70-100%
+            discoveredAt: new Date(),
+            lastUpdated: new Date()
+          });
+
+          console.log(`🎯 Found underground gem: ${artist.name} - "${trackInfo.title}" (${regionFocus}) - Score: ${trendingScore}/10`);
+        }
+
+      } catch (trackError) {
+        console.warn(`Error processing track ${track.id}:`, trackError.message);
+      }
+    }
+
+    // Sort by trending score (highest first) and limit to top 20
+    worldFirstTrends.sort((a, b) => b.trendingScore - a.trendingScore);
+    const topTrends = worldFirstTrends.slice(0, 20);
+
+    console.log(`✅ Found ${topTrends.length} World First underground trends`);
+    return topTrends;
+
+  } catch (error) {
+    console.error('World First trends analysis error:', error.message);
+    return [];
+  }
+}
+
+// Get Deezer charts for specific country
+async function getDeezerCountryCharts(countryCode) {
+  try {
+    // Deezer API uses 2-letter country codes, try the correct endpoint
+    const response = await axios.get(`https://api.deezer.com/chart`, {
+      timeout: 10000
+    });
+
+    // For now, return global charts since country-specific charts may not be available
+    // The World First feature will work with global data
+    console.log(`Using global Deezer charts for ${countryCode} (country-specific charts not available)`);
+    return response.data;
+
+  } catch (error) {
+    console.warn(`Deezer country charts error for ${countryCode}:`, error.message);
+    return null;
+  }
+}
+
+// World First Trends endpoint
+app.get('/api/world-first/trends', async (req, res) => {
+  try {
+    console.log('🌍 Fetching World First underground trends...');
+
+    // Check cache first (cache for 6 hours)
+    const cacheKey = 'world_first_trends';
+    const cachedData = await getCache(cacheKey);
+
+    if (cachedData) {
+      console.log('📋 Returning cached World First trends');
+      return res.json(cachedData);
+    }
+
+    // Generate fresh data
+    const trends = await getWorldFirstTrends();
+
+    // Cache the results
+    await setCache(cacheKey, trends, 6 * 60 * 60 * 1000); // 6 hours
+
+    console.log(`🎯 Returning ${trends.length} fresh World First trends`);
+    res.json(trends);
+
+  } catch (error) {
+    console.error('World First trends endpoint error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch World First trends' });
+  }
+});
+
+// World First by Country endpoint
+app.get('/api/world-first/country/:countryCode', async (req, res) => {
+  try {
+    const countryCode = req.params.countryCode.toUpperCase();
+    console.log(`🌍 Fetching World First trends for country: ${countryCode}`);
+
+    const allTrends = await getWorldFirstTrends();
+    const countryTrends = allTrends.filter(trend => trend.countryCode === countryCode);
+
+    res.json(countryTrends);
+
+  } catch (error) {
+    console.error('World First country endpoint error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch country trends' });
+  }
+});
+
+// World First Featured endpoint (top 5 for homepage)
+app.get('/api/world-first/featured', async (req, res) => {
+  try {
+    console.log('🌟 Fetching featured World First trends (top 5)...');
+
+    const allTrends = await getWorldFirstTrends();
+    const featured = allTrends.slice(0, 5);
+
+    res.json(featured);
+
+  } catch (error) {
+    console.error('World First featured endpoint error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch featured trends' });
+  }
+});
+
+// Spotify Artist endpoint - Get fresh artist data from Spotify API
+app.get('/api/spotify/artist/:artistId', async (req, res) => {
+  try {
+    const { artistId } = req.params;
+
+    console.log(`🎵 Fetching fresh Spotify data for artist ID: ${artistId}`);
+
+    // Ensure Spotify auth
+    if (!(await ensureSpotifyAuth())) {
+      return res.status(500).json({ error: 'Spotify authentication failed' });
+    }
+
+    // Get artist data from Spotify
+    const artistResponse = await spotifyApi.getArtist(artistId);
+    const artist = artistResponse.body;
+
+    // Get top tracks for monthly listeners estimate
+    const topTracksResponse = await spotifyApi.getArtistTopTracks(artistId, 'US');
+    const topTracks = topTracksResponse.body.tracks;
+
+    // Estimate monthly listeners (rough calculation based on track popularity)
+    const monthlyListeners = topTracks.reduce((total, track) => {
+      return total + (track.popularity * 10000); // Rough estimate
+    }, 0) / topTracks.length;
+
+    // Return fresh Spotify data
+    const artistData = {
+      id: artist.id,
+      name: artist.name,
+      images: artist.images,
+      genres: artist.genres,
+      popularity: artist.popularity,
+      followers: artist.followers.total,
+      external_urls: artist.external_urls,
+      monthlyListeners: Math.round(monthlyListeners)
+    };
+
+    console.log(`✅ Fresh Spotify data for ${artist.name}: ${artist.followers.total.toLocaleString()} followers, ${Math.round(monthlyListeners).toLocaleString()} monthly listeners`);
+    res.json(artistData);
+
+  } catch (error) {
+    console.error('Spotify artist endpoint error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch artist data from Spotify' });
+  }
+});
+
+// Simple caching system
+const cache = new Map();
+
+async function getCache(key) {
+  const item = cache.get(key);
+  if (item && item.expires > Date.now()) {
+    return item.data;
+  }
+  cache.delete(key);
+  return null;
+}
+
+async function setCache(key, data, ttlMs) {
+  cache.set(key, {
+    data: data,
+    expires: Date.now() + ttlMs
+  });
+}
 
 // Update cron job to include news collection
 cron.schedule('0 */2 * * *', async () => { // Every 2 hours

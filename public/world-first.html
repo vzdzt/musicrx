@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>World First - MusicRx</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="keyframes.css">
+    <style>
+        .main-content {
+            width: 100%;
+            height: auto;
+            margin-bottom: 60px;
+            margin-top: 90px;
+            padding: 0 1rem;
+        }
+
+        .world-first-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+        }
+
+        .world-first-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 3s ease-in-out infinite;
+        }
+
+        .world-first-header p {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .world-first-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .world-first-card {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .world-first-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: var(--primary);
+        }
+
+        .world-first-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--rgb-glow));
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .country-badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .underground-score {
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .artist-info {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .artist-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--border-color);
+            object-fit: cover;
+        }
+
+        .artist-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .track-info {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .spotify-presence {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .presence-emerging {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .presence-niche {
+            background: rgba(251, 191, 36, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .presence-established {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .presence-not-on-spotify {
+            background: rgba(168, 85, 247, 0.1);
+            color: #a855f7;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .trend-strength {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .trend-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .trend-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--rgb-glow));
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .trend-label {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin-top: 0.25rem;
+        }
+
+        .loading-section {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem;
+        }
+
+        .error-section {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .error-section i {
+            font-size: 3rem;
+            color: #ef4444;
+            margin-bottom: 1rem;
+        }
+
+        .filter-section {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .filter-header h3 {
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-background);
+            color: var(--text-color);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .world-first-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .world-first-header h1 {
+                font-size: 2rem;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="world-first">
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <canvas id="universe"></canvas>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <p class="heartbeat-text">MUSICRX</p>
+            <span class="heartbeat-line"></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle" type="button"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="newmusic.html">New Music</a></li>
+                    <li><a href="underground.html">Underground</a></li>
+                    <li><a href="world-first.html">World First</a></li>
+                    <li><a href="listener-pulse.html">Listener Pulse</a></li>
+                    <li><a href="all-time-rankings.html">Rankings</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="world-first-header">
+            <h1>🌍 World First</h1>
+            <p>Discover artists trending globally across Deezer charts. We analyze worldwide music data to showcase performers gaining traction internationally, from emerging talents to established stars making waves globally.</p>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3>Filters</h3>
+                <button id="refreshBtn" style="background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+            <div class="filter-controls">
+                <select id="countryFilter" class="filter-select">
+                    <option value="">All Countries</option>
+                </select>
+                <select id="genreFilter" class="filter-select">
+                    <option value="">All Genres</option>
+                </select>
+                <select id="presenceFilter" class="filter-select">
+                    <option value="">All Spotify Presence</option>
+                    <option value="not_on_spotify">Not on Spotify</option>
+                    <option value="emerging">Emerging</option>
+                    <option value="niche">Niche</option>
+                    <option value="established">Established</option>
+                </select>
+                <select id="sortFilter" class="filter-select">
+                    <option value="score">Sort by Underground Score</option>
+                    <option value="trend">Sort by Trend Strength</option>
+                    <option value="country">Sort by Country</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="loadingSection" class="loading-section">
+            <div class="loading-spinner"></div>
+            <h3>Scanning Global Markets...</h3>
+            <p>Analyzing underground trends across 8+ emerging markets</p>
+        </div>
+
+        <div id="errorSection" class="error-section" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h3>Unable to Load World First Data</h3>
+            <p>Please try again later or check your connection.</p>
+            <button id="retryBtn" style="background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+                <i class="fas fa-redo"></i> Retry
+            </button>
+        </div>
+
+        <div id="worldFirstGrid" class="world-first-grid" style="display: none;">
+            <!-- World First cards will be loaded here -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+            <span class="heartbeat-line"></span>
+        </div>
+    </footer>
+
+    <script src="theme-effects.js"></script>
+    <script src="hover-effects.js"></script>
+    <script src="scroll-effects.js"></script>
+
+    <script>
+        // Configuration
+        const BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://musicrx.app';
+
+        let worldFirstData = [];
+        let filteredData = [];
+
+        // Load World First data
+        async function loadWorldFirstData() {
+            try {
+                showLoading();
+
+                const response = await fetch(`${BACKEND_URL}/api/world-first/trends`);
+                if (!response.ok) {
+                    throw new Error(`Failed to load World First data: ${response.status}`);
+                }
+
+                worldFirstData = await response.json();
+                filteredData = [...worldFirstData];
+
+                populateFilters();
+                displayWorldFirstData();
+                hideLoading();
+
+            } catch (error) {
+                console.error('World First data error:', error);
+                showError();
+            }
+        }
+
+        function populateFilters() {
+            // Populate country filter
+            const countries = [...new Set(worldFirstData.map(item => item.country))].sort();
+            const countryFilter = document.getElementById('countryFilter');
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country;
+                countryFilter.appendChild(option);
+            });
+
+            // Populate genre filter
+            const genres = [...new Set(worldFirstData.map(item => item.genre))].sort();
+            const genreFilter = document.getElementById('genreFilter');
+            genres.forEach(genre => {
+                const option = document.createElement('option');
+                option.value = genre;
+                option.textContent = genre.charAt(0).toUpperCase() + genre.slice(1);
+                genreFilter.appendChild(option);
+            });
+        }
+
+        function displayWorldFirstData() {
+            const grid = document.getElementById('worldFirstGrid');
+            grid.innerHTML = '';
+
+            if (filteredData.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 4rem;">
+                        <i class="fas fa-search" style="font-size: 3rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                        <h3>No results found</h3>
+                        <p>Try adjusting your filters to see more underground artists.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredData.forEach(item => {
+                const card = createWorldFirstCard(item);
+                grid.appendChild(card);
+            });
+
+            grid.style.display = 'grid';
+        }
+
+        function createWorldFirstCard(item) {
+            const card = document.createElement('div');
+            card.className = 'world-first-card';
+
+            const presenceClass = item.spotifyPresence ? `presence-${item.spotifyPresence.toLowerCase().replace('_', '-')}` : 'presence-not-on-spotify';
+            const presenceText = item.spotifyPresence ? item.spotifyPresence.replace('_', ' ').toUpperCase() : 'NOT ON SPOTIFY';
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="country-badge">${item.country}</span>
+                    <span class="underground-score">Score: ${item.trendingScore}/10</span>
+                </div>
+                <div class="artist-info">
+                    <img src="${item.artist.imageUrl || 'https://via.placeholder.com/80x80/333/666?text=No+Image'}" alt="${item.artist.name}" class="artist-image" onerror="this.src='https://via.placeholder.com/80x80/333/666?text=No+Image'">
+                    <h3 class="artist-name">${item.artist.name}</h3>
+                    <div class="track-info">
+                        <strong>${item.track.title}</strong><br>
+                        <small>${item.genre.charAt(0).toUpperCase() + item.genre.slice(1)} • Rank #${item.track.rank}</small>
+                    </div>
+                    <span class="spotify-presence ${presenceClass}">${presenceText}</span>
+                </div>
+                <div class="trend-strength">
+                    <div class="trend-bar">
+                        <div class="trend-fill" style="width: ${item.trendStrength}%"></div>
+                    </div>
+                    <div class="trend-label">Trend Strength: ${item.trendStrength}%</div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        function applyFilters() {
+            const countryFilter = document.getElementById('countryFilter').value;
+            const genreFilter = document.getElementById('genreFilter').value;
+            const presenceFilter = document.getElementById('presenceFilter').value;
+            const sortFilter = document.getElementById('sortFilter').value;
+
+            filteredData = worldFirstData.filter(item => {
+                if (countryFilter && item.country !== countryFilter) return false;
+                if (genreFilter && item.genre !== genreFilter) return false;
+                if (presenceFilter && item.spotifyPresence !== presenceFilter) return false;
+                return true;
+            });
+
+            // Apply sorting
+            filteredData.sort((a, b) => {
+                switch (sortFilter) {
+                    case 'score':
+                        return b.trendingScore - a.trendingScore;
+                    case 'trend':
+                        return b.trendStrength - a.trendStrength;
+                    case 'country':
+                        return a.country.localeCompare(b.country);
+                    default:
+                        return b.trendingScore - a.trendingScore;
+                }
+            });
+
+            displayWorldFirstData();
+        }
+
+        function showLoading() {
+            document.getElementById('loadingSection').style.display = 'block';
+            document.getElementById('errorSection').style.display = 'none';
+            document.getElementById('worldFirstGrid').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingSection').style.display = 'none';
+        }
+
+        function showError() {
+            document.getElementById('loadingSection').style.display = 'none';
+            document.getElementById('errorSection').style.display = 'block';
+            document.getElementById('worldFirstGrid').style.display = 'none';
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            loadWorldFirstData();
+
+            // Filter event listeners
+            document.getElementById('countryFilter').addEventListener('change', applyFilters);
+            document.getElementById('genreFilter').addEventListener('change', applyFilters);
+            document.getElementById('presenceFilter').addEventListener('change', applyFilters);
+            document.getElementById('sortFilter').addEventListener('change', applyFilters);
+
+            // Refresh button
+            document.getElementById('refreshBtn').addEventListener('click', () => {
+                loadWorldFirstData();
+            });
+
+            // Retry button
+            document.getElementById('retryBtn').addEventListener('click', () => {
+                loadWorldFirstData();
+            });
+        });
+    </script>
+</body>
+</html>

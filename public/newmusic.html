@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicRx - Underground Artists</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom styles for underground page */
+        .glass-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px; /* Fixed height for consistency */
+            padding: 1rem;
+        }
+        .glass-card img {
+            width: 100%;
+            height: 150px; /* Fixed height for uniformity */
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+        }
+        .glass-card h2 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .glass-card .description {
+            font-size: 0.9rem;
+            flex-grow: 1;
+            margin-bottom: 0.5rem;
+        }
+        .glass-card audio {
+            width: 100%;
+            height: 40px; /* Fixed height for snug fit */
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+        }
+        .glass-card .button-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .glass-card .social-link, .glass-card .download-link {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .glass-card .social-link:hover, .glass-card .download-link:hover {
+            color: var(--text);
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <!-- <div id="cursor-blur"></div> -->
+    <canvas id="universe"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar global-nav">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="search-container">
+            <input type="text" id="reviewSearch" placeholder="Search underground tracks..." class="search-input">
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+              <!--  <li><a href="features.html">Features</a></li>-->
+                    <li><a href="news.html">News</a></li>
+                  <!--  <li><a href="opinions.html">Opinions</a></li>
+                    <li><a href="catchcarti.html">Catch Carti</a></li>
+                    <li><a href="underground.html">Underground</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Fixed Buttons -->
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <!-- <button id="musicToggle" title="Toggle Music"><i class="fas fa-play"></i></button> -->
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="glitch" data-text="UNDERGROUND">UNDERGROUND</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">discover new tracks from emerging artists.</p>
+        <div class="grid">
+            <!-- Underground Artist Tracks by Xroz -->
+            <div class="glass-card">
+                <img src="project202.jpg" alt="Xroz - Project 202 artwork">
+                <h2>Xroz - Project 202</h2>
+               <!-- <p class="description">some to crash out to</p>-->
+                <audio controls>
+                    <source src="https://od.lk/s/MzhfMjkxNDc0OTJf/Project_202.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="button-group">
+                    <a href="https://x.com/xrozk" target="_blank" class="social-link" title="Follow Xroz on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://od.lk/d/MzhfMjkxNDc0OTJf/Project_202.mp3" target="_blank" class="download-link" title="Download Project 202">
+                        <i class="fas fa-download"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="glass-card">
+                <img src="zone.jpg" alt="Xroz - Zone V2 artwork">
+                <h2>Xroz - Zone V2</h2>
+               <!-- <p class="description">Hypnotic rhythms with a futuristic edge.</p>-->
+                <audio controls>
+                    <source src="https://od.lk/s/MzhfMjkxNDc0OThf/zone%20v2.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="button-group">
+                    <a href="https://x.com/xrozk" target="_blank" class="social-link" title="Follow Xroz on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://od.lk/d/MzhfMjkxNDc0OThf/zone%20v2.mp3" target="_blank" class="download-link" title="Download Zone V2">
+                        <i class="fas fa-download"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="glass-card">
+                <img src="project191.jpg" alt="Xroz - Project 191 artwork">
+                <h2>Xroz - Project 191</h2>
+               <!-- <p class="description">A gritty, lo-fi track straight from the streets.</p>-->
+                <audio controls>
+                    <source src="https://od.lk/s/MzhfMjkxNDc0OTNf/Project_191.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="button-group">
+                    <a href="https://x.com/xrozk" target="_blank" class="social-link" title="Follow Xroz on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://od.lk/d/MzhfMjkxNDc0OTNf/Project_191.mp3" target="_blank" class="download-link" title="Download Project 191">
+                        <i class="fas fa-download"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="glass-card">
+                <img src="loaf.jpg" alt="Xroz - Loaf artwork">
+                <h2>Xroz - Loaf</h2>
+               <!-- <p class="description">A smooth, melodic flow with trap undertones.</p>-->
+                <audio controls>
+                    <source src="https://od.lk/s/MzhfMjkxNDc0OTZf/loaf%20by%20xrozk.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="button-group">
+                    <a href="https://x.com/xrozk" target="_blank" class="social-link" title="Follow Xroz on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://od.lk/d/MzhfMjkxNDc0OTZf/loaf%20by%20xrozk.mp3" target="_blank" class="download-link" title="Download Loaf">
+                        <i class="fas fa-download"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="glass-card">
+                <img src="lazy.jpg" alt="Xroz - Lazy V1 artwork">
+                <h2>Xroz - Lazy V1</h2>
+               <!-- <p class="description">Chilled-out vibes with a lazy, laid-back beat.</p>-->
+                <audio controls>
+                    <source src="https://od.lk/s/MzhfMjkxNDc0OTdf/lazy%20finished%20v1.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="button-group">
+                    <a href="https://x.com/xrozk" target="_blank" class="social-link" title="Follow Xroz on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://od.lk/d/MzhfMjkxNDc0OTdf/lazy%20finished%20v1.mp3" target="_blank" class="download-link" title="Download Lazy V1">
+                        <i class="fas fa-download"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+        </div>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Subscribe to Newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

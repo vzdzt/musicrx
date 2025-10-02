@@ -1,4 +1,4 @@
-// Footer visibility control
+s// Footer visibility control
 window.addEventListener('scroll', () => {
   const footer = document.querySelector('footer');
   if (footer) {
@@ -14,16 +14,16 @@ window.addEventListener('scroll', () => {
 });
 
 // Global variables for starfield
-window.isStarfieldActive = localStorage.getItem('starfieldEnabled') === 'true';
-window.scene = null;
-window.camera = null;
-window.renderer = null;
-window.starField = null;
-window.mouseX = 0;
-window.mouseY = 0;
-window.targetX = 0;
-window.targetY = 0;
-let animationFrameId;
+// window.isStarfieldActive = localStorage.getItem('starfieldEnabled') === 'true';
+// window.scene = null;
+// window.camera = null;
+// window.renderer = null;
+// window.starField = null;
+// window.mouseX = 0;
+// window.mouseY = 0;
+// window.targetX = 0;
+// window.targetY = 0;
+// let animationFrameId;
 
 // Detect mobile device
 const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -157,19 +157,47 @@ async function loadUndergroundArtists() {
 
         if (undergroundArtists.length > 0) {
             let html = '';
-            // Show top 20 underground artists
-            const topArtists = undergroundArtists.slice(0, 20);
+            // Show top 6 underground artists
+            const topArtists = undergroundArtists.slice(0, 6);
 
-            topArtists.forEach((artist) => {
+            // Process each artist to get fresh Spotify data
+            const processedArtists = await Promise.all(topArtists.map(async (artist) => {
+                try {
+                    // Fetch fresh artist data from Spotify API
+                    const spotifyResponse = await fetch(`/api/spotify/artist/${artist.artistId}`);
+                    if (spotifyResponse.ok) {
+                        const spotifyData = await spotifyResponse.json();
+                        return {
+                            ...artist,
+                            name: spotifyData.name,
+                            imageUrl: spotifyData.images && spotifyData.images.length > 0 ? spotifyData.images[0].url : null,
+                            spotifyUrl: `https://open.spotify.com/artist/${artist.artistId}`, // Use direct URL construction
+                            monthlyListeners: artist.monthlyListeners
+                        };
+                    }
+                } catch (err) {
+                    console.warn(`Could not fetch Spotify data for ${artist.name}:`, err);
+                }
+
+                // Fallback to database data if Spotify API fails
+                return {
+                    ...artist,
+                    imageUrl: artist.imageUrl,
+                    spotifyUrl: `https://open.spotify.com/artist/${artist.artistId}` // Use direct URL construction
+                };
+            }));
+
+            processedArtists.forEach((artist) => {
                 const name = artist.name.length > 15 ? artist.name.substring(0, 12) + '...' : artist.name;
                 const monthlyListeners = artist.monthlyListeners ? artist.monthlyListeners.toLocaleString() : 'N/A';
+                const imageUrl = artist.imageUrl || 'https://via.placeholder.com/200x200/333/666?text=No+Image';
 
-                html += `<a href="underground.html" class="scroll-item" style="text-decoration: none;">
+                html += `<a href="${artist.spotifyUrl}" target="_blank" rel="noopener noreferrer" class="scroll-item" style="text-decoration: none; cursor: pointer;">
                     <div class="news-title-card">
                         <h2>${name}</h2>
                     </div>
                     <div class="news-content-card">
-                        ${artist.imageUrl ? `<img src="${artist.imageUrl}" alt="${artist.name}">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-user" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
+                        <img src="${imageUrl}" alt="${artist.name}" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px;" onerror="this.src='https://via.placeholder.com/200x200/333/666?text=No+Image'">
                         <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${monthlyListeners} monthly listeners</p>
                     </div>
                 </a>`;
@@ -611,34 +639,34 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollEffects.init();
     }
 
-    const universe = document.getElementById('universe');
-    const starfieldToggle = document.getElementById('starfieldToggle');
+    // const universe = document.getElementById('universe');
+    // const starfieldToggle = document.getElementById('starfieldToggle');
 
-    if (supportsWebGL && !isMobile) {
-        initThreeJS();
-        universe.style.opacity = window.isStarfieldActive ? '1' : '0';
-        universe.style.display = 'block';
-    } else if (supportsWebGL) {
-        initThreeJS(); // Still initialize but with optimizations
-        universe.style.opacity = window.isStarfieldActive ? '0.7' : '0';
-        universe.style.display = 'block';
-    } else {
-        if (universe) universe.style.display = 'none';
-        if (starfieldToggle) starfieldToggle.style.display = 'none';
-        console.warn('WebGL not supported. Starfield disabled.');
-    }
+    // if (supportsWebGL && !isMobile) {
+    //     initThreeJS();
+    //     universe.style.opacity = window.isStarfieldActive ? '1' : '0';
+    //     universe.style.display = 'block';
+    // } else if (supportsWebGL) {
+    //     initThreeJS(); // Still initialize but with optimizations
+    //     universe.style.opacity = window.isStarfieldActive ? '0.7' : '0';
+    //     universe.style.display = 'block';
+    // } else {
+    //     if (universe) universe.style.display = 'none';
+    //     if (starfieldToggle) starfieldToggle.style.display = 'none';
+    //     console.warn('WebGL not supported. Starfield disabled.');
+    // }
 
-    if (starfieldToggle && universe) {
-        starfieldToggle.style.color = window.isStarfieldActive ? 'var(--primary)' : 'var(--text-color)';
-        starfieldToggle.addEventListener('click', () => {
-            window.isStarfieldActive = !window.isStarfieldActive;
-            localStorage.setItem('starfieldEnabled', window.isStarfieldActive);
-            universe.style.opacity = window.isStarfieldActive ? (isMobile ? '0.7' : '1') : '0';
-            starfieldToggle.style.color = window.isStarfieldActive ? 'var(--primary)' : 'var(--text-color)';
-            if (window.isStarfieldActive && !animationFrameId) initThreeJS();
-            console.log('Starfield toggled:', window.isStarfieldActive);
-        });
-    }
+    // if (starfieldToggle && universe) {
+    //     starfieldToggle.style.color = window.isStarfieldActive ? 'var(--primary)' : 'var(--text-color)';
+    //     starfieldToggle.addEventListener('click', () => {
+    //         window.isStarfieldActive = !window.isStarfieldActive;
+    //         localStorage.setItem('starfieldEnabled', window.isStarfieldActive);
+    //         universe.style.opacity = window.isStarfieldActive ? (isMobile ? '0.7' : '1') : '0';
+    //         starfieldToggle.style.color = window.isStarfieldActive ? 'var(--primary)' : 'var(--text-color)';
+    //         if (window.isStarfieldActive && !animationFrameId) initThreeJS();
+    //         console.log('Starfield toggled:', window.isStarfieldActive);
+    //     });
+    // }
 
     // const cursorBlur = document.getElementById('cursor-blur');
     // if (cursorBlur && !isMobile) {
@@ -701,11 +729,11 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.setAttribute('title', savedThemeTitle);
         themeToggle.setAttribute('aria-label', `Switch to next theme (current: ${savedThemeTitle})`);
         updateCursorForTheme(savedTheme);
-        updateStarfieldColors();
+        // updateStarfieldColors();
         console.log(`Initial theme applied: ${savedTheme}`);
 
         const themes = [
-            'black', 'all-white'
+            'black', 'all-white', 'dynamic-beats'
             // Commented out themes
             /*
             'primary', 'mirror-glass', 'ultra-glass', 'normal', 'satin', 'frosted', 'veazy', 'white',
@@ -721,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
 
         const themeTitles = [
-            'Black Mode', 'All White Mode'
+            'Black Mode', 'All White Mode', 'Dynamic Beats Mode'
             // Commented out theme titles
             /*
             'Primary Mode', 'Mirror Glass Mode', 'Ultra Glass Mode', 'Normal Mode', 'Satin Mode', 'Frosted Mode', 'Veazy Mode', 'White Mode',
@@ -748,7 +776,7 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggle.setAttribute('aria-label', `Switch to next theme (current: ${newThemeTitle})`);
             updateCursorForTheme(newTheme);
 
-            updateStarfieldColors();
+            // updateStarfieldColors();
             console.log(`Theme changed to: ${newTheme}`);
         });
     } else {
@@ -947,6 +975,7 @@ if (magicButton && magicInput && magicAnswer) {
 // Music Toggle Functionality
 const musicToggle = document.getElementById('musicToggle');
 const audio = document.getElementById('bgMusic') || new Audio('https://od.lk/s/MzhfMjg2MDQ2MDJf/veazy%20x%20dpbeats.mp3');
+const htmlElement = document.documentElement;
 audio.loop = true;
 let isPlaying = false;
 if (musicToggle) {
@@ -959,10 +988,12 @@ if (musicToggle) {
                 audio.pause();
                 musicToggle.innerHTML = '<i class="fas fa-play"></i>';
                 musicToggle.setAttribute('aria-label', 'Play music');
+                htmlElement.classList.remove('music-playing');
             } else {
                 await audio.play();
                 musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
                 musicToggle.setAttribute('aria-label', 'Pause music');
+                htmlElement.classList.add('music-playing');
             }
             isPlaying = !isPlaying;
         } catch (err) {

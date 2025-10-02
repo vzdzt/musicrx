@@ -11,7 +11,7 @@
         .rankings-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 2rem 0.5rem; /* Further reduce horizontal padding for better centering */
             text-align: center;
         }
 
@@ -33,13 +33,11 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.2rem;
             color: var(--text-color);
-            margin-bottom: 2rem;
+            margin: 0 auto 2rem auto; /* Center with auto margins, remove any other margins */
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
             text-align: center; /* Ensure perfect centering */
-            padding-left: 0; /* Remove any left padding/indent */
-            padding-right: 0; /* Remove any right padding/indent */
+            padding: 0; /* Remove all padding */
+            line-height: 1.5; /* Improve readability */
         }
 
         .rankings-grid {
@@ -236,6 +234,46 @@
             transform: translateY(-2px);
         }
 
+        .filter-section {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .filter-header h3 {
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-background);
+            color: var(--text-color);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
         @media (max-width: 768px) {
             .rankings-container {
                 padding: 1rem;
@@ -262,6 +300,14 @@
             .stats-grid {
                 grid-template-columns: 1fr;
                 gap: 0.5rem;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+            }
+
+            .filter-select {
+                width: 100%;
             }
         }
     </style>
@@ -299,6 +345,42 @@
             </p>
         </div>
 
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3>Filters</h3>
+                <button id="refreshBtn" style="background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+            <div class="filter-controls">
+                <select id="genreFilter" class="filter-select">
+                    <option value="">All Genres</option>
+                </select>
+                <select id="followersFilter" class="filter-select">
+                    <option value="">All Follower Ranges</option>
+                    <option value="0-10000">0-10K Followers</option>
+                    <option value="10000-50000">10K-50K Followers</option>
+                    <option value="50000-100000">50K-100K Followers</option>
+                    <option value="100000-500000">100K-500K Followers</option>
+                    <option value="500000-1000000">500K-1M Followers</option>
+                </select>
+                <select id="ugRatingFilter" class="filter-select">
+                    <option value="">All UG Ratings</option>
+                    <option value="viral">Viral (>10M listeners)</option>
+                    <option value="breakout">Breakout (5M-10M listeners)</option>
+                    <option value="next-up">Next Up (1M-5M listeners)</option>
+                    <option value="known">Known (100K-1M listeners)</option>
+                    <option value="freshman">Freshman (0-100K listeners)</option>
+                </select>
+                <select id="sortFilter" class="filter-select">
+                    <option value="monthlyListeners">Sort by Monthly Listeners</option>
+                    <option value="followers">Sort by Followers</option>
+                    <option value="name">Sort by Name</option>
+                    <option value="recentGrowth">Sort by Recent Growth</option>
+                </select>
+            </div>
+        </div>
+
         <div class="nav-links">
             <a href="all-time-rankings.html" class="nav-link">
                 <i class="fas fa-trophy"></i> All-Time Rankings
@@ -306,8 +388,8 @@
             <a href="all-2025-albums.html" class="nav-link">
                 <i class="fas fa-calendar"></i> 2025 Albums
             </a>
-            <a href="underground-rankings.html" class="nav-link">
-                <i class="fas fa-users"></i> Underground
+            <a href="world-first.html" class="nav-link">
+                <i class="fas fa-globe"></i> World First
             </a>
             <a href="tools.html" class="nav-link">
                 <i class="fas fa-tools"></i> Album Rater
@@ -347,20 +429,62 @@
         // Configuration
         const BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://musicrx.app';
 
+        let undergroundData = [];
+        let filteredData = [];
+
         async function loadUndergroundRankings() {
             try {
+                showLoading();
+
                 const response = await fetch(`${BACKEND_URL}/api/underground-rankings`);
 
                 if (!response.ok) {
                     throw new Error(`Failed to load rankings: ${response.status}`);
                 }
 
-                const rankings = await response.json();
-                displayRankings(rankings);
+                undergroundData = await response.json();
+                filteredData = [...undergroundData];
+
+                populateFilters();
+                displayRankings(filteredData);
+                hideLoading();
 
             } catch (error) {
                 console.error('Underground rankings error:', error);
                 showError('Failed to load underground rankings. Please try again.');
+            }
+        }
+
+        function populateFilters() {
+            // Populate genre filter
+            const genres = [...new Set(undergroundData.flatMap(artist => artist.genres || []))].sort();
+            const genreFilter = document.getElementById('genreFilter');
+            genres.forEach(genre => {
+                const option = document.createElement('option');
+                option.value = genre;
+                option.textContent = genre;
+                genreFilter.appendChild(option);
+            });
+        }
+
+        function getUGRating(monthlyListeners) {
+            if (!monthlyListeners || monthlyListeners === 0) return 'Freshman';
+
+            if (monthlyListeners > 10000000) return 'Viral';
+            if (monthlyListeners >= 5000000) return 'Breakout';
+            if (monthlyListeners >= 1000000) return 'Next Up';
+            if (monthlyListeners >= 100000) return 'Known';
+            return 'Freshman';
+        }
+
+        function getUGRatingClass(rating) {
+            switch (rating) {
+                case 'Viral': return 'ug-viral';
+                case 'Breakout': return 'ug-breakout';
+                case 'Next Up': return 'ug-next-up';
+                case 'Known': return 'ug-known';
+                case 'Freshman': return 'ug-freshman';
+                default: return 'ug-freshman';
             }
         }
 
@@ -371,17 +495,19 @@
             const grid = document.getElementById('rankingsGrid');
             grid.innerHTML = '';
 
-            rankings.forEach(artist => {
+            rankings.forEach((artist, index) => {
                 const card = document.createElement('div');
                 card.className = 'ranking-card';
 
                 const imageUrl = artist.imageUrl || 'https://via.placeholder.com/120x120/333/666?text=No+Image';
+                const ugRating = getUGRating(artist.monthlyListeners);
+                const ugClass = getUGRatingClass(ugRating);
 
                 card.innerHTML = `
+                    <div class="ranking-number">${index + 1}</div>
                     <img src="${imageUrl}" alt="${artist.name}" class="artist-image" onerror="this.src='https://via.placeholder.com/120x120/333/666?text=No+Image'">
                     <h3 class="artist-name">${artist.name}</h3>
                     <div class="artist-genres">${artist.genres.slice(0, 3).join(', ') || 'Various'}</div>
-
 
                     <div class="stats-grid">
                         <div class="stat-item">
@@ -394,19 +520,78 @@
                         </div>
                         <div class="stat-item">
                             <div class="stat-label">UG Rating</div>
-                            <div class="stat-value">${artist.ugRating || 'Unknown'}</div>
+                            <div class="stat-value ${ugClass}">${ugRating}</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-label">Recent Growth</div>
-                            <div class="stat-value">${artist.recentGrowth > 0 ? '+' : ''}${artist.recentGrowth}%</div>
+                            <div class="stat-value">${artist.recentGrowth ? (artist.recentGrowth > 0 ? '+' : '') + artist.recentGrowth + '%' : 'N/A'}</div>
                         </div>
                     </div>
 
-
+                    <div class="analysis-section">
+                        <div class="analysis-title">Strengths</div>
+                        <ul class="analysis-list">
+                            ${artist.strengths ? artist.strengths.slice(0, 2).map(strength => `<li>${strength}</li>`).join('') : '<li>Emerging talent</li>'}
+                        </ul>
+                    </div>
                 `;
 
                 grid.appendChild(card);
             });
+        }
+
+        function applyFilters() {
+            const genreFilter = document.getElementById('genreFilter').value;
+            const followersFilter = document.getElementById('followersFilter').value;
+            const ugRatingFilter = document.getElementById('ugRatingFilter').value;
+            const sortFilter = document.getElementById('sortFilter').value;
+
+            filteredData = undergroundData.filter(artist => {
+                // Genre filter
+                if (genreFilter && (!artist.genres || !artist.genres.includes(genreFilter))) {
+                    return false;
+                }
+
+                // Followers filter
+                if (followersFilter) {
+                    const followers = artist.followers || 0;
+                    const [min, max] = followersFilter.split('-').map(v => parseInt(v));
+                    if (max) {
+                        if (followers < min || followers >= max) return false;
+                    } else if (followersFilter.includes('+')) {
+                        if (followers < min) return false;
+                    }
+                }
+
+                // UG Rating filter
+                if (ugRatingFilter) {
+                    const ugRating = getUGRating(artist.monthlyListeners);
+                    const filterRating = ugRatingFilter.replace('-', ' ').toLowerCase();
+                    if (ugRating.toLowerCase() !== filterRating) {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+
+            // Apply sorting
+            filteredData.sort((a, b) => {
+                switch (sortFilter) {
+                    case 'monthlyListeners':
+                        return (b.monthlyListeners || 0) - (a.monthlyListeners || 0);
+                    case 'followers':
+                        return (b.followers || 0) - (a.followers || 0);
+                    case 'name':
+                        return a.name.localeCompare(b.name);
+                    case 'recentGrowth':
+                        return (b.recentGrowth || 0) - (a.recentGrowth || 0);
+                    default:
+                        return (b.monthlyListeners || 0) - (a.monthlyListeners || 0);
+                }
+            });
+
+            displayRankings(filteredData);
         }
 
         function formatNumber(num) {
@@ -421,14 +606,38 @@
             return num.toString();
         }
 
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('rankingsGrid').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
         function showError(message) {
             document.getElementById('loading').style.display = 'none';
             document.getElementById('error').style.display = 'block';
+            document.getElementById('rankingsGrid').style.display = 'none';
             document.getElementById('errorMessage').textContent = message;
         }
 
-        // Load rankings on page load
-        document.addEventListener('DOMContentLoaded', loadUndergroundRankings);
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUndergroundRankings();
+
+            // Filter event listeners
+            document.getElementById('genreFilter').addEventListener('change', applyFilters);
+            document.getElementById('followersFilter').addEventListener('change', applyFilters);
+            document.getElementById('ugRatingFilter').addEventListener('change', applyFilters);
+            document.getElementById('sortFilter').addEventListener('change', applyFilters);
+
+            // Refresh button
+            document.getElementById('refreshBtn').addEventListener('click', () => {
+                loadUndergroundRankings();
+            });
+        });
     </script>
 </body>
 </html>

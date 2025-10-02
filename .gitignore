@@ -1,18 +1,19 @@
-# Dependencies
+# Node.js
 node_modules/
-frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Environment variables
 .env
 .env.local
-.env.production
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Logs
+logs
 *.log
-server.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Runtime data
 pids
@@ -44,7 +45,51 @@ jspm_packages/
 # dotenv environment variables file
 .env
 
-# macOS
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# next.js build output
+.next
+
+# nuxt.js build output
+.nuxt
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# Temporary files and scripts
+*.tmp
+temp/
+tmp/
+
+# Development scripts (these are usually one-time use)
+add_*.js
+check_*.js
+fix_*.js
+update_*.js
+test_*.js
+verify_*.js
+populate_*.js
+remove_*.js
+clean_*.js
+
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -53,29 +98,27 @@ jspm_packages/
 ehthumbs.db
 Thumbs.db
 
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# VS Code
+# IDE files
 .vscode/
+.idea/
+*.swp
+*.swo
+*~
 
 # Build outputs
-frontend/build/
 dist/
+build/
 
-# Temporary files
-*.tmp
-*.temp
-
-# SSL certificates
-musicrx.app-certificates-3/
-
-# Database
+# Database files
 *.db
 *.sqlite
+*.sqlite3
 
 # Backup files
 *.bak
 *.backup
+*.old
+
+# Package manager lock files (usually keep these)
+# package-lock.json
+# yarn.lock
