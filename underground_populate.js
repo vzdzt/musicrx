@@ -169,21 +169,8 @@ async function populateUndergroundRankings() {
 
     console.log(`Analyzing ${undergroundArtists.length} underground artists with real Spotify data...`);
 
-    // First, clean up any mainstream artists that shouldn't be in underground rankings
-    console.log('🧹 Cleaning up mainstream artists from database...');
-    try {
-      const cleanupResult = await UndergroundArtist.deleteMany({
-        $or: [
-          { followers: { $gt: 2000000 } }, // Remove artists with 2M+ followers
-          { spotifyPopularity: { $gt: 70 } } // Remove artists with 70+ popularity
-        ]
-      });
-      if (cleanupResult.deletedCount > 0) {
-        console.log(`✅ Removed ${cleanupResult.deletedCount} mainstream artists from database`);
-      }
-    } catch (cleanupErr) {
-      console.log('⚠️ Could not clean up database:', cleanupErr.message);
-    }
+    // Keep all artists in the user's list - no cleanup needed
+    console.log('📝 Keeping all artists in the user\'s underground list...');
 
     const analyzedArtists = [];
 
