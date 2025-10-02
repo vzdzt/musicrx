@@ -163,44 +163,17 @@ async function loadUndergroundArtists() {
             // Show top 6 underground artists
             const topArtists = undergroundArtists.slice(0, 6);
 
-            // Process each artist to get fresh Spotify data
-            const processedArtists = await Promise.all(topArtists.map(async (artist) => {
-                try {
-                    // Fetch fresh artist data from Spotify API
-                    const spotifyResponse = await fetch(`${API_BASE}/api/spotify/artist/${artist.artistId}`);
-                    if (spotifyResponse.ok) {
-                        const spotifyData = await spotifyResponse.json();
-                        return {
-                            ...artist,
-                            name: spotifyData.name,
-                            imageUrl: spotifyData.images && spotifyData.images.length > 0 ? spotifyData.images[0].url : null,
-                            spotifyUrl: `https://open.spotify.com/artist/${artist.artistId}`, // Use direct URL construction
-                            monthlyListeners: artist.monthlyListeners
-                        };
-                    }
-                } catch (err) {
-                    console.warn(`Could not fetch Spotify data for ${artist.name}:`, err);
-                }
-
-                // Fallback to database data if Spotify API fails
-                return {
-                    ...artist,
-                    imageUrl: artist.imageUrl,
-                    spotifyUrl: `https://open.spotify.com/artist/${artist.artistId}` // Use direct URL construction
-                };
-            }));
-
-            processedArtists.forEach((artist) => {
+            topArtists.forEach((artist) => {
                 const name = artist.name.length > 15 ? artist.name.substring(0, 12) + '...' : artist.name;
                 const monthlyListeners = artist.monthlyListeners ? artist.monthlyListeners.toLocaleString() : 'N/A';
-                const imageUrl = artist.imageUrl || `data:image/svg+xml;base64,${btoa(`<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#333"/><text x="100" y="110" font-family="Arial" font-size="16" fill="#666" text-anchor="middle">${name}</text></svg>`)}`;
+                const imageUrl = artist.imageUrl || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==`;
 
-                html += `<a href="${artist.spotifyUrl}" target="_blank" rel="noopener noreferrer" class="scroll-item" style="text-decoration: none; cursor: pointer;">
+                html += `<a href="https://open.spotify.com/artist/${artist.artistId}" target="_blank" rel="noopener noreferrer" class="scroll-item" style="text-decoration: none; cursor: pointer;">
                     <div class="news-title-card">
                         <h2>${name}</h2>
                     </div>
                     <div class="news-content-card">
-                        <img src="${imageUrl}" alt="${artist.name}" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px;" onerror="this.src='data:image/svg+xml;base64,' + btoa('<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"200\" height=\"200\" fill=\"#333\"/><text x=\"100\" y=\"110\" font-family=\"Arial\" font-size=\"16\" fill=\"#666\" text-anchor=\"middle\">No Image</text></svg>')">
+                        <img src="${imageUrl}" alt="${artist.name}" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='">
                         <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${monthlyListeners} monthly listeners</p>
                     </div>
                 </a>`;
