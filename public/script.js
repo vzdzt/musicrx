@@ -1,3 +1,6 @@
+// API base URL - Replace with your Digital Ocean VPS URL (e.g., https://yourdomain.com or http://your-ip:3001)
+const API_BASE = 'http://104.236.127.44:3001';
+
 // Footer visibility control
 window.addEventListener('scroll', () => {
   const footer = document.querySelector('footer');
@@ -41,7 +44,7 @@ function scrollSection(containerId, distance) {
 // Load new releases for the index page
 async function loadNewReleases() {
     try {
-        const response = await fetch('/api/new-releases?timeRange=month');
+        const response = await fetch(API_BASE + '/api/new-releases?timeRange=month');
         if (!response.ok) {
             throw new Error(`Failed to load new releases: ${response.status}`);
         }
@@ -59,7 +62,7 @@ async function loadNewReleases() {
                 // If album is rated, fetch the full data to get the score
                 if (album.isRated) {
                     try {
-                        const albumResponse = await fetch(`/api/album/${album.id}`);
+                        const albumResponse = await fetch(`${API_BASE}/api/album/${album.id}`);
                         if (albumResponse.ok) {
                             const fullAlbumData = await albumResponse.json();
                             albumData.score = fullAlbumData.score;
@@ -141,7 +144,7 @@ async function rateAlbumFromNewRelease(albumId) {
 // Load underground artists for the index page
 async function loadUndergroundArtists() {
     try {
-        const response = await fetch('/api/underground-rankings');
+        const response = await fetch(API_BASE + '/api/underground-rankings');
         if (!response.ok) {
             throw new Error(`Failed to load underground artists: ${response.status}`);
         }
@@ -164,7 +167,7 @@ async function loadUndergroundArtists() {
             const processedArtists = await Promise.all(topArtists.map(async (artist) => {
                 try {
                     // Fetch fresh artist data from Spotify API
-                    const spotifyResponse = await fetch(`/api/spotify/artist/${artist.artistId}`);
+                    const spotifyResponse = await fetch(`${API_BASE}/api/spotify/artist/${artist.artistId}`);
                     if (spotifyResponse.ok) {
                         const spotifyData = await spotifyResponse.json();
                         return {
@@ -227,7 +230,7 @@ async function loadUndergroundArtists() {
 // Load latest news for the index page
 async function loadLatestNews() {
     try {
-        const response = await fetch('/api/news?limit=10');
+        const response = await fetch(API_BASE + '/api/news?limit=10');
         if (!response.ok) {
             throw new Error(`Failed to load news: ${response.status}`);
         }
@@ -285,7 +288,7 @@ async function loadLatestNews() {
 // Load latest tweets for the index page
 async function loadLatestTweets() {
     try {
-        const response = await fetch('/api/tweets?limit=10');
+        const response = await fetch(API_BASE + '/api/tweets?limit=10');
         if (!response.ok) {
             throw new Error(`Failed to load tweets: ${response.status}`);
         }
@@ -343,7 +346,7 @@ async function loadLatestTweets() {
 // Load AOTY contenders for the index page
 async function loadAOTYContenders() {
     try {
-        const response = await fetch('/api/aoty-contenders');
+        const response = await fetch(API_BASE + '/api/aoty-contenders');
         if (!response.ok) {
             throw new Error(`Failed to load AOTY contenders: ${response.status}`);
         }
