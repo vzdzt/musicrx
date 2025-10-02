@@ -863,7 +863,7 @@
                 item.style.textDecoration = 'none';
                 item.style.color = 'inherit';
 
-                const imageUrl = artist.imageUrl || `data:image/svg+xml;base64,${btoa(`<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#333"/><text x="100" y="110" font-family="Arial" font-size="16" fill="#666" text-anchor="middle">${artist.name.length > 10 ? artist.name.substring(0, 8) + '...' : artist.name}</text></svg>`)}`;
+                const imageUrl = artist.imageUrl || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==`;
 
                 item.innerHTML = `
                     <div class="news-title-card">
@@ -871,7 +871,7 @@
                     </div>
                     <div class="news-content-card">
                         <p class="date">${artist.ugRating || 'Underground'} • ${formatNumber(artist.monthlyListeners)} listeners</p>
-                        <img src="${imageUrl}" alt="${artist.name}" style="width: 100%; aspect-ratio: 1; object-fit: cover;" onerror="this.src='data:image/svg+xml;base64,' + btoa('<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"200\" height=\"200\" fill=\"#333\"/><text x=\"100\" y=\"110\" font-family=\"Arial\" font-size=\"16\" fill=\"#666\" text-anchor=\"middle\">No Image</text></svg>')">
+                        <img src="${imageUrl}" alt="${artist.name}" style="width: 100%; aspect-ratio: 1; object-fit: cover;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='">
                     </div>
                 `;
 
