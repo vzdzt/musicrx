@@ -556,17 +556,30 @@
                 // Determine glow effect based on recent growth or UG rating
                 let glowClass = '';
                 const recentGrowth = artist.recentGrowth || 0;
-                const storedUgRating = artist.ugRating || '';
+                const storedUgRating = (artist.ugRating || '').toLowerCase();
 
-                if (recentGrowth <= 1 || storedUgRating === 'Freshman') {
+                // Check recent growth first (higher priority)
+                if (recentGrowth >= 0 && recentGrowth <= 1) {
                     glowClass = 'glow-blue';
-                } else if ((recentGrowth >= 2 && recentGrowth <= 5) || storedUgRating === 'Known') {
+                } else if (recentGrowth >= 2 && recentGrowth <= 5) {
                     glowClass = 'glow-green';
-                } else if ((recentGrowth >= 6 && recentGrowth <= 10) || storedUgRating === 'On The Rise') {
+                } else if (recentGrowth >= 6 && recentGrowth <= 10) {
                     glowClass = 'glow-yellow';
-                } else if ((recentGrowth >= 11 && recentGrowth <= 20) || storedUgRating === 'Breakout') {
+                } else if (recentGrowth >= 11 && recentGrowth <= 20) {
                     glowClass = 'glow-orange';
-                } else if (recentGrowth > 21 || storedUgRating === 'Viral') {
+                } else if (recentGrowth > 21) {
+                    glowClass = 'glow-red';
+                }
+                // If no growth-based glow, check UG rating
+                else if (storedUgRating === 'freshman') {
+                    glowClass = 'glow-blue';
+                } else if (storedUgRating === 'known') {
+                    glowClass = 'glow-green';
+                } else if (storedUgRating === 'on the rise') {
+                    glowClass = 'glow-yellow';
+                } else if (storedUgRating === 'breakout') {
+                    glowClass = 'glow-orange';
+                } else if (storedUgRating === 'viral') {
                     glowClass = 'glow-red';
                 }
 
