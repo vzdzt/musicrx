@@ -4671,16 +4671,9 @@ const httpsOptions = {
   cert: fs.readFileSync('/etc/letsencrypt/live/musicrx.app/fullchain.pem')
 };
 
-// Start HTTPS server
-const httpsServer = https.createServer(httpsOptions, app);
-httpsServer.listen(443, () => {
-  console.log('🔒 HTTPS server running on port 443');
-  console.log('🔒 SSL Certificate: musicrx.app (Let\'s Encrypt)');
-  console.log('Health check: https://musicrx.app/api/health');
-});
-
-// Also start HTTP server for redirects (optional)
+// Start HTTP server only (nginx handles SSL)
 app.listen(PORT, () => {
-  console.log(`🔄 HTTP server running on port ${PORT} (redirects to HTTPS)`);
+  console.log(`🚀 HTTP server running on port ${PORT}`);
   console.log(`Health check: http://localhost:${PORT}/api/health`);
+  console.log(`API ready: http://localhost:${PORT}/api/underground-rankings`);
 });
