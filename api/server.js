@@ -1787,7 +1787,7 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
       spotifyPopularity: megaMetrics.spotifyPopularity,
       monthlyListeners: Math.round(monthlyListeners),
       followers: megaMetrics.spotifyFollowers,
-      imageUrl: artist.images && artist.images[0] ? artist.images[0].url : `https://via.placeholder.com/300x300/333/666?text=${encodeURIComponent(artist.name)}`,
+      imageUrl: artist.images && artist.images[0] ? artist.images[0].url : `https://dummyimage.com/300x300/333/666&text=${encodeURIComponent(artist.name)}`,
       score: Math.round(finalScore * 10) / 10, // Round to 1 decimal
       strengths,
       weaknesses,

@@ -499,13 +499,13 @@
                 const card = document.createElement('div');
                 card.className = 'ranking-card';
 
-                const imageUrl = artist.imageUrl || 'https://via.placeholder.com/120x120/333/666?text=No+Image';
+                const imageUrl = artist.imageUrl || `data:image/svg+xml;base64,${btoa(`<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="120" fill="#333"/><text x="60" y="70" font-family="Arial" font-size="12" fill="#666" text-anchor="middle">${artist.name.length > 10 ? artist.name.substring(0, 8) + '...' : artist.name}</text></svg>`)}`;
                 const ugRating = getUGRating(artist.monthlyListeners);
                 const ugClass = getUGRatingClass(ugRating);
 
                 card.innerHTML = `
                     <div class="ranking-number">${artist.ranking || (index + 1)}</div>
-                    <img src="${imageUrl}" alt="${artist.name}" class="artist-image" onerror="this.src='https://via.placeholder.com/120x120/333/666?text=No+Image'">
+                    <img src="${imageUrl}" alt="${artist.name}" class="artist-image" onerror="this.src='data:image/svg+xml;base64,' + btoa('<svg width=\"120\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"120\" height=\"120\" fill=\"#333\"/><text x=\"60\" y=\"70\" font-family=\"Arial\" font-size=\"12\" fill=\"#666\" text-anchor=\"middle\">No Image</text></svg>')">
                     <h3 class="artist-name">${artist.name}</h3>
                     <div class="artist-genres">${artist.genres.slice(0, 3).join(', ') || 'Various'}</div>
 

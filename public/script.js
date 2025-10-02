@@ -193,14 +193,14 @@ async function loadUndergroundArtists() {
             processedArtists.forEach((artist) => {
                 const name = artist.name.length > 15 ? artist.name.substring(0, 12) + '...' : artist.name;
                 const monthlyListeners = artist.monthlyListeners ? artist.monthlyListeners.toLocaleString() : 'N/A';
-                const imageUrl = artist.imageUrl || 'https://via.placeholder.com/200x200/333/666?text=No+Image';
+                const imageUrl = artist.imageUrl || `data:image/svg+xml;base64,${btoa(`<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#333"/><text x="100" y="110" font-family="Arial" font-size="16" fill="#666" text-anchor="middle">${name}</text></svg>`)}`;
 
                 html += `<a href="${artist.spotifyUrl}" target="_blank" rel="noopener noreferrer" class="scroll-item" style="text-decoration: none; cursor: pointer;">
                     <div class="news-title-card">
                         <h2>${name}</h2>
                     </div>
                     <div class="news-content-card">
-                        <img src="${imageUrl}" alt="${artist.name}" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px;" onerror="this.src='https://via.placeholder.com/200x200/333/666?text=No+Image'">
+                        <img src="${imageUrl}" alt="${artist.name}" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px;" onerror="this.src='data:image/svg+xml;base64,' + btoa('<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"200\" height=\"200\" fill=\"#333\"/><text x=\"100\" y=\"110\" font-family=\"Arial\" font-size=\"16\" fill=\"#666\" text-anchor=\"middle\">No Image</text></svg>')">
                         <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${monthlyListeners} monthly listeners</p>
                     </div>
                 </a>`;
@@ -258,7 +258,7 @@ async function loadLatestNews() {
                     </div>
                     <div class="news-content-card">
                         <p class="date">${source}</p>
-                        ${article.imageUrl ? `<img src="${article.imageUrl}" alt="${article.title}" onerror="this.src='https://via.placeholder.com/300x200/333/666?text=News'">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-newspaper" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
+                        ${article.imageUrl ? `<img src="${article.imageUrl}" alt="${article.title}" onerror="this.src='data:image/svg+xml;base64,' + btoa('<svg width=\"300\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"300\" height=\"200\" fill=\"#333\"/><text x=\"150\" y=\"110\" font-family=\"Arial\" font-size=\"16\" fill=\"#666\" text-anchor=\"middle\">News</text></svg>')">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-newspaper" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
                         <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${publishedDate}</p>
                     </div>
                 </a>`;
