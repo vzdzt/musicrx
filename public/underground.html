@@ -503,7 +503,7 @@
 
                 card.innerHTML = `
                     <div class="ranking-number">${artist.ranking || (index + 1)}</div>
-                    <img src="${imageUrl}" alt="${artist.name}" class="artist-image" onerror="this.src='data:image/svg+xml;base64,' + btoa('<svg width=\"120\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"120\" height=\"120\" fill=\"#333\"/><text x=\"60\" y=\"70\" font-family=\"Arial\" font-size=\"12\" fill=\"#666\" text-anchor=\"middle\">No Image</text></svg>')">
+                    <img src="${imageUrl}" alt="${artist.name}" class="artist-image" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjYwIiB5PSI3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ObyBJbWFnZTwvdGV4dD48L3N2Zz4='">
                     <h3 class="artist-name">${artist.name}</h3>
                     <div class="artist-genres">${artist.genres.slice(0, 3).join(', ') || 'Various'}</div>
 
