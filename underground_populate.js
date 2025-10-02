@@ -1,4 +1,4 @@
-nimport mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Sentiment from 'sentiment';
 import { google } from 'googleapis';
@@ -910,7 +910,7 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
       spotifyPopularity: megaMetrics.spotifyPopularity,
       monthlyListeners: Math.round(monthlyListeners),
       followers: megaMetrics.spotifyFollowers,
-      imageUrl: artist.images && artist.images[0] ? artist.images[0].url : `https://via.placeholder.com/300x300/333/666?text=${encodeURIComponent(artist.name)}`,
+      imageUrl: artist.images && artist.images[0] ? artist.images[0].url : `https://dummyimage.com/300x300/333/666&text=${encodeURIComponent(artist.name)}`,
       score: Math.round(finalScore * 10) / 10, // Round to 1 decimal
       strengths,
       weaknesses,
@@ -1071,7 +1071,7 @@ function generateMockUndergroundData(artistName) {
     spotifyPopularity: basePopularity,
     monthlyListeners: monthlyListeners,
     followers: followers,
-    imageUrl: `https://via.placeholder.com/300x300/333/666?text=${encodeURIComponent(artistName)}`,
+    imageUrl: `https://dummyimage.com/300x300/333/666&text=${encodeURIComponent(artistName)}`,
     score: Math.round(score * 10) / 10, // Round to 1 decimal
     strengths,
     weaknesses,
