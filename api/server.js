@@ -4665,13 +4665,6 @@ app.use((error, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-// HTTPS server configuration - Using Let's Encrypt certificates
-const httpsOptions = {
-  key: fs.readFileSync('/etc/letsencrypt/live/musicrx.app/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/musicrx.app/fullchain.pem')
-};
-
-// Start HTTP server only (nginx handles SSL)
 app.listen(PORT, () => {
   console.log(`🚀 HTTP server running on port ${PORT}`);
   console.log(`Health check: http://localhost:${PORT}/api/health`);
