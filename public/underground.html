@@ -553,24 +553,7 @@
                 const card = document.createElement('div');
                 card.className = 'ranking-card';
 
-                // Determine glow effect based on UG rating only
-                let glowClass = '';
-                const storedUgRating = (artist.ugRating || '').toLowerCase();
-
-                // Check UG rating for glowing effects
-                if (storedUgRating === 'freshman') {
-                    glowClass = 'glow-blue';
-                } else if (storedUgRating === 'known') {
-                    glowClass = 'glow-green';
-                } else if (storedUgRating === 'on the rise') {
-                    glowClass = 'glow-yellow';
-                } else if (storedUgRating === 'breakout') {
-                    glowClass = 'glow-orange';
-                } else if (storedUgRating === 'viral') {
-                    glowClass = 'glow-red';
-                }
-
-                card.className = `ranking-card ${glowClass}`;
+                card.className = 'ranking-card';
 
                 const imageUrl = artist.imageUrl || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjYwIiB5PSI3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ObyBJbWFnZTwvdGV4dD48L3N2Zz4=`;
                 const calculatedUgRating = getUGRating(artist.monthlyListeners);
@@ -596,7 +579,7 @@
                         </div>
                         <div class="stat-item">
                             <div class="stat-label">Popularity</div>
-                            <div class="stat-value">${artist.popularity || 'N/A'}/100</div>
+                            <div class="stat-value">${artist.popularity || artist.spotifyPopularity || 'N/A'}/100</div>
                         </div>
                     </div>
                 `;
