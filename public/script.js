@@ -1,4 +1,4 @@
-s// Footer visibility control
+// Footer visibility control
 window.addEventListener('scroll', () => {
   const footer = document.querySelector('footer');
   if (footer) {

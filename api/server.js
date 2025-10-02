@@ -1744,13 +1744,13 @@ app.get('/api/underground-rankings', async (req, res) => {
     // Get all artists first, then apply underground filter
     const allArtists = await UndergroundArtist.find();
 
-    // Apply underground filter - more lenient for rap/hip-hop artists
+    // Apply underground filter - inclusive for established underground artists
     const undergroundArtists = allArtists.filter(artist => {
-      // More inclusive criteria for underground artists
-      // Include artists who are still considered "underground" in their scene
+      // Include artists considered "underground" in their genre/scene
+      // Allow higher popularity/followers for rap/hip-hop artists
       const isUnderground =
-        (artist.spotifyPopularity < 70) || // Allow higher popularity for established underground artists
-        (artist.followers < 2000000) ||   // Allow more followers for rap artists
+        (artist.spotifyPopularity < 85) || // Allow established artists
+        (artist.followers < 5000000) ||   // Allow major underground artists
         (!artist.spotifyPopularity && !artist.followers); // Not on Spotify at all
 
       return isUnderground;
