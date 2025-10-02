@@ -1,5 +1,5 @@
 // API base URL - Replace with your Digital Ocean VPS URL (e.g., https://yourdomain.com or http://your-ip:3001)
-const API_BASE = 'http://104.236.127.44:3001';
+const API_BASE = 'https://musicrx.app';
 
 // Footer visibility control
 window.addEventListener('scroll', () => {
