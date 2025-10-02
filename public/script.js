@@ -169,6 +169,7 @@ async function loadUndergroundArtists() {
                 const imageUrl = artist.imageUrl || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==`;
 
                 html += `<a href="https://open.spotify.com/artist/${artist.artistId}" target="_blank" rel="noopener noreferrer" class="scroll-item" style="text-decoration: none; cursor: pointer;">
+                    <div class="ranking-number">${artist.ranking || (index + 1)}</div>
                     <div class="news-title-card">
                         <h2>${name}</h2>
                     </div>
