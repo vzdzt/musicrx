@@ -106,7 +106,7 @@ const undergroundArtistSchema = new mongoose.Schema({
   strengths: [String],
   weaknesses: [String],
   ugRating: String, // UG (Underground) Rating replaces social sentiment
-  recentGrowth: Number,
+  popularity: Number,
   lastUpdated: Date
 });
 const UndergroundArtist = mongoose.model('UndergroundArtist', undergroundArtistSchema);
@@ -261,8 +261,8 @@ async function populateUndergroundRankings() {
             socialBuzz: 0,
             crossPlatformPresence: 0,
 
-            // Growth Trajectory (10% total)
-            recentGrowth: 0,
+            // Popularity (10% total)
+            popularity: 0,
             emergingIndicators: 0
           };
 
@@ -516,9 +516,9 @@ async function populateUndergroundRankings() {
             console.log(`Could not get MusicBrainz data for ${artistName}`);
           }
 
-          // Calculate emerging indicators and growth
+          // Calculate emerging indicators and popularity
           megaMetrics.emergingIndicators = Math.min(1, (100 - artist.popularity) / 100); // Lower popularity = more emerging
-          megaMetrics.recentGrowth = Math.random() * 0.5 + 0.25; // Mock growth data (would need historical API)
+          megaMetrics.popularity = artist.popularity; // Use actual Spotify popularity score (0-100)
 
           // Calculate UG (Underground) Rating based on underground status
           megaMetrics.ugRating = calculateUGRating(artist, megaMetrics);
@@ -621,9 +621,9 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
       (megaMetrics.socialBuzz || 0.5) * 0.15                  // Social media buzz
     );
 
-    // 5. GROWTH TRAJECTORY (15% weight) - Increased from 10%
-    const growthScore = (
-      megaMetrics.recentGrowth * 0.70 +                       // Recent momentum (increased)
+    // 5. POPULARITY (15% weight) - Spotify popularity score (0-100)
+    const popularityScore = (
+      (megaMetrics.popularity / 100) * 0.70 +                 // Spotify popularity score (normalized)
       megaMetrics.emergingIndicators * 0.30                   // Emerging artist potential
     );
 
@@ -633,7 +633,7 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
       criticalScore * 0.20 +     // 20% - Critical Reception
       metadataScore * 0.10 +     // 10% - Metadata Quality (reduced)
       culturalScore * 0.30 +     // 30% - Cultural Impact (increased for underground)
-      growthScore * 0.15         // 15% - Growth Trajectory (increased for emerging artists)
+      popularityScore * 0.15     // 15% - Popularity (Spotify popularity score)
     ) * 100;
 
     console.log(`   📊 MEGA SCORE: ${finalScore.toFixed(1)} (Streaming: ${(streamingScore * 100).toFixed(1)}, Critical: ${(criticalScore * 100).toFixed(1)}, Meta: ${(metadataScore * 100).toFixed(1)}, Apple: ${megaMetrics.appleMusicData?.toLocaleString() || 0}, SoundCloud: ${megaMetrics.soundcloudData?.toLocaleString() || 0})`);
@@ -902,7 +902,7 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
       strengths,
       weaknesses,
       ugRating: megaMetrics.ugRating, // UG (Underground) Rating replaces social sentiment
-      recentGrowth: Math.round(megaMetrics.recentGrowth * 100) / 100,
+      popularity: megaMetrics.popularity, // Spotify popularity score (0-100)
       lastUpdated: new Date(),
 
       // MEGA POWER additional metrics for transparency

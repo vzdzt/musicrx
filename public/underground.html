@@ -430,7 +430,7 @@
                     <option value="monthlyListeners">Sort by Monthly Listeners</option>
                     <option value="followers">Sort by Followers</option>
                     <option value="name">Sort by Name</option>
-                    <option value="recentGrowth">Sort by Recent Growth</option>
+                    <option value="popularity">Sort by Popularity</option>
                 </select>
             </div>
         </div>
@@ -595,8 +595,8 @@
                             <div class="stat-value ${ugClass}">${calculatedUgRating}</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-label">Recent Growth</div>
-                            <div class="stat-value">${artist.recentGrowth ? (artist.recentGrowth > 0 ? '+' : '') + artist.recentGrowth + '%' : 'N/A'}</div>
+                            <div class="stat-label">Popularity</div>
+                            <div class="stat-value">${artist.popularity || 'N/A'}/100</div>
                         </div>
                     </div>
                 `;
@@ -649,8 +649,8 @@
                         return (b.followers || 0) - (a.followers || 0);
                     case 'name':
                         return a.name.localeCompare(b.name);
-                    case 'recentGrowth':
-                        return (b.recentGrowth || 0) - (a.recentGrowth || 0);
+                    case 'popularity':
+                        return (b.popularity || 0) - (a.popularity || 0);
                     default:
                         return (b.monthlyListeners || 0) - (a.monthlyListeners || 0);
                 }
