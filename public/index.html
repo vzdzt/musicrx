@@ -828,14 +828,14 @@
         // Load top underground artists for homepage
         async function loadHomepageUndergroundArtists() {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/underground-rankings?limit=6`);
+                const response = await fetch(`${BACKEND_URL}/api/underground-rankings?limit=10`);
 
                 if (!response.ok) {
                     throw new Error(`Failed to load underground artists: ${response.status}`);
                 }
 
                 const artists = await response.json();
-                displayHomepageUndergroundArtists(artists.slice(0, 6)); // Show top 6
+                displayHomepageUndergroundArtists(artists.slice(0, 10)); // Show top 10
 
             } catch (error) {
                 console.error('Homepage underground artists error:', error);

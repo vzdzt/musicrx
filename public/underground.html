@@ -504,7 +504,7 @@
                 const ugClass = getUGRatingClass(ugRating);
 
                 card.innerHTML = `
-                    <div class="ranking-number">${index + 1}</div>
+                    <div class="ranking-number">${artist.ranking || (index + 1)}</div>
                     <img src="${imageUrl}" alt="${artist.name}" class="artist-image" onerror="this.src='https://via.placeholder.com/120x120/333/666?text=No+Image'">
                     <h3 class="artist-name">${artist.name}</h3>
                     <div class="artist-genres">${artist.genres.slice(0, 3).join(', ') || 'Various'}</div>

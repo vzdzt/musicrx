@@ -4757,8 +4757,22 @@ app.use((error, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-// Start HTTP server
+// HTTPS server configuration - Using Let's Encrypt certificates
+const httpsOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/live/musicrx.app/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/musicrx.app/fullchain.pem')
+};
+
+// Start HTTPS server
+const httpsServer = https.createServer(httpsOptions, app);
+httpsServer.listen(443, () => {
+  console.log('🔒 HTTPS server running on port 443');
+  console.log('🔒 SSL Certificate: musicrx.app (Let\'s Encrypt)');
+  console.log('Health check: https://musicrx.app/api/health');
+});
+
+// Also start HTTP server for redirects (optional)
 app.listen(PORT, () => {
-  console.log(`🚀 MusicRx backend server running on port ${PORT}`);
+  console.log(`🔄 HTTP server running on port ${PORT} (redirects to HTTPS)`);
   console.log(`Health check: http://localhost:${PORT}/api/health`);
 });
