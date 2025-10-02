@@ -2430,12 +2430,12 @@ async function updateUndergroundRankings() {
   }
 }
 
-// Underground rankings endpoint - with fresh API data and underground filter
+// Underground rankings endpoint - returns database data directly (preserves manually set data)
 app.get('/api/underground-rankings', async (req, res) => {
   try {
-    console.log('🔍 Fetching underground rankings with fresh API data...');
+    console.log('🔍 Fetching underground rankings from database...');
 
-    // Get all artists first, then apply underground filter
+    // Get all artists from database (no API updates to preserve manual data)
     const allArtists = await UndergroundArtist.find();
 
     // Apply underground filter - inclusive for established underground artists
@@ -2450,22 +2450,11 @@ app.get('/api/underground-rankings', async (req, res) => {
       return isUnderground;
     });
 
-    // Sort by monthly listeners and limit to top 50 underground artists
+    // Sort by monthly listeners (using stored database values)
     undergroundArtists.sort((a, b) => (b.monthlyListeners || 0) - (a.monthlyListeners || 0));
-    const topUnderground = undergroundArtists.slice(0, 50);
 
-    // For now, just return the database data without updating with fresh API data
-    // This preserves manually set monthly listeners
-    const updatedArtists = undergroundArtists.map(artist => {
-      console.log(`📊 Returning ${artist.name} from database (preserving manual data)`);
-      return artist;
-    });
-
-    // Sort by updated monthly listeners
-    updatedArtists.sort((a, b) => (b.monthlyListeners || 0) - (a.monthlyListeners || 0));
-
-    console.log(`🎯 Returned ${updatedArtists.length} underground artists with fresh API data`);
-    res.json(updatedArtists);
+    console.log(`🎯 Returned ${undergroundArtists.length} underground artists from database`);
+    res.json(undergroundArtists);
   } catch (err) {
     console.error('Underground rankings error:', err);
     res.status(500).json({ error: 'Failed to fetch underground rankings' });
