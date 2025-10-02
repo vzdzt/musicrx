@@ -527,13 +527,6 @@
                             <div class="stat-value">${artist.recentGrowth ? (artist.recentGrowth > 0 ? '+' : '') + artist.recentGrowth + '%' : 'N/A'}</div>
                         </div>
                     </div>
-
-                    <div class="analysis-section">
-                        <div class="analysis-title">Strengths</div>
-                        <ul class="analysis-list">
-                            ${artist.strengths ? artist.strengths.slice(0, 2).map(strength => `<li>${strength}</li>`).join('') : '<li>Emerging talent</li>'}
-                        </ul>
-                    </div>
                 `;
 
                 grid.appendChild(card);

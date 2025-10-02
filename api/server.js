@@ -13,6 +13,7 @@ import axios from 'axios';
 import Sentiment from 'sentiment';
 import * as cheerio from 'cheerio';
 import { google } from 'googleapis';
+import https from 'https';
 // import { TwitterApi } from 'twitter-api-v2'; // Temporarily disabled
 import Discogs from 'disconnect';
 
@@ -1819,17 +1820,91 @@ async function populateUndergroundRankings() {
   try {
     console.log('🚀 Starting underground rankings population...');
 
-    // Step 1: Get initial artist list from Spotify search
+    // Step 1: Get initial artist list with manually verified monthly listeners
     const initialArtists = [
-      'Bladee', 'Yung Lean', 'SOPHIE', 'Shygirl', 'Big Thief',
-      'Squirrel Flower', 'Hand Habits', 'Illuminati Hotties', 'Speedy Ortiz',
-      'Mannequin Pussy', 'Diet Cig', 'Bully', 'Hop Along', 'Adult Mom',
-      'Charly Bliss', 'Remember Sports', 'Feng Suave', 'Talinwya',
-      'Yves Tumor', 'SOPHIE', 'Arca', 'Holly Herndon', 'Jlin',
-      'Lee Gamble', 'Holly Herndon', 'Aisha Devi', 'Ziúr', 'Yves Tumor',
-      'Actress', 'Rian Treanor', 'Lee Gamble', 'KMRU', 'Ziúr',
-      'Actress', 'Rian Treanor', 'KMRU', 'Aisha Devi', 'Jlin',
-      'Ken Carson', '2hollis', 'Plaqueboymax', 'Yeat'
+      { name: 'Bladee', monthlyListeners: 1383197 },
+      { name: 'Yung Lean', monthlyListeners: 1000000 }, // Estimate
+      { name: 'SOPHIE', monthlyListeners: 500000 }, // Estimate
+      { name: 'Shygirl', monthlyListeners: 300000 }, // Estimate
+      { name: 'Big Thief', monthlyListeners: 400000 }, // Estimate
+      { name: 'Squirrel Flower', monthlyListeners: 100000 }, // Estimate
+      { name: 'Hand Habits', monthlyListeners: 80000 }, // Estimate
+      { name: 'Illuminati Hotties', monthlyListeners: 120000 }, // Estimate
+      { name: 'Speedy Ortiz', monthlyListeners: 60000 }, // Estimate
+      { name: 'Mannequin Pussy', monthlyListeners: 150000 }, // Estimate
+      { name: 'Diet Cig', monthlyListeners: 70000 }, // Estimate
+      { name: 'Bully', monthlyListeners: 90000 }, // Estimate
+      { name: 'Hop Along', monthlyListeners: 50000 }, // Estimate
+      { name: 'Adult Mom', monthlyListeners: 40000 }, // Estimate
+      { name: 'Charly Bliss', monthlyListeners: 30000 }, // Estimate
+      { name: 'Remember Sports', monthlyListeners: 25000 }, // Estimate
+      { name: 'Feng Suave', monthlyListeners: 892392 },
+      { name: 'Talinwya', monthlyListeners: 50000 }, // Estimate
+      { name: 'Yves Tumor', monthlyListeners: 600000 }, // Estimate
+      { name: 'Arca', monthlyListeners: 800000 }, // Estimate
+      { name: 'Holly Herndon', monthlyListeners: 100000 }, // Estimate
+      { name: 'Jlin', monthlyListeners: 150000 }, // Estimate
+      { name: 'Lee Gamble', monthlyListeners: 30000 }, // Estimate
+      { name: 'Aisha Devi', monthlyListeners: 25000 }, // Estimate
+      { name: 'Ziúr', monthlyListeners: 20000 }, // Estimate
+      { name: 'Actress', monthlyListeners: 100000 }, // Estimate
+      { name: 'Rian Treanor', monthlyListeners: 40000 }, // Estimate
+      { name: 'KMRU', monthlyListeners: 173337 },
+      { name: 'Ken Carson', monthlyListeners: 7558777 },
+      { name: '2hollis', monthlyListeners: 4322977 },
+      { name: 'Plaqueboymax', monthlyListeners: 8521541 },
+      { name: 'Yeat', monthlyListeners: 16869308 },
+      { name: 'Destroy Lonely', monthlyListeners: 4300229 },
+      { name: '1300Saint', monthlyListeners: 298011 },
+      { name: 'Che', monthlyListeners: 1013971 },
+      { name: 'Summrs', monthlyListeners: 1167157 },
+      { name: 'Veeze', monthlyListeners: 2428678 },
+      { name: 'Lucki', monthlyListeners: 6515363 },
+      { name: 'Nine Viscous', monthlyListeners: 471116 },
+      { name: 'Nettspend', monthlyListeners: 1078222 },
+      { name: 'Molly Santana', monthlyListeners: 482939 },
+      { name: 'Sk8Star', monthlyListeners: 79444 },
+      { name: 'Sixbill', monthlyListeners: 154763 },
+      { name: 'Protect', monthlyListeners: 434625 },
+      { name: 'Tana', monthlyListeners: 1004224 },
+      { name: 'Jim Legxacy', monthlyListeners: 534791 },
+      { name: 'Raq Baby', monthlyListeners: 911293 },
+      { name: 'Eem Triplin', monthlyListeners: 1298636 },
+      { name: '1900Rugrat', monthlyListeners: 1769628 },
+      { name: 'Prettifun', monthlyListeners: 270549 },
+      { name: 'Untiljapan', monthlyListeners: 245256 },
+      { name: 'Brennan Jones', monthlyListeners: 111110 },
+      { name: 'Ian', monthlyListeners: 6269946 },
+      { name: 'Skaiwater', monthlyListeners: 509174 },
+      { name: 'Hardrock', monthlyListeners: 306968 },
+      { name: 'Osamason', monthlyListeners: 1349300 },
+      { name: 'Glokk40Spazz', monthlyListeners: 1156619 },
+      { name: 'PradaBagShawty', monthlyListeners: 386591 },
+      { name: 'Otoboke Beaver', monthlyListeners: 62546 },
+      { name: 'Quadeca', monthlyListeners: 583533 },
+      { name: 'Jorja Smith', monthlyListeners: 886504 },
+      { name: 'K3', monthlyListeners: 62519 },
+      { name: 'BenjiBlueBills', monthlyListeners: 671752 },
+      { name: 'ApolloRed1', monthlyListeners: 115976 },
+      { name: 'Bear1Boss', monthlyListeners: 30503 },
+      { name: 'Ohsxnta', monthlyListeners: 105323 },
+      { name: 'Rollin Thrax', monthlyListeners: 185252 },
+      { name: 'Kankan', monthlyListeners: 755160 },
+      { name: 'Yung Fazo', monthlyListeners: 448015 },
+      { name: 'Tezzus', monthlyListeners: 448015 },
+      { name: 'Skrilla', monthlyListeners: 2891450 },
+      { name: 'NoSaint', monthlyListeners: 5248 },
+      { name: 'Zukenee', monthlyListeners: 97691 },
+      { name: 'SouthSideSilhouette', monthlyListeners: 87367 },
+      { name: '1oneam', monthlyListeners: 292436 },
+      { name: 'ThirteenDegrees', monthlyListeners: 105331 },
+      { name: 'Yung Kayo', monthlyListeners: 281507 },
+      { name: 'Lade', monthlyListeners: 70412 },
+      { name: 'Homixide Gang', monthlyListeners: 1261945 },
+      { name: 'BabyStayDown', monthlyListeners: 35885 },
+      { name: 'Diorvsyou', monthlyListeners: 79327 },
+      { name: 'Bandana$aint', monthlyListeners: 27689 },
+      { name: 'Unitus', monthlyListeners: 6533 }
     ];
 
     const processedArtists = new Set();
@@ -1838,12 +1913,15 @@ async function populateUndergroundRankings() {
     console.log(`🎯 Processing ${initialArtists.length} initial artists...`);
 
     // Step 2: Process each artist with MEGA POWER analysis
-    for (const artistName of initialArtists) {
+    for (const artistData of initialArtists) {
       try {
+        const artistName = artistData.name || artistData;
+        const manualMonthlyListeners = artistData.monthlyListeners;
+
         if (processedArtists.has(artistName)) continue;
         processedArtists.add(artistName);
 
-        console.log(`🔍 Processing ${artistName}...`);
+        console.log(`🔍 Processing ${artistName} (manual listeners: ${manualMonthlyListeners?.toLocaleString() || 'N/A'})...`);
 
         // Get Spotify data first
         const spotifySearch = await spotifyApi.searchArtists(artistName, { limit: 1 });
@@ -1925,6 +2003,12 @@ async function populateUndergroundRankings() {
         const analysis = await analyzeUndergroundArtistSuper(spotifyArtist, megaMetrics);
 
         if (analysis) {
+          // Override with manually set monthly listeners if provided
+          if (manualMonthlyListeners) {
+            analysis.monthlyListeners = manualMonthlyListeners;
+            console.log(`📊 Using manual monthly listeners: ${manualMonthlyListeners.toLocaleString()}`);
+          }
+
           undergroundArtists.push(analysis);
           console.log(`✅ Added ${artistName} with score ${analysis.score} and UG Rating: ${analysis.ugRating}`);
         }
@@ -4673,7 +4757,8 @@ app.use((error, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
+// Start HTTP server
 app.listen(PORT, () => {
-  console.log(`MusicRx backend server running on port ${PORT}`);
+  console.log(`🚀 MusicRx backend server running on port ${PORT}`);
   console.log(`Health check: http://localhost:${PORT}/api/health`);
 });
