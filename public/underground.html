@@ -274,6 +274,62 @@
             border-color: var(--primary);
         }
 
+        /* Underground Artist Glowing Effects */
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.6), 0 0 40px rgba(0, 123, 255, 0.4), 0 0 60px rgba(0, 123, 255, 0.2);
+            border-color: rgba(0, 123, 255, 0.8);
+            animation: glow-blue-pulse 2s ease-in-out infinite alternate;
+        }
+
+        .glow-green {
+            box-shadow: 0 0 20px rgba(40, 167, 69, 0.6), 0 0 40px rgba(40, 167, 69, 0.4), 0 0 60px rgba(40, 167, 69, 0.2);
+            border-color: rgba(40, 167, 69, 0.8);
+            animation: glow-green-pulse 2s ease-in-out infinite alternate;
+        }
+
+        .glow-yellow {
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.6), 0 0 40px rgba(255, 193, 7, 0.4), 0 0 60px rgba(255, 193, 7, 0.2);
+            border-color: rgba(255, 193, 7, 0.8);
+            animation: glow-yellow-pulse 2s ease-in-out infinite alternate;
+        }
+
+        .glow-orange {
+            box-shadow: 0 0 20px rgba(255, 87, 34, 0.6), 0 0 40px rgba(255, 87, 34, 0.4), 0 0 60px rgba(255, 87, 34, 0.2);
+            border-color: rgba(255, 87, 34, 0.8);
+            animation: glow-orange-pulse 2s ease-in-out infinite alternate;
+        }
+
+        .glow-red {
+            box-shadow: 0 0 20px rgba(220, 53, 69, 0.6), 0 0 40px rgba(220, 53, 69, 0.4), 0 0 60px rgba(220, 53, 69, 0.2);
+            border-color: rgba(220, 53, 69, 0.8);
+            animation: glow-red-pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-blue-pulse {
+            from { box-shadow: 0 0 20px rgba(0, 123, 255, 0.6), 0 0 40px rgba(0, 123, 255, 0.4), 0 0 60px rgba(0, 123, 255, 0.2); }
+            to { box-shadow: 0 0 30px rgba(0, 123, 255, 0.8), 0 0 50px rgba(0, 123, 255, 0.6), 0 0 80px rgba(0, 123, 255, 0.4); }
+        }
+
+        @keyframes glow-green-pulse {
+            from { box-shadow: 0 0 20px rgba(40, 167, 69, 0.6), 0 0 40px rgba(40, 167, 69, 0.4), 0 0 60px rgba(40, 167, 69, 0.2); }
+            to { box-shadow: 0 0 30px rgba(40, 167, 69, 0.8), 0 0 50px rgba(40, 167, 69, 0.6), 0 0 80px rgba(40, 167, 69, 0.4); }
+        }
+
+        @keyframes glow-yellow-pulse {
+            from { box-shadow: 0 0 20px rgba(255, 193, 7, 0.6), 0 0 40px rgba(255, 193, 7, 0.4), 0 0 60px rgba(255, 193, 7, 0.2); }
+            to { box-shadow: 0 0 30px rgba(255, 193, 7, 0.8), 0 0 50px rgba(255, 193, 7, 0.6), 0 0 80px rgba(255, 193, 7, 0.4); }
+        }
+
+        @keyframes glow-orange-pulse {
+            from { box-shadow: 0 0 20px rgba(255, 87, 34, 0.6), 0 0 40px rgba(255, 87, 34, 0.4), 0 0 60px rgba(255, 87, 34, 0.2); }
+            to { box-shadow: 0 0 30px rgba(255, 87, 34, 0.8), 0 0 50px rgba(255, 87, 34, 0.6), 0 0 80px rgba(255, 87, 34, 0.4); }
+        }
+
+        @keyframes glow-red-pulse {
+            from { box-shadow: 0 0 20px rgba(220, 53, 69, 0.6), 0 0 40px rgba(220, 53, 69, 0.4), 0 0 60px rgba(220, 53, 69, 0.2); }
+            to { box-shadow: 0 0 30px rgba(220, 53, 69, 0.8), 0 0 50px rgba(220, 53, 69, 0.6), 0 0 80px rgba(220, 53, 69, 0.4); }
+        }
+
         @media (max-width: 768px) {
             .rankings-container {
                 padding: 1rem;
@@ -497,9 +553,28 @@
                 const card = document.createElement('div');
                 card.className = 'ranking-card';
 
-                const imageUrl = artist.imageUrl || `data:image/svg+xml;base64,${btoa(`<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="120" fill="#333"/><text x="60" y="70" font-family="Arial" font-size="12" fill="#666" text-anchor="middle">${artist.name.length > 10 ? artist.name.substring(0, 8) + '...' : artist.name}</text></svg>`)}`;
-                const ugRating = getUGRating(artist.monthlyListeners);
-                const ugClass = getUGRatingClass(ugRating);
+                // Determine glow effect based on recent growth or UG rating
+                let glowClass = '';
+                const recentGrowth = artist.recentGrowth || 0;
+                const storedUgRating = artist.ugRating || '';
+
+                if (recentGrowth <= 1 || storedUgRating === 'Freshman') {
+                    glowClass = 'glow-blue';
+                } else if ((recentGrowth >= 2 && recentGrowth <= 5) || storedUgRating === 'Known') {
+                    glowClass = 'glow-green';
+                } else if ((recentGrowth >= 6 && recentGrowth <= 10) || storedUgRating === 'On The Rise') {
+                    glowClass = 'glow-yellow';
+                } else if ((recentGrowth >= 11 && recentGrowth <= 20) || storedUgRating === 'Breakout') {
+                    glowClass = 'glow-orange';
+                } else if (recentGrowth > 21 || storedUgRating === 'Viral') {
+                    glowClass = 'glow-red';
+                }
+
+                card.className = `ranking-card ${glowClass}`;
+
+                const imageUrl = artist.imageUrl || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjYwIiB5PSI3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ObyBJbWFnZTwvdGV4dD48L3N2Zz4=`;
+                const calculatedUgRating = getUGRating(artist.monthlyListeners);
+                const ugClass = getUGRatingClass(calculatedUgRating);
 
                 card.innerHTML = `
                     <div class="ranking-number">${artist.ranking || (index + 1)}</div>
