@@ -25,14 +25,14 @@ function calculateUGRating(artist, megaMetrics) {
   // UG Rating categories based purely on monthly listeners
   if (monthlyListeners >= 10000000) {
     return 'Viral'; // 10-20 million monthly listeners
+  } else if (monthlyListeners >= 5000000) {
+    return 'Breakout'; // 5-9.9 million monthly listeners
   } else if (monthlyListeners >= 1000000) {
-    return 'Next Up'; // 1-9.9 million monthly listeners
-  } else if (monthlyListeners >= 500000) {
-    return 'On The Rise'; // 500k-999k monthly listeners
+    return 'On The Rise'; // 1-4.9 million monthly listeners
   } else if (monthlyListeners >= 100000) {
-    return 'Known'; // 100k-499k monthly listeners
+    return 'Known'; // 100k-999k monthly listeners
   } else {
-    return 'Unknown'; // <100K monthly listeners
+    return 'Freshman'; // <100K monthly listeners
   }
 }
 
