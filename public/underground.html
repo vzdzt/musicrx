@@ -553,21 +553,20 @@
                 const card = document.createElement('div');
                 card.className = 'ranking-card';
 
-                // Determine glow effect based on recent growth or UG rating
+                // Determine glow effect based on UG rating only
                 let glowClass = '';
-                const recentGrowth = artist.recentGrowth || 0;
                 const storedUgRating = (artist.ugRating || '').toLowerCase();
 
-                // Check both recent growth AND UG rating for each tier
-                if ((recentGrowth >= 0 && recentGrowth <= 1) || storedUgRating === 'freshman') {
+                // Check UG rating for glowing effects
+                if (storedUgRating === 'freshman') {
                     glowClass = 'glow-blue';
-                } else if ((recentGrowth >= 2 && recentGrowth <= 5) || storedUgRating === 'known') {
+                } else if (storedUgRating === 'known') {
                     glowClass = 'glow-green';
-                } else if ((recentGrowth >= 6 && recentGrowth <= 10) || storedUgRating === 'on the rise') {
+                } else if (storedUgRating === 'on the rise') {
                     glowClass = 'glow-yellow';
-                } else if ((recentGrowth >= 11 && recentGrowth <= 20) || storedUgRating === 'breakout') {
+                } else if (storedUgRating === 'breakout') {
                     glowClass = 'glow-orange';
-                } else if (recentGrowth > 21 || storedUgRating === 'viral') {
+                } else if (storedUgRating === 'viral') {
                     glowClass = 'glow-red';
                 }
 
