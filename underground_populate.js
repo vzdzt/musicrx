@@ -172,6 +172,23 @@ async function populateUndergroundRankings() {
     // Keep all artists in the user's list - no cleanup needed
     console.log('📝 Keeping all artists in the user\'s underground list...');
 
+    // Remove any duplicate Yeat entries before processing
+    try {
+      const yeatEntries = await UndergroundArtist.find({ name: /yeat/i });
+      if (yeatEntries.length > 1) {
+        console.log(`Found ${yeatEntries.length} Yeat entries, removing duplicates...`);
+        // Sort by monthly listeners descending, keep the highest one
+        yeatEntries.sort((a, b) => b.monthlyListeners - a.monthlyListeners);
+        // Remove all except the first (highest) one
+        for (let i = 1; i < yeatEntries.length; i++) {
+          await UndergroundArtist.deleteOne({ _id: yeatEntries[i]._id });
+          console.log(`Removed duplicate Yeat entry with ${yeatEntries[i].monthlyListeners.toLocaleString()} listeners`);
+        }
+      }
+    } catch (dupErr) {
+      console.log('Could not clean up duplicates:', dupErr.message);
+    }
+
     const analyzedArtists = [];
 
     for (const artistName of undergroundArtists) {
