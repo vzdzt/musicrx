@@ -911,7 +911,7 @@ async function analyzeUndergroundArtistSuper(artist, megaMetrics) {
         criticalScore: Math.round(criticalScore * 1000) / 10,
         metadataScore: Math.round(metadataScore * 1000) / 10,
         culturalScore: Math.round(culturalScore * 1000) / 10,
-        growthScore: Math.round(growthScore * 1000) / 10,
+        popularityScore: Math.round(popularityScore * 1000) / 10,
         appleMusicStreams: megaMetrics.appleMusicData || 0,
         soundcloudEngagement: megaMetrics.soundcloudData || 0,
         totalApisUsed: 9,
