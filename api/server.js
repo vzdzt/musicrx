@@ -687,6 +687,54 @@ app.get('/api/discogs/barcode/:barcode', async (req, res) => {
 });
 */
 
+// RapidAPI Music Fetch endpoint
+app.get('/api/musicfetch/upc', async (req, res) => {
+  try {
+    const { upc, services = 'spotify,deezer,appleMusic', withTracks = 'false', country = 'US' } = req.query;
+
+    if (!upc) {
+      return res.status(400).json({ error: 'UPC parameter is required' });
+    }
+
+    console.log(`🎵 RapidAPI Music Fetch: UPC ${upc}, services: ${services}, country: ${country}`);
+
+    // Call RapidAPI Music Fetch service
+    const rapidApiResponse = await axios.get('https://musicfetch2.p.rapidapi.com/upc', {
+      params: {
+        upc: upc,
+        services: services,
+        withTracks: withTracks,
+        country: country
+      },
+      headers: {
+        'x-rapidapi-host': 'musicfetch2.p.rapidapi.com',
+        'x-rapidapi-key': process.env.RAPIDAPI_KEY || 'fef1064874msh30a3a8ef21ebfa5p16d332jsn06a28bc9fce6'
+      },
+      timeout: 10000
+    });
+
+    const data = rapidApiResponse.data;
+
+    if (data.error) {
+      console.log(`❌ RapidAPI error: ${data.error.message}`);
+      return res.status(data.error.status || 404).json({
+        error: data.error.message,
+        upc: upc
+      });
+    }
+
+    console.log(`✅ RapidAPI success: Found album "${data.album?.title}" by ${data.album?.artist}`);
+    res.json(data);
+
+  } catch (error) {
+    console.error('RapidAPI Music Fetch error:', error.message);
+    res.status(500).json({
+      error: 'Failed to fetch music data',
+      details: error.message
+    });
+  }
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });

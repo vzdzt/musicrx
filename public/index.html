@@ -1102,10 +1102,26 @@
                 showSection('scannerSection');
             }
 
-            async function checkVinylValue(title, artist) {
+            async function checkVinylValue(title, artist, upc = null) {
                 showSection('loadingSection');
 
                 try {
+                    // If UPC is provided, use RapidAPI music fetch first
+                    if (upc) {
+                        console.log('Searching by UPC:', upc);
+                        const rapidApiResponse = await fetch(`${BACKEND_URL}/api/musicfetch/upc?upc=${upc}&services=spotify,deezer,appleMusic,tidal&withTracks=true&country=US`);
+
+                        if (rapidApiResponse.ok) {
+                            const rapidData = await rapidApiResponse.json();
+                            if (rapidData.album) {
+                                displayRapidApiResults(rapidData);
+                                return;
+                            }
+                        }
+                        console.log('RapidAPI lookup failed, falling back to Discogs');
+                    }
+
+                    // Fallback to Discogs search
                     const response = await fetch(`${BACKEND_URL}/api/discogs/search?title=${encodeURIComponent(title)}&artist=${encodeURIComponent(artist)}`);
 
                     if (!response.ok) {
@@ -1129,6 +1145,51 @@
                     console.error('API error:', error);
                     showError('Network error. Please check your connection and try again.');
                 }
+            }
+
+            function displayRapidApiResults(data) {
+                const album = data.album;
+                const services = data.services || {};
+
+                // Update vinyl info
+                document.getElementById('vinylImage').src = album.cover || 'https://dummyimage.com/120x120/333/666&text=No+Image';
+                document.getElementById('vinylImage').onerror = function() {
+                    this.src = 'https://via.placeholder.com/120x120/333/666?text=No+Image';
+                };
+                document.getElementById('vinylTitle').textContent = album.title;
+                document.getElementById('vinylArtist').textContent = album.artist;
+                document.getElementById('releaseYear').textContent = album.releaseDate ? new Date(album.releaseDate).getFullYear() : 'Unknown';
+                document.getElementById('rarityBadge').textContent = 'Available';
+
+                // Update metrics with streaming availability
+                const availableServices = Object.keys(services).filter(service => services[service] && services[service].url);
+                document.getElementById('medianPrice').textContent = `${availableServices.length} platforms`;
+                document.getElementById('lowestPrice').textContent = data.tracks ? `${data.tracks.length} tracks` : 'N/A';
+                document.getElementById('itemsForSale').textContent = availableServices.length;
+                document.getElementById('communityRating').textContent = 'Streaming Available';
+
+                // Create streaming service buttons
+                const actionButtons = document.querySelector('.action-buttons');
+                actionButtons.innerHTML = '';
+
+                // Add streaming service links
+                if (services.spotify?.url) {
+                    actionButtons.innerHTML += `<a href="${services.spotify.url}" target="_blank" class="action-btn discogs-btn"><i class="fab fa-spotify"></i> Spotify</a>`;
+                }
+                if (services.appleMusic?.url) {
+                    actionButtons.innerHTML += `<a href="${services.appleMusic.url}" target="_blank" class="action-btn sell-btn"><i class="fab fa-apple"></i> Apple Music</a>`;
+                }
+                if (services.deezer?.url) {
+                    actionButtons.innerHTML += `<a href="${services.deezer.url}" target="_blank" class="action-btn discogs-btn"><i class="fas fa-music"></i> Deezer</a>`;
+                }
+                if (services.tidal?.url) {
+                    actionButtons.innerHTML += `<a href="${services.tidal.url}" target="_blank" class="action-btn sell-btn"><i class="fas fa-wave-square"></i> Tidal</a>`;
+                }
+
+                // Add Discogs fallback
+                actionButtons.innerHTML += `<a href="https://www.discogs.com/search/?q=${encodeURIComponent(album.title + ' ' + album.artist)}" target="_blank" class="action-btn discogs-btn"><i class="fas fa-search"></i> Search Discogs</a>`;
+
+                showSection('resultsSection');
             }
 
             function displayVinylResults(vinyl) {
