@@ -1265,8 +1265,7 @@ app.get('/api/all-2025-albums', async (req, res) => {
   }
 });
 
-// New releases endpoint - DISABLED (discover feature scrapped)
-/*
+// New releases endpoint - ENABLED for homepage functionality
 app.get('/api/new-releases', async (req, res) => {
   try {
     const timeRange = req.query.timeRange || 'month'; // 'week', 'month', 'year'
@@ -1340,7 +1339,6 @@ app.get('/api/new-releases', async (req, res) => {
     await getPopularAlbumsFallback(res);
   }
 });
-*/
 
 // All-time rankings endpoint
 app.get('/api/all-time-rankings', async (req, res) => {
