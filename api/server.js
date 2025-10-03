@@ -330,7 +330,8 @@ async function searchDiscogsByTitleArtist(title, artist) {
   }
 }
 
-// Search for albums released on a specific date
+// Search for albums released on a specific date - DISABLED FOR NOW
+/*
 async function searchAlbumsByReleaseDate(date) {
   try {
     const dateStr = date.toISOString().split('T')[0]; // YYYY-MM-DD format
@@ -352,7 +353,7 @@ async function searchAlbumsByReleaseDate(date) {
   }
 }
 
-// Auto-discover albums released exactly 7 days ago
+// Auto-discover albums released exactly 7 days ago - DISABLED FOR NOW
 async function autoDiscoverAlbums() {
   try {
     const sevenDaysAgo = new Date();
@@ -386,6 +387,7 @@ async function autoDiscoverAlbums() {
     console.error('Auto-discovery error:', err);
   }
 }
+*/
 
 // Sentiment analysis for X posts
 const sentiment = new Sentiment();
@@ -708,7 +710,7 @@ app.get('/api/musicfetch/upc', async (req, res) => {
       },
       headers: {
         'x-rapidapi-host': 'musicfetch2.p.rapidapi.com',
-        'x-rapidapi-key': process.env.RAPIDAPI_KEY || 'fef1064874msh30a3a8ef21ebfa5p16d332jsn06a28bc9fce6'
+        'x-rapidapi-key': 'f24088c76cmshd3d6c212e7fca9ep1cc328jsna2c1c5860028'
       },
       timeout: 10000
     });
@@ -719,7 +721,8 @@ app.get('/api/musicfetch/upc', async (req, res) => {
       console.log(`❌ RapidAPI error: ${data.error.message}`);
       return res.status(data.error.status || 404).json({
         error: data.error.message,
-        upc: upc
+        upc: upc,
+        message: `No album found with UPC: "${upc}". This UPC may not be in our database or may be invalid.`
       });
     }
 
@@ -1104,7 +1107,7 @@ async function updateFeaturedAlbums() {
   }
 }
 
-// Cron job: Daily review check and auto-discovery
+// Cron job: Daily review check
 cron.schedule('0 0 * * *', async () => {
   console.log('Running daily album reviews...');
   const enqueuedAlbums = await Album.find({ status: 'enqueued' });
@@ -1117,9 +1120,6 @@ cron.schedule('0 0 * * *', async () => {
       );
     }
   }
-
-  // Auto-discover new albums
-  await autoDiscoverAlbums();
 
   // Update featured albums
   await updateFeaturedAlbums();
@@ -1265,7 +1265,8 @@ app.get('/api/all-2025-albums', async (req, res) => {
   }
 });
 
-// New releases endpoint
+// New releases endpoint - DISABLED (discover feature scrapped)
+/*
 app.get('/api/new-releases', async (req, res) => {
   try {
     const timeRange = req.query.timeRange || 'month'; // 'week', 'month', 'year'
@@ -1339,6 +1340,7 @@ app.get('/api/new-releases', async (req, res) => {
     await getPopularAlbumsFallback(res);
   }
 });
+*/
 
 // All-time rankings endpoint
 app.get('/api/all-time-rankings', async (req, res) => {
