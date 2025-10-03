@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Discover Music - MusicRx</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://musicrx.app/discover.html">
+    <meta property="og:title" content="Discover Music - MusicRx">
+    <meta property="og:description" content="Scan album barcodes to instantly discover music across Spotify, Apple Music, Deezer, and Tidal. Bridge your physical collection with streaming platforms.">
+    <meta property="og:image" content="https://musicrx.app/catdive.jpeg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://musicrx.app/discover.html">
+    <meta property="twitter:title" content="Discover Music - MusicRx">
+    <meta property="twitter:description" content="Scan album barcodes to instantly discover music across Spotify, Apple Music, Deezer, and Tidal. Bridge your physical collection with streaming platforms.">
+    <meta property="twitter:image" content="https://musicrx.app/catdive.jpeg">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="keyframes.css">
+    <style>
+        .main-content {
+            width: 100%;
+            height: auto;
+            margin-bottom: 60px;
+            margin-top: 90px;
+            padding: 0 1rem;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            transform: none;
+        }
+
+        #universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Dynamic Beats Theme */
+        [data-theme="dynamic-beats"] {
+            --background-color: #0a0a0a;
+            --card-background: rgba(20, 20, 30, 0.8);
+            --text-color: #ffffff;
+            --secondary: #b0b0b0;
+            --primary: #ff6b6b;
+            --glow: rgba(255, 107, 107, 0.5);
+            --rgb-glow: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            --border-color: rgba(255, 107, 107, 0.3);
+        }
+
+        [data-theme="dynamic-beats"] body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            background-size: 400% 400%;
+            animation: beatPulse 4s ease-in-out infinite;
+        }
+
+        [data-theme="dynamic-beats"] .glass-card {
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.8) 0%, rgba(30, 30, 50, 0.8) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.1);
+            animation: cardBeat 3s ease-in-out infinite;
+        }
+
+        [data-theme="dynamic-beats"] .navbar {
+            background: linear-gradient(90deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 46, 0.9) 50%, rgba(22, 33, 62, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 107, 107, 0.2);
+        }
+
+        [data-theme="dynamic-beats"] h1, [data-theme="dynamic-beats"] h2, [data-theme="dynamic-beats"] h3 {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 3s ease-in-out infinite;
+        }
+
+        [data-theme="dynamic-beats"] .news-title-card {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+
+        [data-theme="dynamic-beats"] .news-content-card {
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.9) 0%, rgba(30, 30, 50, 0.9) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.1);
+        }
+
+        @keyframes beatPulse {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes cardBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Discover Page Styles */
+        .discover-hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            border: 2px solid var(--border-color);
+        }
+
+        .discover-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 3s ease-in-out infinite;
+        }
+
+        .discover-hero p {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .scanner-section {
+            background: var(--card-background);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid var(--border-color);
+            text-align: center;
+        }
+
+        .scanner-section h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-family: 'Syncopate', sans-serif;
+        }
+
+        .scanner-section p {
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .scan-btn, .submit-btn {
+            width: 100%;
+            max-width: 300px;
+            padding: 1rem;
+            margin: 0.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .scan-btn:hover, .submit-btn:hover {
+            background: var(--rgb-glow);
+            transform: translateY(-2px);
+        }
+
+        .scanner-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        #scannerVideo {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            border: 3px solid var(--border-color);
+        }
+
+        .manual-barcode {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .manual-barcode input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--card-background);
+            color: var(--text-color);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+        }
+
+        .manual-barcode input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .results-section {
+            background: var(--card-background);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid var(--border-color);
+        }
+
+        .vinyl-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .vinyl-info img {
+            width: 150px;
+            height: 150px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 3px solid var(--border-color);
+        }
+
+        .vinyl-info h3 {
+            margin: 0.5rem 0;
+            color: var(--primary);
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+        }
+
+        .vinyl-info p {
+            margin: 0.25rem 0;
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+
+        .vinyl-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .vinyl-details span {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        #rarityBadge {
+            background: var(--primary);
+            color: white;
+        }
+
+        .value-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .metric-label {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .metric-value {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            min-height: 50px;
+        }
+
+        .spotify-btn {
+            background: #1DB954;
+            color: white;
+            border: 2px solid #1DB954;
+        }
+
+        .spotify-btn:hover {
+            background: #1ed760;
+            border-color: #1ed760;
+            transform: translateY(-2px);
+        }
+
+        .apple-btn {
+            background: #000000;
+            color: white;
+            border: 2px solid #000000;
+        }
+
+        .apple-btn:hover {
+            background: #333333;
+            border-color: #333333;
+            transform: translateY(-2px);
+        }
+
+        .deezer-btn {
+            background: #00C2CB;
+            color: white;
+            border: 2px solid #00C2CB;
+        }
+
+        .deezer-btn:hover {
+            background: #00d4dd;
+            border-color: #00d4dd;
+            transform: translateY(-2px);
+        }
+
+        .tidal-btn {
+            background: #000000;
+            color: white;
+            border: 2px solid #ffffff;
+        }
+
+        .tidal-btn:hover {
+            background: #333333;
+            border-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .discogs-btn {
+            background: #1a1a1a;
+            color: white;
+            border: 2px solid #333;
+        }
+
+        .discogs-btn:hover {
+            background: #333;
+            border-color: #555;
+            transform: translateY(-2px);
+        }
+
+        .loading-section, .error-section {
+            text-align: center;
+            padding: 3rem;
+            background: var(--card-background);
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-section p {
+            color: #dc2626;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .scan-another-btn, .try-again-btn {
+            background: var(--secondary);
+            color: var(--text-color);
+            border: 2px solid var(--secondary);
+            margin-top: 1rem;
+        }
+
+        .scan-another-btn:hover, .try-again-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: var(--card-background);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 2px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-family: 'Syncopate', sans-serif;
+        }
+
+        .feature-card p {
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        .test-upcs {
+            background: var(--card-background);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid var(--border-color);
+        }
+
+        .test-upcs h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-family: 'Syncopate', sans-serif;
+            text-align: center;
+        }
+
+        .upc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .upc-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upc-item:hover {
+            background: rgba(255,107,107,0.1);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .upc-item h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .upc-item p {
+            margin: 0.25rem 0;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .upc-code {
+            font-family: 'Orbitron', monospace;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .discover-hero h1 {
+                font-size: 2rem;
+            }
+
+            .discover-hero p {
+                font-size: 1rem;
+            }
+
+            .scanner-section {
+                padding: 1.5rem;
+            }
+
+            .manual-barcode {
+                flex-direction: column;
+            }
+
+            .value-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .features-section {
+                grid-template-columns: 1fr;
+            }
+
+            .upc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="home">
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <canvas id="universe"></canvas>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <p class="heartbeat-text">MUSICRX</p>
+            <span class="heartbeat-line"></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle" type="button"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="discover.html">Discover</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="newmusic.html">New Music</a></li>
+                    <li><a href="underground.html">Underground</a></li>
+                    <li><a href="listener-pulse.html">Listener Pulse</a></li>
+                    <li><a href="all-time-rankings.html">Rankings</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="discover-hero">
+            <h1><i class="fas fa-search"></i> Discover Music</h1>
+            <p>Scan album barcodes to instantly discover music across Spotify, Apple Music, Deezer, and Tidal. Bridge your physical collection with streaming platforms.</p>
+        </div>
+
+        <div class="features-section">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-barcode"></i>
+                </div>
+                <h3>Barcode Scanning</h3>
+                <p>Scan UPC codes from physical albums, CDs, and vinyl records to instantly identify and discover music.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-stream"></i>
+                </div>
+                <h3>Cross-Platform Discovery</h3>
+                <p>Find your favorite albums across Spotify, Apple Music, Deezer, and Tidal with direct streaming links.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-link"></i>
+                </div>
+                <h3>Physical to Digital</h3>
+                <p>Connect your physical music collection with digital streaming platforms for seamless listening.</p>
+            </div>
+        </div>
+
+        <div class="test-upcs">
+            <h3>Test UPC Codes</h3>
+            <p>Click any album below to test the barcode scanner:</p>
+            <div class="upc-grid">
+                <div class="upc-item" onclick="testUPC('602527497648')">
+                    <h4>Adele - 21</h4>
+                    <p>Pop/R&B Album</p>
+                    <p class="upc-code">602527497648</p>
+                </div>
+                <div class="upc-item" onclick="testUPC('602537491348')">
+                    <h4>Taylor Swift - 1989</h4>
+                    <p>Pop Album</p>
+                    <p class="upc-code">602537491348</p>
+                </div>
+                <div class="upc-item" onclick="testUPC('602527981724')">
+                    <h4>Drake - Take Care</h4>
+                    <p>Hip-Hop/R&B Album</p>
+                    <p class="upc-code">602527981724</p>
+                </div>
+                <div class="upc-item" onclick="testUPC('602435718024')">
+                    <h4>The Weeknd - After Hours</h4>
+                    <p>R&B/Pop Album</p>
+                    <p class="upc-code">602435718024</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scanner Section -->
+        <div id="scannerSection" class="scanner-section">
+            <h2><i class="fas fa-camera"></i> Scan Album Barcode</h2>
+            <p>Use your camera to scan a UPC barcode from a physical album, or enter it manually below.</p>
+
+            <button id="startScan" class="scan-btn">
+                <i class="fas fa-camera"></i> Start Camera Scan
+            </button>
+
+            <div class="manual-barcode">
+                <input type="text" id="barcodeInput" placeholder="Enter UPC code (e.g., 602527497648)" />
+                <button id="submitBarcode" class="submit-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+
+            <div id="scannerContainer" style="display: none;">
+                <video id="scannerVideo" autoplay muted playsinline></video>
+                <button id="stopScan" class="scan-btn" style="background: #dc2626; margin-top: 1rem;">
+                    <i class="fas fa-stop"></i> Stop Scanning
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="results-section" style="display: none;">
+            <div class="vinyl-info">
+                <img id="vinylImage" src="https://dummyimage.com/150x150/333/666&text=Album+Cover" alt="Album Cover" />
+                <h3 id="vinylTitle">Album Title</h3>
+                <p id="vinylArtist">Artist Name</p>
+                <div class="vinyl-details">
+                    <span id="releaseYear">2023</span>
+                    <span id="rarityBadge">Available</span>
+                </div>
+            </div>
+
+            <div class="value-metrics">
+                <div class="metric">
+                    <span class="metric-label">Platforms Available</span>
+                    <span class="metric-value" id="platformsCount">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Total Tracks</span>
+                    <span class="metric-value" id="trackCount">N/A</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Status</span>
+                    <span class="metric-value" id="availabilityStatus">Checking...</span>
+                </div>
+            </div>
+
+            <div class="action-buttons" id="streamingButtons">
+                <!-- Streaming buttons will be populated here -->
+            </div>
+
+            <button id="scanAnother" class="scan-another-btn" style="display: none;">
+                <i class="fas fa-redo"></i> Scan Another Album
+            </button>
+        </div>
+
+        <!-- Loading Section -->
+        <div id="loadingSection" class="loading-section" style="display: none;">
+            <div class="loading-spinner"></div>
+            <h3>Searching Music Databases...</h3>
+            <p>Scanning UPC across Spotify, Apple Music, Deezer, and Tidal</p>
+        </div>
+
+        <!-- Error Section -->
+        <div id="errorSection" class="error-section" style="display: none;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #dc2626; margin-bottom: 1rem;"></i>
+            <h3>Album Not Found</h3>
+            <p id="errorMessage">The UPC code could not be found in our music databases. Please check the code and try again.</p>
+            <button id="tryAgain" class="try-again-btn">
+                <i class="fas fa-redo"></i> Try Again
+            </button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+            <span class="heartbeat-line"></span>
+        </div>
+    </footer>
+
+    <script src="theme-effects.js"></script>
+    <script src="hover-effects.js"></script>
+    <script src="scroll-effects.js"></script>
+    <script src="script.js?v=1.1"></script>
+
+    <script>
+        // Configuration
+        const BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://musicrx.app';
+
+        // Test UPC function for demo
+        function testUPC(upc) {
+            document.getElementById('barcodeInput').value = upc;
+            document.getElementById('submitBarcode').click();
+        }
+
+        // Value Tracker Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const startScanBtn = document.getElementById('startScan');
+            const stopScanBtn = document.getElementById('stopScan');
+            const submitBarcodeBtn = document.getElementById('submitBarcode');
+            const barcodeInput = document.getElementById('barcodeInput');
+            const scanAnotherBtn = document.getElementById('scanAnother');
+            const tryAgainBtn = document.getElementById('tryAgain');
+
+            // Start barcode scanning
+            startScanBtn.addEventListener('click', startBarcodeScan);
+
+            // Stop scanning
+            stopScanBtn.addEventListener('click', stopBarcodeScan);
+
+            // Manual UPC submission
+            submitBarcodeBtn.addEventListener('click', () => {
+                const upc = barcodeInput.value.trim();
+                if (upc) {
+                    checkVinylValue(upc);
+                }
+            });
+
+            barcodeInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const upc = barcodeInput.value.trim();
+                    if (upc) {
+                        checkVinylValue(upc);
+                    }
+                }
+            });
+
+            // Scan another album
+            scanAnotherBtn.addEventListener('click', resetScanner);
+
+            // Try again
+            tryAgainBtn.addEventListener('click', resetScanner);
+        });
+
+        async function checkVinylValue(upc) {
+            showSection('loadingSection');
+
+            try {
+                console.log('Searching by UPC:', upc);
+
+                // Use RapidAPI music fetch
+                const response = await fetch(`${BACKEND_URL}/api/musicfetch/upc?upc=${upc}&services=spotify,deezer,appleMusic,tidal&withTracks=true&country=US`);
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        showError('Album not found with this UPC code. Please check the barcode and try again.');
+                    } else {
+                        showError('Failed to search music databases. Please try again.');
+                    }
+                    return;
+                }
+
+                const data = await response.json();
+
+                if (data.error) {
+                    showError(data.error);
+                    return;
+                }
+
+                displayRapidApiResults(data);
+
+            } catch (error) {
+                console.error('API error:', error);
+                showError('Network error. Please check your connection and try again.');
+            }
+        }
+
+        function displayRapidApiResults(data) {
+            const album = data.album;
+            const services = data.services || {};
+
+            // Update album info
+            document.getElementById('vinylImage').src = album.cover || 'https://dummyimage.com/150x150/333/666&text=No+Image';
+            document.getElementById('vinylImage').onerror = function() {
+                this.src = 'https://via.placeholder.com/150x150/333/666&text=No+Image';
+            };
+            document.getElementById('vinylTitle').textContent = album.title;
+            document.getElementById('vinylArtist').textContent = album.artist;
+            document.getElementById('releaseYear').textContent = album.releaseDate ? new Date(album.releaseDate).getFullYear() : 'Unknown';
+            document.getElementById('rarityBadge').textContent = 'Available';
+
+            // Update metrics
+            const availableServices = Object.keys(services).filter(service => services[service] && services[service].url);
+            document.getElementById('platformsCount').textContent = `${availableServices.length} platforms`;
+            document.getElementById('trackCount').textContent = data.tracks ? data.tracks.length : 'N/A';
+            document.getElementById('availabilityStatus').textContent = 'Streaming Available';
+
+            // Create streaming service buttons
+            const actionButtons = document.getElementById('streamingButtons');
+            actionButtons.innerHTML = '';
+
+            // Add streaming service links
+            if (services.spotify?.url) {
+                actionButtons.innerHTML += `<a href="${services.spotify.url}" target="_blank" class="action-btn spotify-btn"><i class="fab fa-spotify"></i> Listen on Spotify</a>`;
+            }
+            if (services.appleMusic?.url) {
+                actionButtons.innerHTML += `<a href="${services.appleMusic.url}" target="_blank" class="action-btn apple-btn"><i class="fab fa-apple"></i> Listen on Apple Music</a>`;
+            }
+            if (services.deezer?.url) {
+                actionButtons.innerHTML += `<a href="${services.deezer.url}" target="_blank" class="action-btn deezer-btn"><i class="fas fa-music"></i> Listen on Deezer</a>`;
+            }
+            if (services.tidal?.url) {
+                actionButtons.innerHTML += `<a href="${services.tidal.url}" target="_blank" class="action-btn tidal-btn"><i class="fas fa-wave-square"></i> Listen on Tidal</a>`;
+            }
+
+            // Add Discogs search fallback
+            actionButtons.innerHTML += `<a href="https://www.discogs.com/search/?q=${encodeURIComponent(album.title + ' ' + album.artist)}" target="_blank" class="action-btn discogs-btn"><i class="fas fa-search"></i> Search on Discogs</a>`;
+
+            showSection('resultsSection');
+        }
+
+        function startBarcodeScan() {
+            showSection('loadingSection');
+            document.getElementById('scannerContainer').style.display = 'block';
+
+            // Load QuaggaJS dynamically
+            if (!window.Quagga) {
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js';
+                script.onload = initQuagga;
+                script.onerror = () => {
+                    showError('Failed to load barcode scanner. Please enter UPC manually.');
+                };
+                document.head.appendChild(script);
+            } else {
+                initQuagga();
+            }
+        }
+
+        function initQuagga() {
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector('#scannerVideo'),
+                    constraints: {
+                        width: 640,
+                        height: 480,
+                        facingMode: "environment" // Use back camera on mobile
+                    }
+                },
+                locator: {
+                    patchSize: "medium",
+                    halfSample: true
+                },
+                numOfWorkers: navigator.hardwareConcurrency || 4,
+                decoder: {
+                    readers: ["ean_reader", "ean_8_reader", "code_128_reader", "code_39_reader", "upc_reader", "upc_e_reader"]
+                },
+                locate: true
+            }, function(err) {
+                if (err) {
+                    console.error('Quagga initialization error:', err);
+                    showError('Camera access failed. Please enter UPC manually.');
+                    return;
+                }
+                console.log('Quagga initialized successfully');
+                Quagga.start();
+                document.getElementById('loadingSection').style.display = 'none';
+                document.getElementById('scannerSection').style.display = 'block';
+            });
+
+            Quagga.onDetected(function(result) {
+                const code = result.codeResult.code;
+                console.log('Barcode detected:', code);
+                Quagga.stop();
+                checkVinylValue(code);
+            });
+
+            Quagga.onProcessed(function(result) {
+                // Optional: Show processing feedback
+            });
+        }
+
+        function stopBarcodeScan() {
+            if (window.Quagga) {
+                Quagga.stop();
+            }
+            document.getElementById('scannerContainer').style.display = 'none';
+            showSection('scannerSection');
+        }
+
+        function showSection(sectionId) {
+            const sections = ['scannerSection', 'resultsSection', 'loadingSection', 'errorSection'];
+            sections.forEach(id => {
+                document.getElementById(id).style.display = id === sectionId ? 'block' : 'none';
+            });
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            showSection('errorSection');
+        }
+
+        function resetScanner() {
+            document.getElementById('barcodeInput').value = '';
+            stopBarcodeScan();
+            showSection('scannerSection');
+        }
+    </script>
+</body>
+</html>
