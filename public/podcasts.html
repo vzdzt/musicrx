@@ -81,6 +81,49 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-search {
+            position: relative;
+            min-width: 200px;
+            flex: 1;
+        }
+
+        .filter-search input {
+            width: 100%;
+            padding: 0.75rem 2.5rem 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--card-background);
+            color: var(--text-color);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-search input::placeholder {
+            color: var(--secondary);
+        }
+
+        .filter-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .filter-search input:hover {
+            border-color: var(--primary);
+        }
+
+        .filter-search-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary);
+            font-size: 0.9rem;
+            pointer-events: none;
         }
 
         .filter-select {
@@ -442,6 +485,10 @@
                 </button>
             </div>
             <div class="filter-controls">
+                <div class="filter-search">
+                    <input type="text" id="podcastSearch" placeholder="Search podcasts..." class="filter-search-input">
+                    <i class="fas fa-search filter-search-icon"></i>
+                </div>
                 <select id="categoryFilter" class="filter-select">
                     <option value="">All Categories</option>
                     <option value="music">Music</option>
@@ -525,9 +572,21 @@
 
         // Setup filter functionality
         function setupFilters() {
+            const searchInput = document.getElementById('podcastSearch');
             const categoryFilter = document.getElementById('categoryFilter');
             const sortFilter = document.getElementById('sortFilter');
             const refreshBtn = document.getElementById('refreshBtn');
+
+            // Search event listeners
+            searchInput.addEventListener('input', handleSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        searchPodcasts(query);
+                    }
+                }
+            });
 
             // Filter event listeners
             categoryFilter.addEventListener('change', applyFilters);
@@ -536,7 +595,20 @@
             // Refresh button
             refreshBtn.addEventListener('click', () => {
                 loadFeaturedPodcasts();
+                searchInput.value = ''; // Clear search on refresh
+                document.getElementById('searchResults').style.display = 'none';
             });
+        }
+
+        // Handle search input
+        function handleSearch(e) {
+            const query = e.target.value.trim();
+
+            if (query.length === 0) {
+                // Hide search results and show featured when search is cleared
+                document.getElementById('searchResults').style.display = 'none';
+                document.getElementById('featured-section').style.display = 'block';
+            }
         }
 
         // Apply filters to displayed podcasts
