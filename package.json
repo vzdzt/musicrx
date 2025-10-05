@@ -2,7 +2,7 @@
   "name": "musicrx-backend",
   "version": "1.0.0",
   "description": "Backend API for MusicRx media tools",
-  "main": "api/server.js",
+  "main": "api/server-refactored.js",
   "type": "module",
   "scripts": {
     "start": "node api/server.js",
@@ -12,7 +12,13 @@
     "setup-vps": "echo 'Run these commands on your VPS:' && echo 'sudo apt update && sudo apt install -y nodejs npm ffmpeg' && echo 'curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && chmod +x /usr/local/bin/yt-dlp'",
     "pm2-start": "pm2 start api/server.js --name musicrx-backend -f",
     "pm2-stop": "pm2 stop musicrx-backend",
-    "pm2-restart": "pm2 restart musicrx-backend"
+    "pm2-restart": "pm2 restart musicrx-backend",
+    "security:audit": "npm audit --audit-level=moderate",
+    "security:audit:fix": "npm audit fix",
+    "security:check": "npm audit --audit-level=high && echo '✅ Security audit passed'",
+    "security:deps": "npm outdated && npm audit --audit-level=moderate",
+    "predeploy": "npm run security:check",
+    "test": "node test_spotify.js"
   },
   "dependencies": {
     "axios": "^1.6.0",
@@ -21,12 +27,16 @@
     "disconnect": "^1.2.2",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.1.5",
     "googleapis": "^126.0.1",
+    "helmet": "^7.1.0",
     "mongoose": "^8.0.0",
     "node-cron": "^3.0.3",
     "sentiment": "^5.0.2",
     "spotify-web-api-node": "^5.0.2",
-    "twitter-api-v2": "^1.15.1"
+    "twitter-api-v2": "^1.15.1",
+    "xss-clean": "^0.1.4"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

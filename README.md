@@ -78,7 +78,7 @@ A production-ready music discovery and analysis platform featuring automated alb
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/musicrx.git
+   git clone https://github.com/vzdzt/musicrx.git
    cd musicrx
    ```
 

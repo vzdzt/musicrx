@@ -16,6 +16,10 @@ import { google } from 'googleapis';
 import https from 'https';
 // import { TwitterApi } from 'twitter-api-v2'; // Temporarily disabled
 import Discogs from 'disconnect';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import mongoSanitize from 'express-mongo-sanitize';
+import xss from 'xss-clean';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -25,10 +29,59 @@ const PORT = process.env.PORT || 3002;
 
 // Load environment variables
 dotenv.config();
+console.log('🔍 DOTENV LOADED - CHECKING AGAIN...');
+console.log('SPOTIFY_CLIENT_ID from process.env:', process.env.SPOTIFY_CLIENT_ID);
+console.log('SPOTIFY_CLIENT_SECRET from process.env:', process.env.SPOTIFY_CLIENT_SECRET);
+
+// Security middleware
+app.use(helmet()); // Set security headers
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// More strict rate limiting for sensitive endpoints
+const strictLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // limit each IP to 10 requests per windowMs
+  message: 'Too many requests to sensitive endpoints, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use('/api/convert-video', strictLimiter);
+app.use('/api/download-media', strictLimiter);
+
+// Data sanitization
+app.use(mongoSanitize()); // Prevent NoSQL injection
+app.use(xss()); // Prevent XSS attacks
+
+// API Versioning Middleware
+const API_VERSION = 'v1';
+const API_BASE = `/api/${API_VERSION}`;
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' })); // Limit payload size
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// API Version Headers (for future deprecation warnings)
+app.use('/api', (req, res, next) => {
+  res.set('X-API-Version', API_VERSION);
+  res.set('X-API-Deprecated', 'false'); // Will be used for future deprecations
+  next();
+});
+
+// Backward compatibility - redirect old endpoints to v1
+app.use('/api/albums', (req, res, next) => {
+  res.set('X-API-Warning', 'This endpoint will be deprecated. Use /api/v1/albums instead.');
+  next();
+});
 
 // Serve static files from public directory for root routes
 app.use(express.static(path.join(__dirname, '../public')));
@@ -101,6 +154,14 @@ const undergroundArtistSchema = new mongoose.Schema({
 const UndergroundArtist = mongoose.model('UndergroundArtist', undergroundArtistSchema);
 
 // Spotify API setup
+console.log('🔍 ===== SPOTIFY API INITIALIZATION =====');
+console.log('SPOTIFY_CLIENT_ID:', process.env.SPOTIFY_CLIENT_ID ? 'Present (' + process.env.SPOTIFY_CLIENT_ID.substring(0, 8) + '...)' : 'MISSING');
+console.log('SPOTIFY_CLIENT_SECRET:', process.env.SPOTIFY_CLIENT_SECRET ? 'Present (' + process.env.SPOTIFY_CLIENT_SECRET.substring(0, 8) + '...)' : 'MISSING');
+console.log('NODE_ENV:', process.env.NODE_ENV || 'undefined');
+console.log('PORT:', process.env.PORT || 'undefined');
+console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'Present' : 'MISSING');
+console.log('🔍 ======================================');
+
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET
@@ -109,12 +170,14 @@ const spotifyApi = new SpotifyWebApi({
 // Authenticate Spotify
 async function authenticateSpotify() {
   try {
+    console.log('🔐 Attempting Spotify authentication...');
     const data = await spotifyApi.clientCredentialsGrant();
     spotifyApi.setAccessToken(data.body['access_token']);
-    console.log('Spotify authenticated');
+    console.log('✅ Spotify authenticated successfully');
     return true;
   } catch (err) {
-    console.error('Spotify auth failed:', err);
+    console.error('❌ Spotify auth failed:', err.message);
+    console.error('Full error:', err);
     return false;
   }
 }
@@ -1125,13 +1188,74 @@ cron.schedule('0 0 * * *', async () => {
   await updateFeaturedAlbums();
 });
 
-// Album endpoints
+// Version 1 API routes
+app.get(`${API_BASE}/albums`, async (req, res) => {
+  const albums = await Album.find();
+  res.json(albums);
+});
+
+app.get(`${API_BASE}/album/:id`, async (req, res) => {
+  let album = await Album.findOne({ albumId: req.params.id });
+  if (!album) {
+    const albumData = await spotifyApi.getAlbum(req.params.id);
+    const review = await reviewAlbum(req.params.id);
+    album = new Album({
+      albumId: req.params.id,
+      title: albumData.body.name,
+      artist: albumData.body.artists[0].name,
+      releaseDate: new Date(albumData.body.release_date),
+      imageUrl: albumData.body.images[0]?.url,
+      ...review
+    });
+    await album.save();
+  } else if (album.status === 'enqueued') {
+    const review = await reviewAlbum(req.params.id);
+    if (review.status === 'reviewed') {
+      await Album.findOneAndUpdate({ albumId: req.params.id }, { ...review });
+      album = { ...album.toObject(), ...review };
+    }
+  }
+  res.json(album);
+});
+
+app.post(`${API_BASE}/album`, async (req, res) => {
+  const { albumId } = req.body;
+
+  // Check if album already exists
+  const existingAlbum = await Album.findOne({ albumId });
+  if (existingAlbum) {
+    // Return existing album if already rated
+    if (existingAlbum.status === 'reviewed') {
+      return res.json(existingAlbum);
+    }
+    // If enqueued, return current status
+    return res.json(existingAlbum);
+  }
+
+  // Rate new album
+  const albumData = await spotifyApi.getAlbum(albumId);
+  const review = await reviewAlbum(albumId);
+  const newAlbum = new Album({
+    albumId,
+    title: albumData.body.name,
+    artist: albumData.body.artists[0].name,
+    releaseDate: new Date(albumData.body.release_date),
+    imageUrl: albumData.body.images[0]?.url,
+    ...review
+  });
+  await newAlbum.save();
+  res.json(newAlbum);
+});
+
+// Backward compatibility - redirect old endpoints to v1
 app.get('/api/albums', async (req, res) => {
+  res.set('X-API-Deprecation', 'This endpoint is deprecated. Use /api/v1/albums instead.');
   const albums = await Album.find();
   res.json(albums);
 });
 
 app.get('/api/album/:id', async (req, res) => {
+  res.set('X-API-Deprecation', 'This endpoint is deprecated. Use /api/v1/album/:id instead.');
   let album = await Album.findOne({ albumId: req.params.id });
   if (!album) {
     const albumData = await spotifyApi.getAlbum(req.params.id);
@@ -1156,6 +1280,7 @@ app.get('/api/album/:id', async (req, res) => {
 });
 
 app.post('/api/album', async (req, res) => {
+  res.set('X-API-Deprecation', 'This endpoint is deprecated. Use /api/v1/album instead.');
   const { albumId } = req.body;
 
   // Check if album already exists
@@ -3446,6 +3571,64 @@ async function fetchNewsAPI() {
   }
 }
 
+// Scrape images from article URLs
+async function scrapeArticleImage(articleUrl) {
+  try {
+    const response = await axios.get(articleUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      },
+      timeout: 8000
+    });
+
+    const $ = cheerio.load(response.data);
+
+    // Try different selectors for images
+    const imageSelectors = [
+      'meta[property="og:image"]',
+      'meta[name="twitter:image"]',
+      'meta[name="twitter:image:src"]',
+      '.article-image img',
+      '.featured-image img',
+      '.post-image img',
+      'article img',
+      '.content img'
+    ];
+
+    for (const selector of imageSelectors) {
+      const element = $(selector).first();
+      if (element.length > 0) {
+        let imageUrl = '';
+
+        if (element.is('meta')) {
+          imageUrl = element.attr('content');
+        } else if (element.is('img')) {
+          imageUrl = element.attr('src') || element.attr('data-src');
+        }
+
+        // Validate and clean the URL
+        if (imageUrl && imageUrl.startsWith('http') && !imageUrl.includes('placeholder') && !imageUrl.includes('default')) {
+          // Convert relative URLs to absolute
+          if (imageUrl.startsWith('/')) {
+            const url = new URL(articleUrl);
+            imageUrl = `${url.protocol}//${url.host}${imageUrl}`;
+          }
+
+          // Skip very small images or icons
+          if (!imageUrl.includes('icon') && !imageUrl.includes('logo') && imageUrl.length > 20) {
+            return imageUrl;
+          }
+        }
+      }
+    }
+
+    return null;
+  } catch (error) {
+    console.warn(`Failed to scrape image from ${articleUrl}:`, error.message);
+    return null;
+  }
+}
+
 // Scrape music news from RSS feeds
 async function fetchRSSNews() {
   try {
@@ -3470,6 +3653,8 @@ async function fetchRSSNews() {
 
         const $ = cheerio.load(response.data, { xmlMode: true });
 
+        const feedArticles = [];
+
         $('item').each((i, item) => {
           if (i >= 5) return; // Limit to 5 articles per feed
 
@@ -3481,7 +3666,7 @@ async function fetchRSSNews() {
           // Clean HTML from description
           const cleanDescription = description.replace(/<[^>]*>/g, '').substring(0, 300) + '...';
 
-          allArticles.push({
+          feedArticles.push({
             title: title,
             content: cleanDescription,
             summary: cleanDescription,
@@ -3490,7 +3675,7 @@ async function fetchRSSNews() {
                    feedUrl.includes('rollingstone') ? 'Rolling Stone' :
                    feedUrl.includes('spin') ? 'Spin' : 'Stereogum',
             url: link,
-            imageUrl: null, // Would need additional scraping for images
+            imageUrl: null, // Will be filled by scraping
             publishedAt: new Date(pubDate),
             category: 'music',
             tags: ['news', 'music', 'rss'],
@@ -3498,11 +3683,31 @@ async function fetchRSSNews() {
             engagement: Math.floor(Math.random() * 500) + 50
           });
         });
+
+        // Scrape images for each article in this feed
+        for (const article of feedArticles) {
+          try {
+            const imageUrl = await scrapeArticleImage(article.url);
+            if (imageUrl) {
+              article.imageUrl = imageUrl;
+              console.log(`🖼️  Found image for "${article.title.substring(0, 30)}...": ${imageUrl}`);
+            }
+          } catch (imageError) {
+            console.warn(`Failed to get image for ${article.title}:`, imageError.message);
+          }
+
+          // Rate limiting between articles
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
+
+        allArticles.push(...feedArticles);
+
       } catch (feedError) {
         console.warn(`Failed to fetch RSS feed ${feedUrl}:`, feedError.message);
       }
     }
 
+    console.log(`📰 RSS scraping complete: ${allArticles.length} articles, ${allArticles.filter(a => a.imageUrl).length} with images`);
     return allArticles;
   } catch (error) {
     console.error('RSS fetch error:', error.message);
