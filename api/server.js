@@ -25,7 +25,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3003;
 
 // Load environment variables
 dotenv.config();
@@ -152,6 +152,39 @@ const undergroundArtistSchema = new mongoose.Schema({
   lastUpdated: Date
 });
 const UndergroundArtist = mongoose.model('UndergroundArtist', undergroundArtistSchema);
+
+// Podcast schema
+const podcastSchema = new mongoose.Schema({
+  spotifyId: String,
+  name: String,
+  description: String,
+  publisher: String,
+  imageUrl: String,
+  genres: [String],
+  totalEpisodes: Number,
+  popularity: Number,
+  category: { type: String, enum: ['music', 'interviews', 'industry', 'general'], default: 'general' },
+  featured: { type: Boolean, default: false },
+  lastUpdated: Date
+});
+const Podcast = mongoose.model('Podcast', podcastSchema);
+
+// Podcast Episode schema
+const podcastEpisodeSchema = new mongoose.Schema({
+  spotifyId: String,
+  podcastId: String,
+  title: String,
+  description: String,
+  duration: Number, // in milliseconds
+  releaseDate: Date,
+  imageUrl: String,
+  audioUrl: String,
+  playCount: { type: Number, default: 0 },
+  featuredArtists: [String], // Artists mentioned/discussed in episode
+  musicRelevance: { type: Number, min: 1, max: 10, default: 5 }, // How music-related is this episode
+  lastUpdated: Date
+});
+const PodcastEpisode = mongoose.model('PodcastEpisode', podcastEpisodeSchema);
 
 // Spotify API setup
 console.log('🔍 ===== SPOTIFY API INITIALIZATION =====');
@@ -2728,6 +2761,370 @@ app.post('/api/update-all-reviewed', async (req, res) => {
   } catch (err) {
     console.error('Update error:', err);
     res.status(500).json({ error: 'Failed to update albums', details: err.message });
+  }
+});
+
+// Podcast endpoints
+
+// Search podcasts
+app.get(`${API_BASE}/podcasts/search`, async (req, res) => {
+  try {
+    const { q: query, limit = 20 } = req.query;
+
+    if (!query) {
+      return res.status(400).json({ error: 'Search query parameter "q" is required' });
+    }
+
+    console.log(`🎙️ Searching podcasts for: "${query}"`);
+
+    // Search Spotify for podcasts (shows)
+    const searchResult = await spotifyApi.search(query, ['show'], {
+      limit: Math.min(parseInt(limit), 50)
+    });
+
+    const podcasts = searchResult.body.shows.items.map(show => ({
+      id: show.id,
+      name: show.name,
+      description: show.description,
+      publisher: show.publisher,
+      imageUrl: show.images?.[0]?.url,
+      totalEpisodes: show.total_episodes,
+      category: 'general', // Will be enhanced later
+      featured: false
+    }));
+
+    console.log(`✅ Found ${podcasts.length} podcasts for "${query}"`);
+    res.json(podcasts);
+
+  } catch (error) {
+    console.error('Podcast search error:', error);
+    res.status(500).json({ error: 'Failed to search podcasts', details: error.message });
+  }
+});
+
+// Get trending/popular podcasts
+app.get(`${API_BASE}/podcasts/trending`, async (req, res) => {
+  try {
+    const { limit = 20, category = 'music' } = req.query;
+
+    console.log(`🎙️ Getting trending podcasts (category: ${category})`);
+
+    // For now, search for popular music-related podcasts
+    // In production, this could use Spotify's featured playlists or charts
+    const searchTerms = category === 'music'
+      ? ['music podcast', 'music interview', 'music news', 'music discovery']
+      : ['podcast', 'talk show', 'interview'];
+
+    const allPodcasts = [];
+
+    for (const term of searchTerms.slice(0, 2)) { // Limit to 2 searches to avoid rate limits
+      try {
+        const searchResult = await spotifyApi.search(term, ['show'], { limit: 10 });
+        const podcasts = searchResult.body.shows.items.map(show => ({
+          id: show.id,
+          name: show.name,
+          description: show.description,
+          publisher: show.publisher,
+          imageUrl: show.images?.[0]?.url,
+          totalEpisodes: show.total_episodes,
+          category: category,
+          featured: Math.random() > 0.7 // Randomly mark some as featured
+        }));
+        allPodcasts.push(...podcasts);
+      } catch (searchError) {
+        console.warn(`Search failed for "${term}":`, searchError.message);
+      }
+    }
+
+    // Remove duplicates and limit results
+    const uniquePodcasts = allPodcasts.filter((podcast, index, self) =>
+      index === self.findIndex(p => p.id === podcast.id)
+    ).slice(0, limit);
+
+    console.log(`✅ Returning ${uniquePodcasts.length} trending podcasts`);
+    res.json(uniquePodcasts);
+
+  } catch (error) {
+    console.error('Trending podcasts error:', error);
+    res.status(500).json({ error: 'Failed to fetch trending podcasts', details: error.message });
+  }
+});
+
+// Joe Rogan Experience specific endpoints (must come before generic :id routes)
+app.get(`${API_BASE}/podcasts/joe-rogan-experience/episodes`, async (req, res) => {
+  try {
+    const { limit = 10, musicOnly = 'false' } = req.query;
+
+    console.log(`🎙️ Getting JRE episodes (musicOnly: ${musicOnly})`);
+
+    // First find Joe Rogan Experience podcast
+    const searchResult = await spotifyApi.search('Joe Rogan Experience', ['show'], { limit: 1 });
+
+    if (!searchResult.body.shows.items.length) {
+      return res.status(404).json({ error: 'Joe Rogan Experience podcast not found' });
+    }
+
+    const jrePodcast = searchResult.body.shows.items[0];
+    console.log(`✅ Found JRE podcast: ${jrePodcast.id}`);
+
+    // Get recent episodes
+    const episodesData = await spotifyApi.getShowEpisodes(jrePodcast.id, {
+      limit: Math.min(parseInt(limit), 50)
+    });
+
+    let episodes = episodesData.body.items.map(episode => ({
+      id: episode.id,
+      title: episode.name,
+      description: episode.description,
+      duration: episode.duration_ms,
+      releaseDate: episode.release_date,
+      imageUrl: episode.images?.[0]?.url,
+      audioUrl: episode.audio_preview_url,
+      explicit: episode.explicit,
+      podcastName: jrePodcast.name,
+      podcastId: jrePodcast.id,
+      featuredArtists: extractArtistsFromDescription(episode.name + ' ' + episode.description),
+      musicRelevance: calculateMusicRelevance(episode.name + ' ' + episode.description)
+    }));
+
+    // Filter for music-related episodes if requested
+    if (musicOnly === 'true') {
+      episodes = episodes.filter(episode => episode.musicRelevance >= 7);
+    }
+
+    console.log(`✅ Retrieved ${episodes.length} JRE episodes`);
+    res.json({
+      podcast: {
+        id: jrePodcast.id,
+        name: jrePodcast.name,
+        description: jrePodcast.description,
+        imageUrl: jrePodcast.images?.[0]?.url
+      },
+      episodes,
+      musicOnly: musicOnly === 'true'
+    });
+
+  } catch (error) {
+    console.error('JRE episodes error:', error);
+    res.status(500).json({ error: 'Failed to fetch JRE episodes', details: error.message });
+  }
+});
+
+// Get podcast details (must come after specific routes)
+app.get(`${API_BASE}/podcasts/:id`, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    console.log(`🎙️ Getting podcast details for ID: ${id}`);
+
+    const podcastData = await spotifyApi.getShow(id);
+
+    const podcast = {
+      id: podcastData.body.id,
+      name: podcastData.body.name,
+      description: podcastData.body.description,
+      publisher: podcastData.body.publisher,
+      imageUrl: podcastData.body.images?.[0]?.url,
+      totalEpisodes: podcastData.body.total_episodes,
+      category: 'general',
+      featured: false,
+      languages: podcastData.body.languages,
+      explicit: podcastData.body.explicit,
+      external_urls: podcastData.body.external_urls
+    };
+
+    console.log(`✅ Retrieved podcast: ${podcast.name}`);
+    res.json(podcast);
+
+  } catch (error) {
+    console.error('Podcast details error:', error);
+    res.status(500).json({ error: 'Failed to fetch podcast details', details: error.message });
+  }
+});
+
+// Get podcast episodes (must come after specific routes)
+app.get(`${API_BASE}/podcasts/:id/episodes`, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { limit = 20, offset = 0 } = req.query;
+
+    console.log(`🎙️ Getting episodes for podcast ID: ${id} (limit: ${limit}, offset: ${offset})`);
+
+    const episodesData = await spotifyApi.getShowEpisodes(id, {
+      limit: Math.min(parseInt(limit), 50),
+      offset: parseInt(offset)
+    });
+
+    const episodes = episodesData.body.items.map(episode => ({
+      id: episode.id,
+      title: episode.name,
+      description: episode.description,
+      duration: episode.duration_ms,
+      releaseDate: episode.release_date,
+      imageUrl: episode.images?.[0]?.url,
+      audioUrl: episode.audio_preview_url,
+      explicit: episode.explicit,
+      playCount: 0, // Will be tracked in database
+      featuredArtists: [], // Will be analyzed from description
+      musicRelevance: 5 // Default, will be enhanced
+    }));
+
+    console.log(`✅ Retrieved ${episodes.length} episodes for podcast`);
+    res.json({
+      episodes,
+      total: episodesData.body.total,
+      limit: parseInt(limit),
+      offset: parseInt(offset)
+    });
+
+  } catch (error) {
+    console.error('Podcast episodes error:', error);
+    res.status(500).json({ error: 'Failed to fetch podcast episodes', details: error.message });
+  }
+});
+
+// Helper function to extract artist names from episode descriptions
+function extractArtistsFromDescription(text) {
+  const musicArtists = [
+    'drake', 'kanye', 'post malone', 'eminem', 'taylor swift', 'justin bieber',
+    'travis scott', 'kendrick lamar', 'j cole', 'future', 'lil wayne', 'nicki minaj',
+    'cardi b', 'bad bunny', 'j balvin', 'karol g', 'ozuna', 'anuel aa',
+    'travis scott', 'gunna', 'young thug', '21 savage', 'metro boomin',
+    'rick ross', 'jay z', 'nas', 'biggie', 'tupac', 'snoop dogg', 'ice cube',
+    'nwa', 'public enemy', 'run dmc', 'beastie boys', 'tribe called quest',
+    'de la soul', 'jungle brothers', 'gang starr', 'black sheep', 'digable planets'
+  ];
+
+  const foundArtists = [];
+  const lowerText = text.toLowerCase();
+
+  for (const artist of musicArtists) {
+    if (lowerText.includes(artist)) {
+      foundArtists.push(artist.charAt(0).toUpperCase() + artist.slice(1));
+    }
+  }
+
+  return [...new Set(foundArtists)]; // Remove duplicates
+}
+
+// Helper function to calculate music relevance score
+function calculateMusicRelevance(text) {
+  const musicKeywords = [
+    'music', 'musician', 'producer', 'album', 'song', 'track', 'beat', 'rap',
+    'hip hop', 'r&b', 'rock', 'pop', 'electronic', 'jazz', 'classical',
+    'artist', 'singer', 'rapper', 'dj', 'remix', 'studio', 'recording',
+    'tour', 'concert', 'festival', 'grammy', 'billboard', 'spotify'
+  ];
+
+  const lowerText = text.toLowerCase();
+  let score = 5; // Base score
+
+  for (const keyword of musicKeywords) {
+    if (lowerText.includes(keyword)) {
+      score += 1;
+    }
+  }
+
+  // Bonus for multiple music mentions
+  const musicMentions = musicKeywords.filter(keyword => lowerText.includes(keyword)).length;
+  if (musicMentions > 3) score += 2;
+
+  return Math.min(10, score);
+}
+
+// Get music-related podcasts (featured section)
+app.get(`${API_BASE}/podcasts/featured`, async (req, res) => {
+  try {
+    console.log('🎙️ Getting featured music podcasts');
+
+    // Curated list of popular music podcasts - using more specific search terms
+    const musicPodcasts = [
+      'Joe Rogan Experience',
+      'Song Exploder',
+      'Broken Record with Rick Rubin',
+      'Dissect',
+      'The Ringer Music Show',
+      'Mass Appeal',
+      'No Jumper',
+      'Drink Champs',
+      'Chicks in the Office',
+      'Pitchfork Music Festival'
+    ];
+
+    const featuredPodcasts = [];
+
+    for (const podcastName of musicPodcasts.slice(0, 8)) { // Limit to 8 to avoid rate limits
+      try {
+        console.log(`🔍 Searching for podcast: "${podcastName}"`);
+
+        const searchResult = await spotifyApi.search(podcastName, ['show'], { limit: 1 });
+
+        if (searchResult.body.shows.items.length > 0) {
+          const podcast = searchResult.body.shows.items[0];
+
+          // Validate the podcast has required fields
+          if (podcast.id && podcast.name) {
+            featuredPodcasts.push({
+              id: podcast.id,
+              name: podcast.name,
+              description: podcast.description || 'No description available',
+              publisher: podcast.publisher || 'Unknown Publisher',
+              imageUrl: podcast.images?.[0]?.url || null,
+              totalEpisodes: podcast.total_episodes || 0,
+              category: 'music',
+              featured: true
+            });
+            console.log(`✅ Added podcast: ${podcast.name}`);
+          } else {
+            console.warn(`⚠️ Podcast "${podcastName}" missing required fields`);
+          }
+        } else {
+          console.warn(`⚠️ No results found for podcast: "${podcastName}"`);
+        }
+
+        // Rate limiting
+        await new Promise(resolve => setTimeout(resolve, 200));
+
+      } catch (searchError) {
+        console.warn(`❌ Failed to search for podcast "${podcastName}":`, searchError.message);
+      }
+    }
+
+    // If we didn't find any podcasts, return a fallback response
+    if (featuredPodcasts.length === 0) {
+      console.log('⚠️ No podcasts found, returning fallback data');
+      return res.json([
+        {
+          id: 'fallback1',
+          name: 'Music Discovery Podcast',
+          description: 'Discover new music and artists from around the world',
+          publisher: 'MusicRx',
+          imageUrl: null,
+          totalEpisodes: 0,
+          category: 'music',
+          featured: true
+        }
+      ]);
+    }
+
+    console.log(`✅ Returning ${featuredPodcasts.length} featured music podcasts`);
+    res.json(featuredPodcasts);
+
+  } catch (error) {
+    console.error('Featured podcasts error:', error);
+    // Return a fallback response instead of an error
+    res.json([
+      {
+        id: 'fallback1',
+        name: 'Music Discovery Podcast',
+        description: 'Discover new music and artists from around the world',
+        publisher: 'MusicRx',
+        imageUrl: null,
+        totalEpisodes: 0,
+        category: 'music',
+        featured: true
+      }
+    ]);
   }
 });
 
