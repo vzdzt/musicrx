@@ -451,7 +451,6 @@
             <div class="dropdown-menu">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="discover.html">Discover</a></li>
                     <li><a href="reviews.html">Reviews</a></li>
                     <li><a href="news.html">News</a></li>
                     <li><a href="newmusic.html">New Music</a></li>
@@ -837,11 +836,11 @@
     <script src="theme-effects.js"></script>
     <script src="hover-effects.js"></script>
     <script src="scroll-effects.js"></script>
-    <script src="script.js?v=1.1"></script>
+    <script src="script.js?v=1.3"></script>
 
     <script>
         // Configuration
-        const BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://musicrx.app';
+        const BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:3002' : 'https://musicrx.app';
 
         // Load top underground artists for homepage
         async function loadHomepageUndergroundArtists() {
@@ -858,17 +857,20 @@
             } catch (error) {
                 console.error('Homepage underground artists error:', error);
                 // Fallback to show some default content
-                document.getElementById('homepage-underground-loading').innerHTML = `
-                    <div style="text-align: center; padding: 2rem;">
-                        <i class="fas fa-music" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-                        <p>Check out our <a href="underground.html" style="color: var(--primary);">full underground rankings</a></p>
-                    </div>
-                `;
+                const loadingElement = document.getElementById('underground-loading');
+                if (loadingElement) {
+                    loadingElement.innerHTML = `
+                        <div style="text-align: center; padding: 2rem;">
+                            <i class="fas fa-music" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                            <p>Check out our <a href="underground.html" style="color: var(--primary);">full underground rankings</a></p>
+                        </div>
+                    `;
+                }
             }
         }
 
         function displayHomepageUndergroundArtists(artists) {
-            document.getElementById('homepage-underground-loading').style.display = 'none';
+            document.getElementById('underground-loading').style.display = 'none';
 
             const container = document.getElementById('underground-artists-scroll');
 

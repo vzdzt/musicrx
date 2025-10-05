@@ -1,5 +1,5 @@
-// API base URL - Replace with your Digital Ocean VPS URL (e.g., https://yourdomain.com or http://your-ip:3001)
-const API_BASE = 'http://104.236.127.44:3001';
+// API base URL - Dynamic based on hostname
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://musicrx.app';
 
 // Footer visibility control
 window.addEventListener('scroll', () => {
@@ -231,7 +231,7 @@ async function loadLatestNews() {
                     </div>
                     <div class="news-content-card">
                         <p class="date">${source}</p>
-                        ${article.imageUrl ? `<img src="${article.imageUrl}" alt="${article.title}" onerror="this.src='data:image/svg+xml;base64,' + btoa('<svg width=\"300\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"300\" height=\"200\" fill=\"#333\"/><text x=\"150\" y=\"110\" font-family=\"Arial\" font-size=\"16\" fill=\"#666\" text-anchor=\"middle\">News</text></svg>')">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-newspaper" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
+                        ${article.imageUrl ? `<img src="${article.imageUrl}" alt="${article.title}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjE1MCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5ld3M8L3RleHQ+PC9zdmc+'" style="width: 100%; aspect-ratio: 3/2; object-fit: cover; border-radius: 4px;">` : '<div style="width: 100%; height: 120px; background: var(--card-background); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-newspaper" style="font-size: 2rem; opacity: 0.5;"></i></div>'}
                         <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${publishedDate}</p>
                     </div>
                 </a>`;

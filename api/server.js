@@ -21,7 +21,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 // Load environment variables
 dotenv.config();
@@ -4707,3 +4707,7 @@ app.listen(PORT, () => {
   console.log(`Health check: http://localhost:${PORT}/api/health`);
   console.log(`API ready: http://localhost:${PORT}/api/underground-rankings`);
 });
+
+// HTTPS server disabled for now - causing port conflicts
+console.log('⚠️  HTTPS server disabled - running HTTP only on port', PORT);
+console.log('🔄 To enable HTTPS, ensure SSL certificates are properly configured');
