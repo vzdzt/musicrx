@@ -2910,6 +2910,102 @@ app.get(`${API_BASE}/podcasts/joe-rogan-experience/episodes`, async (req, res) =
   }
 });
 
+// Get music-related podcasts (featured section) - MUST COME BEFORE GENERIC :id ROUTES
+app.get(`${API_BASE}/podcasts/featured`, async (req, res) => {
+  try {
+    console.log('🎙️ Getting featured music podcasts');
+
+    // Curated list of popular music podcasts - using more specific search terms
+    const musicPodcasts = [
+      'Joe Rogan Experience',
+      'Song Exploder',
+      'Broken Record with Rick Rubin',
+      'Dissect',
+      'The Ringer Music Show',
+      'Mass Appeal',
+      'No Jumper',
+      'Drink Champs',
+      'Chicks in the Office',
+      'Pitchfork Music Festival'
+    ];
+
+    const featuredPodcasts = [];
+
+    for (const podcastName of musicPodcasts.slice(0, 8)) { // Limit to 8 to avoid rate limits
+      try {
+        console.log(`🔍 Searching for podcast: "${podcastName}"`);
+
+        const searchResult = await spotifyApi.search(podcastName, ['show'], { limit: 1 });
+
+        if (searchResult.body.shows.items.length > 0) {
+          const podcast = searchResult.body.shows.items[0];
+
+          // Validate the podcast has required fields
+          if (podcast.id && podcast.name) {
+            featuredPodcasts.push({
+              id: podcast.id,
+              name: podcast.name,
+              description: podcast.description || 'No description available',
+              publisher: podcast.publisher || 'Unknown Publisher',
+              imageUrl: podcast.images?.[0]?.url || null,
+              totalEpisodes: podcast.total_episodes || 0,
+              category: 'music',
+              featured: true
+            });
+            console.log(`✅ Added podcast: ${podcast.name}`);
+          } else {
+            console.warn(`⚠️ Podcast "${podcastName}" missing required fields`);
+          }
+        } else {
+          console.warn(`⚠️ No results found for podcast: "${podcastName}"`);
+        }
+
+        // Rate limiting
+        await new Promise(resolve => setTimeout(resolve, 200));
+
+      } catch (searchError) {
+        console.warn(`❌ Failed to search for podcast "${podcastName}":`, searchError.message);
+      }
+    }
+
+    // If we didn't find any podcasts, return a fallback response
+    if (featuredPodcasts.length === 0) {
+      console.log('⚠️ No podcasts found, returning fallback data');
+      return res.json([
+        {
+          id: 'fallback1',
+          name: 'Music Discovery Podcast',
+          description: 'Discover new music and artists from around the world',
+          publisher: 'MusicRx',
+          imageUrl: null,
+          totalEpisodes: 0,
+          category: 'music',
+          featured: true
+        }
+      ]);
+    }
+
+    console.log(`✅ Returning ${featuredPodcasts.length} featured music podcasts`);
+    res.json(featuredPodcasts);
+
+  } catch (error) {
+    console.error('Featured podcasts error:', error);
+    // Return a fallback response instead of an error
+    res.json([
+      {
+        id: 'fallback1',
+        name: 'Music Discovery Podcast',
+        description: 'Discover new music and artists from around the world',
+        publisher: 'MusicRx',
+        imageUrl: null,
+        totalEpisodes: 0,
+        category: 'music',
+        featured: true
+      }
+    ]);
+  }
+});
+
 // Get podcast details (must come after specific routes)
 app.get(`${API_BASE}/podcasts/:id`, async (req, res) => {
   try {
@@ -3032,101 +3128,7 @@ function calculateMusicRelevance(text) {
   return Math.min(10, score);
 }
 
-// Get music-related podcasts (featured section)
-app.get(`${API_BASE}/podcasts/featured`, async (req, res) => {
-  try {
-    console.log('🎙️ Getting featured music podcasts');
 
-    // Curated list of popular music podcasts - using more specific search terms
-    const musicPodcasts = [
-      'Joe Rogan Experience',
-      'Song Exploder',
-      'Broken Record with Rick Rubin',
-      'Dissect',
-      'The Ringer Music Show',
-      'Mass Appeal',
-      'No Jumper',
-      'Drink Champs',
-      'Chicks in the Office',
-      'Pitchfork Music Festival'
-    ];
-
-    const featuredPodcasts = [];
-
-    for (const podcastName of musicPodcasts.slice(0, 8)) { // Limit to 8 to avoid rate limits
-      try {
-        console.log(`🔍 Searching for podcast: "${podcastName}"`);
-
-        const searchResult = await spotifyApi.search(podcastName, ['show'], { limit: 1 });
-
-        if (searchResult.body.shows.items.length > 0) {
-          const podcast = searchResult.body.shows.items[0];
-
-          // Validate the podcast has required fields
-          if (podcast.id && podcast.name) {
-            featuredPodcasts.push({
-              id: podcast.id,
-              name: podcast.name,
-              description: podcast.description || 'No description available',
-              publisher: podcast.publisher || 'Unknown Publisher',
-              imageUrl: podcast.images?.[0]?.url || null,
-              totalEpisodes: podcast.total_episodes || 0,
-              category: 'music',
-              featured: true
-            });
-            console.log(`✅ Added podcast: ${podcast.name}`);
-          } else {
-            console.warn(`⚠️ Podcast "${podcastName}" missing required fields`);
-          }
-        } else {
-          console.warn(`⚠️ No results found for podcast: "${podcastName}"`);
-        }
-
-        // Rate limiting
-        await new Promise(resolve => setTimeout(resolve, 200));
-
-      } catch (searchError) {
-        console.warn(`❌ Failed to search for podcast "${podcastName}":`, searchError.message);
-      }
-    }
-
-    // If we didn't find any podcasts, return a fallback response
-    if (featuredPodcasts.length === 0) {
-      console.log('⚠️ No podcasts found, returning fallback data');
-      return res.json([
-        {
-          id: 'fallback1',
-          name: 'Music Discovery Podcast',
-          description: 'Discover new music and artists from around the world',
-          publisher: 'MusicRx',
-          imageUrl: null,
-          totalEpisodes: 0,
-          category: 'music',
-          featured: true
-        }
-      ]);
-    }
-
-    console.log(`✅ Returning ${featuredPodcasts.length} featured music podcasts`);
-    res.json(featuredPodcasts);
-
-  } catch (error) {
-    console.error('Featured podcasts error:', error);
-    // Return a fallback response instead of an error
-    res.json([
-      {
-        id: 'fallback1',
-        name: 'Music Discovery Podcast',
-        description: 'Discover new music and artists from around the world',
-        publisher: 'MusicRx',
-        imageUrl: null,
-        totalEpisodes: 0,
-        category: 'music',
-        featured: true
-      }
-    ]);
-  }
-});
 
 // Fix inflated 2025 album scores manually
 app.post('/api/fix-2025-scores', async (req, res) => {
