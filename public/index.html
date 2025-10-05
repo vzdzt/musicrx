@@ -453,6 +453,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="reviews.html">Reviews</a></li>
                     <li><a href="news.html">News</a></li>
+                    <li><a href="podcasts.html">Podcasts</a></li>
                     <li><a href="newmusic.html">New Music</a></li>
                     <li><a href="underground.html">Underground</a></li>
                     <li><a href="listener-pulse.html">Listener Pulse</a></li>
@@ -668,6 +669,22 @@
         </section>
         </section>
 
+        <section class="scroll-section" id="podcasts">
+            <div class="section-header">
+                <h2 class="section-title"><a href="podcasts.html" style="text-decoration: none; color: inherit;">🎙️ Podcasts</a></h2>
+                <div class="scroll-nav">
+                    <button class="scroll-button prev" onclick="scrollSection('podcasts', -300)">←</button>
+                    <button class="scroll-button next" onclick="scrollSection('podcasts', 300)">→</button>
+                </div>
+            </div>
+            <div class="scroll-container" id="podcasts-scroll">
+                <!-- Podcasts will be loaded here -->
+                <div class="loading" id="podcasts-loading">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p>Loading trending podcasts...</p>
+                </div>
+            </div>
+        </section>
 
         <section class="scroll-section" id="aoty-contenders">
             <div class="section-header">
@@ -958,10 +975,68 @@
             });
         }
 
+        // Load homepage podcasts
+        async function loadHomepagePodcasts() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/v1/podcasts/trending?limit=8`);
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load podcasts: ${response.status}`);
+                }
+
+                const podcasts = await response.json();
+                displayHomepagePodcasts(podcasts.slice(0, 8)); // Show top 8
+
+            } catch (error) {
+                console.error('Homepage podcasts error:', error);
+                // Fallback to show some default content
+                const loadingElement = document.getElementById('podcasts-loading');
+                if (loadingElement) {
+                    loadingElement.innerHTML = `
+                        <div style="text-align: center; padding: 2rem;">
+                            <i class="fas fa-microphone" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                            <p>Check out our <a href="podcasts.html" style="color: var(--primary);">full podcasts section</a></p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function displayHomepagePodcasts(podcasts) {
+            document.getElementById('podcasts-loading').style.display = 'none';
+
+            const container = document.getElementById('podcasts-scroll');
+
+            podcasts.forEach(podcast => {
+                const item = document.createElement('a');
+                item.href = `https://open.spotify.com/show/${podcast.id}`;
+                item.target = '_blank';
+                item.rel = 'noopener noreferrer';
+                item.className = 'scroll-item';
+                item.style.textDecoration = 'none';
+                item.style.color = 'inherit';
+
+                const imageUrl = podcast.imageUrl || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==`;
+
+                item.innerHTML = `
+                    <div class="news-title-card">
+                        <h3>${podcast.name}</h3>
+                    </div>
+                    <div class="news-content-card">
+                        <p class="date">${podcast.publisher || 'Music Podcast'} • ${podcast.totalEpisodes || 0} episodes</p>
+                        <img src="${imageUrl}" alt="${podcast.name}" style="width: 100%; aspect-ratio: 1; object-fit: cover;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='">
+                    </div>
+                `;
+
+                container.appendChild(item);
+            });
+        }
+
         // Load homepage underground artists when page loads
         document.addEventListener('DOMContentLoaded', () => {
             loadHomepageUndergroundArtists();
             loadHomepageWorldFirstArtists();
+            loadHomepagePodcasts();
         });
 
         // Value Tracker Sidebar Functionality - COMMENTED OUT FOR NOW

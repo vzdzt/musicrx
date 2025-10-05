@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Podcasts - MusicRx</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://musicrx.app/podcasts.html">
+    <meta property="og:title" content="Podcasts - MusicRx">
+    <meta property="og:description" content="Discover trending music podcasts, interviews, and industry insights from around the world.">
+    <meta property="og:image" content="https://musicrx.app/catdive.jpeg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://musicrx.app/podcasts.html">
+    <meta property="twitter:title" content="Podcasts - MusicRx">
+    <meta property="twitter:description" content="Discover trending music podcasts, interviews, and industry insights from around the world.">
+    <meta property="twitter:image" content="https://musicrx.app/catdive.jpeg">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="keyframes.css">
+    <style>
+        .main-content {
+            width: 100%;
+            height: auto;
+            margin-bottom: 60px;
+            margin-top: 90px;
+            padding: 0 1rem;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            transform: none;
+        }
+
+        #universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Search Section */
+        .search-section {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.9) 0%, rgba(30, 30, 50, 0.9) 100%);
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            background: var(--card-background);
+            color: var(--text-color);
+            font-size: 1.1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .search-button {
+            margin-top: 1rem;
+            padding: 0.75rem 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-button:hover {
+            background: var(--rgb-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Featured Podcasts */
+        .featured-section {
+            margin-bottom: 3rem;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .featured-podcast {
+            background: var(--card-background);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .featured-podcast:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        .podcast-image {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .podcast-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            font-family: 'Syncopate', sans-serif;
+        }
+
+        .podcast-publisher {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .podcast-description {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Search Results */
+        .results-section {
+            margin-bottom: 3rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .podcast-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 1rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .podcast-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+
+        .podcast-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .podcast-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .podcast-card .publisher {
+            color: var(--secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .podcast-card .episodes {
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Episodes Section */
+        .episodes-section {
+            background: var(--card-background);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .episodes-list {
+            margin-top: 1.5rem;
+        }
+
+        .episode-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .episode-item:last-child {
+            border-bottom: none;
+        }
+
+        .episode-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .episode-info {
+            flex: 1;
+        }
+
+        .episode-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .episode-description {
+            color: var(--secondary);
+            font-size: 0.85rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .episode-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+
+        .episode-play {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .episode-play:hover {
+            background: var(--rgb-glow);
+        }
+
+        /* Loading and Error States */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--secondary);
+        }
+
+        .loading i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            animation: spin 1s linear infinite;
+        }
+
+        .error {
+            text-align: center;
+            padding: 3rem;
+            color: #dc2626;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .episode-item {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .episode-image {
+                width: 100%;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body class="podcasts">
+    <button id="themeToggle" title="Normal Mode"><i class="fas fa-palette"></i></button>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <canvas id="universe"></canvas>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+            <p class="heartbeat-text">MUSICRX</p>
+            <span class="heartbeat-line"></span>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-toggle" type="button"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="podcasts.html">Podcasts</a></li>
+                    <li><a href="newmusic.html">New Music</a></li>
+                    <li><a href="underground.html">Underground</a></li>
+                    <li><a href="listener-pulse.html">Listener Pulse</a></li>
+                    <li><a href="all-time-rankings.html">Rankings</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <section class="search-section">
+            <div class="search-container">
+                <h1 style="font-family: 'Syncopate', sans-serif; margin-bottom: 1rem;">🎙️ Music Podcasts</h1>
+                <p style="color: var(--secondary); margin-bottom: 2rem;">Discover trending podcasts, interviews, and industry insights</p>
+                <input type="text" id="podcastSearch" class="search-input" placeholder="Search for podcasts...">
+                <button id="searchButton" class="search-button">Search Podcasts</button>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <h2 class="section-title">Featured Podcasts</h2>
+            <div id="featuredPodcasts" class="featured-grid">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading featured podcasts...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section" id="searchResults" style="display: none;">
+            <h2 class="section-title">Search Results</h2>
+            <div id="resultsContainer" class="results-grid">
+                <!-- Search results will be loaded here -->
+            </div>
+        </section>
+
+        <section class="episodes-section" id="podcastEpisodes" style="display: none;">
+            <h2 id="episodesTitle" class="section-title">Latest Episodes</h2>
+            <div id="episodesContainer" class="episodes-list">
+                <!-- Episodes will be loaded here -->
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="nav-logo">
+            <span class="logo-symbol"><i class="fas fa-heartbeat"></i></span>
+        </div>
+        <div class="footer-content">
+            <p>© 2025 MusicRx. All rights reserved.</p>
+            <span class="heartbeat-line"></span>
+        </div>
+    </footer>
+
+    <script src="theme-effects.js"></script>
+    <script src="hover-effects.js"></script>
+    <script src="scroll-effects.js"></script>
+    <script src="script.js?v=1.3"></script>
+
+    <script>
+        // Configuration
+        const BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:3002' : 'https://musicrx.app';
+
+        let currentPodcastId = null;
+
+        // Load featured podcasts on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFeaturedPodcasts();
+            setupSearch();
+        });
+
+        // Setup search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('podcastSearch');
+            const searchButton = document.getElementById('searchButton');
+
+            // Search on button click
+            searchButton.addEventListener('click', () => {
+                const query = searchInput.value.trim();
+                if (query) {
+                    searchPodcasts(query);
+                }
+            });
+
+            // Search on Enter key
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        searchPodcasts(query);
+                    }
+                }
+            });
+        }
+
+        // Load featured podcasts
+        async function loadFeaturedPodcasts() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/v1/podcasts/featured`);
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load featured podcasts: ${response.status}`);
+                }
+
+                const podcasts = await response.json();
+                displayFeaturedPodcasts(podcasts);
+
+            } catch (error) {
+                console.error('Featured podcasts error:', error);
+                document.getElementById('featuredPodcasts').innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Failed to load featured podcasts. Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Display featured podcasts
+        function displayFeaturedPodcasts(podcasts) {
+            const container = document.getElementById('featuredPodcasts');
+
+            if (!podcasts || podcasts.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: var(--secondary);">
+                        <i class="fas fa-microphone" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>No featured podcasts available at the moment.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = podcasts.map(podcast => `
+                <div class="featured-podcast" onclick="loadPodcastEpisodes('${podcast.id}')">
+                    <img src="${podcast.imageUrl || 'https://via.placeholder.com/300x300/333/666?text=No+Image'}" alt="${podcast.name}" class="podcast-image">
+                    <h3 class="podcast-title">${podcast.name}</h3>
+                    <p class="podcast-publisher">${podcast.publisher || 'Unknown Publisher'}</p>
+                    <p class="podcast-description">${podcast.description || 'No description available.'}</p>
+                </div>
+            `).join('');
+        }
+
+        // Search podcasts
+        async function searchPodcasts(query) {
+            try {
+                document.getElementById('searchButton').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+                document.getElementById('searchButton').disabled = true;
+
+                const response = await fetch(`${BACKEND_URL}/api/v1/podcasts/search?q=${encodeURIComponent(query)}`);
+
+                if (!response.ok) {
+                    throw new Error(`Search failed: ${response.status}`);
+                }
+
+                const podcasts = await response.json();
+                displaySearchResults(podcasts);
+
+                // Show results section
+                document.getElementById('searchResults').style.display = 'block';
+
+            } catch (error) {
+                console.error('Search error:', error);
+                document.getElementById('resultsContainer').innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Search failed. Please try again.</p>
+                    </div>
+                `;
+                document.getElementById('searchResults').style.display = 'block';
+            } finally {
+                document.getElementById('searchButton').innerHTML = 'Search Podcasts';
+                document.getElementById('searchButton').disabled = false;
+            }
+        }
+
+        // Display search results
+        function displaySearchResults(podcasts) {
+            const container = document.getElementById('resultsContainer');
+
+            if (!podcasts || podcasts.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: var(--secondary); grid-column: 1 / -1;">
+                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>No podcasts found for your search.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = podcasts.map(podcast => `
+                <div class="podcast-card" onclick="loadPodcastEpisodes('${podcast.id}')">
+                    <img src="${podcast.imageUrl || 'https://via.placeholder.com/200x200/333/666?text=No+Image'}" alt="${podcast.name}">
+                    <h3>${podcast.name}</h3>
+                    <p class="publisher">${podcast.publisher || 'Unknown Publisher'}</p>
+                    <p class="episodes">${podcast.totalEpisodes || 0} episodes</p>
+                </div>
+            `).join('');
+        }
+
+        // Load podcast episodes
+        async function loadPodcastEpisodes(podcastId) {
+            try {
+                currentPodcastId = podcastId;
+
+                // Show loading state
+                document.getElementById('episodesContainer').innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading episodes...</p>
+                    </div>
+                `;
+                document.getElementById('podcastEpisodes').style.display = 'block';
+
+                // Scroll to episodes section
+                document.getElementById('podcastEpisodes').scrollIntoView({ behavior: 'smooth' });
+
+                // Get podcast details first
+                const podcastResponse = await fetch(`${BACKEND_URL}/api/v1/podcasts/${podcastId}`);
+                const podcast = await podcastResponse.json();
+
+                // Update episodes title
+                document.getElementById('episodesTitle').textContent = `${podcast.name} - Latest Episodes`;
+
+                // Get episodes
+                const episodesResponse = await fetch(`${BACKEND_URL}/api/v1/podcasts/${podcastId}/episodes`);
+                const episodesData = await episodesResponse.json();
+
+                displayPodcastEpisodes(podcast, episodesData.episodes || []);
+
+            } catch (error) {
+                console.error('Load episodes error:', error);
+                document.getElementById('episodesContainer').innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Failed to load episodes. Please try again.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Display podcast episodes
+        function displayPodcastEpisodes(podcast, episodes) {
+            const container = document.getElementById('episodesContainer');
+
+            if (!episodes || episodes.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: var(--secondary);">
+                        <i class="fas fa-music" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>No episodes available for this podcast.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = episodes.map(episode => `
+                <div class="episode-item">
+                    <img src="${episode.imageUrl || podcast.imageUrl || 'https://via.placeholder.com/80x80/333/666?text=No+Image'}" alt="${episode.title}" class="episode-image">
+                    <div class="episode-info">
+                        <h4 class="episode-title">${episode.title}</h4>
+                        <p class="episode-description">${episode.description || 'No description available.'}</p>
+                        <div class="episode-meta">
+                            <span>${formatDate(episode.releaseDate)}</span>
+                            <span>${formatDuration(episode.duration)}</span>
+                        </div>
+                    </div>
+                    <button class="episode-play" onclick="playEpisode('${episode.audioUrl}', '${episode.title}')">
+                        <i class="fas fa-play"></i> Play
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Play episode (opens in Spotify)
+        function playEpisode(audioUrl, title) {
+            if (audioUrl) {
+                // Try to open in Spotify web player or default audio player
+                window.open(audioUrl, '_blank');
+            } else {
+                alert('Audio preview not available for this episode.');
+            }
+        }
+
+        // Utility functions
+        function formatDate(dateString) {
+            if (!dateString) return 'Unknown date';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function formatDuration(ms) {
+            if (!ms) return 'Unknown duration';
+            const minutes = Math.floor(ms / 60000);
+            const seconds = Math.floor((ms % 60000) / 1000);
+            return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Make loadPodcastEpisodes globally available
+        window.loadPodcastEpisodes = loadPodcastEpisodes;
+    </script>
+</body>
+</html>
