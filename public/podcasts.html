@@ -51,141 +51,93 @@
             pointer-events: none;
         }
 
-        /* Search Section */
-        .search-section {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(20, 20, 30, 0.95) 0%, rgba(30, 30, 50, 0.95) 50%, rgba(40, 20, 60, 0.95) 100%);
-            border-radius: 24px;
+        /* Filter Section */
+        .filter-section {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
             margin-bottom: 3rem;
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            position: relative;
-            overflow: hidden;
+            backdrop-filter: blur(20px);
         }
 
-        .search-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(107, 255, 214, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .search-container {
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .search-wrapper {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .search-input-wrapper {
-            position: relative;
+        .filter-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            margin-bottom: 1.5rem;
         }
 
-        .search-input {
-            width: 100%;
-            padding: 1.2rem 3rem 1.2rem 1.5rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-color);
-            font-size: 1.1rem;
-            font-family: 'Space Grotesk', sans-serif;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-        }
-
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-            font-style: italic;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 30px rgba(255, 107, 107, 0.4),
-                        0 0 60px rgba(255, 107, 107, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            pointer-events: none;
-        }
-
-        .search-input:focus + .search-icon {
+        .filter-header h3 {
+            margin: 0;
             color: var(--primary);
-            transform: translateY(-50%) scale(1.1);
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .search-button {
-            position: absolute;
-            right: 0.3rem;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 0.6rem 1.2rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--rgb-glow) 100%);
-            color: white;
-            border: none;
-            border-radius: 40px;
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--card-background);
+            color: var(--text-color);
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .filter-select:hover {
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-            opacity: 0;
-            transform: translateY(-50%) scale(0.8);
         }
 
-        .search-input:focus ~ .search-button {
-            opacity: 1;
-            transform: translateY(-50%) scale(1);
-        }
-
-        .search-button:hover {
-            background: linear-gradient(135deg, var(--rgb-glow) 0%, var(--primary) 100%);
+        .refresh-btn:hover {
+            background: var(--rgb-glow);
+            transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
-            transform: translateY(-50%) scale(1.05);
         }
 
-        .search-button:active {
-            transform: translateY(-50%) scale(0.95);
+        .refresh-btn:active {
+            transform: translateY(0);
         }
 
-        .search-hint {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            font-style: italic;
-        }
-
-        .search-stats {
+        .filter-stats {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
 
@@ -193,13 +145,19 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--secondary);
             font-size: 0.9rem;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .stat-item i {
             color: var(--primary);
             font-size: 1rem;
+        }
+
+        .stat-value {
+            color: var(--text-color);
+            font-weight: 600;
         }
 
         /* Featured Podcasts */
@@ -471,39 +429,47 @@
     </nav>
 
     <div class="main-content">
-        <section class="search-section">
-            <div class="search-container">
-                <h1 style="font-family: 'Syncopate', sans-serif; margin-bottom: 1rem;">🎙️ Music Podcasts</h1>
-                <p style="color: var(--secondary); margin-bottom: 2rem;">Discover trending podcasts, interviews, and industry insights</p>
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h1 style="font-family: 'Syncopate', sans-serif; margin-bottom: 1rem;">🎙️ Music Podcasts</h1>
+            <p style="color: var(--secondary); margin-bottom: 2rem;">Discover trending podcasts, interviews, and industry insights</p>
+        </div>
 
-                <div class="search-wrapper">
-                    <div class="search-input-wrapper">
-                        <input type="text" id="podcastSearch" class="search-input" placeholder="Search for music podcasts, interviews, or hosts...">
-                        <i class="fas fa-search search-icon"></i>
-                        <button id="searchButton" class="search-button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3>Filters</h3>
+                <button id="refreshBtn" class="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+            <div class="filter-controls">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="">All Categories</option>
+                    <option value="music">Music</option>
+                    <option value="interviews">Interviews</option>
+                    <option value="industry">Industry</option>
+                    <option value="general">General</option>
+                </select>
+                <select id="sortFilter" class="filter-select">
+                    <option value="popularity">Sort by Popularity</option>
+                    <option value="name">Sort by Name</option>
+                    <option value="episodes">Sort by Episode Count</option>
+                </select>
+            </div>
+            <div class="filter-stats">
+                <div class="stat-item">
+                    <i class="fas fa-microphone"></i>
+                    <span class="stat-value">1000+</span> Podcasts
                 </div>
-
-                <p class="search-hint">Try searching for "Joe Rogan", "music industry", or "hip hop interviews"</p>
-
-                <div class="search-stats">
-                    <div class="stat-item">
-                        <i class="fas fa-microphone"></i>
-                        <span>1000+ Podcasts</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-headphones"></i>
-                        <span>50K+ Episodes</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-users"></i>
-                        <span>Global Reach</span>
-                    </div>
+                <div class="stat-item">
+                    <i class="fas fa-headphones"></i>
+                    <span class="stat-value">50K+</span> Episodes
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <span class="stat-value">Global</span> Reach
                 </div>
             </div>
-        </section>
+        </div>
 
         <section class="featured-section">
             <h2 class="section-title">Featured Podcasts</h2>
@@ -554,50 +520,32 @@
         // Load featured podcasts on page load
         document.addEventListener('DOMContentLoaded', () => {
             loadFeaturedPodcasts();
-            setupSearch();
+            setupFilters();
         });
 
-        // Setup search functionality
-        function setupSearch() {
-            const searchInput = document.getElementById('podcastSearch');
-            const searchButton = document.getElementById('searchButton');
+        // Setup filter functionality
+        function setupFilters() {
+            const categoryFilter = document.getElementById('categoryFilter');
+            const sortFilter = document.getElementById('sortFilter');
+            const refreshBtn = document.getElementById('refreshBtn');
 
-            // Search on button click
-            searchButton.addEventListener('click', () => {
-                const query = searchInput.value.trim();
-                if (query) {
-                    searchPodcasts(query);
-                }
-            });
+            // Filter event listeners
+            categoryFilter.addEventListener('change', applyFilters);
+            sortFilter.addEventListener('change', applyFilters);
 
-            // Search on Enter key
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    const query = searchInput.value.trim();
-                    if (query) {
-                        searchPodcasts(query);
-                    }
-                }
-            });
-
-            // Add input event listener for dynamic search hints
-            searchInput.addEventListener('input', () => {
-                const query = searchInput.value.trim();
-                updateSearchHint(query);
+            // Refresh button
+            refreshBtn.addEventListener('click', () => {
+                loadFeaturedPodcasts();
             });
         }
 
-        // Update search hint based on input
-        function updateSearchHint(query) {
-            const hintElement = document.querySelector('.search-hint');
+        // Apply filters to displayed podcasts
+        function applyFilters() {
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const sortFilter = document.getElementById('sortFilter').value;
 
-            if (query.length === 0) {
-                hintElement.textContent = 'Try searching for "Joe Rogan", "music industry", or "hip hop interviews"';
-            } else if (query.length < 3) {
-                hintElement.textContent = 'Keep typing to search...';
-            } else {
-                hintElement.textContent = `Searching for podcasts related to "${query}"...`;
-            }
+            // For now, just reload featured podcasts (in a real implementation, you'd filter the existing data)
+            loadFeaturedPodcasts();
         }
 
         // Load featured podcasts
@@ -647,66 +595,7 @@
             `).join('');
         }
 
-        // Search podcasts
-        async function searchPodcasts(query) {
-            try {
-                const searchButton = document.getElementById('searchButton');
-                searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-                searchButton.disabled = true;
-                searchButton.style.opacity = '0.7';
 
-                const response = await fetch(`${BACKEND_URL}/api/v1/podcasts/search?q=${encodeURIComponent(query)}`);
-
-                if (!response.ok) {
-                    throw new Error(`Search failed: ${response.status}`);
-                }
-
-                const podcasts = await response.json();
-                displaySearchResults(podcasts);
-
-                // Show results section
-                document.getElementById('searchResults').style.display = 'block';
-
-            } catch (error) {
-                console.error('Search error:', error);
-                document.getElementById('resultsContainer').innerHTML = `
-                    <div class="error">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <p>Search failed. Please try again.</p>
-                    </div>
-                `;
-                document.getElementById('searchResults').style.display = 'block';
-            } finally {
-                const searchButton = document.getElementById('searchButton');
-                searchButton.innerHTML = '<i class="fas fa-search"></i>';
-                searchButton.disabled = false;
-                searchButton.style.opacity = '1';
-            }
-        }
-
-        // Display search results
-        function displaySearchResults(podcasts) {
-            const container = document.getElementById('resultsContainer');
-
-            if (!podcasts || podcasts.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 3rem; color: var(--secondary); grid-column: 1 / -1;">
-                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-                        <p>No podcasts found for your search.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = podcasts.map(podcast => `
-                <div class="podcast-card" onclick="loadPodcastEpisodes('${podcast.id}')">
-                    <img src="${podcast.imageUrl || 'https://via.placeholder.com/200x200/333/666?text=No+Image'}" alt="${podcast.name}">
-                    <h3>${podcast.name}</h3>
-                    <p class="publisher">${podcast.publisher || 'Unknown Publisher'}</p>
-                    <p class="episodes">${podcast.totalEpisodes || 0} episodes</p>
-                </div>
-            `).join('');
-        }
 
         // Load podcast episodes
         async function loadPodcastEpisodes(podcastId) {
