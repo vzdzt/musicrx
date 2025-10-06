@@ -1,4 +1,7 @@
+import "./instrument.js";
+
 import express from 'express';
+import * as Sentry from "@sentry/node";
 import { exec } from 'child_process';
 import path from 'path';
 import fs from 'fs';
@@ -5299,6 +5302,9 @@ cron.schedule('0 2 * * 0', async () => {
     console.error('Error running weekly underground update:', err);
   }
 });
+
+// Sentry error handler must be registered before any other error middleware
+Sentry.setupExpressErrorHandler(app);
 
 // Error handling middleware
 app.use((error, req, res, next) => {

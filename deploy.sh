@@ -47,8 +47,17 @@ cd ~/musicrx || { echo "❌ Error: ~/musicrx directory not found. Please upload 
 echo "📦 Installing Node.js dependencies..."
 npm install
 
+# Run comprehensive test suite
+echo "🧪 Running test suite..."
+if npm test; then
+    echo "✅ All tests passed!"
+else
+    echo "❌ Tests failed! Aborting deployment."
+    exit 1
+fi
+
 # Test the application
-echo "🧪 Testing application..."
+echo "🧪 Testing application startup..."
 npm run dev &
 sleep 5
 

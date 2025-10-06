@@ -3,18 +3,71 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="MusicRx Album Reviewer - Automated album reviews based on streams, sales, reviews, and sentiment"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#0d6efd" />
+
+    <!-- Primary Meta Tags -->
+    <title>MusicRx Album Reviewer - Automated Music Reviews & Rankings</title>
+    <meta name="title" content="MusicRx Album Reviewer - Automated Music Reviews & Rankings" />
+    <meta name="description" content="Discover the best albums of 2025 with automated reviews based on streams, sales, reviews, and sentiment analysis. Get unbiased album rankings and ratings." />
+    <meta name="keywords" content="music reviews, album rankings, spotify albums, music ratings, album reviews 2025, music discovery" />
+    <meta name="author" content="MusicRx" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://musicrx.app/" />
+    <meta property="og:title" content="MusicRx Album Reviewer - Automated Music Reviews & Rankings" />
+    <meta property="og:description" content="Discover the best albums of 2025 with automated reviews based on streams, sales, reviews, and sentiment analysis." />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://musicrx.app/" />
+    <meta property="twitter:title" content="MusicRx Album Reviewer - Automated Music Reviews & Rankings" />
+    <meta property="twitter:description" content="Discover the best albums of 2025 with automated reviews based on streams, sales, reviews, and sentiment analysis." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/og-image.jpg" />
+
+    <!-- Performance and Mobile -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MusicRx" />
+
+    <!-- Manifest -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>MusicRx Album Reviewer</title>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="%PUBLIC_URL%/static/css/main.css" as="style" />
+    <link rel="preload" href="%PUBLIC_URL%/static/js/main.js" as="script" />
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <div style="text-align: center; padding: 2rem; font-family: Arial, sans-serif;">
+        <h1>MusicRx Album Reviewer</h1>
+        <p>You need to enable JavaScript to run this app.</p>
+        <p>Visit our <a href="https://musicrx.app">website</a> for album reviews and rankings.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
+
+    <!-- Performance monitoring -->
+    <script>
+      // Measure and report web vitals
+      if ('web-vitals' in window) {
+        import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+          getCLS(console.log);
+          getFID(console.log);
+          getFCP(console.log);
+          getLCP(console.log);
+          getTTFB(console.log);
+        });
+      }
+    </script>
   </body>
 </html>

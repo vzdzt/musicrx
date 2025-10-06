@@ -18,9 +18,14 @@
     "security:check": "npm audit --audit-level=high && echo '✅ Security audit passed'",
     "security:deps": "npm outdated && npm audit --audit-level=moderate",
     "predeploy": "npm run security:check",
-    "test": "node test_spotify.js"
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
+    "test:spotify": "node test_spotify.js"
   },
   "dependencies": {
+    "@sentry/node": "^10.17.0",
+    "@sentry/profiling-node": "^10.17.0",
     "axios": "^1.6.0",
     "cheerio": "^1.0.0-rc.12",
     "cors": "^2.8.5",
@@ -39,7 +44,11 @@
     "xss-clean": "^0.1.4"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "cross-env": "^10.1.0",
+    "jest": "^30.2.0",
+    "mongodb-memory-server": "^10.2.2",
+    "nodemon": "^3.0.1",
+    "supertest": "^7.1.4"
   },
   "engines": {
     "node": ">=16.0.0"
