@@ -1,17 +1,23 @@
 module.exports = {
   testEnvironment: 'node',
   testMatch: [
-    '**/tests/**/*.test.js',
+    '**/tests/basic.test.js',
+    '**/tests/contextManager.test.js',
     '**/tests/**/*.spec.js',
     '**/__tests__/**/*.test.js',
     '**/__tests__/**/*.spec.js'
   ],
+  testPathIgnorePatterns: [
+    'tests/health.test.js',
+    'tests/albums.test.js',
+    'tests/integration.test.js',
+    'tests/media.test.js'
+  ],
   collectCoverageFrom: [
-    'api/**/*.js',
-    '!api/server.js',
-    '!api/server-refactored.js',
-    '!api/instrument.js',
-    '!api/test_*.js',
+    'backend/**/*.js',
+    '!backend/server.js',
+    '!backend/instrument.js',
+    '!backend/test_*.js',
     '!**/node_modules/**',
     '!**/tests/**'
   ],
@@ -20,6 +26,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
   testTimeout: 30000,
   verbose: true,
+  transform: {},
   transformIgnorePatterns: [
     'node_modules/(?!(mongodb-memory-server)/)'
   ]

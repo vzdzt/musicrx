@@ -1,20 +1,22 @@
 const request = require('supertest');
 const express = require('express');
 const cors = require('cors');
-const albumsRoute = require('../backend/routes/albums.js');
-const healthRoute = require('../backend/routes/health.js');
-const Album = require('../backend/models/index.js');
 
 describe('Integration Tests', () => {
   let app;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     app = express();
     app.use(cors());
     app.use(express.json());
 
+    // Dynamic imports for ES modules
+    const { albumsRoute } = await import('../backend/routes/albums.js');
+    const { getHealth } = await import('../backend/routes/health.js');
+    const { Album } = await import('../backend/models/index.js');
+
     // Mount all routes
-    app.use('/api/health', healthRoute);
+    app.get('/api/health', getHealth);
     app.use('/api/v1/albums', albumsRoute);
     app.use('/api/albums', albumsRoute); // Backward compatibility
 

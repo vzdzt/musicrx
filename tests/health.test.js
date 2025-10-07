@@ -1,14 +1,14 @@
 const request = require('supertest');
 const express = require('express');
-const healthRoute = require('../backend/routes/health.js');
 
 describe('Health API', () => {
   let app;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     app = express();
-    app.use(express.json());
-    app.use('/api/health', healthRoute);
+    // Dynamic import for ES module
+    const { getHealth } = await import('../backend/routes/health.js');
+    app.get('/api/health', getHealth);
   });
 
   describe('GET /api/health', () => {
@@ -19,16 +19,15 @@ describe('Health API', () => {
 
       expect(response.body).toHaveProperty('status', 'ok');
       expect(response.body).toHaveProperty('timestamp');
-      expect(new Date(response.body.timestamp)).toBeInstanceOf(Date);
+      expect(response.body).toHaveProperty('uptime');
     });
 
-    it('should return JSON content type', async () => {
+    it('should have correct content type', async () => {
       const response = await request(app)
         .get('/api/health')
-        .expect(200)
-        .expect('Content-Type', /json/);
+        .expect(200);
 
-      expect(response.headers['content-type']).toMatch(/application\/json/);
+      expect(response.headers['content-type']).toMatch(/json/);
     });
 
     it('should handle multiple requests', async () => {

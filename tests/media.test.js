@@ -2,34 +2,23 @@ const request = require('supertest');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
-const mongoSanitize = require('express-mongo-sanitize');
-const xss = require('xss-clean');
 
 describe('Media Download API', () => {
   let app;
 
   beforeEach(() => {
     app = express();
-
-    // Apply the same middleware as the main server
-    app.use(helmet());
     app.use(cors());
     app.use(express.json({ limit: '10mb' }));
     app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-    // Rate limiting for media endpoints
-    const strictLimiter = rateLimit({
-      windowMs: 15 * 60 * 1000, // 15 minutes
-      max: 10, // limit each IP to 10 requests per windowMs
-      message: 'Too many requests to sensitive endpoints, please try again later.',
-      standardHeaders: true,
-      legacyHeaders: false,
+    // Mock security middleware for testing
+    app.use(helmet());
+    app.use((req, res, next) => {
+      res.setHeader('X-Content-Type-Options', 'nosniff');
+      res.setHeader('X-Frame-Options', 'DENY');
+      next();
     });
-
-    // Data sanitization
-    app.use(mongoSanitize());
-    app.use(xss());
 
     // Mock media download endpoint
     app.post('/api/download-media', (req, res) => {

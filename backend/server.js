@@ -2758,7 +2758,8 @@ app.get(`${API_BASE}/podcasts/trending`, async (req, res) => {
                 category: podcastCategory,
                 featured: show.name.toLowerCase().includes('joe rogan') ||
                          show.name.toLowerCase().includes('song exploder') ||
-                         show.name.toLowerCase().includes('broken record')
+                         show.name.toLowerCase().includes('broken record'),
+                spotifyUrl: show.external_urls?.spotify || `https://open.spotify.com/show/${show.id}`
               });
             }
           }

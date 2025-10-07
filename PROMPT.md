@@ -671,10 +671,11 @@ Podcasts Collection:
 - ✅ Fixed: Podcasts API routing conflict (route ordering issue resolved)
 - ✅ Fixed: Vercel domain misconfiguration (API proxy routing implemented)
 - ✅ Fixed: NordVPN security warnings (canonical URL implementation and HTTPS enforcement)
-- ✅ __Fixed: Backend server port__ (changed from 3003 to 3000)
+- ✅ __Fixed: Backend server port conflicts__ (resolved EADDRINUSE errors on port 3000)
+- ✅ __Fixed: Server startup issues__ (killed conflicting processes, proper PM2 restart with correct working directory)
 - ✅ __Fixed: MongoDB OOM issues__ (restarted service after memory exhaustion)
 - ✅ __Fixed: File structure problems__ (copied server.js, instrument.js, routes/, models/ to root)
-- ✅ __Fixed: PM2 process management__ (proper restart with correct file paths)
+- ✅ __Fixed: PM2 process management__ (proper restart with correct file paths and working directory)
 - ✅ Implemented: Security enhancements (auditing, rate limiting, XSS protection)
 - ✅ Implemented: API versioning (v1 endpoints with backward compatibility)
 - ✅ Implemented: Jest testing framework with comprehensive test suite
@@ -697,11 +698,13 @@ Podcasts Collection:
 - ✅ Working: All other API integrations
 - ✅ Working: Podcasts API with featured music podcasts
 - ✅ __Working: New releases API__ (showing September 2025 albums, expanded to 24 results, includes Young Thug's "UY SCUTI")
-- ✅ __Working: Underground rankings__ (artists with scores and UG ratings)
+- ✅ __Working: Underground rankings__ (124 artists with scores and UG ratings)
 - ✅ __Working: All-time rankings__ (albums with comprehensive scoring)
 - ✅ __Working: Auto-review system__ (automated 7-API scoring for new music releases)
-- ✅ __Working: Podcast trending API__ (returns real Spotify podcasts with direct URL access)
-- ✅ __Working: World-First trends API__ (returns real Deezer global trending artists)
+- ✅ __Working: Podcast trending API__ (returns 20 real Spotify podcasts with direct URL access)
+- ✅ __Working: World-First trends API__ (returns 10 real Deezer global trending artists)
+- ✅ __Working: Featured podcasts API__ (returns 8 curated music podcasts including Joe Rogan, Song Exploder, Broken Record)
+- ✅ __Working: AOTY contenders API__ (returns 10 album of the year contenders for 2025)
 
 ## Performance Benchmarks (Current Achievements)
 
@@ -758,5 +761,5 @@ __Priority__: Maintain production stability, implement comprehensive testing, an
 - Quality assurance checklist
 
 **Last Updated**: October 7, 2025
-**Version**: 2.1.0
-**Recent Changes**: Podcast API overhaul, World-First API fix, Spotify URL linking, comprehensive README updates
+**Version**: 2.1.1
+**Recent Changes**: Backend server port conflicts resolved, World First & Podcasts APIs fully operational with real data, server startup issues fixed, comprehensive status updates
