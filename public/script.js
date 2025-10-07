@@ -3,7 +3,7 @@
 // localhost for development, VPS backend for production
 const API_BASE = window.location.hostname === 'localhost'
   ? 'http://localhost:3000'
-  : 'https://musicrx.app'; // Production VPS backend URL
+  : 'http://104.236.127.44:3000'; // Production VPS backend URL
 
 // Footer visibility control
 window.addEventListener('scroll', () => {
