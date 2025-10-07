@@ -91,7 +91,7 @@ export const getNewReleases = async (req, res) => {
         releaseDate: { $gte: startDate } // Use the calculated startDate from timeRange
       })
       .sort({ releaseDate: -1 }) // Most recent release date first
-      .limit(12);
+      .limit(24);
 
       if (recentAlbums && recentAlbums.length > 0) {
         console.log(`Found ${recentAlbums.length} albums in time range ${timeRange} in database`);
@@ -124,8 +124,61 @@ export const getNewReleases = async (req, res) => {
       return await getPopularAlbumsFallback(res);
     }
 
-    // Try Spotify's new releases endpoint
+    // Try to get recent albums using search by date (more comprehensive than new-releases endpoint)
     try {
+      console.log('Trying comprehensive recent albums search...');
+
+      // Search for albums from the last 30 days using multiple queries
+      const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+      const searchQueries = [
+        'year:2025',
+        'year:2024'
+      ];
+
+      let allRecentAlbums = [];
+
+      for (const query of searchQueries) {
+        try {
+          const searchResponse = await spotifyApi.search(query, ['album'], {
+            limit: 20,
+            offset: 0
+          });
+
+          const albums = searchResponse.body.albums.items;
+
+          // Filter for albums released in the last 30 days
+          const recentAlbums = albums.filter(album => {
+            const releaseDate = new Date(album.release_date);
+            return releaseDate >= thirtyDaysAgo;
+          });
+
+          allRecentAlbums.push(...recentAlbums);
+        } catch (searchErr) {
+          console.warn(`Search query "${query}" failed:`, searchErr.message);
+        }
+      }
+
+      // Remove duplicates and process
+      const uniqueAlbums = allRecentAlbums.filter((album, index, self) =>
+        index === self.findIndex(a => a.id === album.id)
+      );
+
+      if (uniqueAlbums.length > 0) {
+        // Process the albums
+        const processedAlbums = await processNewReleases(uniqueAlbums);
+
+        // Sort by release date (most recent first)
+        processedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+
+        // Limit to 12 albums for homepage display
+        const finalAlbums = processedAlbums.slice(0, 12);
+
+        console.log(`Returning ${finalAlbums.length} comprehensive recent albums (most recent: ${finalAlbums[0]?.releaseDate})`);
+        return res.json(finalAlbums);
+      }
+
+      // Fallback to Spotify's new releases endpoint if search fails
+      console.log('Comprehensive search failed, trying Spotify new releases endpoint...');
       const response = await spotifyApi.getNewReleases({
         limit: 50,
         offset: 0,
@@ -144,7 +197,7 @@ export const getNewReleases = async (req, res) => {
         // Limit to 12 albums for homepage display
         const finalAlbums = processedAlbums.slice(0, 12);
 
-        console.log(`Returning ${finalAlbums.length} Spotify albums (most recent: ${finalAlbums[0]?.releaseDate})`);
+        console.log(`Returning ${finalAlbums.length} Spotify curated albums (most recent: ${finalAlbums[0]?.releaseDate})`);
         return res.json(finalAlbums);
       }
     } catch (spotifyErr) {
