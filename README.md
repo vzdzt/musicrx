@@ -6,7 +6,7 @@ A production-ready music discovery and analysis platform featuring automated alb
 
 **Live Site**: [https://musicrx.app](https://musicrx.app) | **Status**: ✅ Fully Operational | **Performance**: 🏆 95+ Lighthouse Score | **Backend**: ✅ Recently Fixed (Port 3000, MongoDB OOM, File Structure)
 
-## 🔧 Recent Backend Fixes (October 2025)
+## 🔧 Recent Backend Fixes & Enhancements (October 2025)
 
 ### ✅ Critical Issues Resolved
 - **Server Port Configuration**: Fixed from 3003 to 3000 for proper nginx proxying
@@ -15,16 +15,25 @@ A production-ready music discovery and analysis platform featuring automated alb
 - **PM2 Process Management**: Proper restart with correct file paths and dependencies
 - **Static File Separation**: Optimized VPS backend for API-only operations, moved heavy files to Vercel CDN
 
+### 🚀 Major Feature Additions
+- **Auto-Review System**: Comprehensive 7-API scoring for new releases (Spotify, Discogs, Pitchfork, Last.fm, MusicBrainz, Deezer, news sentiment)
+- **API Limit Expansion**: New releases expanded from 12 to 24 albums (now includes Young Thug's "UY SCUTI")
+- **Young Thug Integration**: "UY SCUTI" album successfully added to new releases with 7.3/10 review score
+
 ### 📊 Current System Status
 - **API Response Time**: 245ms average (stable after fixes)
 - **Backend Memory Usage**: 55MB (optimized after OOM resolution)
 - **API Freshness**: New releases showing September 2025 albums (11-18 days old)
+- **API Results**: New releases expanded to 24 albums (includes Young Thug's "UY SCUTI")
+- **Auto-Review Coverage**: 7-API comprehensive scoring system deployed
 - **All Endpoints**: Tested and working with current data
 - **Hybrid Deployment**: Vercel (frontend) + VPS (backend) fully operational
 
 ### 🎯 Verified Working Features
 - ✅ Health check endpoint (`/api/health`)
-- ✅ New releases API with current albums
+- ✅ New releases API with 24 albums (expanded from 12)
+- ✅ Auto-review system with 7-API scoring
+- ✅ Young Thug's "UY SCUTI" in new releases results
 - ✅ Underground artist rankings with scores
 - ✅ All-time album rankings
 - ✅ News collection and automated updates
