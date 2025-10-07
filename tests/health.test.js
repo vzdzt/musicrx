@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const healthRoute = require('../api/routes/health.js');
+const healthRoute = require('../backend/routes/health.js');
 
 describe('Health API', () => {
   let app;

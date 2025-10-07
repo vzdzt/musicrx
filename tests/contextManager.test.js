@@ -5,7 +5,7 @@ const {
   splitIntoChunks,
   validateTokenLimit,
   getContextStats
-} = require('../api/utils/contextManager.js');
+} = require('../backend/utils/contextManager.js');
 
 describe('Context Manager Utilities', () => {
   describe('estimateTokens', () => {

@@ -1,8 +1,8 @@
 const request = require('supertest');
 const express = require('express');
 const cors = require('cors');
-const albumsRoute = require('../api/routes/albums.js');
-const Album = require('../api/models/index.js');
+const albumsRoute = require('../backend/routes/albums.js');
+const Album = require('../backend/models/index.js');
 
 describe('Albums API', () => {
   let app;
