@@ -49,7 +49,7 @@ authenticateSpotify();
  */
 export const getNewReleases = async (req, res) => {
   try {
-    const timeRange = req.query.timeRange || 'month';
+    const timeRange = req.query.timeRange || 'week';
 
     console.log(`Fetching new releases for time range: ${timeRange}`);
 
