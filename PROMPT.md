@@ -439,26 +439,85 @@ curl -s "https://musicrx.app/api/health" | jq .database
 __Debugging Common Issues:__
 
 ```bash
-# API endpoint not responding:
-curl -v "https://musicrx.app/api/health"
-pm2 logs musicrx-backend --lines 50
+# 🔌 PORT CONFLICTS (EADDRINUSE):
+lsof -i :3000  # Check what's using port 3000
+pkill -f 'node.*server.js'  # Kill all Node.js server processes
+pm2 restart musicrx-backend  # Restart with PM2
 
-# Spotify API authentication issues:
-node test_spotify.js
-curl -s "https://musicrx.app/api/new-releases" | jq .
+# 💾 MONGODB OOM/CRASH ISSUES:
+ssh root@104.236.127.44 "systemctl restart mongod"  # Restart MongoDB service
+curl -s "https://musicrx.app/api/health" | jq .database  # Check database status
+mongodump --uri="$MONGODB_URI" --out=/tmp/backup  # Create backup before restart
 
-# Database connection problems:
+# 📁 FILE STRUCTURE PROBLEMS:
+# Ensure server.js, instrument.js, routes/, models/ are in root directory
+ls -la api/  # Check if files exist
+pm2 restart musicrx-backend  # Restart after file fixes
+
+# 🔄 PM2 PROCESS MANAGEMENT:
+pm2 list  # Check all processes
+pm2 logs musicrx-backend --lines 50  # Check recent logs
+pm2 restart musicrx-backend  # Restart specific process
+pm2 monit  # Monitor all processes
+
+# 🛣️ ROUTE ORDERING ISSUES (Express.js):
+# Specific routes must come before generic routes
+# Example: /api/podcasts/:id BEFORE /api/podcasts/search
+pm2 logs musicrx-backend | grep "route"  # Check routing logs
+
+# 🔐 API AUTHENTICATION FAILURES:
+node test_spotify.js  # Test Spotify credentials
+curl -s "https://musicrx.app/api/new-releases" | jq .  # Test API response
+ssh root@104.236.127.44 "cat /root/musicrx/.env"  # Verify environment variables
+
+# 🗄️ DATABASE CONNECTION PROBLEMS:
 curl -s "https://musicrx.app/api/health" | jq .database
 ssh root@104.236.127.44 "pm2 logs musicrx-backend | grep -i mongo"
+mongosh "$MONGODB_URI" --eval "db.stats()"  # Test database connection
 
-# Vercel deployment issues:
+# 🚀 VERCEL DEPLOYMENT ISSUES:
 # Check Vercel dashboard for build logs
 # Verify vercel.json configuration
-curl -s "https://musicrx.app" | head -20
+curl -s "https://musicrx.app" | head -20  # Test frontend loading
+curl -s "https://musicrx.app/api/health"  # Test API proxy
 
-# Performance issues:
-cd frontend && npm run lighthouse:local
-pm2 monit
+# 🧪 TESTING FAILURES:
+npm test  # Run full test suite
+npm run test:coverage  # Check test coverage
+jest --testPathPattern=integration  # Run integration tests only
+
+# 🔒 SECURITY AUDIT FAILURES:
+npm run security:check  # Run high-level security audit
+npm run security:audit  # Check moderate vulnerabilities
+npm audit fix  # Attempt automatic fixes
+
+# 📊 PERFORMANCE ISSUES:
+cd frontend && npm run lighthouse:local  # Run Lighthouse audit
+pm2 monit  # Check memory/CPU usage
+curl -w "@curl-format.txt" -o /dev/null -s "https://musicrx.app/api/health"  # Response time test
+
+# 🔄 API ENDPOINT NOT RESPONDING:
+curl -v "https://musicrx.app/api/health"  # Verbose health check
+pm2 logs musicrx-backend --lines 50  # Check server logs
+ssh root@104.236.127.44 "ps aux | grep node"  # Check running processes
+
+# 💾 DATABASE BACKUP/RESTORE ISSUES:
+# MongoDB Atlas automated backups (daily, 30-day retention)
+mongodump --uri="$MONGODB_URI" --out=/path/to/backup  # Manual backup
+mongorestore --uri="$MONGODB_URI" /path/to/backup  # Restore from backup
+
+# 🧠 MEMORY LEAKS:
+pm2 monit  # Monitor memory usage over time
+pm2 restart musicrx-backend  # Restart to clear memory
+node --inspect server.js  # Debug memory issues
+
+# 🌐 CORS/API VERSIONING ISSUES:
+curl -H "Origin: https://musicrx.app" "https://musicrx.app/api/health"  # Test CORS
+curl -H "Accept: application/json" "https://musicrx.app/api/health"  # Test versioning
+
+# 📱 MOBILE/PERFORMANCE ISSUES:
+cd frontend && npm run lighthouse:local  # Mobile performance audit
+curl -H "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)" "https://musicrx.app"  # Test mobile rendering
 ```
 
 ## Key Project Files:
