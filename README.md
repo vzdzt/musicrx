@@ -14,11 +14,15 @@ A production-ready music discovery and analysis platform featuring automated alb
 - **File Structure Problems**: Copied `server.js`, `instrument.js`, `routes/`, and `models/` to root directory for PM2 compatibility
 - **PM2 Process Management**: Proper restart with correct file paths and dependencies
 - **Static File Separation**: Optimized VPS backend for API-only operations, moved heavy files to Vercel CDN
+- **Port Conflicts**: Resolved EADDRINUSE errors by properly killing old processes before deployment
 
 ### 🚀 Major Feature Additions
 - **Auto-Review System**: Comprehensive 7-API scoring for new releases (Spotify, Discogs, Pitchfork, Last.fm, MusicBrainz, Deezer, news sentiment)
 - **API Limit Expansion**: New releases expanded from 12 to 24 albums (now includes Young Thug's "UY SCUTI")
 - **Young Thug Integration**: "UY SCUTI" album successfully added to new releases with 7.3/10 review score
+- **Podcast API Overhaul**: Fixed empty podcast endpoints, now return real Spotify podcast data with direct URL linking
+- **World-First API Fix**: Fixed empty world-first trends, now return real Deezer global trending artist data
+- **Spotify URL Linking**: Podcast cards now include direct Spotify URLs for seamless navigation to podcast pages
 
 ### 📊 Current System Status
 - **API Response Time**: 245ms average (stable after fixes)
@@ -26,6 +30,8 @@ A production-ready music discovery and analysis platform featuring automated alb
 - **API Freshness**: New releases showing September 2025 albums (11-18 days old)
 - **API Results**: New releases expanded to 24 albums (includes Young Thug's "UY SCUTI")
 - **Auto-Review Coverage**: 7-API comprehensive scoring system deployed
+- **Podcast Integration**: Real Spotify podcast data with direct URL access
+- **World-First Trends**: Real Deezer trending artist data with global scoring
 - **All Endpoints**: Tested and working with current data
 - **Hybrid Deployment**: Vercel (frontend) + VPS (backend) fully operational
 
@@ -34,6 +40,8 @@ A production-ready music discovery and analysis platform featuring automated alb
 - ✅ New releases API with 24 albums (expanded from 12)
 - ✅ Auto-review system with 7-API scoring
 - ✅ Young Thug's "UY SCUTI" in new releases results
+- ✅ Podcast trending API with Spotify URL linking
+- ✅ World-First trends API with real Deezer data
 - ✅ Underground artist rankings with scores
 - ✅ All-time album rankings
 - ✅ News collection and automated updates
@@ -209,6 +217,15 @@ GET  /api/v1/album/:id          # Get specific album
 POST /api/album                 # Legacy endpoint (deprecated)
 GET  /api/albums                # Legacy endpoint (deprecated)
 GET  /api/album/:id             # Legacy endpoint (deprecated)
+```
+
+### 🎙️ Podcasts (v1)
+```http
+GET  /api/v1/podcasts/trending  # Get trending podcasts with Spotify URL linking
+GET  /api/v1/podcasts/featured  # Get featured music podcasts
+GET  /api/v1/podcasts/search    # Search podcasts by query
+GET  /api/v1/podcasts/:id       # Get podcast details
+GET  /api/v1/podcasts/:id/episodes # Get podcast episodes
 ```
 
 ### 👥 Underground Rankings
