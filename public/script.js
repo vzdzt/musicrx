@@ -101,11 +101,11 @@ async function loadNewReleases() {
                 if (album.score) {
                     ratingDisplay = `<span style="color: var(--primary); font-size: 0.9rem; font-weight: bold;">★ ${album.score}/10</span>`;
                 } else {
-                    ratingDisplay = '<span style="color: var(--primary); font-size: 0.7rem;">Click to rate</span>';
+                    ratingDisplay = '<span style="color: var(--primary); font-size: 0.7rem;">Listen on Spotify</span>';
                 }
 
-                // Use same styling as static cards - no inline styles, rely on CSS classes
-                html += `<div class="scroll-item" onclick="rateAlbumFromNewRelease('${album.id}')" style="cursor: pointer;">
+                // Link directly to Spotify album page
+                html += `<a href="https://open.spotify.com/album/${album.id}" target="_blank" rel="noopener noreferrer" class="scroll-item" style="text-decoration: none;">
                     <div class="news-title-card">
                         <h2>${title}</h2>
                     </div>
@@ -115,7 +115,7 @@ async function loadNewReleases() {
                         <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 0.5rem;">${timeLabel}</p>
                         <p style="margin-top: 0.25rem;">${ratingDisplay}</p>
                     </div>
-                </div>`;
+                </a>`;
             });
 
             scrollContainer.innerHTML = html;
