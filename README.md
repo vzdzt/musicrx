@@ -440,7 +440,7 @@ pm2 monit
 ### 🛡️ Advanced Security Features
 - **API Versioning**: v1 endpoints with backward compatibility and deprecation warnings (`X-API-Warning` headers)
 - **Helmet.js Security Headers**: Comprehensive HTTP security headers and CSP protection
-- **Rate Limiting**: Intelligent rate limiting (100 req/15min general, 10 req/15min for sensitive endpoints)
+- **Rate Limiting**: Intelligent rate limiting (500 req/15min general, 10 req/15min for sensitive endpoints)
 - **XSS Protection**: Advanced XSS prevention with `xss-clean` middleware
 - **MongoDB Sanitization**: NoSQL injection prevention with `express-mongo-sanitize`
 - **Input Validation**: Comprehensive input sanitization and validation on all endpoints
