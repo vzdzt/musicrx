@@ -1,5 +1,9 @@
 // API base URL - Dynamic based on hostname
-const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://musicrx.app';
+// Backend API configuration
+// localhost for development, VPS backend for production
+const API_BASE = window.location.hostname === 'localhost'
+  ? 'http://localhost:3000'
+  : 'https://musicrx-backend.onrender.com'; // Production VPS backend URL
 
 // Footer visibility control
 window.addEventListener('scroll', () => {
