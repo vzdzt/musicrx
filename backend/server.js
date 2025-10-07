@@ -23,6 +23,8 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import mongoSanitize from 'express-mongo-sanitize';
 import xss from 'xss-clean';
+import { getNewReleases } from './routes/releases.js';
+import { Album, NewsArticle, UndergroundArtist } from './models/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -102,59 +104,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/musicrx')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// Album schema
-const albumSchema = new mongoose.Schema({
-  albumId: String,
-  title: String,
-  artist: String,
-  releaseDate: Date,
-  status: String, // 'enqueued' or 'reviewed'
-  score: Number,
-  strengths: [String],
-  weaknesses: [String],
-  readyBy: Date,
-  imageUrl: String,
-  featured: { type: Boolean, default: false },
-  ranking: Number
-});
-const Album = mongoose.model('Album', albumSchema);
 
-// News Article schema
-const newsArticleSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-  summary: String,
-  source: String,
-  url: String,
-  imageUrl: String,
-  publishedAt: Date,
-  category: String, // 'music', 'artist', 'album', 'industry', 'trending'
-  tags: [String],
-  sentiment: Number, // -1 to 1 (negative to positive)
-  engagement: Number, // popularity/engagement score
-  isAutomated: { type: Boolean, default: true },
-  createdAt: { type: Date, default: Date.now }
-});
-const NewsArticle = mongoose.model('NewsArticle', newsArticleSchema);
-
-// Underground Artist schema
-const undergroundArtistSchema = new mongoose.Schema({
-  artistId: String,
-  name: String,
-  genres: [String],
-  spotifyPopularity: Number,
-  monthlyListeners: Number,
-  followers: Number,
-  imageUrl: String,
-  score: Number,
-  ranking: Number,
-  strengths: [String],
-  weaknesses: [String],
-  ugRating: String, // UG (Underground) Rating replaces social sentiment
-  recentGrowth: Number,
-  lastUpdated: Date
-});
-const UndergroundArtist = mongoose.model('UndergroundArtist', undergroundArtistSchema);
 
 // Podcast schema
 const podcastSchema = new mongoose.Schema({
@@ -1427,79 +1377,7 @@ app.get('/api/all-2025-albums', async (req, res) => {
 });
 
 // New releases endpoint - ENABLED for homepage functionality
-app.get('/api/new-releases', async (req, res) => {
-  try {
-    const timeRange = req.query.timeRange || 'month'; // 'week', 'month', 'year'
-
-    console.log(`Fetching new releases for time range: ${timeRange}`);
-
-    // Ensure Spotify auth
-    if (!(await ensureSpotifyAuth())) {
-      console.log('Spotify auth failed, using database fallback');
-      return await getPopularAlbumsFallback(res);
-    }
-
-    // Get new releases from Spotify
-    const response = await spotifyApi.getNewReleases({
-      limit: 20,
-      offset: 0,
-      country: 'US'
-    });
-
-    const albums = response.body.albums.items;
-
-    if (!albums || albums.length === 0) {
-      console.log('No albums from Spotify, using fallback');
-      return await getPopularAlbumsFallback(res);
-    }
-
-    // Process the albums
-    const processedAlbums = await processNewReleases(albums);
-
-    // Filter by time range if specified
-    let filteredAlbums = processedAlbums;
-    if (timeRange !== 'all') {
-      const now = new Date();
-      let cutoffDate;
-
-      switch (timeRange) {
-        case 'week':
-          cutoffDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-          break;
-        case 'month':
-          cutoffDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-          break;
-        case 'year':
-          cutoffDate = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
-          break;
-        default:
-          cutoffDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-      }
-
-      filteredAlbums = processedAlbums.filter(album => {
-        const releaseDate = new Date(album.releaseDate);
-        return releaseDate >= cutoffDate;
-      });
-    }
-
-    // Ensure we return at least some albums
-    if (filteredAlbums.length === 0) {
-      console.log('No albums in time range, returning recent albums');
-      filteredAlbums = processedAlbums.slice(0, 12);
-    }
-
-    // Limit to 12 albums for homepage display
-    const finalAlbums = filteredAlbums.slice(0, 12);
-
-    console.log(`Returning ${finalAlbums.length} new releases`);
-    res.json(finalAlbums);
-
-  } catch (err) {
-    console.error('New releases error:', err);
-    // Fallback to database albums
-    await getPopularAlbumsFallback(res);
-  }
-});
+app.get('/api/new-releases', getNewReleases);
 
 // All-time rankings endpoint
 app.get('/api/all-time-rankings', async (req, res) => {

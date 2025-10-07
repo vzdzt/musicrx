@@ -44,7 +44,7 @@ function scrollSection(containerId, distance) {
 // Load new releases for the index page
 async function loadNewReleases() {
     try {
-        const response = await fetch(API_BASE + '/api/new-releases?timeRange=week');
+        const response = await fetch(API_BASE + '/api/new-releases?timeRange=month');
         if (!response.ok) {
             throw new Error(`Failed to load new releases: ${response.status}`);
         }

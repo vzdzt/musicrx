@@ -45,79 +45,120 @@ authenticateSpotify();
 
 /**
  * GET /api/new-releases
- * Get new music releases from Spotify
+ * Get new music releases - prioritizes database albums over Spotify API
  */
 export const getNewReleases = async (req, res) => {
-  try {
-    const timeRange = req.query.timeRange || 'week';
+  console.log('🚀🚀🚀 getNewReleases FUNCTION STARTED 🚀🚀🚀');
 
-    console.log(`Fetching new releases for time range: ${timeRange}`);
+  // Calculate date range first (outside try block so it's available in catch)
+  const timeRange = req.query?.timeRange || '2years';
+  const now = new Date();
+  let startDate;
+
+  switch (timeRange) {
+    case 'week':
+      startDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+      break;
+    case 'month':
+      startDate = new Date(now.getTime() - 60 * 24 * 60 * 60 * 1000); // 2 months instead of 1
+      break;
+    case '6months':
+      startDate = new Date(now.getTime() - 180 * 24 * 60 * 60 * 1000); // 6 months
+      break;
+    case '3months':
+      startDate = new Date(now.getTime() - 90 * 24 * 60 * 60 * 1000);
+      break;
+    case '2years':
+      startDate = new Date(now.getTime() - 730 * 24 * 60 * 60 * 1000); // 2 years
+      break;
+    case 'year':
+      startDate = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
+      break;
+    default:
+      startDate = new Date(now.getTime() - 60 * 24 * 60 * 60 * 1000); // Default to 2 months
+  }
+
+  try {
+    console.log(`🎵🎵🎵 NEW RELEASES API CALLED - timeRange: ${timeRange} 🎵🎵🎵`);
+    console.log(`Looking for albums released since: ${startDate.toISOString()}`);
+    console.log(`CURRENT TIME DEBUG: ${now.toISOString()}`);
+
+    // FIRST: Try to get recently reviewed albums from our database within the specified time range
+    try {
+      // Get all reviewed albums from the time range (no score threshold for new releases)
+      const recentAlbums = await Album.find({
+        status: 'reviewed',
+        releaseDate: { $gte: startDate } // Use the calculated startDate from timeRange
+      })
+      .sort({ releaseDate: -1 }) // Most recent release date first
+      .limit(12);
+
+      if (recentAlbums && recentAlbums.length > 0) {
+        console.log(`Found ${recentAlbums.length} albums in time range ${timeRange} in database`);
+
+        const processedRecentAlbums = recentAlbums.map(album => ({
+          id: album.albumId,
+          title: album.title,
+          artist: album.artist,
+          releaseDate: album.releaseDate.toISOString().split('T')[0], // Format as YYYY-MM-DD
+          imageUrl: album.imageUrl,
+          popularity: Math.floor(album.score * 10), // Estimate popularity from score
+          external_urls: { spotify: `https://open.spotify.com/album/${album.albumId}` },
+          isRated: true,
+          isFallback: false
+        }));
+
+        console.log(`Returning ${processedRecentAlbums.length} recent albums (most recent: ${processedRecentAlbums[0]?.releaseDate})`);
+        return res.json(processedRecentAlbums);
+      }
+    } catch (dbErr) {
+      console.error('Database query failed:', dbErr.message);
+    }
+
+    // SECOND: If no database albums, fall back to Spotify API
+    console.log('No database albums found, trying Spotify API');
 
     // Ensure Spotify auth
     if (!(await ensureSpotifyAuth())) {
-      console.log('Spotify auth failed, using database fallback');
+      console.log('Spotify auth failed, using ultimate fallback');
       return await getPopularAlbumsFallback(res);
     }
 
-    // Get new releases from Spotify
-    const response = await spotifyApi.getNewReleases({
-      limit: 20,
-      offset: 0,
-      country: 'US'
-    });
-
-    const albums = response.body.albums.items;
-
-    if (!albums || albums.length === 0) {
-      console.log('No albums from Spotify, using fallback');
-      return await getPopularAlbumsFallback(res);
-    }
-
-    // Process the albums
-    const processedAlbums = await processNewReleases(albums);
-
-    // Filter by time range if specified
-    let filteredAlbums = processedAlbums;
-    if (timeRange !== 'all') {
-      const now = new Date();
-      let cutoffDate;
-
-      switch (timeRange) {
-        case 'week':
-          cutoffDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-          break;
-        case 'month':
-          cutoffDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-          break;
-        case 'year':
-          cutoffDate = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
-          break;
-        default:
-          cutoffDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-      }
-
-      filteredAlbums = processedAlbums.filter(album => {
-        const releaseDate = new Date(album.releaseDate);
-        return releaseDate >= cutoffDate;
+    // Try Spotify's new releases endpoint
+    try {
+      const response = await spotifyApi.getNewReleases({
+        limit: 50,
+        offset: 0,
+        country: 'US'
       });
+
+      const albums = response.body.albums.items;
+
+      if (albums && albums.length > 0) {
+        // Process the albums
+        const processedAlbums = await processNewReleases(albums);
+
+        // Sort by release date (most recent first)
+        processedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+
+        // Limit to 12 albums for homepage display
+        const finalAlbums = processedAlbums.slice(0, 12);
+
+        console.log(`Returning ${finalAlbums.length} Spotify albums (most recent: ${finalAlbums[0]?.releaseDate})`);
+        return res.json(finalAlbums);
+      }
+    } catch (spotifyErr) {
+      console.error('Spotify API failed:', spotifyErr.message);
     }
 
-    // Ensure we return at least some albums
-    if (filteredAlbums.length === 0) {
-      console.log('No albums in time range, returning recent albums');
-      filteredAlbums = processedAlbums.slice(0, 12);
-    }
-
-    // Limit to 12 albums for homepage display
-    const finalAlbums = filteredAlbums.slice(0, 12);
-
-    console.log(`Returning ${finalAlbums.length} new releases`);
-    res.json(finalAlbums);
+    // THIRD: Ultimate fallback
+    console.log('All APIs failed, using ultimate fallback');
+    await getPopularAlbumsFallback(res, startDate);
 
   } catch (err) {
     console.error('New releases error:', err);
     // Fallback to database albums
-    await getPopularAlbumsFallback(res);
+    await getPopularAlbumsFallback(res, startDate);
   }
 };
 
@@ -233,27 +274,27 @@ async function processNewReleases(albums) {
 }
 
 // Fallback function to return popular albums from database
-async function getPopularAlbumsFallback(res) {
+async function getPopularAlbumsFallback(res, startDate = null) {
   try {
     console.log('Using database fallback for new releases...');
 
-    // Get popular albums from our database that were released recently
-    const sixMonthsAgo = new Date();
-    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+    // Use the provided startDate or default to 2 years ago if not provided
+    const cutoffDate = startDate || new Date(new Date().getTime() - 730 * 24 * 60 * 60 * 1000);
+
+    console.log(`Database fallback using cutoff date: ${cutoffDate.toISOString()}`);
 
     const popularAlbums = await Album.find({
       status: 'reviewed',
-      releaseDate: { $gte: sixMonthsAgo },
-      score: { $gte: 7.0 }
+      releaseDate: { $gte: cutoffDate }
     })
-    .sort({ score: -1, releaseDate: -1 })
+    .sort({ releaseDate: -1, score: -1 }) // Sort by release date first, then score
     .limit(12);
 
     const fallbackAlbums = popularAlbums.map(album => ({
       id: album.albumId,
       title: album.title,
       artist: album.artist,
-      releaseDate: album.releaseDate,
+      releaseDate: album.releaseDate.toISOString().split('T')[0], // Format as YYYY-MM-DD
       imageUrl: album.imageUrl,
       popularity: Math.floor(album.score * 10), // Estimate popularity from score
       external_urls: { spotify: `https://open.spotify.com/album/${album.albumId}` },
@@ -261,22 +302,33 @@ async function getPopularAlbumsFallback(res) {
       isFallback: true
     }));
 
-    console.log(`Database fallback returned ${fallbackAlbums.length} albums`);
+    console.log(`Database fallback returned ${fallbackAlbums.length} albums since ${cutoffDate.toISOString().split('T')[0]}`);
     return res.json(fallbackAlbums);
 
   } catch (fallbackErr) {
     console.error('Database fallback failed:', fallbackErr.message);
 
-    // Ultimate fallback: Return some hardcoded popular albums
+    // Ultimate fallback: Return some hardcoded popular albums from recent years
     const ultimateFallback = [
       {
-        id: '4gzpq5DPGxSnKTe4SA8HAU', // Coldplay album
-        title: 'Music of the Spheres',
-        artist: 'Coldplay',
-        releaseDate: '2021-10-15',
-        imageUrl: 'https://i.scdn.co/image/ab67616d0000b273ec10f247b100da1ce0d80b6',
-        popularity: 75,
-        external_urls: { spotify: 'https://open.spotify.com/album/4gzpq5DPGxSnKTe4SA8HAU' },
+        id: '1Mo4aZ8pdj6L1jx8zSwJnt', // Taylor Swift - The Tortured Poets Department
+        title: 'THE TORTURED POETS DEPARTMENT',
+        artist: 'Taylor Swift',
+        releaseDate: '2024-04-19',
+        imageUrl: 'https://i.scdn.co/image/ab67616d00001e025076e4160d018e378f488c33',
+        popularity: 95,
+        external_urls: { spotify: 'https://open.spotify.com/album/1Mo4aZ8pdj6L1jx8zSwJnt' },
+        isRated: false,
+        isFallback: true
+      },
+      {
+        id: '7aJuG4TFXa2hmE4z1yxc3n', // Taylor Swift - Midnights
+        title: 'Midnights',
+        artist: 'Taylor Swift',
+        releaseDate: '2022-10-21',
+        imageUrl: 'https://i.scdn.co/image/ab67616d00001e02bb54dde68cd23e2a268ae0f5',
+        popularity: 90,
+        external_urls: { spotify: 'https://open.spotify.com/album/7aJuG4TFXa2hmE4z1yxc3n' },
         isRated: false,
         isFallback: true
       },
@@ -286,14 +338,14 @@ async function getPopularAlbumsFallback(res) {
         artist: 'Adele',
         releaseDate: '2021-11-19',
         imageUrl: 'https://i.scdn.co/image/ab67616d0000b273c6b2127ce1c6c87e5b945957',
-        popularity: 80,
+        popularity: 85,
         external_urls: { spotify: 'https://open.spotify.com/album/6s84u2TUpR3wdUv4NgKA2j' },
         isRated: false,
         isFallback: true
       }
     ];
 
-    console.log('Using ultimate fallback with hardcoded albums');
+    console.log('Using ultimate fallback with recent popular albums');
     return res.json(ultimateFallback);
   }
 }
