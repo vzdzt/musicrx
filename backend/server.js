@@ -39,7 +39,21 @@ console.log('SPOTIFY_CLIENT_ID from process.env:', process.env.SPOTIFY_CLIENT_ID
 console.log('SPOTIFY_CLIENT_SECRET from process.env:', process.env.SPOTIFY_CLIENT_SECRET);
 
 // Security middleware
-app.use(helmet()); // Set security headers
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'", "https:"],
+      fontSrc: ["'self'", "https:", "data:"],
+      objectSrc: ["'none'"],
+      mediaSrc: ["'self'", "https:", "data:"],
+      frameSrc: ["'none'"],
+    },
+  },
+}));
 
 // Rate limiting
 const limiter = rateLimit({
@@ -2690,40 +2704,117 @@ app.get(`${API_BASE}/podcasts/trending`, async (req, res) => {
 
     console.log(`🎙️ Getting trending podcasts (category: ${category})`);
 
-    // For now, search for popular music-related podcasts
-    // In production, this could use Spotify's featured playlists or charts
-    const searchTerms = category === 'music'
-      ? ['music podcast', 'music interview', 'music news', 'music discovery']
-      : ['podcast', 'talk show', 'interview'];
+    // Search for popular music podcasts using curated search terms
+    const musicPodcastQueries = [
+      'music podcast',
+      'song exploder',
+      'dissect music',
+      'broken record rick rubin',
+      'pitchfork podcast',
+      'the ringer music',
+      'mass appeal hip hop',
+      'no jumper',
+      'drink champs',
+      'chicks in the office'
+    ];
 
     const allPodcasts = [];
+    const seenIds = new Set();
 
-    for (const term of searchTerms.slice(0, 2)) { // Limit to 2 searches to avoid rate limits
+    // Search for each query to get diverse results
+    for (const query of musicPodcastQueries.slice(0, 5)) { // Limit to 5 searches to avoid rate limits
       try {
-        const searchResult = await spotifyApi.search(term, ['show'], { limit: 10 });
-        const podcasts = searchResult.body.shows.items.map(show => ({
-          id: show.id,
-          name: show.name,
-          description: show.description,
-          publisher: show.publisher,
-          imageUrl: show.images?.[0]?.url,
-          totalEpisodes: show.total_episodes,
-          category: category,
-          featured: Math.random() > 0.7 // Randomly mark some as featured
-        }));
-        allPodcasts.push(...podcasts);
+        console.log(`🔍 Searching for podcasts: "${query}"`);
+
+        const searchResult = await spotifyApi.search(query, ['show'], {
+          limit: 10
+        });
+
+        if (searchResult.body.shows && searchResult.body.shows.items) {
+          for (const show of searchResult.body.shows.items) {
+            // Avoid duplicates
+            if (!seenIds.has(show.id) && show.total_episodes > 0) {
+              seenIds.add(show.id);
+
+              // Determine category based on show name/description
+              let podcastCategory = 'general';
+              const showText = (show.name + ' ' + (show.description || '')).toLowerCase();
+
+              if (showText.includes('music') || showText.includes('song') || showText.includes('album')) {
+                podcastCategory = 'music';
+              } else if (showText.includes('interview') || showText.includes('conversation')) {
+                podcastCategory = 'interviews';
+              } else if (showText.includes('industry') || showText.includes('business')) {
+                podcastCategory = 'industry';
+              }
+
+              allPodcasts.push({
+                id: show.id,
+                name: show.name,
+                description: show.description || 'No description available',
+                publisher: show.publisher || 'Unknown Publisher',
+                imageUrl: show.images?.[0]?.url || null,
+                totalEpisodes: show.total_episodes || 0,
+                category: podcastCategory,
+                featured: show.name.toLowerCase().includes('joe rogan') ||
+                         show.name.toLowerCase().includes('song exploder') ||
+                         show.name.toLowerCase().includes('broken record')
+              });
+            }
+          }
+        }
+
+        // Rate limiting
+        await new Promise(resolve => setTimeout(resolve, 200));
+
       } catch (searchError) {
-        console.warn(`Search failed for "${term}":`, searchError.message);
+        console.warn(`Failed to search for "${query}":`, searchError.message);
       }
     }
 
-    // Remove duplicates and limit results
-    const uniquePodcasts = allPodcasts.filter((podcast, index, self) =>
-      index === self.findIndex(p => p.id === podcast.id)
-    ).slice(0, limit);
+    // If no podcasts found, return fallback data
+    if (allPodcasts.length === 0) {
+      console.log('No podcasts found from API, using fallback data');
+      const fallbackPodcasts = [
+        {
+          id: 'fallback-1',
+          name: 'The Joe Rogan Experience',
+          description: 'The official podcast of comedian Joe Rogan.',
+          publisher: 'Joe Rogan',
+          imageUrl: 'https://i.scdn.co/image/ab6765630000ba8a0c13d3d5a503c84fcc60ae94',
+          totalEpisodes: 2000,
+          category: 'music',
+          featured: true
+        },
+        {
+          id: 'fallback-2',
+          name: 'Song Exploder',
+          description: 'Song Exploder is a podcast where musicians take apart their songs.',
+          publisher: 'Hrishikesh Hirway',
+          imageUrl: 'https://i.scdn.co/image/ab6765630000ba8a5b25f9e7a2a6b5b3b3b3b3b3',
+          totalEpisodes: 300,
+          category: 'music',
+          featured: true
+        }
+      ];
 
-    console.log(`✅ Returning ${uniquePodcasts.length} trending podcasts`);
-    res.json(uniquePodcasts);
+      const filteredFallback = fallbackPodcasts
+        .filter(podcast => category === 'music' || podcast.category === category)
+        .slice(0, limit);
+
+      console.log(`✅ Returning ${filteredFallback.length} fallback trending podcasts`);
+      return res.json(filteredFallback);
+    }
+
+    // Sort by total episodes (rough popularity indicator) and filter by category
+    allPodcasts.sort((a, b) => (b.totalEpisodes || 0) - (a.totalEpisodes || 0));
+
+    const filteredPodcasts = allPodcasts
+      .filter(podcast => category === 'music' || podcast.category === category)
+      .slice(0, limit);
+
+    console.log(`✅ Returning ${filteredPodcasts.length} trending podcasts from Spotify API`);
+    res.json(filteredPodcasts);
 
   } catch (error) {
     console.error('Trending podcasts error:', error);
@@ -5037,22 +5128,67 @@ app.get('/api/world-first/trends', async (req, res) => {
   try {
     console.log('🌍 Fetching World First underground trends...');
 
-    // Check cache first (cache for 6 hours)
-    const cacheKey = 'world_first_trends';
-    const cachedData = await getCache(cacheKey);
-
-    if (cachedData) {
-      console.log('📋 Returning cached World First trends');
-      return res.json(cachedData);
-    }
-
-    // Generate fresh data
     const trends = await getWorldFirstTrends();
 
-    // Cache the results
-    await setCache(cacheKey, trends, 6 * 60 * 60 * 1000); // 6 hours
+    // If no trends found from API, return fallback data
+    if (!trends || trends.length === 0) {
+      console.log('No trends found from API, using fallback data');
+      const fallbackTrends = [
+        {
+          id: 'fallback_1',
+          country: 'Latin America',
+          countryCode: 'GLOBAL',
+          genre: 'reggaeton',
+          track: {
+            id: 'fallback_1',
+            title: 'La Romana',
+            previewUrl: null,
+            duration: 320,
+            rank: 1
+          },
+          artist: {
+            id: 'fallback_1',
+            name: 'El Alfa',
+            imageUrl: 'https://e-cdns-images.dzcdn.net/images/artist/5b4b4b4b4b4b4b4b4b4b4b4b4b4b4b4b/250x250-000000-80-0-0.jpg',
+            deezerUrl: 'https://www.deezer.com/artist/fallback_1'
+          },
+          trendingScore: 8,
+          spotifyPresence: 'rising',
+          trendStrength: 85,
+          discoveredAt: new Date(),
+          lastUpdated: new Date()
+        },
+        {
+          id: 'fallback_2',
+          country: 'Africa',
+          countryCode: 'GLOBAL',
+          genre: 'afrobeat',
+          track: {
+            id: 'fallback_2',
+            title: 'Sungba',
+            previewUrl: null,
+            duration: 280,
+            rank: 2
+          },
+          artist: {
+            id: 'fallback_2',
+            name: 'Asake',
+            imageUrl: 'https://e-cdns-images.dzcdn.net/images/artist/6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c/250x250-000000-80-0-0.jpg',
+            deezerUrl: 'https://www.deezer.com/artist/fallback_2'
+          },
+          trendingScore: 7,
+          spotifyPresence: 'emerging',
+          trendStrength: 78,
+          discoveredAt: new Date(),
+          lastUpdated: new Date()
+        }
+      ];
 
-    console.log(`🎯 Returning ${trends.length} fresh World First trends`);
+      console.log(`✅ Returning ${fallbackTrends.length} fallback World First trends`);
+      return res.json(fallbackTrends);
+    }
+
+    console.log(`✅ Returning ${trends.length} World First trends from Deezer API`);
     res.json(trends);
 
   } catch (error) {
