@@ -464,6 +464,7 @@
                     <li><a href="podcasts.html">Podcasts</a></li>
                     <li><a href="newmusic.html">New Music</a></li>
                     <li><a href="underground.html">Underground</a></li>
+                    <li><a href="world-first.html">World First</a></li>
                     <li><a href="listener-pulse.html">Listener Pulse</a></li>
                     <li><a href="all-time-rankings.html">Rankings</a></li>
                     <li><a href="tools.html">Tools</a></li>
@@ -730,22 +731,7 @@
             </div>
         </section>
 
-        <section class="scroll-section" id="world-first-artists">
-            <div class="section-header">
-                <h2 class="section-title"><a href="world-first.html" style="text-decoration: none; color: inherit;">🌍 World First</a></h2>
-                <div class="scroll-nav">
-                    <button class="scroll-button prev" onclick="scrollSection('world-first-artists', -300)">←</button>
-                    <button class="scroll-button next" onclick="scrollSection('world-first-artists', 300)">→</button>
-                </div>
-            </div>
-            <div class="scroll-container" id="world-first-artists-scroll">
-                <!-- World First artists will be loaded here -->
-                <div class="loading" id="world-first-loading">
-                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-                    <p>Loading trending global artists...</p>
-                </div>
-            </div>
-        </section>
+
 
         <section class="scroll-section" id="new-music">
             <div class="section-header">
@@ -933,55 +919,7 @@
             return num.toString();
         }
 
-        // Load homepage World First artists
-        async function loadHomepageWorldFirstArtists() {
-            try {
-                const response = await fetch(`${BACKEND_URL}/api/world-first/trends?limit=6`);
 
-                if (!response.ok) {
-                    throw new Error(`Failed to load World First artists: ${response.status}`);
-                }
-
-                const artists = await response.json();
-                displayHomepageWorldFirstArtists(artists.slice(0, 6)); // Show top 6
-
-            } catch (error) {
-                console.error('Homepage World First artists error:', error);
-                // Fallback to show some default content
-                document.getElementById('world-first-loading').innerHTML = `
-                    <div style="text-align: center; padding: 2rem;">
-                        <i class="fas fa-globe" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-                        <p>Check out our <a href="world-first.html" style="color: var(--primary);">global trending artists</a></p>
-                    </div>
-                `;
-            }
-        }
-
-        function displayHomepageWorldFirstArtists(artists) {
-            document.getElementById('world-first-loading').style.display = 'none';
-
-            const container = document.getElementById('world-first-artists-scroll');
-
-            artists.forEach(artist => {
-                const item = document.createElement('a');
-                item.href = 'world-first.html';
-                item.className = 'scroll-item';
-
-                const imageUrl = artist.artist.imageUrl || 'https://dummyimage.com/200x200/333/666&text=No+Image';
-
-                item.innerHTML = `
-                    <div class="news-title-card">
-                        <h3>${artist.artist.name}</h3>
-                    </div>
-                    <div class="news-content-card">
-                        <p class="date">Score: ${artist.undergroundScore}/10 • ${artist.spotifyPresence}</p>
-                        <img src="${imageUrl}" alt="${artist.artist.name}" style="width: 100%; aspect-ratio: 1; object-fit: cover;" onerror="this.src='https://dummyimage.com/200x200/333/666&text=No+Image'">
-                    </div>
-                `;
-
-                container.appendChild(item);
-            });
-        }
 
         // Load homepage podcasts
         async function loadHomepagePodcasts() {
@@ -1043,7 +981,6 @@
         // Load homepage underground artists when page loads
         document.addEventListener('DOMContentLoaded', () => {
             loadHomepageUndergroundArtists();
-            loadHomepageWorldFirstArtists();
             loadHomepagePodcasts();
         });
 

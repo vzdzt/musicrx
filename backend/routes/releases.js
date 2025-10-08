@@ -96,20 +96,38 @@ export const getNewReleases = async (req, res) => {
       if (recentAlbums && recentAlbums.length > 0) {
         console.log(`Found ${recentAlbums.length} albums in time range ${timeRange} in database`);
 
-        const processedRecentAlbums = recentAlbums.map(album => ({
-          id: album.albumId,
-          title: album.title,
-          artist: album.artist,
-          releaseDate: album.releaseDate.toISOString().split('T')[0], // Format as YYYY-MM-DD
-          imageUrl: album.imageUrl,
-          popularity: Math.floor(album.score * 10), // Estimate popularity from score
-          external_urls: { spotify: `https://open.spotify.com/album/${album.albumId}` },
-          isRated: true,
-          isFallback: false
-        }));
+      // Deduplicate albums by title+artist, keeping the highest rated version
+      const albumMap = new Map();
 
-        console.log(`Returning ${processedRecentAlbums.length} recent albums (most recent: ${processedRecentAlbums[0]?.releaseDate})`);
-        return res.json(processedRecentAlbums);
+      recentAlbums.forEach(album => {
+        const key = `${album.title}_${album.artist}`;
+        const existing = albumMap.get(key);
+
+        if (!existing || album.score > existing.score) {
+          albumMap.set(key, album);
+        }
+      });
+
+      const deduplicatedAlbums = Array.from(albumMap.values());
+
+      const processedRecentAlbums = deduplicatedAlbums.map(album => ({
+        id: album.albumId,
+        title: album.title,
+        artist: album.artist,
+        releaseDate: album.releaseDate.toISOString().split('T')[0], // Format as YYYY-MM-DD
+        imageUrl: album.imageUrl,
+        popularity: Math.floor(album.score * 10), // Estimate popularity from score
+        score: album.score, // Include actual score
+        external_urls: { spotify: `https://open.spotify.com/album/${album.albumId}` },
+        isRated: true,
+        isFallback: false
+      }));
+
+      // Sort by release date (most recent first)
+      processedRecentAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+
+      console.log(`Returning ${processedRecentAlbums.length} deduplicated recent albums (most recent: ${processedRecentAlbums[0]?.releaseDate})`);
+      return res.json(processedRecentAlbums);
       }
     } catch (dbErr) {
       console.error('Database query failed:', dbErr.message);

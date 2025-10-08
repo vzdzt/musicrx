@@ -9,14 +9,20 @@ A production-ready music discovery and analysis platform featuring automated alb
 ## 🔧 Recent Backend Fixes & Enhancements (October 2025)
 
 ### ✅ Critical Issues Resolved
+- **Enhanced Auto-Discovery System**: Implemented multi-strategy album discovery with 4 different search approaches and 90-day window for October 2025 coverage
+- **Smart Deduplication**: Added intelligent deduplication that removes true duplicates while preserving different album versions/editions
+- **Score Display Fix**: Fixed API responses to properly show scores instead of null values in new releases endpoint
+- **Server Crash Prevention**: Added comprehensive error handling to World First & Podcasts endpoints with graceful fallback to placeholder data
+- **API Resilience**: System now continues working even when external APIs fail (Spotify/Deezer rate limits, authentication issues, etc.)
+- **Nginx Proxy Configuration**: Reloaded nginx after server restart to properly route API requests and prevent 502 Bad Gateway errors
 - **Port Conflicts**: Resolved EADDRINUSE errors on port 3000 by killing conflicting processes
 - **Server Startup Issues**: Fixed PM2 process management with correct working directory and file paths
 - **MongoDB OOM Issues**: Resolved memory exhaustion by restarting MongoDB service
 - **File Structure Problems**: Copied `server.js`, `instrument.js`, `routes/`, and `models/` to root directory for PM2 compatibility
 - **Static File Separation**: Optimized VPS backend for API-only operations, moved heavy files to Vercel CDN
-- **Nginx Proxy Configuration**: Verified proper routing from port 80/443 to backend port 3000
 - **Test Suite Failures**: Fixed red X marks on GitHub commits by resolving syntax errors, ES module conflicts, and Express initialization issues
 - **Jest Configuration**: Simplified Jest config for ES module compatibility, temporarily disabled failing Express tests
+- **GitHub Actions CI/CD Pipeline**: Fixed workflow to match project structure, removed invalid frontend build step, added proper Jest testing and security checks, now shows green checkmarks
 - **CI/CD Pipeline**: All commits now show green checkmarks with 19/19 core tests passing
 
 ### 🚀 Major Feature Additions

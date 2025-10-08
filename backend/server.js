@@ -2697,129 +2697,247 @@ app.get(`${API_BASE}/podcasts/search`, async (req, res) => {
   }
 });
 
-// Get trending/popular podcasts
+// Get trending/popular podcasts with enhanced reliability
 app.get(`${API_BASE}/podcasts/trending`, async (req, res) => {
+  const cacheKey = 'podcasts-trending';
+
   try {
     const { limit = 20, category = 'music' } = req.query;
 
     console.log(`🎙️ Getting trending podcasts (category: ${category})`);
 
-    // Search for popular music podcasts using curated search terms
-    const musicPodcastQueries = [
-      'music podcast',
-      'song exploder',
-      'dissect music',
-      'broken record rick rubin',
-      'pitchfork podcast',
-      'the ringer music',
-      'mass appeal hip hop',
-      'no jumper',
-      'drink champs',
-      'chicks in the office'
-    ];
+    // Try cached data first
+    const cachedPodcasts = await getCachedApiData(cacheKey, async () => {
+      return await apiCallWithRetry(async () => {
+        // Search for popular music podcasts using curated search terms
+        const musicPodcastQueries = [
+          'music podcast',
+          'song exploder',
+          'dissect music',
+          'broken record rick rubin',
+          'pitchfork podcast',
+          'the ringer music',
+          'mass appeal hip hop',
+          'no jumper',
+          'drink champs',
+          'chicks in the office'
+        ];
 
-    const allPodcasts = [];
-    const seenIds = new Set();
+        const allPodcasts = [];
+        const seenIds = new Set();
 
-    // Search for each query to get diverse results
-    for (const query of musicPodcastQueries.slice(0, 5)) { // Limit to 5 searches to avoid rate limits
-      try {
-        console.log(`🔍 Searching for podcasts: "${query}"`);
+        // Search for each query to get diverse results
+        for (const query of musicPodcastQueries.slice(0, 5)) { // Limit to 5 searches to avoid rate limits
+          try {
+            console.log(`🔍 Searching for podcasts: "${query}"`);
 
-        const searchResult = await spotifyApi.search(query, ['show'], {
-          limit: 10
-        });
+            const searchResult = await spotifyApi.search(query, ['show'], {
+              limit: 10
+            });
 
-        if (searchResult.body.shows && searchResult.body.shows.items) {
-          for (const show of searchResult.body.shows.items) {
-            // Avoid duplicates
-            if (!seenIds.has(show.id) && show.total_episodes > 0) {
-              seenIds.add(show.id);
+            if (searchResult.body.shows && searchResult.body.shows.items) {
+              for (const show of searchResult.body.shows.items) {
+                // Avoid duplicates
+                if (!seenIds.has(show.id) && show.total_episodes > 0) {
+                  seenIds.add(show.id);
 
-              // Determine category based on show name/description
-              let podcastCategory = 'general';
-              const showText = (show.name + ' ' + (show.description || '')).toLowerCase();
+                  // Determine category based on show name/description
+                  let podcastCategory = 'general';
+                  const showText = (show.name + ' ' + (show.description || '')).toLowerCase();
 
-              if (showText.includes('music') || showText.includes('song') || showText.includes('album')) {
-                podcastCategory = 'music';
-              } else if (showText.includes('interview') || showText.includes('conversation')) {
-                podcastCategory = 'interviews';
-              } else if (showText.includes('industry') || showText.includes('business')) {
-                podcastCategory = 'industry';
+                  if (showText.includes('music') || showText.includes('song') || showText.includes('album')) {
+                    podcastCategory = 'music';
+                  } else if (showText.includes('interview') || showText.includes('conversation')) {
+                    podcastCategory = 'interviews';
+                  } else if (showText.includes('industry') || showText.includes('business')) {
+                    podcastCategory = 'industry';
+                  }
+
+                  allPodcasts.push({
+                    id: show.id,
+                    name: show.name,
+                    description: show.description || 'No description available',
+                    publisher: show.publisher || 'Unknown Publisher',
+                    imageUrl: show.images?.[0]?.url || null,
+                    totalEpisodes: show.total_episodes || 0,
+                    category: podcastCategory,
+                    featured: show.name.toLowerCase().includes('joe rogan') ||
+                             show.name.toLowerCase().includes('song exploder') ||
+                             show.name.toLowerCase().includes('broken record'),
+                    spotifyUrl: show.external_urls?.spotify || `https://open.spotify.com/show/${show.id}`
+                  });
+                }
               }
-
-              allPodcasts.push({
-                id: show.id,
-                name: show.name,
-                description: show.description || 'No description available',
-                publisher: show.publisher || 'Unknown Publisher',
-                imageUrl: show.images?.[0]?.url || null,
-                totalEpisodes: show.total_episodes || 0,
-                category: podcastCategory,
-                featured: show.name.toLowerCase().includes('joe rogan') ||
-                         show.name.toLowerCase().includes('song exploder') ||
-                         show.name.toLowerCase().includes('broken record'),
-                spotifyUrl: show.external_urls?.spotify || `https://open.spotify.com/show/${show.id}`
-              });
             }
+
+            // Rate limiting
+            await new Promise(resolve => setTimeout(resolve, 200));
+
+          } catch (searchError) {
+            console.warn(`Failed to search for "${query}":`, searchError.message);
           }
         }
 
-        // Rate limiting
-        await new Promise(resolve => setTimeout(resolve, 200));
+        // Sort by total episodes (rough popularity indicator)
+        allPodcasts.sort((a, b) => (b.totalEpisodes || 0) - (a.totalEpisodes || 0));
 
-      } catch (searchError) {
-        console.warn(`Failed to search for "${query}":`, searchError.message);
-      }
-    }
+        return allPodcasts;
+      }, 3, 2000); // 3 retries, 2 second base delay
+    }, 180); // Cache for 3 hours
 
-    // If no podcasts found, return fallback data
-    if (allPodcasts.length === 0) {
-      console.log('No podcasts found from API, using fallback data');
-      const fallbackPodcasts = [
-        {
-          id: 'fallback-1',
-          name: 'The Joe Rogan Experience',
-          description: 'The official podcast of comedian Joe Rogan.',
-          publisher: 'Joe Rogan',
-          imageUrl: 'https://i.scdn.co/image/ab6765630000ba8a0c13d3d5a503c84fcc60ae94',
-          totalEpisodes: 2000,
-          category: 'music',
-          featured: true
-        },
-        {
-          id: 'fallback-2',
-          name: 'Song Exploder',
-          description: 'Song Exploder is a podcast where musicians take apart their songs.',
-          publisher: 'Hrishikesh Hirway',
-          imageUrl: 'https://i.scdn.co/image/ab6765630000ba8a5b25f9e7a2a6b5b3b3b3b3b3',
-          totalEpisodes: 300,
-          category: 'music',
-          featured: true
-        }
-      ];
-
-      const filteredFallback = fallbackPodcasts
+    // If we got real data from API, filter and return it
+    if (cachedPodcasts && cachedPodcasts.length > 0 && !cachedPodcasts[0].id?.startsWith('fallback-')) {
+      const filteredPodcasts = cachedPodcasts
         .filter(podcast => category === 'music' || podcast.category === category)
         .slice(0, limit);
 
-      console.log(`✅ Returning ${filteredFallback.length} fallback trending podcasts`);
-      return res.json(filteredFallback);
+      console.log(`✅ Returning ${filteredPodcasts.length} real trending podcasts from Spotify API`);
+      return res.json(filteredPodcasts);
     }
 
-    // Sort by total episodes (rough popularity indicator) and filter by category
-    allPodcasts.sort((a, b) => (b.totalEpisodes || 0) - (a.totalEpisodes || 0));
+    // If cached data is fallback or empty, try fresh API call
+    console.log('🔄 Cached data is fallback/empty, attempting fresh API call...');
+    const freshPodcasts = await apiCallWithRetry(async () => {
+      // Same logic as above for fresh data
+      const musicPodcastQueries = [
+        'music podcast',
+        'song exploder',
+        'dissect music',
+        'broken record rick rubin',
+        'pitchfork podcast',
+        'the ringer music',
+        'mass appeal hip hop',
+        'no jumper',
+        'drink champs',
+        'chicks in the office'
+      ];
 
-    const filteredPodcasts = allPodcasts
+      const allPodcasts = [];
+      const seenIds = new Set();
+
+      for (const query of musicPodcastQueries.slice(0, 5)) {
+        try {
+          const searchResult = await spotifyApi.search(query, ['show'], { limit: 10 });
+
+          if (searchResult.body.shows && searchResult.body.shows.items) {
+            for (const show of searchResult.body.shows.items) {
+              if (!seenIds.has(show.id) && show.total_episodes > 0) {
+                seenIds.add(show.id);
+
+                let podcastCategory = 'general';
+                const showText = (show.name + ' ' + (show.description || '')).toLowerCase();
+
+                if (showText.includes('music') || showText.includes('song') || showText.includes('album')) {
+                  podcastCategory = 'music';
+                } else if (showText.includes('interview') || showText.includes('conversation')) {
+                  podcastCategory = 'interviews';
+                } else if (showText.includes('industry') || showText.includes('business')) {
+                  podcastCategory = 'industry';
+                }
+
+                allPodcasts.push({
+                  id: show.id,
+                  name: show.name,
+                  description: show.description || 'No description available',
+                  publisher: show.publisher || 'Unknown Publisher',
+                  imageUrl: show.images?.[0]?.url || null,
+                  totalEpisodes: show.total_episodes || 0,
+                  category: podcastCategory,
+                  featured: show.name.toLowerCase().includes('joe rogan') ||
+                           show.name.toLowerCase().includes('song exploder') ||
+                           show.name.toLowerCase().includes('broken record'),
+                  spotifyUrl: show.external_urls?.spotify || `https://open.spotify.com/show/${show.id}`
+                });
+              }
+            }
+          }
+
+          await new Promise(resolve => setTimeout(resolve, 200));
+
+        } catch (searchError) {
+          console.warn(`Failed to search for "${query}":`, searchError.message);
+        }
+      }
+
+      allPodcasts.sort((a, b) => (b.totalEpisodes || 0) - (a.totalEpisodes || 0));
+      return allPodcasts;
+    }, 2, 3000); // 2 retries, 3 second base delay
+
+    if (freshPodcasts && freshPodcasts.length > 0 && !freshPodcasts[0].id?.startsWith('fallback-')) {
+      const filteredPodcasts = freshPodcasts
+        .filter(podcast => category === 'music' || podcast.category === category)
+        .slice(0, limit);
+
+      console.log(`✅ Fresh API call succeeded: ${filteredPodcasts.length} real trending podcasts`);
+      setCache(cacheKey, freshPodcasts); // Update cache
+      return res.json(filteredPodcasts);
+    }
+
+    // All API attempts failed, return fallback data
+    console.log('🚨 All API attempts failed, using fallback data');
+    const fallbackPodcasts = [
+      {
+        id: 'fallback-1',
+        name: 'The Joe Rogan Experience',
+        description: 'The official podcast of comedian Joe Rogan.',
+        publisher: 'Joe Rogan',
+        imageUrl: 'https://i.scdn.co/image/ab6765630000ba8a0c13d3d5a503c84fcc60ae94',
+        totalEpisodes: 2000,
+        category: 'music',
+        featured: true
+      },
+      {
+        id: 'fallback-2',
+        name: 'Song Exploder',
+        description: 'Song Exploder is a podcast where musicians take apart their songs.',
+        publisher: 'Hrishikesh Hirway',
+        imageUrl: 'https://i.scdn.co/image/ab6765630000ba8a5b25f9e7a2a6b5b3b3b3b3b3',
+        totalEpisodes: 300,
+        category: 'music',
+        featured: true
+      }
+    ];
+
+    const filteredFallback = fallbackPodcasts
       .filter(podcast => category === 'music' || podcast.category === category)
       .slice(0, limit);
 
-    console.log(`✅ Returning ${filteredPodcasts.length} trending podcasts from Spotify API`);
-    res.json(filteredPodcasts);
+    console.log(`⚠️ Returning ${filteredFallback.length} fallback trending podcasts (API unavailable)`);
+    return res.json(filteredFallback);
 
   } catch (error) {
-    console.error('Trending podcasts error:', error);
-    res.status(500).json({ error: 'Failed to fetch trending podcasts', details: error.message });
+    console.error('Trending podcasts endpoint error:', error.message);
+
+    // Return fallback data on error instead of 500
+    const fallbackPodcasts = [
+      {
+        id: 'fallback-1',
+        name: 'The Joe Rogan Experience',
+        description: 'The official podcast of comedian Joe Rogan.',
+        publisher: 'Joe Rogan',
+        imageUrl: 'https://i.scdn.co/image/ab6765630000ba8a0c13d3d5a503c84fcc60ae94',
+        totalEpisodes: 2000,
+        category: 'music',
+        featured: true
+      },
+      {
+        id: 'fallback-2',
+        name: 'Song Exploder',
+        description: 'Song Exploder is a podcast where musicians take apart their songs.',
+        publisher: 'Hrishikesh Hirway',
+        imageUrl: 'https://i.scdn.co/image/ab6765630000ba8a5b25f9e7a2a6b5b3b3b3b3b3',
+        totalEpisodes: 300,
+        category: 'music',
+        featured: true
+      }
+    ];
+
+    const filteredFallback = fallbackPodcasts
+      .filter(podcast => category === 'music' || podcast.category === category)
+      .slice(0, parseInt(limit));
+
+    console.log(`⚠️ Returning ${filteredFallback.length} fallback trending podcasts (error fallback)`);
+    return res.json(filteredFallback);
   }
 });
 
@@ -5124,77 +5242,205 @@ async function getDeezerCountryCharts(countryCode) {
   }
 }
 
-// World First Trends endpoint
+// Enhanced API caching system
+const apiCache = new Map();
+
+async function getCachedApiData(cacheKey, fetchFunction, ttlMinutes = 60) {
+  const cached = apiCache.get(cacheKey);
+  if (cached && (Date.now() - cached.timestamp) < (ttlMinutes * 60 * 1000)) {
+    console.log(`📋 Using cached data for ${cacheKey} (${Math.round((Date.now() - cached.timestamp) / 1000 / 60)} min old)`);
+    return cached.data;
+  }
+
+  const freshData = await fetchFunction();
+  if (freshData && freshData.length > 0) {
+    apiCache.set(cacheKey, { data: freshData, timestamp: Date.now() });
+    console.log(`💾 Cached fresh data for ${cacheKey}`);
+  }
+
+  return freshData;
+}
+
+async function setCache(cacheKey, data) {
+  apiCache.set(cacheKey, { data: data, timestamp: Date.now() });
+}
+
+// API retry logic with exponential backoff
+async function apiCallWithRetry(apiFunction, maxRetries = 3, baseDelay = 1000) {
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      console.log(`🔄 API call attempt ${attempt + 1}/${maxRetries}`);
+      const result = await apiFunction();
+
+      // Check if result is valid (not empty/null)
+      if (result && (Array.isArray(result) ? result.length > 0 : true)) {
+        console.log(`✅ API call succeeded on attempt ${attempt + 1}`);
+        return result;
+      } else {
+        console.warn(`⚠️ API returned empty result on attempt ${attempt + 1}`);
+      }
+    } catch (error) {
+      console.warn(`❌ API call failed on attempt ${attempt + 1}:`, error.message);
+
+      if (attempt < maxRetries - 1) {
+        const delay = baseDelay * Math.pow(2, attempt); // Exponential backoff
+        console.log(`⏳ Waiting ${delay}ms before retry...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+  }
+
+  console.error(`💥 All ${maxRetries} API attempts failed`);
+  return null;
+}
+
+// World First Trends endpoint with enhanced reliability
 app.get('/api/world-first/trends', async (req, res) => {
+  const cacheKey = 'world-first-trends';
+
   try {
     console.log('🌍 Fetching World First underground trends...');
 
-    const trends = await getWorldFirstTrends();
+    // Try cached data first
+    const cachedTrends = await getCachedApiData(cacheKey, async () => {
+      return await apiCallWithRetry(async () => {
+        const trends = await getWorldFirstTrends();
+        return trends;
+      }, 3, 2000); // 3 retries, 2 second base delay
+    }, 120); // Cache for 2 hours
 
-    // If no trends found from API, return fallback data
-    if (!trends || trends.length === 0) {
-      console.log('No trends found from API, using fallback data');
-      const fallbackTrends = [
-        {
-          id: 'fallback_1',
-          country: 'Latin America',
-          countryCode: 'GLOBAL',
-          genre: 'reggaeton',
-          track: {
-            id: 'fallback_1',
-            title: 'La Romana',
-            previewUrl: null,
-            duration: 320,
-            rank: 1
-          },
-          artist: {
-            id: 'fallback_1',
-            name: 'El Alfa',
-            imageUrl: 'https://e-cdns-images.dzcdn.net/images/artist/5b4b4b4b4b4b4b4b4b4b4b4b4b4b4b4b/250x250-000000-80-0-0.jpg',
-            deezerUrl: 'https://www.deezer.com/artist/fallback_1'
-          },
-          trendingScore: 8,
-          spotifyPresence: 'rising',
-          trendStrength: 85,
-          discoveredAt: new Date(),
-          lastUpdated: new Date()
-        },
-        {
-          id: 'fallback_2',
-          country: 'Africa',
-          countryCode: 'GLOBAL',
-          genre: 'afrobeat',
-          track: {
-            id: 'fallback_2',
-            title: 'Sungba',
-            previewUrl: null,
-            duration: 280,
-            rank: 2
-          },
-          artist: {
-            id: 'fallback_2',
-            name: 'Asake',
-            imageUrl: 'https://e-cdns-images.dzcdn.net/images/artist/6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c/250x250-000000-80-0-0.jpg',
-            deezerUrl: 'https://www.deezer.com/artist/fallback_2'
-          },
-          trendingScore: 7,
-          spotifyPresence: 'emerging',
-          trendStrength: 78,
-          discoveredAt: new Date(),
-          lastUpdated: new Date()
-        }
-      ];
-
-      console.log(`✅ Returning ${fallbackTrends.length} fallback World First trends`);
-      return res.json(fallbackTrends);
+    // If we got real data from API, return it
+    if (cachedTrends && cachedTrends.length > 0 && !cachedTrends[0].id?.startsWith('fallback_')) {
+      console.log(`✅ Returning ${cachedTrends.length} real World First trends from Deezer API`);
+      return res.json(cachedTrends);
     }
 
-    console.log(`✅ Returning ${trends.length} World First trends from Deezer API`);
-    res.json(trends);
+    // If cached data is fallback or empty, try fresh API call
+    console.log('🔄 Cached data is fallback/empty, attempting fresh API call...');
+    const freshTrends = await apiCallWithRetry(async () => {
+      const trends = await getWorldFirstTrends();
+      return trends;
+    }, 2, 3000); // 2 retries, 3 second base delay
+
+    if (freshTrends && freshTrends.length > 0 && !freshTrends[0].id?.startsWith('fallback_')) {
+      console.log(`✅ Fresh API call succeeded: ${freshTrends.length} real World First trends`);
+      setCache(cacheKey, freshTrends); // Update cache
+      return res.json(freshTrends);
+    }
+
+    // All API attempts failed, return fallback data
+    console.log('🚨 All API attempts failed, using fallback data');
+    const fallbackTrends = [
+      {
+        id: 'fallback_1',
+        country: 'Latin America',
+        countryCode: 'GLOBAL',
+        genre: 'reggaeton',
+        track: {
+          id: 'fallback_1',
+          title: 'La Romana',
+          previewUrl: null,
+          duration: 320,
+          rank: 1
+        },
+        artist: {
+          id: 'fallback_1',
+          name: 'El Alfa',
+          imageUrl: 'https://e-cdns-images.dzcdn.net/images/artist/5b4b4b4b4b4b4b4b4b4b4b4b4b4b4b4b/250x250-000000-80-0-0.jpg',
+          deezerUrl: 'https://www.deezer.com/artist/fallback_1'
+        },
+        trendingScore: 8,
+        spotifyPresence: 'rising',
+        trendStrength: 85,
+        discoveredAt: new Date(),
+        lastUpdated: new Date()
+      },
+      {
+        id: 'fallback_2',
+        country: 'Africa',
+        countryCode: 'GLOBAL',
+        genre: 'afrobeat',
+        track: {
+          id: 'fallback_2',
+          title: 'Sungba',
+          previewUrl: null,
+          duration: 280,
+          rank: 2
+        },
+        artist: {
+          id: 'fallback_2',
+          name: 'Asake',
+          imageUrl: 'https://e-cdns-images.dzcdn.net/images/artist/6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c/250x250-000000-80-0-0.jpg',
+          deezerUrl: 'https://www.deezer.com/artist/fallback_2'
+        },
+        trendingScore: 7,
+        spotifyPresence: 'emerging',
+        trendStrength: 78,
+        discoveredAt: new Date(),
+        lastUpdated: new Date()
+      }
+    ];
+
+    console.log(`⚠️ Returning ${fallbackTrends.length} fallback World First trends (API unavailable)`);
+    return res.json(fallbackTrends);
 
   } catch (error) {
     console.error('World First trends endpoint error:', error.message);
-    res.status(500).json({ error: 'Failed to fetch World First trends' });
+
+    // Return fallback data on error instead of 500
+    const fallbackTrends = [
+      {
+        id: 'fallback_1',
+        country: 'Latin America',
+        countryCode: 'GLOBAL',
+        genre: 'reggaeton',
+        track: {
+          id: 'fallback_1',
+          title: 'La Romana',
+          previewUrl: null,
+          duration: 320,
+          rank: 1
+        },
+        artist: {
+          id: 'fallback_1',
+          name: 'El Alfa',
+          imageUrl: 'https://e-cdns-images.dzcdn.net/images/artist/5b4b4b4b4b4b4b4b4b4b4b4b4b4b4b4b/250x250-000000-80-0-0.jpg',
+          deezerUrl: 'https://www.deezer.com/artist/fallback_1'
+        },
+        trendingScore: 8,
+        spotifyPresence: 'rising',
+        trendStrength: 85,
+        discoveredAt: new Date(),
+        lastUpdated: new Date()
+      },
+      {
+        id: 'fallback_2',
+        country: 'Africa',
+        countryCode: 'GLOBAL',
+        genre: 'afrobeat',
+        track: {
+          id: 'fallback_2',
+          title: 'Sungba',
+          previewUrl: null,
+          duration: 280,
+          rank: 2
+        },
+        artist: {
+          id: 'fallback_2',
+          name: 'Asake',
+          imageUrl: 'https://e-cdns-images.dzcdn.net/images/artist/6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c/250x250-000000-80-0-0.jpg',
+          deezerUrl: 'https://www.deezer.com/artist/fallback_2'
+        },
+        trendingScore: 7,
+        spotifyPresence: 'emerging',
+        trendStrength: 78,
+        discoveredAt: new Date(),
+        lastUpdated: new Date()
+      }
+    ];
+
+    console.log(`⚠️ Returning ${fallbackTrends.length} fallback World First trends (error fallback)`);
+    return res.json(fallbackTrends);
   }
 });
 
@@ -5278,28 +5524,315 @@ app.get('/api/spotify/artist/:artistId', async (req, res) => {
 });
 
 // Simple caching system
-const cache = new Map();
+const simpleCache = new Map();
 
-async function getCache(key) {
-  const item = cache.get(key);
+async function getSimpleCache(key) {
+  const item = simpleCache.get(key);
   if (item && item.expires > Date.now()) {
     return item.data;
   }
-  cache.delete(key);
+  simpleCache.delete(key);
   return null;
 }
 
-async function setCache(key, data, ttlMs) {
-  cache.set(key, {
+async function setSimpleCache(key, data, ttlMs) {
+  simpleCache.set(key, {
     data: data,
     expires: Date.now() + ttlMs
   });
 }
 
-// Update cron job to include news collection
+// Enhanced auto-discovery of new releases using multiple strategies
+async function discoverNewReleases() {
+  try {
+    console.log('🔍 Enhanced new releases discovery with multiple strategies...');
+
+    // Ensure Spotify auth
+    if (!(await ensureSpotifyAuth())) {
+      console.log('❌ Spotify auth failed, skipping discovery');
+      return;
+    }
+
+    const allAlbums = [];
+    let discoveredCount = 0;
+
+    // Strategy 1: Spotify's official New Releases endpoint
+    try {
+      console.log('📀 Strategy 1: Spotify New Releases endpoint');
+      const newReleasesResponse = await spotifyApi.getNewReleases({
+        limit: 50,
+        offset: 0,
+        country: 'US'
+      });
+      allAlbums.push(...newReleasesResponse.body.albums.items);
+      console.log(`   Found ${newReleasesResponse.body.albums.items.length} albums from New Releases`);
+    } catch (err) {
+      console.warn('Strategy 1 failed:', err.message);
+    }
+
+    // Strategy 2: Search by current year for comprehensive coverage
+    try {
+      console.log('📀 Strategy 2: Current year search');
+      const currentYear = new Date().getFullYear();
+      const yearSearch = await spotifyApi.search(`year:${currentYear}`, ['album'], {
+        limit: 50,
+        offset: 0
+      });
+      allAlbums.push(...yearSearch.body.albums.items);
+      console.log(`   Found ${yearSearch.body.albums.items.length} albums from year search`);
+    } catch (err) {
+      console.warn('Strategy 2 failed:', err.message);
+    }
+
+    // Strategy 3: Search by current month for recent releases
+    try {
+      console.log('📀 Strategy 3: Current month search');
+      const currentYear = new Date().getFullYear();
+      const currentMonth = new Date().getMonth() + 1;
+      const monthSearch = await spotifyApi.search(`year:${currentYear} month:${currentMonth}`, ['album'], {
+        limit: 50,
+        offset: 0
+      });
+      allAlbums.push(...monthSearch.body.albums.items);
+      console.log(`   Found ${monthSearch.body.albums.items.length} albums from month search`);
+    } catch (err) {
+      console.warn('Strategy 3 failed:', err.message);
+    }
+
+    // Strategy 4: Search for upcoming/pre-order releases
+    try {
+      console.log('📀 Strategy 4: Upcoming releases search');
+      const upcomingSearch = await spotifyApi.search('upcoming releases new albums', ['album'], {
+        limit: 30,
+        offset: 0
+      });
+      allAlbums.push(...upcomingSearch.body.albums.items);
+      console.log(`   Found ${upcomingSearch.body.albums.items.length} albums from upcoming search`);
+    } catch (err) {
+      console.warn('Strategy 4 failed:', err.message);
+    }
+
+    // Deduplicate albums
+    const uniqueAlbums = allAlbums.filter((album, index, self) =>
+      index === self.findIndex(a => a.id === album.id)
+    );
+
+    console.log(`📊 Total unique albums found: ${uniqueAlbums.length}`);
+
+    // Process recent releases (expand window to 90 days for October coverage)
+    const ninetyDaysAgo = new Date();
+    ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+
+    for (const album of uniqueAlbums) {
+      try {
+        // Check if album already exists in database
+        const existingAlbum = await Album.findOne({ albumId: album.id });
+
+        if (!existingAlbum) {
+          // Get full album details
+          const fullAlbum = await spotifyApi.getAlbum(album.id);
+          const albumData = fullAlbum.body;
+
+          // Calculate release date and check if it's recent (within last 90 days)
+          const releaseDate = new Date(albumData.release_date);
+
+          if (releaseDate >= ninetyDaysAgo) {
+            console.log(`🎵 Adding new album: ${albumData.name} by ${albumData.artists[0].name} (${releaseDate.toISOString().split('T')[0]})`);
+
+            // Create album entry (will be reviewed later by cron job)
+            const newAlbum = new Album({
+              albumId: albumData.id,
+              title: albumData.name,
+              artist: albumData.artists[0].name,
+              releaseDate: releaseDate,
+              imageUrl: albumData.images[0]?.url,
+              status: 'enqueued', // Will be reviewed by daily cron job
+              score: 0,
+              strengths: [],
+              weaknesses: []
+            });
+
+            await newAlbum.save();
+            discoveredCount++;
+          }
+        }
+      } catch (albumErr) {
+        console.warn(`Error processing album ${album.id}:`, albumErr.message);
+      }
+    }
+
+    console.log(`✅ Enhanced discovery complete: Added ${discoveredCount} new albums to database`);
+
+  } catch (error) {
+    console.error('❌ Enhanced new releases discovery error:', error.message);
+  }
+}
+
+// Refresh existing new releases data (update popularity, etc.)
+async function refreshNewReleases() {
+  try {
+    console.log('🔄 Refreshing new releases data...');
+
+    // Ensure Spotify auth
+    if (!(await ensureSpotifyAuth())) {
+      console.log('❌ Spotify auth failed, skipping refresh');
+      return;
+    }
+
+    // Get recent albums from database (last 60 days)
+    const sixtyDaysAgo = new Date();
+    sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
+
+    const recentAlbums = await Album.find({
+      releaseDate: { $gte: sixtyDaysAgo }
+    });
+
+    let updatedCount = 0;
+
+    console.log(`📀 Refreshing ${recentAlbums.length} recent albums`);
+
+    for (const album of recentAlbums) {
+      try {
+        // Get fresh data from Spotify
+        const spotifyAlbum = await spotifyApi.getAlbum(album.albumId);
+
+        if (spotifyAlbum.body) {
+          const freshData = spotifyAlbum.body;
+
+          // Update popularity and other fresh data
+          await Album.findOneAndUpdate(
+            { albumId: album.albumId },
+            {
+              popularity: freshData.popularity,
+              imageUrl: freshData.images[0]?.url || album.imageUrl,
+              lastUpdated: new Date()
+            }
+          );
+
+          updatedCount++;
+        }
+      } catch (albumErr) {
+        console.warn(`Error refreshing album ${album.albumId}:`, albumErr.message);
+      }
+    }
+
+    console.log(`✅ Refreshed ${updatedCount} albums with fresh Spotify data`);
+
+  } catch (error) {
+    console.error('❌ New releases refresh error:', error.message);
+  }
+}
+
+// Update cron job to include news collection and new releases discovery
 cron.schedule('0 */2 * * *', async () => { // Every 2 hours
   console.log('Running scheduled news collection...');
   await collectDailyNews();
+});
+
+// Daily new releases discovery (runs at 6 AM daily)
+cron.schedule('0 6 * * *', async () => {
+  console.log('🔍 Running daily new releases discovery...');
+  try {
+    await discoverNewReleases();
+  } catch (err) {
+    console.error('❌ Daily new releases discovery failed:', err);
+  }
+});
+
+// Hourly new releases refresh (runs every hour at :30)
+cron.schedule('30 * * * *', async () => {
+  console.log('🔄 Running hourly new releases refresh...');
+  try {
+    await refreshNewReleases();
+  } catch (err) {
+    console.error('❌ Hourly new releases refresh failed:', err);
+  }
+});
+
+// API Health Monitoring (every 30 minutes)
+cron.schedule('*/30 * * * *', async () => {
+  console.log('🔍 Running API health check...');
+
+  try {
+    const healthStatus = {
+      timestamp: new Date(),
+      apis: {}
+    };
+
+    // Check Spotify API
+    try {
+      const spotifyHealth = await apiCallWithRetry(async () => {
+        await ensureSpotifyAuth();
+        const testSearch = await spotifyApi.search('test', ['artist'], { limit: 1 });
+        return testSearch.body.artists.items.length >= 0;
+      }, 1, 1000); // Quick check, 1 retry
+
+      healthStatus.apis.spotify = {
+        status: spotifyHealth ? 'healthy' : 'unhealthy',
+        lastChecked: new Date()
+      };
+    } catch (error) {
+      healthStatus.apis.spotify = {
+        status: 'unhealthy',
+        error: error.message,
+        lastChecked: new Date()
+      };
+    }
+
+    // Check Deezer API
+    try {
+      const deezerHealth = await apiCallWithRetry(async () => {
+        const charts = await getDeezerCharts();
+        return charts && charts.tracks && charts.tracks.data && charts.tracks.data.length > 0;
+      }, 1, 1000); // Quick check, 1 retry
+
+      healthStatus.apis.deezer = {
+        status: deezerHealth ? 'healthy' : 'unhealthy',
+        lastChecked: new Date()
+      };
+    } catch (error) {
+      healthStatus.apis.deezer = {
+        status: 'unhealthy',
+        error: error.message,
+        lastChecked: new Date()
+      };
+    }
+
+    // Check Last.fm API
+    try {
+      const lastfmHealth = await apiCallWithRetry(async () => {
+        const charts = await fetchLastFmCharts('united states');
+        return charts && charts.length > 0;
+      }, 1, 1000); // Quick check, 1 retry
+
+      healthStatus.apis.lastfm = {
+        status: lastfmHealth ? 'healthy' : 'unhealthy',
+        lastChecked: new Date()
+      };
+    } catch (error) {
+      healthStatus.apis.lastfm = {
+        status: 'unhealthy',
+        error: error.message,
+        lastChecked: new Date()
+      };
+    }
+
+    // Log health status
+    const healthyApis = Object.values(healthStatus.apis).filter(api => api.status === 'healthy').length;
+    const totalApis = Object.keys(healthStatus.apis).length;
+
+    console.log(`🏥 API Health: ${healthyApis}/${totalApis} APIs healthy`);
+
+    if (healthyApis < totalApis) {
+      console.warn('⚠️ Some APIs are unhealthy:', healthStatus.apis);
+    }
+
+    // Store health status for monitoring
+    global.apiHealthStatus = healthStatus;
+
+  } catch (error) {
+    console.error('❌ API health check failed:', error.message);
+  }
 });
 
 // Weekly underground rankings update (every Sunday at 2 AM)
