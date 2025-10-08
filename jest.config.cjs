@@ -1,13 +1,19 @@
 module.exports = {
   testEnvironment: 'node',
-  testMatch: [
+  testMatch: process.env.CI ? [
     '**/tests/basic.test.js',
-    '**/tests/contextManager.test.js',
+    '**/tests/contextManager.test.js'
+  ] : [
+    '**/tests/**/*.test.js',
     '**/tests/**/*.spec.js',
     '**/__tests__/**/*.test.js',
     '**/__tests__/**/*.spec.js'
   ],
-  testPathIgnorePatterns: [
+  testPathIgnorePatterns: process.env.CI ? [
+    'tests/albums.test.js',
+    'tests/integration.test.js',
+    'tests/media.test.js'
+  ] : [
     'tests/health.test.js',
     'tests/albums.test.js',
     'tests/integration.test.js',

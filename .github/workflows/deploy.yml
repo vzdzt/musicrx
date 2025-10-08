@@ -27,9 +27,12 @@ jobs:
       run: npm test
       env:
         CI: true
+        NODE_ENV: test
 
     - name: Check for security vulnerabilities
       run: npm run security:check
+      env:
+        CI: true
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
