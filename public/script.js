@@ -1,9 +1,26 @@
-// API base URL - Dynamic based on hostname
-// Backend API configuration
-// localhost for development, VPS backend for production
-const API_BASE = window.location.hostname === 'localhost'
-  ? 'http://localhost:3000'
-  : 'https://musicrx.app'; // Production VPS backend URL (HTTPS)
+// API base URL - Dynamic based on hostname for multi-deployment support
+// Backend API configuration with automatic routing
+const API_BASE = (() => {
+  const hostname = window.location.hostname;
+
+  // Development environment
+  if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    return 'http://localhost:3000';
+  }
+
+  // Vercel deployment (serverless backend)
+  if (hostname.includes('vercel.app')) {
+    return `https://${hostname}`; // Vercel serves both frontend and API
+  }
+
+  // GitHub Pages deployment (connects to VPS backend)
+  if (hostname === 'musicrx.app') {
+    return 'https://musicrx.app'; // VPS backend URL
+  }
+
+  // Fallback for any other deployment
+  return 'https://musicrx.app';
+})();
 
 // Footer visibility control
 window.addEventListener('scroll', () => {

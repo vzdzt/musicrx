@@ -1,10 +1,16 @@
-name: Deploy to GitHub Pages
+name: Deploy Frontend to GitHub Pages
 
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'public/**'
+      - '.github/workflows/deploy.yml'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'public/**'
+      - '.github/workflows/deploy.yml'
 
 jobs:
   build-and-deploy:
