@@ -23,12 +23,13 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Build frontend
-      run: npm run build
-      working-directory: ./frontend
+    - name: Run tests
+      run: npm test
+      env:
+        CI: true
 
-    - name: Copy built files to public
-      run: cp -r frontend/build/* public/
+    - name: Check for security vulnerabilities
+      run: npm run security:check
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
