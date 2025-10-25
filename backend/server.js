@@ -17,7 +17,7 @@ import Sentiment from 'sentiment';
 import * as cheerio from 'cheerio';
 import { google } from 'googleapis';
 import https from 'https';
-// import { TwitterApi } from 'twitter-api-v2'; // Temporarily disabled
+import { TwitterApi } from 'twitter-api-v2'; // Temporarily disabled
 import Discogs from 'disconnect';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
