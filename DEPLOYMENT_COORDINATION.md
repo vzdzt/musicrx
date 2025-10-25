@@ -3,8 +3,8 @@
 ## Overview
 MusicRx uses a **hybrid deployment strategy** with 3 systems working together:
 
-1. **GitHub Pages** - Static frontend (automatic)
-2. **Vercel** - Alternative frontend + serverless API (manual/on-demand)
+1. **GitHub Pages** - Primary static frontend (automatic)
+2. **Vercel** - Alternative frontend + serverless API backend (manual/on-demand)
 3. **VPS** - Full backend with media processing (manual)
 
 ## 🏷️ Deployment Labels System
@@ -132,6 +132,19 @@ if (isVercel) {
 - **GitHub Pages Issues**: Check GitHub Actions logs
 - **Vercel Issues**: Vercel dashboard or support
 - **VPS Issues**: SSH access and PM2 logs
+
+---
+
+## 🗑️ Recently Removed Deployments (10/25/2025)
+
+- **api.musicrx.app**: Removed Vercel deployment - Misconfigured deployment causing alerts, no active DNS records or traffic
+- **GitHub Environments**: Cleaned up multiple failed environments (red X status, last deployed month ago)
+
+## 📊 Current Active Deployments
+
+- **GitHub Pages** (`musicrx.app`) → Primary
+- **Vercel** (`musicrx-backend.vercel.app`) → Secondary backend
+- **VPS** (`musicrx.app/api/*`) → Primary API server
 
 ---
 
